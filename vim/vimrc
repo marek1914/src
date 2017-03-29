@@ -13,7 +13,6 @@ set dict+=~/Work/note/src/vim/zh
 set rtp+=~/.vim/tagbar
 set rtp+=~/.vim/ultisnips
 set rtp+=~/.vim/vim-snippets
-set rtp+=~/.vim/nerdtree
 
 set complete+=k "c-n c-p can c-x c-k
 
