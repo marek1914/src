@@ -1,36 +1,30 @@
 pkg-config
 
-
 atp-get install netgen
 Mark Shuttlewort ubuntu创始人
 
 lubuntu = lxde+ubuntu
+fonts-wqy-zenhei
+ia32-libs
+
+纯字符模式，显示中文
+
 常见软件
 * AdobeIllustrator
 * kolourpaint 类似画图板工具
 * ImageMagick 
 * SpeedCrunch 高精度计算器
-* teamviewer，官网下载deb包
 * nautilus-open-terminal
-* iptux(用iptux_0.5.3-1_amd64.deb版本，设置gb18030 font:文泉驿)
-* subversion subversion-tools
-* vim (系统默认vi不好用)
-* 64bit os运行32bit程序安装ia32库 ia32-libs (u14.04没这个包，dpkg --add-architecture i386/apt-get update不灵)
-* openjdk-6/7-jdk(ubuntu不包含jdk)
+* iptux(iptux_0.5.3-1_amd64.deb，gb18030 font:文泉驿)
 * gnome-session-fallback / gnome-panel
-* python-markdown Python实现Markdown(轻文本标记语言，文本转HTML)
+* python-markdown Python实现Markdown(转HTML)
 * openssh-server
-* unrar
-* lzop 文件压缩器
 * libncurses5 libncurses5-dev libncursesw(wide character support)
 * ncurses-devel(linux make menuconfig时提示,实际在ubuntu上应该装libncurses5-dev)
-* lzop (Lempel-Ziv-Oberhumer Packer)
-* gedit-plugins gedit插件
-* Dart Editor   web编辑 www.dartlang.org
 http://askubuntu.com/questions
 
 APT
-Debian/Ubuntu用dpkg（package manager for Debian）或 apt（Advanced Package Tool）管理deb包，RHEL(Red Hat Enterprise Linux)/CentOS/Fedora使用yum管理rpm（Redhat Package Management）。alien可转换rpm到deb。
+Debian/Ubuntu用dpkg（package manager for Debian）或 apt（Advanced Package Tool）管理.deb
 
 apt-get install
 		Suggested packages:默认不安装。若要安装，需建立配置文件：/etc/apt/apt.conf：
@@ -88,9 +82,8 @@ virtual Box
 	7) 个别程序需将文件拷至虚拟机目录，在共享ubuntu目录执行异常。已知的：winrar直接提示错误，Phoenixcard，uboot部分烧不进入。
 	8) Unsupported version 14 of data unit 'vga' 解决：右击虚拟机列表选：Discard saved state...
 	9) virtualbox 4.3.10升级到4.3.34，xp无法启动，addition也升级4.3.34即可
-	10) Guest Additions 包 ？？
+	10) Guest Additions 包
 
-包
 	1) dpkg
 
 		-l List packages matching given pattern
@@ -110,7 +103,7 @@ virtual Box
 		libgtk2.0-0:i386 2.24.6-0ubuntu5 (Multi-Arch: same) which is currently installed ??
 		尝试卸载libgtk2.0 会删除近500M数据显然不行。
 		
-		deb包格式：
+		deb:
 		DEBIAN/control文件
 		Version: 2.20.0-0ubuntu4
 		Architecture: amd64 (Multi-Arch: same  这里怎么写？)
@@ -121,8 +114,6 @@ virtual Box
 		https://launchpad.net/ubuntu/
 	3) libxx-dev
 		开发库除.so还有.h和.a用于编译和静态链接。
-			
-	4) 包依赖:包解压/DEBIAN/control 描述依赖包
 
 	5) 包源：
 		1) 格式
@@ -315,8 +306,6 @@ grub （os安装问题每次都能搞定，已经具备了这种能力）
 
 系统2分区，系统崩溃时不至损坏数据，系统分区100G足够
 
-
-
 错误报告
 	1) 装完显卡驱动，声卡驱动不工作了。安装一个3D桌面的东西，桌面显示不正常了。
 	3) 由11.04升级到11.10成功(以前这样升级都是失败的，进不了桌面)
@@ -352,7 +341,6 @@ gcc
     ibus-setup，取消：Embed Preedit text in application window
     取消前，汉字直接出现在光标后，取消后按空格才出现
     
-
 	引发系统崩溃的2个手贱命令
 	apt-get remove unity* (想删除unity桌面)
 	apt-get remove python (重依赖python)
@@ -391,11 +379,9 @@ update-alternatives
 update-alternatives --install <link> <name> <path> <priority>
 update-alternatives --remove  name path
 
-
 某应用不更新：
 sudo dpkg --set-selections  然后在stdin，输入iptux hold  ctrl+D退出
 sudo dpkg --get-selections  可以看到iptux变为hold状态了。
-
 
 pci转串口卡
 lspci -v
@@ -415,7 +401,6 @@ else
 fi
 useradd参数应为-m，修改再执行Install脚本，成功。
 
-
 sudoers
 
 增加ppa 
@@ -430,25 +415,12 @@ apt-get install git
 
 /lib32删除软连接libncurses.so.5(指向libncurses.so.5.9) 
 
-ubuntu pppoe拨号：pppoeconf
-状态条eth菜单消失。
-在app菜单中找到network connections，窗口出来但灰掉不能设置
-service network-manager restart 设置图标出来了，能设置但连接不上局域网
-connection information：
-No valid active connections found!
-查看/etc/network/interfaces，增加了：
-auto dsl-provider
-iface dsl-provider inet ppp
-pre-up /sbin/ifconfig eth0 up # line maintained by pppoeconf
-provider dsl-provider
-重启后可正常上网，连接也可打开但无法设置无法正常配置使用
-
 由NetworkManager管理eth0，要刪掉 network/interfaces eth0的设定（lo必要）
 
 动态库：
 主版本号表明程序库版本之间的潜在不兼容性。次版本号表明只是修正了缺陷。
 
-删除gnome panel里的图标：删除 ~/.config/gnome-panel/launchers 相应文件
+删除gnome panel图标：删除 ~/.config/gnome-panel/launchers 相应文件
 
 打开winmail.dat 附件：
 tnef winmail.dat 
@@ -551,41 +523,22 @@ MRX3F-47B9T-2487J-KWKMF-RPWBY
 gpedit.msc 
 
 用户配置/管理模板/Windows组件/Windows资源管理器 在右侧选“从我的电脑删除共享文档” 选已启用
----
-www.debian.org [ˈdebiən]
 
-Debian is not designed to be cross-built. So we have to build natively on ARM hardware.
- 
-带有37500+包 
+---
+www.debian.org [ˈdebiən]  37500+ package
 
 jessie ['dʒesɪ] debian 8
 wheezy [ˈwi:zi] debian 7
 
-发行及软件源有5个分支：oldstable、stable、testing、unstable、experimental
+5分支：oldstable、stable、testing、unstable、experimental
 
-用armhf的
-
-Installation Guide for EABI ARM
-Installation Guide for Hard Float ABI ARM
-
-TS-7800单板机采用特定Linux 2.6.21和启动脚本，0.69s启动Debian Sarge(3.1)
-此时已可启动完整Debian应用或调用库以及访问Busybox文件系统，开启网络服务并可以访问绝大多数硬件驱动。
-
-QEmu安装Debian ARM系统
-
-其实不需要重新编译，rasp要重新编译是因为它不是armv7
-
-debootstrap工具，可以在ubuntu上安装: Bootstrap a basic Debian system
-
-构建自己的 CubieBoard Debian Linux: www.docin.com/p-769235572.html
+CubieBoard Debian Linux: www.docin.com/p-769235572.html
 官网下载debian-7.6.0-armhf-netinst.iso  158M 解压也是158M  好像不包含kernel
 debootstrap --foreign --arch armhf wheezy .
-把armv7 版基础版本的跟目录down下来了，就是linux系统的根目录结构 144M，这与debian-7.6.0-armhf-netinst.iso解压候的不同（这个是一个一个的包的形式）
+把armv7 版基础版本的跟目录down下来了，就是linux系统的根目录结构 144M，
+这与debian-7.6.0-armhf-netinst.iso解压候的不同（这个是一个一个的包的形式）
 
 默认vim不支持python，安装vim-nor
-
-
-Debian 安装完有gcc没有g++，这还分着？
 
 ---
 升腾690：
