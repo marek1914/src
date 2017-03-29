@@ -1,0 +1,651 @@
+pkg-config
+
+
+atp-get install netgen
+Mark Shuttlewort ubuntu创始人
+
+lubuntu = lxde+ubuntu
+常见软件
+* AdobeIllustrator
+* kolourpaint 类似画图板工具
+* ImageMagick 
+* SpeedCrunch 高精度计算器
+* teamviewer，官网下载deb包
+* nautilus-open-terminal
+* iptux(用iptux_0.5.3-1_amd64.deb版本，设置gb18030 font:文泉驿)
+* subversion subversion-tools
+* vim (系统默认vi不好用)
+* 64bit os运行32bit程序安装ia32库 ia32-libs (u14.04没这个包，dpkg --add-architecture i386/apt-get update不灵)
+* openjdk-6/7-jdk(ubuntu不包含jdk)
+* gnome-session-fallback / gnome-panel
+* python-markdown Python实现Markdown(轻文本标记语言，文本转HTML)
+* openssh-server
+* unrar
+* lzop 文件压缩器
+* libncurses5 libncurses5-dev libncursesw(wide character support)
+* ncurses-devel(linux make menuconfig时提示,实际在ubuntu上应该装libncurses5-dev)
+* lzop (Lempel-Ziv-Oberhumer Packer)
+* gedit-plugins gedit插件
+* Dart Editor   web编辑 www.dartlang.org
+http://askubuntu.com/questions
+
+APT
+Debian/Ubuntu用dpkg（package manager for Debian）或 apt（Advanced Package Tool）管理deb包，RHEL(Red Hat Enterprise Linux)/CentOS/Fedora使用yum管理rpm（Redhat Package Management）。alien可转换rpm到deb。
+
+apt-get install
+		Suggested packages:默认不安装。若要安装，需建立配置文件：/etc/apt/apt.conf：
+		APT::Install-Recommends "true";
+		APT::Install-Suggests "true";
+		如果不希望apt-get下载suggested的包：
+		apt-get --no-install-recommends install package
+		Suggested packages:
+
+		apt-get instal lib32z1-dev 实际安装：lib32z1 lib32z1-dev zlib1g-dev
+		apt-get -f install  可卸载依赖错误的软件包
+
+ apt-get clean or autoclean 清除缓存，如install一个包又remove此包再次install不会真正下载而是使用缓存包，若执行clean，install会再次下载。
+	3) 包只下载不安装如：apt-get -d install vim (前提是这个包尚未安装否则提示已经最新)。
+		实测执行后立即打印：Download complete and in download only mode，并没有真正下载包数据。
+	4) apt-get下载的包在/var/cache/apt/archives，可在/etc/apt/source.list中修改存放位置。apt-get autoclean 命令可删除这些软件包。选中文版/etc/apt/source.list 源是 http://cn.xxx.xx
+	   实测执行后，仅删除了个别包，没有全部删除，强制删除可能会有问题。
+	5) apt-get remove删除包，apt-get autoremove 自动删除没用的依赖包。--purge
+	6) apt-get update 下载源中的包描述文件 
+       apt-get upgrade 更新所有已安装软件，不接受指定某个软件 
+		有2次系统装完无法apt-get install，软件中心能搜到但不显示install
+		apt-get update 错误:
+		Failed to fetch gzip:/var/lib/apt/lists/partial/hk.archive.ubuntu.com_ubuntu
+		Hash Sum mismatch
+		E: Some index files failed to download. They have been ignored, or old ones used instead.
+		需要删除
+		rm -rf apt/lists/partial/
+		rm -rf apt/mirrors/partial/
+		再update
+	7) 加源 add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ hardy multiverse" ;apt-get update
+	8) 如何降低软件包版本？
+	
+apt-cache
+	查询apt缓冲，search命令，部分指定包名可搜索
+
+virtual Box
+	1) 安装VirtualBox Extension Pack (要与Virtualbox版本一致，VirtualBox older builds处下载旧版本)
+	   USB设备:adduser gao vboxusers(注销生效)，重启，Devices->USB Devices看到U盘
+	2) 共享文件夹设置后需重启
+	3) File->Preference->General->Default Machine Folder 可选择非home/user
+	4) 网络设置选择桥接
+		选择 桥接 后，虚拟机地址变为192.168.0.103 这个地址是由路由器的DHCP分配的
+		[在DHCP服务器->DHCP列表与绑定 中看到]
+		localhost 192.168.0.103 08:00:27:43:2B:B2 
+		gaojie-desktop 192.168.0.104 08:00:27:94:EE:B3 
+		这2个是虚拟机。通过真实机器的1根网线，路由器认出3个机器，此为桥接。
+ 	5) 4.1.12版有错误，命令行运行，提示需安装virtualbox-ose-dkms和linux-headers-generic
+	   	/dev/vboxdrv does not exist，按提示：/etc/init.d/vboxdrv setup 找不到vboxdrv。
+		官网下载64位deb包安装，vboxdrv命令有了，但setup失败，查dmesg有 vboxdrv: Unknown symbol mcount
+		通过grub选择老版本kernel仍不行，baidu说需要gcc4.6(之前被切到4.4了）
+	6) 设置共享文件夹自动mount，fs类型vboxsf，默认不支持symbolic link，官网说出于安全考虑。
+		ln: creating symbolic link `xx': Read-only file system,（拷贝带链接目录时）执行：
+		VBoxManage setextradata VM_NAME VBoxInternal2/SharedFoldersEnableSymlinksCreate/SHARE_NAME 1
+		VM_NAME是虚拟机名，SHARE_NAME是共享文件夹名，重启
+	7) 个别程序需将文件拷至虚拟机目录，在共享ubuntu目录执行异常。已知的：winrar直接提示错误，Phoenixcard，uboot部分烧不进入。
+	8) Unsupported version 14 of data unit 'vga' 解决：右击虚拟机列表选：Discard saved state...
+	9) virtualbox 4.3.10升级到4.3.34，xp无法启动，addition也升级4.3.34即可
+	10) Guest Additions 包 ？？
+
+包
+	1) dpkg
+
+		-l List packages matching given pattern
+		-i xx.deb Install the package
+		-r xxx Remove the package
+	
+		u11.04执行：
+		dpkg -i libpcap0.8_1.0.0-6_amd64.deb
+		警告：即将把 libpcap0.8 从 1.1.1-8 降级到 1.0.0-6
+		(libpcap0.8 (1.0.0-6) 到底是0.8 还是1.0.0-6)
+
+		gtk-2.0和gtk-3.0 能共存但u11.04执行：
+		dpkg -i libgtk2.0-0_2.20.0-0ubuntu4_amd64.debk
+		警告：即将把 libgtk2.0-0 从 2.24.6-0ubuntu5 降级到 2.20.0-0ubuntu4
+		#可能不同的大版本可共存，小版本不能共存。
+		libgtk2.0-0:amd64 2.20.0-0ubuntu4 (Multi-Arch: no) is not co-installable with 
+		libgtk2.0-0:i386 2.24.6-0ubuntu5 (Multi-Arch: same) which is currently installed ??
+		尝试卸载libgtk2.0 会删除近500M数据显然不行。
+		
+		deb包格式：
+		DEBIAN/control文件
+		Version: 2.20.0-0ubuntu4
+		Architecture: amd64 (Multi-Arch: same  这里怎么写？)
+		
+	2) 包管理
+		http://pkgs.org/
+		http://packages.ubuntu.com/  (11.04/11.10版本不维护)
+		https://launchpad.net/ubuntu/
+	3) libxx-dev
+		开发库除.so还有.h和.a用于编译和静态链接。
+			
+	4) 包依赖:包解压/DEBIAN/control 描述依赖包
+
+	5) 包源：
+		1) 格式
+			deb http://xxx.com/ubuntu oneiric main
+			deb-src http://xxx.com/ubuntu oneiric main (deb-src?)
+		 
+		2) http://cn.archive.ubuntu.com
+			采用apache维护， Northeastern University Networking Center(美国东北大学)
+			http://hk.archive.ubuntu.com/ubuntu/ (u12.04-server)
+			main/Packages.gz 描述各种包，这些包都是Ubuntu Developers维护，如：
+				Package: libjpeg-turbo8
+				Maintainer: Ubuntu Developers
+				Architecture: amd64
+				Source: libjpeg-turbo
+				Version: 1.1.90+svn733-0ubuntu4
+				Replaces: libjpeg8 (<< 8c-2ubuntu5)
+				Depends: libc6 (>= 2.7)
+				Filename: pool/main/libj/libjpeg-turbo/libjpeg-turbo8_1.1.90-0ubuntu4_amd64.deb
+
+			Filename目录在：
+				http://cn.archive.ubuntu.com/ubuntu/pool/main/(这个包都在这个目录)
+			此目录有 liba/  libb/  ... libj/ 将库按字母排列
+			而像wireshark这类的软件在：
+				http://cn.archive.ubuntu.com/ubuntu/pool/universe/w/wireshark/wireshark-common_1.6.2-1_amd64.deb
+	
+			修改源从11.10到10.04，update时看到：
+			“获取：http://cn.archive.ubuntu.com lucid/universe amd64 Packages [5,430 kB]” 明白了
+			
+		3) http://archive.canonical.com
+		4) http://mirrors.163.com/ubuntu/   镜像站速度快
+
+wireshark 非sudo执行
+sudo groupadd wireshark
+sudo usermod -a -G wireshark YOUR_USER_NAME
+sudo chgrp wireshark /usr/bin/dumpcap
+sudo chmod 777 /usr/bin/dumpcap (750不行)
+sudo setcap cap_net_raw,cap_net_admin=eip /usr/bin/dumpcap
+sudo getcap /usr/bin/dumpcap
+
+grub （os安装问题每次都能搞定，已经具备了这种能力）
+	1) 单ubuntu系统不显示grub菜单,可一直按住shift键显示
+    打开/etc/default/grub文件，找到
+        GRUB_HIDDEN_TIMEOUT=0 注释掉
+    
+    update-grub 可选择旧版本kernel
+	grub rescue后 ls 罗列磁盘信息
+	ls (hd0,x)/boot/grub 依次执行，找到 /boot/grub所在目录
+
+	显示丢失的grub菜单：
+	grub rescue>normal
+
+	修复gurb：
+	grub-install /dev/sda (要指定mbr所在磁盘，不指定分区号，不是/boot所在磁盘)
+
+32/64位库
+
+	i386/i686 是32位  x86_64是64位
+	/lib  64位
+	/lib/x86_64-linux-gnu 64位
+	/lib/i386-linux-gnu 32位
+	/usr/lib 64位
+	/usr/lib/i386-linux-gnu 32位
+	/usr/lib/x86_64-linux-gnu 64位
+	/usr/lib32  32位
+
+	/lib32  32位
+	以lib32ncurses5_5.7_amd64.deb 为例，解压：
+	/usr/lib32/libmenu.so.5
+	/usr/lib32/libform.so.5
+	/lib32/libncurses.so.5
+	/lib32/libtic.so.5
+
+系统安装
+	1) LTS :Precise(12.04)/Trusty(14.04)
+	2) UltraISO制作系统盘是FAT32格式，自带Startup Disk Creator制作启动盘安装失败
+	3) sudo passwd root；su root 进root用户,禁用root：sudo passwd -l root
+	4) 2硬盘raid0，安装win7+ubuntu双系统有问题：1 raid0，2 win7。与单盘winxp+ubuntu情形不同。
+		grub不支持raid0
+		方案1: 另加单盘用于win7，安装时拔掉raid0，bios选择引导盘切换。
+		方案2: 2块160G硬盘组raid0（实测2组raid0 ok主板挺强）安装ubuntu时，boot程序装在sda上
+		(应该是u盘)实测ubuntu无法启动。并且160G raid0 两块盘工作时非常热，且sata2.0/3.0G性能不及sata3.0/6G
+
+	5) /home单独分出较好，重装系统时不用备份数据。
+	7) https://wiki.ubuntu.com/
+
+	7) u12.04 (20140903安装，维护到2019年4月)
+		1) 采用了更为合理的独立/home分区，如果系统需要重装不用拷贝home区的数据。
+		2) /分区预留200G，新系统装完使用3.9G。安装必要软件并使用一段时间后使用？？G
+		3) 浏览器变黑体：apt-get remove fonts-arphic-ukai fonts-arphic-uming(删除楷体)
+	8) 重装系统需备份：
+		1) iBus拼音输入法自定义词典 Preference - Dictionary
+		2) 邮件通讯录
+	9) 在线升级
+		公司的u11.10每次升级提示都选“否”，事实证明3年工作良好。
+		家里的u14.04升级几次变得不稳定，经常死机。vlc也不好用。所以也采用不升级补丁策略。
+		升级后，不可预见的事情很多。目前看最稳定经典的版本仍然是10.04，11.10也不错。
+		新版本功能增加以及架构调整需要很长时间才能稳定。
+
+	11) Server版
+		echo "nameserver 202.106.0.20">> /etc/resolv.conf
+
+		/etc/network/interfaces:
+
+		auto eth0 
+		iface eth0 inet static (or dhcp)
+		address 192.168.200.99 
+		netmask 255.255.255.0 
+		gateway 192.168.200.100 
+		dns-nameservers 202.106.0.20 （/etc/resolv.conf 自动添加:nameserver 202.106.0.20）
+
+软件配置
+	1) apache
+		2 网页/var/www/index.html 若无此文件显示目录
+		3 /etc/apache2/httpd.conf
+		4 /etc/apache2/sites-available/default 设置网站地址
+		<Directory /var/www>   <Directory /home/rimke/www>
+
+	2) samba
+		install samba smbfs
+		/etc/samba/smb.conf 配置每用户的读写权限
+		mount -t cifs //ip/dir  dir -o username="xxx",password="xxx"
+        /etc/fstab:
+        //ip/dir /dir cifs username=xx,password=xx,uid=1000,gid=1000,file_mode=0777 0 0
+        注意，dir是相对于samba的路径，不是绝对路径
+	3) Nginx配置 /usr/local/nginx
+
+	5) tftp(trivial ftp RFC783)
+		tftp-hpa (client)
+		tftpd-hpa
+
+		/etc/default/tftpd-hpa 
+		TFTP_USERNAME="tftp"
+		TFTP_DIRECTORY="tftp path"
+		TFTP_ADDRESS="0.0.0.0:69"
+		TFTP_OPTIONS="-l -c -s"  //-c:创建文件 put需要 
+		
+		$/etc/init.d/tftpd-hpa start/stop
+
+		xinetd (eXtended InterNET services daemon)管理服务
+		/etc/xinetd.d/tftp
+		service tftp
+		{
+			socket_type = dgram
+			protocol = udp
+			wait = yes
+			user = root
+			server = /usr/sbin/in.tftpd   //tftpd 的可执行程序
+			server_args = -s /home/username/tftpboot
+			disable = no
+			per_source = 11
+			cps = 100 2
+			flags =IPv4
+		}
+
+		2个tftp目录改名如 tftp tftp-hebei 烧写，改名后需重启才切换
+	6) nfs
+		apt-get install nfs-common  客户端
+		aptitude install nfs-kernel-server 服务端
+		The NFS kernel server is currently the recommended NFS serer for use with Linux,
+		featuring features such as NFSv3 and NFSv4,
+
+		/etc/exports
+		man exports：
+		exports - NFS server export table
+		如：
+		/home/username/NFS/fawn  *(rw,sync,no_subtree_check,no_root_squash)
+
+	8) minicom
+		-s -w(可换行) 等价于ctl+a z 选择 lineWrap on/off....W
+		Modem and dialing parameter setup 依次输入A B K 将后面的字符删除
+		ctrl+a +l 捕获数据到当前目录minicom.cap文件中，ctrl+a +w 开启自动换行
+		串口	/dev/ttySx 
+		USB串口	/dev/ttyUSBx (root or dialout group)
+
+		minicom.log :ctrl+a O "Filenames and paths" "Logging options"关闭
+
+		ymodem下载内核:
+			uboot执行 loady
+			minicom选择 send file 选ymodem，选择文件
+		
+		显示hex：cOnfigure -> Screen and keyboard ->hex display (需设置w)
+
+	9) OpenSSH
+		配置文件“/etc/ssh/sshd_config”
+		HostKey /etc/ssh/ssh_host_rsa_key
+
+重启服务：
+	/etc/init.d/ 目录下都是shell脚本
+	apache2 restart 
+
+系统2分区，系统崩溃时不至损坏数据，系统分区100G足够
+
+
+
+错误报告
+	1) 装完显卡驱动，声卡驱动不工作了。安装一个3D桌面的东西，桌面显示不正常了。
+	3) 由11.04升级到11.10成功(以前这样升级都是失败的，进不了桌面)
+	4) ubuntu 11.10  evolution 的目录不在  ~/.evolution 了 而是 ~/.local/share/evolution 
+	5) unity 问题挺多，新产品出来需要很多时间磨合
+
+技巧
+	~目录建立Work保存所有工作内容，可能误删。可将其改为root权限，在内部再建立分类目录。这样在work下建立新目录较麻烦，有助于强制规范此目录。
+
+other
+1. u12.04损坏了libncurses库，导致man xx无法使用：libncurses.so.5: No such file or directory。u10.04 在/lib下有此库64位版本，
+	而u12.04 /lib/x86_64-linux-gnu下只有libncursesw.so.5没有 libncurses.so.5。apt-get install 显示版本已最新，apt-get remove失败
+	下载libncursesw5_5.9-4_amd64.deb，dpkg -i安装后/lib/x86_64-linux-gnu下出现此库，解决。
+
+1. 解决u12.04+wireshark1.6.7 卡死问题：手工下载包及多级依赖包成功降低版本至1.2.7，抓视频包不死机了但点击详情死机。
+	升级到u14.04用的1.10.6较难很多依赖包版本不对需重装，开始的都能装，最后所需gtk3.0与系统冲突无法安装。ubuntu版和winxp版不同，
+	前者包只有2M，许多依赖包靠系统提供，后者25M，应该包含了所需全部。u11.10之1.6.2
+1. 某次virtualbox无法启动，提示libncursesw.so.5找不到(系统有32位版无64位版)。下载库 dpkg -i libncursesw5_5.9-4_amd64.deb
+	
+gcc
+	android4.0需gcc4.4
+
+	u10.04 4.4.3 
+	u12.04 4.6.3
+	u14.04 4.8.2
+
+    ubuntu-desktop有gcc无g++ 安装g++-multilib，自动安装依赖包：g++-4.8 g++-4.8-multilib gcc-4.8-multilib
+    ubuntu-server 无gcc/make
+
+输入法
+    u14.04 text entry +PinYin（需先按提示更新语言包，不可中断，否则不能切全拼）
+    u14.04 PinYin ibus与firefox不兼容，文字选中变删除（chromium没问题）
+    ibus-setup，取消：Embed Preedit text in application window
+    取消前，汉字直接出现在光标后，取消后按空格才出现
+    
+
+	引发系统崩溃的2个手贱命令
+	apt-get remove unity* (想删除unity桌面)
+	apt-get remove python (重依赖python)
+
+环境变量
+~/.profile 当前用户
+~/.bashrc
+/etc/profile 全局用户
+/etc/profile.d/ 里面.sh依次执行
+/etc/bash.bashrc
+
+图形登录(在ctrl+alt+f7处)时执行 ~/.profile，内容：
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+	. "$HOME/.bashrc"
+fi
+
+此时if不满足，未执行.bashrc，若ctrl+alt+f2-6 登录，if满足
+打开terminal就执行.bashrc，并且因为是图形界面的子进程，会继承.profile的所有设置。
+但.bashrc设置的变量图形界面里却没有（jre路径设置在.bashrc中双击打不开，terminal可以打开，或者按提示建立eclipse/jre/bin软链接）
+
+注： .d 代表dir，如init.d
+
+Notification Area
+
+U14.04 System program problem detected 提示：
+临时:删除/var/crash
+永久:/etc/default/apport enabled=0
+
+u11.10位于白名单的程序才可显示在通知区域，iptux不显示解决(u14.04不灵)
+安装：dconf-tools(a low-level key/value datrabase degigned for storing desktop environment settings)
+$dconf-editor 到desktop>unity>panel将systray-whitelist值改为all
+
+update-alternatives
+
+update-alternatives --install <link> <name> <path> <priority>
+update-alternatives --remove  name path
+
+
+某应用不更新：
+sudo dpkg --set-selections  然后在stdin，输入iptux hold  ctrl+D退出
+sudo dpkg --get-selections  可以看到iptux变为hold状态了。
+
+
+pci转串口卡
+lspci -v
+apt-get install setserial
+执行 setserial /dev/ttyS1 port 0xec00 UART 16550A irq 16 Baud_base 115200
+irq是lspci -v显示的，ttyS1地址靠蒙，定是上面列出来几个之一。
+
+邮件在.evolution
+
+20 系统recovery 模式，可在紧急情况下进入shell。某次对bash执行chmod u+s ，导致系统无法启动。进入recovery(很多选项，有一种进去后只读)执行 chmod u-s 即可
+
+是qtss用户未能创建导致，看Install脚本：
+if [ $INSTALL_OS = "Linux" ]; then
+/usr/sbin/useradd -M qtss
+else
+/usr/sbin/useradd qtss
+fi
+useradd参数应为-m，修改再执行Install脚本，成功。
+
+
+sudoers
+
+增加ppa 
+apt-add-repository ppa:git-core/ppa 
+apt-get update 
+apt-get install git 
+
+与这个地址有关https://launchpad.net/
+
+/usr/lib/x86_64-linux-gnu/libncurses.so 打开是 INPUT(libncurses.so.5 -ltinfo)
+/lib/x86_64-linux-gnu$ 有 libncurses.so.5
+
+/lib32删除软连接libncurses.so.5(指向libncurses.so.5.9) 
+
+ubuntu pppoe拨号：pppoeconf
+状态条eth菜单消失。
+在app菜单中找到network connections，窗口出来但灰掉不能设置
+service network-manager restart 设置图标出来了，能设置但连接不上局域网
+connection information：
+No valid active connections found!
+查看/etc/network/interfaces，增加了：
+auto dsl-provider
+iface dsl-provider inet ppp
+pre-up /sbin/ifconfig eth0 up # line maintained by pppoeconf
+provider dsl-provider
+重启后可正常上网，连接也可打开但无法设置无法正常配置使用
+
+由NetworkManager管理eth0，要刪掉 network/interfaces eth0的设定（lo必要）
+
+动态库：
+主版本号表明程序库版本之间的潜在不兼容性。次版本号表明只是修正了缺陷。
+
+删除gnome panel里的图标：删除 ~/.config/gnome-panel/launchers 相应文件
+
+打开winmail.dat 附件：
+tnef winmail.dat 
+转文件名编码：
+convmv -f gbk -t utf8 –notest *
+
+vlc中文字幕：
+subtitle/osd字体渲染选择中文，字幕编码选择gb18030
+
+windows中安装Ubuntu(wubi)，无需单独分区，启动时选择windows或者ubunbu，此模式磁盘性能略有降低
+
+14 unity & gnome
+	Unity由Canonical公司(Ubuntu项目领导者)开发,u11.04开始作为标准桌面，有gnome classic 和 gnome 
+
+gnome-session-fallback(2.9k) 依赖 
+gnome-panel:launcher and docking facility for GNOME
+metacity
+nautilus: [ˈnɔ:tɪləs]鹦鹉螺file manager and graphical shell for GNOME
+
+https://www.gnome.org/getting-gnome/
+GNOME 3 
+
+http://ubuntugnome.org/download/
+Ubuntu GNOME is an official Ubuntu flavour which provides a complete GNOME 3 experience. 
+
+http://ubuntugnome.org/ubuntu-gnome-14-04-1-lts/
+提供ubuntu14.04.1 版本的Ubuntu gnome （猜测：官方ubuntu14.04.1 加上gnome，那么这跟原版+gnome-session-fallback有何区别呢？）
+
+Ubuntu GNOME 14.04 LTS, is an official mostly pure GNOME desktop experience
+
+gnome-panel: launcher and docking facility for GNOME
+这个包提供的程序有：
+gnome-desktop-item-edit 编辑.desktop 或 .directory 文件
+gnome-panel 经典桌面的状态条，程序选择列表等，kill后这些就消失了，之前打开的窗口管理器可以正常工作。
+再运行她，那些内容又恢复了。
+panel-test-applets  能运行很多applet utility 比如eye
+
+安装gnome-session-fallback 包含 gnome-panel 还包含：
+gnome-session-bin ：GNOME Session Manager 啥是session管理（提供gnome-session程序）
+gnome-session-common
+metacity
+notification-daemon 
+unity-settings-daemon
+
+选择gnome时系统运行：
+gnome-shell
+gnome-session --session=gnome
+
+选择gnome classic：
+gnome-panel
+gnome-session --session=gnome-classic
+
+选择gnome classic (无效果)
+gnome-panel
+gnome-session --session=gnome-fallback
+
+u14.04 安装 gnome-shell, logout 显示：
+gnome  (这个是gnome-shell)
+gnome flashback xx  (经典版无特效)
+gnome flashback xxxx(经典版有特效)
+ubuntu (unity)
+
+u14.04安装gnome-panel 有选项compiz 和 metacity
+还有安装gnome-panel 并没有安装gnome-session-bin  为什么系统中还是有 gnome-session 命令在运行呢？
+fedora用gnome
+
+安装包解压后最大文件： filesystem.sqaushfs
+安装squashfs-tools， unsquashfs命令解压，生成根文件系统
+理解ubuntu的安装过程
+
+apt-get source gnome-system-monitor 获取system monitor源码到/usr/src (需dpkg-dev)
+
+apache log 查看mantis/mediawiki访问记录
+/var/log/apache2
+
+firefox has prevented outdated plugin "Adobe Flash" 浏览器升级但插件没有更新
+20160628 u14.04 按照提示，选择update，选apt，进入软件中心（因为链接不是一个文件，而是引向软件中心），提示找不到新版本
+apt-get update以下，貌似就提示更新flash插件了^^
+
+输入登录密码界面一闪而过又返回登录界面因 ~/.Xauthority文件权限变成root
+
+桌面消失 setting无法保存:GLib version too old (micro mismatch)，因编译TVOS2.0，安装了glib小版本与系统不匹配
+
+wine安source insight：wine配置->Desktop Integration->Folders修改My Documents路径
+
+firefox同步帐号：13xxx7@qq.com : 57xx5005
+
+---
+邮箱无法收邮件：
+The RETR command did not succeed. Error retrieving a message
+进网页版删除一些邮件即可
+
+---winxp ---
+Windows 自带defender
+不要en版本
+
+zh-hans_windows_xp vol
+MRX3F-47B9T-2487J-KWKMF-RPWBY
+
+gpedit.msc 
+
+用户配置/管理模板/Windows组件/Windows资源管理器 在右侧选“从我的电脑删除共享文档” 选已启用
+---
+www.debian.org [ˈdebiən]
+
+Debian is not designed to be cross-built. So we have to build natively on ARM hardware.
+ 
+带有37500+包 
+
+jessie ['dʒesɪ] debian 8
+wheezy [ˈwi:zi] debian 7
+
+发行及软件源有5个分支：oldstable、stable、testing、unstable、experimental
+
+用armhf的
+
+Installation Guide for EABI ARM
+Installation Guide for Hard Float ABI ARM
+
+TS-7800单板机采用特定Linux 2.6.21和启动脚本，0.69s启动Debian Sarge(3.1)
+此时已可启动完整Debian应用或调用库以及访问Busybox文件系统，开启网络服务并可以访问绝大多数硬件驱动。
+
+QEmu安装Debian ARM系统
+
+其实不需要重新编译，rasp要重新编译是因为它不是armv7
+
+debootstrap工具，可以在ubuntu上安装: Bootstrap a basic Debian system
+
+构建自己的 CubieBoard Debian Linux: www.docin.com/p-769235572.html
+官网下载debian-7.6.0-armhf-netinst.iso  158M 解压也是158M  好像不包含kernel
+debootstrap --foreign --arch armhf wheezy .
+把armv7 版基础版本的跟目录down下来了，就是linux系统的根目录结构 144M，这与debian-7.6.0-armhf-netinst.iso解压候的不同（这个是一个一个的包的形式）
+
+默认vim不支持python，安装vim-nor
+
+
+Debian 安装完有gcc没有g++，这还分着？
+
+---
+升腾690：
+CPU: AMD G-T48N 1.4G , 1G DDR
+
+G-T48N
+1400MHz, 2-core, 2-thread, 64bit, AMD-64
+
+rtl_nic/rtl8105e-1.fw
+
+
+https://wiki.debian.org/ATIProprietary
+
+# Debian 8 "Jessie"
+deb http://httpredir.debian.org/debian/ jessie main contrib non-free
+
+
+synology  ssh
+ssh admin@192.168.0.144
+git clone ssh://gaojie@192.168.0.144/volume1/git_repos/lora
+
+——
+Mac
+
+sudo port clean openssl
+
+显示
+defaults write com.apple.finder AppleShowAllFiles YES
+killall Finder
+隐藏
+defaults write com.apple.finder AppleShowAllFiles NO
+killall Finder
+
+Alcatraz only supports Xcode 7.
+
+
+windows7 "MRB不行 EFI 只能 GPT"
+service udev restart 与 /etc/init.d/udev restart 本质一样
+service用了start stop exec 这些命令
+udev脚本里的start字段的打印，在service udev start中不显示（？）
+
+开始/结束 防火墙
+ufw enable|disable
+LInux防火墙iptables过于繁琐，ubuntu提供基于iptable的工具ufw
+enable 导致所有web服务无法使用：apache/wiki
+ufw 难道默认不是enable的吗？enable后 tftp都无法使用了
+
+
+waveforms 2015
+安装依赖Adept 2，digilent官方站下载: Communicate with Digilent system boards
+https://reference.digilentinc.com/reference/instrumentation/analog-discovery-2/reference-manual
+
+1 PCB右键可拖动，原理图默认不可以：工具栏上带光的红笔 可以移动，或者下载一个小软件可以鼠标放大缩小
+Altium 公司
+在 protel99se 基础上
+protel DXP 2004
+Altium Designer 6.9
+解压Protel_DXP_2004.iso
+setup\Setup.exe 安装Protel DXP 2004
+运行DXP2004SP2补丁.exe 和 DXP2004SP2_IntegratedLibraries.exe文件
+Preference - Use localized rescources 变为简体中文版
+用Protel2004_sp2_Genkey.exe,将它放在Protel_DXP_2004安装目录注册
+

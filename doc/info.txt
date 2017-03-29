@@ -1,0 +1,174 @@
+jsq.re
+http://en.savefrom.net
+http://downsub.com  subtitle
+ID/79864406 id:410425198511202520
+
+abandon java, android, opengl, mysql
+abandon sourceinsight, eclipse, qcreator
+abandon !protel99/ADS
+
+
+gnu.org
+kernel.org
+vim.org
+busybox.net 
+gnuradio.org
+particle.io
+micropython.org
+wiring.org.co
+zigbee.org
+analog.com
+sparkfun.com
+adafruit.com
+micrium.com
+allaboutcircuits.com
+openhab.org
+openhw.org
+beagleboard.org
+cn.element14.com
+
+embeddedmicro.com //mojo
+wiki.openmusiclabs.com/wiki/PWMDAC
+www.openmusiclabs.com/learning/digital/pwm-dac
+electronics.howstuffworks.com/radio.htm
+science.howstuffworks.com/electromagnet.htm
+en.wikipedia.org/wiki/Hartley_oscillator
+en.wikipedia.org/wiki/LC_circuit
+www.electronics-tutorials.com/oscillators/hartley-oscillator.htm
+www.learnabout-electronics.org/Oscillators/osc21.php
+www.allaboutcircuits.com/projects/introduction-to-the-mqtt-protocol-on-nodemcu
+www.allaboutcircuits.com/projects/communicate-with-your-arduino-through-android
+www.allaboutcircuits.com/projects/light-bar-relative-comfort-thermometer-with-nodemcu
+www.linux-mtd.infradead.org/faq/ubifs.html
+redhat.com  //min_free_kbytes
+https://docs.particle.io/datasheets/photon-datasheet
+
+
+投入（计划10万）：
+2016: 4.4
+2017: 14841+190+2650(5.6)
+
+电脑相关： 22328 元
+macbook pro				11788(Shit!被骗)
+电脑包					98
+电脑+Dell显示器X2		7600
+HKC显示器				600
+DS216J+2T				1800
+罗技键鼠					100
+microSD x7				250
+HDMI to VGA				64
+3.5音频线				13
+USB-C转接				15
+
+
+玩具：  2300元
+RC+遥控器				1400
+lego 21050				900
+
+
+开发板： 6697+190元
+Pi Zero					161
+PiFace+HAT				445
+Pi camera X4			531
+Pi3 X2					516
+Pi1 B+					200
+Pi2 B+					220
+Arduino Yun				478
+Arduino UNO				148
+Arduino 101				200
+Genuine UNO X2 				132
+BBB						304
+BBG						390
+Wio link ESP8266		199
+Grove x3				70
+
+mojo V3 				190
+
+STM32系列:
+ST NUCLEO-F401RE		98
+ST STM32F407G-DISC1		143
+ST STM32F37x			88
+ST STM32L152C-DISC		98
+地源STM32/蓝牙/调试器	264
+
+partical IoT x2			288
+XBee X36				720
+NodeMCU X4				80
+Lora X16 SI4432 X4		421     
+
+广角摄像头 X4			550
+罗技摄像头				120
+0.96寸屏 x3				64
+
+
+仪器： 17521 元
+泰克示波器				6400
+泰克AFG					3700
+固维电源					1000
+Fluke万用表				450
+日本三丰卡尺				233
+bladerf+外壳				4150
+Anolog Discovery2 X2	2400
+TH2822E					1588
+
+基础工具： 2747+2650元
+proxxon 台锯				2650
+博士电钻					399
+琢美胶枪+雕刻笔			300
+琢美手钻+瓦斯喷枪		747
+镊子+烙铁头				51
+得力文件柜 X5			350
+快克风枪850+misc			370
+超声波清洗机				150
+凝睿元件盒x2				300
+alpha焊锡/锡条			290
+偏口钳+尖嘴钳			200
+
+基础元件：803元
+电容电阻电感包			150
+INA210/211 LED0603		93
+STM32F103 x10			60
+F330+F321 x10 x10		115
+F330      x20			73
+JST接插件				121
+高压包  x2				35
+数码管单排针/母74hc14    210
+面包板2.54				20
+面包板2.0				20
+Qfn20/28 转接板			26
+1.2国标线（红/黑）		70
+单节锂电池				20
+
+
+资料费用
+2016年VPN				158
+
+技术书籍： 3194元
+Wireshark数据包分析				40
+计算机程序设计艺术卷1/2/3/4a		387
+UNIX网络编程 卷1/2				152
+爱上制作 X32						517
+精通正则表达式					74
+创新的神话
+编写可读代码的艺术
+UNIX环境高级编程
+网络安全评估
+社交网站数据挖掘与分析			400
+算法导论							63
+微波工程							40
+电路基础							108
+高频电子线路						24
+工程电磁场						64
+电力系统分析						30
+电磁场与电磁波					60
+自然哲学的数学原理				43
+半导体物理与器件					50
+CSS权威指南						30
+具体数学							40
+Shell脚本学习指南				65
+基础教材：C/C++程序设计			57
+Python计算机视觉编程				57
+天线手册							193
+数电+模电（2本）					200
+ZigBee电子版						5
+其他未统计估计					500

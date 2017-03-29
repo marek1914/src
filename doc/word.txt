@@ -1,0 +1,396 @@
+amend 修正文档
+backslash 反斜线
+barely 仅仅，赤裸裸地
+bitwise 按位
+concealment 隐蔽
+consecutive 连续的
+criteria 标准准则
+decimetre 分米
+deinterlace 反交错
+delaunay 三角形
+derivative 导数
+diffraction 衍射
+diverged 分歧
+entropy 熵
+enumerate (enum)
+equality 等式
+estimate 估计
+evaluate 评估
+Fibonacci 斐波那契
+Full-Duplex
+gadget 小玩意
+graceful 优雅的
+Half-Duplex
+inertial 不灵活的惯性的
+inlier 有效值
+intercept 拦截
+interference 干涉
+logarithm 对数
+nonblank 非空的
+normalization 归一化
+opaque 不透明
+outlier 异常值
+passive 被动的
+photography 摄影
+raster 光栅
+relay 光耦
+resign 辞职放弃
+seek 寻找
+slash 斜线 
+spatial 空间的
+tell 告知
+threshold 阈值
+translucent 半透明
+transparent 透明
+trivial 琐碎的
+valve 阀
+volley 齐射迸发
+voronoi 多边形沃罗诺伊
+weld 焊接
+Zener 齐纳管
+decibel [ˈdesɪbel]分贝
+logarithmic 对数的
+aka also known as亦称
+odd 奇数  
+even 偶数
+triangular 三角的
+prune 修剪
+trick 戏法骗局
+footprint 脚印 占用空间
+Photon 光子
+endianness 字节存储序
+zigzag Z字形的
+admittance 导纳
+
+ANSI: American National Standards Institute
+SPI: Serial Peripheral Interface
+NVIC: Nested Vectored Interrupt Controller
+PPB: persistent protection bit
+LWP: light weight process
+NUMA: Non-Uniform Memory Access(or Architecture)
+RDFT: Real Discrete Fourier Transform
+TLS :Thread-local storage
+
+short/fair/good/strong  密码
+silicon valley
+backquotes ``
+
+
+
+debian  [ˈdɛ.bi.ən]
+intra ['ɪntrə] 同一事物内部各部分之间
+page [peɪdʒ] dʒ吱
+
+Taylor series
+regression analysis 回归分析
+
+double/single quotes
+
+OTP:	One-time programmable
+MIME:	Multipurpose Internet Mail Extensions
+DD:		Dolby digital
+PTS:	Presentation Time Stamp
+LPS:	Least Probable Symbol
+MPS:	Most Probable Symbol
+RIFF:	Resource Interchange File Format
+AIFF:	Audio Interchange File Format
+SMT:	Surfade Mount Technology
+IC:	integrated circuit ˈɪntɪgreɪtɪd/ˈsɜ:kɪt
+
+5I:
+ITU:  International Telecommunication Union
+ISO:  International Organization for Standardization
+IEC:  International Electrotechnical Commission
+IEEE: Institute of Electrical and Electronics Engineers
+IETF: Internet Engineering Task Force
+
+802.15.1 WPAN/bluetooth
+802.15.3 High Rate WPAN
+802.15.4 Low Rate WPAN(zigbee)
+802.15.xx
+
+ISO/IEC 联合开发
+
+SMPTE: The Society of Motion Picture and Television Engineers
+MPEG: 由ISO和IEC下属的动态图像专家组(Moving Picture Experts Group)
+JPEG: Joint Photographic Experts Group
+
+Behind every great fortune there is a crime  --Balzac
+
+supply chain 供应链
+
+due time 到期时间
+Let's start from scratch 从零开始
+
+peak-peak  最高峰值
+Inertial loads(惯性载荷)
+low-dropout (LDO) linear voltage regulator 低压差
+
+discharge stray capacitance  放电电容
+linus"this whole ARM thing is a fucking pain in the ass"
+I have no particular talent. I am merely inquisitive : Albert Einstein
+conformance test
+This actually makes sense
+Steam Locomotive
+I approve this suggestion.
+
+inter  不同事物之间
+Venture Capital,VC 风险投资
+cellular based station 蜂窝基站
+
+Numerical approximation  数值近似
+
+bucket stop here!
+
+overlay  覆盖，盖在上面，如ffmpeg中在视频上覆盖一层图标
+overlap  交叠
+override 覆盖，替换掉原来，如c++重新定义函数
+overload 重载 超载 
+
+Brain Burst  <加速世界>
+supersede   ITU-T 里被废弃的文档版本 用这个词标示
+Her stockings wrinkled at the ankles
+token [计算机身份认证]令牌，[词法分析]标记
+bare metal :裸机，指无OS
+
+lingerie  《内衣少女》
+luscious girls
+
+opinion
+compound
+
+We Bare Bears 《我们裸熊》
+banana plug banana connector hi-fi sound systems
+
+《The Fabric of the Cosmos 1：What is Space.mp4》
+
+An operating system is the set of basic programs and utilities that make your computer run. (debian)
+
+Forward declaration 前置声明
+pfn:Page Frame Number
+
+CNY Chinese Yuan
+TRM Technical Reference Manual
+STL Standard Template Library
+DTMS Dual-tone multi-frequency signaling
+
+EMI: Electromagnetic Interference
+
+operational amplifier
+
+wikipedia: Spectrum analyzer
+RBW：Resolution Bandwidth
+VBW： Video BandWidth
+
+计算机视觉会议
+ECCV : Europeon Conference on Computer Vision
+CVPR : Conference on Computer Vision and Pattern Recognition
+ICCV : International Conference on Computer Vision
+
+
+bind
+blend
+
+vector scalar  矢量 标量
+scala scale
+
+/* make gcc happy */
+
+
+cast to 强制转换为
+type cast 类型转换
+
+LVDS: Low-Voltage Differential Signaling 低压差分 RS-644
+
+ARM :Advanced RISC Machines
+
+Synchronization
+
+long-term support
+
+Common-mode signal
+Common Mode Filters 共模滤波器
+ESD:Electro-Static discharge静电释放
+
+isc: internet systems consortium  isc.org 维护bind和dhcp实现
+
+BSD: Berkeley Software Distribution
+GCC: GNU Compiler Collection
+
+Drop in Replacements for 直接替换
+
+Product Status: Legacy(EOL)  End-of-life 停产
+
+MIT : Massachusetts Institute of Technology
+BOM : Bill of Materials
+
+PPM/PWM
+Pulse-width modulation(PWM)
+
+Pb 铅（拉丁Plumbum 英文lead）原子数82，有毒，重金属 熔点327度
+Sn 锡 熔点231
+
+Sn63Pb37 被称为共晶焊锡，熔点183
+
+无铅焊锡  锡银铜 Sn-Ag-Cu系列：Sn-3.5Ag-0.75Cu
+
+CSR: Cambridge Silicon Radio
+zigbee 802.15.4
+
+LDO : low dropout regulator
+
+WLCSP Wafer Level Chip Scale Packaging
+
+off-white or black  白色或黑色
+
+OLED: Organic LED
+System Load Sharing 系统负载共享
+RoHS: Restriction of Hazardous Substances
+
+TOF: Time of flight
+
+inside/outside diameter 内/外径
+
+SDR: Software-defined radio
+USRP: Universal Software Radio Peripheral
+
+standing wave 驻波
+
+Vrrm: 反向重复峰值电压(反向浪涌电压)
+Vfm/Vf : Forward Voltage
+
+From electric to electronic
+
+ancient Greeks
+lightning ˈlaɪtnɪŋ 闪电
+T-section attenuator  T型衰减器
+
+Ham Radio业余无线电
+
+OFDM: Orthogonal frequency-division multiplexing  正交频分复用
+impedance matching 阻抗匹配
+low-overhead 低开销
+
+IF: Intermediate Frequency 中频
+
+VDSO : Virtual Dynamically-linked Shared Object
+
+legal disclaimer
+
+NE555 1971年 Signetics(SIGnal NETwork Integrated Circuits)公司发明，模拟与数字电路结合的典范
+binomial theorem 二项式定理
+Earnshaw's theorem 恩邵定理 数学证明静态磁悬不可能
+superposition principle 叠加原理
+Huygens-Fresnel principle 惠更斯-菲涅耳原理 以波动理论解释光传播规律的基本原理
+
+ASK: Amplitude-shift keying
+FSK: Frequency-shift keying
+ISM: Industrial Scientific Medical  工业，科学，医学频段 <1W
+
+balun: Balance-unbalance 巴伦变换器
+fundamental interaction/fundamental forces: 强力，弱力，电磁力，重力
+microwaves :300MHz(1m)-300GHz(1mm)
+
+raspberry/black-berry(黑莓)
+
+LIGO: laser interferometer gravitational wave observ 激光干涉引力波天文台
+
+Schmitt trigger 施密特触发器
+
+Vpp: 峰峰电压
+
+Step signal 阶跃信号
+cyber physical system  信息物理系统
+uPnP: Universal Plug and Play
+
+PPA: Personal Package Archives
+DFU: device firmware upgrade
+
+cli: command-line interface
+
+lost+found
+
+DIP*density == Pexil
+dip: Density Independent Pixel
+dpi: dots per inch
+
+prefix increment ++i
+postfix increment i++
+
+Binaural beats 双耳节拍
+pascal 每平方米一牛顿的力，符号为Pa
+
+Caps lock  capitals 大写字母
+
+Releasing your creativity
+
+ISP: In System Programmability
+IAP: In App Programmability
+
+FSMC :Flexible Static Memory Controller
+
+cooperation/collaboration 合作
+
+PoE:Power Over Ethernet
+
+"Uno" means one in Italian
+
+li-ion 锂离子电池
+li-poly 锂聚合物电池
+
+3.7V
+
+DC/DC Converter:
+boost converter 升压
+buck converter 降压
+
+AVR:A&V's RISC processor
+
+VNA  矢量网络分析仪
+
+wear levelling
+OOB: out of band
+BBT: bad block table
+
+lpddr low power ddr
+maxim 美信
+
+The Consumer Edition (CE) 
+The Enterprise Edition (EE) 
+
+quantitative analysis
+Thomas Edison
+
+电感 品质因数(Q因数)quality factor
+楞次定律（Lenz law）是能量守恒定律在电磁感应现象中的具体体现
+ammeter  ˈæmi:tə(r) 电流表 （wiki）
+4R7 是4.7uH，R代表小数点
+
+Heinrich Rudolf Hertz 海因里希·鲁道夫·赫兹 1857〜1894(甲午) 德，37岁
+In 1888(Maxwell逝世9年，Hertz 31岁) he discovered the radio waves previously predicted by Maxwell's equations. 
+He also proved that light is a kind of electromagnetic waves. 
+The unit for frequency is named after him. 
+James Clerk Maxwell 詹姆斯·克拉克·麦克斯韦 1831〜1879 （48岁）英国物理学家
+Michael Faraday 法拉第
+Wilhelm Eduard Weber 威廉·爱德华·韦伯 1804－1891 87岁 德国物理学家
+heinrich lenz 俄国人的英文名
+
+32开  185mm×130mm 16K纸一般为18.5×26cm  比A4小一圈
+
+class 1 lasers
+
+Close-packing of equal spheres  等球紧密堆积
+Reduction formula  三角函数诱导公式
+fourcc : Four-Character Codes
+
+VLA :variable length array
+
+In-band signaling:
+in-band signaling is the sending of metadata and control information within the same band or channel used for voice (e.g. DTMF tones) and can be heard by the callers, as opposed to out-of-band signals which cannot be heard as they are on a different channel or band.
+
+
+
+Linux's built-in USB sniffer, usbmon
+Out-of-band (OOB) data: in computer networking, a separate stream of data from the main data stream
+
+

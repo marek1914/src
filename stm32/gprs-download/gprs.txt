@@ -1,0 +1,73 @@
+AT+HTTPTERM
+AT+HTTPINIT
+AT+HTTPPARA=1,"http://123.56.196.100/device/updateFile/split/index.txt"
+AT+HTTPACTION=0
+AT+HTTPREAD=0,
+
+AT+HTTPPARA=1,"http://123.56.196.100/device/updateFile/split/00"
+
+ssh root@123.56.196.100
+Dearho1603*
+
+
+
+AT+HTTPINIT                                                                    
+OK                                                                             
+AT+HTTPPARA=1,"http://123.56.196.100/device/updateFile/split/00"               
+OK                                                                             
+AT+HTTPACTION=0                                                                
+OK //10-15s                                                                            
+                                                                               
++HTTPACTION: 0, 200, 1348, 4096                                                
+                                                                               
++HTTPACTION: 0, 200, 2696, 4096                                                
+                                                                               
++HTTPACTION: 0, 200, 4044, 4096                                                
+                                                                               
++HTTPACTION: 0, 200, 4318, 4096 
+
+
+/usr/local/tomcat/webapps/device/updateFile
+访问路径
+http://123.56.196.100/device/updateFile/1.txt
+
+
+程序不拉低，程序全速运行后，用银线手动拉低1脚（技术支持：拉低后无需再拉高）
+while (HAL_UART_Receive(&huart1, p++, 1, 10000)==HAL_OK);
+UART3_Print(aRxBuffer);
+
+
+模块的AT指令是带会显功能的，输入A就立即返回A，输入T就立即返回T 输入任何字母，返回任何字母
+
+
+minicom:
+Add Carriage Ret...U
+
+
+缓存 8144 字节
+Http头 222字节（可能会变化）
+7.5k 生于 剩余464字节给http头使用
+
+Uart1 用pc串口的话，需要设置
+    GPIO_InitStruct.Pin = GPIO_PIN_9;
+    //GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+		GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+否则无法发送，能接收
+
+\r\nOK\r\n
+
+
+有时候返回
+\r\nOK\r\n\0\0\r\n+HTTP
+这个是bug吧！
+
+Uart1 输出同时接着串口，有问题，导致程序收不到数据
+
+
+
+
+
+数据采用http下载，服务器上有一个切片程序，默认4k，可手动指定1-7k，必须是整数，切片前对数据做了一个1k对齐处理
+应用程序先用hex2bin程序，转换为bin格式，

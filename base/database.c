@@ -1,0 +1,1 @@
+MongoDB是NoSQL产品，使用JSON的变种BSON作为内部存储的格式和语法

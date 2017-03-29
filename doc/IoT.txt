@@ -1,0 +1,1085 @@
+海斯电源：
+输入：12V
+输出：左上缺口：12V GND GND 3.3V 3.3V 5V 5V GND
+
+Particle Photon
+Partical P0 Wifi Module
+Broadcom BCM43362 Wi-Fi chip
+STM32F205RGY6 120MHz ARM Cortex M3
+
+Pogo pin
+
+silicon 收购 cygnal(买到CYG F330)
+
+接插件：
+1.0 1.25 1.5 2.0 2.5 2.54 mm
+
+BBG：
+RXD/TXD/3V3/GND
+SCL/SDA/3V3/GND
+间距2.0
+
+io口直接驱动2极管，8段全亮，18mA，每段2.25mA
+
+资料25MHz 6.4mA，CYG F330 不带任何负载，万用表测 9mA
+
+7段 单段1.7V ，用共阴级比较合适，这样电流由每个IO提供
+
+IO端口电压 = 电源电压
+
+http://www.silabs.com/support/pages/document-library.aspx?p=MCUs&f=C8051F85x  文档下载页面
+http://www.silabs.com/applications/wireless/Pages/Solar-Powered-Wireless-Sensor.aspx 无线网络节点
+
+at88sc0104烧写器
+4串口切换（74系列？）
+
+C8051T622 有usb 4x4mm QFN24   不常用贵
+C8051F321 有usb 5x5mm QFN28  //已买
+C8051F330 无usb 4x4mm QFN20  //已买 yj电调
+
+F33x 没USB QFN20/QFN24  4x4
+F320 有USB, LQFP32  //不喜欢这个封装
+F321 有USB，QFN28 5x5mm
+F34x 最少32pin QFN 5x5mm
+
+F300 3x3mm 只有P0
+
+带USB系列：
+C8051F32x/34x  //最小5x5
+C8051T62x/32x  48MHz //有usb的，仅它有4x4封装
+C8051F340 32/64k + 2/4k ram 25/40 io
+C8051F320 ram：2304 Bytes Internal RAM (1k + 256 + 1k USB FIFO)  flash：16k Bytes FLASH;
+C8051T62x/T32x USB Microcontrollers  这个好像有个低频模式
+  Full Speed USB EPROM MCU Family  (EPROM 和 Flash有区别吗)
+C8051F32x/34x  USB Microcontrollers
+  Full Speed USB Flash MCU Family
+flash容量主频区别
+
+C8051F仿真器(USB Debug Adapter)官方原理图用f321实现(JTAG/C2)，UEC5/6 支持jtag/C2
+都是f321，区别是输出缓冲，保护电路
+开发环境silicon ide或keil C
+一般基于Silabs生产的U-EC3（原厂型号）而设计生产，固件可升级，HID设备免驱
+
+输出端口用 SN74LVC2G125(74HC125)，Buffer的作用是保护电路
+
+EMIF:External Memory Interface (个别型号 available on 48-pin versions)
+
+8-bit MCU(8051):  蜜蜂
+EFM8 Busy Bee
+EFM8 Universal Bee
+Analog Intensive MCU
+Automotive and Industrial Qualified MCU
+General Purpose MCU
+
+32-bit MCU (arm cortex m)  壁虎
+
+Wireless:
+Bluetooth 4.0/4.1/4.2 Modules
+Wi-Fi Modules
+ZigBee
+
+USB Connectivity Bridges:
+CP2102 : USB to UART Bridge (node media) 5x5mm QFN28  串口8pin 很多nc
+CP2114 : USB to I2S Audio Bridge
+CP2130 : USB to SPI Bridge
+
+CP2105 : ​USB to Dual UART Bridge  ​QFN24
+CP2102N-QFN20   13+
+
+Si4010/Si4355 发/收
+AN112:串口升级固件
+GZUT 串口小板 也有RTS/CTS引脚
+
+----
+DS1803
+Dallas's 1-wire(kernel 支持) 
+Dallas Semiconductor 美国达拉斯半导体， 被Maxim收购
+ds18b20
+adi的数字电位器都超贵
+
+--chip--
+si5351 clock generator
+sparkfun : Teensy 3.2
+英飞凌 （Infineon AG）
+贴片电解电容拆卸：2把烙铁(优选方案)或风枪
+rasp b：usb外壳地与gnd引脚的地不是一个地
+W25Q80BV - 1 MByte SPI Flash
+
+压敏电阻（用于usb数据线，便宜）
+共模电感（用于usb数据线，做emc测试时防辐射用的）
+
+usb转网口线
+usb接口上用的共模电感：acm2012-2p ：Common Mode Filters(共模滤波器) for high-speed 差分信号或普通信号。
+Usb下拉AZ5325-01F 瞬变抑制二极管，保留，usb插入的设备比较组杂，这样保险
+
+usb电源滤波2个电容，参考rasp用47u+100n 
+
+USB部分的电源怎么关断：整个VCC5V 靠MOS管关闭
+AO4803A：Dual P-Channel Enhancement Mode Field Effect Transistor（可理解为2个三极管，应该是控制电源的）
+Micro usb 5P 牛角 无卷边（rasp是卷边的）0.88
+micro sd 卡座自弹8P 内焊（rasp用的） 0.65
+无法找到品质与rasp一样的，日本JST的看着高档3.00起
+
+s805 18x18 306pin
+usb hub：GL852G 12M贴片晶体
+
+ds2411
+gl852g
+
+复位芯片 MAX809RD/RS809R  跟rasp用了类似的复位芯片
+
+音频输出CS4354(DAC) + 运放（放大器）
+
+现在能找到的usb hub芯片都比较大，包括microchip的几款
+
+usb切换器microchip USB3740B  1.3mm x 1.8mm 大小等于一个发光二极管，人民币3.63
+USB3750 qfn 3x3 mm  人民币5
+
+封装尺寸（不能精确对应）:
+0201 0.6mm x 0.3mm
+0402 1.0mm x 0.5mm  ok
+0603 1.6mm x 0.8mm
+0805 2.0mm x 1.2mm
+1206 3.2mm x 1.6mm
+1210 3.2mm x 2.5mm
+
+R025 采样电阻/精密电阻 （2快工程机板，电池内部有）
+ds2411
+
+2N2222 用于低功耗放大或开关的 NPN
+2N2907 与2N2222互补的PNP，其他各参数类似
+
+asm1117  800mA Low dropout voltage regulator
+可调或固定电压：1.5V 1.8V 2.5V 2.85V 3.3V 5.0V
+最小压差1V
+
+RechTEK  台湾立锜
+RT9193 300mA Ultra-low noise ultra-fast cmos ldo regulator
+fast体现在何处
+最小压差 220mV
+
+TPS61090: 2A Switch, 96% Efficient Boost Converter
+
+MCP73871-2CCI/ML:
+Microchip's Battery Management Solutions
+
+sgm9119 46片 视频滤波器
+
+3.2x2.5 4脚晶体 SMD4P3225
+
+adafruit 充电装置：
+
+锂离子电池充电电压4.2V，
+锂聚合物4.25V
+
+IS31FL3731
+ST VL53L0X Time-of-Flight (ToF)
+
+MAX6225 低噪声高精度 +2.5V/+4.096V/+5V电压基准
+Low 1.0ppm/°C Temperature Coefficient
+Very Low 1.5µVp-p Noise (0.1Hz to 10Hz) 
+
+理想电压基准源在负载电流温度和时间变化时电压保持稳定不变。
+在初始电压精度、电压温漂、迟滞以及供出/吸入电流的能力、静态电流(即功耗)、长期稳定性、噪声和成本等指标中进行权衡与折衷。
+
+小功率电阻碳膜/大功率电阻
+
+1N4007 1V/1A时本身功耗1W，转换为热量
+
+sy8113b dc-dc
+
+DC-DC  662K  5V-3.3V  串口小板用
+串口小板  电源地之间 加了T7二极管（3.3/5V各一个）（什么是T7二极管） 整流用？感觉多此一举呢
+串口小板数据指示灯，从电源串电阻串LED到信号线（信号为低时，倒灌电流进入？）
+CH340需12MHz晶体
+
+低压MOS场效应管AO3401
+mp1484
+Medium power Transistor中等功率晶体管
+B1182 功率三极管  PNP silicon transistor
+
+TI 运放
+maxim 各232，485芯片型号，各种应用？
+
+AD5933
+---
+
+--gnuradio--
+https://myriadrf.org/
+
+https://github.com/gnuradio/pybombs
+
+apt-get install gnuradio (或者从源码安装)
+gr-iqbal  用于iq平衡
+gr-osmosdr 
+
+gr代表gnuradio，是gnuradio的模块
+
+ The bladeRF is supported via gr-osmosdr
+
+GQRX is a software defined radio receiver powered by GNU Radio and Qt
+
+编译gr-osmosdr：
+
+git clone git://git.osmocom.org/gr-osmosdr
+cd gr-osmosdr/
+
+apt-get install libboost-all-dev
+
+
+https://github.com/Nuand/bladeRF  //bladeRF库 比如fpga的image
+
+rtl-sdr, gr-osmosdr, gr-iqbal, hackrf, bladeRF and airspy
+
+
+bladeRF-cli -i
+
+bladeRF-cli -l <path/to/fpga/file>
+或者
+bladeRF> load fpga <path/to/fpga/file> 
+---
+
+--ADI--
+JESD204/b
+ANSI/ESD STM5.1-2007标准
+AD公司专业ADC:
+16bit 100ksps (采集声音足够)
+F330:10bit 200ksps   250kByte/s 数据只能通过spi发出了
+USB隔离：
+医疗和工业应用要求隔离
+接口和隔离
+ADI公司提供各种接口产品，其解决方案符合许多工业标准通信标准。
+数字隔离器、隔离收发器和隔离模数转换器采用获奖的iCoupler®和isoPower®技术，
+而且也能够在设计中实现隔离，并且不存在采用光耦合器时的许多限制。
+其他接口器件包括键盘控制器、电平转换器和高压保护产品，
+如通道保护、故障保护、过压保护以及防闩锁开关和多路复用器
+电平转换器
+利用ADI公司的iCoupler®标准数字隔离器技术，设计人员可以摆脱光耦合器的成本、尺寸、功耗、性能和可靠性限制，在设计中实现隔离。目前已有10亿个以上的隔离通道投入应用。这些磁性隔离产品安全可靠且易于使用，是光耦合器的理想替代产品。
+RMS-DC转换器
+AD5175 单通道1024位数字变阻器 10K  （超贵  30+）  并且各种型号都超贵
+----
+
+Pspice电路仿真软件
+
+www.wikihow.com/Measure-Inductance 太棒了！
+
+http://www.wikihow.com/Test-a-Capacitor
+
+耳机的阻抗由电阻和感抗组成，感抗在1KHz测得
+
+电感 henry, defined as 1 volt-second per ampere
+1H=1V.s/A ？
+
+电容串联电阻，设置到20MHz时，电容两端几乎没有电压了，对于交流，电容相当于连通的
+
+独石电容  磁片电容
+
+电动势，电势差，电压
+电流连续性原理
+问题：电机卡住时，电流变大,因为运动时，产生反电动势
+
+
+--battery--
+AA 5
+AAA 7
+<1000mAh
+碱性电池容量随输出电流增加而变小，
+如低输出电流时有3000mAh容量，1A电流时只有700mAh
+随输出电流的增加电压会下降，在一般负载下电压会降至约在1.1V-1.3V
+
+--avr--
+The AVR is a "modified Harvard architecture" machine 
+where program and data are stored in separate physical 
+memory systems that appear in different address spaces, 
+but having the ability to read data items from 
+program memory using special instructions.
+哈佛和冯诺依曼主要区别是否区分指令与数据
+内存里指令和数据在一起
+CPU区分指令缓存和数据缓存，指令和数据从两个不同的地方出来
+可以理解为CPU外部，是冯诺依曼，内部是哈佛
+哈佛结构复杂，效率高
+冯诺依曼简单，效率底
+为了提高速度，CPU增加指令缓存和数据缓存，为解决现实问题，什么主义不重要
+指令和数据共享同一 address space，但缓存分开，是两种架构的折中
+c51有sfr sbit访问特殊寄存器，非统一编址，与x86都是intel技术体系
+
+atmel被Microchip收购
+产品线从tinyAVR（1K FLASH）到megaAVR（128K FLASH）
+
+Atmel MCU 3类：avr 8/32-bit mcu; smart arm-based mcu (atsamxx); 8051 arch
+AT tiny4 6pin 单片机
+AT tiny12
+
+Small — Atmel tinyAVR devices are designed specifically for applications where size and cost are critical. The smallest tinyAVR MCU measures only 1.5 mm x 1.4 mm. You can employ it as a single-chip solution in small systems or use it to deliver glue logic and distributed intelligence in larger systems.
+
+
+--antenna--
+倒F天线是从单极子天线演变过来的, 开路那边相当于电容，短路那边相当于电感，两个谐振就剩电阻
+The inverted-F antenna is an evolution of the basic quarter-wave monopole antenna (1/4波长单极天线)
+
+1/4波长单极 相当于 1/2波长双极，地平面相当于一面镜子，可以“倒影”
+见图：
+A: quarter-wave monopole, B: intermediate-fed quarter-wave monopole, C: inverted-L antenna, D: inverted-F antenna
+A: printed inverted-F antenna, B: meandered printed inverted-F antenna
+
+Inverted-F antenna
+Monopole antenna 单极天线
+2.4G 10db定向天线
+
+TI 天线设计参考资料：
+该天线板参考设计包含多个低成本天线解决方案，适用于低于 1 GHz 及 2.4 GHz 近距离无线系统
+
+
+IEEE 802.11 是一组 MAC 和 PHY 协议 实现 WLAN 在 900 MHz 和 2.4/3.6/5/60 GHz 频率
+(IEEE) LAN/MAN Standards Committee (IEEE 802).
+IEEE 802.11ad
+Wireless Gigabit Alliance
+
+
+---nodemcu---
+
+arduino ide 开发esp8266 nodemedia
+
+乐鑫espressif
+amica
+
+User/mac/Library/Arduino15/packages/esp8266
+
+ESPlorer
+支持rn2483
+
+https://www.youtube.com/watch?v=G6CqvhXpBKM
+www.espressif.com/en/products/hardware/esp8266ex/resources
+
+http://my.oschina.net/u/2306127/blog/402931
+
+ESP8266 5mm x 5mm, 集成 32bit Xtensa MCU
+
+资料：
+http://nodemcu.readthedocs.io/en/master/
+
+Installing libtool-bin solves this issue.
+
+2种烧写方式：
+esptool.py，nodemcu flasher(过时)
+
+partical:
+13492467@qq.com:-200w200w-
+
+插入后出现/dev/serial/by-id and by-path
+partical: ttyACM0
+usb串口线:ttyUSB0
+
+node 可执行程序 30M+  直接放到/usr/local/bin 即可
+
+--stm32--
+
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0
+
+github.com/texane/stlink
+cmsis/DSP_Lib/Source/下的文件生成lib/gcc下的2个.a
+
+手里的板子：
+nucleo F401RE(512+96)
+discovery F407VG
+STM32F3Discovery (F303 带DSP 陀螺仪)
+
+http://www.openstm32.org/HomePage
+
+Atollic TrueSTUDIO
+
+micropython (base on STM32F405)
+
+STM32Cube
+STM32F3: mixed-signal MCUs with DSP and FPU instructions
+
+j-link www.segger.com
+http://gnuarmeclipse.github.io/debug/jlink/install/#gnulinux
+
+ST-Link
+
+STM32F103VET6
+Cortex-M3  72 MHz  
+512K Flash 64KByte
+
+GPIOA/B/C/D/E/F/G 时钟单独开启
+16-GPIO/组
+reset后，变为GPIO模式
+
+F103 内存
+0x00000000 - 0x0007ffff 512K
+0x08000000 - 0x0807ffff 512K Flash
+0x1ffff000 - 0x1ffff7ff 2k   System Memory
+
+
+R=64pin
+V=100pin
+Z=144pin
+
+C=256k Flash
+D=384k Flash
+E=512k Flash
+
+
+源地F103 可以用我的串口板3.3V同时供电和串口打印
+R-A9
+T-A10(A9左下)
+
+
+F103RCT6 256+48
+F103RBT6 128+20
+
+
+
+NUCLEO-F401RE  (F103+F401)
+Arduino Uno V3 接口
+
+mbed.org  在线开发工具
+
+
+
+STM32FxxxXYZW
+X: 引脚数   Y: ROM容量  Z: 封装形式  W: 温度范围
+
+如RBT6 : 64pin、128K LQFP，工业温度
+
+容量：
+6-32K
+8-64K
+B-128K
+C-256K
+D-384K
+E-512K
+F-768K
+G-1024K
+
+Ld: 16~32k
+Md: 64K~128k
+Hd: 256~512k
+
+hex2bin
+http://blog.csdn.net/gavinpeng/article/details/37987703
+https://sourceforge.net/projects/hex2bin
+
+
+HAL_CRC_Calculate. 硬crc
+
+--zigbee--
+
+https://www.cesanta.com
+zigbee IEEE802.15.4
+
+What is thread?
+Thread was designed with one goal in mind:
+to create the best way to connect&control products in the home.
+
+250 kbit/s
+
+ZigBee was conceived in 1998, standardized in 2003, and revised in 2006
+802.15.4 之于 ZigBee / 802.11 之于 Wi-Fi
+
+Industry leading sleep current of sub 1uA, Firmware upgrades via UART, SPI or over the air
+
+Through-Hole（排针） 
+
+Digi XBee
+2.4G，900M，868M三种
+可组mesh网络，每个模块都可以做为路由节点，协调器，以及终端节点。
+X-CTU(Configuration Test Utility) / Zigbee Operator
+AT/API
+应用:智能家居，传感器，无线检测，资产管理
+iDigi平台提供各种常用的接入方式，更加方便远程控制
+
+S2 Series 2
+Note: Series 1 and Series 2 XBee modules have the same pin-out. 
+However, Series 1 modules cannot communicate with Series 2 modules.
+
+Router
+Coor
+AT/API
+
+XBee：
+其中一个模块用 旋转的天线（短的和wifi用长的，应该是双极）另一个是板载3cm单极天线，
+后来灵机一动，旋转天线用一段3cm扎线用的单股黑线代替，结果就非常稳定了，书房到主卧没问题
+9600波特率1s间隔发送字符串ok
+0.5s发送丢数据，数据传输律不高。也就是说9600波特率连续发送
+
+
+--wifi--
+partical:
+
+https://docs.particle.io/guide/tools-and-features/dev/
+
+realtek 瑞昱，台湾，螃蟹标志
+IEEE 802.11a/b/g/n Single-Chip
+分usb和pci-e接口
+RT(realtek)---L
+RTL8192DU-VC Single-Chip IEEE 802.11a/b/g/n 2T2R WLAN Controller with USB2.0 Interface (2x2 2.4G/5G)
+RTL8188CUS 	 Single-Chip IEEE 802.11  b/g/n 1T1R WLAN Controller with USB2.0 Interface (QFN-46)
+
+闫usb wifi模块:
+RTL8188CUS 802.11n WLAN Adapter
+
+lsmod:
+cfg80211   is the Linux 802.11 configuration API   kernel支持的
+
+蹭网卡：rtl8187，ott盒子rtl8188/rtl8192
+
+a20: RTL8188ETV(老型号)
+
+驻波系数
+能量全发射出去，效率最高，如果50%反射回来，效率不高。
+WIreless-FIdelity  无线保真， 无线宽带
+
+内置PCB板载天线/陶瓷天线/I-PEX接头连接天线延长线外置
+
+I-PEX (天线扣子连接器)
+
+陶瓷天线也要金属作为辐射单元，陶瓷只是基材，利用它的高介电常数，减小天线体积
+内部结构是一段螺旋走线，优点节省空间，缺点效率低（10%-50%）
+使用陶瓷天线要外加π型网络 并要求供应商提供匹配网络，以便达到理想效果。
+
+倒F型 PCB天线是常用2.4G天线，优点：节省成本。辐射方向性和辐射效率都是经过验证的。阻抗50欧姆。
+天线的馈点。倒F是单极天线
+
+50欧姆传输线
+天线效率41%（何为天线效率，如何测量）
+计算微带线的阻抗
+
+模块：usb/sdio
+
+--rf--
+sudo apt-get install gqrx-sdr
+
+电缆损耗：
+https://www.maximintegrated.com/cn/app-notes/index.mvp/id/4338
+https://www.maximintegrated.com/cn/products/analog/amplifiers/MAX9979.html/tb_tab2
+
+同轴电缆特性阻抗测量方法：
+TDR ， 史密斯图法， 谐振频率法
+除了VNA，有什么简单方法测试出特性阻抗呢？
+
+时域测试法：专门TDR设备，信号发生器+示波器组合，网络分析仪（电缆厂家多利用网络分析仪的时玉功能）
+
+google 搜索  afg oscilloscope tdr 找到youtube的几个视频，很好
+
+A network analyzer is an instrument that measures the network parameters of electrical networks.
+scalar network analyzer (SNA)—measures amplitude properties only
+vector network analyzer (VNA)—measures both amplitude and phase properties
+专业设备很贵，淘宝有个miniVNA Pro
+
+bladerf 应该也可以
+http://www.rtl-sdr.com
+
+
+Polar(英国公司) SI9000 特性阻抗计算工具
+磁力线是便于理解想象出来的
+电磁波是电磁场运动形态
+蜿蜒倒F天线
+2.4G 波长12.5cm
+
+ITU-T:
+gaojie@cyclecentury.com:*2xxpy- 可下载某些免费规范
+
+GNU Radio / SDR
+
+ISM 由 ITU-R 定义，Free License  2.4GHz频段为各国共同的ISM频段
+
+Fre range			Center fre 	Availability
+6.765-6.795 MHz		6.78 MHz 			
+13.553-13.567 MHz	13.56 MHz 	Worldwide
+26.957-27.283 MHz	27.12 MHz 	Worldwide
+40.66-40.7 MHz		40.68 MHz 	Worldwide
+433.05-434.79 MHz	433.92 MHz 	 	      
+902-928 MHz			915 MHz
+2.4-2.5 GHz			2.45 GHz 	Worldwide
+5.725-5.875 GHz		5.8 GHz 	Worldwide
+24-24.25 GHz		24.125 GHz 	Worldwide
+61-61.5 GHz			61.25 GHz
+122-123 GHz			122.5 GHz
+244-246 GHz			245 GHz
+
+Frequency 		Wavelength		Designation 					Abbreviation
+3 – 30 Hz		105 – 104 km 	Extremely low frequency 		ELF
+30 – 300 Hz 	104 – 103 km 	Super low frequency 			SLF
+300 – 3000 Hz 	103 – 100 km 	Ultra low frequency 			ULF
+3 – 30 kHz		100 – 10 km 	Very low frequency 				VLF
+30 – 300 kHz 	10- – 1 km		Low frequency 					LF
+300kHz–3MHz		1km – 100m	 	Medium frequency 				MF
+3 – 30 MHz		100 – 10m 		High frequency 					HF
+30 – 300 MHz 	10 – 1m 		Very high frequency 			VHF
+300MHz–3GHz		1m – 10cm 		Ultra high frequency 			UHF
+3 – 30 GHz		10 – 1cm 		Super high frequency 			SHF
+30 – 300 GHz 	1cm – 1mm 		Extremely high frequency 		EHF
+300GHz-3000GHz 	1mm - 0.1mm 	Tremendously high frequency 	THF
+
+http://www.freebuf.com/articles/wireless/35354.html
+
+http://whiteboard.ping.se/SDR/IQ   好文好文章！
+
+I : In-Phase(同相 同步) signal component
+Q : Quadrature signal component 
+
+Great Scott Gadgets  HackRF One(1MHz-6GHz) 8bitDAC 1200+ (最便宜的)
+Nuand bladeRF x40 USB 3.0 (300M-3.8G) http://www.nuand.com/ 4000+
+XB-200 下变频到 60kHz to 300MHz
+Ettus USRP B200/B210 14bit DAC 10000+
+FreeSRP
+LimeSDR 3000+
+
+YARD Stick One
+RTL2832U + R820T  40+
+
+http://wiki.spench.net/wiki/RTL2832U
+
+FreeSRP A New USB Software-Defined Radio
+
+Analog Devices AD9364 transceiver  600+
+Xilinx Artix 7 FPGA
+Cypress EZ-USB FX3 USB 3.0 controller
+
+
+56 MHz bandwidth
+70 MHz to 6 GHz center frequency
+12-bit resolution
+Full-duplex operation
+
+bladeRF和USRP B210/200都有比较强大的FPGA，还有FX3微控制器。
+B210使用Spartan 6 LX150 FPGA，它有150k逻辑单元；
+B200使用LX75 FPGA，有75k的逻辑单元。
+bladeRF使用Cyclone 4 FPGA，x40有40k逻辑单元，x115有115k逻辑单元。
+USRP B100用的是比较小的FPGA，有25k逻辑单元。
+HackRF使用的是CPLD
+
+便宜的8-bit精度的RTL-SDR就可以接收NOAA的气象卫星图像，但是更高的精度显然更有用
+
+示波器连接铜柱一端，那参考地在哪里呢？
+频谱仪来听收音机
+
+
+传输线阻抗是从电报方程推导出来(查微波理论)
+传输线特性阻抗 (Characteristic impedance   wiki)
+
+
+电磁波会反射？ 那电磁波到底是穿透还是反射?
+可见光也是电磁波，它就不会穿透而是被反射，可见光却可以穿透透明物体
+
+可见光不可穿透，比他波长更长和更短的电磁波都可以穿透
+
+电磁波:TE，TM，TEM,
+
+一个人走不远，2个人互相激励就能走远，电磁相生，辐射出去
+
+The electric field is a component of the electromagnetic field. 
+It is a vector field and is generated by electric charges or time-varying magnetic fields, as described by Maxwell's equations. 
+The concept of an electric field was introduced by Michael Faraday.
+
+天线：
+陶瓷天线
+外接柱状天线
+PCB板载天线
+
+Antenna Magus
+
+www.reseau.org/arduinorc/
+http://www.reseau.org/arduinorc/index.php?n=Main.Gallery
+
+多少V 能产生电火花？ 5V的拉弧距离太短！你增大电压可以增大拉弧距离
+
+实验
+2金属片10MHz发电磁波
+注意：泰克示波器，auto按键不好用，信号弱时，无法auto设置合适参数，
+窍门：先连接信号源auto，然后不要断电，再去接收无线信号。
+10MHz 波长30米，20MHz，波长15米（没超过一个波长）
+
+示波器测试天线信号，有时显示50Hz，这是市电频率，为何？
+发射天线用手触摸，能明显提高发射频率。这跟用手模收音机天线，一下声音变清楚一样。
+
+FM 76.0- 90.0MHz 日频
+AM 531-1710KHz
+
+Distributed antenna system (wikipedia)
+
+Use in WiFi networks
+
+Using a distributed antenna system to create an area of wireless coverage, 
+it is possible to use this technique to propagate indoor WiFi for commercial uses. 
+It is estimated that only about 5% of commercial WiFi use a distributed antenna system.
+
+Dipole antenna  偶极电线  赫兹发明的
+A common example of a dipole is the "rabbit ears" television antenna found on broadcast television sets.  
+电视的V型天线是偶极天线
+
+The most common form is the half-wave dipole
+即2段加一起等于一半波长
+Monopole antenna 单极天线
+
+wikipedia 搜索 Dipole antenna
+搜索：Transmission line
+
+串联电路电流处处相等，是近似，忽略场传播所需时间
+
+检流计:检测微弱电量用的高灵敏度的机械式电表 淘宝几十元
+
+https://en.wikipedia.org/wiki/Colpitts_oscillator
+
+摩擦起电，为什么能吸引轻小物体
+
+运动电荷在磁场中所受到的力称为洛伦兹力
+洛伦兹 ：荷兰物理学家
+
+电感就像安全带，慢慢可以拉出，猛拉会有极大阻力
+切割磁力线/变化磁场产生电场 
+
+----
+U.FL
+Ultra Small Surface Mount Coaxial Connectors - 1.9mm or 2.3mm, 2.4mm Mated Height
+Supports high frequency up to 6GHz
+
+SMA connector
+SubMiniature version A
+
+
+---lora---
+SX1301是semtech公司推出的LoRa网关芯片，8个LoRa信道，1个FSK信道，可以看成是FPGA+8路LoRa调制解调器。该芯片是semtech的核心利益块，从数据手册，到硬件参数，到软件驱动，到协议算法，都不公开；仅当用户缴纳付费，成为LoRa Alliance的会员，才能获得相关资料和技术。
+
+接收灵敏度
+http://www.cnblogs.com/diyingyun/p/3722936.html
+
+www.semtech.com
+www.lora-alliance.org
+
+6LoWPAN 基于IPv6的低速无线个域网标准，即IPv6 over IEEE 802.15.4
+
+microchip RN2483
+
+openRF
+
+SX1278 LoRa射频芯片
+
+Contiki IoT操作系统
+
+machine-to-machine (M2M) applications. 
+
+长沙市锐米通信
+http://www.rimelink.com/pd.jsp?id=20  用的sx1278 (137 MHz to 525 MHz)
+
+常州乐琪（各种无线模块）
+
+http://blog.csdn.net/jiangjunjie_2005/article/details/47857259
+
+基站:sx1301+前端sx1255/1257
+终端:sx1272/73/76/77/78/79
+工作频段及扩频因子不同
+
+LoRa frequency bands
+
+The LoRa wireless system makes use of the unlicensed frequencies that are available worldwide. The most widely used frequencies / bands are:
+
+    868 MHz for Europe
+    915 MHz for North America
+    433 MHz band for Asia
+
+Using lower frequencies than those of the 2.4 or 5.8 GHz ISM bands enables much better coverage to be achieved especially when the nodes are within buildings.
+
+成都泽耀：
+同是sx1278 有100mW  3000米  和 1W 8000米
+功率怎么控制
+
+深圳安信可科技 Lora （看着质量不错） 那个nodeMedia 模块也是这家。这家公司的东西看着还行
+
+旋转天线猜测：
+433MHz 波长69cm，单极天线 1/4  17cm，拉直是不是这么长
+
+TT02高增益纯铜弹簧天线 433Mhz 2.5dBi高增益   (再次理解增益)
+IPEX 座
+
+--bluetooth--
+https://www.youtube.com/watch?v=tclS9arLFzk   下载这个视频   来自bluez.org
+
+www.bluetooth.com  #Bluetooth Special Interest Group (SIG) (802.15.1不再维护)
+
+Bluetooth Basic Rate(BR) 2.0
+Enhanced Data Rate (EDR) 2.1
+Bluetooth with low energy (LE for IoT) 4.0/4.1/4.2  
+
+The CSR8510 chipset is a Bluetooth v4.0 single-chip radio and baseband IC for PCs and consumer electronics devices.
+
+CSR101x 系列
+
+手里的适配器：
+CSR BC212  USB1.0  Bluetooth 1.2
+
+https://wiki.csr.com/wiki/Main_Page
+可以下载到几篇文档，很好
+
+https://www.csrsupport.com  
+Username: gaojie
+Password: 0;.6vO
+没有权限，需要建立商业关系
+
+https://developer.qualcomm.com/user/register
+13492467@qq.com
+*200w200W*
+
+download 目录有资料
+
+--TI--
+账户：13**67@qq.com : -2y50wpy-
+
+TI 收购 Chipcon(cc系列芯片)
+
+TI narrowband solutions for over 100 km
+wireless_connectivity
+Lowest power with up to 20-year battery life for metering applications and sensor nodes
+
+无线芯片分类：
+Bluetooth
+Wifi
+Sub-1GHz (315MHz 433MHz 868MHz 920MHz)
+
+Z-Stack开源，支持Beaglebone black
+
+CC1101 低于1GHz的射频收发器，仅射频发射，不是zigbee
+
+CC2520: 2.4 GHz ZigBee RF transceiver 收发器 相当于phy
+CC2530: 8051 core, no USB
+CC2531: 8051 core, Full Speed USB Device
+CC2533: 8051 core, no USB，比CC2530发射功率更大
+
+CC2538: Cortex-M3 
+CC2630: Cortex-M3 
+CC2592: Range Extender
+
+SMA天线
+
+CC Debuger : CC2511-F32  8051+usb+2.4G 这个2.4G貌似不是蓝牙，wifi啥的，就是2.4G
+
+IAR Embedded Workbench for 8051
+SmartRF Flash Programmer
+SmartRF Studio
+
+IAR 总部瑞典，著名产品是C编译器-IAR Embedded Workbench, 支持众多知名半导体公司的微处理器
+
+IAR Embedded Workbench for ARM  可用于STM32
+CC2530+RFX2401C(PA:功率放大器 模块)，内置IPX连接器 
+
+LM4128-Q1 SOT-23 精密微功耗串联电压基准 
+
+开关和多路复用器:
+解决信号路由问题
+模拟开关、数字开关，负载开关、高速开关
+TI开关涵盖了面向任何应用的各种通道数、配置、电压范围、导通电阻 (RON) 和带宽
+CC2540: blue tooth
+
+---
+二极管矩阵：
+1 板子上就是I2C，芯片与矩阵不分离（adafruit是分离的，并不好）
+2 c8051f330 不做在板子上（这就像封装函数，可大可小）
+3 最多4块板子级联，设置4个i2c地址
+4 不要int引脚和shutdown引脚（6个引脚太多，与4针接口不兼容）
+板子加上拉，串联后上拉会变小
+板子不加，主控器可能没有（一般io都有内部上拉功能的）
+普通发光二极管1.8V导通
+高亮二极管3.1V导通，2.5V也可，电流小，不亮
+表贴蓝色高亮也是2.4v才开始亮，总之不是我之前认为的0.7v
+
+74hc138
+片选1高2低设计，实现1线控制2片，2线控制3片效果，2线控制4片无法实现，除非有多余的反向器。
+再多级联，可1片138控制另外8片，实现6线64译码，再多无意义
+
+麦克风：驻极体 动圈 电容式
+
+L7805 电压调节器 短路保护
+CAT-I CAT-II CAT-III CAT-IV 电工工作区域四等级
+
+
+http://www.jst.com/home23.html
+C&K进口原装正品 KSS331GLFS 贴片触摸开关 轻触开关7*3.5MM
+Japan Solderless Terminal
+AWG是美国的线规标准，32表示0.202mm直径大小的线缆
+
+线分单芯， 单芯并非值1股，而是一条线路
+常见面板白色红点排线 7芯（比较硬）
+那种排线呢？很软的那种
+
+Insulation-displacement connector 就是早前用的20针/40针 将绝缘层割开的座子
+Contact 金属触点
+Shrouded Header 座子
+Housing/socket 壳
+
+board-to-board
+wire-to-board
+wire-to-wire
+
+In recent years, it is preferred to use millimeter (mm) instead of inches for pin-to-pin pitch distance. 
+Note: 
+2.50 mm parts are incorrectly sold on the internet as 2.54 mm (0.100 in)
+1.25 mm parts as 1.27 mm (0.050 in).
+
+top (vertical) or side (horizontal) entry, and through-hole or surface-mount.
+
+SFK connector is a wire-to-board connector for connecting power supply
+PHR-4 壳 1000个 5分
+S4B-PH-SM4-TB (side) 座子
+B4B-PH-SM4-TB (top)  1-1.5元
+SPH-002T-P0.5S / SPH-002T-P0.5L /SPH-004T-P0.5S(线更细)  整盘8000个 3分
+
+04KR-D8M-P / 04KR-D6S-P 割开绝缘层的壳
+
+--------------
+jst:
+shr-02v-s-b 0.069
+ssh-003t-p0.2  金属片
+sach-003g-p0.2  金属片 w to w
+sphd-002t-p0.5
+
+molex:
+shr-04v-s-b 0.073
+
+配套： 
+BM04B-SRSS-TB 
+SM04B-SRSS-TB
+--------------
+
+KR/KRD  1A 100V
+PH      2A 100V
+
+---
+molex 莫氏
+
+--keil--
+2005年ARM收购Keil，现在www.keil.com叫做ARMKEIL
+产品分为：MDK-ARM C51 C251(for 80251 mcu) C166(for C166 mcu)
+MDK-ARM 也称KEIL MDK-ARM、KEIL ARM、KEIL MDK、Realview MDK
+
+C51 分为：
+PK51 professional developer's kit
+CA51 compiler kit
+A51  assembler kit
+
+uVision Project Manager
+
+http://www.keil.com/update/rvmdk.asp 所有版本
+下载者需提供keil的LIC/PSN(Product Serial Number)和注册信息,没搞定
+
+keil/arm/下有 Segger/STLink/ULink 多个驱动支持，
+插入segger J-link，选择Segger目录x86，正常安装
+也可独立安装Segger驱动，更新版本
+
+4.74
+破解：
+1 uVision4 -> File->License Management 找到CID
+2 打开 keillic.exe，输入CID，target选择ARM
+输入LIC后，Lite版变为 Standard版
+
+MDK Plus/Professional
+
+与MDK4不同，MDK5分成MDK Core和Software Packs两部分。
+MDK Core包含uVision5 IDE集成开发环境和ARM Compiler5
+Software Packs可在不更换MDK Core情况下，单独管理设备支持包和中间件更新包。  
+
+MDK ARM C/C++ Compiler 符合IEC 61508-3标准T3类开发工具要求
+
+MDK5 Device List有：
+Microsemi  M2S090 (Cortex-M3, 166 MHz, 64 kB RAM, 512 kB ROM)
+
+我买的叫 J-Link-OB
+----
+
+
+--u8glib--
+m2tklib
+http://code.google.com/p/u8glib/   单色屏ui
+
+可pc编译sdl运行
+
+g++ -DHAVE_CONFIG_H -Icsrc -Icppsrc -Idogmsrc -Inonarduino `getconf LFS_CFLAGS` `getconf LFS64_CFLAGS` -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64   -DSVN_VERSION='"469a805"' -I.  -Icsrc -Icppsrc -Inonarduino -DU8G_16BIT -DU8G_RASPBERRY_PI -DU8G_WITH_PINLIST   -O2 -MT sys/arduino/Chess/u8gwpi_chess-Chess.o -MD -MP -MF sys/arduino/Chess/.deps/u8gwpi_chess-Chess.Tpo -c -o sys/arduino/Chess/u8gwpi_chess-Chess.o `test -f 'sys/arduino/Chess/Chess.cpp' || echo './'`sys/arduino/Chess/Chess.cpp
+
+sys/arduino/Chess/Chess.cpp //检测 .cpp存在再编译，什么逻辑，还能不存在呀
+
+pc编译，sys/arduino目录 .uno文件不认
+
+肯定可以sdl显示
+https://learn.adafruit.com/ssd1306-oled-displays-with-raspberry-pi-and-beaglebone-black/wiring
+u8glib/sys/arduino/Chess/Chess.cpp  //这个文件是自动生成的，什么情况？
+
+=== update ===
+bootloader
+boot + loader
+boot:完成基本引导功能
+loader: 完成升级等功能
+
+2nd bootloader
+
+2级bootloader，支持灾难恢复
+
+关于升级标志：工作状态收到升级信息，提示是否升级，选择是，置升级标志（升级标志就是flash里的一个标志位）系统重启。
+升级成功后清除标志位
+ota 与本地升级（usb，sd，uart）
+http下载
+ 
+华为需求样例
+启动过程：
+1 支持查询安装过程：进度
+2 支持查询STB信息：STB Model ID，PVR capability
+3 启动过程不能有黑屏或爆音
+4 开始展示图片（STB本地预置图片）
+5 开机过程信息提示
+6 2级bootloader
+7 设置分辨率
+  During the boot process STB detects the best screen resolution, 
+which is possible and set the result as sreen resolution. If  detection 
+ends with no result, the default screen resolution will be set.
+
+BootLoader：
+1  2级bootloader启动，1级引导2级，2级校验和加载应用
+2  加载loader 2
+3  1级loader不可更改
+4  2级loader支持升级，校验，恢复，加载应用软件。Loader负责检查升级服务器上是否有可用版本
+5  两份2nd BootLoader
+6  2级loader可升级
+7  下载时间不能超过2分钟（网速3Mbps）（非常具体的需求）
+8  支持灾难恢复：支持远程命令行，遥控器命令，前面板触发
+9  2级loader支持检查软件的合法性和完整性。
+10 2级loader文件小于1.5MB
+
+-----------------------------
+关于升级
+传统升级流程：
+教训：
+网关做到usb升级，在网页上触发的问题，陷入了混乱。项目经理，驱动开发人员，产品经理等，
+根本无法给出完整的流程，漏洞摆出。没有之前知识的积累。
+
+背下来：
+a20盒子，下载过程中断电，会重新下载，写flash的时候断电，就只能用u盘或者sd卡刷机了。因为那个时候已经把flash擦除
+总不能把android系统备份2份吧。所以任何设备在写flash的时候都不能断电
+
+极路由升级写flash时提示“不能断电”，我断了，就变砖了，客服发了刷机文件（tftp下载）恢复
+更加完善的方案是仿照dvb，loader（uboot）有下载固件能力。但是如果某次升级需要升级uboot，仍然存在断电风险。
+
+最基本原型：
+终端请求服务器的xml文件，检查版本，若有更新，下载并升级。银河A20就是这样作的。基于这个基本模型再构建其他功能。就像makefile可以非常复杂，但基本模型就是
+target:prerequisit
+	command
+这么简单。
+
+网关升级
+
+关于升级标志：
+系统工作状态置升级标志，重启进入recovery后，分2种情况：
+进入就清除标志，和升级完成再清除标志。
+
+uu：理想情况下，检测情况：因为断电没成功就
+
+gateway 没有按键，没有屏幕显示：
+
+“找原来loader的规范”
+
+方案1：底层检测有无u盘，或者有u盘无文件，提示插入u盘，否则无法选择按钮。
+方案2：点击按钮，置升级标志
+
+清标志位的时机
+=== end update ===
+
+

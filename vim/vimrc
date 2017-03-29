@@ -1,0 +1,24 @@
+set nocp
+set ts=4
+set sw=4
+set nu
+colorscheme koehler
+syntax on "for macos
+set cot=menuone,preview
+filetype plugin indent on
+set pvh=1
+set dict=~/Work/note/src/vim/dict
+set dict+=~/Work/note/src/vim/zh
+
+set rtp+=~/.vim/tagbar
+set rtp+=~/.vim/ultisnips
+set rtp+=~/.vim/vim-snippets
+set rtp+=~/.vim/nerdtree
+
+set complete+=k "c-n c-p can c-x c-k
+
+let g:UltiSnipsListSnippets="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+nmap <F8> :Tagbar<CR>

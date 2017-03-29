@@ -1,0 +1,37 @@
+{
+"data":[
+	{"type":"喜剧",
+     "data":[
+        {"type":"大陆",
+         "data":[
+            {"name":"影片1", "url":"http://xxx.mp4"}
+          ]
+        },
+        {"type":"港台",
+         "data":[
+           {"name":"影片1", "url":"http://xxx.mp4"},
+           {"name":"影片1", "url":"http://xxx.mp4"}
+         ]
+        }
+     ]
+    },
+	{"type":"爱情",
+     "data":[
+        {"type":"大陆",
+         "data":[
+            {"name":"影片1", "url":"http://xxx.mp4"},
+            {"name":"影片2", "url":"http://xxx.mp4"}
+          ]
+        },
+        {"type":"港台",
+         "data":[
+           {"name":"影片1", "url":"http://xxx.mp4"},
+           {"name":"影片1", "url":"http://xxx.mp4"}
+         ]
+        }
+     ]
+    }
+]
+}
+
+

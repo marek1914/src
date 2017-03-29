@@ -1,0 +1,37 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+cmv_fpga_config_only	core.c	/^void cmv_fpga_config_only (void)$/;"	f
+cmv_fpga_initial	core.c	/^void cmv_fpga_initial (void)$/;"	f
+cmv_read	core.c	/^uint8_t cmv_read(uint8_t addr)$/;"	f
+cmv_reset_only	core.c	/^void cmv_reset_only (void)$/;"	f
+cmv_soft_config	core.c	/^void cmv_soft_config (void)$/;"	f
+cmv_soft_inter	core.c	/^void cmv_soft_inter (void)$/;"	f
+cmv_training_only	core.c	/^void cmv_training_only (void)$/;"	f
+cmv_write	core.c	/^void cmv_write(uint8_t addr,uint8_t data)$/;"	f
+flash_erase_chip	core.c	/^void flash_erase_chip(void)$/;"	f
+flash_erase_sector	core.c	/^int flash_erase_sector(uint16_t sector_addr)$/;"	f
+flash_init	core.c	/^void flash_init(void)$/;"	f
+flash_progam	core.c	/^int flash_progam(const uint16_t *buf, int32_t size, uint32_t addr)$/;"	f
+flash_read	core.c	/^int flash_read(uint16_t *buf, int32_t size, uint32_t addr)$/;"	f
+fpga_check	core.c	/^int fpga_check(void)$/;"	f
+fpga_get_version	core.c	/^uint32_t fpga_get_version(void)$/;"	f
+get_char	core.c	/^uint8_t get_char(void)$/;"	f
+get_crc	core.c	/^uint16_t get_crc(uint8_t is_send)$/;"	f
+get_image_zone	core.c	/^void get_image_zone(uint8_t *buf)$/;"	f
+get_temperature	core.c	/^uint16_t get_temperature(void)$/;"	f
+getevent	core.c	/^int getevent(void)$/;"	f
+image_send_crl	core.c	/^void image_send_crl(void)$/;"	f
+light_pixel_check	core.c	/^void light_pixel_check(struct light_pixel_info *lpi)$/;"	f
+light_pixel_thd_wr	core.c	/^int light_pixel_thd_wr(uint8_t thd)$/;"	f
+put_char	core.c	/^void put_char(uint8_t c)$/;"	f
+receivemsg7	core.c	/^int receivemsg7(uint8_t *msg)$/;"	f
+rs485_crc_reset	core.c	/^static void rs485_crc_reset(void)$/;"	f	file:
+send_data	core.c	/^void send_data(const char* buf)$/;"	f
+sendmsg60	core.c	/^int sendmsg60(const uint8_t *msg)$/;"	f
+sram_read	core.c	/^int sram_read(uint32_t *buf, int size, uint32_t addr)$/;"	f
+sram_write	core.c	/^int sram_write(const uint32_t *buf, int size, uint32_t addr)$/;"	f
+uart_init	core.c	/^void uart_init(void)$/;"	f

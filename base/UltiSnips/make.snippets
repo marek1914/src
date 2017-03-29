@@ -1,0 +1,90 @@
+snippet base
+.PHONY: clean, mrproper
+CC = gcc
+CFLAGS = -g -Wall
+
+all: $1
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+${1:out}: $1.o
+	$(CC) $(CFLAGS) -o $@ $+
+
+clean:
+	rm -f *.o core.*
+
+mrproper: clean
+	rm -f $1
+endsnippet
+
+snippet add
+${1:out}: $1.o
+	$(CC) $(CFLAGS) -o $@ $+
+endsnippet
+
+snippet if
+ifeq (${1:cond0}, ${2:cond1})
+	${0}
+endif
+endsnippet
+
+snippet ife
+ifeq (${1:cond0}, ${2:cond1})
+	${3}
+else
+	${0}
+endif
+endsnippet
+
+#Function
+snippet strip
+$(strip ${1:string})
+endsnippet
+
+snippet filter
+$(filter ${1:pattern...},${2:text})
+endsnippet
+
+snippet filter-out
+$(filter-out ${1:pattern...},${2:text})
+endsnippet
+
+snippet sort
+$(sort ${1:list})
+endsnippet
+
+snippet subst
+$(subst ${1:from},${2:to},${3:text})
+endsnippet
+
+snippet patsubst
+$(patsubst ${1:pattern},${2:replacement},${3:text})
+endsnippet
+
+snippet wildcard
+$(wildcard ${1:*.c})
+endsnippet
+
+snippet foreach
+$(foreach ${1:var},${2:list},${3:text})
+endsnippet
+
+snippet suffix
+$(suffix ${1:names...})
+endsnippet
+
+snippet addsuffix
+$(addsuffix ${1:suffix},${2:names...})
+endsnippet
+
+snippet addprefix
+$(addprefix ${1:prefix},${2:names...})
+endsnippet
+
+
+#Functions for Conditionals
+snippet if-func
+$(if condition,then-part[,else-part])
+endsnippet
+

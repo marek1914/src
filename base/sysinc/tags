@@ -1,0 +1,644 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CLOCKS_PER_SEC	time.h	47;"	d
+CLOCK_MONOTONIC	time.h	52;"	d
+CLOCK_MONOTONIC_HR	time.h	56;"	d
+CLOCK_PROCESS_CPUTIME_ID	time.h	53;"	d
+CLOCK_REALTIME	time.h	51;"	d
+CLOCK_REALTIME_HR	time.h	55;"	d
+CLOCK_THREAD_CPUTIME_ID	time.h	54;"	d
+F_OK	unistd.h	76;"	d
+INT16_C	stdint.h	108;"	d
+INT16_MAX	stdint.h	96;"	d
+INT16_MIN	stdint.h	95;"	d
+INT32_C	stdint.h	141;"	d
+INT32_MAX	stdint.h	129;"	d
+INT32_MIN	stdint.h	128;"	d
+INT64_C	stdint.h	177;"	d
+INT64_MAX	stdint.h	162;"	d
+INT64_MIN	stdint.h	161;"	d
+INT8_C	stdint.h	75;"	d
+INT8_MAX	stdint.h	63;"	d
+INT8_MIN	stdint.h	62;"	d
+INTMAX_C	stdint.h	225;"	d
+INTMAX_MAX	stdint.h	220;"	d
+INTMAX_MIN	stdint.h	219;"	d
+INTPTR_C	stdint.h	206;"	d
+INTPTR_MAX	stdint.h	199;"	d
+INTPTR_MIN	stdint.h	198;"	d
+INT_FAST16_C	stdint.h	110;"	d
+INT_FAST16_MAX	stdint.h	100;"	d
+INT_FAST16_MIN	stdint.h	99;"	d
+INT_FAST32_C	stdint.h	143;"	d
+INT_FAST32_MAX	stdint.h	133;"	d
+INT_FAST32_MIN	stdint.h	132;"	d
+INT_FAST64_C	stdint.h	179;"	d
+INT_FAST64_MAX	stdint.h	166;"	d
+INT_FAST64_MIN	stdint.h	165;"	d
+INT_FAST8_C	stdint.h	77;"	d
+INT_FAST8_MAX	stdint.h	67;"	d
+INT_FAST8_MIN	stdint.h	66;"	d
+INT_LEAST16_C	stdint.h	109;"	d
+INT_LEAST16_MAX	stdint.h	98;"	d
+INT_LEAST16_MIN	stdint.h	97;"	d
+INT_LEAST32_C	stdint.h	142;"	d
+INT_LEAST32_MAX	stdint.h	131;"	d
+INT_LEAST32_MIN	stdint.h	130;"	d
+INT_LEAST64_C	stdint.h	178;"	d
+INT_LEAST64_MAX	stdint.h	164;"	d
+INT_LEAST64_MIN	stdint.h	163;"	d
+INT_LEAST8_C	stdint.h	76;"	d
+INT_LEAST8_MAX	stdint.h	65;"	d
+INT_LEAST8_MIN	stdint.h	64;"	d
+PTRDIFF_C	stdint.h	208;"	d
+PTRDIFF_MAX	stdint.h	202;"	d
+PTRDIFF_MIN	stdint.h	201;"	d
+R_OK	unistd.h	73;"	d
+SEEK_CUR	stdio.h	2;"	d
+SEEK_CUR	unistd.h	2;"	d
+SEEK_END	stdio.h	3;"	d
+SEEK_END	unistd.h	3;"	d
+SEEK_SET	stdio.h	1;"	d
+SEEK_SET	unistd.h	1;"	d
+SIG_ATOMIC_MAX	stdint.h	232;"	d
+SIG_ATOMIC_MIN	stdint.h	231;"	d
+UINT16_C	stdint.h	112;"	d
+UINT16_MAX	stdint.h	102;"	d
+UINT32_C	stdint.h	145;"	d
+UINT32_MAX	stdint.h	135;"	d
+UINT64_C	stdint.h	181;"	d
+UINT64_MAX	stdint.h	167;"	d
+UINT8_C	stdint.h	79;"	d
+UINT8_MAX	stdint.h	69;"	d
+UINTMAX_C	stdint.h	226;"	d
+UINTMAX_MAX	stdint.h	221;"	d
+UINTPTR_C	stdint.h	207;"	d
+UINTPTR_MAX	stdint.h	200;"	d
+UINT_FAST16_C	stdint.h	114;"	d
+UINT_FAST16_MAX	stdint.h	104;"	d
+UINT_FAST32_C	stdint.h	147;"	d
+UINT_FAST32_MAX	stdint.h	137;"	d
+UINT_FAST64_C	stdint.h	183;"	d
+UINT_FAST64_MAX	stdint.h	170;"	d
+UINT_FAST8_C	stdint.h	81;"	d
+UINT_FAST8_MAX	stdint.h	71;"	d
+UINT_LEAST16_C	stdint.h	113;"	d
+UINT_LEAST16_MAX	stdint.h	103;"	d
+UINT_LEAST32_C	stdint.h	146;"	d
+UINT_LEAST32_MAX	stdint.h	136;"	d
+UINT_LEAST64_C	stdint.h	182;"	d
+UINT_LEAST64_MAX	stdint.h	169;"	d
+UINT_LEAST8_C	stdint.h	80;"	d
+UINT_LEAST8_MAX	stdint.h	70;"	d
+WCHAR_MAX	stdint.h	240;"	d
+WCHAR_MIN	stdint.h	239;"	d
+WINT_MAX	stdint.h	247;"	d
+WINT_MIN	stdint.h	246;"	d
+W_OK	unistd.h	74;"	d
+X_OK	unistd.h	75;"	d
+_BITSIZE	stdint.h	256;"	d
+_SSIZE_T_DEFINED_	stdint.h	252;"	d
+_STDINT_H	stdint.h	29;"	d
+__BIT_TYPES_DEFINED__	stdint.h	259;"	d
+__INT64_C	stdint.h	173;"	d
+__PRI64_RANK	stdint.h	186;"	d
+__PRIFAST_RANK	stdint.h	187;"	d
+__PRIPTR_RANK	stdint.h	188;"	d
+__STDINT_LIMITS	stdint.h	35;"	d
+__STDINT_MACROS	stdint.h	39;"	d
+__UINT64_C	stdint.h	174;"	d
+__brk	unistd.h	/^void *__brk(void *);$/;"	p
+_exit	unistd.h	/^__noreturn void _exit(int);$/;"	p
+abort	stdlib.h	/^void abort(void);$/;"	p
+access	unistd.h	/^int access(const char *, int);$/;"	p
+acct	unistd.h	/^int  acct(const char*  filepath);$/;"	p
+acos	math.h	/^double	acos(double);$/;"	p
+acosf	math.h	/^float	acosf(float);$/;"	p
+acosh	math.h	/^double	acosh(double);$/;"	p
+acoshf	math.h	/^float	acoshf(float);$/;"	p
+acoshl	math.h	/^long double	acoshl(long double);$/;"	p
+acosl	math.h	/^long double	acosl(long double);$/;"	p
+alarm	unistd.h	/^unsigned int alarm(unsigned int);$/;"	p
+arc4random	stdlib.h	/^unsigned int arc4random(void);$/;"	p
+arc4random_addrandom	stdlib.h	/^void arc4random_addrandom(unsigned char *, int);$/;"	p
+arc4random_stir	stdlib.h	/^void arc4random_stir(void);$/;"	p
+asctime	time.h	/^char *asctime(const struct tm *tm);$/;"	p
+asctime_r	time.h	/^char *asctime_r(const struct tm *tm, char *buf);$/;"	p
+asin	math.h	/^double	asin(double);$/;"	p
+asinf	math.h	/^float	asinf(float);$/;"	p
+asinh	math.h	/^double	asinh(double);$/;"	p
+asinhf	math.h	/^float	asinhf(float);$/;"	p
+asinhl	math.h	/^long double	asinhl(long double);$/;"	p
+asinl	math.h	/^long double	asinl(long double);$/;"	p
+assert	assert.h	/^void assert(scalar expression);$/;"	p
+atan	math.h	/^double	atan(double);$/;"	p
+atan2	math.h	/^double	atan2(double, double);$/;"	p
+atan2f	math.h	/^float	atan2f(float, float);$/;"	p
+atan2l	math.h	/^long double	atan2l(long double, long double);$/;"	p
+atanf	math.h	/^float	atanf(float);$/;"	p
+atanh	math.h	/^double	atanh(double);$/;"	p
+atanhf	math.h	/^float	atanhf(float);$/;"	p
+atanhl	math.h	/^long double	atanhl(long double);$/;"	p
+atanl	math.h	/^long double	atanl(long double);$/;"	p
+atexit	stdlib.h	/^int atexit(void (*)(void));$/;"	p
+atoi	stdlib.h	/^int atoi(const char *);$/;"	p
+atol	stdlib.h	/^long atol(const char *);$/;"	p
+atoll	stdlib.h	/^long long atoll(const char *);$/;"	p
+brk	unistd.h	/^int brk(void *);$/;"	p
+bsearch	stdlib.h	/^void *bsearch(const void *key, const void *base0, size_t nmemb, size_t size, int (*compar)(const void *, const void *));$/;"	p
+cacheflush	unistd.h	/^int cacheflush(long start, long end, long flags);$/;"	p
+calloc	stdlib.h	/^void *calloc(size_t nmemb, size_t size);$/;"	p
+capget	unistd.h	/^int capget(cap_user_header_t hdrp, cap_user_data_t datap);$/;"	p
+capset	unistd.h	/^int capset(cap_user_header_t hdrp, const cap_user_data_t datap);$/;"	p
+cbrt	math.h	/^double	cbrt(double);$/;"	p
+cbrtf	math.h	/^float	cbrtf(float);$/;"	p
+cbrtl	math.h	/^long double	cbrtl(long double);$/;"	p
+ceil	math.h	/^double	ceil(double);$/;"	p
+ceilf	math.h	/^float	ceilf(float);$/;"	p
+ceill	math.h	/^long double	ceill(long double);$/;"	p
+chdir	unistd.h	/^int chdir(const char *);$/;"	p
+chown	unistd.h	/^int chown(const char *, uid_t, gid_t);$/;"	p
+chroot	unistd.h	/^int chroot(const char *);$/;"	p
+clearenv	stdlib.h	/^int clearenv(void);$/;"	p
+clearerr	stdio.h	/^void clearerr(FILE *stream);$/;"	p
+clock	time.h	/^clock_t   clock(void);$/;"	p
+clock_getres	time.h	/^int clock_getres(clockid_t clk_id, struct timespec *res);$/;"	p
+clock_gettime	time.h	/^int clock_gettime(clockid_t clk_id, struct timespec *tp);$/;"	p
+clock_settime	time.h	/^int clock_settime(clockid_t clk_id, const struct timespec *tp);$/;"	p
+close	unistd.h	/^int close(int);$/;"	p
+copysign	math.h	/^double	copysign(double, double);$/;"	p
+copysignf	math.h	/^float	copysignf(float, float);$/;"	p
+copysignl	math.h	/^long double	copysignl(long double, long double);$/;"	p
+cos	math.h	/^double	cos(double);$/;"	p
+cosf	math.h	/^float	cosf(float);$/;"	p
+cosh	math.h	/^double	cosh(double);$/;"	p
+coshf	math.h	/^float	coshf(float);$/;"	p
+coshl	math.h	/^long double	coshl(long double);$/;"	p
+cosl	math.h	/^long double	cosl(long double);$/;"	p
+creat	fcntl.h	/^int creat(const char *pathname, mode_t mode);$/;"	p
+ctime	time.h	/^char *ctime(const time_t *timep);$/;"	p
+ctime_r	time.h	/^char *ctime_r(const time_t *timep, char *buf);$/;"	p
+daemon	unistd.h	/^int daemon(int, int);$/;"	p
+daylight	time.h	/^int       daylight;$/;"	v
+difftime	time.h	/^double difftime(time_t time1, time_t time0);$/;"	p
+drand48	stdlib.h	/^double drand48(void);$/;"	p
+drem	math.h	/^double	drem(double, double);$/;"	p
+dremf	math.h	/^float	dremf(float, float);$/;"	p
+dup	unistd.h	/^int dup(int);$/;"	p
+dup2	unistd.h	/^int dup2(int, int);$/;"	p
+endusershell	unistd.h	/^void endusershell(void);$/;"	p
+environ	unistd.h	/^char **environ;$/;"	v
+erand48	stdlib.h	/^double erand48(unsigned short xsubi[3]);$/;"	p
+erf	math.h	/^double	erf(double);$/;"	p
+erfc	math.h	/^double	erfc(double);$/;"	p
+erfcf	math.h	/^float	erfcf(float);$/;"	p
+erfcl	math.h	/^long double	erfcl(long double);$/;"	p
+erff	math.h	/^float	erff(float);$/;"	p
+erfl	math.h	/^long double	erfl(long double);$/;"	p
+execl	unistd.h	/^int execl(const char *, const char *, ...);$/;"	p
+execle	unistd.h	/^int execle(const char *, const char *, ...);$/;"	p
+execlp	unistd.h	/^int execlp(const char *, const char *, ...);$/;"	p
+execv	unistd.h	/^int execv(const char *, char * const *);$/;"	p
+execve	unistd.h	/^int execve(const char *, char * const *, char * const *);$/;"	p
+execvp	unistd.h	/^int execvp(const char *, char * const *);$/;"	p
+exit	stdlib.h	/^void exit(int);$/;"	p
+exp	math.h	/^double	exp(double);$/;"	p
+exp2	math.h	/^double	exp2(double);$/;"	p
+exp2f	math.h	/^float	exp2f(float);$/;"	p
+exp2l	math.h	/^long double	exp2l(long double);$/;"	p
+expf	math.h	/^float	expf(float);$/;"	p
+expl	math.h	/^long double	expl(long double);$/;"	p
+expm1	math.h	/^double	expm1(double);$/;"	p
+expm1f	math.h	/^float	expm1f(float);$/;"	p
+expm1l	math.h	/^long double	expm1l(long double);$/;"	p
+fabs	math.h	/^double	fabs(double);$/;"	p
+fabsf	math.h	/^float	fabsf(float);$/;"	p
+fabsl	math.h	/^long double	fabsl(long double);$/;"	p
+fchdir	unistd.h	/^int fchdir(int);$/;"	p
+fchown	unistd.h	/^int fchown(int, uid_t, gid_t);$/;"	p
+fclose	stdio.h	/^int fclose(FILE *fp);$/;"	p
+fcntl	fcntl.h	/^int fcntl(int fd, int cmd, ...);$/;"	p
+fcntl	unistd.h	/^int fcntl(int, int, ...);$/;"	p
+fdatasync	unistd.h	/^int fdatasync(int);$/;"	p
+fdim	math.h	/^double	fdim(double, double);$/;"	p
+fdimf	math.h	/^float	fdimf(float, float);$/;"	p
+fdiml	math.h	/^long double	fdiml(long double, long double);$/;"	p
+feof	stdio.h	/^int feof(FILE *stream);$/;"	p
+ferror	stdio.h	/^int ferror(FILE *stream);$/;"	p
+fflush	stdio.h	/^int fflush(FILE *stream);$/;"	p
+fgetc	stdio.h	/^int fgetc(FILE *stream);$/;"	p
+fgetpos	stdio.h	/^int fgetpos(FILE *stream, fpos_t *pos);$/;"	p
+fgets	stdio.h	/^char *fgets(char *s, int size, FILE *stream);$/;"	p
+finite	math.h	/^int	finite(double);$/;"	p
+finitef	math.h	/^int		finitef(float);$/;"	p
+flock	unistd.h	/^int flock(int, int);$/;"	p
+floor	math.h	/^double	floor(double);$/;"	p
+floorf	math.h	/^float	floorf(float);$/;"	p
+floorl	math.h	/^long double	floorl(long double);$/;"	p
+fma	math.h	/^double	fma(double, double, double);$/;"	p
+fmaf	math.h	/^float	fmaf(float, float, float);$/;"	p
+fmal	math.h	/^long double	fmal(long double, long double, long double);$/;"	p
+fmax	math.h	/^double	fmax(double, double);$/;"	p
+fmaxf	math.h	/^float	fmaxf(float, float);$/;"	p
+fmaxl	math.h	/^long double	fmaxl(long double, long double);$/;"	p
+fmin	math.h	/^double	fmin(double, double);$/;"	p
+fminf	math.h	/^float	fminf(float, float);$/;"	p
+fminl	math.h	/^long double	fminl(long double, long double);$/;"	p
+fmod	math.h	/^double	fmod(double, double);$/;"	p
+fmodf	math.h	/^float	fmodf(float, float);$/;"	p
+fmodl	math.h	/^long double	fmodl(long double, long double);$/;"	p
+fopen	stdio.h	/^FILE *fopen(const char *path, const char *mode);$/;"	p
+fork	unistd.h	/^pid_t  fork(void);$/;"	p
+fprintf	stdio.h	/^int fprintf(FILE *stream, const char *format, ...);$/;"	p
+fputc	stdio.h	/^int fputc(int c, FILE *stream);$/;"	p
+fputs	stdio.h	/^int fputs(const char *s, FILE *stream);$/;"	p
+fread	stdio.h	/^size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream);$/;"	p
+free	stdlib.h	/^void free(void *ptr);$/;"	p
+freopen	stdio.h	/^FILE *freopen(const char *path, const char *mode, FILE *stream);$/;"	p
+frexp	math.h	/^double	frexp(double, int *);$/;"	p
+frexpf	math.h	/^float	frexpf(float, int *);$/;"	p
+frexpl	math.h	/^long double	frexpl(long double value, int *); $/;"	p
+fscanf	stdio.h	/^int fscanf(FILE *stream, const char *format, ...);$/;"	p
+fseek	stdio.h	/^int fseek(FILE *stream, long offset, int whence);$/;"	p
+fseeko	stdio.h	/^int fseeko(FILE *stream, off_t offset, int whence);$/;"	p
+fsetpos	stdio.h	/^int fsetpos(FILE *stream, fpos_t *pos);$/;"	p
+fstat	unistd.h	/^int fstat(int fd, struct stat *buf);$/;"	p
+fsync	unistd.h	/^int fsync(int);$/;"	p
+ftell	stdio.h	/^long ftell(FILE *stream);$/;"	p
+ftello	stdio.h	/^off_t ftello(FILE *stream);$/;"	p
+ftruncate	unistd.h	/^int ftruncate(int, off_t);$/;"	p
+fwrite	stdio.h	/^size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream);$/;"	p
+gamma	math.h	/^double	gamma(double);$/;"	p
+gamma_r	math.h	/^double	gamma_r(double, int *);$/;"	p
+gammaf	math.h	/^float	gammaf(float);$/;"	p
+gammaf_r	math.h	/^float	gammaf_r(float, int *);$/;"	p
+getc	stdio.h	/^int getc(FILE *stream);$/;"	p
+getchar	stdio.h	/^int getchar(void);$/;"	p
+getcwd	unistd.h	/^char *getcwd(char *, size_t);$/;"	p
+getdelim	stdio.h	/^ssize_t getdelim(char **lineptr, size_t *n, int delim, FILE *stream);$/;"	p
+getdtablesize	unistd.h	/^int getdtablesize(void);$/;"	p
+getegid	unistd.h	/^gid_t getegid(void);$/;"	p
+getenv	stdlib.h	/^char *getenv(const char *);$/;"	p
+geteuid	unistd.h	/^uid_t geteuid(void);$/;"	p
+getgid	unistd.h	/^gid_t getgid(void);$/;"	p
+getgroups	unistd.h	/^int getgroups(int, gid_t *);$/;"	p
+gethostname	unistd.h	/^int gethostname(char *, size_t);$/;"	p
+getline	stdio.h	/^ssize_t getline(char **lineptr, size_t *n, FILE *stream);$/;"	p
+getlogin	unistd.h	/^char* getlogin(void);$/;"	p
+getopt	unistd.h	/^int getopt(int, char * const *, const char *);$/;"	p
+getpgid	unistd.h	/^pid_t  getpgid(pid_t);$/;"	p
+getpgrp	unistd.h	/^pid_t  getpgrp(void);$/;"	p
+getpid	unistd.h	/^pid_t  getpid(void);$/;"	p
+getppid	unistd.h	/^pid_t  getppid(void);$/;"	p
+getpt	stdlib.h	/^int    getpt(void);$/;"	p
+getresgid	unistd.h	/^int getresgid(gid_t *rgid, gid_t *egid, gid_t *sgid);$/;"	p
+getresuid	unistd.h	/^int getresuid(uid_t *ruid, uid_t *euid, uid_t *suid);$/;"	p
+gets	stdio.h	/^char *gets(char *s);$/;"	p
+gettid	unistd.h	/^pid_t  gettid(void);$/;"	p
+gettimeofday	time.h	/^int gettimeofday(struct timeval *tv, struct timezone *tz);$/;"	p
+getuid	unistd.h	/^uid_t getuid(void);$/;"	p
+getusershell	unistd.h	/^char* getusershell(void);$/;"	p
+gmtime	time.h	/^struct tm *gmtime(const time_t *timep);$/;"	p
+gmtime_r	time.h	/^struct tm *gmtime_r(const time_t *timep, struct tm *result);$/;"	p
+grantpt	stdlib.h	/^int grantpt(int fd);$/;"	p
+hypot	math.h	/^double	hypot(double, double);$/;"	p
+hypotf	math.h	/^float	hypotf(float, float);$/;"	p
+hypotl	math.h	/^long double	hypotl(long double, long double);$/;"	p
+ilogb	math.h	/^int	ilogb(double);$/;"	p
+ilogbf	math.h	/^int		ilogbf(float);$/;"	p
+ilogbl	math.h	/^int			ilogbl(long double);$/;"	p
+index	string.h	/^char *index(const char *s, int c);$/;"	p
+int16_t	stdint.h	/^typedef __int16_t     int16_t;$/;"	t
+int32_t	stdint.h	/^typedef __int32_t     int32_t;$/;"	t
+int64_t	stdint.h	/^typedef __int64_t     int64_t;$/;"	t
+int8_t	stdint.h	/^typedef __int8_t      int8_t;$/;"	t
+int_fast16_t	stdint.h	/^typedef int32_t       int_fast16_t;$/;"	t
+int_fast32_t	stdint.h	/^typedef int32_t       int_fast32_t;$/;"	t
+int_fast64_t	stdint.h	/^typedef int64_t       int_fast64_t;$/;"	t
+int_fast8_t	stdint.h	/^typedef int8_t        int_fast8_t;$/;"	t
+int_least16_t	stdint.h	/^typedef int16_t       int_least16_t;$/;"	t
+int_least32_t	stdint.h	/^typedef int32_t       int_least32_t;$/;"	t
+int_least64_t	stdint.h	/^typedef int64_t       int_least64_t;$/;"	t
+int_least8_t	stdint.h	/^typedef int8_t        int_least8_t;$/;"	t
+intmax_t	stdint.h	/^typedef int64_t  intmax_t;$/;"	t
+intptr_t	stdint.h	/^typedef int           intptr_t;$/;"	t
+ioctl	unistd.h	/^int ioctl(int, int, ...);$/;"	p
+isatty	unistd.h	/^int isatty(int);$/;"	p
+isinf	math.h	/^int	(isinf)(double);$/;"	p
+isnan	math.h	/^int	(isnan)(double);$/;"	p
+isnanf	math.h	/^int	isnanf(float);$/;"	p
+issetugid	unistd.h	/^int issetugid(void);$/;"	p
+j0	math.h	/^double	j0(double);$/;"	p
+j0f	math.h	/^float	j0f(float);$/;"	p
+j1	math.h	/^double	j1(double);$/;"	p
+j1f	math.h	/^float	j1f(float);$/;"	p
+jn	math.h	/^double	jn(int, double);$/;"	p
+jnf	math.h	/^float	jnf(int, float);$/;"	p
+jrand48	stdlib.h	/^long jrand48(unsigned short *);$/;"	p
+lchown	unistd.h	/^int lchown(const char *, uid_t, gid_t);$/;"	p
+ldexp	math.h	/^double	ldexp(double, int);$/;"	p
+ldexpf	math.h	/^float	ldexpf(float, int);$/;"	p
+ldexpl	math.h	/^long double	ldexpl(long double, int);$/;"	p
+lgamma	math.h	/^double	lgamma(double);$/;"	p
+lgamma_r	math.h	/^double	lgamma_r(double, int *);$/;"	p
+lgammaf	math.h	/^float	lgammaf(float);$/;"	p
+lgammaf_r	math.h	/^float	lgammaf_r(float, int *);$/;"	p
+lgammal	math.h	/^long double	lgammal(long double);$/;"	p
+link	unistd.h	/^int link(const char *, const char *);$/;"	p
+llrint	math.h	/^long long llrint(double);$/;"	p
+llrintf	math.h	/^long long llrintf(float);$/;"	p
+llrintl	math.h	/^long long	llrintl(long double);$/;"	p
+llround	math.h	/^long long llround(double);$/;"	p
+llroundf	math.h	/^long long llroundf(float);$/;"	p
+llroundl	math.h	/^long long	llroundl(long double);$/;"	p
+localtime	time.h	/^struct tm *localtime(const time_t *timep);$/;"	p
+localtime_r	time.h	/^struct tm *localtime_r(const time_t *timep, struct tm *result);$/;"	p
+log	math.h	/^double	log(double);$/;"	p
+log10	math.h	/^double	log10(double);$/;"	p
+log10f	math.h	/^float	log10f(float);$/;"	p
+log10l	math.h	/^long double	log10l(long double);$/;"	p
+log1p	math.h	/^double	log1p(double);$/;"	p
+log1pf	math.h	/^float	log1pf(float);$/;"	p
+log1pl	math.h	/^long double	log1pl(long double);$/;"	p
+log2	math.h	/^double	log2(double);$/;"	p
+log2f	math.h	/^float	log2f(float);$/;"	p
+log2l	math.h	/^long double	log2l(long double);$/;"	p
+logb	math.h	/^double	logb(double);$/;"	p
+logbf	math.h	/^float	logbf(float);$/;"	p
+logbl	math.h	/^long double	logbl(long double);$/;"	p
+logf	math.h	/^float	logf(float);$/;"	p
+logl	math.h	/^long double	logl(long double);$/;"	p
+lrand48	stdlib.h	/^long lrand48(void);$/;"	p
+lrint	math.h	/^long	lrint(double);$/;"	p
+lrintf	math.h	/^long	lrintf(float);$/;"	p
+lrintl	math.h	/^long		lrintl(long double);$/;"	p
+lround	math.h	/^long	lround(double);$/;"	p
+lroundf	math.h	/^long	lroundf(float);$/;"	p
+lroundl	math.h	/^long		lroundl(long double);$/;"	p
+lseek	unistd.h	/^off_t lseek(int fd, off_t offset, int whence);$/;"	p
+lseek64	unistd.h	/^off64_t lseek64(int fd, off64_t offset, int whence);$/;"	p
+lstat	unistd.h	/^int lstat(const char *path, struct stat *buf);$/;"	p
+malloc	stdlib.h	/^void *malloc(size_t size);$/;"	p
+mblen	stdlib.h	/^int      mblen(const char *, size_t);$/;"	p
+mbstowcs	stdlib.h	/^size_t   mbstowcs(wchar_t *, const char *, size_t);$/;"	p
+mbtowc	stdlib.h	/^int      mbtowc(wchar_t *, const char *, size_t);$/;"	p
+memccpy	string.h	/^void *memccpy(void *dest, const void *src, int c, size_t n);$/;"	p
+memchr	string.h	/^void *memchr(const void *s, int c, size_t n);$/;"	p
+memcmp	string.h	/^int memcmp(const void *s1, const void *s2, size_t n);$/;"	p
+memcpy	string.h	/^void *memcpy(void *dest, const void *src, size_t n);$/;"	p
+memmem	string.h	/^void *memmem(const void *haystack, size_t haystacklen, const void *needle, size_t needlelen);$/;"	p
+memmove	string.h	/^void *memmove(void *dest, const void *src, size_t n);$/;"	p
+memrchr	string.h	/^void *memrchr(const void *s, int c, size_t n);$/;"	p
+memset	string.h	/^void *memset(void *s, int c, size_t n);$/;"	p
+mkstemp	stdlib.h	/^int mkstemp (char *);$/;"	p
+mktemp	stdlib.h	/^char *mktemp (char *);$/;"	p
+mktime	time.h	/^time_t mktime(struct tm *tm);$/;"	p
+modf	math.h	/^double	modf(double, double *);$/;"	p
+modff	math.h	/^float	modff(float, float *);$/;"	p
+modfl	math.h	/^long double	modfl(long double, long double *); $/;"	p
+mrand48	stdlib.h	/^long mrand48(void);$/;"	p
+nan	math.h	/^double	nan(const char *);$/;"	p
+nanf	math.h	/^float	nanf(const char *);$/;"	p
+nanl	math.h	/^long double	nanl(const char *);$/;"	p
+nanosleep	time.h	/^int nanosleep(const struct timespec *req, struct timespec *rem);$/;"	p
+nearbyint	math.h	/^double	nearbyint(double);$/;"	p
+nearbyintf	math.h	/^float	nearbyintf(float);$/;"	p
+nearbyintl	math.h	/^long double	nearbyintl(long double);$/;"	p
+nextafter	math.h	/^double	nextafter(double, double);$/;"	p
+nextafterf	math.h	/^float	nextafterf(float, float);$/;"	p
+nextafterl	math.h	/^long double	nextafterl(long double, long double);$/;"	p
+nexttoward	math.h	/^double		nexttoward(double, long double);$/;"	p
+nexttowardf	math.h	/^float		nexttowardf(float, long double);$/;"	p
+nexttowardl	math.h	/^long double	nexttowardl(long double, long double);$/;"	p
+nice	unistd.h	/^int nice(int);$/;"	p
+nrand48	stdlib.h	/^long nrand48(unsigned short *);$/;"	p
+open	fcntl.h	/^int open(const char *pathname, int flags);$/;"	p
+open	fcntl.h	/^int open(const char *pathname, int flags, mode_t mode);$/;"	p
+openat	fcntl.h	/^int openat(int dirfd, const char *pathname, int flags);$/;"	p
+openat	fcntl.h	/^int openat(int dirfd, const char *pathname, int flags, mode_t mode);$/;"	p
+optarg	unistd.h	/^char *optarg;$/;"	v
+opterr	unistd.h	/^int optind, opterr, optopt;$/;"	v
+optind	unistd.h	/^int optind, opterr, optopt;$/;"	v
+optopt	unistd.h	/^int optind, opterr, optopt;$/;"	v
+pause	unistd.h	/^int pause(void);$/;"	p
+perror	stdio.h	/^void perror(const char *s);$/;"	p
+pipe	unistd.h	/^int pipe(int *);$/;"	p
+pipe2	unistd.h	/^int pipe2(int *, int);$/;"	p
+pow	math.h	/^double	pow(double, double);$/;"	p
+powf	math.h	/^float	powf(float, float);$/;"	p
+powl	math.h	/^long double	powl(long double, long double);$/;"	p
+prctl	unistd.h	/^int prctl(int  option, ...);$/;"	p
+pread	unistd.h	/^ssize_t pread(int, void *, size_t, off_t);$/;"	p
+printf	stdio.h	/^int printf(const char *format, ...);$/;"	p
+ptsname	stdlib.h	/^char*  ptsname(int);$/;"	p
+ptsname_r	stdlib.h	/^int    ptsname_r(int, char*, size_t);$/;"	p
+putc	stdio.h	/^int putc(int c, FILE *stream);$/;"	p
+putchar	stdio.h	/^int putchar(int c);$/;"	p
+putenv	stdlib.h	/^int putenv(const char *);$/;"	p
+puts	stdio.h	/^int puts(const char *s);$/;"	p
+pwrite	unistd.h	/^ssize_t pwrite(int, const void *, size_t, off_t);$/;"	p
+qsort	stdlib.h	/^void qsort(void *, size_t, size_t, int (*)(const void *, const void *));$/;"	p
+rand	stdlib.h	/^int rand(void);$/;"	p
+random	stdlib.h	/^long int random(void);$/;"	p
+read	unistd.h	/^ssize_t read(int, void *, size_t);$/;"	p
+readlink	unistd.h	/^int readlink(const char *, char *, size_t);$/;"	p
+realloc	stdlib.h	/^void *realloc(void *ptr, size_t size);$/;"	p
+realpath	stdlib.h	/^char *realpath(const char *path, char *resolved);$/;"	p
+remainder	math.h	/^double	remainder(double, double);$/;"	p
+remainderf	math.h	/^float	remainderf(float, float);$/;"	p
+remainderl	math.h	/^long double	remainderl(long double, long double);$/;"	p
+remove	stdio.h	/^int remove(const char *pathname);$/;"	p
+remquo	math.h	/^double	remquo(double, double, int *);$/;"	p
+remquof	math.h	/^float	remquof(float, float, int *);$/;"	p
+remquol	math.h	/^long double	remquol(long double, long double, int *);$/;"	p
+rename	stdio.h	/^int rename(const char *oldpath, const char *newpath);$/;"	p
+rewind	stdio.h	/^void rewind(FILE *stream);$/;"	p
+rindex	string.h	/^char *rindex(const char *s, int c);$/;"	p
+rint	math.h	/^double	rint(double);$/;"	p
+rintf	math.h	/^float	rintf(float);$/;"	p
+rintl	math.h	/^long double	rintl(long double);$/;"	p
+rmdir	unistd.h	/^int rmdir(const char *);$/;"	p
+round	math.h	/^double	round(double);$/;"	p
+roundf	math.h	/^float	roundf(float);$/;"	p
+roundl	math.h	/^long double	roundl(long double);$/;"	p
+sbrk	unistd.h	/^void *sbrk(ptrdiff_t);$/;"	p
+scalb	math.h	/^double	scalb(double, double);$/;"	p
+scalbf	math.h	/^float	scalbf(float, float);$/;"	p
+scalbln	math.h	/^double	scalbln(double, long);$/;"	p
+scalblnf	math.h	/^float	scalblnf(float, long);$/;"	p
+scalblnl	math.h	/^long double	scalblnl(long double, long);$/;"	p
+scalbn	math.h	/^double	scalbn(double, int);$/;"	p
+scalbnf	math.h	/^float	scalbnf(float, int);$/;"	p
+scalbnl	math.h	/^long double	scalbnl(long double, int);$/;"	p
+scanf	stdio.h	/^int scanf(const char *format, ...);$/;"	p
+seed48	stdlib.h	/^unsigned short *seed48(unsigned short*);$/;"	p
+setbuf	stdio.h	/^void setbuf(FILE *stream, char *buf);$/;"	p
+setegid	unistd.h	/^int setegid(gid_t);$/;"	p
+setenv	stdlib.h	/^int setenv(const char *, const char *, int);$/;"	p
+seteuid	unistd.h	/^int seteuid(uid_t);$/;"	p
+setgid	unistd.h	/^int setgid(gid_t);$/;"	p
+setgroups	unistd.h	/^int setgroups(size_t, const gid_t *);$/;"	p
+setpgid	unistd.h	/^int    setpgid(pid_t, pid_t);$/;"	p
+setpgrp	unistd.h	/^int    setpgrp(void);$/;"	p
+setregid	unistd.h	/^int setregid(gid_t, gid_t);$/;"	p
+setresgid	unistd.h	/^int setresgid(gid_t, gid_t, gid_t);$/;"	p
+setresuid	unistd.h	/^int setresuid(uid_t, uid_t, uid_t);$/;"	p
+setreuid	unistd.h	/^int setreuid(uid_t, uid_t);$/;"	p
+setsid	unistd.h	/^pid_t  setsid(void);$/;"	p
+settimeofday	time.h	/^int settimeofday(const struct timeval *tv, const struct timezone *tz);$/;"	p
+setuid	unistd.h	/^int setuid(uid_t);$/;"	p
+setusershell	unistd.h	/^void setusershell(void);$/;"	p
+setvbuf	stdio.h	/^int setvbuf(FILE *stream, char *buf, int mode, size_t size);$/;"	p
+significand	math.h	/^double	significand(double);$/;"	p
+significandf	math.h	/^float	significandf(float);$/;"	p
+sin	math.h	/^double	sin(double);$/;"	p
+sinf	math.h	/^float	sinf(float);$/;"	p
+sinh	math.h	/^double	sinh(double);$/;"	p
+sinhf	math.h	/^float	sinhf(float);$/;"	p
+sinhl	math.h	/^long double	sinhl(long double);$/;"	p
+sinl	math.h	/^long double	sinl(long double);$/;"	p
+sleep	unistd.h	/^unsigned int sleep(unsigned int);$/;"	p
+snprintf	stdio.h	/^int snprintf(char *str, size_t size, const char *format, ...);$/;"	p
+sprintf	stdio.h	/^int sprintf(char *str, const char *format, ...);$/;"	p
+sqrt	math.h	/^double	sqrt(double);$/;"	p
+sqrtf	math.h	/^float	sqrtf(float);$/;"	p
+sqrtl	math.h	/^long double	sqrtl(long double);$/;"	p
+srand	stdlib.h	/^void srand(unsigned int seed);$/;"	p
+srand48	stdlib.h	/^void srand48(long);$/;"	p
+srandom	stdlib.h	/^void srandom(unsigned int seed);$/;"	p
+sscanf	stdio.h	/^int sscanf(const char *str, const char *format, ...);$/;"	p
+ssize_t	stdint.h	/^typedef long int  ssize_t;$/;"	t
+st_atime	unistd.h	/^   time_t    st_atime;   \/* time of last access *\/$/;"	m	struct:stat
+st_blksize	unistd.h	/^   blksize_t st_blksize; \/* blocksize for filesystem I\/O *\/$/;"	m	struct:stat
+st_blocks	unistd.h	/^   blkcnt_t  st_blocks;  \/* number of 512B blocks allocated *\/$/;"	m	struct:stat
+st_ctime	unistd.h	/^   time_t    st_ctime;   \/* time of last status change *\/$/;"	m	struct:stat
+st_dev	unistd.h	/^   dev_t     st_dev;     \/* ID of device containing file *\/$/;"	m	struct:stat
+st_gid	unistd.h	/^   gid_t     st_gid;     \/* group ID of owner *\/$/;"	m	struct:stat
+st_ino	unistd.h	/^   ino_t     st_ino;     \/* inode number *\/$/;"	m	struct:stat
+st_mode	unistd.h	/^   mode_t    st_mode;    \/* protection *\/$/;"	m	struct:stat
+st_mtime	unistd.h	/^   time_t    st_mtime;   \/* time of last modification *\/$/;"	m	struct:stat
+st_nlink	unistd.h	/^   nlink_t   st_nlink;   \/* number of hard links *\/$/;"	m	struct:stat
+st_rdev	unistd.h	/^   dev_t     st_rdev;    \/* device ID (if special file) *\/$/;"	m	struct:stat
+st_size	unistd.h	/^   off_t     st_size;    \/* total size, in bytes *\/$/;"	m	struct:stat
+st_uid	unistd.h	/^   uid_t     st_uid;     \/* user ID of owner *\/$/;"	m	struct:stat
+stat	unistd.h	/^int stat(const char *path, struct stat *buf);$/;"	p
+stat	unistd.h	/^struct stat {$/;"	s
+strcasecmp	string.h	/^int strcasecmp(const char *s1, const char *s2);$/;"	p
+strcasestr	string.h	/^char *strcasestr(const char *haystack, const char *needle);$/;"	p
+strcat	string.h	/^char *strcat(char *dest, const char *src);$/;"	p
+strchr	string.h	/^char *strchr(const char *s, int c);$/;"	p
+strcmp	string.h	/^int strcmp(const char *s1, const char *s2);$/;"	p
+strcoll	string.h	/^int    strcoll(const char *, const char *);$/;"	p
+strcpy	string.h	/^char *strcpy(char *dest, const char *src);$/;"	p
+strcspn	string.h	/^size_t strcspn(const char *, const char *);$/;"	p
+strdup	string.h	/^char *strdup(const char *s);$/;"	p
+strerror	string.h	/^char *strerror(int errnum);$/;"	p
+strerror_r	string.h	/^int strerror_r(int errnum, char *buf, size_t buflen);$/;"	p
+strftime	time.h	/^size_t strftime(char *s, size_t max, const char *format, const struct tm *tm);$/;"	p
+strlcat	string.h	/^size_t strlcat(char* , const char* , size_t);$/;"	p
+strlcpy	string.h	/^size_t strlcpy(char* , const char* , size_t);$/;"	p
+strlen	string.h	/^size_t strlen(const char *s);$/;"	p
+strncasecmp	string.h	/^int strncasecmp(const char *s1, const char *s2, size_t n);$/;"	p
+strncat	string.h	/^char *strncat(char *dest, const char *src, size_t n);$/;"	p
+strncmp	string.h	/^int    strncmp(const char *, const char *, size_t);$/;"	p
+strncpy	string.h	/^char*  strncpy(char* , const char* , size_t);$/;"	p
+strndup	string.h	/^char*  strndup(const char *, size_t);$/;"	p
+strnlen	string.h	/^size_t strnlen(const char *s, size_t maxlen);$/;"	p
+strpbrk	string.h	/^char*  strpbrk(const char *, const char *);$/;"	p
+strptime	time.h	/^char *strptime(const char *s, const char *format, struct tm *tm);$/;"	p
+strrchr	string.h	/^char *strrchr(const char *s, int c);$/;"	p
+strsep	string.h	/^char*  strsep(char** , const char* );$/;"	p
+strsignal	string.h	/^char*  strsignal(int  sig);$/;"	p
+strspn	string.h	/^size_t strspn(const char *, const char *);$/;"	p
+strstr	string.h	/^char *strstr(const char *haystack, const char *needle);$/;"	p
+strtod	stdlib.h	/^double strtod(const char *nptr, char **endptr);$/;"	p
+strtof	stdlib.h	/^float strtof(const char *nptr, char **endptr);$/;"	p
+strtok	string.h	/^char *strtok(char *str, const char *delim);$/;"	p
+strtok_r	string.h	/^char *strtok_r(char *str, const char *delim, char **saveptr);$/;"	p
+strtol	stdlib.h	/^long strtol(const char *, char **, int);$/;"	p
+strtoll	stdlib.h	/^long long strtoll(const char *, char **, int);$/;"	p
+strtoul	stdlib.h	/^unsigned long strtoul(const char *, char **, int);$/;"	p
+strtoull	stdlib.h	/^unsigned long long strtoull(const char *, char **, int);$/;"	p
+strxfrm	string.h	/^size_t strxfrm(char* , const char* , size_t);$/;"	p
+symlink	unistd.h	/^int symlink(const char *, const char *);$/;"	p
+sync	unistd.h	/^int sync(void);$/;"	p
+sysconf	unistd.h	/^int sysconf(int  name);$/;"	p
+system	stdlib.h	/^int system(const char * string);$/;"	p
+tan	math.h	/^double	tan(double);$/;"	p
+tanf	math.h	/^float	tanf(float);$/;"	p
+tanh	math.h	/^double	tanh(double);$/;"	p
+tanhf	math.h	/^float	tanhf(float);$/;"	p
+tanhl	math.h	/^long double	tanhl(long double);$/;"	p
+tanl	math.h	/^long double	tanl(long double);$/;"	p
+tcgetpgrp	unistd.h	/^pid_t tcgetpgrp(int fd);$/;"	p
+tcsetpgrp	unistd.h	/^int   tcsetpgrp(int fd, pid_t _pid);$/;"	p
+tgamma	math.h	/^double	tgamma(double);$/;"	p
+tgammaf	math.h	/^float	tgammaf(float);$/;"	p
+tgammal	math.h	/^long double	tgammal(long double);$/;"	p
+time	time.h	/^time_t time(time_t *t);$/;"	p
+timer_create	time.h	/^int timer_create(clockid_t clockid, struct sigevent *sevp, timer_t *timerid);$/;"	p
+timer_delete	time.h	/^int timer_delete(timer_t timerid);$/;"	p
+timer_getoverrun	time.h	/^int timer_getoverrun(timer_t timerid);$/;"	p
+timer_gettime	time.h	/^int timer_gettime(timer_t timerid, struct itimerspec *curr_value);$/;"	p
+timer_settime	time.h	/^int timer_settime(timer_t timerid, int flags, const struct itimerspec *new_value, struct itimerspec * old_value);$/;"	p
+timezone	time.h	/^long int  timezone;$/;"	v
+tm	time.h	/^struct tm {$/;"	s
+tm_gmtoff	time.h	/^   long int tm_gmtoff;     \/* Seconds east of UTC.  *\/$/;"	m	struct:tm
+tm_hour	time.h	/^   int     tm_hour;        \/* hours *\/$/;"	m	struct:tm
+tm_isdst	time.h	/^   int     tm_isdst;       \/* daylight saving time *\/$/;"	m	struct:tm
+tm_mday	time.h	/^   int     tm_mday;        \/* day of the month *\/$/;"	m	struct:tm
+tm_min	time.h	/^   int     tm_min;         \/* minutes *\/$/;"	m	struct:tm
+tm_mon	time.h	/^   int     tm_mon;         \/* month *\/$/;"	m	struct:tm
+tm_sec	time.h	/^   int     tm_sec;         \/* seconds *\/$/;"	m	struct:tm
+tm_wday	time.h	/^   int     tm_wday;        \/* day of the week *\/$/;"	m	struct:tm
+tm_yday	time.h	/^   int     tm_yday;        \/* day in the year *\/$/;"	m	struct:tm
+tm_year	time.h	/^   int     tm_year;        \/* year *\/$/;"	m	struct:tm
+tm_zone	time.h	/^   const char *tm_zone;    \/* Timezone abbreviation.  *\/$/;"	m	struct:tm
+tmpfile	stdio.h	/^FILE *tmpfile(void);$/;"	p
+tmpnam	stdio.h	/^char *tmpnam(char *s);$/;"	p
+trunc	math.h	/^double	trunc(double);$/;"	p
+truncate	unistd.h	/^int truncate(const char *, off_t);$/;"	p
+truncf	math.h	/^float	truncf(float);$/;"	p
+truncl	math.h	/^long double	truncl(long double);$/;"	p
+ttyname	unistd.h	/^char* ttyname(int);$/;"	p
+ttyname_r	unistd.h	/^int ttyname_r(int, char*, size_t);$/;"	p
+tzname	time.h	/^char*     tzname[];$/;"	v
+tzset	time.h	/^void  tzset(void);$/;"	p
+uint16_t	stdint.h	/^typedef __uint16_t    uint16_t;$/;"	t
+uint32_t	stdint.h	/^typedef __uint32_t    uint32_t;$/;"	t
+uint64_t	stdint.h	/^typedef __uint64_t    uint64_t;$/;"	t
+uint8_t	stdint.h	/^typedef __uint8_t     uint8_t;$/;"	t
+uint_fast16_t	stdint.h	/^typedef uint32_t      uint_fast16_t;$/;"	t
+uint_fast32_t	stdint.h	/^typedef uint32_t      uint_fast32_t;$/;"	t
+uint_fast64_t	stdint.h	/^typedef uint64_t      uint_fast64_t;$/;"	t
+uint_fast8_t	stdint.h	/^typedef uint8_t       uint_fast8_t;$/;"	t
+uint_least16_t	stdint.h	/^typedef uint16_t      uint_least16_t;$/;"	t
+uint_least32_t	stdint.h	/^typedef uint32_t      uint_least32_t;$/;"	t
+uint_least64_t	stdint.h	/^typedef uint64_t      uint_least64_t;$/;"	t
+uint_least8_t	stdint.h	/^typedef uint8_t       uint_least8_t;$/;"	t
+uintmax_t	stdint.h	/^typedef uint64_t uintmax_t;$/;"	t
+uintptr_t	stdint.h	/^typedef unsigned int  uintptr_t;$/;"	t
+ungetc	stdio.h	/^int ungetc(int c, FILE *stream);$/;"	p
+unlink	unistd.h	/^int unlink(const char *);$/;"	p
+unlinkat	fcntl.h	/^int unlinkat(int dirfd, const char *pathname, int flags);$/;"	p
+unlockpt	stdlib.h	/^int    unlockpt(int);$/;"	p
+unsetenv	stdlib.h	/^int unsetenv(const char *);$/;"	p
+usleep	unistd.h	/^int usleep(unsigned long);$/;"	p
+vfork	unistd.h	/^pid_t  vfork(void);$/;"	p
+vfprintf	stdio.h	/^int vfprintf(FILE *stream, const char *format, va_list ap);$/;"	p
+vprintf	stdio.h	/^int vprintf(const char *format, va_list ap);$/;"	p
+vsnprintf	stdio.h	/^int vsnprintf(char *str, size_t size, const char *format, va_list ap);$/;"	p
+vsprintf	stdio.h	/^int vsprintf(char *str, const char *format, va_list ap);$/;"	p
+wcstombs	stdlib.h	/^size_t	wcstombs(char *, const wchar_t *, size_t);$/;"	p
+wctomb	stdlib.h	/^int	wctomb(char *, wchar_t);$/;"	p
+write	unistd.h	/^ssize_t write(int, const void *, size_t);$/;"	p
+y0	math.h	/^double	y0(double);$/;"	p
+y0f	math.h	/^float	y0f(float);$/;"	p
+y1	math.h	/^double	y1(double);$/;"	p
+y1f	math.h	/^float	y1f(float);$/;"	p
+yn	math.h	/^double	yn(int, double);$/;"	p
+ynf	math.h	/^float	ynf(int, float);$/;"	p
