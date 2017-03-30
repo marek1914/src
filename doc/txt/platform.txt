@@ -1,16 +1,4 @@
 === s805 ===
-M200(S805) PMU1218,EMMC,WIFI AP6335, DDR 1GB
-m200 (黄板)
-m200_th03（与m200区别微小）//小区别占用大空间不合理
-m200_iptv(针对中国移动，有很多相关apk)
-
-M201(S805) No PMU,NAND,WIFI AP6210, DDR 1GB
-留m201，其余m201_xx暂时删除
-
-M202(S805 dongle) No PMU,NAND,DDR 512M
-N200(S821)
-K200(S801/S802)
-
 1 编译kernel
   1 编译器:http://openlinux.amlogic.com:8000/deploy/gcc-linaro-arm-linux-gnueabihf.tar.gz
 	建议设置：
@@ -562,39 +550,32 @@ u-boot mm
 4 程序开发
 	1) 双口ram
 	映射物理地址 0xF700 0000 - 0xF700 8000，可用/dev/mem 映射到用户空间使用
-
 	2) rapidio
 	可在/sys目录下看到相关总线信息，底层驱动已工作，需要开发上层软件
 ----------------------------
 
-
 === microsemi ===
-ZYNQ XC7Z010/20
-下载账户 gxxjxx:200w(six 0)
+ZYNQ XC7Z010/20 账户 gxxjxx:200w(six 0)
 
 Flash Pro4/5
 softConsole 目录选：~/.Microsemixx
-执行softconsole.sh 按提示看log，找不到32bit 版libgtk-x11-2.0.so.0，系统自带64bit
-这个eclips程序是32bit的，需要32bit版库
-安装 libgtk2.0-0:i386，libxtst6:i386
+./softconsole.sh //看log需安装 libgtk2.0-0:i386，libxtst6:i386
 
 Debug/Rrelease/Makefile 自动生成
+
 ----
-用4.0建工程，把导出的3.4(没有linux版)工程文件覆盖，可以编译，debug设置  设备M2S050
+用4.0建工程，把导出的3.4工程文件覆盖，可以编译，debug设置  设备M2S050
 开始提示 __smartfusion2_memory_remap 找不到，
-看4.0 releasenote文档P14  Linker scripts ，在
+看4.0 releasenote文档 P14  Linker scripts ，在
 Cross ARM C Linker-> General 里(-T) 添加
 CMSIS/startup_gcc/debug-in-microsemi-smartfusion2-esram.ld  ok
 debug时 run- debug config - debug
-#install <cortex-m3.h> 找不到， 必须""
 
 Libero不能导出4.0能导出3.4工程
 4.0可使用Pro5
 3.4只能用Pro4
 导出的3.4工程合并到4.0工程中，使用Pro5可调试
 导出的3.4工程直接Pro4 可调试
-
-编译器目录 只有libc.a libm.a等，没有libm.so m3不会动态链接
 
 -----------
 ZYNQ:
