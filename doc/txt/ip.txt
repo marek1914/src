@@ -1,0 +1,1270 @@
+拓扑:总线/星/环/网
+以太网是星型，靠交换机连接，早期的同轴以太网是总线型
+干线路由器一个出口代表一个网络地址，而不是主机地址。
+子网掩码是用来路由，给路由表用的
+IPv4 network mask consists of 32 bits, a sequence of ones (1) followed by a block of 0s
+1不连续理论也可，但没意义，实际也不会出现, route程序设置这样的，提示bogus
+-------------------
+arp
+route
+
+rfc4632 : Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan
+rfc1519 : Classless Inter-Domain Routing (CIDR): Address Assignment and Aggregation Strategy
+
+rfc1191 : Path MTU Discovery  
+Classful Addressing: 分类网络
+1993年，分类网络被CIDR替代(RFC 1518/1519)
+
+私有IP :局域网地址(私网)
+公有IP :因特网全球唯一地址
+
+IP地址分ABCDE五类，前3类拿出部分作为局域网地址
+RFC1918为私网预留三个IP地址块：
+A：10.0.0.0～10.255.255.255     (2^24)
+B：172.16.0.0～172.31.255.255   (2^20)
+C：192.168.0.0～192.168.255.255 (2^16)
+
+192.169.0.1美国
+
+A: 0-2G 
+B: 2-3G 
+C: 3-3.5G 
+D: 3.5-3.75G 
+E: 3.75-4G
+
+MTU取路径中最小值
+
+Ethernet II : Ethernet v2 是MAC帧的一种(还有802.3帧,头部不同)，wireshark有标明
+
+MTU大小
+rfc1191  Table 7-1:  Common MTUs in the Internet
+
+65535  Official maximum MTU  RFC 791
+65535  Hyperchannel          RFC 1044 (网络状况非常好的如DDN)
+1500   Ethernet Networks     RFC 894  (最常看到的，路由器允许的MTU是576-1500)
+1492   IEEE 802.3            RFC 1042
+68     Official minimum MTU  RFC 791  (书上又说ethernet 46-1500)
+7981   WLAN (802.11)
+
+2016-03-11
+与xuss讨论基于UDP的RTP大于MTU时会不会自动分包问题，结论：
+会自动分包，但与tcp不同的是，udp不会分包,(TCP会分包)，UDP大包，是在IP层分包，见：
+package/udp-65507.pcapng.gz
+2015年做过实验，向用tcp看到ip分片，但是tcp不会发出大于mtu的包，他自己会切分成多个tcp，所以死活看不到ip分片
+
+应用层手动分包，再发udp，每个包都包含udp头，发大包，ip分包，后面的包没有udp包头，我感觉丢包率一样，可以
+李啸做手机遥控器时，发大包屏幕马赛克，改成小包，确实有改善。不明白。 可能是程序加了简单的校验机制
+
+RFC 6184
+RTP Payload Format for H.264 Video
+5.8.  Fragmentation Units (FUs)
+
+This payload type allows fragmenting a NAL unit into several RTP
+packets.  Doing so on the application layer instead of relying on
+lower-layer fragmentation (e.g., by IP) has the following advantages:
+
+//因为udp包最大64k
+ o  The payload format is capable of transporting NAL units bigger
+      than 64 kbytes over an IPv4 network that may be present in pre-
+      recorded video, particularly in High-Definition formats (there is
+      a limit of the number of slices per picture, which results in a
+      limit of NAL units per picture, which may result in big NAL
+      units).
+//看，在应用层加了适当的校验机制
+   o  The fragmentation mechanism allows fragmenting a single NAL unit
+      and applying generic forward error correction as described in
+      Section 12.5.
+
+
+RFC 793 : TCP
+RFC 791 : IP
+RFC 7323 : TCP Extensions for High Performance
+RFC 1918 : Address Allocation for Private Internets
+
+MAC头：14
+dst mac + src mac + type(8035:RARP 0806:ARP 0800:IP)
+
+IP头：20-60
+第10字节标示Protocol，6:tcp  17:udp  1:icmp(ping)  2:igmp  88:igrp 网管路由选择
+
+最后8字节是源ip，目的ip
+UDP头：8
+源端口，目的端口，包长度，校验和
+TCP头：20-60
+
+MAC头，UDP头固定长度，所以无须表示头长度字段，IP头，TCP头长度不定，所以需要4bit表示头长度。IP和UDP有字段标示包头+内容的总长度。为什么不表示内容长度而是总长度？
+
+TCP是流，流没有长度，没有字段表示长度，什么时候关闭什么时候结束。像水龙头。
+UDP的包长度可以通过IP包长度-IP头算出，还要字段表示，因为当发送超出MTU的大UDP包时，会切成多个小片，第一个包有udp包头，后面的没有。见wireshark抓包。
+
+UDP分片后，收到的数据不一定按照原来的顺序（xuss ？）
+
+UDP对比TCP，就好像一个是本地媒体文件，一个是ts流，udp有大小，是一个一个的消息，tcp是个流，不关闭就一直有。
+
+TCP标志位：
+SYN: Synchronize sequence numbers, to indicate where the sequence numbering will start
+FIN: No more data from sender
+
+分片：
+1 有时看到几百字节的东西也分为2次tcp传输，实际上是http包头发送了一次，主体部分发送了一部分。并不是按照MTU的大小分的
+2 向apache请求一个超过MTU大小的文件，出现的多个TCP的PDU，不是IP层的分片，因为IP头的分片标志位和offset都是0，而是应用层根据MTU主动分多个TCP包。
+  好处是IP层分片，如果出错会整个重传，在IP曾，TCP，UDP是一视同仁的。
+
+MSS 表示TCP负载
+MSS = MTU-20(IP头)-20(TCP头)  不考虑头扩展部分，如果有扩展
+
+SYN包里面包含MSS的值，若过的路由器MTU比它小，这个值会被路由器替换成小的。3次握手期间要找到整个链路的MTU最小值。
+
+3次握手 
+SYN SYN/ACK ACK 
+
+典型结束
+FIN/ACK  FIN/ACK  ACK
+
+
+NTPv4基于 UDP 
+传送聊天信息时同样使用UDP协议；由于UDP协议是无连接协议，传输速度快，但是没有确认机制，是不可靠的协议，需要自己定义返回信息的标志来判断对方是否收到信息
+
+0-1023用于特定服务端口如ftp/http,动态端口从1024到65535。
+
+组播用于udp
+HTTPU：基于UDP的http协议
+
+花生壳：
+20140731 腾达W307R 路由器配置虚拟服务器 端口映射失败，可能是路由器bug
+后来测试用uu的tp-link，以及pc直接拨号都不行。可能是联通宽带的问题。
+公司的电信通用盒子拨号后就可以在外部访问adb。也可能公司网络跟家庭网络价格不同，性质也不同。
+
+优酷pc点播：
+http推送flv：
+Content-Type:video/x-flv
+
+http://opensource.apple.com/tarballs/mDNSResponder/
+android源码里面有 mdnsresponder 这个库  并且这在system/bin/netd 有引用。
+
+
+tcpdump -p -vv -s 0 -w capture.pcap，wireshark分析
+tcpdump -i wlan0 -s 0 "tcp port 1935 "
+tcpdump 依赖 libcrypto.so 和libpcap.so
+tcpdump/libpcap (.pcap)
+http://www.tcpdump.org/
+tcpdump -i eth0 -w foo.pacp
+tcpdump -i eth0 port 10000 -s 1360 -w  dump.ts
+提取rtp里的ts
+
+
+逻辑链路层
+
+“物理地址逐跳而变，逻辑地址保持不变”
+开始我认为，应该是目标逻辑地址保持不变。后来毅晖说，数据包回来的时候，就是源逻辑地址
+保持不变。
+20140110 xuss：在真正互联网上，ip地址唯一不变，没有nat，这是正解。
+
+NAT穿越
+使用upnp IGD 自动做端口映射，而不用去设置路由器。p2p软件会这样去做。可以关闭igd
+功能。
+
+ip包+头16bit表示，最大65535字节
+
+在mac层，1个包的大小有限制，（可能由路由器，交换机限制），65536的包会拆分成多个。
+如果发送大包，其中1个拆分小包出错，整个大包会重传。如果发送小包，在mac层包大小之内，则不会。
+
+sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+//On success, these calls return the number of characters sent.  
+//On error, -1 is returned, and errno is set appropriately.
+sendto(sockfd, sendBuf, len, 0, srvAddr, addlen);
+
+len的最大值为2^16-1-20(最小IP头)-8(UDP头) = 65507字节，大于它，sendto返回-1
+errno == 90  
+#define EMSGSIZE  90  /* Message too long */
+
+浏览器上传参考GoodReader
+
+pppoe拨号，路由器不断电的情况下，wan口ip会变化。
+m3盒子用电话线adsl拨号获得ip，在工位可ping通 106.120.10.49，可以adb connect
+在家用路由器获取ip，同在联通宽带里面应该可以访问，用3G访问不了，说明外网出口可能不是ap的wan口ip
+
+
+RFC3984  - RTP Payload Format for H.264 Video
+
+Real-time Transport Protocol (RTP) 
+RTSP (Real Time Streaming Protocol)
+
+The transmission of streaming data itself is not a task of the RTSP protocol. Most RTSP servers use the
+ Real-time Transport Protocol (RTP) for media stream delivery, however some vendors implement proprietary 
+transport protocols. The RTSP server from RealNetworks, for example, also features RealNetworks' proprietary 
+RDT stream transport.
+
+The Real-Time Transport Control Protocol (RTCP) is a sister protocol of the Real-time Transport Protocol (RTP).
+
+
+UDP 的双字节校验和，是对数据还是包头+数据？ 什么算法？ 可查看kernel源码
+
+connect 系统调用针对tcp？ udp不用connect？
+
+
+A->B 发 HTTP GET
+B->A 回 TCP  ACK 60 byte
+B->A 回 TCP PDU
+B->A 回 TCP PDU
+B->A 回 TCP PDU
+B->A 回 TCP PDU
+B->A 回 TCP PDU
+A->B 发 TCP ACK 60 byte
+A->B 发 TCP ACK 60 byte
+A->B 发 TCP ACK 60 byte
+A->B 发 TCP ACK 60 byte
+A->B 发 TCP ACK 60 byte
+滑动窗口允许发送方等待确认前发送多个分组,发送方不必停下来等待确认，可加快数据传输。
+
+20141223
+ffmpeg请求apache播放why.mp4出现服务器发送多个(如20个)TCP PDU包，本机回一个ACK，ack字段的值是最后一个tcp包的next sequence number
+
+
+MAC-Table  交换机 一个局域网出现mac地址重复，包是同时到达2个设备，还是后来者居上，应该是后者，路由映射表一个端口可以对应多个mac，但一个mac只能对应1个端口
+
+
+TCP和UDP属于不同的域，可以使用同一个端口
+
+关于协议里面表示包的长度的字段很有讲究，分为短长度和长长度。第一bit为0，表示短包，表示0-127字节，为1标识长长度，例如标识0-32768字节。
+
+
+滑动窗口factor 在3次握手阶段传输。
+如果Wireshark没发现three-way handshake，它就简单报告tcp头window size区域的值,并显示"[window size scaling factor -1 (unknown)]"
+
+一个tcp连接可以顺序传送多个http请求，如浏览器要下载100个文件，可创建4个线程各打开一个tcp连接，每个连接下载多个文件。三次握手，顺序发送接收，FIN结束。
+
+
+RTP基于UDP
+RTSP基于TCP 或UDP
+RTSP的session
+
+初步理解session和transaction的概念。transaction是不可分割的，中间一步出错就要重新作，session由多个transaction组成，某个transaction失败不必整个session重来。
+
+推送服务原理：长连接+心跳机制(MQTT协议) 
+
+原理是维护一个长连接（否则不能达到实时效果），普通socket连接对服务器消耗大，故用MQTT轻量级低消耗协议维护长连接
+维护长连接需要心跳机制，以便知道客户端是在线的。超过时间阀值，服务器未收到客户端心跳，服务器断开连接。
+
+手机获取运营商内网IP，通过NAT连接互联网，为减少NAT表负荷，一个链路长时间没有通信就会删除其对应表中断链路
+原本想节省信道资源，导致应用以远高于正常频率发送心跳来维护长连接，进而产生信令风暴（微信要收费传言），
+信道资源的浪费，手机电量消耗
+
+IOS在系统级别维护客户端和苹果服务器的长链接，所有应用的推送都先将消息推送到苹果服务器，好处：
+1.手机终端只维护一个长连接
+2.无须每个应用各自维护自己的长连接，省电
+
+android长连接由应用各自维护，google也有C2DM,由于服务器不在中国，无法使用
+
+推送实现方式：
+1 poll方式，客户端不断的查询服务器（不可取）
+2 维持TCP/IP长连接，服务器向客户端push （常用）
+3 发送短信(sms)，客户端收到后从服务器中下载新内容(扯蛋)
+
+重传是tcp处理数据包丢失的基本方法。数据报丢失的原因很多，比如流量负载沉重的路由器，临时性网络中断。数据包丢失是暂时的，所以检测到包丢失并从中恢复至关重要。
+
+
+ICMP (20160222)
+调试sip时，wireshark：
+SIP  Request: REGISTER sip:172.16.9.99
+ICMP Destination unreachable (Port unreachable)
+这个ICMP包把上面的SIP包原封不动的返回，是因为sip服务器异常，5060端口没响应
+
+
+--
+HLS
+HTTP 渐进式下载
+
+apache放ts流，mp4，mkv都能用ffmpeg播放，并且可以seek。seek的物理位置由ffmpeg算好，再向服务器发请求(HTTP Range)，把发网络请求理解为读文件就好了。
+
+wmv asf flv mov rmvb 本身就是流化的文件
+mp4文件不是流，但可以流化
+
+现有点播系统：小米 ts流http下载  A20华数 TS流下载  其他盒子hls流，pc flv，rtsp流
+没有见过用mp4作点播系统的
+
+由于MP4文件的音视频帧在文件中的物理位置不是顺序存放,而是以一种相对凌乱的状态存在。？？？
+为了解决这个问题,本文提出预处理的方案,即在得到文件元数据信息(metadata)的时候,
+先不和服务器通信并播放每帧数据,而是预先把每帧数据的大小和相对于媒体文件的偏移地址都计算出来。
+
+流式文件格式大概是这样的：在文件前面的先播放，而在文件后面的就后播放。
+容器文件格式和流式文件格式完全不同，要解析整个文件，然后才能组合出正确的播放顺序，然后进行播放。
+对于HTTP协议，流式文件可以使用HTTP分段下载，由于在前面的先播放，所以可以一边下载一边播放，但是对于容器格式的文件，由于客户端不知道如何对文件解析(必须拿到整个文件才能解析)，所以不能边下载边播放。
+要实现对容器格式的文件的在线播放，必须要服务器支持流式播放接口，例如RTSP协议
+
+android浏览器访问cntv，会提示下载一个插件，可以加快播放速度。firefox浏览器模拟了iphone6.0 访问baidu.com 会出现与手机safari一样的提示添加桌面标签的提示。看来这是网页里面做的，而不是浏览器的行为（之前我这样认为）
+
+android平板自带浏览器不支持网页内嵌m3u8文件播放 
+ 老牛说的：video标签只支持 mp4 webm ogg 3种，网页那为什么可以是ts呢？ 
+
+iphone
+<video src="xx.m3u8" controls width="100%" height="100%">
+
+
+--
+https://www.kali.org  kali linux 用于测试网络安全性
+设想:
+见图，一个交换机连接4电脑，分属2个网段，不同网段ping能通吗？
+
+ping - send ICMP ECHO_REQUEST to network hosts
+
+ifconfig eth0 192.168.0.10 netmask 255.255.255.0 up
+ifconfig eth0 down/up 关闭/打开网络
+ifconfig eth0 hw ether AA:BB:CC:DD:EE:FF 临时更改MAC
+
+strace跟踪到：
+socket(PF_INET, SOCK_DGRAM, IPPROTO_IP) = 4
+ioctl(4, SIOCSIFADDR, {ifr_name="eth0", ifr_addr={AF_INET, inet_addr("172.16.0.32")}}) = 0
+
+不down 修改mac，提示 SIOCSIFHWADDR
+
+Link encap (encapsulation)
+eth0      Link encap:Ethernet
+lo        Link encap:Local Loopback
+ppp0      Link encap:Point-to-Point Protocol (vpn)
+
+TP-Link 5端口交换机真是省成本，rg45只有1/2/3/6 4针有金属丝
+
+ifplugd 检测网口插拔
+
+
+ifconfig : configure a network interface 其实是interface configure 的缩写
+
+
+ASN.   
+
+rfc5849  OAuth  用于不同网站之间认证
+
+RTMP: Real Time Messaging Protocol, a multimedia streaming and remote procedure call protocol primarily used in Adobe Flash
+      Routing Table Maintenance Protocol, part of the AppleTalk network stack
+
+HTTP is stateless, RTSP has state
+
+
+
+IPV6 不需要NAT
+抓包：网管内置ap，在外面成功抓包：翟
+路由器可当交换机用
+ sudo nbtscan -r 192.168.0.0/16
+扫描
+D-Link DI-8400
+防TCP SYN攻击 防UDP Flooding
+8.8.8.8是Google DNS服务器
+
+chrome web store有很多插件
+chrome jsonview插件
+
+
+2种方式：
+OUI方式：
+厂商ID 6位, 用户ID 6位，申请费用$1650，一个厂商ID号可用1600万个MAC。
+IAB方式：
+针对个人用户，用户ID 3位，申请费用$550，可用2的12次即4096个
+申请地址：https://standards.ieee.org/regauth/application/mal/show
+也可找代理，需几百美金代理费，如深圳摩尔实验室  http://www.morlab.cn/index.html
+ 
+一些如Wifi模块厂商都申请过OUI，如果出货量较少，可以找他们释放一些地址段。
+
+option 60
+
+
+----
+REST:Representational State Transfer 表述性状态传递,Roy Fielding博士在2000年他的博士论文中提出来的一种软件架构风格
+比 SOAP和XML-RPC 简洁
+
+
+
+---
+ntp port 123
+
+
+rdate -puvno 123  202.118.1.81
+
+
+
+------
+ubuntu ip 保存在/etc/network/interface
+android ip 保存在数据库里
+
+网线插拔的消息到底是怎么发上来的，apk靠什么检测的
+
+ping : external/iputils/
+
+dhcpcd (dhcp client daemon) 是 DHCP client (RFC2131)的实现
+
+android Ethernet实现来自 The Android-X86 Open Source Project
+a20在framework/base/ethernet
+EthernetDataTracker.java(这是android原生文件 不知为何移动到这里)
+EthernetDevInfo.aidl
+IEthernetManager.aidl
+EthernetDevInfo.java
+EthernetManager.java
+
+system/netd -> /system/bin/netd
+
+showlease.c 用于测试
+
+init.rc中
+service netd /system/bin/netd
+    class main
+    socket netd stream 0660 root system
+    socket dnsproxyd stream 0660 root inet
+    socket mdns stream 0660 root system
+
+libnetutils
+android/system/core/libnetutils
+
+native Socket side,
+netd/main.cpp will setup the NetlinkManager, CommandListener
+	nm = NetlinkManager::Instance()
+	cl = new CommandListener();
+	nm->setBroadcaster((SocketListener *) cl);
+	nm->start()
+	
+	
+--router--
+互联网结构，骨干网结构，路由的全局范围的轮廓，一直不理解
+
+主干网Router有很多wan口，家用Router只有1，其实没有“路由”.家庭和办公室Router，企业Router
+
+A router usually provides:
+    Internet protocol routing
+    Network address translation (NAT)
+    DHCP functions
+    firewall functions
+    LAN connectivity like a network switch
+
+核心路由：
+Cisco CRS-1 Backbone Core Router
+
+Internet backbone 骨干网
+
+A core router is distinct from an edge router: edge routers sit at the edge of a backbone network and connect to core routers.
+
+家用路由器2个端口全速传数据时，其他端口就处理不过来了，所以家用路由性能是受限的。
+
+Full-cone NAT
+(Address)-restricted-cone NAT
+Port-restricted cone NAT (端口受限)
+symmetric nat
+
+
+TP-Link Router TL-WR847N 有lan/wan 2个mac，一般连续
+wan: 0c:72:2c:bc:70:0f
+Lan: 0c:72:2c:bc:70:0e(机身标识，用于访问配置页和局域网目的mac)
+设置页面可见"LAN口设置"显示MAC地址-70-0e，“MAC地址克隆”显示MAC地址-70-0f，只有设置了wan口的mac对于解除运营商限定才有作用。
+即局域网数据包目的地址0e，转换为源地址0f，再发送至其他网段。开始以为访问配置页使用0e，访问外网使用0f，然后包目的地址变为下一跳的源地址，实测并非如此 。
+
+那么双wan口Router，有几个wan口mac呢？
+
+访问720 vmware虚拟机，显示 Vmware_13.25.63(00:0c:29:13:25:63) 00:0c:29段属于vmware，而没有显示Dell_
+
+Carrier Routing System
+
+
+=== http ===
+HTTP1.1 rfc 2616
+
+framework/volley http封装，适合小数据频繁操作
+
+http头用字符串，开始理解：为了可读/灵活性牺牲了一点点空间，细想优势并非这么简单，他并未浪费（就算浪费，只是头，比例非常小）
+我能想到的无非就是向tcp/ip那样靠定义字段的方式，所以事务还是分了核心层，应用层，就像脚本语言和c语言
+
+实现：curl，wget，libavformat/http.c， http-parser
+
+http头字段后的空格，wireshark有，书中也有，但用curl测试，不加或多加都行。
+
+Common Gateway Interface(CGI)  服务器上的cgi程序可用任何语言：C，perl，shell，php，python
+
+2xx : 成功,这类代码表明服务器成功地接受了客户端请求。
+200 : OK 请求成功
+206 : partial
+3xx : 重定向  客户端浏览器必须采取更多操作来实现请求。例如，浏览器可能不得不请求服务器上的不同的页面，或通过代理服务器重复该请求。
+301 : 永久重定向,告诉客户端以后应从新地址访问.
+302 : 对象已移动。
+303 -
+307 - 
+
+http progressive stream
+
+PC也可以直接html5 视频，progressive streaming
+
+android支持：
+RTSP (RTP, SDP)
+HTTP/HTTPS progressive streaming
+HTTP/HTTPS live streaming draft protocol
+
+wowza不支持progressive streaming
+dlna默认只支持progressive streaming
+
+sessions and cookies
+
+使用浏览器下载apache服务器192.168.7.32/upgrade.json  wireshark抓包，有时显示200 ok
+有时显示 304 not modified （表示服务器上这个文件没有修改）
+浏览器有缓存后，向服务器发送的请求应该有所不同。
+
+http方式下载mp4视频
+分析腾讯视频 pc打开http://mp.weixin.qq.com/里面的视频是mp4，播放器是flash
+手机打开这个链接情况可能不同
+
+通过 hub + 无线路由  考察平板电脑的网络客户端实现方式
+捕捉 192.168.1.52  打开 腾讯视频几乎显示的都是TCP 协议
+请求的是 mobile.video.qq.com   163.177.65.158
+
+User-Agent: Mozilla/5.0 (iPad; CPU OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B141 Safari/8536.25
+打开 app store 也有： GET /bag.txt HTTP/1.1  通过HTTP协议 Get 一个txt文件
+
+TLSv1 （Transport Layer Security）
+TLSv1.2
+SSL(Secure Sockets Layer)
+网络安全及数据完整性的安全协议。TLS/SSL在TCP传输层之上对网络连接进行加密
+
+HTTPS使用端口443，而不是象HTTP那样使用端口80来和TCP/IP进行通信。
+
+Please start Chromium as a normal user. To run as root, you must specify an alternate --user-data-dir for storage of profile information.
+解决办法：hexedit /usr/lib/chromium-browser/chromium-browser 把 geteuid 改为 getppid
+
+通过http协议下载一个图片的包结构：
+一个包分为2部分：Frame 1340 byte   Reassembled TCP 23540 bytes
+图片信息在Reassembled TCP里面，分段传输 每个段 1460字节
+
+MSS：Maximum Segment Size 最大报文段长度
+
+wireshark中 [ ] 中的字段是为了便于分析额外加的数据，不在当前数据包中。
+
+视频流  就是显示为一个一个的 TCP 包，使用80（http）端口
+
+一般情况下有多少个
+219.238.10.45	192.168.1.52	TCP	1514	[TCP segment of a reassembled PDU]
+就有多少
+192.168.1.52	219.238.10.45	TCP	66	26643 > http [ACK] Seq=254 Ack=11644817 Win=65160 Len=0 TSval=2654348 TSecr=3841082993
+
+以太网上这个值一般设置成1460，因为1460Byte净荷+20Byte TCP头+20Byte IP头 ＝ 1500字节，正好符合链路层最大报文的要求。
+
+每条记录都有个帧号，此号好象是wireshark给编的 不是网络数据里面的。
+
+
+搜狐客户端获取海报图片流程：
+
+下载视频跟下载图片的流程是一模一样的  下载图片的时候 wireshark会把图片数据重新组合，便于分析
+显示为：
+118.244.253.88	192.168.1.52	HTTP	1514	[TCP Out-Of-Order] HTTP/1.1 200 OK  (JPEG JFIF image)
+
+192.168.1.52	118.244.253.88	HTTP	169	GET /20130131/2d27_77883c71_9ad0_9a99_816e_6df9906aab61_1.jpg HTTP/1.1 
+
+协议数据单元PDU（Protocol Data Unit）是指对等层次之间传递的数据单位。 协议数据单元(Protocol Data Unit )物理层的 PDU是数据位（bit），数据链路层的 PDU是数据帧（frame），网络层的PDU是数据包（packet），传输层的 PDU是数据段（segment），其他更高层次的PDU是数据（data）。
+
+TCP segment of a reassembled PDU”是什么意思，其实主机响应一个查询或者命令时如果要回应很多数据（信息）而这些数据超出了TCP的最大MSS时，主机会通过发送多个数据包来传送 这些数据（注意：这些包并未被分片）。对wireshark来说这些对相应同一个查询命令的数据包被标记了“TCP segment of a reassembled PDU”
+
+问题，wireshark如何识别多个数据包是对同一个查询数据包的响应? wireshark是根据sequence number来识别，这些数据包ACK number是相同的，当然number的数值与查询数据包中的next sequence number也是一样的。
+
+看直播的时候，服务器给终端回的信息包含：
+Media Type: application/vnd.apple.mpegurl (198 bytes)
+
+直播的ts流数据就在 
+192.168.7.52 192.168.1.52 TCP  1514	[TCP segment of a reassembled PDU]  数据包里面，并且每个TCP包并没有 188字节 TS 包对齐。
+192.168.7.52 192.168.1.52 HTTP 1514	Continuation or non-HTTP traffic    这个数据包里也是TS 包，为何有的显示TCP，有的显示HTTP
+copy -> offset hex text 得
+
+0000   48 54 54 50 2f 31 2e 31 20 32 30 30 20 4f 4b 0d  HTTP/1.1 200 OK.
+0010   0a 44 61 74 65 3a 20 46 72 69 2c 20 32 32 20 46  .Date: Fri, 22 F
+0020   65 62 20 32 30 31 33 20 30 36 3a 30 35 3a 31 35  eb 2013 06:05:15
+0030   20 47 4d 54 0d 0a 43 6f 6e 74 65 6e 74 2d 54 79   GMT..Content-Ty
+0040   70 65 3a 20 76 69 64 65 6f 2f 6d 70 65 67 74 73  pe: video/mpegts
+0050   0d 0a 45 78 70 69 72 65 73 3a 20 4d 6f 6e 2c 20  ..Expires: Mon, 
+0060   32 36 20 4a 75 6c 20 31 39 39 37 20 30 35 3a 30  26 Jul 1997 05:0
+0070   30 3a 30 30 20 47 4d 54 0d 0a 53 65 72 76 65 72  0:00 GMT..Server
+0080   3a 20 54 56 69 65 20 54 53 53 2f 76 32 2e 30 2e  : TVie TSS/v2.0.
+0090   30 2e 30 20 28 75 62 75 6e 74 75 29 0d 0a 4c 61  0.0 (ubuntu)..La
+00a0   73 74 2d 4d 6f 64 69 66 69 65 64 3a 20 46 72 69  st-Modified: Fri
+00b0   2c 20 32 32 20 46 65 62 20 32 30 31 33 20 30 36  , 22 Feb 2013 06
+00c0   3a 30 35 3a 31 35 20 47 4d 54 0d 0a 43 6f 6e 6e  :05:15 GMT..Conn
+00d0   65 63 74 69 6f 6e 3a 20 63 6c 6f 73 65 0d 0a 54  ection: close..T
+00e0   72 61 6e 73 66 65 72 2d 45 6e 63 6f 64 69 6e 67  ransfer-Encoding
+00f0   3a 20 63 68 75 6e 6b 65 64 0d 0a 50 72 61 67 6d  : chunked..Pragm
+0100   61 3a 20 6e 6f 2d 63 61 63 68 65 0d 0a 43 61 63  a: no-cache..Cac
+0110   68 65 2d 43 6f 6e 74 72 6f 6c 3a 20 6e 6f 2d 63  he-Control: no-c
+0120   61 63 68 65 2c 20 6e 6f 2d 73 74 6f 72 65 2c 20  ache, no-store, 
+0130   6d 75 73 74 2d 72 65 76 61 6c 69 64 61 74 65 0d  must-revalidate.
+0140   0a 0d 0a 35 35 66 37 63 0d 0a [47] 40 00 19 00 00  ...55f7c..G@....
+0150   b0 0d 00 01 c1 00 00 00 01 ef ff 36 90 e2 3d ff  ...........6..=.
+0160   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+0170   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+0180   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+0190   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+01a0   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+01b0   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+01c0   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+01d0   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+01e0   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+01f0   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+0200   ff ff ff ff ff ff [47] 4f ff 19 00 02 b0 17 00 01  ......GO........
+0210   c1 00 00 e1 00 f0 00 1b e1 00 f0 00 0f e1 01 f0  ................
+0220   00 2f 44 b9 9b ff ff ff ff ff ff ff ff ff ff ff  ./D.............
+0230   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+0240   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+0250   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+0260   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+0270   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+0280   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+0290   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+02a0   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+02b0   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+02c0   ff ff [47] 41 00 12 00 00 01 e0 75 65 80 c0 0a 31  ..GA......ue...1
+02d0   b5 e5 fd 79 11 b5 e5 e1 59 00 00 00 01 09 f0 00  ...y....Y.......
+02e0   00 00 01 06 00 05 91 94 00 00 10 80 00 00 01 06  ................
+02f0   01 03 0f a0 50 80 00 00 00 01 67 64 00 1e ac d1  ....P.....gd....
+0300   00 b4 3d a1 00 00 03 00 01 00 00 03 00 32 e0 20  ..=..........2. 
+0310   00 26 25 80 01 e8 4a 0b 30 07 8b 16 89 00 00 00  .&%...J.0.......
+
+
+HTTP/1.1 200 OK.
+Date: Fri, 22 Feb 2013 06:05:15GMT
+Content-Type: video/mpegts
+Expires: Mon, 26 Jul 1997 05:00:00 GMT
+Server: TVie TSS/v2.0.0.0 (ubuntu)
+Last-Modified: Fri, 22 Feb 2013 06:05:15 GMT
+Connection: close
+Transfer-Encoding: chunked
+Pragma: no-cache
+Cache-Control: no-cache, no-store, must-revalidate
+
+seek时：HTTP GET xx.mp4
+Range: bytes=xx-xx
+            
+Len = 0 表示空包
+
+腾讯视频直播节目使用 MSNMS协议 传输ts流文件，且出现 m3u8-proxy字样。
+
+EGreat 视频源
+
+chromium-browser -user-data-dir=/opt/tools -user-agent="Mozilla/5.0 (iPad; U; CPU OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5"
+http://v.youku.com/player/getM3U8/vid/120925712/type/mp4/ts/1354607403/v.m3u8
+m3u8文件地址
+m3u8文件，ubuntu识别为  http live stream playlist
+
+大麦盒子蓝光极清专区：
+
+{ "code":"N000000",
+ "longTime":1393826508960,
+ "stringTime":"2014-03-03 14:01:48.96",
+ "message":null,
+ "result":[{
+   "video_type":16,
+   "vid":6,
+   "m3u8":"http://124.207.119.74/data/video/2014/134/index.m3u8",
+   "mp4":"http://124.207.119.74/data/video/2014/2014/134/index.m3u8", 
+   "start_time":"",
+   "end_time":"",
+   "cp_source_id":""
+  }] ,
+ "cached":true,
+ "cachedTime":300
+} 
+
+"mp4":"http://124.207.119.74/data/video/2014/2014/134/index.m3u8", 这个地址打不开
+
+iqiyi.com 爱奇异 网页视频 中的广告和视频是一个url（调试airplay的时候，打印信息发现的）在服务器端把2个流合成一个流。
+
+vplayer 上传文件
+1 http&&!udp， 为什么要这样？http基于tcp，已经过滤掉了udp了？其实则不然，没有人规定http
+一定要基于tcp，ssdp就是在udp上传输http。而http&&!udp 后半部分恰恰是要把ssdp过滤掉
+2 对于使用http传输的一个大文件，中间有很多的PDU，只有到发送完成的时候，会组织一个完整的
+HTTP包，叫做 Reassembled TCP 。其实最后一个包本身只是文件的最后数据，这里经过了重组。
+
+POST命令（而非PUT）推送文件 上传文件大小12636197但http post包头显示
+Content-Length : 12636500 多了303字节
+
+浏览器发送的POST包
+POST /handle_post_request HTTP/1.1
+Host:192.169.1.112:9090\r\n
+Content-Length:12636500\r\n
+Origin: http://192.169.1.112:9090\r\n
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryRZCRuewyxb6Y7fst\r\n
+Referer: http://192.169.1.112:9090/\r\n
+\r\n
+------WebKitFormBoundaryRZCRuewyxb6Y7fst\r\n   (1)
+Content-Disposition: form-data; name="file"; filename="C.flv" (2)
+... 省略若干 (3)
+Content-Type: video/x-flv\r\n (4)
+\r\n  (5)
+<.flv bin文件>
+\r\n (6)
+------WebKitFormBoundaryRZCRuewyxb6Y7fst--\r\n
+
+多出的303字节 是 (1)-(7)部分的内容。保存了原始上传文件和 抓到的包，以便后续分析
+
+goodreader用multipart上传内容为abcdefg的test.txt文件：
+
+POST /_______HTMLFORMFILEUPLOADVIAHTTP_______ HTTP/1.1\r\n
+Host: 192.168.199.246:8080\r\n
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:32.0) Gecko/20100101 Firefox/32.0\r\n
+Accept: text/html\r\n
+Accept-Language: en-US,en;q=0.5\r\n
+Referer: http://192.168.199.246:8080/My%20Documents\r\n
+Connection: keep-alive\r\n
+Content-Type: multipart/form-data; boundary=-----19072186951341220921581518511\r\n
+Content-Length: 361\r\n
+\r\n
+-----19072186951341220921581518511\r\n  (分隔号)
+Content-Disposition: form-data; name="filename"; filename="test.txt"\r\n
+Content-Type: text/plain\r\n
+\r\n
+abcdefg\n  (这里的\n属于文件内容)
+\r\n
+-----19072186951341220921581518511\r\n
+Content-Disposition: form-data; name="submit"\r\n
+\r\n
+Upload selected file\r\n
+-----19072186951341220921581518511--\r\n
+
+百度网盘上传文件：
+
+apache验证最简文件3852 byte下载：
+1 SYN, SYN/ACK, ACK 3次握手
+2 GET /test.bin HTTP/1.1
+3 服务器回 ACK 包 /*注意*/
+4 服务器回 第一个TCP PDU包 1514字节 有效1448（1514-MAC头14（源mac6+目的mac6+类型2）-IP头20-TCP头32字节 = 1448字节）
+5 客户端回 ACK 包
+6 服务器回 第二个TCP PDU包 1514字节 有效1448
+7 客户端回 ACK 包
+8 服务器回 第三个TCP PDU包 1330字节 有效 1264 这时wireshark不显示为pdu而是把3个pdu合并显示为HTTP/1.1 200 OK包
+
+总有效1448+1448+1264 = 4160 -http头308字节 = 3852字节
+
+A20华数ts流播放文件下载：
+1 正常下载ts数据的时候
+
+使用bubbleupnp 在"Library"选项卡中选择一个mp4文件，选择一个播放器，开始抓包：
+1 TCP  SYN
+2 TCP  SYN，ACK
+3 TCP  ACK
+4 手机向xbmc：  TCP PSH，ACK 2个标志
+Http：  (wireshark没有认出是http包？为何)
+GET /xxx/why.mpr HTTP/1.1
+User-Agent: lavxx
+Conection: close
+Host: 192.169.6.101:1486
+\r\n
+
+5 TCP ACK 电脑
+
+获取一个3k网页的过程
+
+Location: 响应字段，对于3xx，表示自动重定向的url
+注意：Content-Location 不同于Location
+
+A20银河ts流切片获取过程：
+1 向http://diaodu.zjcmcc.cnbn.cn发请求，通过dns解析出ip：111.1.56.30
+2 向此ip发Get  .ts请求，回应：302（Moved Temporarily）
+  Location: http://111.1.56.20/videos2/.../xxx.ts  
+3 向111.1.56.20发Get .ts请求
+
+http库
+
+java.net.HttpURLConnection
+
+java.开头的都是jdk里面的库
+
+I/ChromiumHTTPDataSource( 1190): getAll 1, mRedirectURI http://
+
+curl --header "Range: bytes=1000-1999" "http://www.shyd.chinacache.net/000000000000/4000800979/index.m3u8" -o ./test.bin
+
+curl --head  192.168.7.32/xx.ts 只返回头不返回内容
+
+问题解决：
+#EXT-X-ENDLIST
+
+小米流是ts，
+1 GET xxx.ts
+2 TCP segment of a reassembled PDU 1514字节，负载1460字节：
+HTTP/1.0 206 Partial Content
+Server: nginx
+Content-Type:application/octet-stream
+Last-Modified:Fri,29 Mar 2013
+Content-Range:bytes 0-1048575/69968524
+Content-Length:1048576
+Age:1815750
+下面是188字节的ts包罗列，空间不足1个ts包，截断，下一个1460继续后半个ts包
+
+20140310 协议分析
+用vplayer 分享 why.mp4 到盒子，不能成功，黑屏一下就收到了stop，停止分享。手机点分享后立刻用ffplay 播放这个视频地址（地址之前用airplay程序抓到的），可以播出，过一会，盒子也能播出。貌似用ffplay勾引了一下就可以了。
+
+考察 amlogic 提供的 airplay apk 完全java实现
+
+图片可以分享成功，但需要尝试多次
+
+通过wifi可以连接，想通过有线连接，抓包分析，可是有线就是发现不了iphone
+
+D/AirReceiverService
+D/AirReceiver( 4084): ==>Create AirTunes RTSP server
+
+从“设置” 中看 此应用显示 ： 1个进程和1个服务
+“此服务由其应用启动”
+
+自己的itvision 广告和视频是2个url，结果在 我们的和小米的上面，第二个url不能播放
+但同等条件，在appletv上是好的
+
+
+dlna：
+
+1 amlogic提供的dlna程序“媒体中心”安装到博通平台无法运行。后发现是因为amlogic添加了私有接口，按提示在博通平台添加相同接口就ok了。
+2 两个比较好的dlna程序 BubbleuPnP 和 AirPin AirPin完美支持泰捷，腾讯，PPTV等软件的dlna功能，支持bubbleupnp，Pro版完美支持MIPS和ARM电视。
+3 用ftp/nfs/samba 实现媒体无线共享也行，理论分析，确实可以，但术业有专攻
+5 用UPnp Browser 可以查看到 TP-LINK Router TL-WVR450G 是那台路由器
+
+6 小的tp-link路由器 192.169.6.1  向239.255.255.250 发送ssdp  notify请求
+
+Server: UPnP/1.0 DLNADOC/1.50 Platinum/0.6.9.1\r\n
+ip.src == 192.169.6.100 || ip.src == 192.169.6.101
+
+Server: UPnP/1.0 DLNADOC/1.50 Platinum/0.6.9.1\r\n
+
+http://192.169.6.101:1486/%25/345DDE3E8C779C4F9A4563AA0DFE8AEB/Avatar%2520X264%2520AMIABLE.MKV 
+这个地址可以直接在vlc播放
+7 contentdirectory http响应报文：
+HTTP/1.1 200 OK\r\n
+Content-Length: 4907\r\n
+Content-Type: text; charset="utf-8"\r\n
+Server: UPnP/1.0 DLNADOC/1.50 Platinum/0.6.9.1\r\n
+\r\n
+eXtensible Markup Language
+<Result>
+<!嵌套一个xml>
+</Result>
+<NumberReturned>13</NumberReturned>  /*目录数量*/
+
+嵌套的xml
+<item id=\"/media/BACKUP/Avatar X264 AMIABLE.MKV\" parentID=\"/media/BACKUP/\" restricted=\"1\">
+<dc:title>Avatar X264 AMIABLE</dc:title>
+<dc:creator>Unknown</dc:creator>
+<dc:date>2012-01-04</dc:date>
+<upnp:genre>Unknown</upnp:genre>
+<res size=\"11731812630\" protocolInfo=\"http-get:*:video/x-matroska:DLNA.ORG_OP=01;DLNA.ORG_CI=0\">
+  http://192.169.6.101:1486/%25/345DDE3E8C779C4F9A4563AA0DFE8AEB/Avatar%2520X264%2520AMIABLE.MKV
+</res>
+<upnp:class>object.item.videoItem</upnp:class>
+</item>
+
+9 真正传输流的时候使用的协议分析：
+xbmc到bubbleupnp
+
+
+---goahead---
+webserver方案：goaheand/appweb/apache
+cgi
+http://embedthis.com/goahead/ 公司维护产品
+https://github.com/embedthis 维护 goahead/appweb 等项目
+GoAhead is the world's most popular embedded web server.
+
+
+—stun—
+rfc5389 Session Traveral Utilities for NAT
+rfc3489 Simple Traversal of UDP Through NAT (被5389替代)
+
+rfc5389规定，stun也可以用tcp协议。不过xuss理解，tcp是负责服务器认证的，nat穿透的环节还是要UDP。只用TCP就不能穿透吗？
+
+1 编译
+需要 libboost-dev库(C++扩展库)  libssl-dev(找不到openssl/md5.h)
+
+
+不论多少级路由器，stunclient 只显示最后出口到互联网的那一级别
+
+./stunclient --mode full  218.205.48.254 37026  (华为的服务器)
+Binding test: success
+Local address: 192.169.1.134:45156
+Mapped address: 124.207.182.194:56527
+Behavior test: fail
+Filtering test: success  // full cone
+
+
+发送包：
+d0 91 90 a2 00 24 ce 30  udp 8字节头：源端口，目的端口，长度（36=8+包体内容），校验和
+00 01......0000    28字节stun请求数据：
+0001 Bind Request
+0008 Message Length: 8
+2112a442 Message Cookie
+eefaa9c56043287100000000  96bit  Message Transaction ID
+00 03 00 04 00 00 00 00   8字节Attributes (上面的数据长度指这里)
+
+回复包：
+90 a2 d0 91 00 40 ce c6  udp 8字节头
+01 01 Binding Success Response
+00 24 Message Length 36
+21 12 a4 42 Message Cookie ???
+eefaa9c56043287100000000  96bit ID
+Attributes(36字节数据)
+ Mapped-address 124.207.182.194:27213  // 路由器出口ip
+ Source-address 172.15.1.16:37026      //说明华为服务器那端也是在内网？ 37026路由器的端口绑定
+ Changed-address 172.15.1.16:37026    
+
+wireshark靠stun特征识别STUN包，比如我把请求包由28字节改为29字节，它就只能识别为普通UDP包了
+可以查看源码确认。
+
+兼容 RFCs: 3489, 5389, 5789, 5780  那我如何决定使用哪个呢？
+
+现在感觉原理很简单，但还是不知道怎么用！ 客户端得到映射的外网地址没有用啊。感觉非常简单的方法就可以实现stun啊。
+
+SIP通过STUN得到NAT的外网IP和SIP的信令监 听端口的外网port，替换SIP注册包中的contact头中的IP和port，然后注册。
+这样就可以确保当有人呼叫你的的时候注册服务器能找到你。需 要提醒你的是，NAT发现一个连接超过一段时间后没有活动，它就会关闭映射，
+因此你必须间隔一端时间发送一个数据包出去以keep alive。
+
+
+
+./stunclient --mode full stun.stunprotocol.org
+Binding test: success
+Local address: 192.168.1.104:57889
+Mapped address: 124.193.144.226:23041
+Behavior test: success
+Nat behavior: Endpoint Independent Mapping
+Filtering test: success
+Nat filtering: Address and Port Dependent Filtering
+
+
+
+
+strace跟踪client：
+socket(PF_INET, SOCK_DGRAM, IPPROTO_IP)    也是PF，跟bionic里面一样？什么情况
+
+
+
+enum StunMessageType
+{
+    StunMsgTypeBinding = 0x0001,
+    StunMsgTypeInvalid = 0xffff
+};
+
+struct StunTransactionId
+{
+    uint8_t id[4+12]; // 前4字节是magic cookie
+};
+
+
+==== ssdp ====
+http://wiki.wireshark.org/SSDP
+
+SSDP: 发现 Plug & Play devices
+
+uPnP
+
+SSDP uses unicast and multicast adress (239.255.255.250). 
+SSDP is HTTP like protocol and work with NOTIFY and M-SEARCH methods. 
+SSDP can be used over IPv4 and IPv6. 
+SSDP uses UDP transport protocol on port 1900 
+
+过滤
+udp.dstport == 1900
+http
+./dist-packages/twisted
+
+
+mdns 广播地址：224.0.0.251
+
+
+网关周期性发出广播：
+源   192.168.0.1:1407 
+目的 239.255.255.250:1900
+
+NOTIFY * HTTP/1.1
+HOST: 239.255.255.250:1900
+CACHE-CONTROL: max-age=100
+LOCATION: http://192.168.0.1:2379/description.xml (不是1407)
+NT: upnp:rootdevice
+NTS: ssdp:alive
+SERVER: Linux/2.6.21, UPnP/1.0, Portable SDK for UPnP devices/1.3.1
+X-User-Agent: redsonic
+USN: uuid:28802880-2880-1880-a880-c83a353cdb60::upnp:rootdevice
+
+udp http
+
+控制点接入网络用M-SEARCH方法发ssdp:discover消息，设备监听到消息时后，如果提供此服务，则单播响应控制点请求
+设备接入网络用NOTIFY方法发ssdp:alive消息，控制点根据自身策略，处理监听到的消息
+
+ssdp:alive消息在HTTP协议头CACHE-CONTROL里指定超时值，设备须在超时前重发ssdp:alive
+若控制点在指定的超时值内没有再次收到ssdp:alive消息，控制点将认为设备已失效
+设备计划从网络上卸载时，要用NOTIFY方法发送ssdp:byebye消息
+
+IPv4 SSDP使用239.255.255.250:1900。
+IPv6 SSDP使用FF0X::C，X根据scope的不同取不同值
+
+M-SEARCH * HTTP/1.1
+S: uuid:ijklmnop-7dec-11d0-a765-00a0c91e6bf6
+Host: 239.255.255.250:reservedSSDPport
+Man: "ssdp:discover"
+ST: ge:fridge
+MX: 3
+
+ST  Service type
+Services are identified by a unique pairing of a service type URI and a Unique 
+Service Name (USN) URI.
+
+Location:
+Server: 这个是http协议内容
+
+Server: Linux/3.3.8-2.0 UPnP/1.0 CyberLinkJava/1.8
+NT: search target  (搜索的目标)
+NTS: ssdp:alive   （目标状态）
+
+=== end http ==
+
+
+=== rtp ===
+rfc2326 rtsp
+rfc2327  SDP:Session Description Protocol 会话描述协议
+rfc3550  RTP
+rfc1889  RTP
+rfc3551  RTP Profile for Audio and Video Conferences with Minimal Control
+rfc3984  RTP Payload Format for H.264 Video 描述rtp包的多媒体类型
+RTP Control Protocol -- RTCP  与rtp在同一 rfc中说明，也是基于udp的
+
+rtp over rtsp
+rtcp 4个作用:
+
+关键：
+Payload type: DynamicRTP-Type-96
+
+基本逻辑：
+1个帧若能装入1个rtp包，则连同nal类型一起装入
+若不能则靠2个字节（rfc3984 ）包含nal类型字节和首个包（S标志），中间包和尾包（E标志）连接
+此时rtp中看不到nal类型字节
+
+rtp头的Mark标志，标示帧边界，每个帧结束时的rtp包会出现。
+
+通过hub，rtsp 通过udp请求就失败：
+ffplay: UDP timeout, retrying with TCP
+
+直接连到工位可以
+
+rtsp 基于tcp
+
+1 OPTIONS rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
+2 Reply: RTSP/1.0 200 OK
+	//支持的命令集
+    Public: DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE, OPTIONS, ANNOUNCE, RECORD, GET_PARAMETER
+3 DESCRIBE rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
+4 SETUP rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
+5 PLAY  rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
+
+没有seek命令，ffplay发PAUSE+PLAY(Range: npt=100-\r\n)  指定跳转时间
+
+发DESCRIBE命令时，返回SDP，描述视频长度，以及视频流，音频流信息
+还包括H264的profile，level，pps，sps等
+
+Play里面的scale字段=1 正常速度，=2 ：2倍速快进 =0.5：慢放
+
+npt: Normal Play Time
+
+npt=100- //表示100s位置到结束
+npt=now- //代表直播
+
+However, RTSP differs fundamentally from HTTP in that data delivery
+takes place out-of-band in a different protocol(指rtp). HTTP is an
+asymmetric protocol where the client issues requests and the server
+responds. In RTSP, both the media client and media server can issue
+requests.（所以可以推流）
+
+rtsp有很多内容与http重叠，所以rfc中直接引用，如 [HX.Y]代表Http协议的section号
+
+---
+孙瑞钊：
+河北华数vod，音视频流不用RTP，而是在RTSP中的回应包中返回，首次见到。
+华数取名:TSOverIP, 在rtsp中以类似rtp over rtsp方式在rtsp控制通道中插入ts数据，每7个TS包前加入4B interleave head
+固定以$符开头，这与rtp over rtsp的描述相似，但没用使用RTP，pts什么的也不在rtp头中，音视频没有拆分为ES，而是直接TS
+
+思考：这样做，与使用RTP有何区别呢？
+=== end rtp ===
+
+
+=== vpn ===
+>route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         172.16.9.1      0.0.0.0         UG    0      0        0 eth0
+172.16.9.0      *               255.255.255.0   U     1      0        0 eth0
+可以访问 172.16.0.31
+
+打开vpn:
+
+>route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         *               0.0.0.0         U     0      0        0 ppp0
+10.0.9.4        *               255.255.255.255 UH    0      0        0 ppp0
+ef.66.caa1.ip4. 172.16.9.1      255.255.255.255 UGH   0      0        0 eth0
+ef.66.caa1.ip4. 172.16.9.1      255.255.255.255 UGH   0      0        0 eth0
+172.16.9.0      *               255.255.255.0   U     1      0        0 eth0
+
+无法访问172.16.0.31 服务器
+
+>route add -net 172.16.0.0 netmask 255.255.255.0 gw 172.16.9.1
+
+route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         *               0.0.0.0         U     0      0        0 ppp0
+10.0.9.4        *               255.255.255.255 UH    0      0        0 ppp0
+ef.66.caa1.ip4. 172.16.9.1      255.255.255.255 UGH   0      0        0 eth0
+ef.66.caa1.ip4. 172.16.9.1      255.255.255.255 UGH   0      0        0 eth0
+172.16.0.0      172.16.9.1      255.255.255.0   UG    0      0        0 eth0 //多此行
+172.16.9.0      *               255.255.255.0   U     1      0        0 eth0
+
+又可以访问172.16.0.31了
+
+
+ef.66.caa1.ip4 是ip地址的16进制形式，并且是网络序（与正常相反）
+239.102.202 161.ip4 ，而真正的vpn地址是 161.202.102.239
+
+ifconfig 看到3个设备
+eth0
+lo   
+ppp0 (这个是虚拟设备)
+
+用wireshark抓 eth0 看到的都是 PPP包，抓 ppp0虚拟网卡，看到普通包
+
+route 操作kernel的ip路由表
+设置网关 route add default gw 10.65.1.2
+
+Point-to-Point Protocol
+
+Point-to-Point Protocol over Ethernet (PPPoE) 
+ Point-to-Point Protocol over ATM (PPPoA)
+
+对称型NAT(Symmetric   NAT)是无法实现P2P技术。
+对称/非对称的区别主要在于：网关设备在实现NAT时，对于内网某主机的若干个UDP连接请求，网关设备对应地在外网上所建立的UDP端口数量。对称NAT是一个请求对应一个端口，非对称NAT是多个请求对应一个端口(象锥形，所以叫Cone   NAT)。 
+
+目前流行的P2P技术只能在非对称NAT上实行，在对称NAT(Symmetric   NAT)上几乎不可能(猜中其他UDP端口的可能性不大)实现。
+
+external/libppp: import user space PPP implementation from FreeBSD 7.4-RELEASE.
+
+m3:
+com.amlogic.PPPoE
+在packages/amlogic/pppoe
+/system/bin/pppoe_wrapper
+
+VPN 使用 PPP协议，
+
+PPP工作在IP层， 不提供流控，开始我有个疑问：如何保证包可达。
+其实它不需要保证，包可达性，还是靠PPP封装的TCP包保证，不在一个层面
+
+GRE包
+
+=== end vpn ===
+
+
+=== wireshark ===
+你的电脑接网线, 然后通过wifi共享电脑的网络, iPhone连接电脑共享出来的无线网, 就可以在电脑上抓包了
+分析百度网盘下载
+
+交互：
+百度网盘，打开状态下，修改了密码。下载终止，提示密码错误。
+
+http.request.method == “POST” 
+2 Reassembled TCP Segments (1012 bytes): #29902(921), #29903(91)
+如果只想过滤http包可以用如下过滤条件：
+1 http&&!udp， 为什么要这样？http基于tcp，已经过滤掉了udp了？其实则不然，没有人规定http
+一定要基于tcp，ssdp就是在udp上传输http。而http&&!udp 后半部分恰恰是要把ssdp过滤掉
+2 对于使用http传输的一个大文件，中间有很多的PDU，只有到发送完成的时候，会组织一个完整的
+HTTP包，叫做 Reassembled TCP 。最后一个包本身只是文件的最后数据，这里经过了重组。
+
+tcp还是udp包头都没有字段表明负载是http，wirshark是智能分析的。比如检测到http/1.1字段。
+对于c/s通讯，建立socket的时候会指定协议，以后就用这个协议解析tcp负载，没有必要在每个tcp
+包头加协议字段的。
+
+2 要搜索包里面的内容，选择 Packet bytes
+
+3 执行sudo wireshark 提示：
+Running as user "root" and group "root".
+This could be dangerous.
+
+If you're running Wireshark this way in order to perform live capture, 
+you may want to be aware that there is a better way documented at
+/usr/share/doc/wireshark-common/README.Debian
+
+查看这个文件：
+
+过滤
+端口：
+tcp.port==xxxx
+tcp.srcport==
+tcp.dstport==
+udp.port==xxxx
+udp.dstport==xxx
+
+lo设备抓本机
+
+Reassembled
+最后的TCP包会显示Reassembled，但是在详情里面会显示本身这个包的情况如：
+  TCP segment data (1097 bytes)
+[2 Reassembled TCP Segments(2505 bytes): #1084(1408),#1086(1097)]
+Hypertext Transfer Protocol
+
+wireshark可以识别UDP中的TS包
+
+4 小米盒子epg 的json数据，在wireshark中看，并且Copy - Bytes -Printable text only 这样汉字信息取不到，应该先拷贝出：
+	http://media.cntv.duokanbox.com/tvservice/getmediadetail2?mediaid=976146&pageno=0&pagesize=0&orderby=0&fee=1&deviceid=1353a94f1f7d634a62de36fd29a42729&apiver=1.8&ver=4.2.2.946&codever=13&ptf=205&ts=-1481390516&nonce=796510208&opaque=509ac7914d6e20336be684b5aa8b22b25f42b537
+	在浏览器中执行，得到那个json文件
+
+groupadd wireshark
+adduser  gaojie wireshark
+
+在xp安装完1.11.3 后出现 Qt版和Gtk+版，样式不同。
+ubuntu12.04 软件中心提供gtk+版本。
+
+如果是gzip的，wireshark会解压缩。
+
+sudo dpkg-reconfigure wireshark-common
+press the right arrow and enter for yes
+sudo chmod +x /usr/bin/dumpcap
+you should now be able to run it without root
+
+
+颜色：
+TCP 是灰色背景，有时TCP也是绿色背景因为端口号为80 (http || tcp.port == 80 )
+
+识别为http包，有时是因为源端口号80，多个http包回传一个网页显示为多个tcp的PDU
+
+SEQ/ACK analysis
+
+有时候打印TCP PDU 有时候打印 Continuation or non-HTTP traffic
+
+&& || 优先级相同，这一点与C语言不同
+
+wowza的rtp/rtsp，因没用默认端口
+
+微信聊天
+continuation or non-http traffic （显示为http是因为80端口，碰巧，wireshark tcp下显示什么协议就是靠端口号区分）
+如果不是80，就应该显示
+SSL  continuation （这是一个长连接）
+
+continuation or non-http traffic：
+That means ethereal sees packets on tcp port 80 which don't contain an http header. This is quite common, since many http-objects are larger than 1 tcp packet. Hence the comment "Continuation"
+
+ip.addr==192.168.7.32  不要ip.src== || ip.dst==
+
+tcp.stream eq 57
+follow tcp stream 功能
+=== end wireshark ===
+
+
+=== opensips ===
+sip : RFC 3261
+
+http://www.opensips.org
+
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5F2FBB7C
+echo "deb http://apt.opensips.org trusty 2.1-releases" >>/etc/apt/sources.list
+
+2.1版安装成功，但/etc/init.d/opensips 没法启动，倒是sudo sbin/opensips 能启动
+
+(ip.src==172.16.9.100&&ip.dst==172.16.9.99)||(ip.src==172.16.9.99&&ip.dst==172.16.9.100)
+
+注意: 其中配置监听ip与端口的地方, ip一定要设为本机ip, 如: 172.16.5.xxx, 而不能是127.0.0.1, 否则很可能终端会登录不上. 
+为何？ 127.0.0.1 就代表本机呀！
+
+防火墙也必须要关闭，（或加入白名单）
+
+文档中 -f 那个必须加， 127.0.0.1 也要改，
+
+创建用户：
+opensipsctl  add 222222 222222
+=== end opensips ===

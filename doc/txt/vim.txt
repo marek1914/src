@@ -1,0 +1,109 @@
+VI之漫路即为禅修
+
+ctags -R --c-kinds=+p (默认不识别声明)
+ctags --list-kinds
+
+打分号的问题，没法完美解决
+
+http://www.cnblogs.com/songfy/p/5635757.html
+
+1 不用Vundle，手动set rtp或轻量pathogen
+2 tagbar 比 taglist好
+3 自带netrw足够好，不用nerdtree
+4 自带 omnifunc
+
+
+foldmethod   怎么用
+foldlevelstart
+
+rtp :runtimepath
+
+ultisnips 与 vim-snippets 配套使用
+ftplugin : filetype plugin
+
+completeopt
+
+help:preview-window (c-x c-o 弹出的窗口就叫preview窗口)
+---
+Omnicomplete(category) 是一类使用 Vim's omnicompletion feature 的插件
+Omnicppcompleter: C/C++ omni-completion with ctags database
+AutoComplPop : Automatically opens popup menu for completions
+vim:<c-x><c-o>,<c-n>  // :help ft-c-omni (ft:filetypes)
+ctags -R -f ~/.vim/systags /usr/include /usr/local/include
+set tags+=~/.vim/systags
+
+:helptags {dir} 
+
+默认插件：
+/usr/share/vim/vim74/ 
+
+ccomplete.vim中的ccomplete#Complete(findstart, base)
+
+omnifunc=ccomplete#Complete
+
+][ [[ ][ []
+
+AutoPairs uses Meta(Alt) key as shortcut
+
+g:AutoPairsCenterLine 保持编辑代码位置保持在中间位置
+
+formatoptions 默认tcq 不能自动添加 // 和 *  
+但我的vi值是 croql  (不知道谁改的)， vimrc中并未配置  (help formatoptions 貌似与compitable有关)
+
+cscope -bkq -i cscope.files
+ctags -R
+
+snippet .
+	[${1}]
+
+snippet文件如何分多文件方便管理
+
+<leader>  代表 \ ??
+:help <leader>
+
+cindent模式
+
+ultisnips 默认：
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+g:UltiSnipsListSnippets <c-tab> // <c-tab>好像不认
+
+自编译 vim 8.0退格按键不能用
+set backspace=indent,eol,start
+'backspace' 'bs' (default "", set to "indent,eol,start" in defaults.vim)
+在 runtime目录 default.vim中设置
+
+/usr/share/vim/vim74/colors  看README
+:colorscheme 查看
+colorscheme koehler 这个颜色还可以
+
+改不了背景色
+需要修改terminal程序的背景色
+atom背景色： #282c34
+
+C语法颜色怎么确定？
+
+set background=dark or light
+
+
+let g:UltiSnipsListSnippets="<c-l>"
+
+--------------
+ycm(臃肿 放弃):
+.ycm_extra_conf.py :'/usr/include'
+关键：clang要在PATH中
+trigger默认Ctrl+Space
+g:ycm_semantic_triggers
+g:ycm_key_invoke_completion
+g:ycm_key_list_select_completion = ['<down>']
+g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+g:ycm_confirm_extra_conf = 0
+g:ycm_enable_diagnostic_highlighting = 0
+g:ycm_show_diagnostics_ui = 0
+g:ycm_key_list_select_completion
+g:ycm_key_list_previous_completion 
+g:ycm_autoclose_preview_window_after_insertion = 1  提示窗口自动关闭
+g:ycm_show_diagnostics_ui = 0 关闭语法提示
+

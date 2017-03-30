@@ -1,0 +1,260 @@
+12平均律
+2^(1/12)
+
+C  263.6
+#C 277.2
+D  293.7
+#D 311.1
+E  329.6
+F  349.2 苍蝇
+#F 370.0
+G  392.0
+#G 415.3
+A  440.0 蜜蜂
+#A 466.2
+B  493.9
+C  523.25114
+
+harmonic [hɑˈmɑ:nɪk] 
+adj.[乐]和声的，悦耳的; [物]谐波的; 和睦的，融洽的; [数]调和的; 
+n.[物] 谐波; [乐]泛音，和声; [数]谐函数，调和函数; 
+
+enharmonic 小于半音的 同音异名的
+tuning 音调
+
+temperament 气质
+wikipedia: Quarter tone 1/4音，将半音再2等分
+chromatic scale 半音音阶
+chromatic 本意是色彩的（色度那个词）音乐中：半音的，半音阶的
+
+dominant 属音
+diatonic scale 全音阶（5个全+2个半）
+octave 八度音阶( GNU Octave软件与这个含义无关)
+note 音
+tone 一个音
+semitone 半个音
+tempo 	[英]ˈtempəʊ   [乐]速度，拍子;
+The diatonic scale includes five whole steps and two half steps for each octave, in which the two half steps are separated from each other by either two or three whole steps, depending on their position in the scale.
+
+The eight degrees of the scale are also known by traditional names:
+
+1st – Tonic (key note)  ['tɒnɪk] <音>主音
+2nd – Supertonic
+3rd – Mediant
+4th – Subdominant
+5th – Dominant  [ˈdɒmɪnənt] [乐]全阶第五音;主因，要素
+6th – Submediant
+7th – Leading tone
+8th – Tonic (Octave)
+
+
+http://www.ericweisstein.com/encyclopedias/music/DiatonicScale.html
+
+major triads  主三和弦
+A diatonic scale consists of three sets of major triads. Major triads are collections of three notes with frequencies in the ratio 4:5:6
+
+C D E F G A B C' D'
+4   5   6 	  	  	  	 
+  	  4   5   6 	 
+  	  	4   5    6
+
+
+4:5:6怎么算出来的：
+2开12次方=1.059463，则1，3，5频率比值为 1:(1.059463^4):(1.059463^7) = 1:1.25992:1.4983 约= 1:1.25:1.5 = 4:5:6
+whole steps 2个音比： 1:1.059463^2 = 1:1.122461848369 约=1.125 = 9/8 
+
+它的纯五度音程的两个音的频率比（即2 的7/12 次方）与1.5 非常接近
+
+《Harmonic and Acoustic Theory》
+
+Pythagorean comma 毕达哥拉斯逗号？？
+
+Pythagorean comma（ditonic comma）
+
+人耳对声波频率指数变化敏感，如100Hz、200Hz、300Hz、400Hz，听起来并不觉得“等距”，而是觉得越来越近。100Hz、200Hz、400Hz、800Hz，听起来才“等距”，即频率“等比”，听起来才“等差”。
+
+手机软件 gStrings
+
+属七和弦 是在该调式中的Ⅴ音（属音）上构成的七和弦
+七和弦:四个音三度叠置，根音与冠音相距七度，故名七和弦。
+
+
+diminish[英][dɪ'mɪnɪʃ]   [乐]减半音
+
+chord [kɔ:d] 
+
+增和弦 Augmented Chords
+减和弦 Diminish chord
+diminished triad 减三 （triad 三幅一组; 三和音）
+major[英] [meɪdʒə] [乐] 大调的 
+minor[英] [maɪnə]  [乐] 小调的，小音阶的
+Minor third 小三度
+Minor chord小和弦
+
+Twelve-semitone：
+Perfect 
+Major
+Minor
+Augmented
+Diminished
+
+Root 
+Third 
+Fifth 
+Seventh
+
+12个：
+Cdim(Cm(♭5))	C	E♭	G♭
+C♯dim(C♯m(♭5))	C♯	E	G
+Ddim(Dm(♭5))	D	F	A♭
+D♯dim(D♯m(♭5))	D♯	F♯	A
+Edim(Em(♭5))	E	G	B♭
+Fdim(Fm(♭5))	F	A♭	C♭ 
+F♯dim(F♯m(♭5))	F♯	A	C
+Gdim(Gm(♭5))	G	B♭	D♭
+G♯dim(G♯m(♭5))	G♯	B	D
+Adim(Am(♭5))	A	C	E♭
+A♯dim(A♯m(♭5))	A♯	C♯	E
+Bdim(Bm(♭5))	B	D	F
+
+属七和弦 dominant seventh chord 又可称：大小七和弦（major minor seventh chord），在所有7和弦中，属7最重要（维基百科）
+
+音乐教材 李重光 《基本乐理》目录：
+
+GNU softege 
+
+arpeggio [英][ɑ:ˈpedʒiəʊ] 琶音 ，指一串和弦音从低到高或从高到低依次连续奏出，可视为分解和弦的一种
+
+http://video.1kejian.com/art/music/28085/ 视频教程
+
+王梅贞
+garageBand
+
+
+
+solfeggio
+视唱（视谱演唱）:看五线谱即唱的技能，音准、节奏准
+练耳（听力训练）:对钢琴音进行听辨，靠听觉分辨音程、和弦、节奏，能把听到的音或曲调用五线谱记录下来，还要能够听辨和弦，分析和弦的性质、功能，相应地能构唱音程与和弦等。
+由于手指对钢琴的感知，自弹自听练习效果大打折扣
+
+和弦练耳：培养听觉的立体思维感
+音响效果：大三和弦明亮协和，小三和弦柔和，暗淡，减三向内紧缩，不协和，增三向外扩张，不协和
+
+ffplay频谱分析（输入音量调小些，否则会失真）：
+电子琴和各音乐软件，低音部分一个音按下，会在高八度和高八度加5（属音）位置出现2个明显尖峰（应该不是软件问题），高音部分此现象不明显，此现象可用音色来解释。
+电子琴和弦的背景音：
+主音按下，上方8度的属音频率也会升起，这也间接说明主属之间的奇妙关系
+电子琴自动伴奏的和弦
+C1 和C2的前7个按键
+C1是 C1 + C3E3G3 大三和弦    D1 E1 依次是响应的大三和弦或转位，所以有时候感觉音反而降低了
+C2是 C2 + C3E3G3 大三和弦
+
+所以C1 和 C2 按下后，刚开始响起的C1 和 C2 声音不同（需要仔细分辨） 后面的延音都一样，都是C3E3G3
+仔细仔细听，能听出C1和C2的不同来，注意，只开按下后开始的很短时间里
+
+音名：
+不考虑重升重降，12个键，21个音名(7+7♯+7♭)
+17: C D♭ C♯ D E♭ D♯ E F G♭ F♯ G A♭ G♯ A B♭ A♯ B
+4:  C♭ F♭ B♯ E♯
+9个同音异名(wikipedia：Enharmonic scale这个词可以理解为增强和谐，同一个音当然和谐)：
+C♯  D♭
+D♯  E♭
+F♯  G♭
+G♯  A♭
+A♯  B♭
+
+B C♭
+C B♯
+E F♭
+F E♯
+
+大调：
+全全半 全 全全半，2个全全半中间1个全连接，关系小调共用大调号。不同的大调有12个，书中17个：C大调，7个升大调，7个降大调共15个：
+C
+G  (#)
+D  (##)
+A  (###)
+E  (####)
+B  (#####)
+♯F (######)
+♯C (#######)
+
+F  (b)
+♭B (bb)
+♭E (bbb)
+♭A (bbbb)
+♭D (bbbbb)
+♭G (bbbbbb)
+♭C (bbbbbbb)
+
+按照五度循环排列，即C+纯5度=G，G+纯5度=D，D+纯5度=A 以此类推
+
+3个同音异名调：
+B（5升号）与 bC（7个降号）（5+7=12）
+#F（6升号）与 bG（6降号） （6+6=12）
+#C（7升号）与 bD （5降号）（7+5=12）
+
+理论上，21个音名有21个大调（9个同音异名调），只是其他的大调：♯G ♯D ♯A ♯E ♯B ♭F包含重升降符，使用不便，无实用性。重升大调就更加没有实用性了。
+如(*代表重升)
+♯G大调： ♯G ♯A ♯B ♯C ♯D ♯E *F
+♯D大调： ♯D ♯E *F ♯G ♯A ♯B *C 
+
+孤立的音、和弦或多个彼此毫无关系的音不能表现音乐思想，按一定关系连结在一起的多音（一般不超过七个），组成一个体系，并以一个音为中心（主音），这个体系叫做调式。在调式体系中，起着支柱作用并给人以稳定感的音，叫做稳定音。给人以不稳定感的音叫做不稳定音。不稳定音有进行到稳定音的特性，这种特性就叫做倾向。不稳定根据其倾向进行到稳定音，这叫做解决。音的稳定与不稳定是相对的。我们常见的某一个音（或和弦）在某一调式体系中是稳定的，但在另一调式体系中可能变得不稳定，即便在同一调式体系中，因为和声处理的不同，某些稳定音也可能暂时处于不稳定的状态中。 
+
+调式分为大调和小调。大调式稳定音成为一个大三和弦。小调式稳定音成为一个小三和弦。大调式主音和第三音为大三度，这个音程最能说明大调式的色彩。小调式主音和第三音为小三度，这个音程最能说明小调式的色彩。大小调体系中，起稳定作用的是Ⅰ、Ⅲ、Ⅴ级。三个稳定音稳定程度不同：第Ⅰ级最稳定，第Ⅲ级和第Ⅴ级的稳定性较差。三稳定音和它们的稳定性只有和主音三和弦共响时才能表现出来，假使用其他非主音三和弦时，则不具有稳定性。第Ⅱ级、第Ⅳ级、第Ⅵ级、第Ⅶ级是不稳定音级，在适当的条件下，它们显露出二度关系进行稳定音的倾向。 
+
+I级音为大调最主要的音称为"主音"，VII级音引导音阶再度回到主音称为"导音"  
+
+音色（musical quality）：
+频率决定高低，振幅决定大小，而音色取决于不同的泛音。声音当然不是纯粹的正弦波，否则出不来各种音色。发音体的振动是由多种谐音组成，其中有基音和泛音
+泛音：
+
+根据计算，按下C1应在如下位置出现谐波：
+C2 : 2*C1
+G2 : 3*C1
+C3 : 4*C1
+E3 : 5*C1
+见GarageBand-piano-C3.jpg，可以清晰验证，分别在1，2，3，4，5，6，7，8，9，10...等倍数位置出现尖峰。
+
+搜《中央音乐学院视唱练耳》
+张仲权《基础钢琴练习法》
+
+绝对音感
+相对音感
+
+
+蒙娜丽莎的眼泪
+钢琴曲
+
+Amadd2 我的琴出不来  与Am有何区别呢？
+
+
+Yamaha PSR-E433 5-Octave Keyboard - Waltons
+
+
+
+
+
+忘 mong4 记 gei3（发1声？） 他 ta1
+等 dang2 于 jyu （发yu） 掉 diu6 了 liu5 一 jat1 （发音为啥是 ya 1声） 切 cai3
+等 dang2 于 jyu （发yu） 将 zoeng1 （宗） 方 fong1 (风) 和 wo4    （我） 向 hoeng  （轰） 抛 paau1 掉 diu6
+遗 wai4   （发音 why） 失 sat1 了 liu5
+自 zi6   （歌曲里面发ji 不是zi） 己 gei2
+忘记他，等于忘记了喜欢 欢 fun1 喜 hei2
+心 sam1 灵 ling4 也 jaa5 锁 so2 住 zyu6 同 tung4 苦 fu2 痛 tung3 一 jat1 起 hei2
+
+细雨带风湿透黄昏的街道
+sai3 jyu5 daai3 fung3 sap3 tau3 wong4 fan1 dik1 gaai1 dou6
+抹去雨水双眼无故地仰望
+mut6 heoi3 jyu5 seoi2 soeng1 ngaan5 mou4 gu3 dei6 joeng  mong6
+木黑雨随桑眼眸故得养忙
+
+望向孤单的晚灯
+是那伤感的记忆
+再次泛起心里无数的思念
+以往片刻欢笑仍挂在脸上
+愿你此刻可会知
+是我衷心的说声
+喜欢你
+那双眼动人
+笑声更迷人

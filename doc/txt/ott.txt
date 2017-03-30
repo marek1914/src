@@ -1,0 +1,975 @@
+===hisi===
+V53R304
+
+logcat -s MediaPlayer:v BootAnimation -f /cache/log.txt
+
+tools/.../google/android/updater-script-emmc  注释掉fastboot的更新
+
+更新bootlogo
+
+do_updateLogo
+
+rootfs:
+git push origin Hi3798MV200-Heilongjiang:refs/for/Hi3798MV200-Heilongjiang
+
+framework:
+git push origin Hi3798MV200:refs/for/Hi3798MV200
+
+mmm frameworks/base/core/res/
+mmm frameworks/base/
+mmm frameworks/base/services/java/
+mmm frameworks/base/policy
+
+persist.sys.bootanim.enable”来决定是否播放开机动画
+
+
+https://knight.yunos.com
+账号: ott_ljwl@126.com 
+密码: ljwl666
+
+zhangh:1
+
+阿里升级包要点：
+1 改main.c 里面的地址，分别放开 熊猫，九州，九联的宏
+2 编译完boot，重命名mboot.bin 为 mboot-upgrade.bin (1.7M)
+
+支持的蓝牙芯片型号: CSR8510/BCM20705
+
+wm size 1920x1080   //1280x720
+wm density 240      //160
+
+OK方法：
+config/panel/DACOUT_1080P_50.ini
+osdWidth = 1920
+osdHeight= 1080
+
+build.prop:
+ro.sf.lcd_density = 320
+
+ro.hwui.texture_cache_size=64.0
+
+ssh mgr112@172.16.0.31 密：mgr112 mstar源码
+
+mmm -B frameworks/base/core/res/ 
+mmm -B frameworks/base/
+mmm -B frameworks/base/services/java/  ->services.jar
+
+framework-res.apk 
+ext.jar
+framework.jar 
+framework2.jar 
+services.jar 
+
+http://bug.cyclecentury.com/mantisbt
+dns : 172.16.0.50
+
+u盘里有 update.zip 如何检测到并提示升级？ 王凯
+
+tvconfig/config/PM.bin (cpu集成51单片机)电源管理
+
+按键问题：
+按下，先收到down，然后是up，然后一系列down，最后是up
+
+增加resource分区
+RESOURCEIMAGE_SIZE
+scripts/build_image.sh
+scripts/mkimage.sh
+scripts/release.sh
+BoardConfig.mk-8G-HLJ
+init.rc里 mkdir /resource
+
+
+fs_mgr: Cannot mount filesystem on /dev/block/platform/mstar_mci.0/by-name/resource at /resource
+
+device/mstar/mso9280/BoardConfig.mk  设置分区大小，要与rootfs里面的set_partition 匹配
+
+/etc 下面有白名单列表，可以修改launcher包名
+
+update.zip 制作方法
+密码：ccdt2012
+
+优朋4个apk：
+
+VooleDesktop.apk				com.voole.vooledesktop
+VoolEPLAYAPK_BOOTDOWLOAD.apk	com.voole.bootplay      要用platform.pk8签名
+VoolePLAYBACK.apk				com.voole.playback
+VooleWebEpg_ott.apk				com.voole.webepg
+
+1个jar包，我们调用：
+VoolePlayService.apk			cn.ccdt.vooleplayservice
+
+
+resource/boot
+resource/trailer
+分别存放开机和小窗口视频广告
+
+
+build/target/product/security 下有4套key
+
+media.pk8
+media.x509.pem
+
+platform.pk8
+platform.x509.pem
+
+shared.pk8
+shared.x509.pem
+
+testkey.pk8
+testkey.x509.pem
+
+ftp: ftp.cyclecentury.com
+      user：upadmin
+      psw：upadmin
+
+tuner+demod地址
+Tuner  Address:  try  0XC0,C2,C4,
+Demod: Try  0x38,0x3A
+
+盒子信息：5款，九州2款，九联2款，熊猫1款，2个九州tuner配置同，2个九联不同，熊猫不同，需要4版程序
+1 九联白盒子 DC2800+中龙通CDT-928c321-mx14，芯片在背面看不到（已发售的 C4+38）
+2 中间有孔的是九州，与九州黑盒子配置相同,同一版程序可锁频，DC2800+mxl608
+3 九州黑盒子，配置同2
+4 九联黑盒子 DC2800+mxl608, 与九州黑盒子配置同但I2C地址不同，带BCM3349 cable modem和BCM5356无线路由芯片
+5 熊猫 DC2800，tuner没型号，卡打不开
+
+
+分区分了 300M 但ext4 image做了122M  写进去就是122M，以后者为准
+
+白色九联 HDC-2100S
+Partition Type: EMMC （总共7.27G  不到8G？）
+
+资源修改后，单独编译framework/base/res/res 资源ID号发生变化，会起不来，
+
+Vendor_0001_Product_0001_Version_0100.kl 这个删除遥控器就不能用了
+
+USB 2.4G遥控器可以用 getevent 获取码值（ir不行）
+
+tftp下载速度才 2.5M/s 
+
+mmc rmgpt 删除除MBOOT MPOOL 分区之外的分区
+
+mmc part 里 length 单位是section 512byte
+黑龙江原始硬件版本，第一个分区 base是4096 即偏移2Mbyte位置
+而我的盒子，mmc create MBOOT 0x300000 //base偏移却是 14336 7MByte
+
+保存不住是因为MBOOT MPOOL 分区反了，  但奇怪的是，脚本里面重建分区，明明MBOOT在前，MPOOL在后，执行完确是MPOLL在前。
+
+
+只有这2个文件操作这个属性
+tvos/main/main.cpp (生成/applications/bin/tvos) 这里检查标志，等待bootvideo程序设置
+project/midemo/mi_demo_bootvideo.cpp  //设置bootlogo标志
+
+service tvos /system/bin/logwrapper /applications/bin/tvos
+    class main
+    oneshot
+
+
+rom_emmc_boot.bin / mboot.bin
+
+//猜测 write.p 是写分区 MBOOT是分区名，也没创建MBOOT分区呀？
+mmc write.p 0x20200000 MBOOT $(filesize) // tftp后$(filesize)会被赋值
+// write.boot 专门用来写 rom_emmc_boot.bin 文件 
+mmc write.boot 1 0x20200000 0 $(filesize)
+
+device/mstar/common/libraries/tv2/java/com/mstar/android/tv/TvPictureManager.java   
+com.mstar.android.jar的源码
+
+分辨率保存不住的问题
+
+getprop persist.sys.setting.SDoffsetx
+getprop mstar.resolutionState
+
+/system/lib/libpicturemanager_jni.so
+
+I/PictureManager_JNI( 1820): native_init                                                                                                       
+I/PictureManager_JNI( 1820): native_setup
+I/PictureManager_JNI( 1820): native_getResolution
+
+// hwcomposer 什么进程？？？？
+D/hwcomposer( 1100): the mstar.fakevsync.freq is 60      //这个属性                                                    
+D/hwcomposer( 1100): model:m_pModuleName=/config/module/Customer_Module.ini     
+D/hwcomposer( 1100): ursaVsersion=0                                                           
+E/hwcomposer( 1100): initResolution resolution = DACOUT_1080I_50
+E/hwcomposer( 1100): curTimingWidth =1920,curTimingHeight =1080, panelHStart=19
+
+
+关于一个目录一个.mk的问题，  如果没有，那源码文件就要加目录，故一个目录一个最好。
+
+libJniNative.so 定义 native_get_tune_info 函数
+
+logcat >/cache/log.txt
+
+刷新版本首次进入，先进recovery，屏幕出现进度条，而1.5G起不来的版本恰好停在这儿
+
+中间有孔的板子：THGBMBG6D1KBAIL  /8GB
+
+THGBMBG5D1KBAIL  /4GB
+
+
+中间有孔的板子：THGBMBG6D1KBAIL  /8GB
+
+
+base/core/java/android/content/res/Resources.java
+"that varies with configuration!!"
+
+verifyPreloadConfig
+
+libWasabiJni.so  干什么的？11M
+http://www.expressplay.cn/   Wasabi
+
+Android-BUQ 编译
+
+frameworks/av/media/libmediaplayerservice/Android.mk
+DEF_CCDTPLAYER:=0
+
+
+-------
+ftp:
+124.193.144.226
+csprodftp : ccdt@2013
+
+
+image ./img-yunos.sh：
+
+原Launcher: 
+AliTvHomeshell.apk
+
+keylayout:
+
+AVRCP.kl
+Generic.kl
+Vendor_0001_Product_0001_Version_0100.kl
+YunOS_fd01.kl
+qwerty.kl
+
+
+系统签名：
+将apk放到 custom/mso9280/apps/optional/system/ 目录
+
+2800 demodulator
+ MI_ERR_FAILED = 0x3
+
+MI_project/project/devices/demodulator/device_demodulator_DC2800.cpp   172行注释掉
+
+./MI_project/project/devices/demodulator/dc2800_tc2800/mt_fe_i2c.cpp  修改这个文件，生成在
+libdevice_demod.so中
+
+set dbtable 0：执行此命令应该是将jpg解成bmp写到某个位置
+
+frameworks/av/media/libmediaplayerservice Android.mk 中DEF_CCDTPLAYER:=1 改为 DEF_CCDTPLAYER:=0
+
+setting 设置的ip地址数据，保存在/data/  的数据库里
+
+mi_bootvideo 找不到文件时仅设置
+mstar.disable.bootlogo
+mstar.videoadvert.finished
+
+init.svc.bootanim  //服务执行完，退出了这个值就会变为stopped，可以出现service.bootanim.exit为0但此值stopped的情况
+ctl.start bootanim
+
+CheckMbootLogoThread 函数在
+mi/clippers/bionic/UHD/bin/MiSysSrv 没源码
+
+bootanimation检测退出：service.bootanim.exit
+
+-------------------------
+调整音量条长短
+volume_adjust_item.xml
+
+android:layout_marginTop="8dip" //改这里
+<SeekBar
+    style="?android:attr/seekBarStyle"
+    android:id="@+id/seekbar"
+    android:layout_width="640dp" //改长短
+
+修改device/mstar/...目录
+编译只需 framework/base/core/res 替换framework-res.apk即可
+--------
+2个停止
+_MI_DEMO_BOOTVIDEO_Stop  //走这里，打印MB_VDPLAYER_CLOSE_DISPLAY
+_MI_DEMO_BOOTVIDEO_LocalInjectVideoStop  //不走这个
+
+有些打印没有源码，在库里
+
+靠这个可能可以：
+_MI_DEMO_BOOTVIDEO_LocalMMVideoForceFileEnd();
+
+out/android/tmp_image/tvservice/applications/bin/demo_bootvideo  //拷贝这个文件
+
+MI_U32 u32Time = 0;
+u32Time = getSystemTime();
+
+getSystemTime()-PlayTime
+
+status_t 在 system/core/include/utils/Errors.h 中定义
+
+一个问题需要搞明白：
+将bootanim权限由 graphics改为system，导致bootanimation 15s的时候才能new完成
+最后在property_service.c 中增加
+{"mstar.",AID_GRAPHICS,0}
+
+视频最后黑一下，是UI层黑
+
+setenv db_table 0
+
+ccdt检测启动完成位置：
+android.policy.jar:  PhoneWindowManager.java
+mstar检测启动完成位置：
+services.jar:
+
+====yunos====
+http://bbs.yunos.com/read/263232332/fp/2/（密码open_tv）
+基于3716CV200出demo
+
+android/custom/mso9280/config.yml 配置各apk版本
+build.sh 调用 bmw_xxx.sh 下载apk
+
+
+3718CV100
+
+repo init -u ssh://CycleCentury_GaoJie@opencode-v.alibaba-inc.com:29418/repo/Hisi_3718CV100 -b Hisi/3718CV100/4.2/stable_2.x -m Hi3718C_YunOS2.2.0.xml
+
+mstar bnq
+repo init -u ssh://CycleCentury_GaoJie@opencode-v.alibaba-inc.com:29418/repo/mstar_9180 -b mstar/9280/yunos/4.4/2.x.x -m tag_mso9280_yunos_2.2.1.xml
+
+本地：
+repo init -u ssh://gaojie@192.168.7.32:29418/YunOS/manifests.git -b Hisi/3718CV100/4.2/stable_2.x -m Hi3718C_YunOS2.2.0.xml
+
+建立本地仓库时：
+branch 'stable' has not been signed
+
+repo要有stable分支
+
+
+push an existing repository from the command line
+
+git remote add yunos https://github.com/2000000/test.git
+git push -u yunos master
+
+repo init -u ssh://gaojie@192.168.7.32:29418/YunOS/manifests.git -b default -m Hi3718C_YunOS2.2.0.xml
+
+./build.sh eng Hi3716CV200   (默认是hi3718cv100)
+
+银河的盒子 flash为：THGBM5G5A1JBAIR  是4G Byte   EMMC
+
+mmcblk0:1M(fastboot),1M(bootargs),10M(recovery),2M(deviceinfo),8M(baseparam),8M(pqparam),20M(log
+o),20M(logobak),40M(fastplay),40M(fastplaybak),40M(kernel),20M(misc),500M(system),1024M(userdata),100M(cache),-(sdcard)
+
+launcher:
+com.yunos.tv.homeshell  这个是桌面，杀死就自动启动（自动启动怎么做到的？）
+com.yunos.tv.launchercust  这个杀死也会自动启动
+
+原始mstar版本 4.4.4 yunos也是4.4.4
+
+编译 ./build.sh eng
+
+system/lib/
+libmstaradec.so
+libmstarvdec.so
+
+hardware/mstar/omx/ms_codecs/video/mm_asic/enc
+libmstarvenc  生成.a 所有system/lib下没有
+
+./av/media/libstagefright/omx/OMXNodeInstance.cpp
+
+libMS_OMX_Core.so 
+由 hardware/mstar/omx/ms_omx_core/Android.mk 生成
+hardware/mstar/libstagefrighthw/MS_OMX_Plugin.cpp  引用了这个库
+
+system/lib/ 有：
+
+libOMX.MS.Adec.so   libOMX.MS.Vdec.so   libOMX.MS.Venc.so
+libMS_OMX_Core.so 调用上面3个库
+
+./omx/ms_omx_core/MS_OMX_Core.c:#define MS_OMX_COMPOMENT_H264_ENC "OMX.MS.AVC.Encoder"
+
+摄像头出来的yuv数据，是纯粹的，没有任何附加信息的数据，所以要知道分辨率和yuv格式
+demo 用的是  OMX_COLOR_FormatYUV420Planar
+
+===tvos===
+tvos2.0 gerrit：
+http://120.25.200.39:8081
+sunguofeng : sungf,Tvos2
+
+知识文档管理
+http://120.25.200.39:8090  sunguofeng:18511589552
+
+tvos 社区
+http://www.ngb-tvos.cn/index.action
+账户：sunfg@cyclecentury.com : 57625005
+
+www.sitvs.com:15414
+dns 192.167.1.104
+
+172.16.0.31 编译服务器 密码89780362
+
+zhineng:zhineng0805
+
+vendor/broadcom/refsw/nexus/platforms/97439/build/platform_modules.inc
+
+tvos2.0 push:
+git push ssh://sunguofeng@120.25.200.39:29418/TVOS/TVOS_V2.0 HEAD:refs/for/master
+
+boot命令
+macprog 50-e5-50-70-ac-32
+ifconfig eth0 -addr=172.16.9.79 -mask=255.255.255.0 -gw=172.16.9.1 -dns=202.106.0.20
+
+update bolt
+flash 172.16.9.78:bolt_signed_108_800_sv_shmoo.bin flash0.bolt
+
+setenv -p STARTUP "waitusb;boot usbdisk0:vmlinuz-7439b0-android 'rootwait root=/dev/sda2 rw nolock,v3  init=/init'"
+
+setenv –p STARTUP “waitusb;boot usbdisk0:vmlinuz-7439b0-android ‘rootwait root=/dev/sda2 rw nolock,v3 init=/init vmalloc=464m bmem=480m@544m bmem=568m@2504m’”
+
+vmalloc=752m bmem=768m@256m
+
+tvos-p15.2/vendor/broadcom/refsw/nexus/platforms/97439/src/
+
+用sys/kernel/debug/usb/devices作为检查插入设备，替代/proc/bus/usb/devices ,开始是因为debug没有r和x权限，导致无法读出内容
+
+烧写logo：
+工具目录：device/hisilicon/bigfish/sdk/tools/windows/HiTool/
+
+install apt-get install libglib2.0-dev
+/usr/include/glib-2.0/glib.h
+
+但是提示找不到：
+external/gstreamer/source/sme_player/sme_gstappsink_sub_wrap.cpp:22:18: glib.h: No such file or directory
+
+tools/gst_dep_tools/configure.sh
+主要是安装了libffi和glib
+
+GYP
+
+webkit
+# This file is generated by gyp; do not edit.
+
+target thumb C++: third_party_WebKit_Source_core_webcore_ngb_gyp
+
+NGBGlobalSearchSession.o
+
+./core.gypi 生成
+./webcore_ngb.target.linux-arm.mk （这个文件是gyp生成的，不要编辑）
+
+标准android里
+./Source/bindings/modules/modules_event_generated.target.linux-arm.mk  生成
+$(gyp_shared_intermediate_dir)/blink/modules 这个目录
+
+tvos2.0 把chromium_org 给成了 weblink
+tvos2.0 竟然也有chromium_org目录1.4G，这与weblink重复
+
+./bindings/modules/modules_event_generated.target.linux-arm.mk 生成找不到的那个文件
+
+Write_scs 工具开启安全模块
+
+proc/ msp/ ca 查看状态
+
+tvos1.0安全启动使用说明书
+system/bin/
+Sample_otp_getxxxxlock
+海斯android安全方案使用指南
+
+===a20 & m3 ===
+Allwinner A20 (sun7i) SoC features a Dual-Core Cortex-A7 1GHz ARM CPU, and a Mali400 MP2 GPU from ARM.
+
+CedarX is Allwinner's multimedia co-processing VPU (Video Processor Unit) technology for hardware accelerated video and image decoding, as used inside their A10, A10s, A13, A20, and A23 SoC series
+
+adb 7896
+
+A20华数U盘升级，建upgrade目录，xx.zip放在该目录中，名字任意。(银河版好像不灵)
+升级方法 根目录下建立upgrade文件夹放入升级包
+
+银河+华数适用
+adb push xx.zip /cache/update.zip
+
+adb shell 
+cd /cache
+mkdir recovery 
+cd recovery
+echo "--update_package=/cache/update.zip" >> command
+
+reboot  recovery
+
+替换apk需特别注意：apk都是拷贝过去的，在mobile目录替换完后，要在out/.../system/apk中删除原来的，这些文件脱离了make的依赖关系的管理，已经多次犯错了！
+解决办法：使用android的拷贝方式，并且每次替换要改为同名。
+
+ro.serialno=
+galaxy：
+00420100110213301410B836D8AC0C8C
+
+bestv：
+版本型号：bell-kh61068
+序列号：004001FF0012606013110016FB8119CF
+MAC：00:16:FB:81:19:CF
+
+增加版本号：
+cmcc2.0: ./sugar-ref001/sugar_ref001.mk:BUILD_NUMBER := 1.0.2（修改这里，build.prop 不自动更新，需删除此文件再编译，有问题）
+galaxy: mobile/galaxy/scripts/build_id.mk
+
+SWNetworkInfo.apk 网线插入拔出显示的对号与叉号， SWSettings.apk里也有对号叉号2个图标，公司10M宽带播不了华数直播
+华数/杜比 里面的片子《大武当》实际片长比识别出来的长4分钟，片长是服务器下发的，不是本地识别
+
+缓冲机制：要求低于200ms开始缓冲，5s数据开始播放。第1次更新点播好了，表情直播好了，但是
+
+汉辰黑盒卡刷后，没在build.prop中增加ro.serialno，设置ip后直接进入桌面（而之前都是要设置的）
+getprop看到ro.serialno为： 00420100020113101311000000EC0A00，在哪里设置的？ 进直播是“一周热点”不是直播，要换serialno
+
+cmcc2.0 删除out和lichee/out，全编，tools/pack/目录下的img竟然没有更新？为啥？
+11月1日又单独执行make_ota_package 才生成。
+
+1029 每个切片向中心服务器发请求的问题，邮件汇报型号bell-kh6068（华数） 和 bell-kh61068（百视通）。
+初步调查华数点播是整个ts流不切片，汇报有错，与小隆确认才想起还有直播，直播是切片的（不要想当然）
+A20银河 也有同样问题，但目前没有报，并且银河用户量很小，服务器压力不大。
+
+银河版img烧写没有进度条菜单，cmcc2.0版才有.正常银河盒子烧写完灯灭，钟作的2个黑盒子，灯一直不亮
+
+20141022 隆出原始银河版 又错了，同一个仓库维护2个项目，切换分支确实会把不同apk切换，但是银河项目apk目录没有建立Android.mk工程，而是用的拷贝目录方式，不在make监管范围以内。多拷贝到system/app 目录下的apk，在切换仓库的时候，不会自动消失。
+20141021 现在银河服务器版本1.0.6  9月4日发布，但小隆验证.zip 是1.0.6  .img却是1.0.5 （我的错误）
+
+银河版本仓库，没有把版本号编译到文件名上，这个需要修改好。
+
+10月9日，隆说华数版不要开机后出现的三屏的launcher，而是直接进入华数网页。
+我直接删除了SANPING.apk 系统直接进入到华数首页。开机海报是launcher，原是
+这个apk按左键，可以进入三屏互动。 那这个去掉那个是
+
+20140924 华数2.0版本发布又出错，多媒体框架2.1.7.8补丁没打上，不该！
+
+2.7.1.8框架升级：
+/device/softwinner/wing-common/apk 
+ChinaMobileOttItv_1.3.4_wimo_download.apk  //名字改为 ChinaMobileOttItv.apk
+MiracastReceiver.apk //没有替换
+SHCMCC_SANPING.apk **
+SHCMCC_wimo.apk  **
+SWLocalPlayer.apk **
+SWOTT.apk **
+SWPlayer.apk**
+我把AppStore_YD_OTT-1.9_RC1.apk 也放到这个目录了
+
+剩下的放入
+/device/softwinner/wing-common/prebuild/framework_aw/ 下面
+有个swxmpp.apk   这个是消息推送
+
+这2个目录的拷贝在 ProductCommon.mk中,这里只有拷贝
+framework_aw/libtxcore.so:/system/lib/libtxcore.so \
+framework_aw/SHCMSYSTEM_useraccount.jar:/system/framework/SHCMSYSTEM_useraccount.jar \
+framework_aw/shcmsystem.jar:/system/framework/shcmsystem.jar
+那么framework_aw目录下，其他文件的拷贝在这个目录下的 Android.mk中进行
+
+
+验证：替换多媒体库，make otapackage 即可
+mmm -B  libstagefright&&mmm -B  CedarX-Projects&&mmm -B  libmediaplayerservice
+
+待机：
+A20华数2.0，待机时前面板灯不灭
+A20银河，待机时灯灭。
+
+
+银河版本直接adb push 无法升级cmcc2.0
+
+uboot
+a20银河版  lichee/u-boot 与 a20 cmcc2.0 版本  lichee/boot-v1.0/u-boot 内容以及目录结构类似
+当然后者较之前者有优化和改动
+a20 cmcc2.0 最终使用的是 lichee/brandy/u-boot-2011.09
+
+A20 kernel/uboot编译器是linaro，具体：
+galaxy平台，lichee/boot/config/gcc-linaro.tar.gz 解压为gcc-linaro并执行安装，最终生成在：
+lichee/out/android/common/buildroot/external-toolchain/arm-linux-gnueabi
+安装前后目录对比有差别。
+首次执行./build.sh -p sun7i_android：
+installing external toolchain
+please wait for a few minutes ...
+
+设备型号（HS8120）和序列号前20位(00420100020113101311)+mac
+
+序列号存储和读取方法：
+
+拷贝代码致命错误：代码没有打包压缩直接拷贝到了ntfs分区导致很多可执行属性
+丢失。包括：gcc编译器，.py .sh 脚本。
+各个目录下时不时就有1个py文件。
+
+公司环境 java version "1.6.0_26"  sun的sdk
+
+查看ubuntu版本：从“系统监控”对话框看。
+
+2 添加系统API或者修改@hide的API后，需要执行make update-api，然后再make
+  修改公共api后，需要make update-api
+
+
+带有防盗链字符串的URL
+http://ip:80/123.ts?Contentid=3000614275&channel-id=cmcc&stbId=005901F&version=1.0&owchid=cmcc&owsi
+d=11405947683687797008&owflow==3&ptoken=18862058073&AuthInfo=Yn%2fxyFIE5bLvQmV6%2fJUq1dRiL
+
+A20银河有2个apk : galaxyITV.apk galaxyLauncher.apk
+itv 就是正常看到的视频点播的页面。 launcher是开机过程中循环显示3张海报的apk（从素材上看，也许还负责其他事情）
+银河的策略是素材在apk里面写死，然后不停的升级apk。
+
+A20预制apk位置：
+mobile/galaxy/apk/galaxyITVxxx.apk 等 从孙科处拷贝回来的是 ITV3.5.15  Launcher3.5.12
+这个信息也可以在setting中看到。
+
+贺超编译的A20银河，没写mac，也没读序列号，但仍可看点播
+
+20140704 银河版本程序，adb打印出里面某个视频的m3u8 地址 粘贴在浏览器中，可以下载到m3u8列表文件
+打开他，复制ts文件地址如：
+http://diaodu.zjcmcc.cnbn.cn/videos/fashion/20120817/0bb343bdab79bccb9bf8be816eed361c.ts?start=0&end=1270344&hsize=41079&tag=0&v=&contentlength=861980
+就可以下载到ts文件。 说明银河现在没有加任何限制。
+如果只粘贴 http://diaodu.zjcmcc.cnbn.cn/videos/fashion/20120817/0bb343bdab79bccb9bf8be816eed361c.ts
+
+A20直播时狂打印
+
+银河HomepageActivity1.5.0.0_ZJCMCC.apk 在银河版盒子上要认证，在其他盒子上安装就没有认证过程，什么情况。
+
+新盒子升级：
+HELLO! BOOT0 is starting!
+./boot-v1.0/boot/boot0/Boot0_C_part.c:	msg("HELLO! BOOT0 is starting!\n");
+
+ERROR! NOT find the head of uboot. （需要做成卡量产模式）
+
+https://github.com/Ithamar/awutils  貌似是A20工具
+
+2款遥控器
+ir_addr_code        = 0xdd22
+yet_ir_addr_code    = 0x7748
+
+2 20141111
+a20华数闪现电视猫画面：8月曾让贺超更新SWUpgrade_usb.apk 替换原/system/app，它会检测u盘
+在U盘根目录创 建diagnose文件夹，然后将moretv_2.3.2.apk放入diagnose文件夹 中。
+插入U盘等一会，moretv_2.3.2.apk自动启动，进入apk界 可能是因为测试用的U盘有这个目录，结果电视猫被拷贝进去了。
+SWUpgrade_usb.apk 功能还挺强的。
+
+http://linux-sunxi.org/AXP209具体问题：
+更改device/.../libswa2.so 执行make_ota_package 能更新到img文件中吗？
+A20/m3华数播放的是ts流不是m3u8
+
+A20华数能用reboot recovery升级，但是.fex配置文件升不上去。
+## 系统升级
+
+	1) galaxy
+	build.prob ro.product.ota.host=x.x.x.x 配置升级服务器ip
+	http://111.1.56.50/hansun/update.zip
+	由com.example.serverupdata 这个apk负责
+
+## 硬件
+	Nanya NT5CB256M16CP 16bit  4Gb SDRAM   256M标称是16bit单位  2片共1GByte内存
+	TOSHIBA TC58TEG5DCJT 容量4GB
+	IP101GA 10/100自适应网络芯片，台湾ICPLUS(网络芯片生产商) 应该是个phy芯片
+	MiniSD卡槽旁边是电源控制用的MCU芯片：JL4605 pin4 3.3V，（51单片机，程序事先写好。2款遥控器主cpu兼容没问题，power也能兼容吗？）
+	lm1117 电源芯片
+	av线旁边是个音频芯片，汉辰和海克做的用的芯片不同
+	（8190是更新方案）
+	串口顺序 空 红 橙 酱
+	正常待机蓝灯亮，TF卡升级完灯灭。
+	控制指示灯有2处：主cpu（status led  PD16引脚）和 mcu pin8（Power-led）
+	BAT54C：肖特基二极管，是三脚双二极管，IR通过他一分为2，一个接到主cpu A13引脚，另一个接到MCU pin7
+	galaxy: setting中按home，不出现多个launcher的选择，只会回到自己的launcher。
+	phoenixcard sd卡工具百度上可以下载到，是个比较通用的工具
+
+## 目录精简
+1. device/softwinner/A20_B133/modules是lichee编译生成，无须提交
+
+## img 文件生成
+a20靠 lichee/tools/pack 脚本生成.img文件
+
+a20 华数点播流程：
+1 ips.itv.cmvideo.cn 地址 221.181.100.148 是epg地址，可以pc浏览，最后进入一个play.jsp页面,pc就无法播放了
+2 在那个.jsp页面中搜索到：WR_Media.init("http://221.181.100.149:80/cku22/transformer.ts")  221.181.100.149:80是 shyd.chinacache.net 是缓冲/负载均衡服务器
+3 客户端向 221.181.100.149 发起请求：GET  cku22/transformer.ts   100.149 返回302  （为什么是黑底红字，包错误了吗？）
+4 目标重定向到 hezi.shyd001.cncssr.chinacache.net  ip:222.161.227.149  (重定向地址怎么告诉终端的呢？)
+
+flash分区在 sys_partition.fex中
+
+m3 平台打开了
+
+银河点播码流服务器没有任何认证，把m3u8地址拷贝到ffmpeg就可以播放。
+
+oracle 官网没有显式提供jdk1.6下载，而是提供最新的。我可以baidu搜索Java SE 6u35 到达oracle，点击archive，
+
+A20 起始 6.5G 在prebuilts目录下放置编译器，大小2.4G 
+其中gcc目录放置编译器，提供linux和darwin 2个操作系统，darwin是苹果的一个系统，可以直接删除 425M
+linux-x86 平台支持3个目标平台的编译：x86 mips 和arm。
+x86，mips 2个目标平台删除 174M
+host目录用来编译主机上使用的工具。为什么不用系统的编译器，而是单独准备呢？
+
+实验视频可删除：
+./base/media/tests/contents/media_api/ 目录下 370M
+4.2.2 剩余5.5G
+近而：prebuilt/qemu-kernel 用来运行模拟器的，我不需要，全部真机调试，内容删除。108M
+
+device目录 仅softwinner有用  ti samung asus 等删除
+softwinner目录除common和A20_B133  a20_product_base 外都可以删除  200M
+wing-common 不能删除
+
+add_lunch_combo A20_B133-eng 仅仅为了显示，不写 直接执行 lunch A20_B133-eng 也行
+
+a20华数直播打印
+ChromiumHTTPDataSourceSupport: OnReadCompleted, read 1448 bytes
+定义./av/media/libstagefright/chromium_http/support.cpp 用的这个播放？
+
+lichee/linux-3.3/drivers/net/ethernet/sun7i/sun7i_wemac.c 
+处理MAC地址，启动参数传递就用，不传就随机生成。检查合法性（最高字节最后bit为1是多播地址）
+
+a20 3 usb：1 otg+2 host
+
+A20:
+使用：brandy/u-boot-2011.09
+编译器：brandy/gcc-linaro
+HELLO! BOOT0 is starting!
+
+配置：./buildroot/configs/sun7i_defconfig
+
+写mbr
+image开头：IMAGEWTY
+
+sd卡的 0x3400000(52MByte) 位置开始写入img 二进制数据
+前边应该分区表
+
+img大小：11de57ff
+0x3400000 到  3400000+11de57ff 为img 那么52M之前的部分写的什么内容呢？
+
+分区表 0x55 0xaa 结束 winhex 分区表模板中显示为：Signature
+
+此卡分区表中有1个分区
+Sectors preceding partition 1：692012 （337M）
+Sectors in partition 1：14584019
+
+0x1c00 (7k)位置有 PHOENIX_CARD_IMG开头的标识
+
+可以用Create Disk Image保存前52M数据  不行，这样应该是压缩的数据
+应该在Tools里选择磁盘克隆，指定起始扇区和扇区数
+
+With this evaluation version you cannot save files that are larger than 200KB
+
+img结构：
+sector 1: mbr
+sector14：PHOENIX_CARD_IMG 标示 + 几十字节数据
+sector16-63：48 sector 24k boot0 实际只有18k+ 后12 sector 补ff
+
+38192扇区(19554304)到20158200是uboot？？到20209663之间是什么？不是uboot参数区,而是sys_config.fex，但是能找到字段，找不到值。
+0x3400000开始是img
+保存扇区数106496
+
+需将img文件放到虚拟机目录，共享目录不行。在sun7i img的139264字节处是uboot， 到743152 结束，后补ff.
+
+A20支持NAND、SPI、SD和USB启动
+上电检测Boot Select Pin(BSP)管脚，若低则USB启动，否则依次尝试从MMC0，NAND，MMC2，SPI，USB启动。
+
+MMC0启动，从SD卡8kB始读24KB到SRAM 0x0地址，校验，首先是跳转指令:ea 00 00 bc 对应文件：
+lichee/tools/pack/chips/sun7i/bin/boot0_sdcard_sun7i.bin
+
+A20启动有2个版本：
+Boot V1.0 包括：boot0, boot1, uboot
+Boot V2.0(代号brandy)包括：boot0, uboot，简化了boot1（目前采用）
+boot0(初始化内存？)lichee/boot-v1.0/boot/boot0/ 需ARMCC编译器。对照启动打印（mmc/nand）发现代码也不新，而是在：
+lichee/tools/pack/chips/sun7i/bin/目录发布 boot0_nand_sun7i.bin & boot0_sdcard_sun7i.bin，能找到所有源码目录找不到的开机打印如“Jump to secend Boot”
+
+bootloader.fex :
+生成：fsbuild boot-resource.ini split_xxxx.fex (根据.ini生成fat16 image，可mount bootloader.fex  /mnt)
+包含sun7i/boot-resource/内容，如开机logo，字库，电池图片(无用)
+旧版本还包含u-boot.bin，在boot0中：
+wBoot_fopen("c:\\linux\\u-boot.bin", "rb"); 
+经过一堆逻辑将u-boot.bin加载到内存，调用BootOS跳转执行，相当没必要，cmcc2.0将uboot拿了出来
+
+update时：
+package_extract_file("bootloader.fex","/dev/block/bootloader"); //此函数能识别fat16镜像
+
+linux版的fsbuild依赖windows版.dll(linux运行windows程序的方法)
+
+recovery用 burnboot(1)函数升级 uboot 用 burnboot(1) 升级boot0
+
+卡刷打印:
+chunk 0(1286)
+...
+chunk 1285(1286)
+在uboot/sprite[allwinner自加]/sparse/sparse.c: printf("chunk %d(%d)\n", chunk_count ++, total_chunks);
+
+系统和recovery共用kernle，且带root
+
+—m3—
+galaxy/best/huashu 代码区分靠shell拷贝以及宏
+
+recovery kernel：meson_reff16_recovery_defconfig
+oir kernel: meson_reff16_defconfig
+
+
+./f16ref/BoardConfig.mk
+TARGET_AMLOGIC_RECOVERY_KERNEL := $(PRODUCT_OUT)/uImage_recovery
+build/core/Makefile	
+$(ACP) $(TARGET_AMLOGIC_RECOVERY_KERNEL) $(zip_root)/RECOVERY/kernel
+
+/proc/cmdline                                              
+rootfstype=ext3 androidboot.resolution=720p rootwait init=/init nohlt logo=osd1,0x84100000,loaded,720p a9_clk=600M clk81=187500000 
+mem=1024m mac=00:16:fb:82:69:e1 hdmitx=720p
+
+rootfstype=ext3 androidboot.resolution=720p rootwait init=/init nohlt a9_clk=600M clk81=187500000 mem=1024m mac=00:16:fb:82:69:d2 hdmitx=720p
+
+# getprop ro.serialno  可以看到序列号，这个字段是程序拼出来的，在build.prob里没有。
+
+这里开关 ota是否带uboot
+#MTC:Liuese 2013-03-08 Don't need pack uboot +++
+#TARGET_AMLOGIC_BOOTLOADER := $(PRODUCT_OUT)/u-boot-aml-ucl.bin
+
+mount -o remount /system
+
+修改百事通版本号：
+修改 device/amlogic/build_id.mk
+make otapackage
+
+M3百视通版本：
+问题1：（华数，百视通都存在，同时解决）
+描述1：视频循环播放
+描述2：直播循环重复播放。点开直播的时候，开始播放很短的一段时间，然后开始重复播放这一段视频
+修改了 ./amlogic/LibPlayer/amffmpeg/libavformat 目录
+file_list.h 和 file_list2.c  文件
+
+问题2：
+在华数上面的直播播放一会，卡着不动的问题，这次在百视通版本上复现
+
+M3 华数版本：
+问题1：
+点播的时候，播放一段时间，点击返回，退出，再次进入（继续播放，此时位置为1），等一段时间，
+暂停，然后继续播放，会从位置1重新播放！& “点击继续播放的时候，进度条是从开始位置加载的”
+
+7月10日 此问题百视通版没有，百视通应用层规避了此问题。华数解决此问题的代码在百视通上存在也没有问题，无影响。可是06/27 10:37 AM
+的邮件提到百视通版本也报有这个问题。
+需要修改2个文件： framework/base/media/libmediaplayerservice/
+AmlogicPlayer.cpp   MediaPlayerService.cpp
+
+开始的邮件说 2个文件各注掉部分代码：
+AmlogicPlayer.cpp:
+if(PropGetInt("ro.serialtype")==1) {
+if(tmp_pos > 0) {
+//后来小隆回复邮件说：下面这一句屏蔽掉，会出问题，不能屏蔽。
+//mPlay_ctl.t_pos = tmp_pos/1000.0;
+} 
+
+MediaPlayerService.cpp： 
+if (isThreadScreen)
+{
+//if (mLstartTime > 0)
+//p->seekTo(mLstartTime);
+
+问题2：
+直播时，进行时移操作，播放一段时间会跳动性播放，画面卡着不动，一段时间之后，跳动一下，
+声音一直有，但也不是流畅的播放！（北京卫视、CCTV1，容易复现）  （能解决吗？ 开始百视通没有这个问题
+后来的邮件又说在百视通上复现了）
+
+system.prop 
+-libplayer.netts.recalcpts=1
++#libplayer.netts.recalcpts=1
+
+问题3：
+直播的时候，调不出进度条，而且直播的时候，时移功能不可使用
+
+问题4：
+版本回退问题：和视界/本地，播放的时候，视频显示位置不对，点击返回键之后，出现花屏。
+这个问题，孙科之前在的时候已经解决过，但是现在版本中在次复现！应该是补丁包没有添加进去的原因
+
+公共问题：
+1 视频刚开始播放或者是时移操作过之后，画面会缓慢播放几秒钟。 修改kernel， 已经修复
+drivers/amlogic/amports/video.c
+const u32 rpt_tab[4] = {0x100, 0x100, 0x450, 0x450};
+const u32 rpt_tab[4] = {0x100, 0x100, 0x180, 0x180}; 
+
+待机问题：
+writeSysfs("/sys/class/gpio/mcu_standby_ctrl","2");
+writeSysfs("/sys/class/gpio/mcu_standby_ctrl","0");
+加上这几句，红灯灭了
+
+解决问题的思路：
+编译百事通版出现3个新问题，原来的版本是没有的：
+1 播放的时候（直播/点播）会不定时弹出提示框
+2 进高清播放，没有出现节目列表而是直接进入了某个影片
+3 按设置键，先进入首页再进入设置
+
+个ota升级地址：http://111.1.56.98/upload/208.zip pc浏览器能下载
+下载地址： /cache/update/update.bak
+
+提示升级,选择Y：
+init: Save ubootenv to /dev/mtd/mtd7 succeed!
+nftl release flush cache data: 0
+SysRq : Emergency Remount R/O
+Emergency Remount complete
+m3_nand_reboot_notifier 895 
+Restarting system with command 'recovery'.
+
+开机按电源按键，打印 Run recovery！
+在./board/amlogic/m3_mbox/m3_mbox.c 文件里
+
+更新 bootable/recovery/.../image里的图片，开机按着电源键，进入
+的还是改图片之前的recovery， adb reboot recovery 或者恢复出厂设置，进入我改过的recovery
+系统中有2个recovery，分别在spi flash和 nand flash里
+
+执行update_reboot还是 charging_reboot，现在竟然进不去recovery了。
+
+按电源按键重启 打印：
+get_burner_key: 0x3
+AMLOGIC_CHARGING_REBOOT...
+ 
+执行reboot recovery 打印：
+get_burner_key: 0x3ff
+AMLOGIC_FACTORY_RESET_REBOOT...
+
+uboot修改mac地址：
+2 在uboot里面，板子上的待机按键不灵
+  上电，串口无打印，按待机键才有打印（板子或IR的待机按键）
+3 setenv ethaddr= 新mac
+  saveenv  提示擦除了spi flash，写了spi flash 但是重启后又恢复成了原来的mac了
+4 能够激活的mac应该是 00:16:FB:81:19:CF
+uboot使用的是：
+uboot/board/amlogic/m3_mbox 的配置目录
+
+测试升级：
+制作一个1.0.1版本程序用adb push 升级。启动进入“系统升级”，开始下载，提示是否升级，选择“是”
+这时候进入 SPI的 recovery ，（因为小机器人提示图片是 spi里面的，那么，这是如何做到的呢？
+因为）
+
+百视通的设置程序是：
+amlogic/bestv/apk/SWSettings_chinamobile.apk
+
+本地播放反复进入花屏可能是因为切换了分辨率
+
+系统有2个recovery，一个是通过 spi.bin 写到spi flash里面的，一个是通过ota写到nand里的。
+
+开机logo显示：
+在device目录下面：aml_logo.bmp，替换了执行 make
+
+./recovery.c:
+static const char *SDCARD_COMMAND_FILE = "/sdcard/factory_update_param.aml";
+
+u盘升级，检查脚本文件是在recovery而非uboot里
+
+spi.bin 的那个生成工具：
+把uboot写到  0- 0x50000+ 
+参数写到  0x8000开始，并在开头加上  3a 77 59 e3 四个字节，把源文件中行与行之间的回车换行2字节换成0x00
+recovery kernel写到0x82000- 0x2f2c2c+ 位置。
+
+amlogic/目录下的 百视通和移动2个项目的apk 只有lancher不同
+百视通的叫做：Bestv_Inside_2.x.x_YDJD.apk
+移动的叫做：SWOTT_chinamobile.apk
+
+取消 CONFIG_AML_NFTL的定义，系统自动将flash剩余空间全部追加到data分区，
+
+kernel读取mac的流程：
+先检查bootargs有无 mac=字段，若无，读取efuse，若无，随机生成。
+
+ERROR: can't get kernel image!
+Enter Recovery mode ...
+SF: Got idcode c8 40 16
+
+问题： 第一张开机logo的图像会跳动一下
+nandargs(给nand启动用) 和 bootargs(给spi里面的recovery kernel启动用) 中的
+ clk81=187500000 改为  clk81=187000000
+改了之后确实有效。但奇怪的是，改之前，我的skyworth电视确实抖动，改后不抖了，但是再改回原来的值
+也不抖了，就是说bug无法恢复了。奇怪。
+
+制作rle启动文件
+ImageMagick 带的 convert 
+sudo apt-get install imagemagick
+
+dd.rel logo文件
+
+ota升级包里面的脚本包含：
+set_bootloader_env("upgrade_step", "2");
+
+

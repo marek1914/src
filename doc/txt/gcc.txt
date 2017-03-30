@@ -1,0 +1,526 @@
+clang: c/c++轻量编译器，目标之一是超越gcc
+llvm: Low Level Virtual Machine
+
+echo |gcc -I/home/gaojie/Work -v -E -x c -  查看头文件搜索路径
+
+ar -csr
+
+-Werror=strict-aliasing
+
+__GNUC__
+
+是gcc预定义宏。需要针对gcc编写代码时，可用该宏进行条件编译。
+他的值表示gcc版本，需针对gcc特定版本编写代码时，可用该宏条件编译。
+
+8 .d 是 gcc -MD生成的  依赖文件的路径
+
+-MP
+-MF
+
+//gcc .a可直接加到后面，不用-l
+-L 指定链接库路径 
+-l 去除lib去除.a
+
+error: field 'timestamp' has incomplete type
+
+某头文件依赖 struct timestamp; 但没有包含 <linux/time.h>
+
+在函数中间或for里定义变量，需参数:
+-std=c99 / -std=gnu99
+
+const int i=5;
+int* p = &5;
+assignment discards ‘const’ qualifier from pointer target type
+这个警告是关闭不掉的
+
+-Wdouble-promotion
+   Give a warning when a value of type "float" is implicitly promoted to "double"
+
+get list of default gcc warnings
+
+直接gcc,包含那些警告选项，没搞明白
+
+
+----gdb----
+1 info b 查看断点
+2 display xx 实时显示变量值
+3 bt(backtrace) 函数调用栈
+4 l(list) libavformat/utils.c:0  浏览文件，需指定行号
+5 d(delete) x 删除某断点，无参删所有
+6 pt(ptype) 显示变量类型
+7 finish (调试c++时有用，因为step会进入函数参数 比如vector)
+
+coredump  不用gdbserver，死机后把文件拷出，在pc上用arm/mips-xx-gdb 分析
+
+Command class: data
+disassemble -- Disassemble a specified section of memory
+
+/system/bin/gdbserver
+
+target:gdbserver ip:port program arm
+host:  gdb program
+       target remote ip:port
+
+
+参数
+#gdb test
+set args a b c 或 run a b c
+
+-g  -ggdb  有必要都写吗？ 测试发现 只加-g 即可 不用-ggdb ，-g后再strip等价于不加-g
+
+x/16bx address  查看内存
+watch   监控某变量的变化
+
+ctrl+c 终止当前执行，不论执行到哪。终止后可以打断点。
+
+
+
+
+(gdb) p  *data@20
+$32 = "\000\000\001\243e\210\200\200\027\343\205\034\331\377\341\033\001\373F\215"   \xxx八进制格式
+
+p /d  *data@20  10进制
+p /x  *data@20  16进制
+p /s  
+
+U16 *new_speech;
+
+(gdb) p /x &new_speech@2
+Only values in memory can be extended with '@'.
+
+(gdb) p /x new_speech@4 (取new_speech的地址，一次向后排列，实际没啥意义)
+$19 = {0x617be0, 0x0, 0x0, 0x230523d7239520e5}
+
+(gdb) p new_speech 
+$20 = (U16 *) 0x617be0
+
+
+测试：
+
+char c;
+Word16 *test=&c;
+long a=0x1234567878787878;
+long b=0xabcdabcdabababab;
+
+
+(gdb) p /x test@3
+$3 = {0x6182c8, 0x1234567878787878, 0xabcdabcdabababab} //相当于取了test的地址，每次加8，再指向
+
+new_speech 变量
+
+(gdb) p pkt->data
+$33 = (uint8_t *) 0x7fffe801bf90 ""
+(gdb) x /16bx 0x7fffe801bf90
+0x7fffe801bf90:	0x00	0x00	0x01	0xa3	0x65	0x88	0x80	0x80   与上8进制对应，其中0x65是上面的e
+0x7fffe801bf98:	0x17	0xe3	0x85	0x1c	0xd9	0xff	0xe1	0x1b
+
+
+调试汇编：
+ni
+si
+
+set disassemble-next-line on  可以实时显示反汇编
+
+info all-registers   pi上执行，打印所有arm寄存器：
+r0-12
+sp
+lr
+pc
+cpsr
+
+d0-d31  32个  64bit寄存器
+
+fpscr
+
+s0-s31  32个  32bit 寄存器
+
+q0-q15  16个 128bit
+
+
+q0=s0+s1  q1=s2+s3 ... 
+
+(gdb) p $q5
+$5 = {u8 = {255 <repeats 16 times>}
+这里 $5 与寄存器编号无关，每显示一个数字 +1
+
+vmov.i8	q5, #255    一下向q5 赋16个 0xff
+
+---ld---
+同名函数，先链接源码里面的，再链接库里面的  override
+
+-nostdlib
+
+-llibrary 或 -l library(第二种形式不建议)
+
+链接器以指定顺序搜索和处理库和.o文件，如 foo.o -lz bar.o 搜索库 z在foo.o之后bar.o之前，如果bar.o引用z中函数会找不到
+The linker searches a standard list of directories for the library, which is actually a file named liblibrary.a.  The linker then uses this file as if it had been specified precisely by name. The directories searched include several standard system directories plus any that you specify with -L.
+Normally the files found this way are library files---archive files whose members are object files.  The linker handles an archive file by scanning through it for members which define symbols that have so far been referenced but not defined.  But if the file that is found is an ordinary object file, it is linked in the usual fashion.  The only difference between using an -l option and specifying a file name is that -l surrounds library with lib and .a and searches several directories.  
+
+在子目录下生成.a 然后在主目录中去链接各个子目录下面的.a
+原来Sigma的工程是:子目录下面的都是单独的工程，可以编译成 各个.a 然后剩余的所有.c文件都放到主工程下
+的同一个makefile中，然后用-L -l来链接各个库文件。
+
+
+-lxx 优先寻找libxx.so 然后才是libxx.a
+直接写 libxx.a  当成.o 直接连接进去。
+
+.la 是个库的描述文件
+
+链接的库名字，不以文件名为准
+问题：要支持双CA库，
+/system/lib/libCas.so -> /data/forward-file
+/data/forward-file -> /system/lib/libCas-tongfang.so  或 -> /system/lib/libCas-shuma.so
+编译时链接libCas.so
+但要注意，libCas.so必须是编译时，makefile就要改成libCas.so 而不能用libCas_shuma.so改名字到libCas.so
+
+
+---toolchain---
+ARM Options  m :machine 传给as
+
+ccache
+
+-mfloat-abi= soft: 软 softfp: 软硬 hard: 硬
+-mhard-float 等价 -mfloat-abi=hard.
+-msoft-float 等价 -mfloat-abi=soft.
+-mcpu= 如 arm920t,cortex-a5/a8/a9,cortex-m3
+-march= 联合或替代-mcpu 如armv5t/armv5te/armv6/armv7/armv7-a/armv7-m/armv7-r
+逻辑上，指定cortex-a9，一定是armv7-a，特殊情况下2个参数组合才能确定具体指令集
+-mfpu= 浮点硬件 如:vfp/vfpv3/vfpv3-d16/neon
+-mthumb 基于-mcpu/-march设置产生16bit Thumb-1 或混合16/32bit Thumb-2
+    
+-meabi -mthumb-interwork
+
+arm默认 little-endian， big-endian需要显式指定（linaro是另一套编译器）
+linaro 说明
+https://launchpad.net/gcc-arm-embedded 可下载cortex-m cortex-r gcc编译器
+
+1 Toolchain
+	ndk可完全用C/C++开发应用，不需编写Java
+	ndk-stack 代码跟踪工具
+	cpp c++ g++ gcc 属于gcc，其他as，ld，strip属于binutiles
+
+arm-xx-c++ 链接到 arm-xx-g++
+c++ 链接到g++
+
+1 standalone:
+
+gcc骨架只有 binutils, gcc, and gdb, 没有C library
+
+To build a standalone toolchain, we need a set of pre-compiled libraries and
+associated headers. There are two ways to do that. 
+
+One way is to assemble a sysroot(library and headers). Then add --with-sysroot=. 
+The toolchain expects .h .so to be in <sysroot>/usr/include and <sysroot>/usr/lib.
+The build-sysroot.sh can be used to assemble a sysroot from an Android device tree.
+
+The other way is to specify the headers and libraries with --with-headers and
+--with-libs separately. If you configure your tree with a prefix. The headers
+and libraries will be copied to the install directory specified by the prefix.
+After installation, we need to remove those installed headers in
+<prefix dir>/lib/gcc/arm-eabi/*/include-fixed/, if the headers already exist
+in the android tree. The script clear-header.sh can be used to identify and
+remove these installed headers.
+
+
+
+ndk9:
+./build/tools/make-standalone-toolchain.sh --platform=android-14 --install-dir=/opt/ndk9
+--arch=<name> 指定处理器，如--arch=mips，默认arm
+安装前1.4G  安装后228M仅保留了arm
+ndk10: --arch没有默认，必须指定
+
+安装完的编译器结构：
+./bin/arm-linux-androideabi- 工具组   gcc 4.6  g++ 4.6   ld objdump 属于Binutils  v2.21
+./arm-linux-androideabi/bin/gcc  长目录短文件名，短目录长文件名
+
+arm-linux-androideabi-gcc与gcc相同，一长串和简写一一对应
+
+./arm-linux-androideabi/bin/ar as c++ g++ gcc ld ld.bfd ld.gold ld.mcld nm objcopy objdump ranlib strip
+./bin/arm-linux-androideabi-ar -as -c++ -g++ -gcc -ld -ld.bfd -ld.gold -ld.mcld -nm -objcopy -objdump -ranlib -strip
+多
+./bin/arm-linux-androideabi-addr2line i-c++filt -cpp -elfedit -gcc-4.6 -gcov -gdb -gprof -readelf -run -size -strings
+
+./arm-linux-androideabi/bin/README 也有如下描述：
+The executables in this directory are for internal use by the compiler and may not operate correctly when used directly.  
+This directory should not be placed on your PATH. you should use ../../bin/ and place that directory on your PATH.
+  
+  
+ndk里没有pthread库，pthread函数在libc.so里，所以不用包含-lpthread  -lrt
+
+ndk 编译 ffmpeg ok
+ndk 编译 jpeg-turbo ok (guwb)
+
+arm-eabi-4.6 (用于kernel,事实上arm-linux-androideabi-也能编内核)
+arm-linux-androideabi-4.6
+
+armhf :hard float 
+
+Toolchain：
+arm-eabi-					Android for kernel
+arm-none-eabi-				Sourcery G++ Lite 2010q1-188
+arm-none-linux-gnueabi-		Sourcery G++ Lite 2010q1-202
+arm-linux-gnueabi-			Linaro
+arm-linux-gnueabihf-		Linaro with hardfloat s805/a20
+arm-fsl-linux-gnueabi-		FSL
+arm-linux-androideabi-		Android and NDK
+arm-linux-uclibcgnueabi-	NXP
+arm-unknow-linux-gnueabi-
+
+有一种编译无os的所谓bare metal的gcc， none也可以理解为 no os？
+
+xtensa-lx106-elf-
+
+i686-linux-gnu (32bit x86 Linux)
+x86_64-linux-gnu (64bit x86 Linux)
+
+arm-linux-androideabi
+arm-eabi (only for android kernel)
+i[3456]86-*-linux-gnu, x86_64-*-linux-gnu (for x86 targets)
+
+Toolchain 命名规则: 
+arch[-vendor][-os]-abi
+
+arch:arm/mips/powerpc
+vender:none/unknow/fsl(freescale)
+os:linux
+abi:eabi/gnueabi/gnueabihf/androideabi/uclibcgnueabi/gnu/uclibc/elf
+
+gcc -dumpmachine 显示eabi信息
+
+toolchain目录 as.info/gcc.info 标明支持的cpu fpu参数
+
+-mfpu=name 浮点硬件单元 : fpa/fpe2/fpe3/maverick/vfp/vfpv3/vfpv3-d16/neon
+-mfloat-abi=name 浮点ABI : soft/softfp/hard
+如：-mfpu=vfpv3-d16 -mfloat-abi=softfp (sotfp 与 vfpv3-d16并不冲突)
+
+man gcc:
+soft:纯软浮点
+softfp:允许产生硬浮点指令，但使用soft-float调用规范  
+hard: 允许产生floating-point instructions(可能是软?)使用FPU-specific调用规范
+hard-float 和 soft-float ABIs 是不兼容的
+
+-mfloat-abi=hard with VFP coprocessors is not supported.(为什么不支持，硬浮点指令，FPU-specific abi 不好吗？)
+-mfloat-abi=softfp 配以适当 -mfpu 允许编译器生成代码并利用硬浮点能力
+
+-mabi=apcs-gnu 是OABI参数，将OABI的参数传给符合EABI标准的编译器，编译阶段没有报错
+
+GCC floating-point options
+For historical reasons and to match the ARM RVCT kit, the GCC FPU and ABI selection options are not entirely orthogonal. The -mfloat-abi= option controls both the ABI, and whether floating point instructions may be used. The available options are:
+    soft: Full software floating point.
+    softfp: Use the FPU, but remain compatible with soft-float code.
+    hard: Full hardware floating point. 
+In addition, the -mfpu= option can be used to select a VFP/NEON (or FPA or Maverick) variant. This has no effect when -mfloat-abi=soft is specified.
+The combination of -mfpu=vfp and -mfloat-abi=hard is not available in FSF GCC 4.4; see TODO section below for options.
+See /VfpComparison for an in depth discussion and some performance research. 
+----
+
+toolchain: gcc编译器+binutiles 由源码自己制作耗时耗力, codesoursery/linaro/android 做好
+
+CodeSourcery被mentor收购: sourcery.mentor.com/public/gnu_toolchain/arm-none-linux-gnueabi/ 收费
+
+android toolchain基于bionic
+
+优化选项：
+-fomit-frame-pointer （pc版ffmpeg加这个，gdb也能backtrace，奇怪）
+
+gcc的参数多数是 -m -f开头 -fomit-frame-pointer 相当于-f是参数，omit-frame-pointer是参数值
+
+编译动态库的时候
+include $(BUILD_SHARED_LIBRARY)
+/*BUILD_SHARED_LIBRARY:= $(BUILD_SYSTEM)/shared_library.mk 调用 transform-o-to-shared-lib */
+而------
+define transform-o-to-shared-lib
+endef
+封装一层完全是为了 加一些信息和hide的处理  就像函数封装
+----
+
+Look under a directory for makefiles that don't have parent
+makefiles.
+
+编译libhi_mpi.so 里面调用了了 liblog.so
+正常应该写：
+LOCAL_SHARED_LIBRARIES := liblog 但是我发现
+LOCAL_SHARED_LIBRARIES := libutils （实际上根本没有调用这个库 但是这个库依赖liblog.so）
+-llog  （注意这里，我并没有显示的包含liblog）
+
+二 gcc ld 参数系统解析
+
+1  Options for Code Generation Conventions
+Most of them have both positive and negative forms; the negative form of -ffoo would be -fno-foo.
+为何-f前缀？
+如 -fpic/-fPIC  -fpie/-fPIE
+These options are similar to -fpic and -fPIC, but generated position independent code can be only linked into executables
+
+Options starting with -g, -f, -m, -O, -W, or --param are automatically passed on to the various sub-processes invoked by arm-linux-gcc
+那么以这些前缀开头的含义又是什么呢？
+In order to pass other options on to these processes the -W<letter> options must be used. [-W<letter>不同于上面的-W吗？]
+
+ESDS.o
+MediaBuffer.o
+MediaBufferGroup.o  [ 若干.o文件 ]
+
+libstagefright_aacdec.a
+libstagefright_amrnbdec.a
+libstagefright_amrnbenc.a [若干.a]
+若是 -lstagefright_aacdec 那么是把调用到的函数静态链接进去，因为.a是.o的集合，所以这种写法跟直接罗列.o是一样的效果，
+不论是否调用，所有函数都会收入进去。
+对应 LOCAL_STATIC_LIBRARIES :=
+
+-lbinder
+-lmedia
+-llog
+-lui  因为前面有-shared 所以这里的库就代表 libbinder.so 而不是libbinder.a
+对应 LOCAL_SHARED_LIBRARIES :=
+
+
+libc.a   [这证明上面的分析是错误的 直接罗列.a 不用-lc，实际跟-lc一样效果，而不是把libc.a当作.o对待全部链接]
+liblog.a [我并没有在 LOCAL_STATIC_LIBRARIES 中写liblog啊？！]
+因 libcutils libutils 需要调用liblog 所以android make系统就自动给加上了（binary.mk中）
+
+动态： -llog  静态：liblog.a 但是在Android.mk 级别  不管静态库还是动态库 都是 libcutils 这样描述。
+
+binary.mk中
+
+# The list of libraries that this module will link against are in
+# these variables.  Each is a list of bare module names like "libc libm".
+#
+# LOCAL_SHARED_LIBRARIES
+# LOCAL_STATIC_LIBRARIES
+# LOCAL_WHOLE_STATIC_LIBRARIES
+
+[Specifically, on ELF and SunOS systems, ld will search a directory for a library called libnamespec.so before searching for one called libnamespec.a.]
+-Bdynamic 参数起什么作用？
+[Link against dynamic libraries.]
+[ You may use this option multiple times on the command line: it affects library searching for -l options which follow it.]
+是紧跟在后面的才受到影响吗？
+ -Bstatic
+This option can be used with -shared.  Doing so means that a shared library is being created but that all of the library's external references must be resolved 
+by pulling in entries from static libraries.
+那么
+
+-rpath=dir
+-rpath-link=dir
+-( archives -)
+--start-group archives --end-group
+
+
+arm-xx-gcc --help
+
+It generates Thumb-2 code if you specify -march=armv7-a and -mthumb.
+It never generates ARM mode code if you specify -mthumb. 
+It generates only ARM if I do not specify -mthumb
+
+Without that option, why do I still see when I run readelf on the generated executable
+TAG_THUMB_ISA_use: Thumb-2 ?
+You are probably linking in at least one Thumb-2 object file, perhaps
+something from one of the run-time libraries.
+运行readelf -A 可以看到详细信息，仍然有TAG_THUMB_ISA_use:Thumb-2是因为调用的库里面有thumb-2指令,编译android时在最上层指定 LOCAL_ARM_MODE = arm 就没有thumb-2了
+
+-D name  Predefine name as a macro, with definition 1
+-D name=definition
+
+
+
+--gcc错误
+
+./gcc/sysroot/usr/lib/librt.a
+Librt实现POSIX 100b.3标准的定时器和消息队列接口，Linux 2.6内核支持
+
+collect2: ld returned 1 exit status #collect 收集的意思 找不到某函数实现
+
+20150316 编译u-boot
+envcrc.c:52:39: error: operator '>=' has no right operand
+# if (CFG_ENV_ADDR >= CFG_MONITOR_BASE)  
+//由于错误配置CFG_MONITOR_BASE宏为“空” 这个案例记住！
+
+
+file xxx
+ELF 32-bit LSB  executable, Intel 80386, for GNU/Linux 2.6.15, BuildID[sha1]=2fcdc6bb237e0b8caf3ac7a18028818808aee6a9
+sha1 是怎么编译进去的
+
+
+生成map，gcc间接调用ld，所有的ld选项前必须加上“-Wl,”,因为-Map是ld的选项。 
+-Wl,-Map,mapfile
+
+例：gcc -o helloworld helloworld.c -Wl,-Map,helloworld.map
+
+-Wl,-shared,-Bsymbolic  
+
+-shared可用可不用-Wl传入
+
+-Wl,-dynamic-linker,/system/bin/linker  代表
+--dynamic-linker=file
+    Set the name of the dynamic linker.  This is only meaningful when generating dynamically linked ELF executables.  The default dynamic linker is normally correct;
+    don't use this unless you know what you are doing.
+
+-Wl,-rpath-link=$(HOST_OUT_INTERMEDIATE_LIBRARIES)
+-Wl,-rpath,\$$ORIGIN/../lib
+
+-Wl,--whole-archive   
+-Wl,--no-whole-archive 
+-Wl,--no-undefined 
+
+-Wl,-T,$(BUILD_SYSTEM)/armelf.x \
+-Wl,--gc-sections \
+
+-Wl,-dynamic-linker,/system/bin/linker \
+-Wl,-z,nocopyreloc \
+
+-Wl,-rpath,\$ORIGIN/../lib ($ORIGIN 在gcc中有特殊含义 echo为空)
+-Wl,-T,$(BUILD_SYSTEM)/armelf.xsc \
+-Wl,-shared,-Bsymbolic \
+
+-Wl,-soname,libstagefright.so
+-Wl,-T,build/core/armelf.xsc
+-Wl,--gc-sections
+-Wl,-shared,-Bsymbolic
+-Wl,-T,build/core/armelf.x
+-Wl,--gc-sections
+
+--whole-archive 只在生成动态库时用
+For each archive mentioned on the command line after the --whole-archive option, include every object file in the archive in the link, rather than searching the archive for the required object files.  This is normally used to turn an archive file into a shared library, forcing every object to be included in the resulting shared library.  This option may be used more than once.
+
+Two notes when using this option from gcc: First, gcc doesn't know about this option, so you have to use -Wl,-whole-archive.
+Second, don't forget to use -Wl,-no-whole-archive after your list of archives, because gcc will add its own list of archives to your link and you may not want this flag to affect those as well.
+
+--no-whole-archive
+Turn off the effect of the --whole-archive option for subsequent archive files.
+
+armelf_linux_eabi.xsc
+
+-fpermissive   g++编译， 不同类型赋值错误，靠这个“宽松” 可以避免
+
+----
+gcc 与 g++
+
+表面看 .c 用gcc, .cpp 用g++
+.c也可用g++，语法检查更严格
+gcc 开始是 GNU C Compiler，后来是 GNU Compiler Collection
+gcc不是c编译器，而是一个中转程序，根据代码后缀判断调用c编译器还是c++编译器。
+如.c，调用c编译器链接glibc, .cpp调用g++编译器，连接c++库
+
+编译阶段，g++调用gcc，对于c++代码，两者是等价的，但是因为gcc命令不能自动和C++的库联接，
+所以通常用g++来完成链接，为了统一起见，干脆编译/链接统统用g++了，这就给人一种错觉，好像cpp程序只能用g++似的。
+如果不用C++标准库，gcc a.cpp  g++ a.cpp  一样
+编译阶段，g++会自动调用gcc，二者等价
+----
+
+
+3 gcc
+编译主机工具的host gcc
+	12.04默认4.6，编译4.0.4需降版本（4.5,4.6都失败，小版本没无关 u10.04是4.4.3）:
+	apt-get install gcc-4.4 g++-4.4 g++-4.4-multilib gcc-4.4-multilib
+	路径/usr/bin下原有 gcc 指向gcc-4.6，安装完gcc-4.4套件后，多了gcc-4.4，但是gcc链接仍指向gcc-4.6：
+
+	update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.4 100 (优先级高于4.6)
+	update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.6 50(12.04默认没有安装g++-4.6)
+	update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.4 100
+	update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 50
+
+	//u12.04 实测a4.0.4 不注册cpp也可
+	update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.4 100
+	install gcc-4.4安装3个新包： cpp-4.4 gcc-4.4 gcc-4.4-base
+	install gcc-4.4-multilib 安装8个新包：
+	gcc-4.4-multilib gcc-4.6-multilib gcc-multilib lib32gcc1 lib32gomp1 lib32quadmath0 libc6-dev-i386 libc6-i386
+
+

@@ -1,0 +1,366 @@
+[ˈrɑ:zbəri]
+raspistill -o keychain.jpg -t 2000
+raspi-config
+volumio 播放器
+sudo apt-get install gpac
+
+pi3 Wi-Fi and Bluetooth 4.1/Low Energy (LE) support, BCM43438
+
+Pi 1 :BCM2835/BCM2708  ARMv6 arm11
+Pi 2 :BCM2836/BCM2709  ARMv7 4core Cortex-A7 900MHz  1G Ram
+Pi 3 :BCM2837/BCM2710  ARMv8 4core 64bit Cortex A53 1.2GHz
+BCM2709 CPU家族
+BCM2836 CPU具体型号
+内核开发者称之为BCM2708，树莓派和博通则称为BCM2835
+
+ROS(Robot Operating System）是一个机器人软件平台
+
+https://publiclab.org/
+http://www.infragram.org/红外摄像
+https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget?view=all //Pi zero
+https://www.element14.com
+http://cn.element14.com
+
+
+使用hdmi转vga连接pi，启动时必须插电源，启动后就不用电源了，why？ 与edid有关
+
+配置hdmi声音
+https://www.raspberrypi.org/documentation/configuration/audio-config.md
+使用hdmi转vga线，最后是靠修改config.txt -> hdmi_driver=2 实现，其他几招都不灵
+
+播放mp3用 omxplayer
+
+/opt/vc/src/hello_pi/rebuild.sh  一些测试程序
+
+串口：115200 8N1
+pi 1/2 : OK
+pi 3 不正常，示波器看，波特率好像在变化，稳定后一个bit 14us，波特率72000
+"If you've tried to use the UART on the GPIO header of the new Raspberry Pi 3, 
+you may have been frustrated to discover that it doesn't work properly."
+
+In /boot/config.txt, add the line core_freq=250. Save and reboot! 
+The GPIO UART now operates at the correct baud rate, 
+and is available at /dev/ttyS0, and NOT /dev/ttyAMA0 like before.
+
+但是自己编译的kernel加这句话，串口也不灵
+实验：自己编译的内核，echo Hello > /dev/ttyAMA0 //示波器能检测到，并且波特率确实是115200，说明用的是ttyAMA0 但设置的是ttyS0
+
+https://www.raspberrypi.org/documentation/linux/kernel/building.md  //写的好
+这篇文章中 git clone --depth=1 https://github.com/raspberrypi/linux  //这是下载master分支，一直有个顾虑，他能保证master分支一直是好的？而不用下载3.x 4.x等发布版本？
+
+有2个方法重编pi内核：
+1 在pi上编译 (很慢^_^) //此法虽慢，但首次在arm平台编译内核，意义重大
+bc:not found //bc是什么命令？ （apt-get install bc）
+pi1 + class 4 SD  1天没编完，哈哈，体会到什么叫慢了，4-5s 蹦一个文件
+pi3 + class 10 SD  -j4 94min
+
+2 交叉编译
+
+内核：
+https://github.com/raspberrypi/linux
+
+编译器：
+Get the latest Raspberry Pi compiler
+包含5套编译器，还是搞不清楚这么多是干啥的
+
+制作img工具：
+mkknlimg //是专门为pi写的perl脚本
+拷贝dtb文件，没安装新的.ko ,hdmi能起来，但串口没打印（已经改了core_freq=250）
+猜测：4.4.7比原始版本内核新，是不是不用改core_freq，删除，仍然不行
+
+安装module，修改250，串口仍然没打印
+
+
+.ko不在boot分区，而在ext4分区，共有4300+个ko
+
+---
+编译源码遇到超怪异现象：
+从github下载的.zip压缩包，include/linux/i2c-gpio.h 变为软链接，链接目标是这个文件的内容
+文件损坏的这么怪异。。。
+---
+//前2句为make进程定义环境变量（shell文档未找到依据）
+ARCH=arm CROSS_COMPILE=${CCPREFIX} make bcm2835_defconfig  
+
+pi1  KERNEL=kernel
+pi2/3  KERNEL=kernel7 (armv7的意思？ pi3 实际是armv8 现在还没有更新，等待，现在pi3 当bcm2709用的)
+编译kernel：
+kernel来源：github/raspberrypi 
+
+If you want to compile an upstream kernel, rather than the Raspberry Pi Foundation's downstream kernel, 
+please see RPi_Upstream_Kernel_Compilation for a few tips
+说明upstream kernel指的是kernel.org的
+
+
+键盘符号错乱需Re-mapping the keyboard ：
+sudo dpkg-reconfigure keyboard-configuration，主要是English UK 改为US ，因为系统是英国造
+
+4台 pi 组成4x4 处理器集群，网口用4线，
+使用MPI接口（搜 pi+集群）
+
+wii 手柄是蓝牙设备，可以通过 https://github.com/abstrakraft/cwiid  库，控制pi
+
+/dev/spidev0.0 and spidev0.1
+echo -ne "hello" > /dev/spidev0.0
+
+pin 27/28  I2C ID EEPROM  ??什么东西？
+
+https://www.flashrom.org/RaspberryPi
+
+根据README.txt 编译flashrom，需安装：
+libpci-dev (什么用？)
+libusb-dev
+libftdi-dev
+编译错误，按照提示，取消USB特性
+
+sudo ./flashrom -c "MX25L1605" -p linux_spi:dev=/dev/spidev0.0 -r test.rom
+
+pi 控制spi flash
+https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md   spi接口说明
+http://www.mtom.cz/projects/rasp-flashspi/
+http://diy.viktak.com/2014/07/how-to-recover-laptop-after-failed-bios.html
+
+http://wiringpi.com/
+git://git.drogon.net/wiringPi
+
+GPIO Interface library for the Raspberry Pi
+
+wiringPi和bcm2835 C library都提供I2C API函数(靠bcm2835_init函数，用/dev/mem实现)
+
+NOOBS : New Out Of the Box Software
+CSI :COMS Sensor Interface
+
+Visit the SD Association’s website and download SD Formatter 4.0 for Windows/Mac  （跟普通格式化有啥区别？）
+For Linux users we recommend gparted (or the command line version parted).
+
+dd bs=4M if=xx.img of=/dev/sdx
+
+.img 第一个扇区，除了分区表，几乎全是0，那pi从哪取启动代码呢？
+
+raspbian-jessie.zip(1.4G) 
+解压 raspbian-jessie.img (4G)
+dd后为： boot(60M fat) +ext4(4G)，首次开机扩展到8G
+一个版本兼容3个pi
+
+boot分区包含kernel.img 和
+bcm2708-rpi-b.dtb
+bcm2708-rpi-b-plus.dtb
+bcm2708-rpi-cm.dtb
+bcm2709-rpi-2-b.dtb
+bcm2710-rpi-3-b.dtb
+
+https://www.pinterest.com/stein20070193/arduino-raspberrypi-electronics/
+Sense HAT  //各种传感器
+
+lifebox 项目，让我想起了 ucos的打印例子
+
+Kickstarter众筹
+https://blog.adafruit.com
+
+Parallella 计算机
+
+
+login:  pi:raspberry
+
+arstechnica.com/information-technology/2012/12/10-raspberry-pi-creations-that-show-how-amazing-the-tiny-pc-can-be/
+文档 git@github.com:raspberrypi/documentation.git
+资源 https://github.com/raspberrypilearning
+
+i2c:
+https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
+安装 i2c-tools与python-smbus
+i2cdetect -l 查看pi上的I2C总线
+i2ctools 使I2C设备调试更加方便
+
+apt-get install vim
+apt-get update:
+
+Hit http://mirrordirector.raspbian.org wheezy/contrib armhf Packages
+Hit http://mirrordirector.raspbian.org wheezy/rpi armhf Packages
+
+评测class 10 sd卡性能。
+DS1307 i2c接口 rtc
+
+第一次在arm平台上编译arm程序
+http://www.airspayce.com/mikem/bcm2835/group__i2c.html
+bcm2835 i2c
+http://www.airspayce.com/  为啥有bcm2835的资料呢?
+C library for Broadcom BCM 2835 as used in Raspberry Pi
+
+2 硬件
+Rasp B (LAN9512): cpu晶体AEL19.2 LAN9512晶体25M
+Rasp B+(LAN9514): lan9514 25Mhz 由soc发出
+
+D3(排线)/D4(AV输出):A7W-3d 3pin，不是三极管而是2个快速开关二极管bav99封装  Dual  Series  Switching  Diode 双列开关二极管
+电源处U14:K4S-b4 6pin 查不出来， U3：2306KE 型号查不出,从精简版电路图看是电源芯片，由5v输出3v3和1v8
+Rasp有个JTAG接口没有焊接
+Rasp 40针排插 2边都是平的，而不是一边毛糙
+AV处 U10 GS4vd 5pin 
+不用DAC和放大器，而用pwm发声
+U4 APX803-46SAG : 3-PIN MICROPROCESSOR RESET CIRCUIT 上电或电压低于阀值时发出低电平复位。
+U9 AP2331W
+
+音频输出电路：
+datasheet看，i2s输出，靠pin B9 D9  pwm0 pwm1 输出音频
+
+B+声音输出：
+6pin z16b(有可能是4个bav99二极管，等价于2个a7w)   6s4vd 5pin 查不到型号
+
+HDMI
+rasp AB 用EMI4182:common mode filter with ESD protection for HDMI(不能用于USB)
+
+USB电源，2个口用1组滤波电容(100n+47u)无fuse。805参考2个fuse+2套滤波
+
+可运行Minecraft游戏
+
+树莓派广告牌
+
+http://www.raspberrypi.org/accelerating-fourier-transforms-using-the-gpu/
+
+raspbian-wheezy无法生成turbojpeg的configure，需先在pc上生成它，在pi上运行生成makefile（有个时间错误，需要touch configure）
+pc生成configure后要tar.gz 压缩， zip不行。
+
+======================
+设置时区：
+apt-get install ntpdate
+tzselect
+
+apt-get install git-core vim
+
+vim:
+:syntax on
+
+install python-dev  ??
+
+同时支持python/python3
+
+PiFace
+PiBrella
+Pi Supply Switch – On/Off Power Switch for Raspberry Pi //用来彻底关闭电源
+www.pi-supply.com   电源控制模块，网络供电模块
+
+Raspberry Pi 预装 Mathematica及早期版 Wolfram Language
+
+Camera Board v2.1 (8MP, 1080p)
+Camera Board v1.3 (5MP)
+
+----串口不打印问题：
+fail:
+8250.nr_uarts=1 dma.dmachans=0x7f35 bcm2708_fb.fbwidth=1920 bcm2708_fb.fbheight=1080 bcm2709.boardrev=0xa22082 bcm2709.serial=0xdaf48062 smsc95xx.macaddr=B8:27:EB:F4:80:62 bcm2708_fb.fbswap=1 bcm2709.uart_clock=48000000 vc_mem.mem_base=0x3dc00000 vc_mem.mem_size=0x3f000000  dwc_otg.lpm_enable=0 console=ttyAMA0,115200 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait
+
+ok:
+8250.nr_uarts=1 dma.dmachans=0x7f35 bcm2708_fb.fbwidth=1824 bcm2708_fb.fbheight=984 bcm2709.boardrev=0xa22082 bcm2709.serial=0xdaf48062 smsc95xx.macaddr=B8:27:EB:F4:80:62 bcm2708_fb.fbswap=1 bcm2709.uart_clock=48000000 vc_mem.mem_base=0x3dc00000 vc_mem.mem_size=0x3f000000  dwc_otg.lpm_enable=0 console=ttyS0,115200 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait
+
+
+ok:
+crw------- pi tty         4, 64 ttyS0    //who or tty 命令显示在ttyS0登录
+crw-rw---- root dialout 204, 64 ttyAMA0
+
+fail: 修改cmdline console=serial0 为 serial1
+root tty 204,64 ttyAMA0
+root dialout 4,64 ttyS0
+---
+fail: 保持cmdline console=serial0
+root dialout 204,64 ttyAMA0   //但还是 echo hello >ttyAMA0 串口才有打印
+root tty     4,64   ttyS0
+
+
+uart打不出来
+/boot/cmdline.txt  把serial0 改为serial1 有打印了，单无法输入字符
+
+flash 与 eeprom的区别：
+
+IIC flash  at24c01/02/04/08/16   08/16 A0-A2 不全用，而是给了页地址
+
+SPI Flash: 飞好的板子：25L160BE
+
+MXIC: 台湾旺宏电子   MX25L12835F (128Mbit) 
+SPI mode0/mode3
+single power supply operation 2.7-3.6v 读写擦（老式eeprom，擦除需要12V高电压）
+1bit/2bit/4bit 模式  100000次擦写
+
+实验板：MX25L1608E， 开始检测不到芯片，最后查出，因为#HOLD引脚没有拉高:
+
+#flashrom -p linux_spi:dev=/dev/spidev0.0 
+Found Macronix flash chip "MX25L1605" (2048 kB, SPI) on linux_spi.
+Found Macronix flash chip "MX25L1605A/MX25L1606E/MX25L1608E" (2048 kB, SPI) on linux_spi.
+Found Macronix flash chip "MX25L1605D/MX25L1608D/MX25L1673E" (2048 kB, SPI) on linux_spi.
+Multiple flash chip definitions match the detected chip(s): "MX25L1605", "MX25L1605A/MX25L1606E/MX25L1608E", "MX25L1605D/MX25L1608D/MX25L1673E"
+Please specify which chip definition to use with the -c <chipname> option.
+需要选择芯片：
+
+flashrom -p linux_spi:dev=/dev/spidev0.0 -c "MX25L1605A/MX25L1606E/MX25L1608E" -r out.rom //读出2M数据
+
+s805 mlc push速度3.53MB/s  读25.58MB
+
+只读文件系统：
+romfs  squashfs  cramfs
+
+
+====
+运行ultisnips 提示
+UltiSnips requires py >=2.7 or py3
+是因为vim 不是支持python的版本
+:version 提示 -python 说明不支持
+安装 vim-nor
+
+
+==================
+Beaglebone
+
+http://192.168.7.2:3000
+AM3359
+
+Debian (lxde桌面)
+Android
+Ubuntu
+Cloud9 IDE on Node.js BoneScript library
+
+How to use the Grove-UART port as a GPIO on BBG
+
+《BeagleBone Robotic Projects》
+《The Beaglebone Black Primer》
+《Exploring Beaglebone》
+《Beaglebone for Dummies》
+《Beaglebone Cookbook》
+
+BeagleBone Black
+BeagleBone Green
+
+
+===arduino===
+Arduino / Genuino
+avr-gcc
+ICSP烧写器
+ATmega328P 8k flash+768ram
+32k(ide显示32256而非32768) isp flash 10000次
+1k eeprom 100000次
+2k SRAM
+Uno 8-bit 16MHz
+
+增强板：
+Arduino MEGA2560 8-bit AVR 16MHz
+Arduino Zero 32-bit ARM Cortex-M0 48MHz
+Arduino Due  32-bit ARM Cortex-M3 84MHz
+
+apt-get install arduino arduino-core
+UNO: ATmega328P(main)+atmega16u2（cpu实现usb转uart）
+
+Arduino Bootloader
+
+呼吸灯：0-255-0-255 到0后再到1亮度是突变的，视觉的均匀不等于pwm均匀
+
+IED 设置工程目录到其他位置： File->preference
+运行 ./arduino 启动程序
+
+/install.sh 
+Installed Arduino IDE icons on menu and desktop
+menu里就会出现，原理详见 install.sh的实现
+
+模拟usb HID设备:
+Atmega16u2的bootloader下载：进入DFU模式,烧写bootloader
+
+Atmega16u2固件：
+keyboard :Arduino-keyboard-0.3.hex
+usb转串口:Arduino-usbserial-uno.hex
+
+classic SPI library for Arduino
