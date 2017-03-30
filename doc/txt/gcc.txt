@@ -1,3 +1,5 @@
+BuildID
+
 clang: c/c++轻量编译器，目标之一是超越gcc
 llvm: Low Level Virtual Machine
 
@@ -17,9 +19,8 @@ __GNUC__
 -MP
 -MF
 
-//gcc .a可直接加到后面，不用-l
--L 指定链接库路径 
--l 去除lib去除.a
+ .a可直接加到后面，不用-l
+-L  -l
 
 error: field 'timestamp' has incomplete type
 
@@ -150,7 +151,7 @@ vmov.i8	q5, #255    一下向q5 赋16个 0xff
 
 -nostdlib
 
--llibrary 或 -l library(第二种形式不建议)
+-llibrary
 
 链接器以指定顺序搜索和处理库和.o文件，如 foo.o -lz bar.o 搜索库 z在foo.o之后bar.o之前，如果bar.o引用z中函数会找不到
 The linker searches a standard list of directories for the library, which is actually a file named liblibrary.a.  The linker then uses this file as if it had been specified precisely by name. The directories searched include several standard system directories plus any that you specify with -L.
@@ -161,8 +162,8 @@ Normally the files found this way are library files---archive files whose member
 的同一个makefile中，然后用-L -l来链接各个库文件。
 
 
--lxx 优先寻找libxx.so 然后才是libxx.a
-直接写 libxx.a  当成.o 直接连接进去。
+-lxx 寻找顺序libxx.so libxx.a
+直接写 libxx.a  当成.o 直接连接进去
 
 .la 是个库的描述文件
 
@@ -433,12 +434,6 @@ envcrc.c:52:39: error: operator '>=' has no right operand
 # if (CFG_ENV_ADDR >= CFG_MONITOR_BASE)  
 //由于错误配置CFG_MONITOR_BASE宏为“空” 这个案例记住！
 
-
-file xxx
-ELF 32-bit LSB  executable, Intel 80386, for GNU/Linux 2.6.15, BuildID[sha1]=2fcdc6bb237e0b8caf3ac7a18028818808aee6a9
-sha1 是怎么编译进去的
-
-
 生成map，gcc间接调用ld，所有的ld选项前必须加上“-Wl,”,因为-Map是ld的选项。 
 -Wl,-Map,mapfile
 
@@ -470,12 +465,6 @@ sha1 是怎么编译进去的
 -Wl,-T,$(BUILD_SYSTEM)/armelf.xsc \
 -Wl,-shared,-Bsymbolic \
 
--Wl,-soname,libstagefright.so
--Wl,-T,build/core/armelf.xsc
--Wl,--gc-sections
--Wl,-shared,-Bsymbolic
--Wl,-T,build/core/armelf.x
--Wl,--gc-sections
 
 --whole-archive 只在生成动态库时用
 For each archive mentioned on the command line after the --whole-archive option, include every object file in the archive in the link, rather than searching the archive for the required object files.  This is normally used to turn an archive file into a shared library, forcing every object to be included in the resulting shared library.  This option may be used more than once.
@@ -508,19 +497,19 @@ gcc不是c编译器，而是一个中转程序，根据代码后缀判断调用c
 
 3 gcc
 编译主机工具的host gcc
-	12.04默认4.6，编译4.0.4需降版本（4.5,4.6都失败，小版本没无关 u10.04是4.4.3）:
-	apt-get install gcc-4.4 g++-4.4 g++-4.4-multilib gcc-4.4-multilib
-	路径/usr/bin下原有 gcc 指向gcc-4.6，安装完gcc-4.4套件后，多了gcc-4.4，但是gcc链接仍指向gcc-4.6：
+12.04默认4.6，编译4.0.4需降版本（4.5,4.6都失败，小版本没无关 u10.04是4.4.3）:
+apt-get install gcc-4.4 g++-4.4 g++-4.4-multilib gcc-4.4-multilib
+路径/usr/bin下原有 gcc 指向gcc-4.6，安装完gcc-4.4套件后，多了gcc-4.4，但是gcc链接仍指向gcc-4.6：
 
-	update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.4 100 (优先级高于4.6)
-	update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.6 50(12.04默认没有安装g++-4.6)
-	update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.4 100
-	update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 50
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.4 100 (优先级高于4.6)
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.6 50(12.04默认没有安装g++-4.6)
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.4 100
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 50
 
-	//u12.04 实测a4.0.4 不注册cpp也可
-	update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.4 100
-	install gcc-4.4安装3个新包： cpp-4.4 gcc-4.4 gcc-4.4-base
-	install gcc-4.4-multilib 安装8个新包：
-	gcc-4.4-multilib gcc-4.6-multilib gcc-multilib lib32gcc1 lib32gomp1 lib32quadmath0 libc6-dev-i386 libc6-i386
+//u12.04 实测a4.0.4 不注册cpp也可
+update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.4 100
+install gcc-4.4安装3个新包： cpp-4.4 gcc-4.4 gcc-4.4-base
+install gcc-4.4-multilib 安装8个新包：
+gcc-4.4-multilib gcc-4.6-multilib gcc-multilib lib32gcc1 lib32gomp1 lib32quadmath0 libc6-dev-i386 libc6-i386
 
 

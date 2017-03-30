@@ -107,8 +107,7 @@ pin 27/28  I2C ID EEPROM  ??什么东西？
 https://www.flashrom.org/RaspberryPi
 
 根据README.txt 编译flashrom，需安装：
-libpci-dev (什么用？)
-libusb-dev
+libpci-dev
 libftdi-dev
 编译错误，按照提示，取消USB特性
 

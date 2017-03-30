@@ -1,6 +1,5 @@
 pkg-config
 
-atp-get install netgen
 Mark Shuttlewort ubuntu创始人
 
 lubuntu = lxde+ubuntu
@@ -10,55 +9,38 @@ ia32-libs
 纯字符模式，显示中文
 
 常见软件
-* AdobeIllustrator
-* kolourpaint 类似画图板工具
-* ImageMagick 
-* SpeedCrunch 高精度计算器
-* nautilus-open-terminal
-* iptux(iptux_0.5.3-1_amd64.deb，gb18030 font:文泉驿)
-* gnome-session-fallback / gnome-panel
-* python-markdown Python实现Markdown(转HTML)
-* openssh-server
-* libncurses5 libncurses5-dev libncursesw(wide character support)
-* ncurses-devel(linux make menuconfig时提示,实际在ubuntu上应该装libncurses5-dev)
+AdobeIllustrator
+kolourpaint 类似画图板工具
+ImageMagick 
+SpeedCrunch 高精度计算器
+nautilus-open-terminal
+iptux(iptux_0.5.3-1_amd64.deb，gb18030 font:文泉驿)
+gnome-session-fallback / gnome-panel
+python-markdown Python实现Markdown(转HTML)
+openssh-server
+netgen
+libncurses5 libncurses5-dev libncursesw(wide character support)
+ncurses-devel(linux make menuconfig时提示,实际在ubuntu上应该装libncurses5-dev)
 http://askubuntu.com/questions
 
-APT
-Debian/Ubuntu用dpkg（package manager for Debian）或 apt（Advanced Package Tool）管理.deb
+Debian/Ubuntu usb dpkg(package manager for Debian) & apt(Advanced Package Tool)
+[support tab]
 
-apt-get install
-		Suggested packages:默认不安装。若要安装，需建立配置文件：/etc/apt/apt.conf：
-		APT::Install-Recommends "true";
-		APT::Install-Suggests "true";
-		如果不希望apt-get下载suggested的包：
-		apt-get --no-install-recommends install package
-		Suggested packages:
+Suggested packages:默认不安装。若要安装：/etc/apt/apt.conf：
+APT::Install-Recommends "true";
+APT::Install-Suggests "true";
 
-		apt-get instal lib32z1-dev 实际安装：lib32z1 lib32z1-dev zlib1g-dev
-		apt-get -f install  可卸载依赖错误的软件包
-
- apt-get clean or autoclean 清除缓存，如install一个包又remove此包再次install不会真正下载而是使用缓存包，若执行clean，install会再次下载。
-	3) 包只下载不安装如：apt-get -d install vim (前提是这个包尚未安装否则提示已经最新)。
-		实测执行后立即打印：Download complete and in download only mode，并没有真正下载包数据。
-	4) apt-get下载的包在/var/cache/apt/archives，可在/etc/apt/source.list中修改存放位置。apt-get autoclean 命令可删除这些软件包。选中文版/etc/apt/source.list 源是 http://cn.xxx.xx
-	   实测执行后，仅删除了个别包，没有全部删除，强制删除可能会有问题。
-	5) apt-get remove删除包，apt-get autoremove 自动删除没用的依赖包。--purge
-	6) apt-get update 下载源中的包描述文件 
-       apt-get upgrade 更新所有已安装软件，不接受指定某个软件 
-		有2次系统装完无法apt-get install，软件中心能搜到但不显示install
-		apt-get update 错误:
-		Failed to fetch gzip:/var/lib/apt/lists/partial/hk.archive.ubuntu.com_ubuntu
-		Hash Sum mismatch
-		E: Some index files failed to download. They have been ignored, or old ones used instead.
-		需要删除
-		rm -rf apt/lists/partial/
-		rm -rf apt/mirrors/partial/
-		再update
-	7) 加源 add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ hardy multiverse" ;apt-get update
-	8) 如何降低软件包版本？
-	
-apt-cache
-	查询apt缓冲，search命令，部分指定包名可搜索
+apt-get --no-install-recommends install package //不下载suggested
+apt-get install	
+apt-get -f install  可卸载依赖错误的软件包
+apt-get -d install foo // only download
+apt-get clean/autoclean // clean cache [/var/cache/apt/archives]
+apt-get remove //remove pkg
+apt-get autoremove 自动删除没用的依赖包。--purge
+apt-get update //错误时需删除 apt/lists/partial/ apt/mirrors/partial/
+apt-get upgrade 更新所有已安装软件，不接受指定某个软件 
+add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ hardy multiverse"
+apt-cache //查询apt缓冲，search命令，部分指定包名可搜索
 
 virtual Box
 	1) 安装VirtualBox Extension Pack (要与Virtualbox版本一致，VirtualBox older builds处下载旧版本)
@@ -270,8 +252,8 @@ grub （os安装问题每次都能搞定，已经具备了这种能力）
 
 		2个tftp目录改名如 tftp tftp-hebei 烧写，改名后需重启才切换
 	6) nfs
-		apt-get install nfs-common  客户端
-		aptitude install nfs-kernel-server 服务端
+		nfs-common  客户端
+		nfs-kernel-server 服务端
 		The NFS kernel server is currently the recommended NFS serer for use with Linux,
 		featuring features such as NFSv3 and NFSv4,
 
@@ -340,10 +322,6 @@ gcc
     u14.04 PinYin ibus与firefox不兼容，文字选中变删除（chromium没问题）
     ibus-setup，取消：Embed Preedit text in application window
     取消前，汉字直接出现在光标后，取消后按空格才出现
-    
-	引发系统崩溃的2个手贱命令
-	apt-get remove unity* (想删除unity桌面)
-	apt-get remove python (重依赖python)
 
 环境变量
 ~/.profile 当前用户
@@ -498,7 +476,6 @@ apache log 查看mantis/mediawiki访问记录
 
 firefox has prevented outdated plugin "Adobe Flash" 浏览器升级但插件没有更新
 20160628 u14.04 按照提示，选择update，选apt，进入软件中心（因为链接不是一个文件，而是引向软件中心），提示找不到新版本
-apt-get update以下，貌似就提示更新flash插件了^^
 
 输入登录密码界面一闪而过又返回登录界面因 ~/.Xauthority文件权限变成root
 
