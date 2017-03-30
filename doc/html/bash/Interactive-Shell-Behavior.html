@@ -1,0 +1,142 @@
+<html lang="en">
+<head>
+<title>Interactive Shell Behavior - Bash Reference Manual</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Bash Reference Manual">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Interactive-Shells.html#Interactive-Shells" title="Interactive Shells">
+<link rel="prev" href="Is-this-Shell-Interactive_003f.html#Is-this-Shell-Interactive_003f" title="Is this Shell Interactive?">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This text is a brief description of the features that are present in
+the Bash shell (version 4.1, 23 December 2009).
+
+This is Edition 4.1, last updated 23 December 2009,
+of `The GNU Bash Reference Manual',
+for `Bash', Version 4.1.
+
+Copyright (C) 1988--2009 Free Software Foundation, Inc.
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.3 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, with the Front-Cover texts
+     being ``A GNU Manual'', and with the Back-Cover Texts as in (a)
+     below.  A copy of the license is included in the section entitled
+     ``GNU Free Documentation License''.
+
+     (a) The FSF's Back-Cover Text is: You are free to copy and modify
+     this GNU manual.  Buying copies from GNU Press supports the FSF in
+     developing GNU and promoting software freedom.''
+
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Interactive-Shell-Behavior"></a>
+<p>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Is-this-Shell-Interactive_003f.html#Is-this-Shell-Interactive_003f">Is this Shell Interactive?</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Interactive-Shells.html#Interactive-Shells">Interactive Shells</a>
+<hr>
+</div>
+
+<h4 class="subsection">6.3.3 Interactive Shell Behavior</h4>
+
+<p>When the shell is running interactively, it changes its behavior in
+several ways.
+
+     <ol type=1 start=1>
+<li>Startup files are read and executed as described in <a href="Bash-Startup-Files.html#Bash-Startup-Files">Bash Startup Files</a>.
+
+     <li>Job Control (see <a href="Job-Control.html#Job-Control">Job Control</a>) is enabled by default.  When job
+control is in effect, Bash ignores the keyboard-generated job control
+signals <code>SIGTTIN</code>, <code>SIGTTOU</code>, and <code>SIGTSTP</code>.
+
+     <li>Bash expands and displays <samp><span class="env">PS1</span></samp> before reading the first line
+of a command, and expands and displays <samp><span class="env">PS2</span></samp> before reading the
+second and subsequent lines of a multi-line command.
+
+     <li>Bash executes the value of the <samp><span class="env">PROMPT_COMMAND</span></samp> variable as a command
+before printing the primary prompt, <samp><span class="env">$PS1</span></samp>
+(see <a href="Bash-Variables.html#Bash-Variables">Bash Variables</a>).
+
+     <li>Readline (see <a href="Command-Line-Editing.html#Command-Line-Editing">Command Line Editing</a>) is used to read commands from
+the user's terminal.
+
+     <li>Bash inspects the value of the <code>ignoreeof</code> option to <code>set -o</code>
+instead of exiting immediately when it receives an <code>EOF</code> on its
+standard input when reading a command (see <a href="The-Set-Builtin.html#The-Set-Builtin">The Set Builtin</a>).
+
+     <li>Command history (see <a href="Bash-History-Facilities.html#Bash-History-Facilities">Bash History Facilities</a>)
+and history expansion (see <a href="History-Interaction.html#History-Interaction">History Interaction</a>)
+are enabled by default. 
+Bash will save the command history to the file named by <samp><span class="env">$HISTFILE</span></samp>
+when an interactive shell exits.
+
+     <li>Alias expansion (see <a href="Aliases.html#Aliases">Aliases</a>) is performed by default.
+
+     <li>In the absence of any traps, Bash ignores <code>SIGTERM</code>
+(see <a href="Signals.html#Signals">Signals</a>).
+
+     <li>In the absence of any traps, <code>SIGINT</code> is caught and handled
+((see <a href="Signals.html#Signals">Signals</a>). 
+<code>SIGINT</code> will interrupt some shell builtins.
+
+     <li>An interactive login shell sends a <code>SIGHUP</code> to all jobs on exit
+if the <code>huponexit</code> shell option has been enabled (see <a href="Signals.html#Signals">Signals</a>).
+
+     <li>The <samp><span class="option">-n</span></samp> invocation option is ignored, and &lsquo;<samp><span class="samp">set -n</span></samp>&rsquo; has
+no effect (see <a href="The-Set-Builtin.html#The-Set-Builtin">The Set Builtin</a>).
+
+     <li>Bash will check for mail periodically, depending on the values of the
+<samp><span class="env">MAIL</span></samp>, <samp><span class="env">MAILPATH</span></samp>, and <samp><span class="env">MAILCHECK</span></samp> shell variables
+(see <a href="Bash-Variables.html#Bash-Variables">Bash Variables</a>).
+
+     <li>Expansion errors due to references to unbound shell variables after
+&lsquo;<samp><span class="samp">set -u</span></samp>&rsquo; has been enabled will not cause the shell to exit
+(see <a href="The-Set-Builtin.html#The-Set-Builtin">The Set Builtin</a>).
+
+     <li>The shell will not exit on expansion errors caused by <var>var</var> being unset
+or null in <code>${</code><var>var</var><code>:?</code><var>word</var><code>}</code> expansions
+(see <a href="Shell-Parameter-Expansion.html#Shell-Parameter-Expansion">Shell Parameter Expansion</a>).
+
+     <li>Redirection errors encountered by shell builtins will not cause the
+shell to exit.
+
+     <li>When running in <span class="sc">posix</span> mode, a special builtin returning an error
+status will not cause the shell to exit (see <a href="Bash-POSIX-Mode.html#Bash-POSIX-Mode">Bash POSIX Mode</a>).
+
+     <li>A failed <code>exec</code> will not cause the shell to exit
+(see <a href="Bourne-Shell-Builtins.html#Bourne-Shell-Builtins">Bourne Shell Builtins</a>).
+
+     <li>Parser syntax errors will not cause the shell to exit.
+
+     <li>Simple spelling correction for directory arguments to the <code>cd</code>
+builtin is enabled by default (see the description of the <code>cdspell</code>
+option to the <code>shopt</code> builtin in <a href="The-Shopt-Builtin.html#The-Shopt-Builtin">The Shopt Builtin</a>).
+
+     <li>The shell will check the value of the <samp><span class="env">TMOUT</span></samp> variable and exit
+if a command is not read within the specified number of seconds after
+printing <samp><span class="env">$PS1</span></samp> (see <a href="Bash-Variables.html#Bash-Variables">Bash Variables</a>).
+
+        </ol>
+
+   </body></html>
+

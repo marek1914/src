@@ -1,0 +1,94 @@
+<html lang="en">
+<head>
+<title>Pattern-specific - GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Using-Variables.html#Using-Variables" title="Using Variables">
+<link rel="prev" href="Target_002dspecific.html#Target_002dspecific" title="Target-specific">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This file documents the GNU `make' utility, which determines
+automatically which pieces of a large program need to be recompiled,
+and issues the commands to recompile them.
+
+This is Edition 0.70, last updated 1 April 2006,
+of `The GNU Make Manual', for GNU `make' version 3.81.
+
+Copyright (C) 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995,
+1996, 1997, 1998, 1999, 2000, 2002, 2003, 2004, 2005, 2006
+Free Software Foundation, Inc.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.2 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, with the Front-Cover Texts
+     being ``A GNU Manual,'' and with the Back-Cover Texts as in (a)
+     below.  A copy of the license is included in the section entitled
+     ``GNU Free Documentation License.''
+
+     (a) The FSF's Back-Cover Text is: ``You have freedom to copy and
+     modify this GNU Manual, like GNU software.  Copies published by
+     the Free Software Foundation raise funds for GNU development.''
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Pattern-specific"></a>
+<a name="Pattern_002dspecific"></a>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Target_002dspecific.html#Target_002dspecific">Target-specific</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Using-Variables.html#Using-Variables">Using Variables</a>
+<hr>
+</div>
+
+<h3 class="section">6.11 Pattern-specific Variable Values</h3>
+
+<p><a name="index-pattern_002dspecific-variables-524"></a><a name="index-variables_002c-pattern_002dspecific-525"></a>
+In addition to target-specific variable values
+(see <a href="Target_002dspecific.html#Target_002dspecific">Target-specific Variable Values</a>), GNU
+<code>make</code> supports pattern-specific variable values.  In this form,
+the variable is defined for any target that matches the pattern
+specified.  If a target matches more than one pattern, all the
+matching pattern-specific variables are interpreted in the order in
+which they were defined in the makefile, and collected together into
+one set.  Variables defined in this way are searched after any
+target-specific variables defined explicitly for that target, and
+before target-specific variables defined for the parent target.
+
+   <p>Set a pattern-specific variable value like this:
+
+<pre class="example">     <var>pattern</var> ... : <var>variable-assignment</var>
+</pre>
+   <p class="noindent">or like this:
+
+<pre class="example">     <var>pattern</var> ... : override <var>variable-assignment</var>
+</pre>
+   <p class="noindent">where <var>pattern</var> is a %-pattern.  As with target-specific variable
+values, multiple <var>pattern</var> values create a pattern-specific variable
+value for each pattern individually.  The <var>variable-assignment</var> can
+be any valid form of assignment.  Any command-line variable setting will
+take precedence, unless <code>override</code> is specified.
+
+   <p>For example:
+
+<pre class="example">     %.o : CFLAGS = -O
+</pre>
+   <p class="noindent">will assign <code>CFLAGS</code> the value of `<samp><span class="samp">-O</span></samp>' for all targets
+matching the pattern <code>%.o</code>.
+
+   </body></html>
+

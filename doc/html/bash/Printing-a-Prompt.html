@@ -1,0 +1,121 @@
+<html lang="en">
+<head>
+<title>Printing a Prompt - Bash Reference Manual</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Bash Reference Manual">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Bash-Features.html#Bash-Features" title="Bash Features">
+<link rel="prev" href="The-Directory-Stack.html#The-Directory-Stack" title="The Directory Stack">
+<link rel="next" href="The-Restricted-Shell.html#The-Restricted-Shell" title="The Restricted Shell">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This text is a brief description of the features that are present in
+the Bash shell (version 4.1, 23 December 2009).
+
+This is Edition 4.1, last updated 23 December 2009,
+of `The GNU Bash Reference Manual',
+for `Bash', Version 4.1.
+
+Copyright (C) 1988--2009 Free Software Foundation, Inc.
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.3 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, with the Front-Cover texts
+     being ``A GNU Manual'', and with the Back-Cover Texts as in (a)
+     below.  A copy of the license is included in the section entitled
+     ``GNU Free Documentation License''.
+
+     (a) The FSF's Back-Cover Text is: You are free to copy and modify
+     this GNU manual.  Buying copies from GNU Press supports the FSF in
+     developing GNU and promoting software freedom.''
+
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Printing-a-Prompt"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="The-Restricted-Shell.html#The-Restricted-Shell">The Restricted Shell</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="The-Directory-Stack.html#The-Directory-Stack">The Directory Stack</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Bash-Features.html#Bash-Features">Bash Features</a>
+<hr>
+</div>
+
+<h3 class="section">6.9 Controlling the Prompt</h3>
+
+<p><a name="index-prompting-257"></a>
+The value of the variable <samp><span class="env">PROMPT_COMMAND</span></samp> is examined just before
+Bash prints each primary prompt.  If <samp><span class="env">PROMPT_COMMAND</span></samp> is set and
+has a non-null value, then the
+value is executed just as if it had been typed on the command line.
+
+   <p>In addition, the following table describes the special characters which
+can appear in the prompt variables:
+
+     <dl>
+<dt><code>\a</code><dd>A bell character. 
+<br><dt><code>\d</code><dd>The date, in "Weekday Month Date" format (e.g., "Tue May 26"). 
+<br><dt><code>\D{</code><var>format</var><code>}</code><dd>The <var>format</var> is passed to <code>strftime</code>(3) and the result is inserted
+into the prompt string; an empty <var>format</var> results in a locale-specific
+time representation.  The braces are required. 
+<br><dt><code>\e</code><dd>An escape character. 
+<br><dt><code>\h</code><dd>The hostname, up to the first `.'. 
+<br><dt><code>\H</code><dd>The hostname. 
+<br><dt><code>\j</code><dd>The number of jobs currently managed by the shell. 
+<br><dt><code>\l</code><dd>The basename of the shell's terminal device name. 
+<br><dt><code>\n</code><dd>A newline. 
+<br><dt><code>\r</code><dd>A carriage return. 
+<br><dt><code>\s</code><dd>The name of the shell, the basename of <code>$0</code> (the portion
+following the final slash). 
+<br><dt><code>\t</code><dd>The time, in 24-hour HH:MM:SS format. 
+<br><dt><code>\T</code><dd>The time, in 12-hour HH:MM:SS format. 
+<br><dt><code>\@</code><dd>The time, in 12-hour am/pm format. 
+<br><dt><code>\A</code><dd>The time, in 24-hour HH:MM format. 
+<br><dt><code>\u</code><dd>The username of the current user. 
+<br><dt><code>\v</code><dd>The version of Bash (e.g., 2.00)
+<br><dt><code>\V</code><dd>The release of Bash, version + patchlevel (e.g., 2.00.0)
+<br><dt><code>\w</code><dd>The current working directory, with <samp><span class="env">$HOME</span></samp> abbreviated with a tilde
+(uses the <samp><span class="env">$PROMPT_DIRTRIM</span></samp> variable). 
+<br><dt><code>\W</code><dd>The basename of <samp><span class="env">$PWD</span></samp>, with <samp><span class="env">$HOME</span></samp> abbreviated with a tilde. 
+<br><dt><code>\!</code><dd>The history number of this command. 
+<br><dt><code>\#</code><dd>The command number of this command. 
+<br><dt><code>\$</code><dd>If the effective uid is 0, <code>#</code>, otherwise <code>$</code>. 
+<br><dt><code>\</code><var>nnn</var><dd>The character whose ASCII code is the octal value <var>nnn</var>. 
+<br><dt><code>\\</code><dd>A backslash. 
+<br><dt><code>\[</code><dd>Begin a sequence of non-printing characters.  This could be used to
+embed a terminal control sequence into the prompt. 
+<br><dt><code>\]</code><dd>End a sequence of non-printing characters. 
+</dl>
+
+   <p>The command number and the history number are usually different:
+the history number of a command is its position in the history
+list, which may include commands restored from the history file
+(see <a href="Bash-History-Facilities.html#Bash-History-Facilities">Bash History Facilities</a>), while the command number is
+the position in the sequence of commands executed during the current
+shell session.
+
+   <p>After the string is decoded, it is expanded via
+parameter expansion, command substitution, arithmetic
+expansion, and quote removal, subject to the value of the
+<code>promptvars</code> shell option (see <a href="Bash-Builtins.html#Bash-Builtins">Bash Builtins</a>).
+
+   </body></html>
+

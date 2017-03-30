@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+<title>Implicit/Search - GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Directory-Search.html#Directory-Search" title="Directory Search">
+<link rel="prev" href="Commands_002fSearch.html#Commands_002fSearch" title="Commands/Search">
+<link rel="next" href="Libraries_002fSearch.html#Libraries_002fSearch" title="Libraries/Search">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This file documents the GNU `make' utility, which determines
+automatically which pieces of a large program need to be recompiled,
+and issues the commands to recompile them.
+
+This is Edition 0.70, last updated 1 April 2006,
+of `The GNU Make Manual', for GNU `make' version 3.81.
+
+Copyright (C) 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995,
+1996, 1997, 1998, 1999, 2000, 2002, 2003, 2004, 2005, 2006
+Free Software Foundation, Inc.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.2 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, with the Front-Cover Texts
+     being ``A GNU Manual,'' and with the Back-Cover Texts as in (a)
+     below.  A copy of the license is included in the section entitled
+     ``GNU Free Documentation License.''
+
+     (a) The FSF's Back-Cover Text is: ``You have freedom to copy and
+     modify this GNU Manual, like GNU software.  Copies published by
+     the Free Software Foundation raise funds for GNU development.''
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Implicit%2fSearch"></a>
+<a name="Implicit_002fSearch"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Libraries_002fSearch.html#Libraries_002fSearch">Libraries/Search</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Commands_002fSearch.html#Commands_002fSearch">Commands/Search</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Directory-Search.html#Directory-Search">Directory Search</a>
+<hr>
+</div>
+
+<h4 class="subsection">4.5.5 Directory Search and Implicit Rules</h4>
+
+<p><a name="index-g_t_0040code_007bVPATH_007d_002c-and-implicit-rules-196"></a><a name="index-directory-search-_0028_0040code_007bVPATH_007d_0029_002c-and-implicit-rules-197"></a><a name="index-search-path-for-prerequisites-_0028_0040code_007bVPATH_007d_0029_002c-and-implicit-rules-198"></a><a name="index-implicit-rule_002c-and-directory-search-199"></a><a name="index-implicit-rule_002c-and-_0040code_007bVPATH_007d-200"></a><a name="index-rule_002c-implicit_002c-and-directory-search-201"></a><a name="index-rule_002c-implicit_002c-and-_0040code_007bVPATH_007d-202"></a>
+The search through the directories specified in <code>VPATH</code> or with
+<code>vpath</code> also happens during consideration of implicit rules
+(see <a href="Implicit-Rules.html#Implicit-Rules">Using Implicit Rules</a>).
+
+   <p>For example, when a file <samp><span class="file">foo.o</span></samp> has no explicit rule, <code>make</code>
+considers implicit rules, such as the built-in rule to compile
+<samp><span class="file">foo.c</span></samp> if that file exists.  If such a file is lacking in the
+current directory, the appropriate directories are searched for it.  If
+<samp><span class="file">foo.c</span></samp> exists (or is mentioned in the makefile) in any of the
+directories, the implicit rule for C compilation is applied.
+
+   <p>The commands of implicit rules normally use automatic variables as a
+matter of necessity; consequently they will use the file names found by
+directory search with no extra effort.
+
+   </body></html>
+

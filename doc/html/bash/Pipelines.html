@@ -1,0 +1,113 @@
+<html lang="en">
+<head>
+<title>Pipelines - Bash Reference Manual</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Bash Reference Manual">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Shell-Commands.html#Shell-Commands" title="Shell Commands">
+<link rel="prev" href="Simple-Commands.html#Simple-Commands" title="Simple Commands">
+<link rel="next" href="Lists.html#Lists" title="Lists">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This text is a brief description of the features that are present in
+the Bash shell (version 4.1, 23 December 2009).
+
+This is Edition 4.1, last updated 23 December 2009,
+of `The GNU Bash Reference Manual',
+for `Bash', Version 4.1.
+
+Copyright (C) 1988--2009 Free Software Foundation, Inc.
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.3 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, with the Front-Cover texts
+     being ``A GNU Manual'', and with the Back-Cover Texts as in (a)
+     below.  A copy of the license is included in the section entitled
+     ``GNU Free Documentation License''.
+
+     (a) The FSF's Back-Cover Text is: You are free to copy and modify
+     this GNU manual.  Buying copies from GNU Press supports the FSF in
+     developing GNU and promoting software freedom.''
+
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Pipelines"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Lists.html#Lists">Lists</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Simple-Commands.html#Simple-Commands">Simple Commands</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Shell-Commands.html#Shell-Commands">Shell Commands</a>
+<hr>
+</div>
+
+<h4 class="subsection">3.2.2 Pipelines</h4>
+
+<p><a name="index-pipeline-34"></a><a name="index-commands_002c-pipelines-35"></a>
+A <code>pipeline</code> is a sequence of simple commands separated by one of
+the control operators &lsquo;<samp><span class="samp">|</span></samp>&rsquo; or &lsquo;<samp><span class="samp">|&amp;</span></samp>&rsquo;.
+
+   <p><a name="index-time-36"></a><a name="index-g_t_0021-37"></a><a name="index-command-timing-38"></a>The format for a pipeline is
+<pre class="example">     [<code>time</code> [<code>-p</code>]] [<code>!</code>] <var>command1</var> [ [<code>|</code> or <code>|&amp;</code>] <var>command2</var> ...]
+</pre>
+   <p class="noindent">The output of each command in the pipeline is connected via a pipe
+to the input of the next command. 
+That is, each command reads the previous command's output.  This
+connection is performed before any redirections specified by the
+command.
+
+   <p>If &lsquo;<samp><span class="samp">|&amp;</span></samp>&rsquo; is used, the standard error of <var>command1</var> is connected to
+<var>command2</var>'s standard input through the pipe; it is shorthand for
+<code>2&gt;&amp;1 |</code>.  This implicit redirection of the standard error is
+performed after any redirections specified by the command.
+
+   <p>The reserved word <code>time</code> causes timing statistics
+to be printed for the pipeline once it finishes. 
+The statistics currently consist of elapsed (wall-clock) time and
+user and system time consumed by the command's execution. 
+The <samp><span class="option">-p</span></samp> option changes the output format to that specified
+by <span class="sc">posix</span>. 
+The <samp><span class="env">TIMEFORMAT</span></samp> variable may be set to a format string that
+specifies how the timing information should be displayed. 
+See <a href="Bash-Variables.html#Bash-Variables">Bash Variables</a>, for a description of the available formats. 
+The use of <code>time</code> as a reserved word permits the timing of
+shell builtins, shell functions, and pipelines.  An external
+<code>time</code> command cannot time these easily.
+
+   <p>If the pipeline is not executed asynchronously (see <a href="Lists.html#Lists">Lists</a>), the
+shell waits for all commands in the pipeline to complete.
+
+   <p>Each command in a pipeline is executed in its own subshell
+(see <a href="Command-Execution-Environment.html#Command-Execution-Environment">Command Execution Environment</a>).  The exit
+status of a pipeline is the exit status of the last command in the
+pipeline, unless the <code>pipefail</code> option is enabled
+(see <a href="The-Set-Builtin.html#The-Set-Builtin">The Set Builtin</a>). 
+If <code>pipefail</code> is enabled, the pipeline's return status is the
+value of the last (rightmost) command to exit with a non-zero status,
+or zero if all commands exit successfully. 
+If the reserved word &lsquo;<samp><span class="samp">!</span></samp>&rsquo; precedes the pipeline, the
+exit status is the logical negation of the exit status as described
+above. 
+The shell waits for all commands in the pipeline to terminate before
+returning a value.
+
+   </body></html>
+

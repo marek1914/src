@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+<title>Process Substitution - Bash Reference Manual</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Bash Reference Manual">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Shell-Expansions.html#Shell-Expansions" title="Shell Expansions">
+<link rel="prev" href="Arithmetic-Expansion.html#Arithmetic-Expansion" title="Arithmetic Expansion">
+<link rel="next" href="Word-Splitting.html#Word-Splitting" title="Word Splitting">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This text is a brief description of the features that are present in
+the Bash shell (version 4.1, 23 December 2009).
+
+This is Edition 4.1, last updated 23 December 2009,
+of `The GNU Bash Reference Manual',
+for `Bash', Version 4.1.
+
+Copyright (C) 1988--2009 Free Software Foundation, Inc.
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.3 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, with the Front-Cover texts
+     being ``A GNU Manual'', and with the Back-Cover Texts as in (a)
+     below.  A copy of the license is included in the section entitled
+     ``GNU Free Documentation License''.
+
+     (a) The FSF's Back-Cover Text is: You are free to copy and modify
+     this GNU manual.  Buying copies from GNU Press supports the FSF in
+     developing GNU and promoting software freedom.''
+
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Process-Substitution"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Word-Splitting.html#Word-Splitting">Word Splitting</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Arithmetic-Expansion.html#Arithmetic-Expansion">Arithmetic Expansion</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Shell-Expansions.html#Shell-Expansions">Shell Expansions</a>
+<hr>
+</div>
+
+<h4 class="subsection">3.5.6 Process Substitution</h4>
+
+<p><a name="index-process-substitution-90"></a>
+Process substitution is supported on systems that support named
+pipes (<span class="sc">fifo</span>s) or the <samp><span class="file">/dev/fd</span></samp> method of naming open files. 
+It takes the form of
+<pre class="example">     &lt;(<var>list</var>)
+</pre>
+   <p class="noindent">or
+<pre class="example">     &gt;(<var>list</var>)
+</pre>
+   <p class="noindent">The process <var>list</var> is run with its input or output connected to a
+<span class="sc">fifo</span> or some file in <samp><span class="file">/dev/fd</span></samp>.  The name of this file is
+passed as an argument to the current command as the result of the
+expansion.  If the <code>&gt;(</code><var>list</var><code>)</code> form is used, writing to
+the file will provide input for <var>list</var>.  If the
+<code>&lt;(</code><var>list</var><code>)</code> form is used, the file passed as an
+argument should be read to obtain the output of <var>list</var>. 
+Note that no space may appear between the <code>&lt;</code> or <code>&gt;</code>
+and the left parenthesis, otherwise the construct would be interpreted
+as a redirection.
+
+   <p>When available, process substitution is performed simultaneously with
+parameter and variable expansion, command substitution, and arithmetic
+expansion.
+
+   </body></html>
+

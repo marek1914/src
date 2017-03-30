@@ -1,0 +1,250 @@
+<html lang="en">
+<head>
+<title>Shell Parameter Expansion - Bash Reference Manual</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Bash Reference Manual">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Shell-Expansions.html#Shell-Expansions" title="Shell Expansions">
+<link rel="prev" href="Tilde-Expansion.html#Tilde-Expansion" title="Tilde Expansion">
+<link rel="next" href="Command-Substitution.html#Command-Substitution" title="Command Substitution">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This text is a brief description of the features that are present in
+the Bash shell (version 4.1, 23 December 2009).
+
+This is Edition 4.1, last updated 23 December 2009,
+of `The GNU Bash Reference Manual',
+for `Bash', Version 4.1.
+
+Copyright (C) 1988--2009 Free Software Foundation, Inc.
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.3 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, with the Front-Cover texts
+     being ``A GNU Manual'', and with the Back-Cover Texts as in (a)
+     below.  A copy of the license is included in the section entitled
+     ``GNU Free Documentation License''.
+
+     (a) The FSF's Back-Cover Text is: You are free to copy and modify
+     this GNU manual.  Buying copies from GNU Press supports the FSF in
+     developing GNU and promoting software freedom.''
+
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Shell-Parameter-Expansion"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Command-Substitution.html#Command-Substitution">Command Substitution</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Tilde-Expansion.html#Tilde-Expansion">Tilde Expansion</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Shell-Expansions.html#Shell-Expansions">Shell Expansions</a>
+<hr>
+</div>
+
+<h4 class="subsection">3.5.3 Shell Parameter Expansion</h4>
+
+<p><a name="index-parameter-expansion-85"></a><a name="index-expansion_002c-parameter-86"></a>
+The &lsquo;<samp><span class="samp">$</span></samp>&rsquo; character introduces parameter expansion,
+command substitution, or arithmetic expansion.  The parameter name
+or symbol to be expanded may be enclosed in braces, which
+are optional but serve to protect the variable to be expanded from
+characters immediately following it which could be
+interpreted as part of the name.
+
+   <p>When braces are used, the matching ending brace is the first &lsquo;<samp><span class="samp">}</span></samp>&rsquo;
+not escaped by a backslash or within a quoted string, and not within an
+embedded arithmetic expansion, command substitution, or parameter
+expansion.
+
+   <p>The basic form of parameter expansion is ${<var>parameter</var>}. 
+The value of <var>parameter</var> is substituted.  The braces are required
+when <var>parameter</var>
+is a positional parameter with more than one digit,
+or when <var>parameter</var>
+is followed by a character that is not to be
+interpreted as part of its name.
+
+   <p>If the first character of <var>parameter</var> is an exclamation point (!),
+a level of variable indirection is introduced. 
+Bash uses the value of the variable formed from the rest of
+<var>parameter</var> as the name of the variable; this variable is then
+expanded and that value is used in the rest of the substitution, rather
+than the value of <var>parameter</var> itself. 
+This is known as <code>indirect expansion</code>. 
+The exceptions to this are the expansions of ${!<var>prefix*</var>}
+and ${!<var>name</var>[@]}
+described below. 
+The exclamation point must immediately follow the left brace in order to
+introduce indirection.
+
+   <p>In each of the cases below, <var>word</var> is subject to tilde expansion,
+parameter expansion, command substitution, and arithmetic expansion.
+
+   <p>When not performing substring expansion, using the form described
+below, Bash tests for a parameter that is unset or null. 
+Omitting the colon results in a test only for a parameter that is unset. 
+Put another way, if the colon is included,
+the operator tests for both <var>parameter</var>'s existence and that its value
+is not null; if the colon is omitted, the operator tests only for existence.
+
+     <dl>
+<dt><code>${</code><var>parameter</var><code>:&minus;</code><var>word</var><code>}</code><dd>If <var>parameter</var> is unset or null, the expansion of
+<var>word</var> is substituted.  Otherwise, the value of
+<var>parameter</var> is substituted.
+
+     <br><dt><code>${</code><var>parameter</var><code>:=</code><var>word</var><code>}</code><dd>If <var>parameter</var>
+is unset or null, the expansion of <var>word</var>
+is assigned to <var>parameter</var>. 
+The value of <var>parameter</var> is then substituted. 
+Positional parameters and special parameters may not be assigned to
+in this way.
+
+     <br><dt><code>${</code><var>parameter</var><code>:?</code><var>word</var><code>}</code><dd>If <var>parameter</var>
+is null or unset, the expansion of <var>word</var> (or a message
+to that effect if <var>word</var>
+is not present) is written to the standard error and the shell, if it
+is not interactive, exits.  Otherwise, the value of <var>parameter</var> is
+substituted.
+
+     <br><dt><code>${</code><var>parameter</var><code>:+</code><var>word</var><code>}</code><dd>If <var>parameter</var>
+is null or unset, nothing is substituted, otherwise the expansion of
+<var>word</var> is substituted.
+
+     <br><dt><code>${</code><var>parameter</var><code>:</code><var>offset</var><code>}</code><dt><code>${</code><var>parameter</var><code>:</code><var>offset</var><code>:</code><var>length</var><code>}</code><dd>Expands to up to <var>length</var> characters of <var>parameter</var>
+starting at the character specified by <var>offset</var>. 
+If <var>length</var> is omitted, expands to the substring of
+<var>parameter</var> starting at the character specified by <var>offset</var>. 
+<var>length</var> and <var>offset</var> are arithmetic expressions
+(see <a href="Shell-Arithmetic.html#Shell-Arithmetic">Shell Arithmetic</a>). 
+This is referred to as Substring Expansion.
+
+     <p><var>length</var> must evaluate to a number greater than or equal to zero. 
+If <var>offset</var> evaluates to a number less than zero, the value
+is used as an offset from the end of the value of <var>parameter</var>. 
+If <var>parameter</var> is &lsquo;<samp><span class="samp">@</span></samp>&rsquo;, the result is <var>length</var> positional
+parameters beginning at <var>offset</var>. 
+If <var>parameter</var> is an indexed array name subscripted
+by &lsquo;<samp><span class="samp">@</span></samp>&rsquo; or &lsquo;<samp><span class="samp">*</span></samp>&rsquo;, the result is the <var>length</var>
+members of the array beginning with <code>${</code><var>parameter</var><code>[</code><var>offset</var><code>]}</code>. 
+A negative <var>offset</var> is taken relative to one greater than the maximum
+index of the specified array. 
+Substring expansion applied to an associative array produces undefined
+results.
+
+     <p>Note that a negative offset must be separated from the colon by at least
+one space to avoid being confused with the &lsquo;<samp><span class="samp">:-</span></samp>&rsquo; expansion. 
+Substring indexing is zero-based unless the positional parameters
+are used, in which case the indexing starts at 1 by default. 
+If <var>offset</var> is 0, and the positional parameters are used, <code>$@</code> is
+prefixed to the list.
+
+     <br><dt><code>${!</code><var>prefix</var><code>*}</code><dt><code>${!</code><var>prefix</var><code>@}</code><dd>Expands to the names of variables whose names begin with <var>prefix</var>,
+separated by the first character of the <samp><span class="env">IFS</span></samp> special variable. 
+When &lsquo;<samp><span class="samp">@</span></samp>&rsquo; is used and the expansion appears within double quotes, each
+variable name expands to a separate word.
+
+     <br><dt><code>${!</code><var>name</var><code>[@]}</code><dt><code>${!</code><var>name</var><code>[*]}</code><dd>If <var>name</var> is an array variable, expands to the list of array indices
+(keys) assigned in <var>name</var>. 
+If <var>name</var> is not an array, expands to 0 if <var>name</var> is set and null
+otherwise. 
+When &lsquo;<samp><span class="samp">@</span></samp>&rsquo; is used and the expansion appears within double quotes, each
+key expands to a separate word.
+
+     <br><dt><code>${#</code><var>parameter</var><code>}</code><dd>The length in characters of the expanded value of <var>parameter</var> is
+substituted. 
+If <var>parameter</var> is &lsquo;<samp><span class="samp">*</span></samp>&rsquo; or &lsquo;<samp><span class="samp">@</span></samp>&rsquo;, the value substituted
+is the number of positional parameters. 
+If <var>parameter</var> is an array name subscripted by &lsquo;<samp><span class="samp">*</span></samp>&rsquo; or &lsquo;<samp><span class="samp">@</span></samp>&rsquo;,
+the value substituted is the number of elements in the array.
+
+     <br><dt><code>${</code><var>parameter</var><code>#</code><var>word</var><code>}</code><dt><code>${</code><var>parameter</var><code>##</code><var>word</var><code>}</code><dd>The <var>word</var>
+is expanded to produce a pattern just as in filename
+expansion (see <a href="Filename-Expansion.html#Filename-Expansion">Filename Expansion</a>).  If the pattern matches
+the beginning of the expanded value of <var>parameter</var>,
+then the result of the expansion is the expanded value of <var>parameter</var>
+with the shortest matching pattern (the &lsquo;<samp><span class="samp">#</span></samp>&rsquo; case) or the
+longest matching pattern (the &lsquo;<samp><span class="samp">##</span></samp>&rsquo; case) deleted. 
+If <var>parameter</var> is &lsquo;<samp><span class="samp">@</span></samp>&rsquo; or &lsquo;<samp><span class="samp">*</span></samp>&rsquo;,
+the pattern removal operation is applied to each positional
+parameter in turn, and the expansion is the resultant list. 
+If <var>parameter</var> is an array variable subscripted with
+&lsquo;<samp><span class="samp">@</span></samp>&rsquo; or &lsquo;<samp><span class="samp">*</span></samp>&rsquo;,
+the pattern removal operation is applied to each member of the
+array in turn, and the expansion is the resultant list.
+
+     <br><dt><code>${</code><var>parameter</var><code>%</code><var>word</var><code>}</code><dt><code>${</code><var>parameter</var><code>%%</code><var>word</var><code>}</code><dd>The <var>word</var> is expanded to produce a pattern just as in
+filename expansion. 
+If the pattern matches a trailing portion of the expanded value of
+<var>parameter</var>, then the result of the expansion is the value of
+<var>parameter</var> with the shortest matching pattern (the &lsquo;<samp><span class="samp">%</span></samp>&rsquo; case)
+or the longest matching pattern (the &lsquo;<samp><span class="samp">%%</span></samp>&rsquo; case) deleted. 
+If <var>parameter</var> is &lsquo;<samp><span class="samp">@</span></samp>&rsquo; or &lsquo;<samp><span class="samp">*</span></samp>&rsquo;,
+the pattern removal operation is applied to each positional
+parameter in turn, and the expansion is the resultant list. 
+If <var>parameter</var>
+is an array variable subscripted with &lsquo;<samp><span class="samp">@</span></samp>&rsquo; or &lsquo;<samp><span class="samp">*</span></samp>&rsquo;,
+the pattern removal operation is applied to each member of the
+array in turn, and the expansion is the resultant list.
+
+     <br><dt><code>${</code><var>parameter</var><code>/</code><var>pattern</var><code>/</code><var>string</var><code>}</code><dd>
+The <var>pattern</var> is expanded to produce a pattern just as in
+filename expansion. 
+<var>Parameter</var> is expanded and the longest match of <var>pattern</var>
+against its value is replaced with <var>string</var>. 
+If <var>pattern</var> begins with &lsquo;<samp><span class="samp">/</span></samp>&rsquo;, all matches of <var>pattern</var> are
+replaced with <var>string</var>.  Normally only the first match is replaced. 
+If <var>pattern</var> begins with &lsquo;<samp><span class="samp">#</span></samp>&rsquo;, it must match at the beginning
+of the expanded value of <var>parameter</var>. 
+If <var>pattern</var> begins with &lsquo;<samp><span class="samp">%</span></samp>&rsquo;, it must match at the end
+of the expanded value of <var>parameter</var>. 
+If <var>string</var> is null, matches of <var>pattern</var> are deleted
+and the <code>/</code> following <var>pattern</var> may be omitted. 
+If <var>parameter</var> is &lsquo;<samp><span class="samp">@</span></samp>&rsquo; or &lsquo;<samp><span class="samp">*</span></samp>&rsquo;,
+the substitution operation is applied to each positional
+parameter in turn, and the expansion is the resultant list. 
+If <var>parameter</var>
+is an array variable subscripted with &lsquo;<samp><span class="samp">@</span></samp>&rsquo; or &lsquo;<samp><span class="samp">*</span></samp>&rsquo;,
+the substitution operation is applied to each member of the
+array in turn, and the expansion is the resultant list.
+
+     <br><dt><code>${</code><var>parameter</var><code>^</code><var>pattern</var><code>}</code><dt><code>${</code><var>parameter</var><code>^^</code><var>pattern</var><code>}</code><dt><code>${</code><var>parameter</var><code>,</code><var>pattern</var><code>}</code><dt><code>${</code><var>parameter</var><code>,,</code><var>pattern</var><code>}</code><dd>This expansion modifies the case of alphabetic characters in <var>parameter</var>. 
+The <var>pattern</var> is expanded to produce a pattern just as in
+filename expansion. 
+The &lsquo;<samp><span class="samp">^</span></samp>&rsquo; operator converts lowercase letters matching <var>pattern</var>
+to uppercase; the &lsquo;<samp><span class="samp">,</span></samp>&rsquo; operator converts matching uppercase letters
+to lowercase. 
+The &lsquo;<samp><span class="samp">^^</span></samp>&rsquo; and &lsquo;<samp><span class="samp">,,</span></samp>&rsquo; expansions convert each matched character in the
+expanded value; the &lsquo;<samp><span class="samp">^</span></samp>&rsquo; and &lsquo;<samp><span class="samp">,</span></samp>&rsquo; expansions match and convert only
+the first character in the expanded value. 
+If <var>pattern</var> is omitted, it is treated like a &lsquo;<samp><span class="samp">?</span></samp>&rsquo;, which matches
+every character. 
+If <var>parameter</var> is &lsquo;<samp><span class="samp">@</span></samp>&rsquo; or &lsquo;<samp><span class="samp">*</span></samp>&rsquo;,
+the case modification operation is applied to each positional
+parameter in turn, and the expansion is the resultant list. 
+If <var>parameter</var>
+is an array variable subscripted with &lsquo;<samp><span class="samp">@</span></samp>&rsquo; or &lsquo;<samp><span class="samp">*</span></samp>&rsquo;,
+the case modification operation is applied to each member of the
+array in turn, and the expansion is the resultant list.
+
+   </dl>
+
+   </body></html>
+
