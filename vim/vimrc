@@ -7,14 +7,15 @@ syntax on "for macos
 set cot=menuone,preview
 filetype plugin indent on
 set pvh=1
-set dict=~/Work/note/src/vim/dict
-set dict+=~/Work/note/src/vim/zh
+set dict=~/Work/src/vim/dict
+set dict+=~/Work/src/vim/zh
 
 set rtp+=~/.vim/tagbar
 set rtp+=~/.vim/ultisnips
 set rtp+=~/.vim/vim-snippets
 
 set complete+=k "c-n c-p can c-x c-k
+set complete-=i
 
 let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"

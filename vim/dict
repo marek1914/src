@@ -329,3 +329,9 @@ write_pack_data
 xx_info
 xx_reset
 quick-reference-card
+backport
+upstream
+upgrade
+downgrade
+purge
+developer

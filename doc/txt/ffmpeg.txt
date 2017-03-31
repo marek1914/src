@@ -16,7 +16,6 @@ https://trac.ffmpeg.org/wiki //用trac 维护wiki和trace
 libavformat --> AVPacket
 libavcodec  --> AVFrame
 
-apt-get安装需增加ppa
 //最简命令
 ffmpeg -i input.mp4 output.avi
 
