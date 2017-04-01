@@ -2,11 +2,8 @@
 V53R304
 
 logcat -s MediaPlayer:v BootAnimation -f /cache/log.txt
-
 logcat -f /cache/verbose-ok.txt *:v
-
 logcat -f /cache/verbose-fail.txt *:v
-
 logcat -vthreadtime *:v > /data/logcat.txt
 
 tools/.../google/android/updater-script-emmc  注释掉fastboot的更新

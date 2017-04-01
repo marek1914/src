@@ -66,12 +66,6 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-
-vim 8.0退格按键不能用
-set backspace=indent,eol,start
-'backspace' 'bs' (default "", set to "indent,eol,start" in defaults.vim)
-default.vim中设置
-
 /usr/share/vim/vim74/colors  README
 :colorscheme
 colorscheme koehler
