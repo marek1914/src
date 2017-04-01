@@ -15,7 +15,6 @@ set rtp+=~/.vim/tagbar
 set rtp+=~/.vim/ultisnips
 set rtp+=~/.vim/vim-snippets
 
-set complete+=k "c-n c-p can c-x c-k
-set complete-=i
+set complete=.,w,b,u,k
 
 nmap <F8> :Tagbar<CR>
