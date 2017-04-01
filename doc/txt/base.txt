@@ -1,3 +1,4 @@
+libncurses
 http://clang.llvm.org/docs/ClangFormat.html  //vim整合
 
 ragel doubango使用
