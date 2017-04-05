@@ -1,18 +1,19 @@
 VI之漫路即为禅修
 
-ctags -R --c-kinds=+p (默认不识别声明)
-ctags --list-kinds
+vim.base Huge version
+vim.tiny Small version
+
+vim-nor // support python
+
+gcc -fpreprocessed -dD -E foo.c 删除注释
 
 打分号的问题，没法完美解决
-brew install vim --override-system-vim
+
+brew install vim
 
 http://www.cnblogs.com/songfy/p/5635757.html
 
-1 不用Vundle，手动set rtp或轻量pathogen
-2 tagbar 比 taglist好
 3 自带netrw足够好，不用nerdtree
-4 自带 omnifunc
-
 
 foldmethod   怎么用
 foldlevelstart
@@ -48,18 +49,14 @@ AutoPairs uses Meta(Alt) key as shortcut
 
 g:AutoPairsCenterLine 保持编辑代码位置保持在中间位置
 
+
 formatoptions 默认tcq 不能自动添加 // 和 *  
-但我的vi值是 croql  (不知道谁改的)， vimrc中并未配置  (help formatoptions 貌似与compitable有关)
+但我的vi值是 croql  (不知道谁改的)，
+vimrc中并未配置  (help formatoptions 貌似与compitable有关)
 
 cscope -bkq -i cscope.files
 ctags -R
 
-snippet .
-	[${1}]
-
-snippet文件如何分多文件方便管理
-
-<leader>  代表 \ ??
 :help <leader>
 
 cindent模式
@@ -69,22 +66,14 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-g:UltiSnipsListSnippets <c-tab> // <c-tab>好像不认
-
-自编译 vim 8.0退格按键不能用
-set backspace=indent,eol,start
-'backspace' 'bs' (default "", set to "indent,eol,start" in defaults.vim)
-在 runtime目录 default.vim中设置
-
-/usr/share/vim/vim74/colors  看README
-:colorscheme 查看
-colorscheme koehler 这个颜色还可以
+/usr/share/vim/vim74/colors  README
+:colorscheme
+colorscheme koehler
 
 改不了背景色
 需要修改terminal程序的背景色
 atom背景色： #282c34
 
-C语法颜色怎么确定？
 
 set background=dark or light
 

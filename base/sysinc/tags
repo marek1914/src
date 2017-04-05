@@ -81,7 +81,6 @@ LIBUSB_BT_SS_USB_DEVICE_CAPABILITY_SIZE	libusb/libusb.h	/^#define LIBUSB_BT_SS_U
 LIBUSB_BT_USB_2_0_EXTENSION	libusb/libusb.h	/^	LIBUSB_BT_USB_2_0_EXTENSION			= 2,$/;"	e	enum:libusb_bos_type
 LIBUSB_BT_USB_2_0_EXTENSION_SIZE	libusb/libusb.h	/^#define LIBUSB_BT_USB_2_0_EXTENSION_SIZE	/;"	d
 LIBUSB_BT_WIRELESS_USB_DEVICE_CAPABILITY	libusb/libusb.h	/^	LIBUSB_BT_WIRELESS_USB_DEVICE_CAPABILITY	= 1,$/;"	e	enum:libusb_bos_type
-LIBUSB_CALL	libusb/libusb.h	/^#define LIBUSB_CALL /;"	d
 LIBUSB_CALL	libusb/libusb.h	/^#define LIBUSB_CALL$/;"	d
 LIBUSB_CAP_HAS_CAPABILITY	libusb/libusb.h	/^	LIBUSB_CAP_HAS_CAPABILITY = 0x0000,$/;"	e	enum:libusb_capability
 LIBUSB_CAP_HAS_HID_ACCESS	libusb/libusb.h	/^	LIBUSB_CAP_HAS_HID_ACCESS = 0x0100,$/;"	e	enum:libusb_capability
@@ -262,6 +261,7 @@ UINT_LEAST8_C	stdint.h	/^#  define UINT_LEAST8_C(/;"	d
 UINT_LEAST8_MAX	stdint.h	/^#  define UINT_LEAST8_MAX /;"	d
 WCHAR_MAX	stdint.h	/^#    define WCHAR_MAX /;"	d
 WCHAR_MIN	stdint.h	/^#    define WCHAR_MIN /;"	d
+WINAPI	libusb/libusb.h	/^#define WINAPI$/;"	d
 WINT_MAX	stdint.h	/^#  define WINT_MAX /;"	d
 WINT_MIN	stdint.h	/^#  define WINT_MIN /;"	d
 W_OK	unistd.h	/^#define W_OK /;"	d
@@ -640,143 +640,143 @@ lgamma_r	math.h	/^double	lgamma_r(double, int *);$/;"	p
 lgammaf	math.h	/^float	lgammaf(float);$/;"	p
 lgammaf_r	math.h	/^float	lgammaf_r(float, int *);$/;"	p
 lgammal	math.h	/^long double	lgammal(long double);$/;"	p
-libusb_alloc_transfer	libusb/libusb.h	/^struct libusb_transfer * LIBUSB_CALL libusb_alloc_transfer(int iso_packets);$/;"	p
-libusb_attach_kernel_driver	libusb/libusb.h	/^int LIBUSB_CALL libusb_attach_kernel_driver(libusb_device_handle *dev,$/;"	p
+libusb_alloc_transfer	libusb/libusb.h	/^struct libusb_transfer * libusb_alloc_transfer(int iso_packets);$/;"	p
+libusb_attach_kernel_driver	libusb/libusb.h	/^int libusb_attach_kernel_driver(libusb_device_handle *dev, int interface_number);$/;"	p
 libusb_bos_descriptor	libusb/libusb.h	/^struct libusb_bos_descriptor {$/;"	s
 libusb_bos_dev_capability_descriptor	libusb/libusb.h	/^struct libusb_bos_dev_capability_descriptor {$/;"	s
 libusb_bos_type	libusb/libusb.h	/^enum libusb_bos_type {$/;"	g
-libusb_bulk_transfer	libusb/libusb.h	/^int LIBUSB_CALL libusb_bulk_transfer(libusb_device_handle *dev_handle,$/;"	p
-libusb_cancel_transfer	libusb/libusb.h	/^int LIBUSB_CALL libusb_cancel_transfer(struct libusb_transfer *transfer);$/;"	p
+libusb_bulk_transfer	libusb/libusb.h	/^int libusb_bulk_transfer(libusb_device_handle *dev_handle,$/;"	p
+libusb_cancel_transfer	libusb/libusb.h	/^int libusb_cancel_transfer(struct libusb_transfer *transfer);$/;"	p
 libusb_capability	libusb/libusb.h	/^enum libusb_capability {$/;"	g
-libusb_claim_interface	libusb/libusb.h	/^int LIBUSB_CALL libusb_claim_interface(libusb_device_handle *dev,$/;"	p
+libusb_claim_interface	libusb/libusb.h	/^int libusb_claim_interface(libusb_device_handle *dev, int interface_number);$/;"	p
 libusb_class_code	libusb/libusb.h	/^enum libusb_class_code {$/;"	g
-libusb_clear_halt	libusb/libusb.h	/^int LIBUSB_CALL libusb_clear_halt(libusb_device_handle *dev,$/;"	p
-libusb_close	libusb/libusb.h	/^void LIBUSB_CALL libusb_close(libusb_device_handle *dev_handle);$/;"	p
+libusb_clear_halt	libusb/libusb.h	/^int libusb_clear_halt(libusb_device_handle *dev, unsigned char endpoint);$/;"	p
+libusb_close	libusb/libusb.h	/^void libusb_close(libusb_device_handle *dev_handle);$/;"	p
 libusb_config_descriptor	libusb/libusb.h	/^struct libusb_config_descriptor {$/;"	s
 libusb_container_id_descriptor	libusb/libusb.h	/^struct libusb_container_id_descriptor {$/;"	s
 libusb_context	libusb/libusb.h	/^typedef struct libusb_context libusb_context;$/;"	t	typeref:struct:libusb_context
 libusb_control_setup	libusb/libusb.h	/^struct libusb_control_setup {$/;"	s
-libusb_control_transfer	libusb/libusb.h	/^int LIBUSB_CALL libusb_control_transfer(libusb_device_handle *dev_handle,$/;"	p
+libusb_control_transfer	libusb/libusb.h	/^int libusb_control_transfer(libusb_device_handle *dev_handle,$/;"	p
 libusb_control_transfer_get_data	libusb/libusb.h	/^static inline unsigned char *libusb_control_transfer_get_data($/;"	f
 libusb_control_transfer_get_setup	libusb/libusb.h	/^static inline struct libusb_control_setup *libusb_control_transfer_get_setup($/;"	f
 libusb_cpu_to_le16	libusb/libusb.h	/^static inline uint16_t libusb_cpu_to_le16(const uint16_t x)$/;"	f
 libusb_descriptor_type	libusb/libusb.h	/^enum libusb_descriptor_type {$/;"	g
-libusb_detach_kernel_driver	libusb/libusb.h	/^int LIBUSB_CALL libusb_detach_kernel_driver(libusb_device_handle *dev,$/;"	p
+libusb_detach_kernel_driver	libusb/libusb.h	/^int libusb_detach_kernel_driver(libusb_device_handle *dev, int interface_number);$/;"	p
 libusb_device	libusb/libusb.h	/^typedef struct libusb_device libusb_device;$/;"	t	typeref:struct:libusb_device
 libusb_device_descriptor	libusb/libusb.h	/^struct libusb_device_descriptor {$/;"	s
 libusb_device_handle	libusb/libusb.h	/^typedef struct libusb_device_handle libusb_device_handle;$/;"	t	typeref:struct:libusb_device_handle
 libusb_endpoint_descriptor	libusb/libusb.h	/^struct libusb_endpoint_descriptor {$/;"	s
 libusb_endpoint_direction	libusb/libusb.h	/^enum libusb_endpoint_direction {$/;"	g
 libusb_error	libusb/libusb.h	/^enum libusb_error {$/;"	g
-libusb_error_name	libusb/libusb.h	/^const char * LIBUSB_CALL libusb_error_name(int errcode);$/;"	p
-libusb_event_handler_active	libusb/libusb.h	/^int LIBUSB_CALL libusb_event_handler_active(libusb_context *ctx);$/;"	p
-libusb_event_handling_ok	libusb/libusb.h	/^int LIBUSB_CALL libusb_event_handling_ok(libusb_context *ctx);$/;"	p
-libusb_exit	libusb/libusb.h	/^void LIBUSB_CALL libusb_exit(libusb_context *ctx);$/;"	p
+libusb_error_name	libusb/libusb.h	/^const char * libusb_error_name(int errcode);$/;"	p
+libusb_event_handler_active	libusb/libusb.h	/^int libusb_event_handler_active(libusb_context *ctx);$/;"	p
+libusb_event_handling_ok	libusb/libusb.h	/^int libusb_event_handling_ok(libusb_context *ctx);$/;"	p
+libusb_exit	libusb/libusb.h	/^void libusb_exit(libusb_context *ctx);$/;"	p
 libusb_fill_bulk_transfer	libusb/libusb.h	/^static inline void libusb_fill_bulk_transfer(struct libusb_transfer *transfer,$/;"	f
 libusb_fill_control_setup	libusb/libusb.h	/^static inline void libusb_fill_control_setup(unsigned char *buffer,$/;"	f
 libusb_fill_control_transfer	libusb/libusb.h	/^static inline void libusb_fill_control_transfer($/;"	f
 libusb_fill_interrupt_transfer	libusb/libusb.h	/^static inline void libusb_fill_interrupt_transfer($/;"	f
 libusb_fill_iso_transfer	libusb/libusb.h	/^static inline void libusb_fill_iso_transfer(struct libusb_transfer *transfer,$/;"	f
-libusb_free_bos_descriptor	libusb/libusb.h	/^void LIBUSB_CALL libusb_free_bos_descriptor(struct libusb_bos_descriptor *bos);$/;"	p
-libusb_free_config_descriptor	libusb/libusb.h	/^void LIBUSB_CALL libusb_free_config_descriptor($/;"	p
-libusb_free_container_id_descriptor	libusb/libusb.h	/^void LIBUSB_CALL libusb_free_container_id_descriptor($/;"	p
-libusb_free_device_list	libusb/libusb.h	/^void LIBUSB_CALL libusb_free_device_list(libusb_device **list,$/;"	p
-libusb_free_ss_endpoint_companion_descriptor	libusb/libusb.h	/^void LIBUSB_CALL libusb_free_ss_endpoint_companion_descriptor($/;"	p
-libusb_free_ss_usb_device_capability_descriptor	libusb/libusb.h	/^void LIBUSB_CALL libusb_free_ss_usb_device_capability_descriptor($/;"	p
-libusb_free_transfer	libusb/libusb.h	/^void LIBUSB_CALL libusb_free_transfer(struct libusb_transfer *transfer);$/;"	p
-libusb_free_usb_2_0_extension_descriptor	libusb/libusb.h	/^void LIBUSB_CALL libusb_free_usb_2_0_extension_descriptor($/;"	p
-libusb_get_active_config_descriptor	libusb/libusb.h	/^int LIBUSB_CALL libusb_get_active_config_descriptor(libusb_device *dev,$/;"	p
-libusb_get_bos_descriptor	libusb/libusb.h	/^int LIBUSB_CALL libusb_get_bos_descriptor(libusb_device_handle *handle,$/;"	p
-libusb_get_bus_number	libusb/libusb.h	/^uint8_t LIBUSB_CALL libusb_get_bus_number(libusb_device *dev);$/;"	p
-libusb_get_config_descriptor	libusb/libusb.h	/^int LIBUSB_CALL libusb_get_config_descriptor(libusb_device *dev,$/;"	p
-libusb_get_config_descriptor_by_value	libusb/libusb.h	/^int LIBUSB_CALL libusb_get_config_descriptor_by_value(libusb_device *dev,$/;"	p
-libusb_get_configuration	libusb/libusb.h	/^int LIBUSB_CALL libusb_get_configuration(libusb_device_handle *dev,$/;"	p
-libusb_get_container_id_descriptor	libusb/libusb.h	/^int LIBUSB_CALL libusb_get_container_id_descriptor(struct libusb_context *ctx,$/;"	p
+libusb_free_bos_descriptor	libusb/libusb.h	/^void libusb_free_bos_descriptor(struct libusb_bos_descriptor *bos);$/;"	p
+libusb_free_config_descriptor	libusb/libusb.h	/^void libusb_free_config_descriptor($/;"	p
+libusb_free_container_id_descriptor	libusb/libusb.h	/^void libusb_free_container_id_descriptor($/;"	p
+libusb_free_device_list	libusb/libusb.h	/^void libusb_free_device_list(libusb_device **list,$/;"	p
+libusb_free_ss_endpoint_companion_descriptor	libusb/libusb.h	/^void libusb_free_ss_endpoint_companion_descriptor($/;"	p
+libusb_free_ss_usb_device_capability_descriptor	libusb/libusb.h	/^void libusb_free_ss_usb_device_capability_descriptor($/;"	p
+libusb_free_transfer	libusb/libusb.h	/^void libusb_free_transfer(struct libusb_transfer *transfer);$/;"	p
+libusb_free_usb_2_0_extension_descriptor	libusb/libusb.h	/^void libusb_free_usb_2_0_extension_descriptor($/;"	p
+libusb_get_active_config_descriptor	libusb/libusb.h	/^int libusb_get_active_config_descriptor(libusb_device *dev,$/;"	p
+libusb_get_bos_descriptor	libusb/libusb.h	/^int libusb_get_bos_descriptor(libusb_device_handle *handle,$/;"	p
+libusb_get_bus_number	libusb/libusb.h	/^uint8_t libusb_get_bus_number(libusb_device *dev);$/;"	p
+libusb_get_config_descriptor	libusb/libusb.h	/^int libusb_get_config_descriptor(libusb_device *dev,$/;"	p
+libusb_get_config_descriptor_by_value	libusb/libusb.h	/^int libusb_get_config_descriptor_by_value(libusb_device *dev,$/;"	p
+libusb_get_configuration	libusb/libusb.h	/^int libusb_get_configuration(libusb_device_handle *dev,$/;"	p
+libusb_get_container_id_descriptor	libusb/libusb.h	/^int libusb_get_container_id_descriptor(struct libusb_context *ctx,$/;"	p
 libusb_get_descriptor	libusb/libusb.h	/^static inline int libusb_get_descriptor(libusb_device_handle *dev,$/;"	f
-libusb_get_device	libusb/libusb.h	/^libusb_device * LIBUSB_CALL libusb_get_device(libusb_device_handle *dev_handle);$/;"	p
-libusb_get_device_address	libusb/libusb.h	/^uint8_t LIBUSB_CALL libusb_get_device_address(libusb_device *dev);$/;"	p
-libusb_get_device_descriptor	libusb/libusb.h	/^int LIBUSB_CALL libusb_get_device_descriptor(libusb_device *dev,$/;"	p
-libusb_get_device_list	libusb/libusb.h	/^ssize_t LIBUSB_CALL libusb_get_device_list(libusb_context *ctx,$/;"	p
-libusb_get_device_speed	libusb/libusb.h	/^int LIBUSB_CALL libusb_get_device_speed(libusb_device *dev);$/;"	p
+libusb_get_device	libusb/libusb.h	/^libusb_device * libusb_get_device(libusb_device_handle *dev_handle);$/;"	p
+libusb_get_device_address	libusb/libusb.h	/^uint8_t libusb_get_device_address(libusb_device *dev);$/;"	p
+libusb_get_device_descriptor	libusb/libusb.h	/^int libusb_get_device_descriptor(libusb_device *dev,$/;"	p
+libusb_get_device_list	libusb/libusb.h	/^ssize_t libusb_get_device_list(libusb_context *ctx,$/;"	p
+libusb_get_device_speed	libusb/libusb.h	/^int libusb_get_device_speed(libusb_device *dev);$/;"	p
 libusb_get_iso_packet_buffer	libusb/libusb.h	/^static inline unsigned char *libusb_get_iso_packet_buffer($/;"	f
 libusb_get_iso_packet_buffer_simple	libusb/libusb.h	/^static inline unsigned char *libusb_get_iso_packet_buffer_simple($/;"	f
-libusb_get_max_iso_packet_size	libusb/libusb.h	/^int LIBUSB_CALL libusb_get_max_iso_packet_size(libusb_device *dev,$/;"	p
-libusb_get_max_packet_size	libusb/libusb.h	/^int LIBUSB_CALL libusb_get_max_packet_size(libusb_device *dev,$/;"	p
-libusb_get_next_timeout	libusb/libusb.h	/^int LIBUSB_CALL libusb_get_next_timeout(libusb_context *ctx,$/;"	p
-libusb_get_parent	libusb/libusb.h	/^libusb_device * LIBUSB_CALL libusb_get_parent(libusb_device *dev);$/;"	p
-libusb_get_pollfds	libusb/libusb.h	/^const struct libusb_pollfd ** LIBUSB_CALL libusb_get_pollfds($/;"	p
-libusb_get_port_number	libusb/libusb.h	/^uint8_t LIBUSB_CALL libusb_get_port_number(libusb_device *dev);$/;"	p
-libusb_get_port_numbers	libusb/libusb.h	/^int LIBUSB_CALL libusb_get_port_numbers(libusb_device *dev, uint8_t* port_numbers, int port_numbers_len);$/;"	p
-libusb_get_port_path	libusb/libusb.h	/^int LIBUSB_CALL libusb_get_port_path(libusb_context *ctx, libusb_device *dev, uint8_t* path, uint8_t path_length);$/;"	p
-libusb_get_ss_endpoint_companion_descriptor	libusb/libusb.h	/^int LIBUSB_CALL libusb_get_ss_endpoint_companion_descriptor($/;"	p
-libusb_get_ss_usb_device_capability_descriptor	libusb/libusb.h	/^int LIBUSB_CALL libusb_get_ss_usb_device_capability_descriptor($/;"	p
+libusb_get_max_iso_packet_size	libusb/libusb.h	/^int libusb_get_max_iso_packet_size(libusb_device *dev,$/;"	p
+libusb_get_max_packet_size	libusb/libusb.h	/^int libusb_get_max_packet_size(libusb_device *dev,$/;"	p
+libusb_get_next_timeout	libusb/libusb.h	/^int libusb_get_next_timeout(libusb_context *ctx,$/;"	p
+libusb_get_parent	libusb/libusb.h	/^libusb_device * libusb_get_parent(libusb_device *dev);$/;"	p
+libusb_get_pollfds	libusb/libusb.h	/^const struct libusb_pollfd ** libusb_get_pollfds($/;"	p
+libusb_get_port_number	libusb/libusb.h	/^uint8_t libusb_get_port_number(libusb_device *dev);$/;"	p
+libusb_get_port_numbers	libusb/libusb.h	/^int libusb_get_port_numbers(libusb_device *dev, uint8_t* port_numbers, int port_numbers_len);$/;"	p
+libusb_get_port_path	libusb/libusb.h	/^int libusb_get_port_path(libusb_context *ctx, libusb_device *dev, uint8_t* path, uint8_t path_length);$/;"	p
+libusb_get_ss_endpoint_companion_descriptor	libusb/libusb.h	/^int libusb_get_ss_endpoint_companion_descriptor($/;"	p
+libusb_get_ss_usb_device_capability_descriptor	libusb/libusb.h	/^int libusb_get_ss_usb_device_capability_descriptor($/;"	p
 libusb_get_string_descriptor	libusb/libusb.h	/^static inline int libusb_get_string_descriptor(libusb_device_handle *dev,$/;"	f
-libusb_get_string_descriptor_ascii	libusb/libusb.h	/^int LIBUSB_CALL libusb_get_string_descriptor_ascii(libusb_device_handle *dev,$/;"	p
-libusb_get_usb_2_0_extension_descriptor	libusb/libusb.h	/^int LIBUSB_CALL libusb_get_usb_2_0_extension_descriptor($/;"	p
-libusb_get_version	libusb/libusb.h	/^const struct libusb_version * LIBUSB_CALL libusb_get_version(void);$/;"	p
-libusb_handle_events	libusb/libusb.h	/^int LIBUSB_CALL libusb_handle_events(libusb_context *ctx);$/;"	p
-libusb_handle_events_completed	libusb/libusb.h	/^int LIBUSB_CALL libusb_handle_events_completed(libusb_context *ctx, int *completed);$/;"	p
-libusb_handle_events_locked	libusb/libusb.h	/^int LIBUSB_CALL libusb_handle_events_locked(libusb_context *ctx,$/;"	p
-libusb_handle_events_timeout	libusb/libusb.h	/^int LIBUSB_CALL libusb_handle_events_timeout(libusb_context *ctx,$/;"	p
-libusb_handle_events_timeout_completed	libusb/libusb.h	/^int LIBUSB_CALL libusb_handle_events_timeout_completed(libusb_context *ctx,$/;"	p
-libusb_has_capability	libusb/libusb.h	/^int LIBUSB_CALL libusb_has_capability(uint32_t capability);$/;"	p
-libusb_hotplug_callback_fn	libusb/libusb.h	/^typedef int (LIBUSB_CALL *libusb_hotplug_callback_fn)(libusb_context *ctx,$/;"	t
+libusb_get_string_descriptor_ascii	libusb/libusb.h	/^int libusb_get_string_descriptor_ascii(libusb_device_handle *dev,$/;"	p
+libusb_get_usb_2_0_extension_descriptor	libusb/libusb.h	/^int libusb_get_usb_2_0_extension_descriptor($/;"	p
+libusb_get_version	libusb/libusb.h	/^const struct libusb_version * libusb_get_version(void);$/;"	p
+libusb_handle_events	libusb/libusb.h	/^int libusb_handle_events(libusb_context *ctx);$/;"	p
+libusb_handle_events_completed	libusb/libusb.h	/^int libusb_handle_events_completed(libusb_context *ctx, int *completed);$/;"	p
+libusb_handle_events_locked	libusb/libusb.h	/^int libusb_handle_events_locked(libusb_context *ctx,$/;"	p
+libusb_handle_events_timeout	libusb/libusb.h	/^int libusb_handle_events_timeout(libusb_context *ctx,$/;"	p
+libusb_handle_events_timeout_completed	libusb/libusb.h	/^int libusb_handle_events_timeout_completed(libusb_context *ctx,$/;"	p
+libusb_has_capability	libusb/libusb.h	/^int libusb_has_capability(uint32_t capability);$/;"	p
+libusb_hotplug_callback_fn	libusb/libusb.h	/^typedef int (*libusb_hotplug_callback_fn)(libusb_context *ctx,$/;"	t
 libusb_hotplug_callback_handle	libusb/libusb.h	/^typedef int libusb_hotplug_callback_handle;$/;"	t
-libusb_hotplug_deregister_callback	libusb/libusb.h	/^void LIBUSB_CALL libusb_hotplug_deregister_callback(libusb_context *ctx,$/;"	p
+libusb_hotplug_deregister_callback	libusb/libusb.h	/^void libusb_hotplug_deregister_callback(libusb_context *ctx, libusb_hotplug_callback_handle handle);$/;"	p
 libusb_hotplug_event	libusb/libusb.h	/^} libusb_hotplug_event;$/;"	t	typeref:enum:__anon2
 libusb_hotplug_flag	libusb/libusb.h	/^} libusb_hotplug_flag;$/;"	t	typeref:enum:__anon1
-libusb_hotplug_register_callback	libusb/libusb.h	/^int LIBUSB_CALL libusb_hotplug_register_callback(libusb_context *ctx,$/;"	p
-libusb_init	libusb/libusb.h	/^int LIBUSB_CALL libusb_init(libusb_context **ctx);$/;"	p
+libusb_hotplug_register_callback	libusb/libusb.h	/^int libusb_hotplug_register_callback(libusb_context *ctx,$/;"	p
+libusb_init	libusb/libusb.h	/^int libusb_init(libusb_context **ctx);$/;"	p
 libusb_interface	libusb/libusb.h	/^struct libusb_interface {$/;"	s
 libusb_interface_descriptor	libusb/libusb.h	/^struct libusb_interface_descriptor {$/;"	s
-libusb_interrupt_transfer	libusb/libusb.h	/^int LIBUSB_CALL libusb_interrupt_transfer(libusb_device_handle *dev_handle,$/;"	p
+libusb_interrupt_transfer	libusb/libusb.h	/^int libusb_interrupt_transfer(libusb_device_handle *dev_handle,$/;"	p
 libusb_iso_packet_descriptor	libusb/libusb.h	/^struct libusb_iso_packet_descriptor {$/;"	s
 libusb_iso_sync_type	libusb/libusb.h	/^enum libusb_iso_sync_type {$/;"	g
 libusb_iso_usage_type	libusb/libusb.h	/^enum libusb_iso_usage_type {$/;"	g
-libusb_kernel_driver_active	libusb/libusb.h	/^int LIBUSB_CALL libusb_kernel_driver_active(libusb_device_handle *dev,$/;"	p
+libusb_kernel_driver_active	libusb/libusb.h	/^int libusb_kernel_driver_active(libusb_device_handle *dev, int interface_number);$/;"	p
 libusb_le16_to_cpu	libusb/libusb.h	/^#define libusb_le16_to_cpu /;"	d
-libusb_lock_event_waiters	libusb/libusb.h	/^void LIBUSB_CALL libusb_lock_event_waiters(libusb_context *ctx);$/;"	p
-libusb_lock_events	libusb/libusb.h	/^void LIBUSB_CALL libusb_lock_events(libusb_context *ctx);$/;"	p
+libusb_lock_event_waiters	libusb/libusb.h	/^void libusb_lock_event_waiters(libusb_context *ctx);$/;"	p
+libusb_lock_events	libusb/libusb.h	/^void libusb_lock_events(libusb_context *ctx);$/;"	p
 libusb_log_level	libusb/libusb.h	/^enum libusb_log_level {$/;"	g
-libusb_open	libusb/libusb.h	/^int LIBUSB_CALL libusb_open(libusb_device *dev, libusb_device_handle **handle);$/;"	p
-libusb_open_device_with_vid_pid	libusb/libusb.h	/^libusb_device_handle * LIBUSB_CALL libusb_open_device_with_vid_pid($/;"	p
+libusb_open	libusb/libusb.h	/^int libusb_open(libusb_device *dev, libusb_device_handle **handle);$/;"	p
+libusb_open_device_with_vid_pid	libusb/libusb.h	/^libusb_device_handle * libusb_open_device_with_vid_pid($/;"	p
 libusb_pollfd	libusb/libusb.h	/^struct libusb_pollfd {$/;"	s
-libusb_pollfd_added_cb	libusb/libusb.h	/^typedef void (LIBUSB_CALL *libusb_pollfd_added_cb)(int fd, short events,$/;"	t
-libusb_pollfd_removed_cb	libusb/libusb.h	/^typedef void (LIBUSB_CALL *libusb_pollfd_removed_cb)(int fd, void *user_data);$/;"	t
-libusb_pollfds_handle_timeouts	libusb/libusb.h	/^int LIBUSB_CALL libusb_pollfds_handle_timeouts(libusb_context *ctx);$/;"	p
-libusb_ref_device	libusb/libusb.h	/^libusb_device * LIBUSB_CALL libusb_ref_device(libusb_device *dev);$/;"	p
-libusb_release_interface	libusb/libusb.h	/^int LIBUSB_CALL libusb_release_interface(libusb_device_handle *dev,$/;"	p
+libusb_pollfd_added_cb	libusb/libusb.h	/^typedef void (*libusb_pollfd_added_cb)(int fd, short events,$/;"	t
+libusb_pollfd_removed_cb	libusb/libusb.h	/^typedef void (*libusb_pollfd_removed_cb)(int fd, void *user_data);$/;"	t
+libusb_pollfds_handle_timeouts	libusb/libusb.h	/^int libusb_pollfds_handle_timeouts(libusb_context *ctx);$/;"	p
+libusb_ref_device	libusb/libusb.h	/^libusb_device * libusb_ref_device(libusb_device *dev);$/;"	p
+libusb_release_interface	libusb/libusb.h	/^int libusb_release_interface(libusb_device_handle *dev, int interface_number);$/;"	p
 libusb_request_recipient	libusb/libusb.h	/^enum libusb_request_recipient {$/;"	g
 libusb_request_type	libusb/libusb.h	/^enum libusb_request_type {$/;"	g
-libusb_reset_device	libusb/libusb.h	/^int LIBUSB_CALL libusb_reset_device(libusb_device_handle *dev);$/;"	p
-libusb_set_auto_detach_kernel_driver	libusb/libusb.h	/^int LIBUSB_CALL libusb_set_auto_detach_kernel_driver($/;"	p
-libusb_set_configuration	libusb/libusb.h	/^int LIBUSB_CALL libusb_set_configuration(libusb_device_handle *dev,$/;"	p
-libusb_set_debug	libusb/libusb.h	/^void LIBUSB_CALL libusb_set_debug(libusb_context *ctx, int level);$/;"	p
-libusb_set_interface_alt_setting	libusb/libusb.h	/^int LIBUSB_CALL libusb_set_interface_alt_setting(libusb_device_handle *dev,$/;"	p
+libusb_reset_device	libusb/libusb.h	/^int libusb_reset_device(libusb_device_handle *dev);$/;"	p
+libusb_set_auto_detach_kernel_driver	libusb/libusb.h	/^int libusb_set_auto_detach_kernel_driver(libusb_device_handle *dev, int enable);$/;"	p
+libusb_set_configuration	libusb/libusb.h	/^int libusb_set_configuration(libusb_device_handle *dev, int configuration);$/;"	p
+libusb_set_debug	libusb/libusb.h	/^void libusb_set_debug(libusb_context *ctx, int level);$/;"	p
+libusb_set_interface_alt_setting	libusb/libusb.h	/^int libusb_set_interface_alt_setting(libusb_device_handle *dev, int interface_number, int alternate_setting);$/;"	p
 libusb_set_iso_packet_lengths	libusb/libusb.h	/^static inline void libusb_set_iso_packet_lengths($/;"	f
-libusb_set_pollfd_notifiers	libusb/libusb.h	/^void LIBUSB_CALL libusb_set_pollfd_notifiers(libusb_context *ctx,$/;"	p
-libusb_setlocale	libusb/libusb.h	/^int LIBUSB_CALL libusb_setlocale(const char *locale);$/;"	p
+libusb_set_pollfd_notifiers	libusb/libusb.h	/^void libusb_set_pollfd_notifiers(libusb_context *ctx,$/;"	p
+libusb_setlocale	libusb/libusb.h	/^int libusb_setlocale(const char *locale);$/;"	p
 libusb_speed	libusb/libusb.h	/^enum libusb_speed {$/;"	g
 libusb_ss_endpoint_companion_descriptor	libusb/libusb.h	/^struct libusb_ss_endpoint_companion_descriptor {$/;"	s
 libusb_ss_usb_device_capability_attributes	libusb/libusb.h	/^enum libusb_ss_usb_device_capability_attributes {$/;"	g
 libusb_ss_usb_device_capability_descriptor	libusb/libusb.h	/^struct libusb_ss_usb_device_capability_descriptor {$/;"	s
 libusb_standard_request	libusb/libusb.h	/^enum libusb_standard_request {$/;"	g
-libusb_strerror	libusb/libusb.h	/^const char * LIBUSB_CALL libusb_strerror(enum libusb_error errcode);$/;"	p
-libusb_submit_transfer	libusb/libusb.h	/^int LIBUSB_CALL libusb_submit_transfer(struct libusb_transfer *transfer);$/;"	p
+libusb_strerror	libusb/libusb.h	/^const char * libusb_strerror(enum libusb_error errcode);$/;"	p
+libusb_submit_transfer	libusb/libusb.h	/^int libusb_submit_transfer(struct libusb_transfer *transfer);$/;"	p
 libusb_supported_speed	libusb/libusb.h	/^enum libusb_supported_speed {$/;"	g
 libusb_transfer	libusb/libusb.h	/^struct libusb_transfer {$/;"	s
-libusb_transfer_cb_fn	libusb/libusb.h	/^typedef void (LIBUSB_CALL *libusb_transfer_cb_fn)(struct libusb_transfer *transfer);$/;"	t
+libusb_transfer_cb_fn	libusb/libusb.h	/^typedef void (*libusb_transfer_cb_fn)(struct libusb_transfer *transfer);$/;"	t
 libusb_transfer_flags	libusb/libusb.h	/^enum libusb_transfer_flags {$/;"	g
 libusb_transfer_status	libusb/libusb.h	/^enum libusb_transfer_status {$/;"	g
 libusb_transfer_type	libusb/libusb.h	/^enum libusb_transfer_type {$/;"	g
-libusb_try_lock_events	libusb/libusb.h	/^int LIBUSB_CALL libusb_try_lock_events(libusb_context *ctx);$/;"	p
-libusb_unlock_event_waiters	libusb/libusb.h	/^void LIBUSB_CALL libusb_unlock_event_waiters(libusb_context *ctx);$/;"	p
-libusb_unlock_events	libusb/libusb.h	/^void LIBUSB_CALL libusb_unlock_events(libusb_context *ctx);$/;"	p
-libusb_unref_device	libusb/libusb.h	/^void LIBUSB_CALL libusb_unref_device(libusb_device *dev);$/;"	p
+libusb_try_lock_events	libusb/libusb.h	/^int libusb_try_lock_events(libusb_context *ctx);$/;"	p
+libusb_unlock_event_waiters	libusb/libusb.h	/^void libusb_unlock_event_waiters(libusb_context *ctx);$/;"	p
+libusb_unlock_events	libusb/libusb.h	/^void libusb_unlock_events(libusb_context *ctx);$/;"	p
+libusb_unref_device	libusb/libusb.h	/^void libusb_unref_device(libusb_device *dev);$/;"	p
 libusb_usb_2_0_extension_attributes	libusb/libusb.h	/^enum libusb_usb_2_0_extension_attributes {$/;"	g
 libusb_usb_2_0_extension_descriptor	libusb/libusb.h	/^struct libusb_usb_2_0_extension_descriptor {$/;"	s
 libusb_version	libusb/libusb.h	/^struct libusb_version {$/;"	s
-libusb_wait_for_event	libusb/libusb.h	/^int LIBUSB_CALL libusb_wait_for_event(libusb_context *ctx, struct timeval *tv);$/;"	p
+libusb_wait_for_event	libusb/libusb.h	/^int libusb_wait_for_event(libusb_context *ctx, struct timeval *tv);$/;"	p
 link	unistd.h	/^int link(const char *, const char *);$/;"	p
 list_add	list.h	/^static inline void list_add(struct list_head *new, struct list_head *head)$/;"	f
 list_add_tail	list.h	/^static inline void list_add_tail(struct list_head *new, struct list_head *head)$/;"	f

@@ -330,3 +330,11 @@ xx_info
 xx_reset
 quick-reference-card
 fileio.c
+backport
+upstream
+upgrade
+downgrade
+purge
+developer
+try_again
+retry

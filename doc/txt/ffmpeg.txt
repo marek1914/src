@@ -16,7 +16,6 @@ https://trac.ffmpeg.org/wiki //用trac 维护wiki和trace
 libavformat --> AVPacket
 libavcodec  --> AVFrame
 
-apt-get安装需增加ppa
 //最简命令
 ffmpeg -i input.mp4 output.avi
 
@@ -896,19 +895,6 @@ ffplay.c 中注册的回调函数会周期性进入，播放http://ip/why.mp4调
 #9  ff_read_packet
 #10 read_frame_internal
 #11 av_read_frame
-
-本地文件：
-#0  decode_interrupt_cb
-#1  ff_check_interrupt
-#2  retry_transfer_wrapper
-#3  ffurl_read
-#4  avio_read
-#5  append_packet_chunked
-#6  av_get_packet
-#7  mov_read_packet
-#8  ff_read_packet
-#9  read_frame_internal
-#10 av_read_frame
 
 检查ff_check_interrupt的地方有：
 1 retry_transfer_wrapper

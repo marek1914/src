@@ -1,4 +1,5 @@
 set nocp
+set bs=2 "for vim8
 set ts=4
 set sw=4
 set nu
@@ -7,17 +8,13 @@ syntax on "for macos
 set cot=menuone,preview
 filetype plugin indent on
 set pvh=1
-set dict=~/Work/note/src/vim/dict
-set dict+=~/Work/note/src/vim/zh
+set dict=~/Work/src/vim/dict
+set dict+=~/Work/src/vim/zh
 
 set rtp+=~/.vim/tagbar
 set rtp+=~/.vim/ultisnips
 set rtp+=~/.vim/vim-snippets
 
-set complete+=k "c-n c-p can c-x c-k
-
-let g:UltiSnipsListSnippets="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
+set complete=.,w,b,u,k
+set tags+=~/Work/src/base/sysinc/tags
 nmap <F8> :Tagbar<CR>

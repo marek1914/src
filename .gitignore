@@ -1,0 +1,6 @@
+a.out
+sandbox
+.*
+cscope.out
+*.a
+*.o
