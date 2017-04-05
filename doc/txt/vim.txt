@@ -6,10 +6,10 @@ vim.tiny Small version
 vim-nor // support python
 
 gcc -fpreprocessed -dD -E foo.c 删除注释
-ctags -R --c-kinds=+p (识别声明)
-ctags --list-kinds
 
 打分号的问题，没法完美解决
+
+brew install vim
 
 http://www.cnblogs.com/songfy/p/5635757.html
 

@@ -78,6 +78,13 @@ c->low+= ((*c->bytestream++)<<2) + 2;
 t = (short)(p->start_time >>24); (short)高于>>
 ***************************************/
 
+/*
+Usual arithmetic conversions
+Integer conversion rank
+Integer promotions
+*/
+
+
 /****
 24个 c99 标准库头文件，C++ 对应cassert，ccomplex等
 C:   /usr/include/
