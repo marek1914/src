@@ -17,4 +17,7 @@ set rtp+=~/.vim/vim-snippets
 
 set complete=.,w,b,u,k
 
+let g:netrw_banner=0
+"let g:netrw_browse_split=1
+"let g:netrw_liststyle=3
 nmap <F8> :Tagbar<CR>

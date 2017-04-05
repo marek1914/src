@@ -74,26 +74,5 @@ colorscheme koehler
 需要修改terminal程序的背景色
 atom背景色： #282c34
 
-
 set background=dark or light
-
-
-let g:UltiSnipsListSnippets="<c-l>"
-
---------------
-ycm(臃肿 放弃):
-.ycm_extra_conf.py :'/usr/include'
-关键：clang要在PATH中
-trigger默认Ctrl+Space
-g:ycm_semantic_triggers
-g:ycm_key_invoke_completion
-g:ycm_key_list_select_completion = ['<down>']
-g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
-g:ycm_confirm_extra_conf = 0
-g:ycm_enable_diagnostic_highlighting = 0
-g:ycm_show_diagnostics_ui = 0
-g:ycm_key_list_select_completion
-g:ycm_key_list_previous_completion 
-g:ycm_autoclose_preview_window_after_insertion = 1  提示窗口自动关闭
-g:ycm_show_diagnostics_ui = 0 关闭语法提示
 
