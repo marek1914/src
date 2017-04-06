@@ -1,7 +1,5 @@
 #!/usr/bin/env python
-
-ipython
-Pip: python-pip 管理python包
+pip 工具
 
 打印： python3.0必须括号
 print 'Hello %s\n' % __name__
@@ -17,8 +15,6 @@ class     exec      in        raise
 continue  finally   is        return
 def       for       lambda    try
 
-scipy
-matplotlib
 
 https://docs.python.org/2/reference/index.html
 
@@ -35,34 +31,7 @@ array是build-in 模块，源码中只看到arraymodule.c，并没有array.py
 tuple和list原生支持，array是库支持：
 The Python Standard Librayr->Data Types
 
-generator:
-A function which returns an iterator
-It looks like a normal function except that it contains yield statements for 
-producing a series of values usable in a for-loop or that can be retrieved 
-one at a time with the next() function
-
-generator expression:
-An expression that returns an iterator. It looks like a normal expression 
-followed by a for expression defining a loop variable, range, and an optional 
-if expression. The combined expression generates values for an enclosing function:
-
-generator function:
-
-def integers():
-    int n = 0
-    while True:
-        yield n
-        n += 1
-
-The important thing in this example is the yield n statement. 
-The function will return the value, and the next time it is called, it will continue from that point.
-
-there is a lot of boilerplate
-the logic has to be expressed in a somewhat convoluted way 
-
-
-help(sum)  //查看sum的帮助
-pip 工具
+help(sum)
 
 if __name__ == '__main__':
 
@@ -79,10 +48,9 @@ Lib/zipfile.py
 def main(args = None):
 
 
-类中方法，第一个参数必需为self（名字随意）
+类方法，第一个参数必需为self（名字随意）
 
 tempfile  标准库
-
 
 同一张jpg，用ubuntu Image Viewer另存为bmp和winxp画图板另存为bmp，色调不一样
 用matplotlib  array(Image.open('1.jpg')) 解的与winxp一致
@@ -90,9 +58,7 @@ tempfile  标准库
 cython 将pyx编译为.c，再将.c 编译为.so 文件
 用于编写python的扩展模块，比如numpy就用到了
 
-pylab
-
-cv2.circle()  //怎样快速查看函数定义
+cv2.circle()
 
 print "%s" % points
 只打印一部分：
@@ -121,10 +87,6 @@ python -m pdb xx.py 64.jpg  //与gdb不同，可以在这里直接加参数
 
 easy_install pip //Mac
 
-
-
-
-
 from PIL import Image
 from pylab import *
 
@@ -137,9 +99,6 @@ figure()
 #hist(im.flatten(),128)
 show()
 
-
-####
-#!/usr/bin/env python
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -226,9 +185,6 @@ print h,w
 
 cv2.imwrite('result.png',im)
 
-
-
-
 #!/usr/bin/python
 
 print "Hello World \n" *4
@@ -242,5 +198,4 @@ else:
 	print 'The loop is over'
 
 print range(0, 100, 2)
-
 
