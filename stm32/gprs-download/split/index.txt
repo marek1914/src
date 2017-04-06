@@ -1,7 +1,0 @@
-crc:90
-count:33
-
-c8 b5 d0 60 e0 fd 7f 1a 8e 7e 6a 53 1e 32 78 10 
-ef 6d bb ad 2a 19 e8 d4 06 ea c3 53 bb a8 17 64 
-e6 38 e0 89 cc c6 aa 21 35 87 bf 90 ae 34 fa cb 
-4c c5 57 

@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-
-#!/usr/bin/env python
-
 ipython
 Pip: python-pip 管理python包
 
@@ -19,8 +16,6 @@ break     except    import    print
 class     exec      in        raise
 continue  finally   is        return
 def       for       lambda    try
-
-<byte of python>
 
 scipy
 matplotlib
