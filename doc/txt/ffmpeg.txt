@@ -1594,8 +1594,7 @@ Failed to open file 'xxxlist.m3u8' or configure filtergraph ，没分析出音�
 
 why.mp4  aac (LC)
 
-rtmp的时候，name是flv而不是rtmp
-strcmp(is->ic->iformat->name, "flv")
+rtmp时，name是flv
 
 -----------
 参数来源2处：OptionDef/AVOption

@@ -473,20 +473,10 @@ strstr(s, "ll");
 strchr(s, 'l'); //等价 strstr(s, "l");
 strrchr(s, 'l')
 
-if(strcmp("true", s) == 0)
-if(!strcmp("true", s))
-
 char* s = "+HTTPACTION: 0, 200, 418, 4096\r\n"
 len = atoi(s+=20);
 s = strchr(s,',')+1;
 len1 = atoi(s);
-
-// 错误写法
-// ugly
-char ipcmd[51] = {"AT+CIPSTART=\"TCP\","};
-char gprscard[27] = {"\"101.201.051.006\",10080,2\r\n"};
-memcpy((ipcmd + 18), gprscard, 27);
-
 
 char buf[]=
 "\r\n"
@@ -1217,10 +1207,6 @@ if (token) {
 
 // glibc
 fprintf 到 stderr 有何目的，android很多程序这么写
-
-
-
-
 
 char *strsep(char **stringp, const char *delim);   应该是string separate  delimiter:分隔符
 

@@ -1,5 +1,4 @@
 abandon
-resolution
 above
 according_to
 add_element
@@ -21,6 +20,7 @@ availability
 available
 avcodec_default_get_buffer2
 av_log
+backport
 balance
 baudrate
 beforeThis
@@ -80,10 +80,12 @@ deprecation
 dessert
 destroy
 detector
+developer
 diode
 disconnect
 dispatchMessage
 distros
+downgrade
 drawback
 dropins
 duration
@@ -106,6 +108,7 @@ extras
 family
 fb_mem
 features
+fileio.c
 final
 find_first_zero_bit
 first_call/*if(first_call)*/
@@ -225,7 +228,9 @@ private
 proof
 property_set
 protection
+purge
 quantization
+quick-reference-card
 ready_to_run
 readyToRun
 recursive
@@ -241,11 +246,12 @@ reply_id
 request
 reserved
 reset
+resolution
 resource
 result
 retries
 retry
-retry
+RETRY_COUNT
 retrying
 retval
 ring_buffer
@@ -307,11 +313,12 @@ unauthenticated
 unlikely
 unlock
 update
+upgrade
+upstream
 using
 utils
 v4l-utils
 value
-verbose
 verbose
 verify_bundle
 versatile
@@ -328,13 +335,4 @@ write_or_die
 write_pack_data
 xx_info
 xx_reset
-quick-reference-card
-fileio.c
-backport
-upstream
-upgrade
-downgrade
-purge
-developer
-retry
-RETRY_COUNT
+foreach
