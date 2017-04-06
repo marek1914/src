@@ -393,4 +393,5 @@ in-band signaling is the sending of metadata and control information within the 
 Linux's built-in USB sniffer, usbmon
 Out-of-band (OOB) data: in computer networking, a separate stream of data from the main data stream
 
-
+json(JavaScript Object Notation) lightweight data-interchange format
+Node.js is a V8 engine. event-driven, non-blocking I/O model

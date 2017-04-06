@@ -300,4 +300,11 @@ snippet arraysize
 ${0}
 endsnippet
 
+snippet strtok
+for (i = 0; i < count; i++, p = NULL) {
+	s_crc = strtok(p, "\n ");
+	slice_crc[i] = strtol(s_crc, NULL, 16);
+}
+endsnippet
+
 # vim:ft=snippets:

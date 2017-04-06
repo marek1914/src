@@ -86,7 +86,7 @@ Integer promotions
 
 
 /****
-24个 c99 标准库头文件，C++ 对应cassert，ccomplex等
+24个 c99 标准库头文件，C++ 对应cassert等
 C:   /usr/include/
 C++: /usr/include/c++
 <assert.h>		<complex.h>		<ctype.h>		<errno.h>
@@ -96,13 +96,6 @@ C++: /usr/include/c++
 <stdint.h>		<stdio.h>		<stdlib.h>		<string.h>
 <tgmath.h>		<time.h>		<wchar.h>		<wctype.h>
 *****/
-
-/*****
-++i i++
-for (i=0; i<10; ++i) 等价于  for (i=0; i<10; ++i) 
-i++; 等价于 ++i;
-
-******/
 
 /*****
 example:0x11223344

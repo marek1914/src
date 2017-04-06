@@ -685,4 +685,4 @@ modprobe usbmon
 /dev/urandom
 
 lsof
-
+/lib/modules/`uname -r`/build

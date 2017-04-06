@@ -1,4 +1,3 @@
-《Managing Projects with GNU make, 3rd Edition》
 变量后的空格会保留
 
 Pattern Rules

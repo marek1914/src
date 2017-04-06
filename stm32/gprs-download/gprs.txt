@@ -1,3 +1,5 @@
+18511695538
+
 ssh root@123.56.196.100
 Dearho1603*
 /usr/local/tomcat/webapps/device/updateFile
@@ -29,19 +31,14 @@ UART3_Print(aRxBuffer);
 
 模块的AT指令是带会显功能的，输入A就立即返回A，输入T就立即返回T 输入任何字母，返回任何字母
 
-缓存 8144 字节
-Http头 222字节（可能会变化）
-7.5k 生于 剩余464字节给http头使用
 
 Uart1 用pc串口的话，需要设置
     GPIO_InitStruct.Pin = GPIO_PIN_9;
     //GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-		GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 否则无法发送，能接收
-
-\r\nOK\r\n
 
 
 有时候返回
@@ -50,3 +47,9 @@ Uart1 用pc串口的话，需要设置
 
 Uart1 输出同时接着串口，有问题，导致程序收不到数据
 
+	HAL_UART_Receive(&uart1, tmp, 2, 30000);
+//不能在这里加打印，会影响后面的接收	//printf("#### %hhd %hhd \r\n", tmp[0], tmp[1]);	if (tmp[0] != '\r' || tmp[1] != '\n')		return 0;
+
+
+
+crc:90count:33c8 b5 d0 60 e0 fd 7f 1a 8e 7e 6a 53 1e 32 78 10 ef 6d bb ad 2a 19 e8 d4 06 ea c3 53 bb a8 17 64 e6 38 e0 89 cc c6 aa 21 35 87 bf 90 ae 34 fa cb 4c c5 57 
