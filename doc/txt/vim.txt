@@ -1,3 +1,4 @@
+vim: tw=80
 VI之漫路即为禅修
 
 vim.base Huge version

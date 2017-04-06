@@ -481,7 +481,7 @@ ARCH=arm make   #make里能检测到， 相当于3，跟例2不同
 
 
 tr '[A-Z]' '[a-z]'
-tr ' ' '\n' < source-list | sort -u > source-list-uniq
+tr ' ' '\n' < list | sort -u > list-uniq
 
 ip route add 172.16.0.0/24 dev eth0
 

@@ -168,6 +168,7 @@ low_ram
 major
 manager
 mask
+match
 max_current
 maxNum
 max_sectors
@@ -253,7 +254,7 @@ retries
 retry
 RETRY_COUNT
 retrying
-retval
+ret
 ring_buffer
 rough
 rtable
@@ -336,3 +337,4 @@ write_pack_data
 xx_info
 xx_reset
 foreach
+similar
