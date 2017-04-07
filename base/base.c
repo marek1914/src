@@ -9,29 +9,12 @@
 // FIXME: TODO: XXX:
 // Uncomment the following line  注意这种方法
 
-/*****************************
-Postfix Increment Operator 不影响表达式的值，不参与表达式运算
-*s++; //*(s++);
-*++s;
-++*s;
-(*s)++;
-
-a=2+i++;
-
-i++;// equivalent to ++i
-
-
-C99 P67 
-i = ++i + 1; a[i++] = i; //the behavior is undefined
-i+++i; i+i++;
-
-
+/*
 //24bit数左移2bit +2 
 c->low = (*c->bytestream++)<<18;
 c->low+= (*c->bytestream++)<<10;
 c->low+= ((*c->bytestream++)<<2) + 2;
-
-***************************************/
+*/
 
 /*
 Usual arithmetic conversions

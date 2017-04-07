@@ -16,6 +16,7 @@ set rtp+=~/.vim/ultisnips
 set rtp+=~/.vim/vim-snippets
 
 set complete=.,w,b,u,k
+"set fdm=syntax
 
 let g:netrw_banner=0
 "let g:netrw_browse_split=1
