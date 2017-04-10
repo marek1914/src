@@ -61,6 +61,7 @@ Photon 光子
 endianness 字节存储序
 zigzag Z字形的
 admittance 导纳
+harmonic [hɑˈmɑ:nɪk] 
 
 ANSI: American National Standards Institute
 SPI: Serial Peripheral Interface
