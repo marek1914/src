@@ -1,0 +1,89 @@
+libtool
+autoconf 变configure.ac 为 configure
+libtoolize  ???
+aclocal
+autoheader
+autoreconf
+
+lo: a libtool object file
+la: a libtool library file，记录同名动态库和静态库的相关信息 
+
+configure是个shell脚本
+那么 ./configure 
+工具是perl或shell脚本
+automake    由Makefile.am生成Makefile.in
+autoconf    产生configuration
+autoreconf  Update generated configuration files，相当于先后调用其他各脚本程序
+autoscan    perl 生成 configure.scan，修改并重命名.ac(.in是旧格式)
+aclocal     扫描 configure.ac 或 configure.in 生成aclocal.m4
+
+AM_ :automake
+AC_ .ac :autoconf
+
+1 运行autoscan生成 configure.scan :
+
+AC_CONFIG_SRCDIR 靠
+print $file "AC_CONFIG_SRCDIR([$cfiles[0]])\n"; 打印，修改为@cfiles 打印全部，顺序与ls -U一致
+push @cfiles, $File::Find::name;
+
+AM_INIT_AUTOMAKE 添加这个引入automake，不用加任何参数
+AC_OUTPUT 改为 AC_OUTPUT(Makefile) //参数与提供的*.am一致，一般写Makefile
+如果autoscan之前已建立Makefile.am，会生成：
+AC_CONFIG_FILES([Makefile])，这样AC_OUTPUT就不用修改了
+AM_MAINTAINER_MODE ：让configure提供--enable-maintainer-mode选项，默认关闭。maintainer模式使得修改makefile.am(如增加.c)，make会触发重新配置，更新makefile。
+故：加了这个模式，删除makefile.am，仍然可以make，否则不行。
+
+AM_SILENT_RULES([yes])
+默认--enable-silent-rules 隐藏编译参数详情，若要显示可：--disable-silent-rules 或 "make V=1".
+
+2 autoreconf -i
+-i  copy missing auxiliary files 用于拷贝
+compile install-sh missing 3个脚本，否则提示找不到这3个文件
+
+不用autoreconf而用autoconf，不认AM_INIT_AUTOMAKE 在configure里面 这个宏没有展开：ac_config_headers="$ac_config_headers config.h"
+
+AM_INIT_AUTOMAKE   #看这里，原文存在
+# Checks for programs.
+ac_ext=c
+ac_cpp='$CPP $CPPFLAGS'
+
+并提示：
+configure.ac:8: error: possibly undefined macro: AM_INIT_AUTOMAKE
+解决：aclocal 生成aclocal.m4 再执行autoconf
+
+宏AC_DEFUN autoconf：
+AC_DEFUN (name, [body ])
+[Macro]
+Autoconf macros are defined using the AC_DEFUN macro, which is similar to the M4 builtin m4_define macro; this creates a macro named name and with body as its expansion. In addition to defining a macro, AC_DEFUN adds to it some code that is used to constrain the order in which macros are called, while avoiding redundant output 
+
+6.4.1 Public Macros
+	If your configure.ac has:
+	AC_INIT([src/foo.c])
+	AM_INIT_AUTOMAKE([mumble], [1.5])
+
+	you should modernize it as follows:
+
+	AC_INIT([mumble], [1.5])
+	AC_CONFIG_SRCDIR([src/foo.c])
+	AM_INIT_AUTOMAKE
+
+m4 宏处理语言，类似于C预处理器，但更强大通用，用于但不只：
+GNU Autoconf: 产生兼容不同类Unix平台的 “configure” 脚本
+
+输入：
+m4 
+define(AUTHOR, William Shakespeare)   // 这是最基本形式
+AUTHOR 
+输出：
+William Shakespeare
+
+m4_define()  直接用的话，m4程序不解析，可能需要添加头文件
+Makefile.am  （被gedit识别为Automake类型文件）输入：
+bin_PROGRAMS=demoabc             (2处demoabc 名字要相同)
+demoabc_SOURCES= test.c gao.c
+
+运行 autoreconf后 automake把.am 转换成.in， ./configure 把.in 转换为 Makefile 
+由makefile.in 转换为 makefile 就是把前者 @xx@ 包含的内容展开，如@CC@ 展开为gcc  @CFLAGS@ 展开为 -g -O2
+
+PROGRAMS / SOURCES是关键词
+

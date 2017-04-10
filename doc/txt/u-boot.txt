@@ -428,8 +428,7 @@ spi flash 操作：
 2012.04版本
 %_config::      unconfig
         @$(MKCONFIG) -A $(@:_config=)
-这里是源码的笔误，
-根本没用到双冒号的含义，ZNQP那本书还特意说明，作者根本没有理解，那本书只能算笔记不能算著作
+这里是源码的笔误，没用到双冒号的含义
 
 linaro gcc4.7 编译s805 uboot fail：
 In function `__aeabi_ldiv0':

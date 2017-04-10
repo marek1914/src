@@ -2,7 +2,7 @@
 # Shebang(#!) line
 #有些命令是shell/perl脚本
 # rc :run command
-ctrl+d #terminal
+# ctrl+d #terminal
 
 more	less	clear	reset	fdisk	wc	basename
 lsblk	lsusb	lspci	lscpu
@@ -79,7 +79,6 @@ time dd if=/mnt/sda/sda3/4Gb.file of=/dev/null bs=4096
 # single quotes(3.1.2.2)不展开变量，双引号扩展，如 echo '$PATH' #输出$PATH
 # Double Quotes(3.1.2.3)不展开，除 ‘$’, ‘`’, ‘\’, ‘!’ (还有别的吗？)
 # 预定义变量 PATH, PWD
-# $@ / $* 引用全部参数
 # foo.sh V=1 B # ${1} = V=1  ${2} = B
 # make V=1 B   #定义变量V=1，编译目标B
 # 函数内部$1接收函数参数，函数外部$1接收命令行参数（.sh文件可理解为最外层函数）
