@@ -1,4 +1,4 @@
-// 消除基础不安情绪(高级不安情绪在设计层面)
+// 消除不安情绪
 // C99: ISO/IEC 9899:1999
 // C11: ISO/IEC 9899:2011
 // POSIX.1-2001(IEEE Std 1003.1,2001)
@@ -6,96 +6,21 @@
 // GNUC
 // _t :typedef
 // clang/llvm
+// FIXME: TODO: XXX:
 // Uncomment the following line  注意这种方法
 
-/*****************************
-Reserved words
-C89(32):
-auto        enum        unsigned	volatile
-break       extern      return      while
-case        float       short       
-char        for         signed      
-const       goto        sizeof      
-continue    if          static      
-default		struct     	switch
-do          int         typedef
-double      long        union
-else        register    void
-
-C99(+5):
-_Bool _Complex  _Imaginary inline restrict
-
-C11(+7):
-_Alignas _Alignof _Atomic _Generic _Noreturn _Static_assert 
-
-classification:
-arithmetic: +, -, *, /, %
-assignment: = += -= etc.
-bitwise logic: ~, &, |, ^
-bitwise shifts: <<, >>
-boolean logic: !, &&, ||
-conditional evaluation: ? :
-equality testing: ==, !=
-increment and decrement: ++, --
-order relations: <, <=, >, >=
-
-
-
-Operator precedence				Associativity
------------------------------------------------
-() [] -> .
-! ~ ++ -- - (type) * & sizeof	right to left
-* / %
-+ -
-<< >>
-< <= > >=
-== !=
-&
-^
-|
-&&
-||
-?:								right to left
-= += -= etc.					right to left
-,
-
-comma operator[wikipedia]
-
-p->a[]
-(a == b || c == d)
-c = *s++; //等价于*(s++)，后++
-c = *++s; //先++
-i++; //没人用表达式的值时等价于 ++i;
-//与人用表达式值时不等价
-printf("%d", i++);  // -> i
-printf("%d", ++i);  // -> i+1
-
+/*
 //24bit数左移2bit +2 
 c->low = (*c->bytestream++)<<18;
 c->low+= (*c->bytestream++)<<10;
 c->low+= ((*c->bytestream++)<<2) + 2;
+*/
 
-t = (short)(p->start_time >>24); (short)高于>>
-***************************************/
-
-/****
-24个 c99 标准库头文件，C++ 对应cassert，ccomplex等
-C:   /usr/include/
-C++: /usr/include/c++
-<assert.h>		<complex.h>		<ctype.h>		<errno.h>
-<fenv.h>		<float.h>		<inttypes.h>	<iso646.h>
-<limits.h>		<locale.h>		<math.h>		<setjmp.h>
-<signal.h>		<stdarg.h>		<stdbool.h>		<stddef.h>
-<stdint.h>		<stdio.h>		<stdlib.h>		<string.h>
-<tgmath.h>		<time.h>		<wchar.h>		<wctype.h>
-*****/
-
-/*****
-++i i++
-for (i=0; i<10; ++i) 等价于  for (i=0; i<10; ++i) 
-i++; 等价于 ++i;
-
-******/
+/*
+Usual arithmetic conversions
+Integer conversion rank
+Integer promotions
+*/
 
 /*****
 example:0x11223344
@@ -127,7 +52,7 @@ UPPERCASE : IO FLAGS
 Class / Enum Pascal
 Parameter Camel
 
-android java/C++:
+C++:
 类名PascalCase如 ActionProvider
 方法名camelCase如 getString(int column)
 类成员变量m(member)+Pascal如 mSurfaceFlingerConsumer
@@ -193,41 +118,14 @@ void board_nand_init_tail(struct mtd_info *mtd)
 	mtd->write = emma_nand_write;
 }
 
-/* FIXME: TODO: XXX:*/
-
 /* for backward compatibility */
 
 /**
  * Base class and low-level protocol for a remotable object.
  */
 
-/*
-有的将前++/--定为第一优先级，应该是C++才有
-C中这个case没找到，想了一个 ++!i
-如果同级，则先!后++，否则先++后！，可惜编不过去，这也说明它先运算了！，说明前++第一优先级没道理
-后++/--不参与表达式运算，岂不是相当于优先级最低？
-或可理解成 a=2+i++; i早已自加，只是没参与表达式运算
-C99文档：
-70) This paragraph renders undefined statement expressions such as
-i = ++i + 1;
-a[i++] = i;
-曾测试 i+++i等，原来类似表达式，不做定义，说明确实有奇异，严谨！
 
-a>b?c>d?1:2:3
-
-左值 lvalue
-
-The C++ language includes all C operators and adds several new operators
-
-C++将前++/-- 和后++/-- 分为不同优先级，（说的就是先加后加的问题吧）
-前++/-- 定为第一有限级，跟. [] () 同级
-
-Postfix Increment Operator
-
-增加 .*  ->*
-
-*/
-
+//左值 lvalue
 //类型转换  type cast
 //6.3 Conversions
 
@@ -409,33 +307,7 @@ void main(void)
 exit:
 }
 
-char*p=NULL; //NULL 在stddef.h 中 define
-
-
-
-char *s="Hello World!";
-c = *s++;
-c = *++s;
-
-//main(void)后不能加semicolon
-
-struct a {
-	char g;
-	char f;
-}
-;;;;;;;;;;
-void main(void)
-{;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;int i;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;for (i=0; i<10; i++) {;;;;;;
-;;;;;;;;printf("Hello World\n");
-;;;;};;;;;;;;;;;;;;;;;;;;;;;;;;;
-};;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-semicolon除标示语句结束(类似一句话结束的句号)还代表空语句,故可随意加
-java定义类/方法后可加可不加(因{}同;也能代表语句结束，较合理)
-C结构体/C++类定义必须要加分号(比较特殊，只能理解成规定)
+//NULL 在stddef.h 中 define
 
 error: expected ‘;’ after struct definition
 
@@ -466,20 +338,10 @@ strstr(s, "ll");
 strchr(s, 'l'); //等价 strstr(s, "l");
 strrchr(s, 'l')
 
-if(strcmp("true", s) == 0)
-if(!strcmp("true", s))
-
 char* s = "+HTTPACTION: 0, 200, 418, 4096\r\n"
 len = atoi(s+=20);
 s = strchr(s,',')+1;
 len1 = atoi(s);
-
-// 错误写法
-// ugly
-char ipcmd[51] = {"AT+CIPSTART=\"TCP\","};
-char gprscard[27] = {"\"101.201.051.006\",10080,2\r\n"};
-memcpy((ipcmd + 18), gprscard, 27);
-
 
 char buf[]=
 "\r\n"
@@ -523,16 +385,9 @@ void main(void)
 {
 	foo();
 }
-///
-
-char* s="bootanimation\n";
-char* d;
-d = ++s;
-d = s++; //结果不同
 	
 char* str1=(void*)0;
 if (str==NULL)
-
 
 //open devices
 main()
@@ -592,20 +447,6 @@ main(void)
 char* str=0;
 printf("str is %s\n", str);
 
-
-////
-i=2;
-printf("%d, %d\n", i+++i, i); //5, 3
-
-i=2;
-printf("%d, %d\n", i+i++, i); //5, 3 ??  说不通的
-
-i=2;
-printf("%d\n", 2+i++); //4
-
-i=0;
-printf("%d\n", !++i);
-	
 //// 调用g++编译器会被定义
 #ifdef __cplusplus
 int i=4;
@@ -1134,60 +975,6 @@ int main(int argc, char *argv[])
    exit(EXIT_SUCCESS);
 }
 
-//mmap_test
-
-#include <sys/mman.h>
-#include <sys/types.h>
-#include <fcntl.h>
-#include <unistd.h>
-typedef struct{
-  char name[4];
-  int  age;
-}people;
-main(int argc, char** argv)
-{
-  int i;
-  int fd;
-  people *p_map;
-  char temp;
-
-pid_t pid;
-
-  p_map=(people*)mmap(NULL,sizeof(people)*10,PROT_READ|PROT_WRITE,
-       MAP_SHARED|MAP_ANONYMOUS,-1,0);
-  printf("p_map is %x \n",p_map);
-pid = fork();
-  fd = open("/home/gaojie/shm.txt",O_RDONLY);
-  printf("Hello |||||||||||||||||||||| %d \n",fd);
-  if(pid == 0)
-  {
-    sleep(200);
-    for(i = 0;i<5;i++)
-      printf("child read: the %d people's age is %d\n",i+1,(*(p_map+i)).age);
-    (*p_map).age = 100;
-	
-	printf("xxx p-map is %x \n",p_map);
-    munmap(p_map,sizeof(people)*10); //实际上，进程终止时，会自动解除映射。
-    //sleep(100);
-
-    exit(1);
-  }
-  printf("###################\n");
-  temp = 'a';
-  for(i = 0;i<5;i++)
-  {
-    temp += 1;
-    memcpy((*(p_map+i)).name, &temp,2);
-    (*(p_map+i)).age=20+i;
-  }
-  sleep(500);
-  printf( "parent read: the first people,s age is %d\n",(*p_map).age );
-  printf("umap\n");
-  munmap( p_map,sizeof(people)*10 );
-  printf( "umap ok\n" );
- // sleep(100);
-}
-
 //取http数据长度
 p = strtok(buf, "\r\n");
 
@@ -1210,10 +997,6 @@ if (token) {
 
 // glibc
 fprintf 到 stderr 有何目的，android很多程序这么写
-
-
-
-
 
 char *strsep(char **stringp, const char *delim);   应该是string separate  delimiter:分隔符
 
@@ -1258,9 +1041,6 @@ linux
 
 open/close/read/write
 fopen/fclose/fread/fwrite
-
-
-open() O_RDWR O_RDONLY O_WRONLY，O代表or “flags can be bitwise-or'd in flags”
 
 errno = 14 （#define EFAULT 14 /* Bad address */）
 EFAULT pathname points outside your accessible address space. 
@@ -1731,3 +1511,4 @@ fb = open ("/dev/fb0", O_RDWR);
 fb_mem = mmap(NULL, 1024*768, PROT_READ|PROT_WRITE,MAP_SHARED,fb,0);
 
 waiting ? 1 : 0;
+// vim: tw=80

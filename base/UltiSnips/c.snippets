@@ -170,7 +170,8 @@ endsnippet
 snippet st "struct"
 struct ${1} {
 	${2}
-}${0};
+}${3};
+${0}
 endsnippet
 
 snippet enum "enum"
@@ -298,6 +299,19 @@ endsnippet
 snippet arraysize
 #define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
 ${0}
+endsnippet
+
+snippet strtok
+for (i = 0; i < count; i++, p = NULL) {
+	s_crc = strtok(p, "\n ");
+	slice_crc[i] = strtol(s_crc, NULL, 16);
+}
+endsnippet
+
+snippet strcmp
+if (!strcmp(s, "true")) {
+	
+} 
 endsnippet
 
 # vim:ft=snippets:
