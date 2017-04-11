@@ -339,8 +339,7 @@ xx_reset
 foreach
 similar
 equivalent_to
-CFLAGS
-CXXFLAGS
-LDFLAGS
-LDLIBS
+NDEBUG
+errno
+
 
