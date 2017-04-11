@@ -9,16 +9,6 @@
 // Tip: Uncomment the following line
 
 /*
-#include <assert.h>
-abort the program if assertion is false
-void assert(scalar expression);
-执行abort(), 并生成coredump
-#define NDEBUG // 部署时禁用断言
-#define assert(expr) ((expr) ?__ASSERT_VOID_CAST(0)\
-:__assert_fail(__STRING(expr),__FILE__,__LINE__,__ASSERT_FUNCTION))
-*/
-
-/*
 //24bit数左移2bit +2 
 c->low = (*c->bytestream++)<<18;
 c->low+= (*c->bytestream++)<<10;
