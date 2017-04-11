@@ -2,4 +2,5 @@ Useful? Maybe not, but a good example.
 This plugin is tested against Python 2.7. All other versions are unsupported, but might work.
 The master branch is always stable
 Running Homebrew as root is extremely dangerous and no longer supported
+There are two main uses for a Handler:(1)..;and (2)..
 
