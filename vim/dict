@@ -342,4 +342,8 @@ equivalent_to
 NDEBUG
 errno
 side-effects
-
+namespaces
+mandatory
+acknowledge
+acknowledgement
+validity

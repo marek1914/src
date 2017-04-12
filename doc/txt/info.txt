@@ -6,6 +6,7 @@ ID/79864406 id:410425198511202520
 abandon java, android, opengl, mysql
 abandon sourceinsight, eclipse, qcreator
 abandon !protel99/ADS
+abandon ldap/gerrit config (20170411)
 
 
 gnu.org

@@ -1,11 +1,11 @@
-TS切片长10秒，满足以下要求：
+TS切片10秒：
 I帧间隔精确等于2秒（误差小于10ms）
 I帧必须是IDR帧
 码率稳定(CBR)
 PCR/PTS符合ISO/IEC 13818
 PTS除正常反转外，需要保持连续
 切片以PAT/PMT信息开头紧跟I帧
-切片保证PMT/CAT/EMM/ECM等信息完整，以支持终端进行DRM解密
+切片保证PMT/CAT/EMM/ECM等信息完整
 
 To address various applications ranging from low-quality, low-resolution surveillance [sɜ:'veɪləns] cameras to high definition TV broadcasting and DVDs, many video standards group features into profiles and levels. 
 

@@ -765,33 +765,9 @@ if(tmp_pos > 0) {
 //mPlay_ctl.t_pos = tmp_pos/1000.0;
 } 
 
-MediaPlayerService.cpp： 
-if (isThreadScreen)
-{
-//if (mLstartTime > 0)
-//p->seekTo(mLstartTime);
-
-问题2：
-直播时，进行时移操作，播放一段时间会跳动性播放，画面卡着不动，一段时间之后，跳动一下，
-声音一直有，但也不是流畅的播放！（北京卫视、CCTV1，容易复现）  （能解决吗？ 开始百视通没有这个问题
-后来的邮件又说在百视通上复现了）
-
-system.prop 
--libplayer.netts.recalcpts=1
-+#libplayer.netts.recalcpts=1
-
-问题3：
-直播的时候，调不出进度条，而且直播的时候，时移功能不可使用
-
 问题4：
 版本回退问题：和视界/本地，播放的时候，视频显示位置不对，点击返回键之后，出现花屏。
 这个问题，孙科之前在的时候已经解决过，但是现在版本中在次复现！应该是补丁包没有添加进去的原因
-
-公共问题：
-1 视频刚开始播放或者是时移操作过之后，画面会缓慢播放几秒钟。 修改kernel， 已经修复
-drivers/amlogic/amports/video.c
-const u32 rpt_tab[4] = {0x100, 0x100, 0x450, 0x450};
-const u32 rpt_tab[4] = {0x100, 0x100, 0x180, 0x180}; 
 
 待机问题：
 writeSysfs("/sys/class/gpio/mcu_standby_ctrl","2");
@@ -823,14 +799,6 @@ Restarting system with command 'recovery'.
 系统中有2个recovery，分别在spi flash和 nand flash里
 
 执行update_reboot还是 charging_reboot，现在竟然进不去recovery了。
-
-按电源按键重启 打印：
-get_burner_key: 0x3
-AMLOGIC_CHARGING_REBOOT...
- 
-执行reboot recovery 打印：
-get_burner_key: 0x3ff
-AMLOGIC_FACTORY_RESET_REBOOT...
 
 uboot修改mac地址：
 2 在uboot里面，板子上的待机按键不灵
@@ -875,23 +843,9 @@ amlogic/目录下的 百视通和移动2个项目的apk 只有lancher不同
 kernel读取mac的流程：
 先检查bootargs有无 mac=字段，若无，读取efuse，若无，随机生成。
 
-ERROR: can't get kernel image!
-Enter Recovery mode ...
-SF: Got idcode c8 40 16
-
-问题： 第一张开机logo的图像会跳动一下
-nandargs(给nand启动用) 和 bootargs(给spi里面的recovery kernel启动用) 中的
- clk81=187500000 改为  clk81=187000000
-改了之后确实有效。但奇怪的是，改之前，我的skyworth电视确实抖动，改后不抖了，但是再改回原来的值
-也不抖了，就是说bug无法恢复了。奇怪。
-
 制作rle启动文件
 ImageMagick 带的 convert 
 sudo apt-get install imagemagick
 
 dd.rel logo文件
-
-ota升级包里面的脚本包含：
-set_bootloader_env("upgrade_step", "2");
-
 
