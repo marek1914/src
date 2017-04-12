@@ -53,3 +53,6 @@ ssh -p 29418 ip gerrit create-project --name new/project
 //Change the project permissions are inherited from.
 ssh -p 29418 192.168.7.32  gerrit set-project-parent --parent appStore commons
 
+
+ssh-copy-id
+

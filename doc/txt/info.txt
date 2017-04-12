@@ -1,4 +1,6 @@
 jsq.re
+
+http://mikewootc.com //wuyuntao
 http://en.savefrom.net
 http://downsub.com  subtitle
 ID/79864406 id:410425198511202520
@@ -48,10 +50,10 @@ https://docs.particle.io/datasheets/photon-datasheet
 
 投入（计划10万）：
 2016: 4.4
-2017: 14841+190+2650(5.6)
+2017: 14841+190+2650+100(5.6)
 
 电脑相关： 22328 元
-macbook pro				11788(Shit!被骗)
+macbook pro				11788
 电脑包					98
 电脑+Dell显示器X2		7600
 HKC显示器				600
@@ -125,6 +127,7 @@ proxxon 台锯				2650
 凝睿元件盒x2				300
 alpha焊锡/锡条			290
 偏口钳+尖嘴钳			200
+压线钳					100
 
 基础元件：803元
 电容电阻电感包			150
