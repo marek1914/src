@@ -1,17 +1,11 @@
+vm :Virtual Memory
+
 发布时间：
 v1.0  1994
 v1.1  1994-1995
-v1.2  
-v1.3
-v2.0  .1-.40  1996-2004
-v2.1  
-v2.2
-v2.3
-v2.4
-v2.5
 v2.6  .0-.39   2003-2011
-v3.0  3.0.1:2011  3.0.101:2013  
-v3.10.1 2013
+v3.00.1 :2011  
+v3.10.1 :2013
 
 /dev/ttyS0 ttyS1 ?
 /dev/root  什么设备？ 
@@ -42,8 +36,6 @@ kenel/sysctl.c生成/proc/sys/kernel项
 linux/drivers/video/skeletonfb.c
 file_operation: read/write/ioctl/mmap，在fbmem.c中实现，检测fb_ops->fb_mmap(vpmfb.c中)是否定义
 
-=== make ===
-==config==
 []只有空*两种状态  <>有空*M 3 中状态
 
 Kernel hacking  打开会增加很多打印
@@ -84,13 +76,10 @@ Perface
 4 linux/include/asm-mips/emma/emma3slp.h里面定义了 内存大小 Flash大小等信息。这个文件定义了EMMA_NAND_ROM_MODE 但是从来没有用
 
 
-==end config==
-
 ARCH=arm 问题，为何每次遇到都纠结
 纠结根源，为啥不作成靠 xx_defconfig 设置死
 问题在于：_defconfig分布在各arch目录下，如arm/configs  mips/configs
 在xx_里包含目录信息？不合理。搜索所有configs目录？这可以，但要保证所有config不重名，所以是可以做到的，只是标准kernel没做而已
-
 
 各种预设定，在“根”的位置，总有比较特殊的，需要手动指定
 
@@ -99,12 +88,9 @@ mstar写了些脚本，可以从.config检测CONFIG_ARM=y 判断是arm，虽工�
 当然，这是软件，想要什么样的都能实现，只是选择一个最优方式
 比如make menuconfig 出现选项，选择ARCH，就像选择板子一样也行呀？
 
----问题---
 make menuconfig 已经有arm版 .config 的情况下，不加ARCH=arm 还是到了x86状态，即并未读.config
 只有加了 ARCH=arm 才会读
----
 
----问题---
 CROSS_COMPILE   ?= $(CONFIG_CROSS_COMPILE)
 $(info ======= $(CROSS_COMPILE) ====)
 $(info ======= $(CONFIG_CROSS_COMPILE) ====)
@@ -114,18 +100,6 @@ $(CONFIG_CROSS_COMPILE:"%"=%)  //去引号
 变量展开模式匹配，但实验没有成功：
 aa="helloworld" //1
 b=${aa:"%"=%}  //我没法模拟一个带“”的字符串，行1赋给aa，已经没有双引号了，转义也不行
-
-====
-aa=\"hello\"
-test:
-	@echo ${aa}
-	@echo ${aa:\"%\"=%}
-===
-这样可以，依次打印 "hello"  和 hello
-
-vm代表“Virtual Memory”
-
-make中用了很多$(call ...) 但定义这些函数（其实就是变量）时，基本都是直接赋值，没有使用 define ... endef(而android工程里大量使用这个)
 
 
 2016/04/23 刚刚明白这句话的意思
@@ -138,11 +112,7 @@ SUBARCH := $(shell uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ \
 在pc上执行返回 x86，raspberry pi上执行返回arm
 
 
-首先要知道配置文件
-
-整个make系统，子目录是怎么包含的，他的架构，还是不清楚的
-
-1 版本
+版本
 VERSION =
 PATCHLEVEL =
 SUBLEVEL =
@@ -305,12 +275,9 @@ machdirs := $(patsubst %,arch/arm/mach-%/,$(machine-y))
 mx在根makefile中自己定义了一个customer，把相关xx_defconfig 等文件另外放一个目录。
 s805也有customer的影子，但没用。不好！恢复本来面目。
 
---
 module 编译
 
---
 .dtb编译
-
 
 ==Makefile.clean===
 

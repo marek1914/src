@@ -765,23 +765,8 @@ if(tmp_pos > 0) {
 //mPlay_ctl.t_pos = tmp_pos/1000.0;
 } 
 
-问题4：
-版本回退问题：和视界/本地，播放的时候，视频显示位置不对，点击返回键之后，出现花屏。
-这个问题，孙科之前在的时候已经解决过，但是现在版本中在次复现！应该是补丁包没有添加进去的原因
 
-待机问题：
 writeSysfs("/sys/class/gpio/mcu_standby_ctrl","2");
-writeSysfs("/sys/class/gpio/mcu_standby_ctrl","0");
-加上这几句，红灯灭了
-
-解决问题的思路：
-编译百事通版出现3个新问题，原来的版本是没有的：
-1 播放的时候（直播/点播）会不定时弹出提示框
-2 进高清播放，没有出现节目列表而是直接进入了某个影片
-3 按设置键，先进入首页再进入设置
-
-个ota升级地址：http://111.1.56.98/upload/208.zip pc浏览器能下载
-下载地址： /cache/update/update.bak
 
 提示升级,选择Y：
 init: Save ubootenv to /dev/mtd/mtd7 succeed!

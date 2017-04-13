@@ -1,3 +1,4 @@
+/* Standard-mode max 100Hz */
 
 static void _sendbyte(UI8 byte);
 static UI8 _readack(void);
@@ -26,8 +27,7 @@ void SDA_In(void) {}
 void SDA_Out(void) {}
 UI8 SDA_DATA(void) { return Bitkeydata; }
 
-static void send_rec_data(UI8 Send_Len, UI8 Receive_Len, UI8 *Send_Data,
-                          UI8 *Receive_Data)
+void send_rec_data(UI8 Send_Len, UI8 Receive_Len, UI8 *Send_Data, UI8 *Receive_Data)
 {
 	UI8 count = 0;
 	UI8 cur_len = 0;
@@ -48,20 +48,20 @@ static void send_rec_data(UI8 Send_Len, UI8 Receive_Len, UI8 *Send_Data,
 	_stop();
 }
 
-static void _sendbyte(UI8 byte)
+
+void send_byte(unsigned char byte)
 {
-	UI8 i;
+	char i;
 
+	scl_low();
 	for (i = 0; i < 8; i++) {
+		/* bitbang... */
 		if (byte & 0x80)
-			SDA_HIGH();
+			sda_high();
 		else
-			SDA_LOW();
-
+			sda_low();
 		byte <<= 1;
-		SCL_LOW();
 		SCL_HIGH();
-		SCL_LOW();
 	}
 }
 
