@@ -53,9 +53,9 @@ void send_byte(unsigned char byte)
 {
 	char i;
 
-	scl_low();
 	for (i = 0; i < 8; i++) {
 		/* bitbang... */
+		scl_low();
 		if (byte & 0x80)
 			sda_high();
 		else
@@ -65,7 +65,21 @@ void send_byte(unsigned char byte)
 	}
 }
 
-UI8 _readack(void)
+unsigned char read_byte(void)
+{
+	unsigned char i, byte = 0;
+
+	for (i = 0; i < 8; i++) {
+		scl_high();
+		byte <<= 1;
+		byte |= SDA_DATA();
+		scl_low();
+	}
+	return byte;
+}
+
+
+UI8 read_ack(void)
 {
 	UI8 ack = 1;
 	UI8 ix = 100;
@@ -85,20 +99,6 @@ UI8 _readack(void)
 	return ack;
 }
 
-static UI8 I2C_ReadByte(void)
-{
-	UI8 i, bit, byte = 0;
-
-	for (i = 0; i < 8; i++) {
-		SCL_HIGH();
-		byte = byte << 1;
-		bit = SDA_DATA();
-		byte |= bit;
-		SCL_LOW();
-	}
-	SCL_LOW();
-	return byte;
-}
 
 static void sendAck(UI8 status)
 {
@@ -122,18 +122,18 @@ static UI8 I2C_GetByte(UI8 more)
 
 void _start(void)
 {
-	SDA_HIGH();
-	SCL_HIGH();
-	SDA_LOW();
-	SCL_LOW();
+	sda_high();
+	scl_high();
+	sda_low();
+	scl_low();
 }
 
 void _stop(void)
 {
 	SDA_Out();
-	SDA_LOW();
-	SCL_HIGH();
-	SDA_HIGH();
+	sda_low();
+	scl_high();
+	sda_high();
 }
 
 void send_data(UI8 Send_Len, UI8 *Send_Data)

@@ -34,7 +34,7 @@ E: 3.75-4G
 
 MTU取路径中最小值
 
-Ethernet II : Ethernet v2 是MAC帧的一种(还有802.3帧,头部不同)，wireshark有标明
+Ethernet II : Ethernet v2 是MAC帧的一种(还有802.3帧,头不同)，wireshark有标明
 
 MTU大小
 rfc1191  Table 7-1:  Common MTUs in the Internet
@@ -121,36 +121,25 @@ SYN SYN/ACK ACK
 典型结束
 FIN/ACK  FIN/ACK  ACK
 
-
-NTPv4基于 UDP 
-传送聊天信息时同样使用UDP协议；由于UDP协议是无连接协议，传输速度快，但是没有确认机制，是不可靠的协议，需要自己定义返回信息的标志来判断对方是否收到信息
-
-0-1023用于特定服务端口如ftp/http,动态端口从1024到65535。
+0-1023特定服务端口,动态端口1024-65535
 
 组播用于udp
 HTTPU：基于UDP的http协议
-
-花生壳：
-20140731 腾达W307R 路由器配置虚拟服务器 端口映射失败，可能是路由器bug
-后来测试用uu的tp-link，以及pc直接拨号都不行。可能是联通宽带的问题。
-公司的电信通用盒子拨号后就可以在外部访问adb。也可能公司网络跟家庭网络价格不同，性质也不同。
 
 优酷pc点播：
 http推送flv：
 Content-Type:video/x-flv
 
-http://opensource.apple.com/tarballs/mDNSResponder/
-android源码里面有 mdnsresponder 这个库  并且这在system/bin/netd 有引用。
+android 有mdnsresponder 并在system/bin/netd 引用
 
 
-tcpdump -p -vv -s 0 -w capture.pcap，wireshark分析
+tcpdump.org
+tcpdump 依赖 libpcap.so
+
+tcpdump -p -vv -s 0 -w capture.pcap #wireshark分析
 tcpdump -i wlan0 -s 0 "tcp port 1935 "
-tcpdump 依赖 libcrypto.so 和libpcap.so
-tcpdump/libpcap (.pcap)
-http://www.tcpdump.org/
 tcpdump -i eth0 -w foo.pacp
-tcpdump -i eth0 port 10000 -s 1360 -w  dump.ts
-提取rtp里的ts
+tcpdump -i eth0 port 10000 -s 1360 -w  dump.ts #提取rtp里的ts
 
 
 逻辑链路层
@@ -279,9 +268,6 @@ apache放ts流，mp4，mkv都能用ffmpeg播放，并且可以seek。seek的物�
 
 wmv asf flv mov rmvb 本身就是流化的文件
 mp4文件不是流，但可以流化
-
-现有点播系统：小米 ts流http下载  A20华数 TS流下载  其他盒子hls流，pc flv，rtsp流
-没有见过用mp4作点播系统的
 
 由于MP4文件的音视频帧在文件中的物理位置不是顺序存放,而是以一种相对凌乱的状态存在。？？？
 为了解决这个问题,本文提出预处理的方案,即在得到文件元数据信息(metadata)的时候,
@@ -1018,7 +1004,6 @@ rfc3984  RTP Payload Format for H.264 Video 描述rtp包的多媒体类型
 RTP Control Protocol -- RTCP  与rtp在同一 rfc中说明，也是基于udp的
 
 rtp over rtsp
-rtcp 4个作用:
 
 关键：
 Payload type: DynamicRTP-Type-96
@@ -1217,6 +1202,9 @@ press the right arrow and enter for yes
 sudo chmod +x /usr/bin/dumpcap
 you should now be able to run it without root
 
+wireshark不认rtp流，需Decode as rtp
+因为udp头里面没有表明rtp协议的地方，后面的数据只能认为纯data，rtp协议开头的交互
+wireshark没有捕获到，好比从中间接听谈话，不知到对方在说什么一样
 
 颜色：
 TCP 是灰色背景，有时TCP也是绿色背景因为端口号为80 (http || tcp.port == 80 )

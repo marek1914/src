@@ -62,6 +62,9 @@ endianness 字节存储序
 zigzag Z字形的
 admittance 导纳
 harmonic [hɑˈmɑ:nɪk] 
+permutation 排列
+combination 组合
+
 
 ANSI: American National Standards Institute
 SPI: Serial Peripheral Interface

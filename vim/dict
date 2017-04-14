@@ -351,4 +351,7 @@ pragma
 teardown
 probe
 to_i2c_xx
-
+permutation
+combination
+chip_probe
+try_next_permutation

@@ -18,6 +18,7 @@ set rtp+=~/.vim/vim-snippets
 set rtp+=~/.vim/lilypond
 
 set complete=.,w,b,u,k
+set hls
 "set fdm=syntax
 
 let g:netrw_banner=0

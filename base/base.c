@@ -8,6 +8,7 @@
 // FIXME: TODO: XXX:
 // Tip: Uncomment the following line
 
+// printf("\033[33mHello\033[0m\n"); 打印颜色
 /*
 //24bit数左移2bit +2 
 c->low = (*c->bytestream++)<<18;
