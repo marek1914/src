@@ -61,7 +61,7 @@ void send_byte(unsigned char byte)
 		else
 			sda_low();
 		byte <<= 1;
-		SCL_HIGH();
+		scl_high();
 	}
 }
 
