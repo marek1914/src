@@ -1,5 +1,17 @@
+static int controller_busy(void)
+{
+    int retries = 100000;
+    unsigned char status;
+
+    do {
+        status = inb_p(HD_STATUS);
+    } while ((status & BUSY_STAT) && --retries);
+    return status;
+}
+
+
+
 // C99: ISO/IEC 9899:1999
-// C11: ISO/IEC 9899:2011
 // POSIX.1-2001(IEEE Std 1003.1,2001)
 // glibc: GNU C Library, C standard library 的GUN实现，support C++
 // GNUC
@@ -8,6 +20,9 @@
 // FIXME: TODO: XXX:
 // Tip: Uncomment the following line
 
+statfs
+linux :0a  
+win :0d 0a
 // printf("\033[33mHello\033[0m\n"); 打印颜色
 /*
 //24bit数左移2bit +2 
@@ -1265,4 +1280,25 @@ fb = open ("/dev/fb0", O_RDWR);
 fb_mem = mmap(NULL, 1024*768, PROT_READ|PROT_WRITE,MAP_SHARED,fb,0);
 
 waiting ? 1 : 0;
+
+
+==thread==
+libutils/Threads.cpp
+
+Derived class implement threadLoop().  
+There are 2 ways of using the Thread object:
+1) loop: if threadLoop() returns true
+2) once: if threadLoop() returns false
+
+virtual bool threadLoop() = 0;
+
+创建的线程是 _threadLoop(void* user) 调threadLoop() 
+res = createThreadEtc(_threadLoop, this, name, priority, stack, &mThread);
+this指针传到 pthread_create 的arg参数,即_threadLoop(void* user) 的user
+
+//一个函数设置标志，另一个函数检查标志
+//下一函数const不可定义可以理解，这个为啥还能被继承？应该也是const的吧
+virtual void requestExit();
+bool exitPending() const;
+
 // vim: tw=80

@@ -65,6 +65,8 @@ harmonic [hɑˈmɑ:nɪk]
 permutation 排列
 combination 组合
 
+RC: Release　Candidate
+
 
 ANSI: American National Standards Institute
 SPI: Serial Peripheral Interface
