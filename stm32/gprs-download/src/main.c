@@ -1,12 +1,20 @@
-/* polling mode */
+/* polling mode
+ * 256k+48k
+ * 0x40000
+ */
+
 #include "main.h"
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
 #include "stm32f1xx_hal.h"
+//#include "FM24c64/24cxx.h"
 
 #define APP_ADDR    (uint32_t)0x08004000
+/* last 2k page */
+#define PARA_ADDR   (uint32_t)0x0803f800
+#define RETRY_COUNT    5
 
 UART_HandleTypeDef uart1;
 UART_HandleTypeDef uart3;
@@ -103,7 +111,7 @@ void flash_write2k(uint32_t addr, uint8_t* buf)
 	
 	EraseInitStruct.TypeErase   = FLASH_TYPEERASE_PAGES;
   	EraseInitStruct.PageAddress = addr;
-  	EraseInitStruct.NbPages     = 1; // 1k per page
+  	EraseInitStruct.NbPages     = 1; // 2k per page
 
 	HAL_FLASH_Unlock();
 	
@@ -120,19 +128,37 @@ void flash_write2k(uint32_t addr, uint8_t* buf)
 	HAL_FLASH_Lock();
 }
 
-int httpaction(uint16_t * content)
+void erase_flag(void)
+{
+	uint32_t PAGEError = 0;
+	FLASH_EraseInitTypeDef EraseInitStruct;
+	
+	EraseInitStruct.TypeErase   = FLASH_TYPEERASE_PAGES;
+  	EraseInitStruct.PageAddress = PARA_ADDR;
+  	EraseInitStruct.NbPages     = 1; // 2k per page
+
+	HAL_FLASH_Unlock();
+	HAL_FLASHEx_Erase(&EraseInitStruct, &PAGEError);
+	HAL_FLASH_Lock();
+}
+
+int httpaction(uint16_t * content, uint16_t rto)
 {
 	uint8_t tmp[2];
 	uint8_t *s;
-	uint16_t len;
+	uint16_t len=0;
 
-	// max 30s
-	HAL_UART_Receive(&uart1, tmp, 2, 30000);
+	// XXX: ugly
+	*content = 0;
+
+	HAL_UART_Receive(&uart1, tmp, 2, 30000 + 5000 * rto);
 	if (tmp[0] != '\r' || tmp[1] != '\n')
 		return 0;
 
 	s = buf;
-	while (HAL_UART_Receive(&uart1, s, 1, 3000) == HAL_OK) {
+	
+	//3s 有时候 +HTTPACTION 收到部分行 没收到最后一行
+	while (HAL_UART_Receive(&uart1, s, 1, 3000 + 1000 * rto) == HAL_OK) {
 		s++;
 	}
 	// string terminal
@@ -146,6 +172,10 @@ int httpaction(uint16_t * content)
 		len = atoi(s+=20);
 		s = strchr(s,',')+1;
 		*content = atoi(s);
+	}
+	if (len < *content) {
+		len = 0;
+		*content = 0;
 	}
 	return len;
 }
@@ -238,7 +268,7 @@ unsigned int crc8(unsigned int crc, const unsigned char *vptr, int len)
 }
 
 /*init para action read term*/
-uint16_t download(char *file, uint16_t *content)
+uint16_t download(char *file, uint16_t *content, uint16_t rto)
 {
 	uint16_t len;
 	char num[5];
@@ -258,7 +288,7 @@ uint16_t download(char *file, uint16_t *content)
 
 	at("at+httpaction=0\r");
 	wait_status();
-	len = httpaction(content);
+	len = httpaction(content, rto);
 	
 	strcpy(path, "at+httpread=0,");
 	sprintf(num, "%d", len);
@@ -272,58 +302,75 @@ uint16_t download(char *file, uint16_t *content)
 	at("at+httpterm\r");
 	wait_status();
 
-	printf("------------\r\n");
+	printf("download len=%d\r\n", len);
 	return len;
 }
+
+
+int check_data(uint8_t *buf)
+{
+	uint8_t *p;
+	
+	p = strtok(buf, "\r\n");
+	if (!p)
+		return 0;
+	
+	if (!strcmp(p, "HTTP/1.1 200 OK")) {
+		return 1;
+	} else {
+		printf("%s\r\n", p);
+		return 0;
+	}
+}
+
 
 uint16_t parse_index(void)
 {
 	uint8_t *p;
 	uint16_t count, i;
+	uint16_t retry=0;
 	uint16_t len, contentLen;
 	uint8_t crc, crc1;
 	
-	len = download("index.txt", &contentLen);
+
+	do {
+		printf("retry(%d/%d)\r\n", retry+1, RETRY_COUNT);
+		len = download("index.txt", &contentLen, retry);
+		retry++;
+		
+		if (len) {
+			if (!check_data(buf))
+				return 0;
+			
+			p = buf + (len - contentLen);
+			crc = strtol(p += 4, NULL, 16);
+			// 7byte : crc:xx\n
+			crc1 = crc8(0, p += 3, contentLen - 7);
+		}
+	} while ((crc!=crc1 || len==0) && retry<RETRY_COUNT);
 	
-	printf("buffer:\r\n%s\r\n", buf);
+	if (crc!=crc1 || len ==0) {
+		printf("Service connection timeout, try again later!\r\n");
+		return 0;
+	}
 	
-	p = buf + (len - contentLen);
-	// no '\n' ok?
-	crc = strtol(p += 4, NULL, 16);
-	// 7byte :  crc:xx\n
-	crc1 = crc8(0, p += 3, contentLen - 7);
+	printf("index.txt:\r\n%s\r\n", buf);
+	printf("crc1=%x\r\n", crc1);
+	
 	count = strtol(p += 6, NULL, 16);
 
-	printf("count=%d crc=%x crc1=%x\n", count, crc, crc1);
-
-	p += 3;
-
-	char *s_crc;
-
-// TODO: merge
-	s_crc = strtok(p, "\n ");
-	slice_crc[0] = strtol(s_crc, NULL, 16);
-
-	for (i = 1; i < count; i++) {
-		s_crc = strtok(NULL, "\n ");
-		slice_crc[i] = strtol(s_crc, NULL, 16);
+	for (i = 0, p += 3; i < count; i++, p = NULL) {
+		slice_crc[i] = strtol(strtok(p, "\n "), NULL, 16);
 	}
 	return count;
 }
 
-/*
-void parse_data(uint16_t *packLen, uint16_t *contentLen)
+int get_url()
 {
-	p = strtok(buf, "\r\n");
-
-	if (strcmp(p, "HTTP/1.1 200 OK")) {
-		printf("fail\n");
-		return;
-	} else {
-		printf("head ok\n");
-	}
+	int j;
+	//AT24CXX_Init(void);
+	//AT24CXX_Random_ReadOneByte(j);
 }
-*/
 
 int main(void)
 {
@@ -331,45 +378,60 @@ int main(void)
 	uint16_t len, content;
 	uint32_t addr;
 	uint16_t i, count;
+	uint16_t retry = 0;
 
 	HAL_Init();
 	SystemClock_Config();
 	MX_GPIO_Init();
 	MX_USART1_UART_Init();
 	MX_USART3_UART_Init();
+
 	
+	if (*(__IO uint32_t*)PARA_ADDR != 0x55aa55aa) {
+		goto startup;
+	}
+
 	gprs_init();
-	
 	count = parse_index();
+	
+	if (count == 0)
+		goto startup;
+	
 	printf("count: %d\r\n", count);
 	
 	addr = APP_ADDR;
 	for (i = 0; i < count; ) {
 		char tmp[3];
 		sprintf(tmp, "%02x", i);
-		len = download(tmp, &content);
-
+		printf("\r\nretry(%d)\r\n", retry);
+		len = download(tmp, &content, retry);
+		retry++;
+		
+		printf("%d %d crc:%x\r\n", len, content, slice_crc[i]);
+		
 		p = buf + len - content;
 		
 		crc = crc8(0, p, content);
-		printf("%d %d crc:%x %x\n", len, content, crc, slice_crc[i]);
 		
 		if (crc == slice_crc[i]) {
 			int j;
 			
-			printf("crc OK\n");
+			retry = 0;
+			printf("crc match\r\n");
 			for (j = 0; j < content/0x800; j++) {
 				flash_write2k(addr, p);
 				addr += 0x800;
 				p += 0x800;
-				printf("addr=0x%x\n", addr);
+				printf("addr=0x%x\r\n", addr);
 			}
 			i++;
 		} else {
-			printf("crc FAIL\n");
+			printf("crc NOT match\r\n");
 		}
 	}
-	
+	erase_flag();	
+
+startup:	
 	addr = *(__IO uint32_t*)(APP_ADDR + 4);
 	__set_MSP(*(__IO uint32_t*)APP_ADDR);
 	((void(*)(void))addr)();

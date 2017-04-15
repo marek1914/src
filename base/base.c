@@ -1264,4 +1264,19 @@ fb = open ("/dev/fb0", O_RDWR);
 fb_mem = mmap(NULL, 1024*768, PROT_READ|PROT_WRITE,MAP_SHARED,fb,0);
 
 waiting ? 1 : 0;
+
+
+/* think 0-7 or 0-4 */
+/* retry */
+
+retry = 8;
+
+do {
+	status = get_status();
+} while();
+
+
+
+
+
 // vim: tw=80
