@@ -31,12 +31,10 @@ hexdump
 locate #find files by name
 /sbin/service WowzaMediaServer start
 
-#取文件大小
+#get file size
 stat -f "%z" foo.bin
 
-file # /usr/share/misc/magic.mgc 文件头模板
-
-ls *.txt  # *由shell
+file # /usr/share/misc/magic.mgc
 
 #version
 cat /proc/version 
@@ -51,14 +49,14 @@ cut -f1 -d- #arm-elf-gun -> arm
 
 # bs == ibs + obs
 dd if=/dev/zero count=10 of=dd.bin
-dd if=/dev/zero bs=1 count=1M of=dd.bin #慢
+dd if=/dev/zero bs=1 count=1M of=dd.bin #slow
 dd if=/dev/zero of=/dev/fb0 bs=1024 count=768 #1024*768
 
 dd if=/dev/zero of=/dev/fb  #clear fb
 dd if=/dev/fb of=fbfile     #save fb
 dd if=xx of=/dev/fb       #write to fb
 dd if=/dev/zero count=1 of=/dev/sdb
-dd if=xx of=xx -skip n  #截文件头
+dd if=xx of=xx -skip n  #cut file head
 cat uldr.bin /dev/zero | dd bs=1 count=64k > uldr_padded_64k.bin
 dd if=x.iso of=/dev/sdb bs=8M conv=fsync
 
@@ -77,7 +75,7 @@ time dd if=/mnt/sda/sda3/4Gb.file of=/dev/null bs=4096
 # "!"执行 history 列表中的命令(history expansion)
 
 # single quotes(3.1.2.2)不展开变量，双引号扩展，如 echo '$PATH' #输出$PATH
-# Double Quotes(3.1.2.3)不展开，除 ‘$’, ‘`’, ‘\’, ‘!’ (还有别的吗？)
+# Double Quotes(3.1.2.3)不展开，除 ‘$’, ‘`’, ‘\’, ‘!’
 # 预定义变量 PATH, PWD
 # foo.sh V=1 B # ${1} = V=1  ${2} = B
 # make V=1 B   #定义变量V=1，编译目标B
@@ -359,6 +357,7 @@ foo=pwd
 bar=`$foo`
 echo $b
 
+a="pwd|sed 's/a/b/'"  # 后面如此怪异时，要加""
 echo $(echo 00.00.00.03 |sed s/\\.//g)
 echo `echo 00.00.00.03 |sed s/\\\.//g`
 #用` 就需要三个反斜才能转义，为何？
@@ -469,22 +468,17 @@ rename 's/arm-linux/arm-eabi/' *   # arm-linux-gcc -> arm-eabi-gcc
 rename 's/$/.zip/' *  #尾部追加.zip
 rename 's/^/foo/' *   #首部追加foo
  
--d skip 参数死活没搞明白啥意思
+tac file|sed 1,3d|tac #delete last 3 lines
+sed '1d'
+sed '1,3d'
+sed '$d'
+sed -i '$d' # delete last line
+sed -i '/bar/d'  # delete line contain "bar"
+sed -i '/bar/,+2d'
 
-test=00.00.00.04
-test=`echo $test|sed s/\\.//g`
-00.00.00.03 如何去掉点 变为00000003
+echo `echo 00.00.00.03 |sed 's/\\.//g'` #.需要转义,\本身还有特殊含义，又需要转义，所以需要\\
 
-sed s/\\.//g     .需要转义,但转义字符\本身还有特殊含义，又需要转义，所以需要\\
-
-java:
-
-String str = "1..2...3.4......5..6"; 
-str = str.replace(".", "");
-
-sed  awk
-
-find -name *.c -print0 | xargs -0 sed -i 's/x_cnt/x_counter/g'
+find -name *.c -print0 | xargs -0 sed -i 's/x_a/x_b/g'
 
 vim -b 以二进制形式打开 :%!xxd -g 1  切换到十六进制模式显示
 uudecode/uuencode (sharutils包)
