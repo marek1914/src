@@ -124,7 +124,6 @@ bootcmd可用读写nand/Nor Flash的命令拷贝zImage/uImage到内存，或直�
 
 bootargs最终转换成ATAG_CMDLINE
 
-
 kernel逻辑：
 	/* Retreive command line */
 	p = of_get_flat_dt_prop(node, "bootargs", &l);
@@ -185,7 +184,6 @@ Makefile：
 ifeq ($(HOSTARCH),$(ARCH)) //非交叉编译时
 CROSS_COMPILE ?=   //清空交叉编译器，不是设置的地方
 endif
-
 
 3 Make系统与配置
 
@@ -288,7 +286,6 @@ e3slp u-boot跳转内核入口后串口1无启动信息，串口0有
 	up.private_data	= (void *)(up.membase + (0x1F << up.regshift));
 	early_serial_setup(&up);
 
-
 --nxp--
 12 写uldr.bin:
    ymodem下载uldr_padded_64k.bin和uboot.bin(RAM运行),tftp下载自己的uldr.bin uboot.bin vmlinux.bin等
@@ -317,13 +314,7 @@ e3slp u-boot跳转内核入口后串口1无启动信息，串口0有
 
 bootdelay 设为0无法进入提示符，需CONFIG_ZERO_BOOTDELAY_CHECK
 
-monitor范例：
-U-Boot 2011.09-rc1-00000-gb837250-dirty (Oct 31 2014 - 21:00:42) Allwinner Technology
-
-#define CONFIG_IDENT_STRING	 " Allwinner Technology "
-
-命令：
-version - print monitor, compiler and linker version
+#define CONFIG_IDENT_STRING	 "foobar"
 
 sun7i 编译：
 
@@ -332,11 +323,9 @@ make sun7i_config 仅配置；make sun7i 配置并编译（不好，没有改变
 make 还是有几个文件重编译，都是包含#include <version.h> 的
 比如有的cpu的start.S要引用U_BOOT_VERSION_STRING（干什么？）
 
-
 #define RVECENT(f,n) \
    b f; nop
 一个跳转指令 跳转到reset函数
-
 
 m3
 Image Name:   Linux-2.6.34-g4ca2551
@@ -428,13 +417,11 @@ spi flash 操作：
 2012.04版本
 %_config::      unconfig
         @$(MKCONFIG) -A $(@:_config=)
-这里是源码的笔误，
-根本没用到双冒号的含义，ZNQP那本书还特意说明，作者根本没有理解，那本书只能算笔记不能算著作
+这里是源码的笔误，没用到双冒号的含义
 
 linaro gcc4.7 编译s805 uboot fail：
 In function `__aeabi_ldiv0':
 (.text+0x6): undefined reference to `raise'
-
 
 arm uboot要求 -mabi=apcs-gnu ，-gnueabi的不行
 

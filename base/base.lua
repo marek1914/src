@@ -45,8 +45,6 @@ tmr.alarm(1, 1000, 1, function()
     end
 end)
 
-
-
 --  
 
 -- List all files

@@ -10,12 +10,15 @@ filetype plugin indent on
 set pvh=1
 set dict=~/Work/src/vim/dict
 set dict+=~/Work/src/vim/zh
+set dict+=~/Work/src/vim/makefile_dict
 
 set rtp+=~/.vim/tagbar
 set rtp+=~/.vim/ultisnips
 set rtp+=~/.vim/vim-snippets
+set rtp+=~/.vim/lilypond
 
 set complete=.,w,b,u,k
+set hls
 "set fdm=syntax
 
 let g:netrw_banner=0

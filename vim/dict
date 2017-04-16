@@ -339,5 +339,25 @@ xx_reset
 foreach
 similar
 equivalent_to
+<<<<<<< HEAD
 defective
+=======
+NDEBUG
+errno
+side-effects
+namespaces
+mandatory
+acknowledge
+acknowledgement
+validity
+pragma
+teardown
+probe
+to_i2c_xx
+permutation
+combination
+chip_probe
+try_next_permutation
+foobar
+>>>>>>> f4e98f2ac2c58e8c3680ec722c30d78c9795a864
 

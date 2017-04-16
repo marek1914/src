@@ -2,7 +2,7 @@
 # Shebang(#!) line
 #有些命令是shell/perl脚本
 # rc :run command
-ctrl+d #terminal
+# ctrl+d #terminal
 
 more	less	clear	reset	fdisk	wc	basename
 lsblk	lsusb	lspci	lscpu
@@ -77,7 +77,6 @@ time dd if=/mnt/sda/sda3/4Gb.file of=/dev/null bs=4096
 # single quotes(3.1.2.2)不展开变量，双引号扩展，如 echo '$PATH' #输出$PATH
 # Double Quotes(3.1.2.3)不展开，除 ‘$’, ‘`’, ‘\’, ‘!’
 # 预定义变量 PATH, PWD
-# $@ / $* 引用全部参数
 # foo.sh V=1 B # ${1} = V=1  ${2} = B
 # make V=1 B   #定义变量V=1，编译目标B
 # 函数内部$1接收函数参数，函数外部$1接收命令行参数（.sh文件可理解为最外层函数）
@@ -104,8 +103,6 @@ ${1} = --enable-shared=yes ${2} =  CFLAGS=-g
 内部解释成变量CFLAGS = -g --enable-shared=yes的含义是脚本实现
 
 从更低层的地方考虑，不论shell还是make，都是可执行程序，后面的参数都是arg[1] arg[2]，只是上层的处理不同而已。
-
-
 
 shell/uboot:
 $foo / ${foo}
@@ -154,66 +151,10 @@ Makefile 目标调用.sh，make后，这个shell可以读到TEST全局变量。
 ./foo.sh
 . foo.sh #foo.sh是参数而非命令，无需x权限和./
 
-test.sh：
-sleep 30
-
-all:
-	./test.sh
-14241 14124  make
-14242 14241  /bin/sh ./test.sh
-14243 14242  sleep 30
-
-make fork shell进程，运行test.sh，shell fork sleep
-
-all:
-	. test.sh
-
-14180 14124  make
-14181 14180  /bin/sh -c . ./test.sh
-14182 14181  sleep 30
-
-all:
-	./test.sh;sleep 30
-
-前30s：
-13407 13360  make
-13408 13407  /bin/sh -c ./test.sh;sleep 50
-13409 13408  /bin/sh ./test.sh
-13410 13409  sleep 30
-
-30-60s:
-13407 13360  make
-13408 13407  /bin/sh -c ./test.sh;sleep 50
-13460 13408  sleep 50
-
-make fork 第1个bash运行shell语句[关键]：test.sh;sleep 30，第1个bash fork第2个bash执行test.sh，30s后第1个bash fork sleep 50
-
-all:
-	sleep 30;sleep 50
-
-9500  9241  make
-9509  9500  /bin/bash -c sleep 30;sleep 50 [create shell process]
-
-make fork bash 进程，运行sleep 30和sleep 50
-
-all:
-	. test.sh;sleep 50
-在make fork 的第1个bash里运行test.sh和sleep 50，没有第二个bash。体现了 .的不同
-
-all:
-	./test.sh sleep 50
-sleep和50作为.sh的2个参数传入
-
-all:
-	./test.sh
-	sleep 50
-
-make fork sleep 50
 
 3.5.3 Shell Parameter Expansion
 
 parameter and variable expansion
-
 
 # 3.5 Shell Expansions (7 types)
 #brace expansion
@@ -223,7 +164,6 @@ parameter and variable expansion
 #arithmetic expansion
 #word splitting
 #filename expansion 
-
 
 -s file True if file exists and has a size greater than zero. 
 
@@ -248,7 +188,6 @@ COMMAND > filename
 
 COMMAND >>
   Creates the file if not present, otherwise appends to it.
-
 
 # Single-line redirection commands (affect only the line they are on):
 
@@ -373,11 +312,6 @@ ls -l 2>&1 >&3 3>&- | grep bad 3>&-    # Close fd 3 for 'grep' (but not 'ls').
 #
 exec 3>&-                              # Now close it for the remainder of the script.
 
-----------------
-
-
-
-
 数组及遍历:
 数组的申明:array=(element1 element2 element3 .... elementN) 
 数据的读取: echo ${array[0]}  echo ${array[index]} 
@@ -394,7 +328,6 @@ ${array[@]} 是取全部，意思是：
 #echo ${test[@]}
 1 2 3 4 5 6 7 8 9
 
-
 env命令
 
 3.5.3 Shell Parameter Expansion
@@ -405,21 +338,12 @@ suffix_m64=${options##* -m64 }    # suffix after the last -m64
 len_m32=${#suffix_m32}            # length of suffix after the last -m32
 len_m64=${#suffix_m64}            # length of suffix after the last -m64
 
-
-
 while true
 do
 	input keyevent KEYCODE_DPAD_UP
 	sleep 3
 	PLAY=$(($PLAY+1))
 done
-
-hello()
-{
-   echo Hello world $*
-}
-
-hello $*
 
 gitdir=$(git rev-parse --git-dir); scp -p -P 29418 user@ip:hooks/commit-msg ${gitdir}/hooks/
 foo= bar # =后面有空格，提示bar不是命令
@@ -434,6 +358,17 @@ bar=`$foo`
 echo $b
 
 a="pwd|sed 's/a/b/'"  # 后面如此怪异时，要加""
+echo $(echo 00.00.00.03 |sed s/\\.//g)
+echo `echo 00.00.00.03 |sed s/\\\.//g`
+#用` 就需要三个反斜才能转义，为何？
+b=`pwd|sed 's/Note/gao/'`
+echo $b 
+#b是被替换了字符串的目录
+
+a=pwd|sed 's/Note/gao/'
+b=`$a`
+echo $b 
+#命令仅执行了pwd，结果跟测试1同，后面的sed没有执行， 变量展开后，|管道不灵了
 
 PATH=arm-linux-xx/bin:$PATH
 make  #PATH本来就在全局变量区
@@ -442,8 +377,6 @@ ARCH=arm64 ;echo $ARCH  #能打出来 ^_^
 
 make ARCH=arm   #ARCH被定义在全局区域，make里面再起make还能检测到此变量
 ARCH=arm make   #make里能检测到， 相当于3，跟例2不同
-
-
 
 tr '[A-Z]' '[a-z]'
 tr ' ' '\n' < list | sort -u > list-uniq
@@ -482,7 +415,6 @@ uptime
 
 dos2unix
 
-
 insmod
 
 lsmod
@@ -508,7 +440,6 @@ for f in *.jpg; do
     mv $f ${i}.jpg  #$i.jpg也可,因为.不可能出现在变量名里
     ((i++))
 done
-
 
 #3.5.5 Arithmetic Expansion:
 $((expression))

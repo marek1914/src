@@ -1,6 +1,5 @@
 Netgen: Mesh Generator
 
-
 GNU goptical
 
 http://en.wikipedia.org/wiki/Focal_length

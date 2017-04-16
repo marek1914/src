@@ -1,5 +1,11 @@
 libncurses
-http://clang.llvm.org/docs/ClangFormat.html  //vim整合
+http://clang.llvm.org/docs/ClangFormat.html
+
+Doug Lea malloc(dlmalloc) linux默认malloc内存分配器
+
+exception handling代替error code，分离错误处理代码，增加可读性
+Java，Python，C++，异常机制沿函数调用栈逆向搜索，直到遇到异常处理代码为止
+C 无异常处理机制，C++用raise抛出异常
 
 ragel doubango使用
 De Morgan's laws
@@ -7,53 +13,11 @@ valgrind 内存泄漏调试工具
 dmalloc : C/C++内存leak检查工具
 Segmentation fault (core dumped)
 
-===========
-1 apt-get install bootchart
-2 INIT_BOOTCHART赋值，重新编译
-$touch system/core/init/init.c
-$m INIT_BOOTCHART=true
+40分钟死机，内存泄漏或内存碎片问题
+exFAT Freespace Bitmap 空间位图
 
-3 启用BootChart功能
-adb shell 'echo 120 > /data/bootchart-start'  //120是采集时间，
-
-4 重启,数据自动收集到/data/bootchart中
-head,kernel_pacct,proc_diskstats.log,proc_ps.log,proc_stat.log
-adb pull /data/bootchart ./tmp目录，进入tmp目录 tar czf bootchart.tgz *
-
-5 $ bootchart bootchart.tgz生成图表。
-===========
-
-
-kernel通过主次设备号识别设备
-
-无os 大循环/中断/有os 中断
-
-http服务器获取文件：
-
-测试多线程分配到多核心cpu
-
-exception handling代替error code方法，分离错误接收和处理的代码，增加了可读性
-常见语言如Java，Python，C++，异常机制沿函数调用栈逆向搜索，直到遇到异常处理代码为止
-C 没有异常处理机制
-Java用throw，C++用raise抛出异常对象
-
-1 按键处理
-  1) 手机遥控器触屏事件，要发多个包含x,y的单包，一个包中发送一串x,y，多低级的错误
-  2) 进度条的连续按键
-  3) 连续按键，按键不抬起等一系列问题
-
-2 UI等待时间过长加 等待进度条问题（哈尔滨 恢复出厂设置，按下后等待进度条）
-3 佳能相机，开机镜头弹出，若插着usb开机则不弹出
-4 闭环：视频暂停后按快进快退键apk崩溃，视频播放至结尾时按快进键apk崩溃。
-
-1 从服务器获取文件，正常是一个文本：4&，但服务器错误时返回了 503错误，返回的是一个错误网页，需要考虑处理，避免四级
-
-pid:00001	url:file///resource/boot/tt.jpg	time:8
-
-多次出现段错误，因为在平台上用busybox编辑过程中：
-1 中间的分隔符\t变为了空格
-
-只要是涉及内存/字符串操作的，都要检查地址是否为空，写的时候，无法想象到什么情况会为空
+apt-get install bootchart
+bootchart bootchart.tgz
 
 日期:
 Bit0-4 日[1-31]
@@ -135,219 +99,7 @@ These can be combined, so that a parameter like:
 di=5;31;42
 would make directories appear in flashing red text with a green background.
 
-
-
-gflags
-
-http://stackoverflow.com/questions/
-
-win7 64bit vs2013
-sizeof(DWORD) == 4  调试窗口显示 unsigned long
-DWORD:Double Word :4byte
-word: 2byte
-
-printf("%x",-128); // ffffff80（补码）
-printf("%lx",(long)-128); //ffffffffffffff80
-printf("%hhx",-128); //80
-
-
-ANSI escape codes (or escape sequences) are a method using in-band signaling to control the formatting, 
-color, and other output options on video text terminals.
-曾在boot/ucos-demo中应用
-
-AOP(Aspect Oriented Programming) 是OOP 的延伸解决MVC，OOP仍无法解决的问题
-40分钟死机，开始只想到内存泄漏，没想到内存碎片问题
-exFAT有Freespace Bitmap: 空间位图方法
-MMAC_RTOS_TimerCreate() 内部优先级为10的任务
-
-庙会上的茶汤湖里巴突，这家的能吃出来里面什么是什么
-
-理解软件保护技术之序列号方式
-Wowza, office, windows 
-那么wowza 30天试用期授权
-
-oreilly  The Definitive Guide 系列
-
-Delta压缩算法：两文件相似性超过预设阈值时，仅存储计算出的Delta编码(git)
-http://www.libfm.org/  用于推荐系统
-Ninja is a small build system with a focus on speed. 
-
-foobar(wikipedia):
-没有实际意思，当举例时，没有任何意义的变量函数等依次用foobar, foo, bar, baz表示
-
-
-健壮性：
-打开文件检测存在性：黑龙江launcher，现场忙乱，没有放.list文件，结果程序崩溃
-
-gtk基于dfb，dfb基于sdl，sdl基于dfb 并非死循环，若平台已有sdl，则fdb直接可运行，若平台已有dfb，sdl可直接运行
-TIOBE 排行榜是根据程序员的数量，重要厂商，使用搜索引擎，Wikipedia等统计出的排名，只反映某语言的热门程度
-
-zlib压缩，创建2个线程，分别压缩一半，对于双核有效。
-
-闭包
-
-看别人的程序，先要讲清楚架构，例如20140220 guwb adb
-linux 换行是0a  windows 是0d 0a
-windows上写的文件在linux中打开乱码，需要另存为，Line Ending选择Unix/Linux即可，编码可以选成UTF-8 也可以不选。
-dlopen(), dlsym(), dlclose(), dlerror() 实现动态加载
-
-用statfs获得磁盘信息，而不是愚笨的分析du命令结果
-
-O(1) -> O(lg n) -> O(n lg n) -> O(n^2) -> O(n^3) -> O(n^k) -> O(k^n) -> O(n!)
-
-
-RC：(Release　Candidate)软件候选版本，RC版不再加入新的功能，着重于除错，
-（Beta阶段一直加入新功能）是发放给用户的最接近正式版的版本，已完成全部功能并清除大部分BUG。
-从Alpha到Beta再到RC是改进先后关系，RC1、RC2是取舍关系。 
-
-2.6.28 一些新特性在 2.6.29 中改善。
-Linus今早放出2.6.29,距2.6.28过了3个月(基本3个月一个新版本),经过8个RC版。2.6.29第一个更新版本2.6.29.1已发布，修正大量bug，特别解决了网络方面的问题。
-Linus 2009/01/11发布了2.6.29 rc1，加入了 Kernel mode-setting支持（目前仅支持 Intel硬件）、Btrfs文件系统和Squashfs文件系统，还增加了一些新驱动程序。
-
-注意2.6.28.10 在2.6.29 之后才发布
-2.6.28.10：2009.05.02
-2.6.29：2009.03.23
-2.6.28：2008.12.24
-
-
-Doug Lea malloc(dlmalloc)内存分配器，由Doug Lea教授1987年撰写,高效占用空间小，广泛使用
-在linux版本里作为默认malloc使用，并用于嵌入式系统
-
-1986年到1991年Doug Lea是libg++（GNU C++ library）主要作者，他写了大量有动态分配内存的C++程序，发现程序跑得比预期慢，内存消耗也大，
-追究下去，发现是内存分配器问题。于是用C++为新类写一些特殊用途的分配器，但很快意识到这并非一个好策略，应该提供一个在C++和C环境下都能运行得很好的通用内存分配器，于是dlmalloc诞生了。在之后的日子里，Doug Lea和一些志愿者一直都在不断的维护优化这个内存分配器。dlmalloc能被广泛应用，与其高标准和不断精益求精有关。
-另外Doug Lea是JAVA界的大师人物。
-dlmalloc-2.6.6/dlmalloc-2.8.3
-
-malloc核心元素：边界标记和分箱管理
-douglea malloc已经默认作为glibc的malloc
-
-Application.mk:
-APP_ABI := all
-or
-APP_ABI := armeabi-v7a armeabi  //只编译2个架构的
-
-
-
-
-Hello JNI:
-
-#if defined(__arm__)
-  #if defined(__ARM_ARCH_7A__)
-    #if defined(__ARM_NEON__)
-      #if defined(__ARM_PCS_VFP)
-        #define ABI "armeabi-v7a/NEON (hard-float)"
-      #else
-        #define ABI "armeabi-v7a/NEON"
-      #endif
-    #else
-      #if defined(__ARM_PCS_VFP)
-        #define ABI "armeabi-v7a (hard-float)"
-      #else
-        #define ABI "armeabi-v7a"
-      #endif
-    #endif
-  #else
-   #define ABI "armeabi"
-  #endif
-#elif defined(__i386__)
-   #define ABI "x86"
-#elif defined(__x86_64__)
-   #define ABI "x86_64"
-#elif defined(__mips64)  /* mips64el-* toolchain defines __mips__ too */
-   #define ABI "mips64"
-#elif defined(__mips__)
-   #define ABI "mips"
-#elif defined(__aarch64__)
-   #define ABI "arm64-v8a"
-#else
-   #define ABI "unknown"
-#endif
-
-这些宏是编译器定义的
-
-问题：
-编译生成若干平台的jni，如何决定调用哪个
-
-
-==thread==
-libutils/Threads.cpp
-
-Derived class implement threadLoop().  
-There are 2 ways of using the Thread object:
-1) loop: if threadLoop() returns true
-2) once: if threadLoop() returns false
-
-virtual bool threadLoop() = 0;
-
-创建的线程是 _threadLoop(void* user) 调threadLoop() 
-res = createThreadEtc(_threadLoop, this, name, priority, stack, &mThread);
-this指针传到 pthread_create 的arg参数,即_threadLoop(void* user) 的user
-
-
-//一个函数设置标志，另一个函数检查标志
-//下一函数const不可定义可以理解，这个为啥还能被继承？应该也是const的吧
-virtual void requestExit();
-bool exitPending() const;
-
-dalvic里thread.c
-
-/* Create a thread as a result of java.lang.Thread.start(). */
-
-bool dvmCreateInterpThread(Object* threadObj, int reqStackSize)
-{
-    cc = pthread_create(&threadHandle, &threadAttr, interpThreadStart, newThread);
-}
-
-
-Thread.java  void setName(String threadName)  //Sets the name of the Thread
-
-在 MountService.java 中
-        mHandlerThread = new HandlerThread("MountService");  //这里就会调用 setName 设置线程名字
-        mHandlerThread.start();
-        mHandler = new MountServiceHandler(mHandlerThread.getLooper());
-
-Thread.cpp
-Thread.java
-
-Thread 类与Runnable 接口
-
-/**
- * Represents a command that can be executed. Often used to run code in a
- * different Thread.
- * 经常用于但不限于线程，如post(runnable) 就相当于发一个函数指针过去
- * 相当于C中的函数指针
- */
-public interface Runnable {
-    public void run();
-}
-
-----------extends Thread------------------
-public class MyThread extends Thread {
-    public void run() {}
-}
-
-public static void main(String args[]) {
-    MyThread t = new MyThread();
-    t. start();
-}
-
-----------implements Runnable-------------
-public class MyThread implements Runnable {
-    public void run() {}
-}
-
-public static void main(String args[]) {
-    MyThread t = new MyThread();
-    Thread th = new Thread(t);  //这里不同，要通过thread启动
-    th.start();
-}
-===
-
-mmm external/strace
-
-Enabling coredumps will help you determine the problem.
-
-SIGSEGV 2种情况引起：
-SEGV_MAPERR	地址没有映射到对象
-SEGV_ACCERR	对映射的对象没有权限
+ANSI escape codes (or escape sequences) are a method using in-band 
+signaling to control the formatting, color, and other output options 
+on video text terminals.
 

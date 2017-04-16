@@ -1,5 +1,5 @@
 vim: tw=80
-VI之漫路即为禅修
+VI之漫路即为禅修，皈依gnu
 
 vim.base Huge version
 vim.tiny Small version

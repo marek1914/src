@@ -1,5 +1,15 @@
 priority -50
 
+snippet defined
+#if defined(foo)
+   #define foo
+#elif defined(bar)
+   #define bar
+#else
+   #define foobar
+#endif
+endsnippet
+
 snippet !defined
 #if !defined (STM32F405xx) && !defined (STM32F415xx)
 #endif

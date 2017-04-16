@@ -1227,11 +1227,6 @@ prebuilts/gcc/linux-x86/host/  目录删除
 BUILD_HOST_64bit := 1 不行，无论系统cc还是prebuild gcc，在生成package-export.apk时一堆错误
 猜测：64bit的 aapt 资源打包工具有问题:
 
-显然-ldl出现在了$(PRIVATE_LDFLAGS)中，而非$(PRIVATE_LDLIBS)中，对应源Android.mk:
-LOCAL_LDFLAGS := -ldl (那prebuild下的4.6编译器就可以，:-))
-应该是
-LOCAL_LDLIBS := -ldl (实则 系统 gcc 4.8 成功)
-
 说明系统gcc 是64bit程序，可加-m32/-m64参数，那prebuild分2个版本，分别是32bit/64bit程序（？兼容32bit ubuntu系统？）
 
 

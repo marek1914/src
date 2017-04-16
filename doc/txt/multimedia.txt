@@ -668,7 +668,6 @@ hlsenc.c : HLS segmenter
 
 http的  X-Playback-Session-Id  这是apple的http扩展
 
-
 —cache—
 221.181.100.148/140_0_3736686_0.m3u8
 这是一个2级地址表：
@@ -699,8 +698,6 @@ license文件位置：conf/Server.license 明文
 同一个bin文件可以多次使用不同license。
 SVRT3-hwjvQ-nRAbm-WhKn3-tBFAX-AdDDF-44uK744dyP4c 显示过期日 5月11日
 
-http://www.hulu.com/#!movies/genres
-
 安装目录:/usr/local/WowzaMediaServer 
 基于Java技术 lib目录下是一些jar包
 
@@ -708,34 +705,7 @@ ios版测试网页：iphone  ipad 华为手机，都可以嵌入式播放。
 nexus7 网页显示不支持hls，把地址直接复制到地址拦，可以直接转到gallery播放
 FX-5 dongle ：可网页嵌入播放(rockchip rk3066方案 不会是软解吧)
 
-100mbps 网口 提供12800kbyte/s
-
-调试直播功能：
-
-Link Aggregation can also be known as:
-
-"NIC Bonding" (Mainly Linux world)
-"NIC Teaming" (Mainly Windows world)
-"Port Trunking" (Mainly hardware world)
-"Etherchannel" (Mainly AIX and HP-UX)
-"Ether bonding"
-
-Windows  Broadcom 网卡管理套件 BASP
-linux  ifenslave
-
 并发测试软件 loadrunner
-wowza自带负载测试工具 在安装目录/bin 下
-
-HVC400 硬件编码卡
-
-码流服务器对比：
-1 windows media server免费(附带在windows server2003)，可发asf，wmv，支持单播，多播。用mms://地址访问。
-
-关于mp4文件：
-翟建国转码，不是所有mp4都能用ipad播放的。需要再仔细研究mp4 文件格式。
-The.Secret.mp4 虽然是mp4文件但是压缩格式是 mpeg-4 不是h264 所以ipad nexus7 都解不了
-
-不用流化也能播放
 
 dlna能分享avi mkv 文件吗？
 梳理，梳理，再梳理！
@@ -744,14 +714,6 @@ dlna能分享avi mkv 文件吗？
 Nexus7 直接访问网页显示
 HTML5 or HLS is not supported in this browser
 直接粘贴在地址栏，能转到gallery播放
-
-Apple tv 3 支持1080p视频，但未破解版本，如何取得片源是个问题。
-
-Wowza编码器
-特性：overlay
-VHost.xml
-Loadtest
-www.wowza.com/resources/LoadTestingTool.pdf
 
 vlc 里面显示视频格式mpgv 代表mpeg1/2   
 
@@ -789,10 +751,6 @@ media_w1158439516_DVR_1.ts
 在content/下生成cctv1.stream.flv 删除了还会重新生成。dvr启动后就开始了录制
 
 组播流端口选择10000，wireshark显示ndmp 什么意思？
-
-注：为什么wireshark不认rtp流，需要右键选Decode as 选rtp。
-因为udp头里面没有表明rtp协议的地方，后面的数据只能认为纯data，rtp协议开头的交互
-wireshark没有捕获到，好比从中间接听谈话，不知到对方在说什么一样
 
 打入wowza的组播流原地址必须是192.169.0.x 也就是跟wowza服务器第二个网口地址在同一个网段
 在调试瑞码视频监控器的时候发现不这样就不能工作

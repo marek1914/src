@@ -1,14 +1,29 @@
-// 消除不安情绪
+static int controller_busy(void)
+{
+    int retries = 100000;
+    unsigned char status;
+
+    do {
+        status = inb_p(HD_STATUS);
+    } while ((status & BUSY_STAT) && --retries);
+    return status;
+}
+
+
+
 // C99: ISO/IEC 9899:1999
-// C11: ISO/IEC 9899:2011
 // POSIX.1-2001(IEEE Std 1003.1,2001)
 // glibc: GNU C Library, C standard library 的GUN实现，support C++
 // GNUC
 // _t :typedef
 // clang/llvm
 // FIXME: TODO: XXX:
-// Uncomment the following line  注意这种方法
+// Tip: Uncomment the following line
 
+statfs
+linux :0a  
+win :0d 0a
+// printf("\033[33mHello\033[0m\n"); 打印颜色
 /*
 //24bit数左移2bit +2 
 c->low = (*c->bytestream++)<<18;
@@ -22,7 +37,7 @@ Integer conversion rank
 Integer promotions
 */
 
-/*****
+/*
 example:0x11223344
 big-endian: high-low low-high: 11 22 33 44
 little-endian: high-high low-low: 44 33 22 11
@@ -35,9 +50,9 @@ armv6:rev instruction
 start from:**
 most significant : big
 least significant: little
-******/
+*/
 
-/***
+/*
 indent:
 kernel/uboot tab(*)
 ffmpeg  4 space
@@ -58,20 +73,21 @@ C++:
 类成员变量m(member)+Pascal如 mSurfaceFlingerConsumer
 局部变量(包括参数)camelCase如 inputFormat
 
-****/
+*/
+
 // Ones' complement
 // Two's complement
 //-128- -1 0-127
 //  80- ff 0-7f
 
-/***
+/*
 debug:
 printf/gdb/jtag, Each has its own advantage
-***/
+*/
 
 //clang-format -style=Google -dump-config  
 
-/***
+/*
 Dictionaries:
 pictureInfo.aspectRatio
 lookupTable
@@ -93,8 +109,7 @@ static int array_resize(...)
 typedef struct mtd_info nand_info_t;
 is_dir()
 u32 attr, oldattr;
-
-***/
+*/
 
 //等价
  #if !defined (STM32F) 
@@ -130,7 +145,7 @@ void board_nand_init_tail(struct mtd_info *mtd)
 //6.3 Conversions
 
 
-/***********
+/*
 6.8.4.1 The if statement
 
 The controlling expression of an if statement shall have scalar type.
@@ -138,7 +153,7 @@ In both forms, the first substatement is executed if the expression compares une
 In the else form, the second substatement is executed if the expression compares equal
 to 0. If the first substatement is reached via a label, the second substatement is not
 executed.
-************/
+*/
 
 /*
 labeled-statement:
@@ -271,9 +286,6 @@ world";
 
 a=2;b=1;c=3;d=4;
 a>b?c>d?1:2:3);
-	
-#include <assert.h>
-assert(1!=1);
 
 #include <stdbool.h>
 return false;
@@ -613,9 +625,6 @@ if (str != NULL)// 比 if (str) 更强
 for (int r=0 ; !part.count || r<part.count ; r++) {
 }
 
-do .. while  //强化
-
-
 //返回值设计模式
 //模式1： 只返回0，1，0代表成功，1代表失败
 
@@ -673,12 +682,13 @@ argv: argument vector
 int main(int argc, char *argv[])
 int main(int argc, char *argv[], char *envp[])
 int main(int argc, char **argv, char **env)
-//1) char *argv[] 比 char** argv可读性更强，表明argv是字符串数组(UNIX高级编程)
-//   char *color[] = {"red", "green", "blue"};
-//2) argc/argv只是形参，可以换成任何名字
-//3) argv/envp连续，env在栈底，bionic: libc_init_dynamic.c: char** envp = argv+argc+1(下文的nil);
-//4) exec装载main需3个参数，可部分声明，超出3个或顺序错乱结果不可预知(ABI)
-
+/*
+1) char *argv[] 比 char** argv可读性更强，表明argv是字符串数组(UNIX高级编程)
+   char *color[] = {"red", "green", "blue"};
+2) argc/argv只是形参，可以换成任何名字
+3) argv/envp连续，env在栈底，bionic: libc_init_dynamic.c: char** envp = argv+argc+1(下文的nil);
+4) exec装载main需3个参数，可部分声明，超出3个或顺序错乱结果不可预知(ABI)
+*/
 
 main(int argc, char* argv[])
 {
@@ -741,28 +751,20 @@ printf("%s", 0); //(null)
 printf("pi = %.5f\n", 4 * atan(1.0)); // .20f 10几位以后就不对了
 //%p as if by %#x or %#lx
 
-
 const char* const argv[4]
 const char*
 char * const
 char * const *
 char * const argv[]
 
-//专项强化练习
-//每次写到 if (ture or false) 的时候，总是很纠结，不能迅速做出决定
-
-
 字节拼接：
 uint16_t crc;
 uint8_t  msg[2];
-
 crc = msg[1]<<8 | msg[0];  //msg[1] 会溢出吗？ 
 
-IEEE-754标准，单精度4字节双精度8字节，分三部分：符号位、阶码和尾数
-
- struct stat statbuf;  
-    stat(filename,&statbuf);  
-    int size=statbuf.st_size; 
+struct stat statbuf;  
+stat(filename,&statbuf);  
+int size=statbuf.st_size; 
 
 do {
 	property_get("mstar.bootvideo.sync", url, "0");
@@ -778,201 +780,12 @@ main(int argc, char** argv)
 	}
 }
 
-goto: 有时可以减少缩进
+goto: 可减少缩进
+j=-i;
 
-怪逻辑
-1
-#define max(a,b) ((a)<(b))?(b):(a)
-k = max( ++i, j );
-展开为：
-k = ((++i)<(j))?(j):(++i);
-会导致i自加2次
-
-
-main()
+/* "static" means don't export the symbol */
+static void foo(void)
 {
-	int i=5;
-	int j;
-	j=-i;
-	printf("j is %d\n", j);
-	j=-i+3;
-	printf("j is %d\n", j);
-	j=-(i+3);
-	printf("j is %d\n", j);
-}
-
-///getopt
-int main(int argc, char *argv[])
-{
-	int flags, opt;
-	int nsecs, tfnd;
-
-	nsecs = 0;
-	tfnd = 0;
-	flags = 0;
-	/* man 3 getopt */
-	while ((opt = getopt(argc, argv, "nt:")) != -1) {
-		switch (opt) {
-			case 'n':
-			   flags = 1;
-			   break;
-			case 't':
-			   nsecs = atoi(optarg);
-			   tfnd = 1;
-			   break;
-			default: /* '?' */
-			   fprintf(stderr, "Usage: %s [-t nsecs] [-n] name\n",
-					   argv[0]);
-			   exit(EXIT_FAILURE);
-	   }
-	}
-	printf("flags=%d; tfnd=%d; optind=%d\n", flags, tfnd, optind);
-
-	if (optind >= argc) {
-	   fprintf(stderr, "Expected argument after options\n");
-	   exit(EXIT_FAILURE);
-	}
-
-	printf("name argument = %s\n", argv[optind]);
-
-	/* Other code omitted */
-
-	exit(EXIT_SUCCESS);
-}
-
-
-// getopt_long
-
-int main(int argc, char **argv)
-{
-	int c;
-	int digit_optind = 0;
-
-	while (1) {
-		int this_option_optind = optind ? optind : 1;
-		int option_index = 0;
-		static struct option long_options[] = {
-			{"add",     required_argument, 0,  0 },
-			{"append",  no_argument,       0,  0 },
-			{"delete",  required_argument, 0,  0 },
-			{"verbose", no_argument,       0,  0 },
-			{"create",  required_argument, 0, 'c'},
-			{"file",    required_argument, 0,  0 },
-			{0,         0,                 0,  0 }
-		};
-
-		c = getopt_long(argc, argv, "abc:d:012", long_options, &option_index);
-		if (c == -1)
-			break;
-
-		switch (c) {
-			case 0:
-				printf("option: %s", long_options[option_index].name);
-				if (optarg)
-				printf(" with arg %s", optarg);
-				printf("\n");
-				break;
-
-			case '0':
-			case '1':
-			case '2':
-				if (digit_optind != 0 && digit_optind != this_option_optind)
-				printf("digits occur in two different argv-elements.\n");
-				digit_optind = this_option_optind;
-				printf("option(xxx) %c\n", c);
-				break;
-
-			case 'a':
-				printf("option a\n");
-				break;
-
-			case 'b':
-				printf("option b\n");
-				break;
-
-			case 'c':
-				printf("option c with value '%s'\n", optarg);
-				break;
-
-			case 'd':
-				printf("option d with value '%s'\n", optarg);
-				break;
-
-			case '?':
-				break;
-
-			default:
-				printf("?? getopt returned character code 0%o ??\n", c);
-		}
-	}
-	if (optind < argc) {
-		printf("non-option ARGV-elements: ");
-		while (optind < argc)
-			printf("%s ", argv[optind++]);
-		printf("\n");
-	}
-
-	exit(EXIT_SUCCESS);
-}
-
-//backtrace
-#include <execinfo.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-#define SIZE 100
-
-// 编译时加参数 -rdynamic  执行：./backtrace  num (num指定递归调用此时)
-
-void myfunc3(void)
-{
-   int j, nptrs;
-   void *buffer[100];
-   char **strings;
-
-   nptrs = backtrace(buffer, SIZE);
-   printf("backtrace() returned %d addresses\n", nptrs);
-
-   /* The call backtrace_symbols_fd(buffer, nptrs, STDOUT_FILENO)
-      would produce similar output to the following: */
-
-   strings = backtrace_symbols(buffer, nptrs);
-   if (strings == NULL) {
-       perror("backtrace_symbols");
-       exit(EXIT_FAILURE);
-   }
-
-   for (j = 0; j < nptrs; j++)
-       printf("%s\n", strings[j]);
-
-   free(strings);
-}
-
-/* "static" means don't export the symbol... */
-
-static void myfunc2(void)
-{
-   myfunc3();
-}
-
-void myfunc(int ncalls)
-{
-   if (ncalls > 1)
-       myfunc(ncalls - 1);
-   else
-       myfunc2();
-}
-
-int main(int argc, char *argv[])
-{
-   if (argc != 2) {
-       fprintf(stderr, "%s num-calls\n", argv[0]);
-       exit(EXIT_FAILURE);
-   }
-
-   myfunc(atoi(argv[1]));
-   exit(EXIT_SUCCESS);
 }
 
 //取http数据长度
@@ -1035,21 +848,6 @@ getcwd/getwd : 取得目前所在目录
 root_len = (rest - path);
 
 feof 宏
-
-------------------------------
-linux
-
-open/close/read/write
-fopen/fclose/fread/fwrite
-
-errno = 14 （#define EFAULT 14 /* Bad address */）
-EFAULT pathname points outside your accessible address space. 
-即随便给一无效地址，系统会检测到这个地址不可读（指内存地址）
-如果恰好那个地址可读并是个字符串，会返回
-ENOENT O_CREAT is not set and the named file does not exist.
-
-errno - number of last error
-#include <errno.h>
 
 for(i = 0; i < 256; i++)
 printf("errno.%02d is: %s/n", i, strerror(i));  打印所有错误号的解释
@@ -1161,7 +959,9 @@ sys/types.h
 
 int 4字节 long 机器长度
 
-fcntl.h定义了open,fcntl函数,感官上open/close/read/write应该在一起，但open的man页中有很多fnctl字样，这2个函数有着千丝万缕的联系，且open时可以“控制”很多文件的属性。所以open不在unistd.h中。
+fcntl.h定义了open,fcntl函数,感官上open/close/read/write应该在一起，
+但open的man页中有很多fnctl字样，这2个函数有着千丝万缕的联系，
+且open时可以“控制”很多文件的属性。所以open不在unistd.h中。
 fcntl()的使用到底没搞明白。
 
 有时（如bionic）只引用fcntl.h，不引用unistd.h也能调用read，write，是因为前者包含了后者。bionic中还对此包含加注释：
@@ -1222,36 +1022,6 @@ typeof(x) y;
 
 EOF:end-of-file, 值因平台而异，glibc stdio.h定义为 -1
 
-
----
-assert
-
-正统定义：
-#include <assert.h>
-abort the program if assertion is false
-void assert(scalar expression);
-
-为什么翻译为 断言
-
-断言就是用于在代码中捕捉这些假设
-
-可以将断言看作是异常处理的一种高级形式。断言表示为一些布尔表达式，程序员相信在程序中的某个特定点该表达式值为真。可以在任何时候启用和禁用断言验证，因此可以在测试时启用断言，而在部署时禁用断言。同样，程序投入运行后，最终用户在遇到问题时可以重新起用断言。
-
-assert是宏，而不是函数。在C的assert.h头文件中。
-assert宏的原型定义在<assert.h>中，其作用是如果它的条件返回错误，则终止程序执行，原型定义：
-	
-#defineassert(expr)\
-((expr)\
-?__ASSERT_VOID_CAST(0)\
-:__assert_fail(__STRING(expr),__FILE__,__LINE__,__ASSERT_FUNCTION))
- 
-/*DefinedInGlibc2.15*/
-assert的作用是先计算表达式expr，如果其值为假（即为0），那么它会打印出来assert的内容和__FILE__, __LINE__, __ASSERT_FUNCTION，然后执行abort()函数使kernel杀掉自己并coredump（是否生成coredump文件，取决于系统配置）；否则，assert()无任何作用
-
-完成调试后，不必从源代码中删除assert()语句，因为宏NDEBUG有定义时，宏assert()的定义为空
-
-#define NDEBUG
-
 libevent 同步事件通知库
 gevent
 
@@ -1290,15 +1060,20 @@ so you might as well put the prototype in that file.
 读文件等可以改变访问时间，实验发现2次访问时间间隔过短，不更新
 拷贝粘贴一个文件，修改时间与源文件相同，访问时间变为当前。
 
-relatime属性 文件读操作频繁的系统，atime更新开销很大，很多SA在挂装文件系统的时候使用noatime属性停止更新atime。有些程序需要根据atime进行一些判断和操作，所以Linux就推出了一个relatime特性。
-使用这个特性来挂装文件系统后，只有当mtime比atime更新的时候，才会更新atime。事实上，这个时候atime和mtime已经是同一个东西了。所以这个选项就是为了实现对atime的兼容才推出的。并不是一个新的时间属性。使用方法就是通过mount -o relatime /dir来挂装目录。
+relatime属性 文件读操作频繁的系统，atime更新开销很大，很多SA在挂装文件系统的时候使
+用noatime属性停止更新atime。有些程序需要根据atime进行一些判断和操作，所以Linux就推
+出了一个relatime特性。
+使用这个特性来挂装文件系统后，只有当mtime比atime更新的时候，才会更新atime。事实上，
+这个时候atime和mtime已经是同一个东西了。所以这个选项为了实现对atime的兼容才推出的。
+并不是一个新的时间属性。使用方法就是通过mount -o relatime /dir来挂装目录。
 
 用fwrite写文件时，会有2G大小限制。加编译选项-D_FILE_OFFSET_BITS=64解决
 
 
 stat, fstat, lstat - get file status
 
-inode : index node  用来描述文件系统对象的数据结构，存储属性数据的存储块位置，属性包括metadata (如change/access/modify时间),以及owner和permission(如group-id, user-id, permissions)
+inode : index node  用来描述文件系统对象的数据结构，存储属性数据的存储块位置，
+属性包括metadata (如change/access/modify时间),以及owner和permission(如group-id, user-id, permissions)
 
 //makedev, major, minor - manage a device number
 
@@ -1326,7 +1101,7 @@ void klog_write(int level, const char *fmt, ...)
     vsnprintf(buf, LOG_BUF_MAX, fmt, ap);
     buf[LOG_BUF_MAX - 1] = 0;
     va_end(ap);
-    write(klog_fd, buf, strlen(buf));  // klog_fd 文件都 unlink 了，怎么还能写呢？
+    write(klog_fd, buf, strlen(buf));
 }
 
 dev_t 在android中有3种定义，12bit+20bit 2种， 8bit+8bit 1种，以s805为例：
@@ -1335,7 +1110,8 @@ include/linux/kdev_t.h
 include/uapi/linux/kdev_t.h 2个文件内容和一起基本等于:
 external/kernel-headers/original/linux/kdev_t.h
 而：
-bionic/libc/kernel/common/linux/kdev_t.h 是 update_all.py根据 kernel-headers生成，取8bit+8bit版本。
+bionic/libc/kernel/common/linux/kdev_t.h 是update_all.py根据 kernel-headers生成，
+取8bit+8bit版本。
 
 // endglibc
 
@@ -1343,13 +1119,6 @@ struct sockaddr {
  sa_family_t sa_family;
  char sa_data[14];
 };
-
-NOTES
-These functions make some assumptions about how a function's return address is stored on the stack.  Note the following:
-*  Omission of the frame pointers (as implied by any of gcc(1)'s nonzero optimization levels) may cause these assumptions to be violated.
-*  Inlined functions do not have stack frames.
-*  Tail-call optimization causes one stack frame to replace another.
-//
 
 //取参数
 if (sscanf(l, "%d %d %d", &width, &height, &fps) == 3) {
@@ -1511,4 +1280,25 @@ fb = open ("/dev/fb0", O_RDWR);
 fb_mem = mmap(NULL, 1024*768, PROT_READ|PROT_WRITE,MAP_SHARED,fb,0);
 
 waiting ? 1 : 0;
+
+
+==thread==
+libutils/Threads.cpp
+
+Derived class implement threadLoop().  
+There are 2 ways of using the Thread object:
+1) loop: if threadLoop() returns true
+2) once: if threadLoop() returns false
+
+virtual bool threadLoop() = 0;
+
+创建的线程是 _threadLoop(void* user) 调threadLoop() 
+res = createThreadEtc(_threadLoop, this, name, priority, stack, &mThread);
+this指针传到 pthread_create 的arg参数,即_threadLoop(void* user) 的user
+
+//一个函数设置标志，另一个函数检查标志
+//下一函数const不可定义可以理解，这个为啥还能被继承？应该也是const的吧
+virtual void requestExit();
+bool exitPending() const;
+
 // vim: tw=80
