@@ -534,14 +534,6 @@ Defined at arch/mips/Kconfig.debug:21
 
 Starting application at 0x863b2000 ... //u-boot打印。
 
-2 elf转bin后 bss段怎么处理呢？
-要生成 bin文件 执行  make vmlinux.bin
-那么在编译最后，会自动执行
-  LD      vmlinux
-  SYSMAP System.map
-  SYSMAP .tmp_System.map
-
-文件生成在 在arch/mips/boot下
 
 内核从哪里开始运行要看lds
 zImage 2次链接：生成vmlinux(arch/arm/boot/vmlinux.lds（由arch/arm/kernel /vmlinux.lds.S生成）)；
@@ -684,18 +676,6 @@ panic(): printk("Kernel panic - not syncing: %s\n",buf);
 Kernel hacking 里ARM_UNWIND  配置，Enable stack unwinding support  （unwind 松开，解开）
 显示函数调用关系，需要栈帧(CONFIG_FRAME_POINTER)
 
-
-对于各种Arm CPU的DEBUG输出设定，通过定义宏来统一操作；
-设置kernel开始和结束地址，保存architecture ID；
-如果在ARM2以上的CPU中，用的是普通用户模式，则升到超级用户模式，然后关中断
-分析LC0结构delta offset，判断是否需要重载内核地址(r0存入偏移量，判断r0是否为零)。
-需要重载内核地址，将r0的偏移量加到BSS region和GOT table中的每一项。对于位置无关的代码，
-程序是通过GOT表访问全局数据目标的，也就是说GOT表中中记录的是全局数据目标的绝对地址，
-所以其中的每一项也需要重载。
-清空bss堆栈空间r2－r3
-建立C程序运行需要的缓存
-这时r2是缓存的结束地址，r4是kernel的最后执行地址，r5是kernel境象文件的开始地址
-
 mode specifies the permissions to use in case a new file is created.  
 这里的权限就指 用户，组，其他的读写可执行等
 只有指定 O_CREAT 参数的时候，mode才有意义，否则直接赋值为0即可，即使不赋0，内部也会把他清零。
@@ -766,11 +746,6 @@ iomem 里面的内容是怎么出来的
   0063cfa0-00759edf : Kernel data
 kernel没有占到那么大啊！多出了1M多。
 
-在bootmem_init()中，用到了 &_end 而 _end 是 System.map 文件的最后一个符号:
-808b45e0 A __bss_stop
-808b45e0 A _end  /*去4k对齐，正好是0x8b5000*/
-经查 00759edf 后面到8b5000  0x15A701这段空间是 init空间和bss空间
-
 Freeing unused kernel memory: 220k freed  
 
 Memory: 420276k/1048576k available (6383k kernel code, 628300k reserved, 1139k data, 220k init, 0k highmem)
@@ -780,11 +755,6 @@ Memory: 420276k/1048576k available (6383k kernel code, 628300k reserved, 1139k d
 20044k = 0x8b5000(code+data+init+bss 8916k) + 40k(bitmap) + (10240k)mem_map  + 212个页（800多k，后面其他alloc_bootmem_core调用）
 
 192M@64M  402M@512M 这种配置
-
-pc上 cat iomem:
-  01000000-015f663e : Kernel code
-  015f663f-01aba27f : Kernel data
-  01bb9000-01d0bfff : Kernel bss (bcm和海斯未显示此段)
 
 虽然没有在iomem中显示，但通过
 extern char __init_begin[], __init_end[];

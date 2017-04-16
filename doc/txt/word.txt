@@ -395,3 +395,6 @@ Out-of-band (OOB) data: in computer networking, a separate stream of data from t
 
 json(JavaScript Object Notation) lightweight data-interchange format
 Node.js is a V8 engine. event-driven, non-blocking I/O model
+
+BSS (Block Started by Symbol 一条古老的汇编指令) 
+Better Save Space

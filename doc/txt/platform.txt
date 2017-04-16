@@ -430,8 +430,6 @@ TSEC：Three Speed Ethernet Controller，PowerPc CPU里的MAC模块，内有DMA�
 加载网络设备的驱动:
 挂在TSEC驱动的入口函数是 gfar_probe （就是调完这个函数死机的）
 
-这个kernel，即能在nor flash里运行，又能在ram中运行，怎么编译的呢？ 后者好理解，前者是在什么时候把data和bss拷贝的呢? 代码段pic当然可以。
-
 RedBoot partition parsing not available
 cmdlinepart partition parsing not available  这2种分区表都不支持
 
