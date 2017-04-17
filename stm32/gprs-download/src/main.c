@@ -8,6 +8,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "stm32f1xx_hal.h"
 #include "i2c.h"
 
@@ -24,11 +25,6 @@ uint8_t slice_crc[256];
 int8_t  path[128];
 char server_ip[16];
 
-void Error_Handler(void)
-{
-	while (1) {}
-}
-
 void SystemClock_Config(void)
 {
 	RCC_OscInitTypeDef RCC_OscInitStruct;
@@ -38,9 +34,7 @@ void SystemClock_Config(void)
 	RCC_OscInitStruct.HSIState = RCC_HSI_ON;
 	RCC_OscInitStruct.HSICalibrationValue = 16;
 	RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
-	if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {
-		Error_Handler();
-	}
+	HAL_RCC_OscConfig(&RCC_OscInitStruct);
 
 	RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK |
 	                              RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
@@ -49,9 +43,7 @@ void SystemClock_Config(void)
 	RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
 	RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK) {
-		Error_Handler();
-	}
+	HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0);
 
 	HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq() / 1000);
 	HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
@@ -69,9 +61,7 @@ void MX_USART1_UART_Init(void)
 	uart1.Init.Mode = UART_MODE_TX_RX;
 	uart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
 	uart1.Init.OverSampling = UART_OVERSAMPLING_16;
-	if (HAL_UART_Init(&uart1) != HAL_OK) {
-		Error_Handler();
-	}
+	HAL_UART_Init(&uart1);
 }
 
 void MX_USART3_UART_Init(void)
@@ -84,9 +74,7 @@ void MX_USART3_UART_Init(void)
 	uart3.Init.Mode = UART_MODE_TX_RX;
 	uart3.Init.HwFlowCtl = UART_HWCONTROL_NONE;
 	uart3.Init.OverSampling = UART_OVERSAMPLING_16;
-	if (HAL_UART_Init(&uart3) != HAL_OK) {
-		Error_Handler();
-	}
+	HAL_UART_Init(&uart3);
 }
 
 void MX_GPIO_Init(void)
@@ -99,7 +87,7 @@ void MX_GPIO_Init(void)
 int fputc(int ch, FILE *f)
 {
 	HAL_UART_Transmit(&uart3, (uint8_t *)&ch, 1, 0xFFFF);
-  return ch;
+	return ch;
 }
 
 // 2K alignment data
@@ -366,7 +354,16 @@ uint16_t parse_index(void)
 
 int is_valid_ip(char *ip)
 {
-
+	int i;
+	/* insufficient */
+	for (i = 0; i < 15; i+=4) {
+		if (!isdigit(ip[i]) || !isdigit(ip[i+1]) || !isdigit(ip[i+2]))
+			return 0;
+	}
+	if (ip[3]!='.' || ip[7]!='.' || ip[11]!='.') {
+		return 0;
+	}
+	return 1;
 }
 
 int main(void)
@@ -392,7 +389,7 @@ int main(void)
 	iic_read_byte(18, server_ip, 15);
 
 	if (!is_valid_ip(server_ip)) {
-		printf("ip invalid\r\n");
+		printf("ip invalid!\r\n");
 		goto startup;
 	}
 
