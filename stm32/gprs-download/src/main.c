@@ -1,6 +1,6 @@
-/* polling mode
+/*
+ * polling mode
  * 256k+48k
- * 0x40000
  */
 
 #include "main.h"
@@ -22,9 +22,7 @@ UART_HandleTypeDef uart3;
 uint8_t buf[1024 * 8];
 uint8_t slice_crc[256]; 
 int8_t  path[128];
-
-char *url = "http://123.56.196.100/device/updateFile";
-char iic_url[26];
+char server_ip[16];
 
 void Error_Handler(void)
 {
@@ -279,9 +277,9 @@ uint16_t download(char *file, uint16_t *content, uint16_t rto)
 	at("at+httpinit\r");
 	wait_status();
 
-	strcpy(path, "at+httppara=1,\"");
-	strcat(path, url);
-	strcat(path, "/split/");
+	strcpy(path, "at+httppara=1,\"http://");
+	strcat(path, server_ip);
+	strcat(path, "/device/updateFile/split/");
 	strcat(path, file);
 	strcat(path, "\"\r");
 	at(path);
@@ -366,11 +364,9 @@ uint16_t parse_index(void)
 	return count;
 }
 
-int get_url()
+int is_valid_ip(char *ip)
 {
-	int j;
-	//AT24CXX_Init(void);
-	//AT24CXX_Random_ReadOneByte(j);
+
 }
 
 int main(void)
@@ -393,8 +389,14 @@ int main(void)
 
 	iic_init();
 	/* offset 17  "192.168.001.100" */
-	iic_read_byte(17, iic_url, 25);
-	printf("iic_url is: %s\r\n", iic_url);
+	iic_read_byte(18, server_ip, 15);
+
+	if (!is_valid_ip(server_ip)) {
+		printf("ip invalid\r\n");
+		goto startup;
+	}
+
+	printf("ip is: %s\r\n", server_ip);
 	
 	gprs_init();
 	count = parse_index();
