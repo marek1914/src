@@ -9,7 +9,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "stm32f1xx_hal.h"
-//#include "FM24c64/24cxx.h"
+#include "i2c.h"
 
 #define APP_ADDR    (uint32_t)0x08004000
 /* last 2k page */
@@ -24,6 +24,7 @@ uint8_t slice_crc[256];
 int8_t  path[128];
 
 char *url = "http://123.56.196.100/device/updateFile";
+char iic_url[26];
 
 void Error_Handler(void)
 {
@@ -385,12 +386,16 @@ int main(void)
 	MX_GPIO_Init();
 	MX_USART1_UART_Init();
 	MX_USART3_UART_Init();
-
 	
 	if (*(__IO uint32_t*)PARA_ADDR != 0x55aa55aa) {
 		goto startup;
 	}
 
+	iic_init();
+	/* offset 17  "192.168.001.100" */
+	iic_read_byte(17, iic_url, 25);
+	printf("iic_url is: %s\r\n", iic_url);
+	
 	gprs_init();
 	count = parse_index();
 	
