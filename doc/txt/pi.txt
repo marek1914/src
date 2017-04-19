@@ -1,4 +1,5 @@
 [ˈrɑ:zbəri]
+login:  pi:raspberry
 raspistill -o keychain.jpg -t 2000
 raspi-config
 
@@ -18,8 +19,6 @@ https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget?view
 配置hdmi声音
 https://www.raspberrypi.org/documentation/configuration/audio-config.md
 使用hdmi转vga线，修改config.txt -> hdmi_driver=2
-
-播放mp3用 omxplayer
 
 /opt/vc/src/hello_pi/rebuild.sh  一些测试程序
 
@@ -41,15 +40,14 @@ https://www.raspberrypi.org/documentation/linux/kernel/building.md  //写的好
 
 有2个方法重编pi内核：
 1 pi上编译 (慢) pi3 + class 10 SD -j4 94min
-bc:not found //bc是什么命令？ （apt-get install bc）
+bc:not found //（apt-get install bc）
 
 2 交叉编译
-内核：
 https://github.com/raspberrypi/linux
 
 编译器：
 Get the latest Raspberry Pi compiler
-包含5套编译器，还是搞不清楚这么多是干啥的
+包含5套编译器
 
 制作img工具：
 mkknlimg //是专门为pi写的perl脚本
@@ -65,11 +63,10 @@ mkknlimg //是专门为pi写的perl脚本
 从github下载的.zip压缩包，include/linux/i2c-gpio.h 变为软链接，链接目标是这个文件的内容
 文件损坏的这么怪异。。。
 ---
-//前2句为make进程定义环境变量（shell文档未找到依据）
 ARCH=arm CROSS_COMPILE=${CCPREFIX} make bcm2835_defconfig  
 
-pi1  KERNEL=kernel
-pi2/3  KERNEL=kernel7 (armv7的意思？ pi3 实际是armv8 现在还没有更新，等待，现在pi3 当bcm2709用的)
+pi1    KERNEL=kernel
+pi2/3  KERNEL=kernel7 (armv7?)
 编译kernel：
 kernel来源：github/raspberrypi 
 
@@ -134,17 +131,6 @@ bcm2709-rpi-2-b.dtb
 bcm2710-rpi-3-b.dtb
 
 https://www.pinterest.com/stein20070193/arduino-raspberrypi-electronics/
-Sense HAT  //各种传感器
-
-lifebox 项目，让我想起了 ucos的打印例子
-
-Kickstarter众筹
-https://blog.adafruit.com
-
-Parallella 计算机
-
-
-login:  pi:raspberry
 
 arstechnica.com/information-technology/2012/12/10-raspberry-pi-creations-that-show-how-amazing-the-tiny-pc-can-be/
 文档 git@github.com:raspberrypi/documentation.git
@@ -247,7 +233,7 @@ SPI mode0/mode3
 single power supply operation 2.7-3.6v 读写擦（老式eeprom，擦除需要12V高电压）
 1bit/2bit/4bit 模式  100000次擦写
 
-实验板：MX25L1608E， 开始检测不到芯片，因为#HOLD引脚没有拉高:
+实验板：MX25L1608E， #HOLD不拉高检测不到芯片:
 
 #flashrom -p linux_spi:dev=/dev/spidev0.0
 Found Macronix flash chip "MX25L1605" (2048 kB, SPI) on linux_spi.
