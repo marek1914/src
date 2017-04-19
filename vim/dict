@@ -339,9 +339,7 @@ xx_reset
 foreach
 similar
 equivalent_to
-<<<<<<< HEAD
 defective
-=======
 NDEBUG
 errno
 side-effects
@@ -359,5 +357,5 @@ combination
 chip_probe
 try_next_permutation
 foobar
->>>>>>> f4e98f2ac2c58e8c3680ec722c30d78c9795a864
+match_token
 

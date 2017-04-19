@@ -1,32 +1,23 @@
 [ˈrɑ:zbəri]
 raspistill -o keychain.jpg -t 2000
 raspi-config
-volumio 播放器
-sudo apt-get install gpac
 
-pi3 Wi-Fi and Bluetooth 4.1/Low Energy (LE) support, BCM43438
+pi3 Wi-Fi and Bluetooth 4.1/Low Energy (LE), BCM43438
 
 Pi 1 :BCM2835/BCM2708  ARMv6 arm11
 Pi 2 :BCM2836/BCM2709  ARMv7 4core Cortex-A7 900MHz  1G Ram
 Pi 3 :BCM2837/BCM2710  ARMv8 4core 64bit Cortex A53 1.2GHz
-BCM2709 CPU家族
-BCM2836 CPU具体型号
-内核开发者称之为BCM2708，树莓派和博通则称为BCM2835
-
-ROS(Robot Operating System）是一个机器人软件平台
+CPU家族/具体型号 内核开发者称BCM2708，树莓派称BCM2835
 
 https://publiclab.org/
 http://www.infragram.org/红外摄像
 https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget?view=all //Pi zero
-https://www.element14.com
-http://cn.element14.com
-
 
 使用hdmi转vga连接pi，启动时必须插电源，启动后就不用电源了，why？ 与edid有关
 
 配置hdmi声音
 https://www.raspberrypi.org/documentation/configuration/audio-config.md
-使用hdmi转vga线，最后是靠修改config.txt -> hdmi_driver=2 实现，其他几招都不灵
+使用hdmi转vga线，修改config.txt -> hdmi_driver=2
 
 播放mp3用 omxplayer
 
@@ -49,13 +40,10 @@ https://www.raspberrypi.org/documentation/linux/kernel/building.md  //写的好
 这篇文章中 git clone --depth=1 https://github.com/raspberrypi/linux  //这是下载master分支，一直有个顾虑，他能保证master分支一直是好的？而不用下载3.x 4.x等发布版本？
 
 有2个方法重编pi内核：
-1 在pi上编译 (很慢^_^) //此法虽慢，但首次在arm平台编译内核，意义重大
+1 pi上编译 (慢) pi3 + class 10 SD -j4 94min
 bc:not found //bc是什么命令？ （apt-get install bc）
-pi1 + class 4 SD  1天没编完，哈哈，体会到什么叫慢了，4-5s 蹦一个文件
-pi3 + class 10 SD  -j4 94min
 
 2 交叉编译
-
 内核：
 https://github.com/raspberrypi/linux
 
@@ -69,7 +57,6 @@ mkknlimg //是专门为pi写的perl脚本
 猜测：4.4.7比原始版本内核新，是不是不用改core_freq，删除，仍然不行
 
 安装module，修改250，串口仍然没打印
-
 
 .ko不在boot分区，而在ext4分区，共有4300+个ko
 
@@ -89,7 +76,6 @@ kernel来源：github/raspberrypi
 If you want to compile an upstream kernel, rather than the Raspberry Pi Foundation's downstream kernel, 
 please see RPi_Upstream_Kernel_Compilation for a few tips
 说明upstream kernel指的是kernel.org的
-
 
 键盘符号错乱需Re-mapping the keyboard ：
 sudo dpkg-reconfigure keyboard-configuration，主要是English UK 改为US ，因为系统是英国造
@@ -185,16 +171,12 @@ bcm2835 i2c
 http://www.airspayce.com/  为啥有bcm2835的资料呢?
 C library for Broadcom BCM 2835 as used in Raspberry Pi
 
-2 硬件
-Rasp B (LAN9512): cpu晶体AEL19.2 LAN9512晶体25M
 Rasp B+(LAN9514): lan9514 25Mhz 由soc发出
 
-D3(排线)/D4(AV输出):A7W-3d 3pin，不是三极管而是2个快速开关二极管bav99封装  Dual  Series  Switching  Diode 双列开关二极管
-电源处U14:K4S-b4 6pin 查不出来， U3：2306KE 型号查不出,从精简版电路图看是电源芯片，由5v输出3v3和1v8
-Rasp有个JTAG接口没有焊接
-Rasp 40针排插 2边都是平的，而不是一边毛糙
-AV处 U10 GS4vd 5pin 
-不用DAC和放大器，而用pwm发声
+D3(排线)/D4(AV输出):A7W-3d 3pin，不是三极管而是2个快速开关二极管bav99封装  
+Dual  Series  Switching  Diode 双列开关二极管
+
+AV处 U10 GS4vd 5pin  不用DAC和放大器，而用pwm发声
 U4 APX803-46SAG : 3-PIN MICROPROCESSOR RESET CIRCUIT 上电或电压低于阀值时发出低电平复位。
 U9 AP2331W
 
@@ -205,14 +187,11 @@ B+声音输出：
 6pin z16b(有可能是4个bav99二极管，等价于2个a7w)   6s4vd 5pin 查不到型号
 
 HDMI
-rasp AB 用EMI4182:common mode filter with ESD protection for HDMI(不能用于USB)
+用EMI4182:common mode filter with ESD protection for HDMI(不能用于USB)
 
 USB电源，2个口用1组滤波电容(100n+47u)无fuse。805参考2个fuse+2套滤波
 
-可运行Minecraft游戏
-
 树莓派广告牌
-
 http://www.raspberrypi.org/accelerating-fourier-transforms-using-the-gpu/
 
 raspbian-wheezy无法生成turbojpeg的configure，需先在pc上生成它，在pi上运行生成makefile（有个时间错误，需要touch configure）
@@ -222,15 +201,6 @@ pc生成configure后要tar.gz 压缩， zip不行。
 设置时区：
 apt-get install ntpdate
 tzselect
-
-apt-get install git-core vim
-
-vim:
-:syntax on
-
-install python-dev  ??
-
-同时支持python/python3
 
 PiFace
 PiBrella
@@ -272,59 +242,29 @@ IIC flash  at24c01/02/04/08/16   08/16 A0-A2 不全用，而是给了页地址
 
 SPI Flash: 飞好的板子：25L160BE
 
-MXIC: 台湾旺宏电子   MX25L12835F (128Mbit) 
+MXIC: 台湾旺宏   MX25L12835F (128Mbit) 
 SPI mode0/mode3
 single power supply operation 2.7-3.6v 读写擦（老式eeprom，擦除需要12V高电压）
 1bit/2bit/4bit 模式  100000次擦写
 
-实验板：MX25L1608E， 开始检测不到芯片，最后查出，因为#HOLD引脚没有拉高:
+实验板：MX25L1608E， 开始检测不到芯片，因为#HOLD引脚没有拉高:
 
-#flashrom -p linux_spi:dev=/dev/spidev0.0 
+#flashrom -p linux_spi:dev=/dev/spidev0.0
 Found Macronix flash chip "MX25L1605" (2048 kB, SPI) on linux_spi.
 Found Macronix flash chip "MX25L1605A/MX25L1606E/MX25L1608E" (2048 kB, SPI) on linux_spi.
-Found Macronix flash chip "MX25L1605D/MX25L1608D/MX25L1673E" (2048 kB, SPI) on linux_spi.
-Multiple flash chip definitions match the detected chip(s): "MX25L1605", "MX25L1605A/MX25L1606E/MX25L1608E", "MX25L1605D/MX25L1608D/MX25L1673E"
 Please specify which chip definition to use with the -c <chipname> option.
 需要选择芯片：
-
-flashrom -p linux_spi:dev=/dev/spidev0.0 -c "MX25L1605A/MX25L1606E/MX25L1608E" -r out.rom //读出2M数据
-
-s805 mlc push速度3.53MB/s  读25.58MB
-
-只读文件系统：
-romfs  squashfs  cramfs
-
-
-====
-运行ultisnips 提示
-UltiSnips requires py >=2.7 or py3
-是因为vim 不是支持python的版本
-:version 提示 -python 说明不支持
-安装 vim-nor
-
+#flashrom -p linux_spi:dev=/dev/spidev0.0 -c "MX25L1605A/MX25L1606E/MX25L1608E" -r out.rom //读出2M数据
 
 ==================
-Beaglebone
+Beaglebone Black/Green
 
 http://192.168.7.2:3000
 AM3359
 
 Debian (lxde桌面)
-Android
 Ubuntu
 Cloud9 IDE on Node.js BoneScript library
-
-How to use the Grove-UART port as a GPIO on BBG
-
-《BeagleBone Robotic Projects》
-《The Beaglebone Black Primer》
-《Exploring Beaglebone》
-《Beaglebone for Dummies》
-《Beaglebone Cookbook》
-
-BeagleBone Black
-BeagleBone Green
-
 
 ===arduino===
 Arduino / Genuino
