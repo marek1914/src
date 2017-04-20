@@ -392,7 +392,9 @@ fourcc : Four-Character Codes
 VLA :variable length array
 
 In-band signaling:
-in-band signaling is the sending of metadata and control information within the same band or channel used for voice (e.g. DTMF tones) and can be heard by the callers, as opposed to out-of-band signals which cannot be heard as they are on a different channel or band.
+in-band signaling is the sending of metadata and control information within the same band or channel used for 
+voice (e.g. DTMF tones) and can be heard by the callers, as opposed to out-of-band signals which cannot be 
+heard as they are on a different channel or band.
 
 
 

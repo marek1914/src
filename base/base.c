@@ -19,6 +19,15 @@ do {
 	status = get_status();
 } while (!status || retry == 0);
 
+/* ok */
+for (i = 0; i < 4; i++) {
+    status = get_status();
+    if (status) {
+        break;
+    }
+}  
+
+
 static int controller_busy(void)
 {
     int retries = 100;
