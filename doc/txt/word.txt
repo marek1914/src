@@ -81,7 +81,7 @@ short/fair/good/strong  密码
 silicon valley
 backquotes ``
 
-
+Duff's Deviec
 
 debian  [ˈdɛ.bi.ən]
 intra ['ɪntrə] 同一事物内部各部分之间

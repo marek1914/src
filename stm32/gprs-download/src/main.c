@@ -1,6 +1,6 @@
-/* polling mode
+/*
+ * polling mode
  * 256k+48k
- * 0x40000
  */
 
 #include "main.h"
@@ -8,8 +8,9 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "stm32f1xx_hal.h"
-//#include "FM24c64/24cxx.h"
+#include "i2c.h"
 
 #define APP_ADDR    (uint32_t)0x08004000
 /* last 2k page */
@@ -22,13 +23,7 @@ UART_HandleTypeDef uart3;
 uint8_t buf[1024 * 8];
 uint8_t slice_crc[256]; 
 int8_t  path[128];
-
-char *url = "http://123.56.196.100/device/updateFile";
-
-void Error_Handler(void)
-{
-	while (1) {}
-}
+char server_ip[16];
 
 void SystemClock_Config(void)
 {
@@ -39,9 +34,7 @@ void SystemClock_Config(void)
 	RCC_OscInitStruct.HSIState = RCC_HSI_ON;
 	RCC_OscInitStruct.HSICalibrationValue = 16;
 	RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
-	if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {
-		Error_Handler();
-	}
+	HAL_RCC_OscConfig(&RCC_OscInitStruct);
 
 	RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK |
 	                              RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
@@ -50,9 +43,7 @@ void SystemClock_Config(void)
 	RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
 	RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK) {
-		Error_Handler();
-	}
+	HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0);
 
 	HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq() / 1000);
 	HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
@@ -70,9 +61,7 @@ void MX_USART1_UART_Init(void)
 	uart1.Init.Mode = UART_MODE_TX_RX;
 	uart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
 	uart1.Init.OverSampling = UART_OVERSAMPLING_16;
-	if (HAL_UART_Init(&uart1) != HAL_OK) {
-		Error_Handler();
-	}
+	HAL_UART_Init(&uart1);
 }
 
 void MX_USART3_UART_Init(void)
@@ -85,9 +74,7 @@ void MX_USART3_UART_Init(void)
 	uart3.Init.Mode = UART_MODE_TX_RX;
 	uart3.Init.HwFlowCtl = UART_HWCONTROL_NONE;
 	uart3.Init.OverSampling = UART_OVERSAMPLING_16;
-	if (HAL_UART_Init(&uart3) != HAL_OK) {
-		Error_Handler();
-	}
+	HAL_UART_Init(&uart3);
 }
 
 void MX_GPIO_Init(void)
@@ -100,7 +87,7 @@ void MX_GPIO_Init(void)
 int fputc(int ch, FILE *f)
 {
 	HAL_UART_Transmit(&uart3, (uint8_t *)&ch, 1, 0xFFFF);
-  return ch;
+	return ch;
 }
 
 // 2K alignment data
@@ -278,9 +265,9 @@ uint16_t download(char *file, uint16_t *content, uint16_t rto)
 	at("at+httpinit\r");
 	wait_status();
 
-	strcpy(path, "at+httppara=1,\"");
-	strcat(path, url);
-	strcat(path, "/split/");
+	strcpy(path, "at+httppara=1,\"http://");
+	strcat(path, server_ip);
+	strcat(path, "/device/updateFile/split/");
 	strcat(path, file);
 	strcat(path, "\"\r");
 	at(path);
@@ -365,11 +352,18 @@ uint16_t parse_index(void)
 	return count;
 }
 
-int get_url()
+int is_valid_ip(char *ip)
 {
-	int j;
-	//AT24CXX_Init(void);
-	//AT24CXX_Random_ReadOneByte(j);
+	int i;
+	/* insufficient */
+	for (i = 0; i < 15; i+=4) {
+		if (!isdigit(ip[i]) || !isdigit(ip[i+1]) || !isdigit(ip[i+2]))
+			return 0;
+	}
+	if (ip[3]!='.' || ip[7]!='.' || ip[11]!='.') {
+		return 0;
+	}
+	return 1;
 }
 
 int main(void)
@@ -385,12 +379,22 @@ int main(void)
 	MX_GPIO_Init();
 	MX_USART1_UART_Init();
 	MX_USART3_UART_Init();
-
 	
 	if (*(__IO uint32_t*)PARA_ADDR != 0x55aa55aa) {
 		goto startup;
 	}
 
+	iic_init();
+	/* offset 17  "192.168.001.100" */
+	iic_read_byte(18, server_ip, 15);
+
+	if (!is_valid_ip(server_ip)) {
+		printf("ip invalid!\r\n");
+		goto startup;
+	}
+
+	printf("ip is: %s\r\n", server_ip);
+	
 	gprs_init();
 	count = parse_index();
 	

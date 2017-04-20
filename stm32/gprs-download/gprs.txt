@@ -24,7 +24,7 @@ OK //10-15s
 +HTTPACTION: 0, 200, 4318, 4096 
 
 
-程序不拉低，程序全速运行后，用银线手动拉低1脚（技术支持：拉低后无需再拉高）
+程序不拉低，程序全速运行后，用银线手动拉低1脚（拉低后无需再拉高）
 
 while (HAL_UART_Receive(&huart1, p++, 1, 10000)==HAL_OK);
 UART3_Print(aRxBuffer);
@@ -40,11 +40,6 @@ Uart1 用pc串口的话，需要设置
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 否则无法发送，能接收
 
-
-有时候返回
-\r\nOK\r\n\0\0\r\n+HTTP
-这个是bug吧！
-
 Uart1 输出同时接着串口，有问题，导致程序收不到数据
 
 	HAL_UART_Receive(&uart1, tmp, 2, 30000);
@@ -52,6 +47,15 @@ Uart1 输出同时接着串口，有问题，导致程序收不到数据
 	//printf("#### %hhd %hhd \r\n", tmp[0], tmp[1]);
 	if (tmp[0] != '\r' || tmp[1] != '\n')
 		return 0;
+
+void write_flag(void)
+{
+/* last 2k page */
+	uint32_t last_page = 0x0803f7ff;
+    HAL_FLASH_Unlock();
+    HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, last_page, 0x55aa55aa);
+    HAL_FLASH_Lock();
+}
 
 
 jtag:
