@@ -3,6 +3,11 @@ login:  pi:raspberry
 raspistill -o keychain.jpg -t 2000
 raspi-config
 
+gparted (parted 图形版)
+
+NOOBS : New Out Of the Box Software
+CSI :COMS Sensor Interface
+
 pi3 Wi-Fi and Bluetooth 4.1/Low Energy (LE), BCM43438
 
 Pi 1 :BCM2835/BCM2708  ARMv6 arm11
@@ -50,29 +55,22 @@ Get the latest Raspberry Pi compiler
 包含5套编译器
 
 制作img工具：
-mkknlimg //是专门为pi写的perl脚本
+mkknlimg //perl
 拷贝dtb文件，没安装新的.ko ,hdmi能起来，但串口没打印（已经改了core_freq=250）
-猜测：4.4.7比原始版本内核新，是不是不用改core_freq，删除，仍然不行
 
 安装module，修改250，串口仍然没打印
 
-.ko不在boot分区，而在ext4分区，共有4300+个ko
+.ko在ext4分区 4300+
 
----
 编译源码遇到超怪异现象：
 从github下载的.zip压缩包，include/linux/i2c-gpio.h 变为软链接，链接目标是这个文件的内容
 文件损坏的这么怪异。。。
----
 ARCH=arm CROSS_COMPILE=${CCPREFIX} make bcm2835_defconfig  
 
 pi1    KERNEL=kernel
 pi2/3  KERNEL=kernel7 (armv7?)
-编译kernel：
-kernel来源：github/raspberrypi 
-
-If you want to compile an upstream kernel, rather than the Raspberry Pi Foundation's downstream kernel, 
-please see RPi_Upstream_Kernel_Compilation for a few tips
-说明upstream kernel指的是kernel.org的
+编译kernel：github/raspberrypi 
+RPi_Upstream_Kernel_Compilation //upstream 指kernel.org
 
 键盘符号错乱需Re-mapping the keyboard ：
 sudo dpkg-reconfigure keyboard-configuration，主要是English UK 改为US ，因为系统是英国造
@@ -104,19 +102,9 @@ http://diy.viktak.com/2014/07/how-to-recover-laptop-after-failed-bios.html
 http://wiringpi.com/
 git://git.drogon.net/wiringPi
 
-GPIO Interface library for the Raspberry Pi
-
 wiringPi和bcm2835 C library都提供I2C API函数(靠bcm2835_init函数，用/dev/mem实现)
 
-NOOBS : New Out Of the Box Software
-CSI :COMS Sensor Interface
-
-Visit the SD Association’s website and download SD Formatter 4.0 for Windows/Mac  （跟普通格式化有啥区别？）
-For Linux users we recommend gparted (or the command line version parted).
-
 dd bs=4M if=xx.img of=/dev/sdx
-
-.img 第一个扇区，除了分区表，几乎全是0，那pi从哪取启动代码呢？
 
 raspbian-jessie.zip(1.4G) 
 解压 raspbian-jessie.img (4G)
@@ -183,17 +171,8 @@ http://www.raspberrypi.org/accelerating-fourier-transforms-using-the-gpu/
 raspbian-wheezy无法生成turbojpeg的configure，需先在pc上生成它，在pi上运行生成makefile（有个时间错误，需要touch configure）
 pc生成configure后要tar.gz 压缩， zip不行。
 
-======================
-设置时区：
-apt-get install ntpdate
+apt-get install ntpdate //时区
 tzselect
-
-PiFace
-PiBrella
-Pi Supply Switch – On/Off Power Switch for Raspberry Pi //用来彻底关闭电源
-www.pi-supply.com   电源控制模块，网络供电模块
-
-Raspberry Pi 预装 Mathematica及早期版 Wolfram Language
 
 Camera Board v2.1 (8MP, 1080p)
 Camera Board v1.3 (5MP)
