@@ -547,8 +547,6 @@ MCU(Minimum Coded Unit)
 DCT顺序模式：编/解码一次扫描
 DCT递进模式：编/解码需多次扫描，扫描效果从粗糙到精细，逐级递进
 
-JPEG使用DCT、哈夫曼编码、顺序模式
-
 压缩步骤：
 1 8*8分块
 2 DCT
@@ -564,13 +562,10 @@ Huffman coding / arithmetic coding
 
 quantization:
 
-Round()  四舍五入
-
 JPEG 2000 ISO/IEC 15444 part1 到 part 14
 part-1 :Core coding system
 用wavelet不用dct (2nd-level CDF 9/7 wavelet transform)
 ===end jpeg ===
-
 
 建议编码参数如下：
 

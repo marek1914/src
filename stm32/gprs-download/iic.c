@@ -12,15 +12,16 @@ void delay(void)
 {
 }
 
-void SCL_HIGH(void) 
-{ delay(); }
-void SDA_HIGH(void) 
+void scl_high(void) 
 { delay(); }
 
-void SCL_LOW(void) 
+void sda_high(void) 
 { delay(); }
 
-void SDA_LOW(void) 
+void scl_low(void) 
+{ delay(); }
+
+void sda_low(void) 
 { delay(); }
 
 void SDA_In(void) {}

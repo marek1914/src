@@ -19,6 +19,15 @@ do {
 	status = get_status();
 } while (!status || retry == 0);
 
+/* ok */
+for (i = 0; i < 4; i++) {
+    status = get_status();
+    if (status) {
+        break;
+    }
+}  
+
+
 static int controller_busy(void)
 {
     int retries = 100;
@@ -425,9 +434,7 @@ printf("%s \n",strerror(errno));
 read(fd,buf,1023);
 printf("%s",buf);
 }
-//
 
-//define
 // # & ##
 #define FUNC_INFO(format,args...) printf("hello\n",__FUNCTION__,##args);
 #define PIPE_OBJ_CREATE(name)      pipe_##name##_obj_open()
@@ -437,48 +444,23 @@ printf("%s",buf);
 #define DFB_INFO_ERR(fmt, arg...)          printf((char *)fmt, ##arg)
 
 
-/* Legacy format image header(64Bytes), all data in network byte order */
+/* All data in network byte order */
 typedef struct image_header {
 	uint32_t	ih_magic;       /* Image Header Magic Number    */
-	uint32_t	ih_hcrc;        /* Image Header CRC Checksum    */
-	uint32_t	ih_time;        /* Image Creation Timestamp     */
 	uint32_t	ih_size;        /* Image Data Size              */
 	uint32_t	ih_load;        /* Data  Load  Address          */
 	uint32_t	ih_ep;          /* Entry Point Address          */
 	uint32_t	ih_dcrc;        /* Image Data CRC Checksum      */
-	uint8_t		ih_os;          /* Operating System             */
-	uint8_t		ih_arch;        /* CPU architecture             */
 	uint8_t		ih_type;        /* Image Type                   */
 	uint8_t		ih_comp;        /* Compression Type             */
 	uint8_t		ih_name[32];    /* Image Name           		*/
 } image_header_t;
 
 
-int main(int argc, char *argv[])
-{
-   exit(EXIT_SUCCESS);
-}
-
-
-int
-main(void)
-{
-	char buf[]="Hello World!";
-	char *buf1 = "Hello Worldddd";
-	//buf1[2]= 5;
-	printf("buf=%s \n buf1=%s\n", buf, buf1);
-}
-//printf 0
-char* str=0;
-printf("str is %s\n", str);
-
-//// 调用g++编译器会被定义
+// 调用g++编译器会被定义
 #ifdef __cplusplus
-int i=4;
 #else
-int i=5;
 #endif
-////
 
 _Bool flag;
 flag=1;
@@ -488,100 +470,16 @@ flag=false;
 //C++
 bool flag;
 
-void main(void)
-{
-	int i;
-	i=5;
-	break;
-}
-
-
-//删除空格 2008 //2017验证ok
-i = j = 0;
-while(s[i] != '\0'){
-	if(s[i] != ' '){
-		s[j] = s[i];
-		j++;
-	}
-	i++;
-}
-s[j] = '\0';
-
-
-// lookup key
-/* android init parser */
-int lookup_keyword(const char *s)
-{
-    switch (*s++) {
-    case 'c':
-    if (!strcmp(s, "opy")) return K_copy;
-        if (!strcmp(s, "apability")) return K_capability;
-        if (!strcmp(s, "ritical")) return K_critical;
-        break;
-    case 'l':
-        if (!strcmp(s, "oglevel")) return K_loglevel;
-        if (!strcmp(s, "oad_persist_props")) return K_load_persist_props;
-        break;
-    case 'm':
-        if (!strcmp(s, "kdir")) return K_mkdir;
-        if (!strcmp(s, "ount")) return K_mount;
-        break;
-    case 'o':
-        if (!strcmp(s, "n")) return K_on;
-        if (!strcmp(s, "nrestart")) return K_onrestart;
-        break;
-    }
-    return K_UNKNOWN;
-}
-
 
 int main(void)
 {
-/*
- * gcc -mfpu=neon
- */	
+/* gcc -mfpu=neon */	
 #ifdef __ARM_NEON__
 	printf("define\n");
 #else
 	printf("no define\n");
 #endif
-	return 0;
 }
-
-///
-//container_of
-
-struct foo
-{
-	int a;
-	int b;
-	int c;
-	int d;
-};
-
-#define container_of(ptr, type, member) ({  \
-  const typeof( ((type *)0)->member ) *__mptr = (ptr);    \
-  (type *)( (char *)__mptr - offsetof(type,member) );})
-
-//这样不是更简洁？
-#define container_of_1(ptr, type, member) ({  \
-  (type *)( (char *)ptr - offsetof(type,member) );})
-
-int
-main (int argc, char *argv[])
-{
-	struct foo bar;
-	struct foo *pbar;
-	printf("bar address is %p\n", &bar);
-	printf("bar.c address is %p\n", &bar.c);
-	pbar = container_of(&bar.c, struct foo, c);
-	printf("pbar is %p\n", pbar);
-	pbar = container_of_1(&bar.c, struct foo, c);
-	printf("pbar is %p\n", pbar);
-	return 0;
-}
-///
-
 
 uint8_t path[128];
 strcpy(path, “hello”); //keil 提示类型不匹配问题
@@ -589,17 +487,6 @@ strcpy(path, “hello”); //keil 提示类型不匹配问题
 long unsigned int
 unsigned long int
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#ifdef __cplusplus
-}
-#endif
-
-
-// 读文件一行
-// C++: istream getline
 
 /*
 egl.cfg文件格式
@@ -622,55 +509,8 @@ Loader::Loader()
 fd=open()
 if (df<0)
 
-
 // 数组结束靠size或NULL
-
-if(a||b)  if(a|b) //虽然后者很怪，但我分析 逻辑是一样的  完全等价
-
-if (status != 0) {} // 等价于 if (status) {} 要用后者
-if (status == 0) {} // 等价于 if (!status) {}
-if (fp==NULL) // if (!fp)
-
-//就可读性来说
-if (str != NULL)// 比 if (str) 更强
-
-//bootanimation的逻辑，如果count=0，就无限循环，r益出也无所谓
-for (int r=0 ; !part.count || r<part.count ; r++) {
-}
-
-//返回值设计模式
-//模式1： 只返回0，1，0代表成功，1代表失败
-
-//超时+标志判断
-cnt = 200;
-while((cnt > 0)&&(Flag==0xFF)) {
-	sleep(100); 
-	cnt--;
-}
-//改进：
-cnt = 200;
-while (cnt > 0 && Flag == 0xFF) {
-	sleep(100); 
-	cnt--;
-}
-
-for (int cnt=0; i<200 && Flag == 0xFF; cnt++) {
-	sleep(100);
-}
-
-//c 要么等于要么不等于's'，没有别的情况
-if (c=='s') {
-
-} else {
-
-}
-
-void trace(int n)
-{
-    while (n--) {
-       ...
-    }
-} 
+if (a||b)  if(a|b) //逻辑等价 ^_^
 
 
 v->cur_seq_no++;
@@ -678,17 +518,12 @@ nPage = MIN( itemVisible, itemCount );
 barLen = (int) (pageStep * 1.0f/(maxPos - minPos + 1) + 0.5);
 bmp_x = (right + left)>>1;  //取中间位置
 
-
-(!a || !b)  
-(0== (a||B))
-
 //	flash擦除页
 for (i=0; i<size; i+=0x1000 )
 	erase_4k(i);
 
 for (i=0; i<(size+0x1000-1)/0x1000; i++)
 	erase_4k( i*0x1000 );
-
 
 argc: argument count
 argv: argument vector
@@ -822,20 +657,17 @@ if (token) {
 //
 
 // glibc
-fprintf 到 stderr 有何目的，android很多程序这么写
 
-char *strsep(char **stringp, const char *delim);   应该是string separate  delimiter:分隔符
+char *strsep(char **stringp, const char *delim);   
+应该是string separate  delimiter:分隔符
 
 stdarg.h :standard arguments   // man stdarg
 /* ISO C Standard:  7.15  Variable arguments  <stdarg.h>*/
 定义依赖平台， va_list就是void*
 
-返回出现字符/字符串后面的所有字符，之前还考虑返回什么，返回设定的字符串本身没有任何意义呀，如果那样，
-返回值只能反应出，有或无那个设定的字符串，意义不大。
 char *strchr(const char *s,char c);  查找字符串s中首次出现字符c的位置
 strrchr. 取得某字符最后出现处起的字符串。
 char *strstr(const char *haystack, const char *needle); //locate a substring
-
 
 puts(""); //打印 \n
 
@@ -865,7 +697,6 @@ feof 宏
 for(i = 0; i < 256; i++)
 printf("errno.%02d is: %s/n", i, strerror(i));  打印所有错误号的解释
 
-
 打开错误返回-1，判断可以
 if (fd == -1)   or
 if (fd < 0)
@@ -874,19 +705,15 @@ warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has 
   printf("ret = %d\n", ret);
 解决：%ld
 
-
 检查文件是否存在并可读
 失败返回-1 （-1作为if条件，也是非零? 即-1是逻辑1）
 if (access(path, R_OK)) {
     continue;
 }
 
-
 ----
 处理一行一行的东西时，利用返回的NULL判断结束
 如openmax定义接口的时候，index到返回空的时候，标示结束
-
-
 
 -----
 FILE *fp;
@@ -908,61 +735,18 @@ logcat 错误：
 +++ LOG: write failed (errno=28)
 strerror(28) -> No space left on device
 
-
-
-
-
----
 qsort 函数，使用
 
-
-
-
 offsetof(stddef.h中定义)
-
 
 memcpy
 strcpy
 
----------------
-math.h
-
-pow() (^异或)
+pow()
 sqrt()
 
 
-
-
-#include <time.h>
-
-clock_gettime()
-
-ffmpeg:
-
-//返回毫秒
-int64_t av_gettime_relative(void)
-{
-    struct timespec ts;
-    clock_gettime(CLOCK_MONOTONIC, &ts);
-    return (int64_t)ts.tv_sec * 1000000 + ts.tv_nsec / 1000;
-}
-
-
-struct timespec  ts;
-clock_gettime(CLOCK_REALTIME, &ts);
-printf("time: %u:%u \n", ts.tv_sec, ts.tv_nsec/1000000);
-
-
-
-clock_t times();
-
-clock_t 在64bit机器上sizeof=8，这种定义主要目的是兼容32bit/64bit，有时想，定义为int或long不是很简单吗？主要是为了兼容性吧
-试想，源码在不同系统上编译时，只要gcc系统对接好了，源码就兼容了，有点类似jvm的感觉吧
-另外，用clock_t 也增强了程序可读性，直接能看出这个变量是干嘛用的
-
-
------
-unistd.h  unix standard head 包含unix标准的系统调用如read write getpid close等。
+unistd.h  unix standard head 包含unix标准调用如read write getpid close
 standard input output header  stdio.h 
 standard library header  stdlib.h 
 
@@ -1021,7 +805,6 @@ string.h
 stdlib.h
 stdio.h
 
-
 typeof是gcc扩展操作符，检查数据类型
 int x;
 typeof(x) y;
@@ -1064,38 +847,23 @@ As previously pointed out, sockets and pipes also get passed to close. But proba
 the original reason is that open needs flags like O_RDONLY that are defined in fcntl.h, 
 so you might as well put the prototype in that file.
 
-
 #include <fcntl.h> //定义open,fcntl  
 #include <unistd.h> //POSIX定义的UNIX系统服务函数如read、write和getpid
 
-文件 access/modify/change 时间
-
-读文件等可以改变访问时间，实验发现2次访问时间间隔过短，不更新
-拷贝粘贴一个文件，修改时间与源文件相同，访问时间变为当前。
-
-relatime属性 文件读操作频繁的系统，atime更新开销很大，很多SA在挂装文件系统的时候使
-用noatime属性停止更新atime。有些程序需要根据atime进行一些判断和操作，所以Linux就推
-出了一个relatime特性。
-使用这个特性来挂装文件系统后，只有当mtime比atime更新的时候，才会更新atime。事实上，
-这个时候atime和mtime已经是同一个东西了。所以这个选项为了实现对atime的兼容才推出的。
-并不是一个新的时间属性。使用方法就是通过mount -o relatime /dir来挂装目录。
-
 用fwrite写文件时，会有2G大小限制。加编译选项-D_FILE_OFFSET_BITS=64解决
 
-
 stat, fstat, lstat - get file status
-
-inode : index node  用来描述文件系统对象的数据结构，存储属性数据的存储块位置，
-属性包括metadata (如change/access/modify时间),以及owner和permission(如group-id, user-id, permissions)
 
 //makedev, major, minor - manage a device number
 
 void klog_init(void)
 {
     const char *name = "/dev/__kmsg__";
-    if (mknod(name, S_IFCHR | 0600, (1 << 8) | 11) == 0) { //1,11 是/dev/kmsg 这样做是多此一举？！
+    if (mknod(name, S_IFCHR | 0600, (1 << 8) | 11) == 0) { 
+    //1,11 是/dev/kmsg 这样做是多此一举？！
         klog_fd = open(name, O_WRONLY);
-        fcntl(klog_fd, F_SETFD, FD_CLOEXEC);  // fork可以访问这个fd，但执行了exec就不可以用这个fd了
+        fcntl(klog_fd, F_SETFD, FD_CLOEXEC);  
+        // fork可以访问这个fd，但执行了exec就不可以用这个fd了
         unlink(name); 
     }
 }
@@ -1117,21 +885,6 @@ void klog_write(int level, const char *fmt, ...)
     write(klog_fd, buf, strlen(buf));
 }
 
-dev_t 在android中有3种定义，12bit+20bit 2种， 8bit+8bit 1种，以s805为例：
-kernel目录：
-include/linux/kdev_t.h
-include/uapi/linux/kdev_t.h 2个文件内容和一起基本等于:
-external/kernel-headers/original/linux/kdev_t.h
-而：
-bionic/libc/kernel/common/linux/kdev_t.h 是update_all.py根据 kernel-headers生成，
-取8bit+8bit版本。
-
-// endglibc
-
-struct sockaddr {
- sa_family_t sa_family;
- char sa_data[14];
-};
 
 //取参数
 if (sscanf(l, "%d %d %d", &width, &height, &fps) == 3) {
@@ -1147,50 +900,14 @@ p 0 0 part0
 1280 720 4
 9 0 0 part0
 
-//第一个sscanf 扫描到第二行的时候，也能正常返回，如果是p 或者任何字母%d 会返回错误
-
-
-Duff's Deviec
-
-//alpha混合
-dR = (((sR-dR)*(A))>>8)+dR;	
-dG = (((sG-dG)*(A))>>8)+dG;	
-dB = (((sB-dB)*(A))>>8)+dB;
-
-//以红色为例
-(a/256)R1+((256-a)/256)*R2 = (aR1+(256-a)R2)/256 = a(R1-R2)/256 + R2
-// 0全透 ff不透
 
 /* Low level event handling module */
-
 if (is_xxx)
-	token = match_token(1);
 else
-	token = match_token(2);
 
 if (!is_xxx)
-	...
 else
-	...
 	
-
-// 8 bit Register Write Protocol:
-// +------+-+-----+-+-+----------+-+----------+-+-+
-// |MASTER|S|SADDR|W| |RegAddr   | |RegData(L)| |P|
-// +------+-+-----+-+-+----------+-+----------+-+-+
-// |SLAVE |         |A|          |A|          |A| |
-// +------+---------+-+----------+-+----------+-+-+
-// Legends: SADDR (I2c slave address), S (Start condition), A (Ack), N(NACK),
-// P(Stop condition)
-  
-void UART3_Print(uint8_t *p)
-{
-    while (*p) {
-        HAL_UART_Transmit(&huart3, p++, 1, 300);
-    }
-    HAL_UART_Transmit(&huart3, "\n", 1, 50);
-}
-
 
 struct Token {
   const unsigned char *z; /* Text of the token.  Not NULL-terminated! */
@@ -1293,9 +1010,6 @@ fb = open ("/dev/fb0", O_RDWR);
 fb_mem = mmap(NULL, 1024*768, PROT_READ|PROT_WRITE,MAP_SHARED,fb,0);
 
 waiting ? 1 : 0;
-
-
-
 
 
 ==thread==

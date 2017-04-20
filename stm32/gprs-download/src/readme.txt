@@ -1,3 +1,1 @@
-系统文件不要动
-其他功能全部放到main.c中
-
+http://192.168.1.111/device/updateFile
