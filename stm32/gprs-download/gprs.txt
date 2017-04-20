@@ -1,7 +1,8 @@
 18511695538
 
 ssh root@123.56.196.100
-Dearho1603*
+pd1rW*#08c
+
 /usr/local/tomcat/webapps/device/updateFile
 访问路径
 http://123.56.196.100/device/updateFile/1.txt
