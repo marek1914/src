@@ -426,10 +426,6 @@ write(3, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 
 com.funshion.android.intent.action.FUN_TV_RECORD_BUTTON_START
 com.funshion.android.intent.action.FUN_TV_RECORD_BUTTON_STOP
 
-
-root@mso9280: #Failed to get map_num for 3ec1fd01
-后面打印出来的不在标准输出，无法删除。printk()???
-
 2.4G 和 蓝牙的语音遥控器：
 
 语音是怎么发送过来的？

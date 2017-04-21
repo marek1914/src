@@ -463,13 +463,9 @@ init: skipping insecure file '/init.rc'
 7 一个库中添加1函数，调用此函数生成1可执行elf，然后库中此函数删除，编译拷贝，再执行elf打印：
 mips_relocate_got(linker.cpp:1236): cannot locate "gaojie_test"...CANNOT LINK EXECUTABLE
 
-8 把 android_reboot.c 单独列出一个目标编译成单独的库就可以使用，Linker的问题？
-打印：Restarting system [kernel/sys.c: printk("Restarting system.\n")]
 
-event系统
-起因：电视/广播按键快速切换  功能键 A，B，C快速按，导致的按键堆积问题。
-
-每个event对象记录发生时间，在PhoneWindow.java中判断。发生时间与当前时间之差达到一定长度就丢弃。但是电视/广播就必须在activity里面单独处理
+每个event对象记录发生时间，在PhoneWindow.java中判断。
+发生时间与当前时间之差达到一定长度就丢弃。但是电视/广播就必须在activity里面单独处理
 
 public class KeyEvent implements Parcelable {
     /* Retrieve the time this event occurred, */

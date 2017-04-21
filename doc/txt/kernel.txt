@@ -606,8 +606,7 @@ tty  console   std_in std_out  std_err 的关系还不是很清楚
 
 2
 1 arch/arm/kernel/traps.c 中
-int __die():
-printk("Process %.*s (pid: %d, stack limit = 0x%p)\n",TASK_COMM_LEN, tsk->comm, task_pid_nr(tsk), thread + 1);
+int __die(): "Process %.*s (pid: %d, stack limit = 0x%p)\n"
 
 看打印：
 Process Binder Thread # (pid: 1043, stack limit = 0xd9a942f8 )  //这里看出 2 page的内核栈开始地址 0xd9a94000  thread结构体的大小为 0x2f8 
@@ -622,7 +621,7 @@ Stack: (0xd9a95df4 to 0xd9a96000)   这里的开始地址是由上面的 sp: d9a
 	if (panic_on_oops)    // oops错误的时候，打印 Kernel panic - not syncing: Fatal exception
 		panic("Fatal exception");
 
-panic(): printk("Kernel panic - not syncing: %s\n",buf);
+panic(): "Kernel panic - not syncing: %s\n"
 
 
 Kernel hacking 里ARM_UNWIND  配置，Enable stack unwinding support  （unwind 松开，解开）
@@ -833,50 +832,42 @@ fs/proc/meminfo.c
 
 printk
 man 2 syslog
-/proc/sys/kernel/printk : 7 4 1 7
+/proc/sys/kernel/printk
 
-级别：
+4个值(7 4 1 7)：
+console_loglevel  //优先级高于此的被打印
+default_message_loglevel //没有指定优先级的默认值
+minimum_console_loglevel
+default_console_loglevel // ??
+#define DEFAULT_MESSAGE_LOGLEVEL 4
+#define MINIMUM_CONSOLE_LOGLEVEL 1
+#define DEFAULT_CONSOLE_LOGLEVEL 7 //??
+
+level:
 KERN_EMERG   "<0>"
 KERN_ALERT   "<1>" 
-KERN_CRIT    "<2>" //critical
+KERN_CRIT    "<2>" /* critical */
 KERN_ERR     "<3>" 
 KERN_WARNING "<4>" 
-KERN_NOTICE  "<5>" //normal but significant
-KERN_INFO    "<6>" //informational
-KERN_DEBUG   "<7>" //debug (8打印debug)
+KERN_NOTICE  "<5>" /* normal but significant */
+KERN_INFO    "<6>"
+KERN_DEBUG   "<7>"
 
-s805 echo 2 > /proc/sys/kernel/printk 立刻安静了
-
-//没指定级别时的默认值
-#define DEFAULT_MESSAGE_LOGLEVEL CONFIG_DEFAULT_MESSAGE_LOGLEVEL (默认4)
-
-#define MINIMUM_CONSOLE_LOGLEVEL 1
-#define DEFAULT_CONSOLE_LOGLEVEL 7
-
-4个值：
-console_loglevel  //优先级高于此的被打印，实际应用也就改改这个
-default_message_loglevel //没有指定优先级的默认值
-minimum_console_loglevel //可以设置的最高优先级（即最小值）
-default_console_loglevel //console_loglevel的默认值 (console_loglevel有不设置的情况？)
+---
 
 一般情况下 __pfn_to_bus 就是  __virt_to_bus
 #define PHYS_OFFSET UL(0x00000000)
 
 CONFIG_PAGE_OFFSET  更改2g/2g  3g/1g 后.config文件中的东西
-CONFIG_VMSPLIT_3G 这个宏其实没有用
-用到的地方只有一处：
-./include/asm/memory.h:#define PAGE_OFFSET UL(CONFIG_PAGE_OFFSET)
-
 
 那么PHYS_OFFSET  物理偏移又是什么呢？
 apollo定义的PHYS_OFFSET 为0
 
-MAX_NUMNODES  都是1  NUMA 在多处理器上才有用
-非一致性内存访问
+MAX_NUMNODES 都是1 NUMA 在多处理器上才有用
 
 Memory: 128Mb 128Mb = 256Mb total
 Memory: 130552kb ....
-是在init.c 中 mem_init打印出来的
+init.c/mem_init()
 
 	printk("Memory:");
 	num_physpages = 0;
@@ -885,7 +876,6 @@ Memory: 130552kb ....
 		printk(" %ldMB", bank_phys_size(&meminfo.bank[i]) >> 20);
 	}
 	printk(" = %luMB total\n", num_physpages >> (20 - PAGE_SHIFT));
-打印2次 128M  说明  nr_banks 为2，meminfo怎么初始化的？
 
 totalram_pages 就是在 mem_init函数中
 totalram_pages += free_all_bootmem_node(pgdat); 这里赋值的
@@ -1480,7 +1470,6 @@ ip=ip1:gatway:server:mask::eth0:on
 ip=ip:serverip:gateway:netmask:ccdt-stb:eth0:on
 ip=dhcp
 
-20141031 bcm
 ./init/do_mounts.c:	printk("Waiting for root device %s...\
 ./init/main.c:	    printk("Kernel command line: %s\n", boot_command_line);
 
@@ -1708,8 +1697,6 @@ ioremap_nocache
 drivers/net/gianfar_mii.c : Gianfar Ethernet Driver -- MIIM bus implementation Provides Bus interface for MIIM regs
 
 #define DEVICE_NAME "%s: Gianfar Ethernet Controller Version 1.2, "
-
-./gianfar.c:	printk(DEVICE_NAME "%s\n"
 
 mdio_scan()
 mdiobus_register()
