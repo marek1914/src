@@ -39,6 +39,14 @@ static int controller_busy(void)
     return status;
 }
 
+
+/* printf */
+1 重定义printf va_list
+2 开关打印：
+  不要用宏在代码中控制，而是要把宏放到打印函数里
+3 打印级别：kernel ffmpeg logcat
+
+
 /*
  * C99: ISO/IEC 9899:1999
  * POSIX.1-2001: IEEE 1003.1,2001
@@ -1012,11 +1020,9 @@ fb_mem = mmap(NULL, 1024*768, PROT_READ|PROT_WRITE,MAP_SHARED,fb,0);
 waiting ? 1 : 0;
 
 
-==thread==
-libutils/Threads.cpp
+Threads.cpp
 
-Derived class implement threadLoop().  
-There are 2 ways of using the Thread object:
+Derived class implement threadLoop().
 1) loop: if threadLoop() returns true
 2) once: if threadLoop() returns false
 
@@ -1027,7 +1033,6 @@ res = createThreadEtc(_threadLoop, this, name, priority, stack, &mThread);
 this指针传到 pthread_create 的arg参数,即_threadLoop(void* user) 的user
 
 //一个函数设置标志，另一个函数检查标志
-//下一函数const不可定义可以理解，这个为啥还能被继承？应该也是const的吧
 virtual void requestExit();
 bool exitPending() const;
 
