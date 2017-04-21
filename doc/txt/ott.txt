@@ -101,7 +101,7 @@ mmc part 里 length 单位是section 512byte
 黑龙江原始硬件版本，第一个分区 base是4096 即偏移2Mbyte位置
 而我的盒子，mmc create MBOOT 0x300000 //base偏移却是 14336 7MByte
 
-保存不住是因为MBOOT MPOOL 分区反了，  但奇怪的是，脚本里面重建分区，明明MBOOT在前，MPOOL在后，执行完确是MPOLL在前。
+保存不住是因为MBOOT MPOOL分区反了
 
 只有这2个文件操作这个属性
 tvos/main/main.cpp (生成/applications/bin/tvos) 这里检查标志，等待bootvideo程序设置

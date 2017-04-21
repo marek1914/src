@@ -39,14 +39,6 @@ static int controller_busy(void)
     return status;
 }
 
-
-/* printf */
-1 重定义printf va_list
-2 开关打印：
-  不要用宏在代码中控制，而是要把宏放到打印函数里
-3 打印级别：kernel ffmpeg logcat
-
-
 /*
  * C99: ISO/IEC 9899:1999
  * POSIX.1-2001: IEEE 1003.1,2001
@@ -662,16 +654,10 @@ do {
 if (token) {
     *contentLen = atoi(token + 16);
 }
-//
-
-// glibc
 
 char *strsep(char **stringp, const char *delim);   
 应该是string separate  delimiter:分隔符
 
-stdarg.h :standard arguments   // man stdarg
-/* ISO C Standard:  7.15  Variable arguments  <stdarg.h>*/
-定义依赖平台， va_list就是void*
 
 char *strchr(const char *s,char c);  查找字符串s中首次出现字符c的位置
 strrchr. 取得某字符最后出现处起的字符串。

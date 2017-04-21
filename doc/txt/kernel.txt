@@ -602,8 +602,6 @@ device_create(tty_class, NULL, MKDEV(TTYAUX_MAJOR, 1), NULL,"console");
 /dev/ttyS0    4 64
 /dev/ttyS1    4 65
 
-tty  console   std_in std_out  std_err 的关系还不是很清楚
-
 2
 1 arch/arm/kernel/traps.c 中
 int __die(): "Process %.*s (pid: %d, stack limit = 0x%p)\n"
@@ -829,31 +827,6 @@ FLAT模型并不代表物理内存真的连续，他只是一个模型。
 cat /proc/meminfo  为方便，删除显示为0k的区域
 fs/proc/meminfo.c
 
-
-printk
-man 2 syslog
-/proc/sys/kernel/printk
-
-4个值(7 4 1 7)：
-console_loglevel  //优先级高于此的被打印
-default_message_loglevel //没有指定优先级的默认值
-minimum_console_loglevel
-default_console_loglevel // ??
-#define DEFAULT_MESSAGE_LOGLEVEL 4
-#define MINIMUM_CONSOLE_LOGLEVEL 1
-#define DEFAULT_CONSOLE_LOGLEVEL 7 //??
-
-level:
-KERN_EMERG   "<0>"
-KERN_ALERT   "<1>" 
-KERN_CRIT    "<2>" /* critical */
-KERN_ERR     "<3>" 
-KERN_WARNING "<4>" 
-KERN_NOTICE  "<5>" /* normal but significant */
-KERN_INFO    "<6>"
-KERN_DEBUG   "<7>"
-
----
 
 一般情况下 __pfn_to_bus 就是  __virt_to_bus
 #define PHYS_OFFSET UL(0x00000000)
