@@ -65,7 +65,7 @@ J-Link-OB
 
 c8t6: 64k+20k
 
-开始写不进去flash，用segger: j-link stm32 unlock 工具解锁
+写不进flash，用segger: j-link stm32 unlock 工具解锁
 安装最新驱动，mdk不能用了，把keil/arm/segger目录替换回老版本
 
 ----

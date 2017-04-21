@@ -3,32 +3,21 @@ http://clang.llvm.org/docs/ClangFormat.html
 
 Doug Lea malloc(dlmalloc) linux默认malloc内存分配器
 
-exception handling代替error code，分离错误处理代码，增加可读性
-Java，Python，C++，异常机制沿函数调用栈逆向搜索，直到遇到异常处理代码为止
-C 无异常处理机制，C++用raise抛出异常
+ANSI escape codes (escape sequences)
 
-ragel doubango使用
+Python，C++(raise)
+exception handling代替error code，分离错误处理代码，增加可读性
+
+ragel
 De Morgan's laws
-valgrind 内存泄漏调试工具
-dmalloc : C/C++内存leak检查工具
-Segmentation fault (core dumped)
+valgrind/dmalloc
 
 40分钟死机，内存泄漏或内存碎片问题
 exFAT Freespace Bitmap 空间位图
 
-apt-get install bootchart
 bootchart bootchart.tgz
 
-日期:
-Bit0-4 日[1-31]
-Bit5-8 月[1-12]
-Bit9-15年[0-127] 以1980为基础，表示年范围[1980-2107]
 
-时间：
-最小分辨率2s
-bit0-4  2s数量 [0-29] [0-58]s
-bit5-10 分[0-59]
-Bit11-15 时 [0-23]
 
 COLORS-Lscolors
 
@@ -94,12 +83,4 @@ as long as the parameters are separated by colons.
 104 = light blue background
 105 = light purple background
 106 = turquoise background
-
-These can be combined, so that a parameter like:
-di=5;31;42
-would make directories appear in flashing red text with a green background.
-
-ANSI escape codes (or escape sequences) are a method using in-band 
-signaling to control the formatting, color, and other output options 
-on video text terminals.
 
