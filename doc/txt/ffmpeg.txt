@@ -1,25 +1,21 @@
-libarm.so 是1个7-zip压缩包，改变扩展名为.zip后,直接右键解压.
-60 = armv6
-70 = armv7
-71 = neon
-
+Vitamin:
 av_log 靠log.c中 av_log_set_callback()函数 对接android log
+
 avcodec_encode_video(.., uint8_t *buf,..., const AVFrame *pict);
 avcodec_default_get_buffer2() //获取AVFrame 中3个通道的buffer
 靠stream_index 字段判断是音频还是视频
 
-rtmp://live.hkstv.hk.lxdns.com/live/hks
 graph2dot
 
 https://trac.ffmpeg.org/wiki //用trac 维护wiki和trace
 
-libavformat --> AVPacket
-libavcodec  --> AVFrame
+libavformat -> AVPacket
+libavcodec  -> AVFrame
 
-//最简命令
+//最简
 ffmpeg -i input.mp4 output.avi
 
-EasyICE 可以分析hls
+EasyICE 分析hls
 
 -f 文件扩展名无效
 
@@ -28,8 +24,6 @@ ffplay 只播放一个声道
 
 作者主页
 http://bellard.org/
-作者用js写的模拟器运行linux
-http://bellard.org/jslinux/
 
 ffplay -h filter=codecview  查看某个filter的帮助
 "Filtering and streamcopy cannot be used together"
@@ -47,7 +41,7 @@ libsdl1.2-dev
 yasm
 
 x86/x86-64汇编/反汇编器yasm重写自NASM，(为啥不用gcc的as？)
---disable-yasm  disable use of nasm/yasm assembly  x86测试why.mp4，使用与否，cpu占用分别40%和160%
+--disable-yasm  disable use of nasm/yasm assembly
 --disable-asm   disable all assembly optimizations
 
 不加--disable-asm 进入get_cabac_inline_x86 加进入 get_cabac_inline （与--disable-yasm无关）
