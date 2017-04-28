@@ -1,3 +1,8 @@
+#define eprintf(...) fprintf (stderr, __VA_ARGS__)
+#define eprintf(args...) fprintf (stderr, args)
+#define INFO(fmt, a...)  printf(fmt, ##a)
+#define INFO(fmt, ...)  printf(fmt, ##__VA_ARGS__)
+
 #ifdef __cplusplus
 extern "C" {
 #endif

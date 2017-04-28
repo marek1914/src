@@ -435,13 +435,7 @@ read(fd,buf,1023);
 printf("%s",buf);
 }
 
-// # & ##
-#define FUNC_INFO(format,args...) printf("hello\n",__FUNCTION__,##args);
 #define PIPE_OBJ_CREATE(name)      pipe_##name##_obj_open()
-#define LOGD(...) ((void)LOG(LOG_DEBUG, LOG_TAG, __VA_ARGS__))
-#define LOG(priority, tag, ...)  LOG_PRI(ANDROID_##priority, tag, __VA_ARGS__)
-#define LOG_PRI(priority, tag, ...)  android_printLog(priority, tag, __VA_ARGS__)
-#define DFB_INFO_ERR(fmt, arg...)          printf((char *)fmt, ##arg)
 
 
 /* All data in network byte order */
@@ -910,12 +904,6 @@ bind(sfd,(struct sockaddr*)&caddr,sizeof(caddr));
 
 strace后发现：
 
-sock=socket(PF_PACKET, SOCK_RAW, htons(ETH_P_IP)) 必须root权限才能成功， 内核如何检查？
-
-在建立PF_PACKET族的socket时会调用packet_create,
-
-在packet_create中会检查用户是否有CAP_NET_RAW的capability：
-
 if (!capable(CAP_NET_RAW))
     return -EPERM;
 root拥有所有的capability,
@@ -928,7 +916,6 @@ linux socket buffer默认8k
 
 setsockopt 设定socket属性包括buffer大小
 
-
 shutdown(socketfd) - shut down part of a full-duplex connection
 close(socketfd) 关闭socket连接
 
@@ -939,13 +926,11 @@ sockfd 只能是 SOCK_STREAM 或 SOCK_SEQPACKET类型
 
 accept :accept a connection on a socket(服务端，用于SOCK_STREAM)，参数addr保存客户端的，它创建一个新的socket
 
-
 OMX_IndexParamVideoProfileLevelQuerySupported 检索：
 
 do{
-	eRet = OMX_GetParameter(Handle,OMX_IndexParamVideoProfileLevelQuerySupported,&profileLevel);
+	eRet = OMX_GetParameter(Handle,OMX_Index,&profileLevel);
 	profileLevel.nProfileIndex++;
-	printf("**eLevel = %lx,eLevel.eProfile = %lx \n",profileLevel.eLevel,profileLevel.eProfile);
 }while(eRet!=OMX_ErrorNoMore);
 
 得到：

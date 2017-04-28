@@ -1,10 +1,6 @@
-bootanimation
-mstar，bootanim在init.rc里改为system uid， 出现bootanimation就从8s延长到15s？
-改为graphics uid 就好了（new时不返回）
-
 frameworks/base/cmds/bootanimation
-
-/system/media/bootanimation-encrypted.zip //加密？？
+mstar，bootanim在init.rc里改为system uid， 出现bootanimation就从8s延长到15s
+改为graphics uid ok（new时不返回）
 
 setprop ctl.start bootanim
 setprop ctl.stop bootanim
@@ -654,8 +650,6 @@ linux/drivers/input/keyboard/atakbd.c : (一款游戏机)
 ^[OR     F3
 ^[OQ     F2
 
-搞明白usb HID设备的扫描码和 码值
-
 --logcat--
 logcat *:S MountService:V
 
@@ -663,14 +657,7 @@ logcat *:S MountService:V
 ALOGD
 ALOGE
 
-这2个
-arg...
-__VA_ARGS__
-
-
 http://elinux.org/Android_Logging_System
-
-见 Android log.png 
 
 logcat时候，串口和adb shell 输出同样的东西。串口不停的输出，也是要占用部分cpu资源的吧
 
