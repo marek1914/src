@@ -917,8 +917,6 @@ struct sockaddr_un {
  char sun_path[UNIX_PATH_MAX];
 };
 
-AF_UNIX 在init 以及adb 有用到
-
 getsockname - get socket name
 
 这样调用：       
@@ -929,11 +927,6 @@ caddr.sin_addr.s_addr = 0;
 bind(sfd,(struct sockaddr*)&caddr,sizeof(caddr));
 
 strace后发现：
-
-bind(3, {sa_family=AF_INET, sin_port=htons(9090), sin_addr=inet_addr("0.0.0.0")}, 16)
-sendto(3, "\0\1\0\10!\22\244B\257\35\17\344\312\201\376!\0\0\0\0\0\3\0\4\0\0\0\0", 28, ...) 中间的数据是8进制表示。
-
-stun中，用随机数生成transid
 
 sock=socket(PF_PACKET, SOCK_RAW, htons(ETH_P_IP)) 必须root权限才能成功， 内核如何检查？
 
@@ -953,23 +946,6 @@ linux socket buffer默认8k
 
 setsockopt 设定socket属性包括buffer大小
 
-int socket(int domain, int type, int protocol);
-domain: 通讯域 选择通讯协议，常见(有的是PF_ ?)：
-AF_UNIX, AF_LOCAL   Local communication (windows(or ce)不支持，进程通讯使用INET 127.0.0.1)
-AF_INET             IPv4 Internet protocols
-AF_NETLINK          Kernel user interface device
-
-type: specifies the communication semantics 常见：
-SOCK_STREAM  提供sequenced, reliable, two-way, connection-based 字节流，支持out-of-band传输机制
-SOCK_DGRAM   datagrams (connectionless, unreliable messages of a fixed maximum length)
-
-从Linux 2.6.27开始，type除了指定类型，还可以OR上如下参数改变socket行为：
-SOCK_NONBLOCK  默认是阻塞模式，设置为非阻塞
-SOCK_CLOEXEC
-
-SOCK_STREAM类型Sockets是full-duplex字节流，类似于pipes。
-
-client 端向server端发起connect请求
 
 shutdown(socketfd) - shut down part of a full-duplex connection
 close(socketfd) 关闭socket连接
