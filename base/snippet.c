@@ -109,5 +109,22 @@ int64_t av_gettime_relative(void)
 
 /* clock_t times(); */
 
+#define LOG_BUF_MAX 512
+
+void klog_write(int level, const char *fmt, ...)
+{
+    char buf[LOG_BUF_MAX];
+    va_list ap;
+
+    if (level > klog_level) return;
+    if (klog_fd < 0) return;
+
+    va_start(ap, fmt);
+    vsnprintf(buf, LOG_BUF_MAX, fmt, ap);
+    buf[LOG_BUF_MAX - 1] = 0;
+    va_end(ap);
+    write(klog_fd, buf, strlen(buf));
+}
+
 
 // vim: tw=80 
