@@ -1,7 +1,7 @@
 /* a very simple circular buffer FIFO */
 
-#ifndef AVUTIL_FIFO_H
-#define AVUTIL_FIFO_H
+#ifndef UTIL_FIFO_H
+#define UTIL_FIFO_H
 
 #include <stdint.h>
 
@@ -153,4 +153,4 @@ static inline uint8_t *fifo_peek2(const FifoBuffer *f, int offs)
     return ptr;
 }
 
-#endif /* AVUTIL_FIFO_H */
+#endif /* UTIL_FIFO_H */
