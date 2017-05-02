@@ -13,8 +13,7 @@ AAC generally achieves better sound quality than MP3 at similar bit rates
 MPEG-2 和 MPEG-4中都有aac标准
 
 HE-AAC: High Efficiency Advanced Audio Coding
-
-首次标准化 ISO/IEC 13818-7:1997
+ISO/IEC 13818-7:1997
 
 LC : Low-Complexity profile
 
@@ -320,13 +319,10 @@ card 1: Camera [USB 2.0 Camera], device 0: USB Audio [USB Audio] (usb mic ^^)
   Subdevices: 1/1
   Subdevice #0: subdevice #0
 
-
-
 arecord -Dhw:1,0 -r8000 -f S16_LE -c 1 1.wav  (参数后面不加空格也行？ ^^)
 
 arecord -Dhw:1,0  -d 20 -c 2 -t wav -r 8000 -f "Signed 16 bit Little Endian" ./xx.wav  提示通道数不对
 arecord -Dhw:1,0  -d 20 -c 1 -t wav -r 8000 -f "Signed 16 bit Little Endian" ./xx.wav  ok
-
 
 若 -r 10000 提示
 Warning: rate is not accurate (requested = 10000Hz, got = 11025Hz)
@@ -339,20 +335,14 @@ Warning: rate is not accurate (requested = 8000Hz, got = 16000Hz)
 arecord -Dhw:1,0 -r 16000 -d 10 -v  -f S16_LE -c 1 1.wav
 这样就录10s
 
-
 录制电子琴，开始噪音严重，后来把琴音量调低就好很多
 
-
 内录用的alsa工具 arecored
-
 
 问题：
 usb摄像头的micphone，原始音频采样频率是多少？ 8k？ 11.052k？
 
-
 PSQM Perceptual Speech Quality Measure
-
-
 
 PCM 
 声音的pcm与 信号系统的pcm含义不同
@@ -360,21 +350,11 @@ https://en.wikipedia.org/wiki/%CE%9C-law_algorithm
 http://www.cisco.com/c/en/us/support/docs/voice/h323/8123-waveform-coding.html
 http://www.alsa-project.org/alsa-doc/alsa-lib/pcm.html
 
-Two's complement 
-
-一的补码(one's complement) 指的是：正数=原码,负数=反码
-而二的补码(two's complement) 指的就是通常所指的补码
-
-
-
 ----------
 alsa : http://www.sabi.co.uk/Notes/linuxSoundALSA.html
 
-
-
 -----------
 哈尔滨
-
 strace arecord -Dhw:1,0  -d 40 -c 1 -t wav -r 16000 -f "Signed 16 bit Little Endian"  xx.wav
 
 open("/dev/snd/controlC1", O_RDONLY|O_CLOEXEC) = 3
@@ -414,7 +394,6 @@ ioctl(4, SNDRV_PCM_IOCTL_READI_FRAMES, 0x7fffee667d30) = 0
 write(3, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 4000) = 4000
 ...
 
-
 ----
 语音遥控器
 
@@ -451,7 +430,6 @@ mixer1
 pcmC1D0c
 
 
-
 |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/8p, 480M
     |__ Port 4: Dev 5, If 0, Class=Audio, Driver=snd-usb-audio, 12M  //为啥2个audio 3个hid interface？
     |__ Port 4: Dev 5, If 1, Class=Audio, Driver=snd-usb-audio, 12M
@@ -468,122 +446,6 @@ bmxxx
 //查看lsusb的实现方式：
 
 # strace busybox lsusb
-
-brk(0) //??
-set_tls(0x4a14c0, 0x1f77e0, 0xffffffe0, 0x18, 0x1f8198) = 0
-getuid32()                              = 0
-lstat64("/sys/bus/usb/devices", {st_mode=S_IFDIR|0755, st_size=0, ...}) = 0
-
-open("/sys/bus/usb/devices", O_RDONLY|O_NONBLOCK|O_DIRECTORY) = 3
-
-fcntl64(3, F_GETFD)                     = 0x1 (flags FD_CLOEXEC)
-
-getdents64(3, /* 14 entries */, 32768)  = 400
-
-lstat64("/sys/bus/usb/devices/2-1", {st_mode=S_IFLNK|0777, st_size=0, ...}) = 0
-
-open("/sys/bus/usb/devices/2-1/uevent", O_RDONLY) = 4
-
-fstat64(4, {st_mode=S_IFREG|0644, st_size=4096, ...}) = 0
-mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb6f3a000
-read(4, "MAJOR=189\nMINOR=129\nDEVNAME=bus/"..., 4096) = 128
-read(4, "", 4096)                       = 0
-munmap(0xb6f3a000, 4096)                = 0
-fstat64(1, {st_mode=S_IFCHR|0600, st_rdev=makedev(4, 64), ...}) = 0
-ioctl(1, SNDCTL_TMR_TIMEBASE or TCGETS, {B115200 opost isig icanon echo ...}) = 0
-mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb6f3a000
-write(1, "Bus 002 Device 002: ID 0610:1011"..., 33Bus 002 Device 002: ID 0610:1011) = 33
-lstat64("/sys/bus/usb/devices/usb1", {st_mode=S_IFLNK|0777, st_size=0, ...}) = 0
-open("/sys/bus/usb/devices/usb1/uevent", O_RDONLY) = 4
-fstat64(4, {st_mode=S_IFREG|0644, st_size=4096, ...}) = 0
-mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb6f39000
-read(4, "MAJOR=189\nMINOR=0\nDEVNAME=bus/us"..., 4096) = 124
-read(4, "", 4096)                       = 0
-close(4)                                = 0
-munmap(0xb6f39000, 4096)                = 0
-write(1, "Bus 001 Device 001: ID 1d6b:0002"..., 33Bus 001 Device 001: ID 1d6b:0002
-) = 33
-lstat64("/sys/bus/usb/devices/usb2", {st_mode=S_IFLNK|0777, st_size=0, ...}) = 0
-open("/sys/bus/usb/devices/usb2/uevent", O_RDONLY) = 4
-fstat64(4, {st_mode=S_IFREG|0644, st_size=4096, ...}) = 0
-mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb6f39000
-read(4, "MAJOR=189\nMINOR=128\nDEVNAME=bus/"..., 4096) = 126
-read(4, "", 4096)                       = 0
-close(4)                                = 0
-munmap(0xb6f39000, 4096)                = 0
-write(1, "Bus 002 Device 001: ID 1d6b:0002"..., 33Bus 002 Device 001: ID 1d6b:0002
-) = 33
-lstat64("/sys/bus/usb/devices/usb3", {st_mode=S_IFLNK|0777, st_size=0, ...}) = 0
-open("/sys/bus/usb/devices/usb3/uevent", O_RDONLY) = 4
-fstat64(4, {st_mode=S_IFREG|0644, st_size=4096, ...}) = 0
-mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb6f39000
-read(4, "MAJOR=189\nMINOR=256\nDEVNAME=bus/"..., 4096) = 126
-read(4, "", 4096)                       = 0
-close(4)                                = 0
-munmap(0xb6f39000, 4096)                = 0
-write(1, "Bus 003 Device 001: ID 1d6b:0002"..., 33Bus 003 Device 001: ID 1d6b:0002
-) = 33
-lstat64("/sys/bus/usb/devices/3-0:1.0", {st_mode=S_IFLNK|0777, st_size=0, ...}) = 0
-open("/sys/bus/usb/devices/3-0:1.0/uevent", O_RDONLY) = 4
-fstat64(4, {st_mode=S_IFREG|0644, st_size=4096, ...}) = 0
-mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb6f39000
-read(4, "DEVTYPE=usb_interface\nDRIVER=hub"..., 4096) = 138
-close(4)                                = 0
-munmap(0xb6f39000, 4096)                = 0
-lstat64("/sys/bus/usb/devices/1-0:1.0", {st_mode=S_IFLNK|0777, st_size=0, ...}) = 0
-open("/sys/bus/usb/devices/1-0:1.0/uevent", O_RDONLY) = 4
-fstat64(4, {st_mode=S_IFREG|0644, st_size=4096, ...}) = 0
-mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb6f39000
-read(4, "DEVTYPE=usb_interface\nDRIVER=hub"..., 4096) = 138
-close(4)                                = 0
-munmap(0xb6f39000, 4096)                = 0
-lstat64("/sys/bus/usb/devices/2-0:1.0", {st_mode=S_IFLNK|0777, st_size=0, ...}) = 0
-open("/sys/bus/usb/devices/2-0:1.0/uevent", O_RDONLY) = 4
-fstat64(4, {st_mode=S_IFREG|0644, st_size=4096, ...}) = 0
-mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb6f39000
-read(4, "DEVTYPE=usb_interface\nDRIVER=hub"..., 4096) = 138
-close(4)                                = 0
-munmap(0xb6f39000, 4096)                = 0
-lstat64("/sys/bus/usb/devices/2-1:1.0", {st_mode=S_IFLNK|0777, st_size=0, ...}) = 0
-open("/sys/bus/usb/devices/2-1:1.0/uevent", O_RDONLY) = 4
-fstat64(4, {st_mode=S_IFREG|0644, st_size=4096, ...}) = 0
-mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb6f39000
-read(4, "DEVTYPE=usb_interface\nDRIVER=snd"..., 4096) = 150
-close(4)                                = 0
-munmap(0xb6f39000, 4096)                = 0
-lstat64("/sys/bus/usb/devices/2-1:1.1", {st_mode=S_IFLNK|0777, st_size=0, ...}) = 0
-open("/sys/bus/usb/devices/2-1:1.1/uevent", O_RDONLY) = 4
-fstat64(4, {st_mode=S_IFREG|0644, st_size=4096, ...}) = 0
-mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb6f39000
-read(4, "DEVTYPE=usb_interface\nDRIVER=snd"..., 4096) = 150
-close(4)                                = 0
-munmap(0xb6f39000, 4096)                = 0
-lstat64("/sys/bus/usb/devices/2-1:1.2", {st_mode=S_IFLNK|0777, st_size=0, ...}) = 0
-open("/sys/bus/usb/devices/2-1:1.2/uevent", O_RDONLY) = 4
-fstat64(4, {st_mode=S_IFREG|0644, st_size=4096, ...}) = 0
-mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb6f39000
-read(4, "DEVTYPE=usb_interface\nDRIVER=usb"..., 4096) = 143
-close(4)                                = 0
-munmap(0xb6f39000, 4096)                = 0
-lstat64("/sys/bus/usb/devices/2-1:1.3", {st_mode=S_IFLNK|0777, st_size=0, ...}) = 0
-open("/sys/bus/usb/devices/2-1:1.3/uevent", O_RDONLY) = 4
-fstat64(4, {st_mode=S_IFREG|0644, st_size=4096, ...}) = 0
-mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb6f39000
-read(4, "DEVTYPE=usb_interface\nDRIVER=usb"..., 4096) = 143
-close(4)                                = 0
-munmap(0xb6f39000, 4096)                = 0
-lstat64("/sys/bus/usb/devices/2-1:1.4", {st_mode=S_IFLNK|0777, st_size=0, ...}) = 0
-open("/sys/bus/usb/devices/2-1:1.4/uevent", O_RDONLY) = 4
-fstat64(4, {st_mode=S_IFREG|0644, st_size=4096, ...}) = 0
-mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb6f39000
-read(4, "DEVTYPE=usb_interface\nDRIVER=usb"..., 4096) = 143
-close(4)                                = 0
-munmap(0xb6f39000, 4096)                = 0
-getdents64(3, /* 0 entries */, 32768)   = 0
-close(3)                                = 0
-exit_group(0)                           = ?
-
-
 
 ====g711===
 adpcm 压缩算法？
@@ -638,7 +500,6 @@ plot(z)
 octave:dec2hex(lin2mu(0x067b))
 octave:ans = C4
 
-
 ===g729===
 ITU-T定义
 
@@ -679,16 +540,12 @@ WAV文件头：
 
 libg729 (googlecode, doubango 使用)
 
-
-
 ---
 编译可执行程序：
 Makefile.am 添加：
 bin_PROGRAMS = core
 core_SOURCES = core.c
 core_LDADD = 
-
-
 
 Pre_Process() 高通滤波，截止频率140Hz，转换前后的pcm，用ffplay播， 窗口最下面似乎有些不同
 
@@ -740,8 +597,7 @@ freqz(b,a,1000,8000)// 横坐标变为Hz
 0.035*8k采样 = 280*pi rad/s    
 除以2*pi = 140Hz
 
-
-这是个IIR 《数字信号处理》 p231
+这是IIR 《数字信号处理》 p231
 
 Complexity weight  复杂度权重
 

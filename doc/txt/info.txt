@@ -12,10 +12,8 @@ ID/79864406 id:410425198511202520
 abandon java, android, opengl, mysql
 abandon sourceinsight, eclipse, qcreator
 abandon !protel99/ADS
-abandon gerrit config (20170411)
-abandon 不忍放弃c++，同姚，只用基本功能
 abandon C++ (20170428) ffmpeg/kernel/minigui的设计技术足矣
-	当遇到用C无法解决的问题时，再考虑C++， 而现在的情况远非如此，先能写出一个像样的C工程，潜心钻研C！
+先写个像样的C，再考虑C++
 
 esacademy.com
 gnu.org
