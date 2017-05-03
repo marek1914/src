@@ -1,3 +1,34 @@
+ring buffer / circular buffer / fifo
+
+The ring buffer's first-in first-out data structure is useful tool for 
+transmitting data between asynchronous processes
+
+
+#ifdef
+#ifndef
+//分别等价于
+#if defined
+#if !defined
+
+#elif
+#else
+#endif
+
+defined id  or defined (id)
+
+//#define USE_1
+#define USE_2
+//#define USE_3
+
+// 不好，只定义0/1 没必要
+#define MODULE_1  0
+#define MODULE_2  0
+#define MODULE_3  1
+
+#if MODULE_3==1
+
+#define LORA  1 // [0: OFF, 1: ON]
+
 /* think 0-7 or 0-4 */
 /* retry */
 
@@ -27,7 +58,6 @@ for (i = 0; i < 4; i++) {
     }
 }  
 
-
 static int controller_busy(void)
 {
     int retries = 100;
@@ -49,12 +79,13 @@ static int controller_busy(void)
  * Integer promotions
  * debug: printf/gdb/jtag, Each has its own advantage
  * Tip: Uncomment the following line
+ * commenting/uncomenting
  */
 
 statfs
+
 linux :0a  
 win :0d 0a
-// printf("\033[33mHello\033[0m\n"); 打印颜色
 
 /*
 //24bit数左移2bit +2 

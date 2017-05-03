@@ -3,6 +3,37 @@
 #define INFO(fmt, a...)  printf(fmt, ##a)
 #define INFO(fmt, ...)  printf(fmt, ##__VA_ARGS__)
 
+#if defined(foo)
+#elif defined(bar)
+#else
+#endif
+
+#if !defined (STM32F405xx) && !defined (STM32F415xx)
+#endif
+
+#if defined(STM32F405xx) || defined(STM32F415xx)
+#endif
+
+#if defined(STM32F405xx)
+#include "stm32f405xx.h"
+#elif defined(STM32F415xx)
+#include "stm32f415xx.h"
+#elif defined(STM32F413xx)
+#include "stm32f413xx.h"
+#else
+#error "Please select the target"
+
+int printf(const char *fmt, ...)
+{
+    int ret;
+    va_list ap; 
+
+    va_start(ap, fmt);
+    ret = vfprintf(stdout, fmt, ap);
+    va_end(ap);
+    return (ret);
+}
+
 #ifdef __cplusplus
 extern "C" {
 #endif

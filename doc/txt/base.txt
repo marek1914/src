@@ -1,13 +1,14 @@
+CMockery
+
+
 printf:
 stdarg.h (man stdarg)
 c99: 7.15  Variable arguments va_list(e.g void*)
 
 1 打印阻塞/非阻塞问题
 2 开关打印： 不要用宏在代码中控制，而是要把宏放到打印函数里
-level：kernel ffmpeg
 
-printk:
-man 2 syslog
+printk: man 2 syslog
 /proc/sys/kernel/printk
 
 4 value(7 4 1 7)：
@@ -33,30 +34,6 @@ W    Warn
 E    Error
 F    Fatal
 S    Silent (supress all output)
-
-int
-printf(const char *fmt, ...)
-{
-    int ret;
-    va_list ap; 
-
-    va_start(ap, fmt);
-    ret = vfprintf(stdout, fmt, ap);
-    va_end(ap);
-    return (ret);
-}
-
-void foo(char* fmt, ...)
-{
-    va_list ap; 
-    va_start(ap, fmt);
-    printf("foo:");
-    vfprintf(stdout, fmt, ap);
-    va_end(ap);
-    puts("");
-}
-
-
 
 libncurses
 http://clang.llvm.org/docs/ClangFormat.html

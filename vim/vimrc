@@ -17,7 +17,7 @@ set rtp+=~/.vim/ultisnips
 set rtp+=~/.vim/vim-snippets
 set rtp+=~/.vim/lilypond
 
-set complete=.,w,b,u,k
+set complete=.,w,b,u,k,t "help cpt
 set hls
 "set fdm=syntax
 

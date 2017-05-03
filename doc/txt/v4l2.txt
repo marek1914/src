@@ -8,7 +8,6 @@ The V4L2 driver changed the video from 160x110 to 160x120
 ./base/core/java/android/hardware/Camera.java
 
 Eclipse中编译Android4.4 Camera2
-Android 4.4中把Camera和Gallery做了分离
 
 xmp_toolkit源码：external/xmp_toolkit/
 
@@ -41,8 +40,7 @@ unspecified pixel format
 Consider increasing the value for the 'analyzeduration' and 'probesize' options
 /dev/video1: could not find codec parameters
 
-Bus 002 Device 004: ID 0408:20e1 Quanta Computer, Inc. 
-(台湾最大笔记型电脑制造厂:广达电脑有限公司(Quanta Computer))
+Bus 002 Device 004: ID 0408:20e1 Quanta Computer, Inc.
 http://www.ideasonboard.org/uvc/
 
 摄像头信息：
@@ -51,7 +49,6 @@ lshal | grep cam
 $ dmesg | grep uvc
 uvcvideo: Found UVC 1.00 device HD Webcam (0408:20e1)
 说明kernel支持uvc1.0
-
 
 ./media/video/uvc/uvc_driver.c:	case UVC_VS_FORMAT_MJPEG:
 ./usb/gadget/webcam.c:	.bDescriptorSubType	= UVC_VS_FORMAT_MJPEG,
@@ -87,7 +84,6 @@ Here is the frame rate information for the Logitech Webcams available:
     The HD Webcam C615 has a maximum frame rate 30 FPS @ 640x480.
     The HD Webcam C270 has a maximum frame rate 30 FPS @ 640x480.
     The HD Webcam C310 has a maximum frame rate 30 FPS @ 640x480.
-
 
 
 2个问题：mjpg接口怎么用， usb流量怎么监测
