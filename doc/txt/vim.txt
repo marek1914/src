@@ -1,6 +1,11 @@
 vim: tw=80
 VI之漫路即为禅修，皈依gnu
 
+http://www.cnblogs.com/songfy/p/5635757.html
+
+:help complete
+:help cpt (有2个complete入口，如何区分?)
+
 vim.base Huge version
 vim.tiny Small version
 
@@ -8,11 +13,9 @@ vim-nor // support python
 
 gcc -fpreprocessed -dD -E foo.c 删除注释
 
-打分号的问题，没法完美解决
+打分号问题，没完美解决
 
 brew install vim
-
-http://www.cnblogs.com/songfy/p/5635757.html
 
 3 自带netrw足够好，不用nerdtree
 
@@ -43,8 +46,6 @@ set tags+=~/.vim/systags
 ccomplete.vim中的ccomplete#Complete(findstart, base)
 
 omnifunc=ccomplete#Complete
-
-][ [[ ][ []
 
 AutoPairs uses Meta(Alt) key as shortcut
 

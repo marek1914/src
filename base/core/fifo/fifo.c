@@ -277,6 +277,7 @@ int main(void)
     fifo_reset(fifo);
     fifo->rndx = fifo->wndx = ~(uint32_t)0 - 5;
 
+	printf("-----\n");
     /* fill data */
     for (i = 0; fifo_space(fifo) >= sizeof(int); i++)
         fifo_generic_write(fifo, &i, sizeof(int), NULL);

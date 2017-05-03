@@ -1,3 +1,9 @@
+ring buffer / circular buffer / fifo
+
+The ring buffer's first-in first-out data structure is useful tool for 
+transmitting data between asynchronous processes
+
+
 #ifdef
 #ifndef
 //分别等价于
