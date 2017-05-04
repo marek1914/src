@@ -1,15 +1,16 @@
 --stm32--
 
 arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0
-
 github.com/texane/stlink
 
 cmsis/DSP_Lib/Source/下的文件生成lib/gcc下的2个.a
 
-手里的板子：
+board：
 nucleo F401RE(512+96)
 discovery F407VG
 STM32F3Discovery (F303 带DSP 陀螺仪)
+STM32F429I-Discovery (F429ZIT6)
+
 
 STM32Cube
 STM32F3: mixed-signal MCUs with DSP and FPU instructions
@@ -24,8 +25,7 @@ Cortex-M3  72 MHz
 512K Flash 64KByte
 
 GPIOA/B/C/D/E/F/G 时钟单独开启
-16-GPIO/组
-reset后，变为GPIO模式
+16-GPIO/组 上电为GPIO模式
 
 F103 内存
 0x00000000 - 0x0007ffff 512K
@@ -83,7 +83,7 @@ Pogo pin
 silicon 收购 cygnal(买到CYG F330)
 
 接插件：
-1.0 1.25 1.5 2.0 2.5 2.54 mm
+1.0 1.25 1.5 2.0 2.54 mm
 
 BBG：
 RXD/TXD/3V3/GND
@@ -109,8 +109,6 @@ F33x 没USB QFN20/QFN24  4x4
 F320 有USB, LQFP32  //不喜欢这个封装
 F321 有USB，QFN28 5x5mm
 F34x 最少32pin QFN 5x5mm
-
-F300 3x3mm 只有P0
 
 带USB系列：
 C8051F32x/34x  //最小5x5
@@ -848,15 +846,13 @@ CC2540: blue tooth
 
 ---
 二极管矩阵：
-1 板子上就是I2C，芯片与矩阵不分离（adafruit是分离的，并不好）
-2 c8051f330 不做在板子上（这就像封装函数，可大可小）
-3 最多4块板子级联，设置4个i2c地址
+1 板子上就是I2C，芯片与矩阵不分离 最多4块板子级联，设置4个i2c地址
 4 不要int引脚和shutdown引脚（6个引脚太多，与4针接口不兼容）
 板子加上拉，串联后上拉会变小
 板子不加，主控器可能没有（一般io都有内部上拉功能的）
 普通发光二极管1.8V导通
 高亮二极管3.1V导通，2.5V也可，电流小，不亮
-表贴蓝色高亮也是2.4v才开始亮，总之不是我之前认为的0.7v
+表贴蓝色高亮也是2.4v才开始亮
 
 74hc138
 片选1高2低设计，实现1线控制2片，2线控制3片效果，2线控制4片无法实现，除非有多余的反向器。

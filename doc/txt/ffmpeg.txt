@@ -1241,26 +1241,14 @@ AVPacket pkt = { 0 }; //这种写法
 -profile:v high -level:v 4.0
 -profile:a
 
--framerate 设置v4l2帧率，摄像头支持5/10/15/20/25/30，设置值被切换到最接近的那个
+-framerate (input formats for image2/v4l2v4l2，支持5/10/15/20/25/30，取最接近值)
 -r:v
+-r[:stream_specifier] fps (input/output,per-stream) Set frame rate
 
-
--r[:stream_specifier] fps (input/output,per-stream)
-
-    Set frame rate (Hz value, fraction or abbreviation).
-
-    As an input option, ignore any timestamps stored in the file and instead generate timestamps assuming constant frame rate fps. This is not the same as the -framerate option used for some input formats like image2 or v4l2 (it used to be the same in older versions of FFmpeg). If in doubt use -framerate instead of the input option -r. 
-
-
-
-
-libavdevice/v4l2.c :
-AVOption options[] = {
-{ "framerate", "set frame rate", {.str = NULL}
+libavdevice/v4l2.c : { "framerate", "set frame rate", {.str = NULL}
 
 libavformat/rawdec.c
-AVOption ff_rawvideo_options[]{
-{"framerate", "set frame rate", {.str = "25"} }  //默认25
+{"framerate", "set frame rate", {.str = "25"} }  //default 25
 {"pixel_format", "set pixel format", {.str = "yuv420p"}
 
 RAW demuxers  没有封装？//ES流吧
@@ -1309,7 +1297,7 @@ AVClass *av_class; //用于logging 和 avoptions
 看这个 avcodec_open2
 
 最终靠 av_opt_set_defaults 设置各级默认参数
-如果cli修改了默认参数，系统走到这里的时候，我猜应该已经改了！
+如果cli修改了默认参数，系统走到这里的时候，我猜应该已经改了
 
 #define FF_PROFILE_UNKNOWN -99   在libx264里面就是这样
 
@@ -1824,79 +1812,45 @@ read_frame_internal(){
  * returning samples. It is safe to flush even those decoders that are not
  * marked with CODEC_CAP_DELAY, then no samples will be returned.
 
-理解了eof的时候插入空包的作用，是为了把B帧挤出来，否则视频最后几帧显示不出来。
+EOF时插入空包是为了把B帧挤出来，否则最后几帧不显示
 
 rtmpdump
-
 
 ffplay -f rawvideo -c:v rawvideo -s 1280*720 -pix_fmt nv12 xx.bat
 
 ffplay test1.flv -vf "rotate=PI/2"
 
-ios版本
-Number of bands (55) exceeds limit (42)
-
-编码器：readygo/mvc/controllers/RDLivingTableViewController/DataSource/RDLivingDetailViewController.mm
-
-编码器用的：PLCameraStreamingKit
-
-http://cdn.live.360.cn/huikan_huajiao/vod-bucket/cbbea8bd337dc23236e90149c01eae14_cbbea8bd337dc23236e90149c01eae14_174.m3u8
-
-ios 播放，不停打印：
-av_log(ts->stream, AV_LOG_TRACE, "PMT: len %i\n", section_len);
-
-av_log_set_level(AV_LOG_INFO);
-试试调用这个API把打印等级修改下
-
-你们的log.c  中，  是不是把int av_log_level = AV_LOG_INFO;  给改了
-
 ------------------------
-这个结构体很简单，主要就是 init 和 encode2
+这个结构体很简单，主要是 init和encode2
 typedef struct AVCodec {
+const char *name;
+const char *long_name;
+enum AVMediaType type;
+enum AVCodecID id;
+int capabilities;
+const AVRational *supported_framerates; //array of supported framerates, or NULL if any, array is terminated by {0,0} 
+int priv_data_size;
+struct AVCodec *next;
 
-    const char *name;
-    const char *long_name;
-    enum AVMediaType type;
-    enum AVCodecID id;
-
-    int capabilities;
-    const AVRational *supported_framerates; ///< array of supported framerates, or NULL if any, array is terminated by {0,0}
-    const enum AVPixelFormat *pix_fmts;     ///< array of supported pixel formats, or NULL if unknown, array is terminated by -1
-    const int *supported_samplerates;       ///< array of supported audio samplerates, or NULL if unknown, array is terminated by 0
-    const enum AVSampleFormat *sample_fmts; ///< array of supported sample formats, or NULL if unknown, array is terminated by -1
-    const uint64_t *channel_layouts;         ///< array of support channel layouts, or NULL if unknown. array is terminated by 0
-    const AVClass *priv_class;              ///< AVClass for the private context
-    const AVProfile *profiles;              ///< array of recognized profiles, or NULL if unknown, array is terminated by {FF_PROFILE_UNKNOWN}
-
-    int priv_data_size;
-    struct AVCodec *next;
-
-    int (*init_thread_copy)(AVCodecContext *);
-
-    int (*update_thread_context)(AVCodecContext *dst, const AVCodecContext *src);
-    const AVCodecDefault *defaults;
-    void (*init_static_data)(struct AVCodec *codec);
-    int (*init)(AVCodecContext *);
-    int (*encode_sub)(AVCodecContext *, uint8_t *buf, int buf_size, const struct AVSubtitle *sub);
-
-    int (*encode2)(AVCodecContext *avctx, AVPacket *avpkt, const AVFrame *frame, int *got_packet_ptr);
-    int (*decode)(AVCodecContext *, void *outdata, int *outdata_size, AVPacket *avpkt);
-    int (*close)(AVCodecContext *);
-
-    void (*flush)(AVCodecContext *);
-
-    int caps_internal;
+int (*init_thread_copy)(AVCodecContext *);
+int (*update_thread_context)(AVCodecContext *dst, const AVCodecContext *src);
+const AVCodecDefault *defaults;
+void (*init_static_data)(struct AVCodec *codec);
+int (*init)(AVCodecContext *);
+int (*encode_sub)(AVCodecContext *, uint8_t *buf, int buf_size, const struct AVSubtitle *sub);
+int (*encode2)(AVCodecContext *avctx, AVPacket *avpkt, const AVFrame *frame, int *got_packet_ptr);
+int (*decode)(AVCodecContext *, void *outdata, int *outdata_size, AVPacket *avpkt);
+int (*close)(AVCodecContext *);
+void (*flush)(AVCodecContext *);
+int caps_internal;
 } AVCodec;
-
 
 各种时间都是以AVStream->time_base为单位
 
-     * pts MUST be larger or equal to dts as presentation cannot happen before
-     * decompression, unless one wants to view hex dumps. Some formats misuse
-     * the terms dts and pts/cts to mean something different. Such timestamps
-     * must be converted to true pts/dts before they are stored in AVPacket.
-     */
-
+* pts MUST be larger or equal to dts as presentation cannot happen before
+* decompression, unless one wants to view hex dumps. Some formats misuse
+* the terms dts and pts/cts to mean something different. Such timestamps
+* must be converted to true pts/dts before they are stored in AVPacket.
 
 flags 
 #define AV_PKT_FLAG_KEY     0x0001 // The packet contains a keyframe
@@ -2073,13 +2027,11 @@ annexBHeader:
 
 --------------------------
 
-
 "libstagefright_h264" 在这里，libstagefright.c 就是一个h264解码器，而不是android里面的stagefright多媒体架构
 
 #0  ff_h264_decode_init (执行到这里的时候已经填充好了)
 #1  avcodec_open2
 #2  avformat_find_stream_info
-
 
 ffmpeg 2.8 
 
@@ -2089,11 +2041,9 @@ Stagefright_init()
         return -1;
 }
 
-
 手动填充AVPacket结构体
 
 ffmpeg 用了binder与stagefright解码
-
 
 ffplay 直接播放ES流文件，annexb间隔，不论扩展名，都能识别
 打印*s->iformat：name = 0x13d1650 "h264", long_name = 0x13d1655 "raw H.264 video"
@@ -2193,12 +2143,10 @@ video/mpeg2-I.mpg 扩展名随便改，还是能识别，怎么做到的？   �
 还有00 00 01 b5
 00 00 01 b8  这些都是mpeg2的格式
 
-
 --
 libavdevice/dshow.c
 算帧率 1e7 / vcaps->MaxFrameInterval,
 1e7 是1x10^7
-
 
 ====== yup =======
 libyuv: is an open source project that includes YUV scaling and conversion functionality
@@ -2313,4 +2261,7 @@ yuv可以当yuvj使用，但yuvj当yuv，需要按比例缩放
         },
         .flags = AV_PIX_FMT_FLAG_PLANAR,
 
+-- mjpeg --
+ffplay -input_format mjpeg /dev/video0
+ffplay -list_formats all   /dev/video0
 
