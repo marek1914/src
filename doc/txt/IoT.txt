@@ -1,5 +1,6 @@
 --stm32--
 
+
 arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0
 github.com/texane/stlink
 
@@ -13,6 +14,7 @@ STM32F429I-Discovery (F429ZIT6)
 
 
 STM32Cube
+
 STM32F3: mixed-signal MCUs with DSP and FPU instructions
 
 j-link /segger
@@ -44,10 +46,7 @@ F103RBT6 128+20
 
 RBT6 : 64pin/128K/LQFP/工业
 
-C=48
-R=64
-V=100
-Z=144
+C=48 / R=64 / V=100 / Z=144
 
 6-32K
 8-64K
@@ -101,34 +100,19 @@ IO端口电压 = 电源电压
 http://www.silabs.com/support/pages/document-library.aspx?p=MCUs&f=C8051F85x  文档下载页面
 http://www.silabs.com/applications/wireless/Pages/Solar-Powered-Wireless-Sensor.aspx 无线网络节点
 
-C8051T622 有usb 4x4mm QFN24   不常用贵
-C8051F321 有usb 5x5mm QFN28  //已买
-C8051F330 无usb 4x4mm QFN20  //已买 yj电调
+C8051F321 有usb 5x5mm QFN28 //已买
+C8051F330 无usb 4x4mm QFN20 //已买
 
 F33x 没USB QFN20/QFN24  4x4
-F320 有USB, LQFP32  //不喜欢这个封装
-F321 有USB，QFN28 5x5mm
-F34x 最少32pin QFN 5x5mm
-
-带USB系列：
-C8051F32x/34x  //最小5x5
-C8051T62x/32x  48MHz //有usb的，仅它有4x4封装
-C8051F340 32/64k + 2/4k ram 25/40 io
-C8051F320 ram：2304 Bytes Internal RAM (1k + 256 + 1k USB FIFO)  flash：16k Bytes FLASH;
-C8051T62x/T32x USB Microcontrollers  这个好像有个低频模式
-  Full Speed USB EPROM MCU Family  (EPROM 和 Flash有区别吗)
-C8051F32x/34x  USB Microcontrollers
-  Full Speed USB Flash MCU Family
-flash容量主频区别
+F320 USB, LQFP32
+F321 USB, QFN28 5x5mm
 
 C8051F仿真器(USB Debug Adapter)官方原理图用f321实现(JTAG/C2)，UEC5/6 支持jtag/C2
 都是f321，区别是输出缓冲，保护电路
-开发环境silicon ide或keil C
-一般基于Silabs生产的U-EC3（原厂型号）而设计生产，固件可升级，HID设备免驱
 
-输出端口用 SN74LVC2G125(74HC125)，Buffer的作用是保护电路
-
-EMIF:External Memory Interface (个别型号 available on 48-pin versions)
+silicon ide/keil
+基于Silabs生产的U-EC3设计生产，固件可升级，HID设备免驱
+输出端口用 SN74LVC2G125(74HC125)，Buffer是保护电路
 
 8-bit MCU(8051):  蜜蜂
 EFM8 Busy Bee
@@ -136,8 +120,6 @@ EFM8 Universal Bee
 Analog Intensive MCU
 Automotive and Industrial Qualified MCU
 General Purpose MCU
-
-32-bit MCU (arm cortex m)  壁虎
 
 Wireless:
 Bluetooth 4.0/4.1/4.2 Modules
@@ -157,19 +139,12 @@ AN112:串口升级固件
 GZUT 串口小板 也有RTS/CTS引脚
 
 ----
-DS1803
-Dallas's 1-wire(kernel 支持) 
-Dallas Semiconductor 美国达拉斯半导体， 被Maxim收购
-ds18b20
-adi的数字电位器都超贵
+DS1803 数字电位器
+Dallas's 1-wire(kernel support) 
+Dallas被Maxim收购
 
 --chip--
-si5351 clock generator
 sparkfun : Teensy 3.2
-英飞凌 （Infineon AG）
-贴片电解电容拆卸：2把烙铁(优选方案)或风枪
-rasp b：usb外壳地与gnd引脚的地不是一个地
-W25Q80BV - 1 MByte SPI Flash
 
 压敏电阻（用于usb数据线，便宜）
 共模电感（用于usb数据线，做emc测试时防辐射用的）
@@ -318,11 +293,12 @@ ADI公司提供各种接口产品，其解决方案符合许多工业标准通�
 其他接口器件包括键盘控制器、电平转换器和高压保护产品，
 如通道保护、故障保护、过压保护以及防闩锁开关和多路复用器
 电平转换器
-利用ADI公司的iCoupler®标准数字隔离器技术，设计人员可以摆脱光耦合器的成本、尺寸、功耗、性能和可靠性限制，在设计中实现隔离。目前已有10亿个以上的隔离通道投入应用。这些磁性隔离产品安全可靠且易于使用，是光耦合器的理想替代产品。
-RMS-DC转换器
-AD5175 单通道1024位数字变阻器 10K  （超贵  30+）  并且各种型号都超贵
-----
 
+利用ADI公司的iCoupler®标准数字隔离器技术，设计人员可以摆脱光耦合器的成本、尺寸、功耗、性能和可靠性限制，在设计中实现隔离。这些磁性隔离产品是光耦合器的理想替代产品。
+RMS-DC转换器
+AD5175 单通道1024位数字变阻器 10K（超贵  30+）
+
+----
 Pspice电路仿真软件
 
 www.wikihow.com/Measure-Inductance 太棒了！
@@ -393,19 +369,10 @@ Monopole antenna 单极天线
 TI 天线设计参考资料：
 该天线板参考设计包含多个低成本天线解决方案，适用于低于 1 GHz 及 2.4 GHz 近距离无线系统
 
-
-IEEE 802.11 是一组 MAC 和 PHY 协议 实现 WLAN 在 900 MHz 和 2.4/3.6/5/60 GHz 频率
-(IEEE) LAN/MAN Standards Committee (IEEE 802).
-IEEE 802.11ad
-Wireless Gigabit Alliance
-
-
 ---nodemcu---
-
 arduino ide 开发esp8266 nodemedia
 
-乐鑫espressif
-amica
+乐鑫espressif   amica
 
 User/mac/Library/Arduino15/packages/esp8266
 
@@ -447,20 +414,17 @@ to create the best way to connect&control products in the home.
 
 250 kbit/s
 
-ZigBee was conceived in 1998, standardized in 2003, and revised in 2006
-802.15.4 之于 ZigBee / 802.11 之于 Wi-Fi
+802.15.4 ZigBee
+802.11   Wi-Fi
 
 Industry leading sleep current of sub 1uA, Firmware upgrades via UART, SPI or over the air
-
-Through-Hole（排针） 
 
 Digi XBee
 2.4G，900M，868M三种
 可组mesh网络，每个模块都可以做为路由节点，协调器，以及终端节点。
 X-CTU(Configuration Test Utility) / Zigbee Operator
 AT/API
-应用:智能家居，传感器，无线检测，资产管理
-iDigi平台提供各种常用的接入方式，更加方便远程控制
+iDigi平台提供各种常用的接入方式
 
 S2 Series 2
 Note: Series 1 and Series 2 XBee modules have the same pin-out. 
@@ -471,10 +435,8 @@ Coor
 AT/API
 
 XBee：
-其中一个模块用 旋转的天线（短的和wifi用长的，应该是双极）另一个是板载3cm单极天线，
-后来灵机一动，旋转天线用一段3cm扎线用的单股黑线代替，结果就非常稳定了，书房到主卧没问题
-9600波特率1s间隔发送字符串ok
-0.5s发送丢数据，数据传输律不高。也就是说9600波特率连续发送
+用一段3cm扎线用的单股黑线代替，结果非常稳定
+9600波特率1s间隔发送字符串ok 0.5s发送丢数据，数据传输律不高。也就是说9600波特率连续发送
 
 
 --wifi--
@@ -489,15 +451,13 @@ RT(realtek)---L
 RTL8192DU-VC Single-Chip IEEE 802.11a/b/g/n 2T2R WLAN Controller with USB2.0 Interface (2x2 2.4G/5G)
 RTL8188CUS 	 Single-Chip IEEE 802.11  b/g/n 1T1R WLAN Controller with USB2.0 Interface (QFN-46)
 
-闫usb wifi模块:
+usb wifi模块:
 RTL8188CUS 802.11n WLAN Adapter
 
 lsmod:
 cfg80211   is the Linux 802.11 configuration API   kernel支持的
 
-蹭网卡：rtl8187，ott盒子rtl8188/rtl8192
-
-a20: RTL8188ETV(老型号)
+ott盒子rtl8188/rtl8192
 
 驻波系数
 能量全发射出去，效率最高，如果50%反射回来，效率不高。
@@ -533,16 +493,13 @@ TDR ， 史密斯图法， 谐振频率法
 
 时域测试法：专门TDR设备，信号发生器+示波器组合，网络分析仪（电缆厂家多利用网络分析仪的时玉功能）
 
-google 搜索  afg oscilloscope tdr 找到youtube的几个视频，很好
-
-A network analyzer is an instrument that measures the network parameters of electrical networks.
+google 搜 afg oscilloscope tdr
+A network analyzer
 scalar network analyzer (SNA)—measures amplitude properties only
 vector network analyzer (VNA)—measures both amplitude and phase properties
-专业设备很贵，淘宝有个miniVNA Pro
 
 bladerf 应该也可以
 http://www.rtl-sdr.com
-
 
 Polar(英国公司) SI9000 特性阻抗计算工具
 磁力线是便于理解想象出来的
@@ -610,7 +567,6 @@ Analog Devices AD9364 transceiver  600+
 Xilinx Artix 7 FPGA
 Cypress EZ-USB FX3 USB 3.0 controller
 
-
 56 MHz bandwidth
 70 MHz to 6 GHz center frequency
 12-bit resolution
@@ -628,10 +584,8 @@ HackRF使用的是CPLD
 示波器连接铜柱一端，那参考地在哪里呢？
 频谱仪来听收音机
 
-
 传输线阻抗是从电报方程推导出来(查微波理论)
 传输线特性阻抗 (Characteristic impedance   wiki)
-
 
 电磁波会反射？ 那电磁波到底是穿透还是反射?
 可见光也是电磁波，它就不会穿透而是被反射，可见光却可以穿透透明物体
@@ -639,8 +593,6 @@ HackRF使用的是CPLD
 可见光不可穿透，比他波长更长和更短的电磁波都可以穿透
 
 电磁波:TE，TM，TEM,
-
-一个人走不远，2个人互相激励就能走远，电磁相生，辐射出去
 
 The electric field is a component of the electromagnetic field. 
 It is a vector field and is generated by electric charges or time-varying magnetic fields, as described by Maxwell's equations. 
@@ -695,8 +647,6 @@ wikipedia 搜索 Dipole antenna
 
 https://en.wikipedia.org/wiki/Colpitts_oscillator
 
-摩擦起电，为什么能吸引轻小物体
-
 运动电荷在磁场中所受到的力称为洛伦兹力
 洛伦兹 ：荷兰物理学家
 
@@ -711,9 +661,9 @@ Supports high frequency up to 6GHz
 SMA connector
 SubMiniature version A
 
-
 ---lora---
-SX1301是semtech公司推出的LoRa网关芯片，8个LoRa信道，1个FSK信道，可以看成是FPGA+8路LoRa调制解调器。该芯片是semtech的核心利益块，从数据手册，到硬件参数，到软件驱动，到协议算法，都不公开；仅当用户缴纳付费，成为LoRa Alliance的会员，才能获得相关资料和技术。
+LoRa网关SX1301，8 LoRa信道，1 FSK信道，可看做 FPGA+8路LoRa调制解调器
+数据手册，驱动，都不公开；缴费成为LoRa Alliance会员，才能获得相关资料
 
 接收灵敏度
 http://www.cnblogs.com/diyingyun/p/3722936.html
@@ -831,7 +781,7 @@ IAR Embedded Workbench for 8051
 SmartRF Flash Programmer
 SmartRF Studio
 
-IAR 总部瑞典，著名产品是C编译器-IAR Embedded Workbench, 支持众多知名半导体公司的微处理器
+IAR公司C编译器: IAR Embedded Workbench
 
 IAR Embedded Workbench for ARM  可用于STM32
 CC2530+RFX2401C(PA:功率放大器 模块)，内置IPX连接器 
@@ -852,7 +802,7 @@ CC2540: blue tooth
 板子不加，主控器可能没有（一般io都有内部上拉功能的）
 普通发光二极管1.8V导通
 高亮二极管3.1V导通，2.5V也可，电流小，不亮
-表贴蓝色高亮也是2.4v才开始亮
+蓝色高亮 2.4v 才开始亮
 
 74hc138
 片选1高2低设计，实现1线控制2片，2线控制3片效果，2线控制4片无法实现，除非有多余的反向器。
@@ -923,14 +873,11 @@ A51  assembler kit
 
 uVision Project Manager
 
-http://www.keil.com/update/rvmdk.asp 所有版本
-下载者需提供keil的LIC/PSN(Product Serial Number)和注册信息,没搞定
-
 keil/arm/下有 Segger/STLink/ULink 多个驱动支持，
 插入segger J-link，选择Segger目录x86，正常安装
 也可独立安装Segger驱动，更新版本
 
-4.74 破解：
+4.74 破解(官网无法下载，不用尝试)：
 1 uVision4 -> File->License Management 找到CID
 2 打开 keillic.exe，输入CID，target选择ARM
 输入LIC后，Lite版变为 Standard版
@@ -941,11 +888,9 @@ MDK Plus/Professional
 MDK Core包含uVision5 IDE集成开发环境和ARM Compiler5
 Software Packs可在不更换MDK Core情况下，单独管理设备支持包和中间件更新包。  
 
-----
-
 --u8glib--
 m2tklib
-http://code.google.com/p/u8glib/   单色屏ui
+http://code.google.com/p/u8glib
 
 可pc编译sdl运行
 
@@ -954,18 +899,4 @@ pc编译，sys/arduino目录 .uno文件不认
 
 https://learn.adafruit.com/ssd1306-oled-displays-with-raspberry-pi-and-beaglebone-black/wiring
 u8glib/sys/arduino/Chess/Chess.cpp  //这个文件是自动生成的
-
----
-2nd bootloader
-
-关于升级标志：工作状态收到升级信息，提示是否升级，选择是，置升级标志（升级标志就是flash里的一个标志位）系统重启。
-升级成功后清除标志位
-ota 与本地升级（usb，sd，uart）
-2级bootloader，1级引导2级，2级校验和加载应用
-
-a20盒子，下载过程中断电，会重新下载，写flash的时候断电，就只能用u盘或者sd卡刷机了。因为那个时候已经把flash擦除
-总不能把android系统备份2份吧。所以任何设备在写flash的时候都不能断电
-
-极路由升级写flash时提示“不能断电”，我断了，就变砖了，客服发了刷机文件（tftp下载）恢复
-更加完善的方案是仿照dvb，loader（uboot）有下载固件能力。但升级uboot，仍存在断电风险。
 

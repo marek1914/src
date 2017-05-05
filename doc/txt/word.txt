@@ -67,6 +67,7 @@ combination 组合
 
 RC: Release　Candidate
 
+Through-Hole 排针
 
 ANSI: American National Standards Institute
 SPI: Serial Peripheral Interface
