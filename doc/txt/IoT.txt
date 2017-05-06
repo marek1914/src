@@ -1,5 +1,19 @@
---stm32--
+BBG 4pin 2.0mm：
+RXD/TXD/3V3/GND
+SCL/SDA/3V3/GND
 
+也可: SCL/VCC/SDA/GND
+
+最差:
+VCC/SCL/SDA/GND
+SCL/VCC/GND/SDA
+
+3pin 
+最好: GND/VCC/IO
+次之: VCC/GND/IO
+最差: VCC/IO/GND
+
+--stm32--
 
 arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0
 github.com/texane/stlink
@@ -81,13 +95,7 @@ Pogo pin
 
 silicon 收购 cygnal(买到CYG F330)
 
-接插件：
-1.0 1.25 1.5 2.0 2.54 mm
-
-BBG：
-RXD/TXD/3V3/GND
-SCL/SDA/3V3/GND
-间距2.0
+接插件(mm)：1.0 1.25 1.5 2.0 2.54
 
 io口直接驱动2极管，8段全亮，18mA，每段2.25mA
 
@@ -100,12 +108,9 @@ IO端口电压 = 电源电压
 http://www.silabs.com/support/pages/document-library.aspx?p=MCUs&f=C8051F85x  文档下载页面
 http://www.silabs.com/applications/wireless/Pages/Solar-Powered-Wireless-Sensor.aspx 无线网络节点
 
-C8051F321 有usb 5x5mm QFN28 //已买
-C8051F330 无usb 4x4mm QFN20 //已买
-
-F33x 没USB QFN20/QFN24  4x4
-F320 USB, LQFP32
-F321 USB, QFN28 5x5mm
+C8051F320 LQFP32 usb
+C8051F321 5x5mm QFN28 usb
+C8051F330 4x4mm QFN20
 
 C8051F仿真器(USB Debug Adapter)官方原理图用f321实现(JTAG/C2)，UEC5/6 支持jtag/C2
 都是f321，区别是输出缓冲，保护电路
@@ -114,7 +119,7 @@ silicon ide/keil
 基于Silabs生产的U-EC3设计生产，固件可升级，HID设备免驱
 输出端口用 SN74LVC2G125(74HC125)，Buffer是保护电路
 
-8-bit MCU(8051):  蜜蜂
+8-bit MCU(8051): bee
 EFM8 Busy Bee
 EFM8 Universal Bee
 Analog Intensive MCU
@@ -438,24 +443,23 @@ XBee：
 用一段3cm扎线用的单股黑线代替，结果非常稳定
 9600波特率1s间隔发送字符串ok 0.5s发送丢数据，数据传输律不高。也就是说9600波特率连续发送
 
-
 --wifi--
 partical:
 
 https://docs.particle.io/guide/tools-and-features/dev/
 
-realtek 瑞昱，台湾，螃蟹标志
+realtek 瑞昱台湾螃蟹
 IEEE 802.11a/b/g/n Single-Chip
 分usb和pci-e接口
 RT(realtek)---L
-RTL8192DU-VC Single-Chip IEEE 802.11a/b/g/n 2T2R WLAN Controller with USB2.0 Interface (2x2 2.4G/5G)
-RTL8188CUS 	 Single-Chip IEEE 802.11  b/g/n 1T1R WLAN Controller with USB2.0 Interface (QFN-46)
+RTL8192DU-VC IEEE 802.11a/b/g/n 2T2R WLAN USB2.0
+RTL8188CUS 	 IEEE 802.11  b/g/n 1T1R WLAN USB2.0
 
 usb wifi模块:
 RTL8188CUS 802.11n WLAN Adapter
 
 lsmod:
-cfg80211   is the Linux 802.11 configuration API   kernel支持的
+cfg80211  is the Linux 802.11 configuration API   kernel支持的
 
 ott盒子rtl8188/rtl8192
 
@@ -489,8 +493,7 @@ https://www.maximintegrated.com/cn/products/analog/amplifiers/MAX9979.html/tb_ta
 
 同轴电缆特性阻抗测量方法：
 TDR ， 史密斯图法， 谐振频率法
-除了VNA，有什么简单方法测试出特性阻抗呢？
-
+除VNA,还可：
 时域测试法：专门TDR设备，信号发生器+示波器组合，网络分析仪（电缆厂家多利用网络分析仪的时玉功能）
 
 google 搜 afg oscilloscope tdr
@@ -498,22 +501,18 @@ A network analyzer
 scalar network analyzer (SNA)—measures amplitude properties only
 vector network analyzer (VNA)—measures both amplitude and phase properties
 
-bladerf 应该也可以
 http://www.rtl-sdr.com
 
-Polar(英国公司) SI9000 特性阻抗计算工具
+Polar SI9000 特性阻抗计算工具
 磁力线是便于理解想象出来的
 电磁波是电磁场运动形态
 蜿蜒倒F天线
 2.4G 波长12.5cm
 
 ITU-T:
-gaojie@cyclecentury.com:*2xxpy- 可下载某些免费规范
+gaojie@cyclecentury.com:*2xxpy-
 
-GNU Radio / SDR
-
-ISM 由 ITU-R 定义，Free License  2.4GHz频段为各国共同的ISM频段
-
+ISM(ITU-R)
 Fre range			Center fre 	Availability
 6.765-6.795 MHz		6.78 MHz 			
 13.553-13.567 MHz	13.56 MHz 	Worldwide
@@ -528,7 +527,7 @@ Fre range			Center fre 	Availability
 122-123 GHz			122.5 GHz
 244-246 GHz			245 GHz
 
-Frequency 		Wavelength		Designation 					Abbreviation
+Frequency 		Wavelength		Designation 					Abbre
 3 – 30 Hz		105 – 104 km 	Extremely low frequency 		ELF
 30 – 300 Hz 	104 – 103 km 	Super low frequency 			SLF
 300 – 3000 Hz 	103 – 100 km 	Ultra low frequency 			ULF
@@ -543,8 +542,7 @@ Frequency 		Wavelength		Designation 					Abbreviation
 300GHz-3000GHz 	1mm - 0.1mm 	Tremendously high frequency 	THF
 
 http://www.freebuf.com/articles/wireless/35354.html
-
-http://whiteboard.ping.se/SDR/IQ   好文好文章！
+http://whiteboard.ping.se/SDR/IQ
 
 I : In-Phase(同相 同步) signal component
 Q : Quadrature signal component 
