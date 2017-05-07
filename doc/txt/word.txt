@@ -111,6 +111,8 @@ IEC:  International Electrotechnical Commission
 IEEE: Institute of Electrical and Electronics Engineers
 IETF: Internet Engineering Task Force
 
+ota: over the air
+
 802.15.1 WPAN/bluetooth
 802.15.3 High Rate WPAN
 802.15.4 Low Rate WPAN(zigbee)
