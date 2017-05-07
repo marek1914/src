@@ -98,6 +98,7 @@ Pogo pin
 --F330--
 silicon (cygnal)
 
+keil/Silicon IDE
 io口直接驱动2极管，8段全亮，18mA，每段2.25mA
 
 资料25MHz 6.4mA，F330 不带任何负载，万用表测 9mA
@@ -113,7 +114,7 @@ C8051F330 4x4mm QFN20
 http://www.silabs.com/support/pages/document-library.aspx?p=MCUs&f=C8051F85x
 http://www.silabs.com/applications/wireless/Pages/Solar-Powered-Wireless-Sensor.aspx
 
-USB Debug Adapter f321实现JTAG/C2，UEC5/6 U-EC3 HID设备免驱
+USB Debug Adapter f321实现JTAG/C2，UEC5/6 U-EC3 HID兼容设备免驱
 JTAG接口VCC=5V
 
 输出端口用 SN74LVC125(74HC125) Buffer保护电路
