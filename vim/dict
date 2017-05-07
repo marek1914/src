@@ -362,4 +362,4 @@ __VA_ARGS__
 __FUNCTION__
 __LINE__
 __DATE__
-
+__GNUC__

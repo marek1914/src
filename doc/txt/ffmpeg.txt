@@ -2265,3 +2265,5 @@ yuv可以当yuvj使用，但yuvj当yuv，需要按比例缩放
 ffplay -input_format mjpeg /dev/video0
 ffplay -list_formats all   /dev/video0
 
+取出的数据命名为 .mjpeg 用ffplay即可播放
+

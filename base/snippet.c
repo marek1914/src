@@ -23,6 +23,51 @@
 #else
 #error "Please select the target"
 
+/* 代码检查侵入太多 */
+int sys_init(void)
+{
+	int ret;
+	ret = a_init(void);
+	if (ret < 0)
+		return -1;
+	ret = b_init(void);
+	if (ret < 0)
+		return -1;
+	ret = c_init(void);
+	if (ret < 0)
+		return -1;
+	return 0;
+}
+
+int sys_init(void)
+{
+	int ret = 0;
+	ret += a_init(void);
+	ret += b_init(void);
+	ret += c_init(void);
+	if (ret == 0)
+		return 0;
+	else
+		return -1;
+}
+
+/* 几种返回值处理方法 */
+
+if (ioctl(fd, FBIOGET_FSCREENINFO, &finfo) == -1)
+	return -errno;
+
+if (ioctl(s, SIOCGIWPRIV, &wrq) < 0) {
+    return -1;
+}
+
+r = ioctl(ifc_ctl_sock, SIOCGIFHWADDR, &ifr);
+if(r < 0)
+	return -1;
+
+r = ioctl(usb->desc, USBDEVFS_CLAIMINTERFACE, &interface);
+if(r != 0) goto fail;
+
+
 int printf(const char *fmt, ...)
 {
     int ret;

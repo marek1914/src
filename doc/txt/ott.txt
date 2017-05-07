@@ -429,9 +429,6 @@ MAC：00:16:FB:81:19:CF
 cmcc2.0: ./sugar-ref001/sugar_ref001.mk:BUILD_NUMBER := 1.0.2（修改这里，build.prop 不自动更新，需删除此文件再编译，有问题）
 galaxy: mobile/galaxy/scripts/build_id.mk
 
-SWNetworkInfo.apk 网线插入拔出显示的对号与叉号， SWSettings.apk里也有对号叉号2个图标，公司10M宽带播不了华数直播
-华数/杜比 里面的片子《大武当》实际片长比识别出来的长4分钟，片长是服务器下发的，不是本地识别
-
 缓冲机制：要求低于200ms开始缓冲，5s数据开始播放。第1次更新点播好了，表情直播好了，但是
 
 汉辰黑盒卡刷后，没在build.prop中增加ro.serialno，设置ip后直接进入桌面（而之前都是要设置的）
