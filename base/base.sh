@@ -3,11 +3,11 @@
 #有些命令是shell/perl脚本
 # rc :run command
 # ctrl+d #terminal
+Bash:Bourne Again Shell
 
 more	less	clear	reset	fdisk	wc	basename
 lsblk	lsusb	lspci	lscpu
 
-# build and execute shell command lines from standard input in parallel
 # GNU parallel is a shell tool for executing jobs concurrently locally or using remote computers 多台计算机并行工作
 parallel 
 
@@ -102,8 +102,6 @@ configure 是shell脚本
 ${1} = --enable-shared=yes ${2} =  CFLAGS=-g
 内部解释成变量CFLAGS = -g --enable-shared=yes的含义是脚本实现
 
-从更低层的地方考虑，不论shell还是make，都是可执行程序，后面的参数都是arg[1] arg[2]，只是上层的处理不同而已。
-
 shell/uboot:
 $foo / ${foo}
 Command Substitution(3.5.4): $(foo) / `foo`
@@ -111,11 +109,6 @@ Command Substitution(3.5.4): $(foo) / `foo`
 make：
 变量 $(foo) ${foo}
 单字母：$f  $foo -> $f+oo
-
-/bin/sh
-/system/bin/sh
-ash/bash/dash
-Bash:Bourne Again Shell
 
 # export
 # makefile的export是make关键词，都是操作环境变量区
@@ -138,8 +131,9 @@ all:
 
 export 全局变量会被复制到子进程
 注意:
- 1 不限定子shell，任何类型进程均可，实际与main(int argc, char *argv[ ], char **env)的第三个参数一回事 ^_^
+ 1 不限定子shell，任何类型进程均可，即main(int argc, char *argv[ ], char **env)的第三个参数
  2 是复制，子进程修改同名变量不影响父进程
+
 set 显示全局+局部变量
 
 export TEST=1
@@ -427,8 +421,6 @@ netfilter
 
 cat /etc/issue
 
-
-
 time cp test1 test2  测试拷贝速度
 fuser -m -v 查看谁在用某个文件描述符
 shutdown -h 10:42
@@ -448,9 +440,6 @@ v3=$(($v1*$v2))
 v3=$((v1*v2))
 $((v3=$v1*$v2))
 
-function test() //function可省略
-{
-}
 
 #pad 4k 0xff
 while ((i<4096)); do printf "\377" >>pad.bin; ((i++)); done
