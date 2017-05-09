@@ -162,9 +162,11 @@ vocal 人声
 软件 Audacity  linux版，perfect！
 
 原理：
-先做好伴奏音乐，后期将歌手声音等量地混合到左右声道，人声在左右声道的相位相同，幅度一致。根据这个原理，将2个声道相抵消，也就可以把相同相位的人声抵消掉，而一些乐器的声音频谱与相位比较复杂，会保留很多
+先做好伴奏音乐，后期将歌手声音等量地混合到左右声道，人声在左右声道的相位相同，幅度一致。
+根据这个原理，将2个声道相抵消，也就可以把相同相位的人声抵消掉，而一些乐器的声音频谱与相位比较复杂，会保留很多
 
 1 打开mp3 2 分离立体声 3 其中一个invert 4 变为mono   人声变为虚无缥缈效果
+
 心理声学(psychoacoustics)
 -------
 
@@ -335,7 +337,7 @@ Warning: rate is not accurate (requested = 8000Hz, got = 16000Hz)
 arecord -Dhw:1,0 -r 16000 -d 10 -v  -f S16_LE -c 1 1.wav
 这样就录10s
 
-录制电子琴，开始噪音严重，后来把琴音量调低就好很多
+录制电子琴，开始噪音严重，琴音量调低
 
 内录用的alsa工具 arecored
 
@@ -354,19 +356,16 @@ http://www.alsa-project.org/alsa-doc/alsa-lib/pcm.html
 alsa : http://www.sabi.co.uk/Notes/linuxSoundALSA.html
 
 -----------
-哈尔滨
 strace arecord -Dhw:1,0  -d 40 -c 1 -t wav -r 16000 -f "Signed 16 bit Little Endian"  xx.wav
 
 open("/dev/snd/controlC1", O_RDONLY|O_CLOEXEC) = 3
 fcntl(3, F_SETFD, FD_CLOEXEC)           = 0
 ioctl(3, SNDRV_CTL_IOCTL_CARD_INFO or UI_DEV_CREATE, 0x7fffee669840) = 0
-close(3)                                = 0
 
 open("/dev/snd/controlC1", O_RDWR|O_CLOEXEC) = 3
 fcntl(3, F_SETFD, FD_CLOEXEC)           = 0
 ioctl(3, SNDRV_CTL_IOCTL_PVERSION or USBDEVFS_CONTROL, 0x7fffee6699c4) = 0
 ioctl(3, SNDRV_CTL_IOCTL_PCM_PREFER_SUBDEVICE, 0x7fffee669a2c) = 0
-close(3)                                = 0
 
 open("/dev/snd/pcmC1D0c", O_RDWR|O_NONBLOCK|O_CLOEXEC) = 4
 fcntl(4, F_SETFD, FD_CLOEXEC)           = 0
@@ -376,23 +375,17 @@ ioctl(4, AGPIOC_INFO or SNDRV_PCM_IOCTL_PVERSION, 0x7fffee669820) = 0
 ioctl(4, AGPIOC_SETUP or SNDRV_PCM_IOCTL_TTSTAMP, 0x7fffee669824) = 0
 ioctl(4, AGPIOC_ACQUIRE or APM_IOC_STANDBY or SNDRV_PCM_IOCTL_INFO, 0x7fffee669e10) = 0
 ioctl(4, SNDRV_PCM_IOCTL_HW_REFINE, 0x7fffee667980) = 0
-ioctl(4, SNDRV_PCM_IOCTL_SW_PARAMS, 0x7fffee667800) = 0
 ioctl(4, SNDRV_PCM_IOCTL_PREPARE, 0x7d0) = 0
 
 open("xx.wav", O_WRONLY|O_CREAT, 0644)  = 3
 
 write(3, "RIFF$\210\23\0WAVE", 12)      = 12
 write(3, "fmt \20\0\0\0", 8)            = 8
-write(3, "\1\0\1\0\200>\0\0\0}\0\0\2\0\20\0", 16) = 16
 write(3, "data\0\210\23\0", 8)          = 8
 
 ioctl(4, SNDRV_PCM_IOCTL_READI_FRAMES, 0x7fffee667d30) = 0
-write(3, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 4000) = 4000   // 1/8s
 ioctl(4, SNDRV_PCM_IOCTL_READI_FRAMES, 0x7fffee667d30) = 0
-write(3, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 4000) = 4000
 ioctl(4, SNDRV_PCM_IOCTL_READI_FRAMES, 0x7fffee667d30) = 0
-write(3, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 4000) = 4000
-...
 
 ----
 语音遥控器
@@ -406,21 +399,9 @@ com.funshion.android.intent.action.FUN_TV_RECORD_BUTTON_START
 com.funshion.android.intent.action.FUN_TV_RECORD_BUTTON_STOP
 
 2.4G 和 蓝牙的语音遥控器：
-
-语音是怎么发送过来的？
-
-标准驱动？or 特殊驱动
-
 就像usb花柄，一个hid设备，一个语音设备？
 
-
-2.4G 语音遥控器:
-
-借机会搞明白usb设备系统
-
 busybox lsusb   
-
-
 
 /dev/snd/ 多出
 audio1
@@ -428,7 +409,6 @@ controlC1
 dsp1
 mixer1
 pcmC1D0c
-
 
 |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/8p, 480M
     |__ Port 4: Dev 5, If 0, Class=Audio, Driver=snd-usb-audio, 12M  //为啥2个audio 3个hid interface？
