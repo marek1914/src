@@ -69,6 +69,9 @@ RC: Release　Candidate
 
 Through-Hole 排针
 
+PCM: Pulse-code modulation
+LPCM: Linear pulse-code modulation
+
 ANSI: American National Standards Institute
 SPI: Serial Peripheral Interface
 NVIC: Nested Vectored Interrupt Controller
