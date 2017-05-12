@@ -75,13 +75,8 @@ configure（搜optimizations）无-O3，否则有，在_type=gcc，_cflags_noopt
 --disable-ffplay
 --disable-ffprobe
 --disable-ffserver
-若使用--disable-programs，最终导致config.h：
-#define CONFIG_FFPLAY 0
-#define CONFIG_FFPROBE 0
-#define CONFIG_FFSERVER 0
-#define CONFIG_FFMPEG 0
-
---enable-libv4l2         enable libv4l2/v4l-utils [no]
+--disable-programs //ffplay ffmpeg etc
+--enable-libv4l2   enable libv4l2/v4l-utils [no]
 
 libx264(vlc):
 源码make install，主要是/usr/local/lib/libx264.so
@@ -1328,9 +1323,6 @@ libx264.c 中的参数设置，调用路径是：
 
 
 疑问：ffmpeg 的profile参数与libx264的profile参数，如何区分。
-
---
-如何查看v4l2摄像头支持的像素格式？
 
 void av_packet_unref(AVPacket *pkt);
 

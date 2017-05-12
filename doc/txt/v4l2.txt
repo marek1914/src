@@ -1,3 +1,5 @@
+v4l-utils(http://www.linuxtv.org/downloads/v4l-utils/)
+
 Logitech C525
 
 插入c270出现 video0(81,0)节点和v4l目录(by-id/by-path 2个链接指向video0)
@@ -10,9 +12,6 @@ The V4L2 driver changed the video from 160x110 to 160x120
 Eclipse中编译Android4.4 Camera2
 
 xmp_toolkit源码：external/xmp_toolkit/
-
-v4l-utils
-可以考虑用mjpg输出，以减少usb数据量，提高帧率
 
 http://forums.logitech.com/t5/Webcams/How-to-get-30-Frames-Per-Second-with-your-Logitech-Webcam/td-p/202898
 
@@ -48,12 +47,11 @@ lshal | grep cam
 
 $ dmesg | grep uvc
 uvcvideo: Found UVC 1.00 device HD Webcam (0408:20e1)
-说明kernel支持uvc1.0
 
 ./media/video/uvc/uvc_driver.c:	case UVC_VS_FORMAT_MJPEG:
 ./usb/gadget/webcam.c:	.bDescriptorSubType	= UVC_VS_FORMAT_MJPEG,
 
-v4l-utils(http://www.linuxtv.org/downloads/v4l-utils/)
+
 C270:
 v4l2-ctl --list-formats (默认/dev/video0)
 
@@ -70,23 +68,12 @@ ioctl: VIDIOC_ENUM_FMT
 
 C270 设置为720P分辨率，ffplay只能读出5帧/s
 而周雅惠给的河北带云台摄像头 720p能读出10帧/s
-上面两个都不能自动调焦
 
 C270(3M)/C310(5M 可微距) always focused(定焦)
 C525(8M) auto focus(自动对焦)  720p 仍然达不到25fps
 
 像素数值的是照片，视频仅到720p（<1M像素）
 
-Here is the frame rate information for the Logitech Webcams available:
-
-    The HD Pro Webcam C920 has a maximum frame rate of 1080p @ 30 FPS.
-    The HD Webcam C525 has a maximum frame rate 30 FPS @ 640x480.
-    The HD Webcam C615 has a maximum frame rate 30 FPS @ 640x480.
-    The HD Webcam C270 has a maximum frame rate 30 FPS @ 640x480.
-    The HD Webcam C310 has a maximum frame rate 30 FPS @ 640x480.
-
-
-2个问题：mjpg接口怎么用， usb流量怎么监测
 
 需libjpeg(libjpeg-dev)，装不上就直接源码编译，
 QGLFunctions找不到，需qt库，
@@ -98,19 +85,14 @@ checking for QTGL... yes 说明系统已经有QTGL
 
 v4l2-compliance  测试摄像头的兼容性
 
-C程序如何取到一幅图像：
-
 
 libv4l2  ffmpeg 默认没有用
-#define CONFIG_LIBV4L2 0
 所以 v4l2_mmap 就是 linux 标准mmap函数
 
 测试摄像头一共32个buff帧，与帧率设置无关。
-//每次调用这个函数时buf.m.offset向前累加一个帧的大小
+//每次调用这个函数时 buf.m.offset向前累加一个帧的大小
 v4l2_ioctl(s->fd, VIDIOC_QUERYBUF, &buf)
 s->buf_start[i] = v4l2_mmap(NULL, buf.length,flag, s->fd, buf.m.offset);
-
-
 
 device_open()
 
@@ -131,7 +113,7 @@ v4l2_fract  分子分母
 v4l2_ioctl(s->fd, VIDIOC_S_PARM, &streamparm)  靠这个设置进去的
 
 
-VIDIOC_REQBUFS—开启内存映射或用户指针I/O
+VIDIOC_REQBUFS  开启内存映射
 
 mmap_init()
 先设置buffer数256，下面函数执行完，被改为32，不论帧率设置为多少
@@ -141,11 +123,10 @@ libavdevice
 AVInputFormat ff_v4l2_demuxer
 这与libavformat 里面用的结构体相同
 
-
 v4l2_read_packet()
 那有个问题，read_packet() 谁来驱动调用呢？
 
-有个frame拷贝过程，这总觉得效率不高了，（但数据的运动是不可避免的，就像人每天要不停的移动一样）
+(数据拷贝不可避免)
 memcpy(pkt->data, s->buf_start[buf.index], buf.bytesused);
 
 

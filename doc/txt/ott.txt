@@ -545,8 +545,6 @@ HELLO! BOOT0 is starting!
 
 ERROR! NOT find the head of uboot. （需要做成卡量产模式）
 
-https://github.com/Ithamar/awutils  貌似是A20工具
-
 2款遥控器
 ir_addr_code        = 0xdd22
 yet_ir_addr_code    = 0x7748
