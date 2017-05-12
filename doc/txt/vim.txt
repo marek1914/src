@@ -28,15 +28,15 @@ ultisnips 与 vim-snippets 配套使用
 ftplugin : filetype plugin
 
 completeopt
+preview-window
+ft-c-omni (ft:filetypes)
 
-help:preview-window (c-x c-o 弹出的窗口就叫preview窗口)
 ---
 Omnicomplete(category) 是一类使用 Vim's omnicompletion feature 的插件
 Omnicppcompleter: C/C++ omni-completion with ctags database
 AutoComplPop : Automatically opens popup menu for completions
-vim:<c-x><c-o>,<c-n>  // :help ft-c-omni (ft:filetypes)
+
 ctags -R -f ~/.vim/systags /usr/include /usr/local/include
-set tags+=~/.vim/systags
 
 :helptags {dir} 
 
@@ -47,10 +47,7 @@ ccomplete.vim中的ccomplete#Complete(findstart, base)
 
 omnifunc=ccomplete#Complete
 
-AutoPairs uses Meta(Alt) key as shortcut
-
 g:AutoPairsCenterLine 保持编辑代码位置保持在中间位置
-
 
 formatoptions 默认tcq 不能自动添加 // 和 *  
 但我的vi值是 croql  (不知道谁改的)，

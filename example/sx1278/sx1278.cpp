@@ -1,26 +1,6 @@
-/*! \file SX1278.cpp
- *  \brief Library for managing Semtech modules
- *
- *  Copyright (C) 2015 Wireless Open Source
- *  http://wirelessopensource.com
- *
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser General Public License as published by
- *  the Free Software Foundation, either version 2.1 of the License, or
- *  (at your option) any later version.
-
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser General Public License for more details.
-
- *  You should have received a copy of the GNU Lesser General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- *  Version:		1.0
- *  Design:			David Gascón
- *  Implementation:	Covadonga Albiñana, Yuri Carmona
- *  SX1278 adapting:		Pedro del Molino
+/*
+ * Library for managing Semtech modules SX1278.cpp
+ * http://wirelessopensource.com
  */
 
 #include "SPI.h"
@@ -28,7 +8,6 @@
 
 SX1278::SX1278()
 {
-	// Initialize class variables
 	_bandwidth = BW_125;
 	_codingRate = CR_5;
 	_spreadingFactor = SF_7;
@@ -44,10 +23,6 @@ SX1278::SX1278()
 	packet_sent.retry = _retries;
 };
 
-/*
- Function: Sets the module ON.
- Returns: Nothing
-*/
 uint8_t SX1278::ON()
 {
 	uint8_t state = 2;
@@ -82,16 +57,12 @@ uint8_t SX1278::ON()
 		return 1;
 	}
 
-	// set LoRa mode
+	/* set LoRa mode */
 	state = setLORA();
 
 	return state;
 }
 
-/*
- Function: Sets the module OFF.
- Returns: Nothing
-*/
 void SX1278::OFF()
 {
 #if (SX1278_debug_mode > 1)
@@ -110,12 +81,6 @@ void SX1278::OFF()
 #endif
 }
 
-/*
- Function: Reads the indicated register.
- Returns: The content of the register
- Parameters:
-   address: address register to read from
-*/
 byte SX1278::readRegister(byte address)
 {
 	byte value = 0x00;
@@ -141,13 +106,6 @@ byte SX1278::readRegister(byte address)
 	return value;
 }
 
-/*
- Function: Writes on the indicated register.
- Returns: Nothing
- Parameters:
-   address: address register to write in
-   data : value to write in the register
-*/
 void SX1278::writeRegister(byte address, byte data)
 {
 	digitalWrite(SX1278_SS, LOW);
@@ -172,12 +130,8 @@ void SX1278::writeRegister(byte address, byte data)
 
 /*
  * Function: Clears the interruption flags
- *
- * LoRa Configuration registers are accessed through the SPI interface.
  * Registers are readable in all device mode including Sleep. However, they
  * should be written only in Sleep and Stand-by modes.
- *
- * Returns: Nothing
 */
 void SX1278::clearFlags()
 {
@@ -322,13 +276,12 @@ uint8_t SX1278::setFSK()
 }
 
 /*
- Function: Gets the bandwidth, coding rate and spreading factor of the LoRa
- modulation.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
+ * Gets the bandwidth, coding rate, spreading factor
+ * Returns: Integer that determines if there has been any error
+ * state = 2  --> The command has not been executed
+ * state = 1  --> There has been an error while executing the command
+ * state = 0  --> The command has been executed with no errors
+ */
 uint8_t SX1278::getMode()
 {
 	byte st0;
@@ -643,13 +596,13 @@ int8_t SX1278::setMode(uint8_t mode)
 }
 
 /*
- Function: Indicates if module is configured in implicit or explicit header
- mode.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
+ * Indicates if module is configured in implicit or explicit header mode.
+ * Returns: Integer that determines if there has been any error
+ * state = 2  --> The command has not been executed
+ * state = 1  --> There has been an error while executing the command
+ * state = 0  --> The command has been executed with no errors
+ */
+
 uint8_t SX1278::getHeader()
 {
 	int8_t state = 2;
