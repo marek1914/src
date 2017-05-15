@@ -481,7 +481,7 @@ armelf_linux_eabi.xsc
 
 ----
 gcc 与 g++
-
+(12.04默认没有安装g++-4.6)
 表面看 .c 用gcc, .cpp 用g++
 .c也可用g++，语法检查更严格
 gcc 开始是 GNU C Compiler，后来是 GNU Compiler Collection
@@ -494,22 +494,8 @@ gcc不是c编译器，而是一个中转程序，根据代码后缀判断调用c
 编译阶段，g++会自动调用gcc，二者等价
 ----
 
-
 3 gcc
-编译主机工具的host gcc
-12.04默认4.6，编译4.0.4需降版本（4.5,4.6都失败，小版本没无关 u10.04是4.4.3）:
 apt-get install gcc-4.4 g++-4.4 g++-4.4-multilib gcc-4.4-multilib
-路径/usr/bin下原有 gcc 指向gcc-4.6，安装完gcc-4.4套件后，多了gcc-4.4，但是gcc链接仍指向gcc-4.6：
 
-update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.4 100 (优先级高于4.6)
-update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.6 50(12.04默认没有安装g++-4.6)
-update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.4 100
 update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 50
-
-//u12.04 实测a4.0.4 不注册cpp也可
-update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.4 100
-install gcc-4.4安装3个新包： cpp-4.4 gcc-4.4 gcc-4.4-base
-install gcc-4.4-multilib 安装8个新包：
-gcc-4.4-multilib gcc-4.6-multilib gcc-multilib lib32gcc1 lib32gomp1 lib32quadmath0 libc6-dev-i386 libc6-i386
-
 
