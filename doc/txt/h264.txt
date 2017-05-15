@@ -9,24 +9,10 @@ PTS除正常反转外，需要保持连续
 
 To address various applications ranging from low-quality, low-resolution surveillance [sɜ:'veɪləns] cameras to high definition TV broadcasting and DVDs, many video standards group features into profiles and levels. 
 
-slice: An integer number of macroblocks or macroblock pairs ordered consecutively in the raster scan within a
-particular slice group. For the primary coded picture, the division of each slice group into slices is a partitioning.
-Although a slice contains macroblocks or macroblock pairs that are consecutive in the raster scan within a slice
-group, these macroblocks or macroblock pairs are not necessarily consecutive in the raster scan within the
-picture. The macroblock addresses are derived from the first macroblock address in a slice (as represented in
-the slice header) and the macroblock to slice group map, and, when a picture is coded using three separate colour
-planes, a colour plane identifier.
-
-slice group: A subset of the macroblocks or macroblock pairs of a picture. The division of the picture into slice
-groups is a partitioning of the picture. The partitioning is specified by the macroblock to slice group map.
-
-slice header: A part of a coded slice containing the data elements pertaining to the first or all macroblocks represented in the slice.
-
-
-raster scan: A mapping of a rectangular two-dimensional pattern to a one-dimensional pattern such that the first
-entries in the one-dimensional pattern are from the first top row of the two-dimensional pattern scanned from
-left to right, followed similarly by the second, third, etc., rows of the pattern (going down) each scanned from
-left to right.
+slice: 
+slice group: 
+slice header:
+raster scan:
 
 
 0x6f pps
@@ -35,11 +21,9 @@ left to right.
 
 关于容错：规范定义好了，但是我就是做出了一个不合规范的流，在2个I slice前面各加了SPS，PPS 那谁又能阻止呢？这就要兼容。
 
-工具： Elecard Stream Analyzer  Version 2.1.21975(build 91120)  完全破解可用 公司
+Elecard Stream Analyzer  Version 2.1.21975(build 91120)
 
-h264没有I帧的概念，只有I Slice
-一帧多个slice，在slice头里面 frame_num 号码相同(IDR此值为0)
-
+h264没有I帧的概念，只有I Slice， 一帧多个slice，在slice头里面 frame_num 号码相同(IDR此值为0)
 
 SPS: Sequence parameter set
 PPS: Picture  parameter set
@@ -63,9 +47,6 @@ BP, profile_idc=66
 CBP和BP的区别，H264.pdf中描述限制项BP+MP=CBP，这并不好理解
 看图 H264 profile.jpg，CBP比BP多3向限制：
 FMO/ASO/RS (仅BP和XP支持)
-
-
-
 
 Baseline : 
 CAVLC entropy coding Yes
@@ -602,7 +583,6 @@ bit	state	low		range
 0	2		168		316
 0	4		336		376
 1	6		160		436
-1	
 
 
 M-JPEG帧内压缩，压缩率低于1:20, 帧间压缩（如MPEG2/H.264）可过 1:50. 由于各帧相互独立， M-JPEG的编解码在对运算能力和内存的要求较低。
@@ -630,10 +610,7 @@ PTS/DTS 33bits 90KHz计数 2^33/90k = 26h30m43s
 
 预测模式：横向，纵向，45度，135度，其他角度共9种
 
-算数编码：0-1之间的小数标示所有信息。
-
-Joint Stereo是一种立体声编码技巧，主要分为Intensity Stereo(IS)和Mid/Side (M/S) stereo两种。IS的是在比较低流量时使用，利用了人耳对於低频讯号指向性分辨能力的不足，将音讯资料中的低频分解出来合成单声道资料，剩余的高频资料则合成另一个单声道资料，并另外纪录高频资料的位置资讯，来重建立体声的效果。例如钢琴独奏的录音就可以利用这种方法在有限的资料流量中减少音场资讯却大幅增加音色资讯。
-
+算数编码：0-1之间的小数标示所有信息
 
 ---avcc---
 Two different flavors of H.264 bitstram.
@@ -759,11 +736,8 @@ easy adjustment of large numbers of internal parameters.
 ---openh264---
 git@github.com:cisco/openh264.git
 
-
 Q: openh264 Why are many of your functions prefixed with "Wels"?
 A: that was the project name for this codec.
-
-Scalable Video Coding (SVC)   H264  Annex G   SVC技术，值得深入探讨
 
 openh264 codec ，libx264 encoder
 

@@ -1,19 +1,26 @@
+线序有如函数参数序列
 BBG 4pin 2.0mm：
 RXD/TXD/3V3/GND
 SCL/SDA/3V3/GND
 
-也可: SCL/VCC/SDA/GND
-
-最差:
+可: 
+SCL/VCC/SDA/GND
+差:
 VCC/SCL/SDA/GND
 SCL/VCC/GND/SDA
 
 3pin 
-最好: GND/VCC/IO
-次之: VCC/GND/IO
-最差: VCC/IO/GND
+好: GND/VCC/IO
+次: VCC/GND/IO
+差: VCC/IO/GND
+
+焊点间距众多，我以2.0 2.54为主, 1.27
+
+一直纠结 xbee适配板，从函数角度讲，这个组合功能不清晰，应该是usb-uart uart-xbee 所以不要再想着买xbee适配板
+
 
 --stm32--
+openstm32.org gaojie:200w200w
 
 arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0
 github.com/texane/stlink
@@ -81,11 +88,7 @@ c8t6: 64k+20k
 写不进flash，用segger: j-link stm32 unlock 工具解锁
 安装最新驱动，mdk不能用了，把keil/arm/segger目录替换回老版本
 
-----
-海斯电源：
-输入：12V
-输出：左上缺口：12V GND GND 3.3V 3.3V 5V 5V GND
-
+------
 Particle Photon
 Partical P0 Wifi Module
 Broadcom BCM43362 Wi-Fi chip
@@ -93,55 +96,44 @@ STM32F205RGY6 120MHz ARM Cortex M3
 
 Pogo pin
 
-silicon 收购 cygnal(买到CYG F330)
+--F330--
+silicon (cygnal)
 
-接插件(mm)：1.0 1.25 1.5 2.0 2.54
-
+keil/Silicon IDE
 io口直接驱动2极管，8段全亮，18mA，每段2.25mA
 
-资料25MHz 6.4mA，CYG F330 不带任何负载，万用表测 9mA
+资料25MHz 6.4mA，F330 不带任何负载，万用表测 9mA
 
 7段 单段1.7V ，用共阴级比较合适，这样电流由每个IO提供
 
-IO端口电压 = 电源电压
-
-http://www.silabs.com/support/pages/document-library.aspx?p=MCUs&f=C8051F85x  文档下载页面
-http://www.silabs.com/applications/wireless/Pages/Solar-Powered-Wireless-Sensor.aspx 无线网络节点
+IO电压 = 电源电压
 
 C8051F320 LQFP32 usb
 C8051F321 5x5mm QFN28 usb
 C8051F330 4x4mm QFN20
 
-C8051F仿真器(USB Debug Adapter)官方原理图用f321实现(JTAG/C2)，UEC5/6 支持jtag/C2
-都是f321，区别是输出缓冲，保护电路
+http://www.silabs.com/support/pages/document-library.aspx?p=MCUs&f=C8051F85x
+http://www.silabs.com/applications/wireless/Pages/Solar-Powered-Wireless-Sensor.aspx
 
-silicon ide/keil
-基于Silabs生产的U-EC3设计生产，固件可升级，HID设备免驱
-输出端口用 SN74LVC2G125(74HC125)，Buffer是保护电路
+USB Debug Adapter f321实现JTAG/C2，UEC5/6 U-EC3 HID兼容设备免驱
+JTAG接口VCC=5V
+
+输出端口用 SN74LVC125(74HC125) Buffer保护电路
 
 8-bit MCU(8051): bee
-EFM8 Busy Bee
-EFM8 Universal Bee
 Analog Intensive MCU
 Automotive and Industrial Qualified MCU
-General Purpose MCU
-
-Wireless:
-Bluetooth 4.0/4.1/4.2 Modules
-Wi-Fi Modules
-ZigBee
 
 USB Connectivity Bridges:
-CP2102 : USB to UART Bridge (node media) 5x5mm QFN28  串口8pin 很多nc
-CP2114 : USB to I2S Audio Bridge
+CP2102 : USB to UART Bridge 5x5mm QFN28  串口8pin
 CP2130 : USB to SPI Bridge
-
 CP2105 : ​USB to Dual UART Bridge  ​QFN24
 CP2102N-QFN20   13+
 
 Si4010/Si4355 发/收
+
 AN112:串口升级固件
-GZUT 串口小板 也有RTS/CTS引脚
+
 
 ----
 DS1803 数字电位器
@@ -409,24 +401,18 @@ usb串口线:ttyUSB0
 node 可执行程序 30M+  直接放到/usr/local/bin 即可
 
 --zigbee--
-
+IEEE802.15.4
 https://www.cesanta.com
-zigbee IEEE802.15.4
 
-What is thread?
-Thread was designed with one goal in mind:
-to create the best way to connect&control products in the home.
+What is thread? To create the best way to connect&control products in the home.
 
 250 kbit/s
 
-802.15.4 ZigBee
-802.11   Wi-Fi
-
-Industry leading sleep current of sub 1uA, Firmware upgrades via UART, SPI or over the air
+Firmware upgrades via UART/SPI/OTA
 
 Digi XBee
 2.4G，900M，868M三种
-可组mesh网络，每个模块都可以做为路由节点，协调器，以及终端节点。
+mesh
 X-CTU(Configuration Test Utility) / Zigbee Operator
 AT/API
 iDigi平台提供各种常用的接入方式
@@ -827,11 +813,6 @@ Housing/socket 壳
 board-to-board
 wire-to-board
 wire-to-wire
-
-In recent years, it is preferred to use millimeter (mm) instead of inches for pin-to-pin pitch distance. 
-Note: 
-2.50 mm parts are incorrectly sold on the internet as 2.54 mm (0.100 in)
-1.25 mm parts as 1.27 mm (0.050 in).
 
 top (vertical) or side (horizontal) entry, and through-hole or surface-mount.
 

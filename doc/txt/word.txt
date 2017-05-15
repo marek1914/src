@@ -69,6 +69,9 @@ RC: Release　Candidate
 
 Through-Hole 排针
 
+PCM: Pulse-code modulation
+LPCM: Linear pulse-code modulation
+
 ANSI: American National Standards Institute
 SPI: Serial Peripheral Interface
 NVIC: Nested Vectored Interrupt Controller
@@ -110,6 +113,8 @@ ISO:  International Organization for Standardization
 IEC:  International Electrotechnical Commission
 IEEE: Institute of Electrical and Electronics Engineers
 IETF: Internet Engineering Task Force
+
+ota: over the air
 
 802.15.1 WPAN/bluetooth
 802.15.3 High Rate WPAN

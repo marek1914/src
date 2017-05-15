@@ -158,8 +158,7 @@ iPod支持	AAC(16-320 Kbps)、受保护的AAC(来自 iTunes Music Store)、MP3 (
 
 Apple Lossless
 
-百度视频是rmvb分割成2-4M的小块
-音频:mpeg1 mpeg2 layer1/2  mpeg2-aac  mpeg4-aac mpeg4-he-aac  dd(ac3) dd+ lpcm
+音频:mpeg1 mpeg2 layer1/2  mpeg2-aac  mpeg4-aac mpeg4-he-aac  dd(ac3) dd+ 
 
 MPEG4:ASP divx VC-1  
 mpeg2 AAC (13818-7

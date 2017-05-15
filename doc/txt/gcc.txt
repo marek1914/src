@@ -9,15 +9,11 @@ ar -csr
 
 -Werror=strict-aliasing
 
-__GNUC__
+__GNUC__  值表示gcc版本
 
-是gcc预定义宏。需要针对gcc编写代码时，可用该宏进行条件编译。
-他的值表示gcc版本，需针对gcc特定版本编写代码时，可用该宏条件编译。
+-MD
+-MMD //no system header
 
-8 .d 是 gcc -MD生成的  依赖文件的路径
--MM 不包含系统文件
--MP
--MF
 
  .a可直接加到后面，不用-l
 -L  -l

@@ -75,13 +75,8 @@ configure（搜optimizations）无-O3，否则有，在_type=gcc，_cflags_noopt
 --disable-ffplay
 --disable-ffprobe
 --disable-ffserver
-若使用--disable-programs，最终导致config.h：
-#define CONFIG_FFPLAY 0
-#define CONFIG_FFPROBE 0
-#define CONFIG_FFSERVER 0
-#define CONFIG_FFMPEG 0
-
---enable-libv4l2         enable libv4l2/v4l-utils [no]
+--disable-programs //ffplay ffmpeg etc
+--enable-libv4l2   enable libv4l2/v4l-utils [no]
 
 libx264(vlc):
 源码make install，主要是/usr/local/lib/libx264.so
@@ -275,7 +270,7 @@ ffmpeg -f alsa -i hw:1 -f v4l2 -i /dev/video0 out.mpg
 ffplay udp://192.168.6.20:1000 //用udp从192.168.6.30推流到192.168.6.20
 ffplay 播放ts小片，提示 non-existing SPS 0 referenced in buffering period
 
-wav splite头可得pcm, 但不知道去除多少个字节
+wav splite头可得pcm
 ffmpeg -i f.wav -f s16le -acodec pcm_s16le f.pcm  //ff不认.pcm
 若f.wav 已是s16le：
 ffmpeg -i f.wav -f s16le -c:a copy f.pcm //去头
@@ -1329,9 +1324,6 @@ libx264.c 中的参数设置，调用路径是：
 
 疑问：ffmpeg 的profile参数与libx264的profile参数，如何区分。
 
---
-如何查看v4l2摄像头支持的像素格式？
-
 void av_packet_unref(AVPacket *pkt);
 
 理解buffer ref
@@ -2094,7 +2086,7 @@ ffplay 71.rm
 1 1.4 1.9 2.8 4 5.6 7.9 11.3 16 22.6 32 45 63.8 90 127 180 255
 
 ----------
-pcm_s16be codec not supported in WAVE format （有进步）
+pcm_s16be codec not supported in WAVE format
 
 ffmpeg -i Lemon.wav   -f s16be Lemon_be (不要迷糊)
 (pcm_s16le (native) -> pcm_s16be (native))   //native 什么含义？

@@ -3,6 +3,14 @@
 #define INFO(fmt, a...)  printf(fmt, ##a)
 #define INFO(fmt, ...)  printf(fmt, ##__VA_ARGS__)
 
+#define VERSION_MAIN   (0x02U)
+#define VERSION_SUB1   (0x06U)
+#define VERSION_SUB2   (0x01U)
+#define VERSION_RC     (0x00U) /* release candidate */
+#define VERSION        ((VERSION_MAIN << 24)|(VERSION_SUB1 << 16)\
+                       |(VERSION_SUB2 << 8 )|(VERSION_RC))
+
+
 #if defined(foo)
 #elif defined(bar)
 #else
