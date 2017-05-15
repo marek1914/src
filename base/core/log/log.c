@@ -13,6 +13,8 @@ void av_log(int level, const char *fmt, ...)
     if (level > log_level)
         return;
 
+	// \033[01;34m light
+    // \033[00;34m dark
     if (level != LOG_INFO) {
 		printf("\033[3%dm", color[level]);
 		vprintf(fmt, vl);

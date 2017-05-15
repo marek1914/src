@@ -1159,17 +1159,15 @@ lib32z1 lib32ncurses5 lib32bz2-1.0 (这是zlib库，与32bit程序无关)
 	gawk 4.0.x (好像不需要)
 
 2 jdk
-	open版：openjdk-6-jdk/openjdk-7-jdk(自动安装依赖包openjdk-6-jre-headless)
-    位置：/usr/lib/jvm/java-6-openjdk-amd64 可执行程序(java,javac,jar,jmap and so on)
-    链接'/usr/bin/javac->/etc/alternatives/javac->/usr/lib/jvm/java-6-openjdk-amd64/bin/javac'(update-alternative)openjdk-6-jdk (1.6.0_31/_32安装时间有关)
-    4.0.4不可用，提示：Your version is: java version "1.6.0_31". The correct version is: Java SE 1.6.
+	open:openjdk-6-jdk/openjdk-7-jdk(依赖openjdk-6-jre-headless)
+    /usr/lib/jvm/java-6-openjdk-amd64
 
-	sun版需oracal官网注册下载bin文件，如
-    jdk-6u35-linux-x64.bin(jdk1.6第35个版本)，执行并拷贝到合适位置如/usr/lib/jvm(与openjdk并列)
-    ~/.bashrc中 export PATH=$PATH:/usr/lib/jdk1.6.0_35/bin 或：
+	sun: oracal官网注册下载如
+    jdk-6u35-linux-x64.bin(jdk1.6第35个版本)，执行并拷贝到/usr/lib/jvm(与openjdk并列)
+    PATH=$PATH:/usr/lib/jdk1.6.0_35/bin 或：
 	update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.6.0_35/jre/bin/java" 1
 	update-alternatives --install "/usr/bin/javac" "java" "/usr/lib/jvm/jdk1.6.0_35/bin/javac" 1
-	javadoc，jar 等视情况添加，java/javac 2个程序切换到sun，其他仍然使用open就可以编译ics。
+	java/javac 切换到sun，其他仍用open可编ics
 
 4 android 4.4.2 编译主机工具用prebuilts/gcc/linux-x86/host自带gcc，而4.0.4用系统gcc
 用prebuilts/tools/gcc-sdk/gcc  脚本引导到源码自带编译器

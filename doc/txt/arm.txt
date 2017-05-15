@@ -1,12 +1,7 @@
-ARMv8 48位寻址，256TB
-AArch64 Processor
-
-64bit处理器能进行更大范围的整数运算和更大内存
-不能简单认为64bit性能是32bit的两倍
-
+ARMv8 AArch64 Processor
+64bit能进行更大范围的整数运算和支持更大内存
 
 projectNe10
-
 Ne10 项目
 
 Thumb-2 Technology Delivers the peak performance of traditional ARM code while also providing up to a 30% reduction in memory required to store instructions. 
@@ -57,9 +52,6 @@ NEON Support in the Open Source Community
     * ffmpeg - libavcodec
 
 vmov
-
-
-
 
 定义宏
 .macro 宏名 参数名列表

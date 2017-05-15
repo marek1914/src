@@ -3,16 +3,16 @@ BBG 4pin 2.0mm：
 RXD/TXD/3V3/GND
 SCL/SDA/3V3/GND
 
-也可: SCL/VCC/SDA/GND
-
-最差:
+可: 
+SCL/VCC/SDA/GND
+差:
 VCC/SCL/SDA/GND
 SCL/VCC/GND/SDA
 
 3pin 
-最好: GND/VCC/IO
-次之: VCC/GND/IO
-最差: VCC/IO/GND
+好: GND/VCC/IO
+次: VCC/GND/IO
+差: VCC/IO/GND
 
 焊点间距以2.0 2.54为主, 1.27
 
@@ -20,6 +20,7 @@ SCL/VCC/GND/SDA
 
 
 --stm32--
+openstm32.org gaojie:200w200w
 
 arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0
 github.com/texane/stlink
