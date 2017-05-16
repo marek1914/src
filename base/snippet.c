@@ -215,5 +215,37 @@ void klog_write(int level, const char *fmt, ...)
     write(klog_fd, buf, strlen(buf));
 }
 
+//取http数据长度
+p = strtok(buf, "\r\n");
 
+if (strcmp(p, "HTTP/1.1 200 OK")) {
+    printf("fail\n");
+    return;
+} else {
+    printf("head ok\n");
+}
+
+do {
+    p = strtok(NULL, "\r\n");
+    token = strstr(p, "Content-Length: ");
+} while (!token && p);
+
+if (token) {
+    *contentLen = atoi(token + 16);
+}
+
+/* --------------*/
+s = strtok(buf, "abc");
+process(...);
+
+while(s = strtok(NULL, "\r\n")) {
+	process(...); //要写2遍
+}
+
+//改进
+for (s = buf;;s = NULL) {
+	s = strtok(s, "\r\n") //可以用同一参数 s
+	if (!s) break;
+	process(...);
+}
 // vim: tw=80 

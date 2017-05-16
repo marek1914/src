@@ -13,33 +13,6 @@ c99: 7.15  Variable arguments va_list(e.g void*)
 1 打印阻塞/非阻塞问题
 2 开关打印： 不要用宏在代码中控制，而是要把宏放到打印函数里
 
-printk: man 2 syslog
-/proc/sys/kernel/printk
-
-4 value(7 4 1 7)：
-console_loglevel
-default_message_loglevel
-minimum_console_loglevel //??
-default_console_loglevel //??
-
-KERN_EMERG   "<0>"
-KERN_ALERT   "<1>" 
-KERN_CRIT    "<2>"
-KERN_ERR     "<3>" 
-KERN_WARNING "<4>" 
-KERN_NOTICE  "<5>"
-KERN_INFO    "<6>"
-KERN_DEBUG   "<7>"
-
-logcat:
-V    Verbose
-D    Debug
-I    Info
-W    Warn
-E    Error
-F    Fatal
-S    Silent (supress all output)
-
 libncurses
 http://clang.llvm.org/docs/ClangFormat.html
 
@@ -51,15 +24,8 @@ Python，C++(raise)
 exception handling代替error code，分离错误处理代码，增加可读性
 
 ragel
-De Morgan's laws
+
 valgrind/dmalloc
-
-40分钟死机，内存泄漏或内存碎片问题
-exFAT Freespace Bitmap 空间位图
-
-bootchart bootchart.tgz
-
-
 
 COLORS-Lscolors
 
