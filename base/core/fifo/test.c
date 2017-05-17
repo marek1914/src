@@ -15,7 +15,7 @@ int main(void)
 	fifo_generic_write(fifo, s, strlen(s), NULL);
 	printf("space is :%d\n", fifo_space(fifo));
 
-	for (i = 0; i < 4; i++) {
+	for (i = 0; i < 14; i++) {
 		fifo_generic_read(fifo, &chr, 1, NULL);
 		printf("%c\n", chr);
 	}
