@@ -1,7 +1,6 @@
 ---
 #改名.clang-format 放于父目录
 #clang-format -style=file
-
 Language:        Cpp
 # BasedOnStyle:  Google
 AccessModifierOffset: -1

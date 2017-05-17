@@ -33,7 +33,6 @@ APT::Install-Recommends "true";
 APT::Install-Suggests "true";
 
 apt-get --no-install-recommends install package //不下载suggested
-apt-get install	
 apt-get -f install  可卸载依赖错误的软件包
 apt-get -d install foo // only download
 apt-get clean/autoclean // clean cache [/var/cache/apt/archives]
@@ -131,9 +130,10 @@ Nginx: /usr/local/nginx
 	install samba smbfs
 	/etc/samba/smb.conf 配置每用户的读写权限
 	mount -t cifs //ip/dir  dir -o username="xxx",password="xxx"
+
     /etc/fstab:
     //ip/dir /dir cifs username=xx,password=xx,uid=1000,gid=1000,file_mode=0777 0 0
-    注意，dir是相对于samba的路径，不是绝对路径
+    dir是相对于samba的路径，不是绝对路径
 
 5) tftp(trivial ftp RFC783)
 	tftp-hpa (client)
@@ -220,9 +220,6 @@ U14.04 System program problem detected 提示：
 临时:删除/var/crash
 永久:/etc/default/apport enabled=0
 
-update-alternatives
-update-alternatives --install <link> <name> <path> <priority>
-update-alternatives --remove  name path
 
 某应用不更新：
 sudo dpkg --set-selections  然后在stdin，输入iptux hold  ctrl+D退出
@@ -283,6 +280,8 @@ gpedit.msc
 
 ---
 www.debian.org [ˈdebiən]  37500+ package
+
+Debian Alternatives System
 
 jessie ['dʒesɪ] debian 8
 wheezy [ˈwi:zi] debian 7

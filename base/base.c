@@ -1,9 +1,44 @@
-ring buffer / circular buffer / fifo
+//ring buffer / circular buffer / fifo
+//De Morgan's laws
 
-The ring buffer's first-in first-out data structure is useful tool for 
-transmitting data between asynchronous processes
+//The ring buffer's first-in first-out data structure is useful tool for 
+//transmitting data between asynchronous processes
 
+// 头文件循环包含问题：
+// vs:可以生成 包含文件关系图
+/*
+printk: man 2 syslog
+/proc/sys/kernel/printk
 
+4 value(7 4 1 7)：
+console_loglevel
+default_message_loglevel
+minimum_console_loglevel //??
+default_console_loglevel //??
+
+KERN_EMERG   "<0>"
+KERN_ALERT   "<1>" 
+KERN_CRIT    "<2>"
+KERN_ERR     "<3>" 
+KERN_WARNING "<4>" 
+KERN_NOTICE  "<5>"
+KERN_INFO    "<6>"
+KERN_DEBUG   "<7>"
+
+logcat:
+V    Verbose
+D    Debug
+I    Info
+W    Warn
+E    Error
+F    Fatal
+S    Silent (supress all output)
+*/
+
+/*
+ assignment of read-only variable
+ assignment of read-only location
+ */
 #ifdef
 #ifndef
 //分别等价于
@@ -396,9 +431,8 @@ struct a {
 	char f;
 };
 
-shell中的 ; 用于分隔语句，原则是如果不会造成歧义就可以不加
+shell中的 ; 用于分隔语句，如果不会造成歧义可不加
 
-char* s="hello";
 strstr(s, "ll");
 strchr(s, 'l'); //等价 strstr(s, "l");
 strrchr(s, 'l')
@@ -417,25 +451,8 @@ char buf[]=
 "+HTTPACTION: 0, 200, 4318, 4096\r\n"
 ;
 
-s = strtok(buf, "abc");//abc是单字符非整体
-process(...);
 
-while(s = strtok(NULL, "\r\n")) {
-	process(...); //要写2遍
-}
-
-//改进
-for (s = buf;;s = NULL) {
-	s = strtok(s, "\r\n") //可以用同一参数 s
-	if (!s) break;
-	process(...);
-}
-
-//无警告
-test()
-{
-	printf("Hello World\n");
-}
+test() {  } //无警告
 
 char buf='\0';
 
@@ -658,35 +675,11 @@ j=-i;
 
 /* "static" means don't export the symbol */
 static void foo(void)
-{
-}
 
-//取http数据长度
-p = strtok(buf, "\r\n");
-
-if (strcmp(p, "HTTP/1.1 200 OK")) {
-    printf("fail\n");
-    return;
-} else {
-    printf("head ok\n");
-}
-
-do {
-    p = strtok(NULL, "\r\n");
-    token = strstr(p, "Content-Length: ");
-} while (!token && p);
-
-if (token) {
-    *contentLen = atoi(token + 16);
-}
 
 char *strsep(char **stringp, const char *delim);   
 应该是string separate  delimiter:分隔符
 
-
-char *strchr(const char *s,char c);  查找字符串s中首次出现字符c的位置
-strrchr. 取得某字符最后出现处起的字符串。
-char *strstr(const char *haystack, const char *needle); //locate a substring
 
 puts(""); //打印 \n
 

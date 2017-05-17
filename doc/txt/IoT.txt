@@ -3,23 +3,31 @@ BBG 4pin 2.0mm：
 RXD/TXD/3V3/GND
 SCL/SDA/3V3/GND
 
-也可: SCL/VCC/SDA/GND
-
-最差:
+可: 
+SCL/VCC/SDA/GND
+差:
 VCC/SCL/SDA/GND
 SCL/VCC/GND/SDA
 
 3pin 
-最好: GND/VCC/IO
-次之: VCC/GND/IO
-最差: VCC/IO/GND
+好: GND/VCC/IO
+次: VCC/GND/IO
+差: VCC/IO/GND
 
-焊点间距众多，我以2.0 2.54为主, 1.27
+焊点间距以2.0 2.54为主, 1.27
 
 一直纠结 xbee适配板，从函数角度讲，这个组合功能不清晰，应该是usb-uart uart-xbee 所以不要再想着买xbee适配板
 
 
 --stm32--
+openstm32.org gaojie:200w200w
+
+sw4stm32的编译器：
+arm-none-eabi-gcc --version
+5.4.1 20160919 (release) [ARM/embedded-5-branch revision 240496]
+Arm官网下载的：
+arm-none-eabi-gcc --version
+6.3.1 20170215 (release) [ARM/embedded-6-branch revision 245512]
 
 arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0
 github.com/texane/stlink

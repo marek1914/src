@@ -8,15 +8,25 @@
 #define FFMAX(a,b) ((a) > (b) ? (a) : (b))
 #define FFMIN(a,b) ((a) > (b) ? (b) : (a))
 
+#if 0
 void freep(void *arg)
 {
     void *val;
 
+	/* ugly! why? sb! */
     memcpy(&val, arg, sizeof(val));
-    memcpy(arg, &(void *){ NULL }, sizeof(val));
+	/* c99 6.5.2.5 Compound literals */
+    memcpy(arg, &(void *){NULL}, sizeof(val));
     free(val);
 }
+#endif
 
+void freep(void *arg)  
+{  
+    void **ptr = (void **)arg;  
+    free(*ptr);  
+    *ptr = NULL;  
+}
 
 static FifoBuffer *fifo_alloc_common(void *buffer, size_t size)
 {
@@ -238,7 +248,7 @@ void fifo_drain(FifoBuffer *f, int size)
 }
 
 /* test */
-
+#ifdef TEST
 int main(void)
 {
     int i, j, n;
@@ -293,4 +303,4 @@ int main(void)
 
     return 0;
 }
-
+#endif

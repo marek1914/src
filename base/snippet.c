@@ -3,6 +3,14 @@
 #define INFO(fmt, a...)  printf(fmt, ##a)
 #define INFO(fmt, ...)  printf(fmt, ##__VA_ARGS__)
 
+#define VERSION_MAIN   (0x02U)
+#define VERSION_SUB1   (0x06U)
+#define VERSION_SUB2   (0x01U)
+#define VERSION_RC     (0x00U) /* release candidate */
+#define VERSION        ((VERSION_MAIN << 24)|(VERSION_SUB1 << 16)\
+                       |(VERSION_SUB2 << 8 )|(VERSION_RC))
+
+
 #if defined(foo)
 #elif defined(bar)
 #else
@@ -39,6 +47,7 @@ int sys_init(void)
 	return 0;
 }
 
+/* 非主流 */
 int sys_init(void)
 {
 	int ret = 0;
@@ -67,7 +76,7 @@ if(r < 0)
 r = ioctl(usb->desc, USBDEVFS_CLAIMINTERFACE, &interface);
 if(r != 0) goto fail;
 
-
+/* ---------------- */
 int printf(const char *fmt, ...)
 {
     int ret;
@@ -207,5 +216,61 @@ void klog_write(int level, const char *fmt, ...)
     write(klog_fd, buf, strlen(buf));
 }
 
+
+/*
+extract token from string
+strtok() 标准 连续delim不返回
+strsep() 非标 连续delim中间返回NULL
+如：  "hello#@world","#@"
+strtok调用2次，分别返回hello， world
+strsep调用3此，分别返回hello，NULL，world
+可见strsep更适合处理单字符delim
+*/
+
+//取http数据长度
+p = strtok(buf, "\r\n");
+
+if (strcmp(p, "HTTP/1.1 200 OK")) {
+    printf("fail\n");
+    return;
+} else {
+    printf("head ok\n");
+}
+
+do {
+    p = strtok(NULL, "\r\n");
+    token = strstr(p, "Content-Length: ");
+} while (!token && p);
+
+if (token) {
+    *contentLen = atoi(token + 16);
+}
+
+/* --------------*/
+s = strtok(buf, "abc");
+process(...);
+
+while(s = strtok(NULL, "\r\n")) {
+	process(...); //要写2遍
+}
+
+//改进
+for (s = buf;;s = NULL) {
+	s = strtok(s, "\r\n") //可以用同一参数 s
+	if (!s) break;
+	process(...);
+}
+
+/* ------------ */
+char param[] = "id=100&name=iot&space=beijing&type=open";
+char *s = param;
+char *s1, *s2;
+
+while (s1 = strsep(&s, "&")) {
+	while (s2 = strsep(&s1, "=")) {
+		printf("%s\n", s2);
+	}
+	printf("--------\n");
+}
 
 // vim: tw=80 

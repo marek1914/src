@@ -1,5 +1,5 @@
-CMockery
 
+CMockery
 
 printf:
 stdarg.h (man stdarg)
@@ -7,33 +7,6 @@ c99: 7.15  Variable arguments va_list(e.g void*)
 
 1 打印阻塞/非阻塞问题
 2 开关打印： 不要用宏在代码中控制，而是要把宏放到打印函数里
-
-printk: man 2 syslog
-/proc/sys/kernel/printk
-
-4 value(7 4 1 7)：
-console_loglevel
-default_message_loglevel
-minimum_console_loglevel //??
-default_console_loglevel //??
-
-KERN_EMERG   "<0>"
-KERN_ALERT   "<1>" 
-KERN_CRIT    "<2>"
-KERN_ERR     "<3>" 
-KERN_WARNING "<4>" 
-KERN_NOTICE  "<5>"
-KERN_INFO    "<6>"
-KERN_DEBUG   "<7>"
-
-logcat:
-V    Verbose
-D    Debug
-I    Info
-W    Warn
-E    Error
-F    Fatal
-S    Silent (supress all output)
 
 libncurses
 http://clang.llvm.org/docs/ClangFormat.html
@@ -46,15 +19,8 @@ Python，C++(raise)
 exception handling代替error code，分离错误处理代码，增加可读性
 
 ragel
-De Morgan's laws
+
 valgrind/dmalloc
-
-40分钟死机，内存泄漏或内存碎片问题
-exFAT Freespace Bitmap 空间位图
-
-bootchart bootchart.tgz
-
-
 
 COLORS-Lscolors
 
@@ -91,33 +57,12 @@ as long as the parameters are separated by colons.
 4   = underlined
 5   = flashing text
 7   = reverse field
-31  = red
-32  = green
-33  = orange
-34  = blue
-35  = purple
-36  = cyan
-37  = grey
-40  = black background
-41  = red background
-42  = green background
-43  = orange background
-44  = blue background
-45  = purple background
-46  = cyan background
-47  = grey background
-90  = dark grey
-91  = light red
-92  = light green
-93  = yellow
-94  = light blue
-95  = light purple
-96  = turquoise
-100 = dark grey background
-101 = light red background
-102 = light green background
-103 = yellow background
-104 = light blue background
-105 = light purple background
-106 = turquoise background
+类似escape sequence 颜色 红绿黄蓝紫青
+x1  = red
+x2  = green
+x3  = orange
+x4  = blue
+x5  = purple
+x6  = cyan
+x7  = grey
 

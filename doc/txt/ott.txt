@@ -1,3 +1,6 @@
+===uc===
+sdk: vendor/mstar/mi
+
 ===hisi===
 V53R304
 
@@ -50,7 +53,9 @@ ro.sf.lcd_density = 320
 
 ro.hwui.texture_cache_size=64.0
 
-ssh mgr112@172.16.0.31 密：mgr112 mstar源码
+mstar源
+bqu: mgr112@172.16.0.31 :mgr112
+uc : mgr246@172.16.0.31 :mgr246
 
 mmm -B frameworks/base/core/res/ 
 mmm -B frameworks/base/
