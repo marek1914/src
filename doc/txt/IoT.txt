@@ -30,7 +30,7 @@ board：
 nucleo F401RE(512+96)
 discovery F407VG
 STM32F3Discovery (F303 带DSP 陀螺仪)
-STM32F429I-Discovery (F429ZIT6)
+STM32F429I-Discovery (F429ZIT6  u-boot support)
 
 
 STM32Cube
