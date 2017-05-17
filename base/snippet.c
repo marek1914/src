@@ -47,6 +47,7 @@ int sys_init(void)
 	return 0;
 }
 
+/* 非主流 */
 int sys_init(void)
 {
 	int ret = 0;
@@ -75,7 +76,7 @@ if(r < 0)
 r = ioctl(usb->desc, USBDEVFS_CLAIMINTERFACE, &interface);
 if(r != 0) goto fail;
 
-
+/* ---------------- */
 int printf(const char *fmt, ...)
 {
     int ret;
