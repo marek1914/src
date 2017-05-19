@@ -2,6 +2,8 @@
 sdk: vendor/mstar/mi
 git push origin V370R301-ShanXi:refs/for/V370R301-ShanXi
 
+logcat MiSysSrv:s  过滤打印
+
 ===hisi===
 V53R304
 
