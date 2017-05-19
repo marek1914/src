@@ -1,5 +1,6 @@
 ===uc===
 sdk: vendor/mstar/mi
+git push origin V370R301-ShanXi:refs/for/V370R301-ShanXi
 
 ===hisi===
 V53R304

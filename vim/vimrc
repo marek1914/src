@@ -18,6 +18,7 @@ set rtp+=~/.vim/vim-snippets
 set rtp+=~/.vim/lilypond
 set rtp+=~/.vim/omnicppcomplete
 set rtp+=~/.vim/nerdtree
+set rtp+=~/.vim/pydiction
 
 set complete=.,w,b,u,k,t "help cpt
 set hls

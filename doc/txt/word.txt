@@ -69,6 +69,8 @@ RC: Release　Candidate
 
 Through-Hole 排针
 
+FTDI: Future Technology Devices International
+
 PCM: Pulse-code modulation
 LPCM: Linear pulse-code modulation
 
