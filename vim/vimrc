@@ -18,7 +18,7 @@ set rtp+=~/.vim/vim-snippets
 set rtp+=~/.vim/lilypond
 set rtp+=~/.vim/omnicppcomplete
 set rtp+=~/.vim/nerdtree
-set rtp+=~/.vim/pydiction
+set rtp+=~/.vim/pydiction/after
 
 set complete=.,w,b,u,k,t "help cpt
 set hls
@@ -37,4 +37,4 @@ nmap <F8> :Tagbar<CR>
 " highlight PmenuSel guibg=lightgrey guifg=black
 
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-
+let g:pydict = '~/.vim/pydiction/dict'
