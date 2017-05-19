@@ -2,6 +2,9 @@ vim: tw=80
 VI之漫路即为禅修，皈依gnu
 Python complete: jedi-vim/python-mode
 
+set ignorecase 忽略大小写
+set noic
+
 v characterwise-visual
 V linewise-visual
 CTRL-V blockwise-visual
