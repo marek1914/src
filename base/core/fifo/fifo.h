@@ -123,4 +123,4 @@ static inline uint8_t *fifo_peek2(const FifoBuffer *f, int offs)
     return ptr;
 }
 
-#endif /* UTIL_FIFO_H */
+#endif

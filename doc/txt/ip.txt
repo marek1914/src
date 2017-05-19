@@ -791,16 +791,7 @@ D/AirReceiver( 4084): ==>Create AirTunes RTSP server
 自己的itvision 广告和视频是2个url，结果在 我们的和小米的上面，第二个url不能播放
 但同等条件，在appletv上是好的
 
-
-dlna：
-
-1 amlogic提供的dlna程序“媒体中心”安装到博通平台无法运行。后发现是因为amlogic添加了私有接口，按提示在博通平台添加相同接口就ok了。
-2 两个比较好的dlna程序 BubbleuPnP 和 AirPin AirPin完美支持泰捷，腾讯，PPTV等软件的dlna功能，支持bubbleupnp，Pro版完美支持MIPS和ARM电视。
-3 用ftp/nfs/samba 实现媒体无线共享也行，理论分析，确实可以，但术业有专攻
-5 用UPnp Browser 可以查看到 TP-LINK Router TL-WVR450G 是那台路由器
-
-6 小的tp-link路由器 192.169.6.1  向239.255.255.250 发送ssdp  notify请求
-
+dlna:
 Server: UPnP/1.0 DLNADOC/1.50 Platinum/0.6.9.1\r\n
 ip.src == 192.169.6.100 || ip.src == 192.169.6.101
 

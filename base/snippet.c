@@ -47,6 +47,7 @@ int sys_init(void)
 	return 0;
 }
 
+/* 非主流 */
 int sys_init(void)
 {
 	int ret = 0;
@@ -75,7 +76,7 @@ if(r < 0)
 r = ioctl(usb->desc, USBDEVFS_CLAIMINTERFACE, &interface);
 if(r != 0) goto fail;
 
-
+/* ---------------- */
 int printf(const char *fmt, ...)
 {
     int ret;
@@ -215,6 +216,17 @@ void klog_write(int level, const char *fmt, ...)
     write(klog_fd, buf, strlen(buf));
 }
 
+
+/*
+extract token from string
+strtok() 标准 连续delim不返回
+strsep() 非标 连续delim中间返回NULL
+如：  "hello#@world","#@"
+strtok调用2次，分别返回hello， world
+strsep调用3此，分别返回hello，NULL，world
+可见strsep更适合处理单字符delim
+*/
+
 //取http数据长度
 p = strtok(buf, "\r\n");
 
@@ -248,4 +260,17 @@ for (s = buf;;s = NULL) {
 	if (!s) break;
 	process(...);
 }
+
+/* ------------ */
+char param[] = "id=100&name=iot&space=beijing&type=open";
+char *s = param;
+char *s1, *s2;
+
+while (s1 = strsep(&s, "&")) {
+	while (s2 = strsep(&s1, "=")) {
+		printf("%s\n", s2);
+	}
+	printf("--------\n");
+}
+
 // vim: tw=80 

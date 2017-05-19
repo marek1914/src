@@ -1,10 +1,5 @@
-头文件循环包含问题：
-c允许，c++不允许
-vs:可以生成 包含文件关系图
-
 
 CMockery
-
 
 printf:
 stdarg.h (man stdarg)
