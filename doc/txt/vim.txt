@@ -1,5 +1,6 @@
 vim: tw=80
 VI之漫路即为禅修，皈依gnu
+Python complete: jedi-vim/python-mode
 
 http://www.cnblogs.com/songfy/p/5635757.html
 
@@ -75,3 +76,16 @@ atom背景色： #282c34
 
 set background=dark or light
 
+
+—- python complete —-
+Pydiction
+Pycompletion
+Jedi-vim
+Python-mode
+
+Pycompletion 是vim7自带的，遇到几个问题：
+c = range(1,5)
+c.reverse() # c. C-x C-o 不提示
+类似的sqlite3 函数返回类型变量加. 也不提示
+import sys
+sys. 提示
