@@ -22,6 +22,12 @@ SCL/VCC/GND/SDA
 --stm32--
 openstm32.org gaojie:200w200w
 
+F429i-dis:
+u-boot 201701 编译成功
+st-flash write u-boot.bin 0x8000000
+debian下，st-link模拟串口是ttyACM0,mac下不认此串口
+U-boot运行成功，但不知道干啥了 呵呵
+
 sw4stm32的编译器(plugin/.../xx.tar.bz2)：
 arm-none-eabi-gcc --version
 5.4.1 20160919 (release) [ARM/embedded-5-branch revision 240496]
