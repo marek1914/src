@@ -69,6 +69,8 @@ RC: Release　Candidate
 
 Through-Hole 排针
 
+FTDI: Future Technology Devices International
+
 PCM: Pulse-code modulation
 LPCM: Linear pulse-code modulation
 
@@ -154,10 +156,10 @@ Numerical approximation  数值近似
 
 bucket stop here!
 
-overlay  覆盖，盖在上面，如ffmpeg中在视频上覆盖一层图标
+overlay  覆盖，盖在上面，如视频上覆盖一层图标
 overlap  交叠
 override 覆盖，替换掉原来，如c++重新定义函数
-overload 重载 超载 
+overload 重载 超载
 
 Brain Burst  <加速世界>
 supersede   ITU-T 里被废弃的文档版本 用这个词标示

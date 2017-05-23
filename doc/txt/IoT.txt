@@ -1,3 +1,5 @@
+DA14580
+
 线序有如函数参数序列
 BBG 4pin 2.0mm：
 RXD/TXD/3V3/GND
@@ -22,10 +24,16 @@ SCL/VCC/GND/SDA
 --stm32--
 openstm32.org gaojie:200w200w
 
-sw4stm32的编译器：
+F429i-dis:
+u-boot 201701 编译成功
+st-flash write u-boot.bin 0x8000000
+debian下，st-link模拟串口是ttyACM0,mac下不认此串口
+U-boot运行成功，但不知道干啥了 呵呵
+
+sw4stm32的编译器(plugin/.../xx.tar.bz2)：
 arm-none-eabi-gcc --version
 5.4.1 20160919 (release) [ARM/embedded-5-branch revision 240496]
-Arm官网下载的：
+arm官网下载的：
 arm-none-eabi-gcc --version
 6.3.1 20170215 (release) [ARM/embedded-6-branch revision 245512]
 
@@ -38,7 +46,7 @@ board：
 nucleo F401RE(512+96)
 discovery F407VG
 STM32F3Discovery (F303 带DSP 陀螺仪)
-STM32F429I-Discovery (F429ZIT6)
+STM32F429I-Discovery (F429ZIT6  u-boot support)
 
 
 STM32Cube
@@ -105,6 +113,8 @@ Pogo pin
 
 --F330--
 silicon (cygnal)
+
+F321 C2连接成功 5V电源加在7脚而非8脚VBUS
 
 keil/Silicon IDE
 io口直接驱动2极管，8段全亮，18mA，每段2.25mA

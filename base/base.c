@@ -1,9 +1,11 @@
-ring buffer / circular buffer / fifo
-De Morgan's laws
+//ring buffer / circular buffer / fifo
+//De Morgan's laws
 
-The ring buffer's first-in first-out data structure is useful tool for 
-transmitting data between asynchronous processes
+//The ring buffer's first-in first-out data structure is useful tool for 
+//transmitting data between asynchronous processes
 
+// 头文件循环包含问题：
+// vs:可以生成 包含文件关系图
 /*
 printk: man 2 syslog
 /proc/sys/kernel/printk

@@ -134,9 +134,10 @@ int init_camera_device(camera *cam)
 	if (ioctl(cam->fd, VIDIOC_G_FMT, &fmt) < 0) 
 		return -1;
 
-	if (fmt.fmt.pix.pixelformat != V4L2_PIX_FMT_MJPEG) {
-		fmt.fmt.pix.pixelformat = V4L2_PIX_FMT_MJPEG;
-	}
+	fmt.fmt.pix.pixelformat = V4L2_PIX_FMT_YUV422P;
+//	if (fmt.fmt.pix.pixelformat != V4L2_PIX_FMT_MJPEG) {
+//		fmt.fmt.pix.pixelformat = V4L2_PIX_FMT_MJPEG;
+//	}
 
 	fmt.fmt.pix.width = CAMERA_LIVE_WIDTH;
 	fmt.fmt.pix.height = CAMERA_LIVE_HEIGHT;
