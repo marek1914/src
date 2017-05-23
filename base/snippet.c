@@ -3,6 +3,7 @@
 #define INFO(fmt, a...)  printf(fmt, ##a)
 #define INFO(fmt, ...)  printf(fmt, ##__VA_ARGS__)
 
+/* 意义不大 */
 #define VERSION_MAIN   (0x02U)
 #define VERSION_SUB1   (0x06U)
 #define VERSION_SUB2   (0x01U)
@@ -235,6 +236,10 @@ if (token) {
 }
 
 /* --------------*/
+/*extract token from string
+strtok() /strsep()
+*/
+
 s = strtok(buf, "abc");
 process(...);
 

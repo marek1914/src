@@ -4,10 +4,6 @@ De Morgan's laws
 The ring buffer's first-in first-out data structure is useful tool for 
 transmitting data between asynchronous processes
 
-extract token from string
-strtok()
-strsep()
-
 /*
 printk: man 2 syslog
 /proc/sys/kernel/printk
