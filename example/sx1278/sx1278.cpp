@@ -1,7 +1,4 @@
-/*
- * Library for managing Semtech modules SX1278.cpp
- * http://wirelessopensource.com
- */
+/* http://wirelessopensource.com */
 
 #include "SPI.h"
 #include "SX1278.h"
@@ -68,7 +65,6 @@ byte SX1278::readRegister(byte address)
 
 	digitalWrite(SX1278_SS, LOW);
 
-	// PRUEBA SPI
 	delay(1);
 	bitClear(address, 7);
 	SPI.transfer(address);
@@ -88,7 +84,6 @@ void SX1278::writeRegister(byte address, byte data)
 {
 	digitalWrite(SX1278_SS, LOW);
 
-	// PRUEBA SPI
 	delay(1);
 	bitSet(address, 7); 
 	SPI.transfer(address);
@@ -103,30 +98,22 @@ void SX1278::writeRegister(byte address, byte data)
 	Serial.println();
 }
 
-/*
- * Function: Clears the interruption flags
- * Registers are readable in all device mode including Sleep. However, they
- * should be written only in Sleep and Stand-by modes.
-*/
+/* Clears the interruption flags */
 void SX1278::clearFlags()
 {
 	byte st0;
 
-	// Save the previous status
 	st0 = readRegister(REG_OP_MODE);
 
 	if (_modem == LORA) {
 		writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);
 		writeRegister(REG_IRQ_FLAGS, 0xFF);
 		writeRegister(REG_OP_MODE, st0);
-
-		Serial.println(F("## LoRa flags cleared ##"));
 	} else {
 		writeRegister(REG_OP_MODE, FSK_STANDBY_MODE);
 		writeRegister(REG_IRQ_FLAGS1, 0xFF);
 		writeRegister(REG_IRQ_FLAGS2, 0xFF);
 		writeRegister(REG_OP_MODE, st0);
-		Serial.println(F("## FSK flags cleared ##"));
 	}
 }
 
@@ -228,9 +215,8 @@ uint8_t SX1278::getMode()
 
 	Serial.println(F("Starting 'getMode'"));
 
-	// Save the previous status
 	st0 = readRegister(REG_OP_MODE);
-	// Setting LoRa mode
+
 	if (_modem == FSK) {
 		setLORA();
 	}
