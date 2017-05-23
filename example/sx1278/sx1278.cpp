@@ -50,52 +50,32 @@ uint8_t SX1278::ON()
 void SX1278::OFF()
 {
 	Serial.println(F("Starting 'OFF'"));
-
 	SPI.end();
 	// Powering the module
 	pinMode(SX1278_SS, OUTPUT);
 	digitalWrite(SX1278_SS, LOW);
-
-	Serial.println(F("## Setting OFF ##"));
 }
 
 byte SX1278::readRegister(byte address)
 {
 	byte value = 0x00;
-
 	digitalWrite(SX1278_SS, LOW);
-
 	delay(1);
 	bitClear(address, 7);
 	SPI.transfer(address);
 	value = SPI.transfer(0x00);
 	digitalWrite(SX1278_SS, HIGH);
-
-	Serial.print(F("## Reading:  ##\t"));
-	Serial.print(address, HEX);
-	Serial.print(F(":  "));
-	Serial.print(value, HEX);
-	Serial.println();
-
 	return value;
 }
 
 void SX1278::writeRegister(byte address, byte data)
 {
 	digitalWrite(SX1278_SS, LOW);
-
 	delay(1);
 	bitSet(address, 7); 
 	SPI.transfer(address);
 	SPI.transfer(data);
 	digitalWrite(SX1278_SS, HIGH);
-
-	Serial.print(F("## Writing:  ##\t"));
-	bitClear(address, 7);
-	Serial.print(address, HEX);
-	Serial.print(F(":  "));
-	Serial.print(data, HEX);
-	Serial.println();
 }
 
 /* Clears the interruption flags */
@@ -221,10 +201,10 @@ uint8_t SX1278::getMode()
 		setLORA();
 	}
 	value = readRegister(REG_MODEM_CONFIG1);
-	_bandwidth = (value >> 4);  // Storing 4 MSB from REG_MODEM_CONFIG1 (=_bandwidth)
-	_codingRate = (value >> 1) & 0x07;  // Storing first, second and third bits from
-	value = readRegister(REG_MODEM_CONFIG2);  // REG_MODEM_CONFIG1 (=_codingRate)
-	_spreadingFactor = (value >> 4) & 0x0F;  // Storing 4 MSB from REG_MODEM_CONFIG2 (=_spreadingFactor)
+	_bandwidth = (value >> 4);
+	_codingRate = (value >> 1) & 0x07;
+	value = readRegister(REG_MODEM_CONFIG2);
+	_spreadingFactor = (value >> 4) & 0x0F;
 	state = 1;
 
 	if (isBW(_bandwidth)) {
