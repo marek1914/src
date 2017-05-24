@@ -2,7 +2,11 @@
 sdk: vendor/mstar/mi
 git push origin V370R301-ShanXi:refs/for/V370R301-ShanXi
 
-logcat MiSysSrv:s  过滤打印
+logcat MiSysSrv:s DvbNative:s 过滤打印
+
+build/config/sapprft_mstar_common.config
+flash=4G
+DDR=1G
 
 ===hisi===
 V53R304
@@ -747,37 +751,7 @@ M3百视通版本：
 修改了 ./amlogic/LibPlayer/amffmpeg/libavformat 目录
 file_list.h 和 file_list2.c  文件
 
-问题2：
-在华数上面的直播播放一会，卡着不动的问题，这次在百视通版本上复现
-
-M3 华数版本：
-问题1：
-点播的时候，播放一段时间，点击返回，退出，再次进入（继续播放，此时位置为1），等一段时间，
-暂停，然后继续播放，会从位置1重新播放！& “点击继续播放的时候，进度条是从开始位置加载的”
-
-7月10日 此问题百视通版没有，百视通应用层规避了此问题。华数解决此问题的代码在百视通上存在也没有问题，无影响。可是06/27 10:37 AM
-的邮件提到百视通版本也报有这个问题。
-需要修改2个文件： framework/base/media/libmediaplayerservice/
-AmlogicPlayer.cpp   MediaPlayerService.cpp
-
-开始的邮件说 2个文件各注掉部分代码：
-AmlogicPlayer.cpp:
-if(PropGetInt("ro.serialtype")==1) {
-if(tmp_pos > 0) {
-//后来小隆回复邮件说：下面这一句屏蔽掉，会出问题，不能屏蔽。
-//mPlay_ctl.t_pos = tmp_pos/1000.0;
-} 
-
-
 writeSysfs("/sys/class/gpio/mcu_standby_ctrl","2");
-
-提示升级,选择Y：
-init: Save ubootenv to /dev/mtd/mtd7 succeed!
-nftl release flush cache data: 0
-SysRq : Emergency Remount R/O
-Emergency Remount complete
-m3_nand_reboot_notifier 895 
-Restarting system with command 'recovery'.
 
 开机按电源按键，打印 Run recovery！
 在./board/amlogic/m3_mbox/m3_mbox.c 文件里
@@ -788,26 +762,10 @@ Restarting system with command 'recovery'.
 
 执行update_reboot还是 charging_reboot，现在竟然进不去recovery了。
 
-uboot修改mac地址：
-2 在uboot里面，板子上的待机按键不灵
-  上电，串口无打印，按待机键才有打印（板子或IR的待机按键）
-3 setenv ethaddr= 新mac
-  saveenv  提示擦除了spi flash，写了spi flash 但是重启后又恢复成了原来的mac了
-4 能够激活的mac应该是 00:16:FB:81:19:CF
-uboot使用的是：
-uboot/board/amlogic/m3_mbox 的配置目录
-
-测试升级：
-制作一个1.0.1版本程序用adb push 升级。启动进入“系统升级”，开始下载，提示是否升级，选择“是”
-这时候进入 SPI的 recovery ，（因为小机器人提示图片是 spi里面的，那么，这是如何做到的呢？
-因为）
+uboot修改mac地址 setenv ethaddr= 新mac
 
 百视通的设置程序是：
 amlogic/bestv/apk/SWSettings_chinamobile.apk
-
-本地播放反复进入花屏可能是因为切换了分辨率
-
-系统有2个recovery，一个是通过 spi.bin 写到spi flash里面的，一个是通过ota写到nand里的。
 
 开机logo显示：
 在device目录下面：aml_logo.bmp，替换了执行 make

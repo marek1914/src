@@ -13,7 +13,6 @@ abandon java, android, opengl, mysql
 abandon sourceinsight, eclipse, qcreator
 abandon !protel99/ADS
 abandon C++ (20170428) ffmpeg/kernel/minigui的设计技术足矣
-先写个像样的C，再考虑C++
 
 esacademy.com
 gnu.org

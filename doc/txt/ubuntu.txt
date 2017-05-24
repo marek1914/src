@@ -132,7 +132,7 @@ Nginx: /usr/local/nginx
 	mount -t cifs //ip/dir  dir -o username="xxx",password="xxx"
 
     /etc/fstab:
-    //ip/dir /dir cifs username=xx,password=xx,uid=1000,gid=1000,file_mode=0777 0 0
+    //ip/dir /mount_point cifs username=xx,password=xx,uid=1000,gid=1000,file_mode=0777 0 0
     dir是相对于samba的路径，不是绝对路径
 
 5) tftp(trivial ftp RFC783)

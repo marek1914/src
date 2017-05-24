@@ -237,7 +237,7 @@ int fifo_generic_read(FifoBuffer *f, void *dest, int buf_size,
     return 0;
 }
 
-/** Discard data from the FIFO. */
+/* Discard data from the FIFO */
 void fifo_drain(FifoBuffer *f, int size)
 {
     assert(fifo_size(f) >= size);

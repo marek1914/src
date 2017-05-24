@@ -264,16 +264,6 @@ fastboot boot clockwork.img
 chenyh:CIKAA手机，不能进recovery模式，就真的死活不能root，不能清除密码！
 adb shell rm /data/system/gesture.key
 
-
-TF101平板root简单：
-mount -o remount,rw /dev/block/mtdblock6 /system 
-mount -o remount,ro /dev/block/mtdblock6 /system
-(20160410  mount -o remount /system就可以吧！  mount没有帮助？)
-settings -> development options 里面有一个选项：Root 授权
-adb root :
-restarting adbd as root
-system已rw，shell有#，即root了
-
 模拟器上传/system/lib目录文件：
 adb push 提示 out of memory 需要执行 
 $emulator –avd youravdname –partition-size 256(实测4.0)
@@ -517,12 +507,6 @@ vold 支持磁盘多分区
 
 only create android_secure on primary storage
 注意，反复提到 primary storage
-
-应用程序移动到SD卡，需要device mapper 设备驱动，也就是apk移动后，mount 会看到 dm-0 这样的mount点
-PC机上：
-/dev/mapper/control 设备节点
-./frameworks/base/tools/obbtool/mkobb.sh:    loop_dev=/dev/mapper/${unique_dm_name}
-./external/ntfs3g/libntfs-3g/volume.c:"/dev/mapper/, (e.g. /dev/mapper/nvidia_eahaabcc1) to mount NTFS.\n"
 
 android上：
 dev/device-mapper  10,58
@@ -783,8 +767,7 @@ mkuserimg.sh -s system.img ext4 system 536870912 (大小512M)  (-s 代表sparse)
 ./system/extras/ext4_utils/mkuserimg.sh
 ./out/host/linux-x86/bin/mkuserimg.sh
 
-ubuntu支持ext4(不像yaffs2)：mount -o loop
-需用simg2img工具还原到512M再mount
+ubuntu支持ext4：mount -o loop (用simg2img还原到512M再mount)
 
 a20:
 make_ext4fs -s -l 536870912 -a system system.img out/.../system

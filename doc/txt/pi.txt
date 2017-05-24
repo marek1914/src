@@ -271,3 +271,7 @@ keyboard :Arduino-keyboard-0.3.hex
 usb转串口:Arduino-usbserial-uno.hex
 
 classic SPI library for Arduino
+
+-----
+typedef bool boolean;
+typedef uint8_t byte;
