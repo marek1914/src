@@ -1467,77 +1467,12 @@ int8_t SX1278::setCR(uint8_t cod)
 	return state;
 }
 
-boolean SX1278::isChannel(uint32_t ch)
-{
-	switch (ch) {
-		case CH_1_BW_500:
-		case CH_2_BW_500:
-		case CH_3_BW_500:
-		case CH_1_BW_250:
-		case CH_2_BW_250:
-		case CH_3_BW_250:
-		case CH_4_BW_250:
-		case CH_5_BW_250:
-		case CH_6_BW_250:
-		case CH_1_BW_125:
-		case CH_2_BW_125:
-		case CH_3_BW_125:
-		case CH_4_BW_125:
-		case CH_5_BW_125:
-		case CH_6_BW_125:
-		case CH_8_BW_125:
-		case CH_9_BW_125:
-		case CH_10_BW_125:
-		case CH_11_BW_125:
-		case CH_12_BW_125:
-		case CH_13_BW_125:
-		case CH_1:
-		case CH_2:
-		case CH_3:
-		case CH_4:
-		case CH_5:
-		case CH_6:
-		case CH_7:
-		case CH_8:
-		case CH_9:
-		case CH_10:
-		case CH_11:
-		case CH_12:
-		case CH_13:
-		case CH_14:
-		case CH_15:
-		case CH_16:
-		case CH_17:
-		case CH_18:
-		case CH_19:
-		case CH_20:
-		case CH_21:
-		case CH_22:
-		case CH_23:
-		case CH_24:
-			return true;
-			break;
-		default:
-			return false;
-	}
-}
-
-/*
- Function: Indicates the frequency channel within the module is configured.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
 uint8_t SX1278::getChannel()
 {
-	uint8_t state = 2;
 	uint32_t ch;
 	uint8_t freq3;
 	uint8_t freq2;
 	uint8_t freq1;
-
-	Serial.println(F("Starting 'getChannel'"));
 
 	freq3 = readRegister(REG_FRF_MSB);  // frequency channel MSB
 	freq2 = readRegister(REG_FRF_MID);  // frequency channel MID
@@ -1545,15 +1480,7 @@ uint8_t SX1278::getChannel()
 	ch = ((uint32_t)freq3 << 16) + ((uint32_t)freq2 << 8) + (uint32_t)freq1;
 	_channel = ch;  // frequency channel
 
-	if ((_channel == ch) && isChannel(_channel)) {
-		state = 0;
-		Serial.print(F("## Frequency channel is "));
-		Serial.print(_channel, HEX);
-		Serial.println(F(" ##"));
-	} else {
-		state = 1;
-	}
-	return state;
+	return 0;
 }
 
 /*
@@ -1575,14 +1502,9 @@ int8_t SX1278::setChannel(uint32_t ch)
 	uint8_t freq1;
 	uint32_t freq;
 
-	Serial.println(F("Starting 'setChannel'"));
-
 	st0 = readRegister(REG_OP_MODE);  // Save the previous status
-	if (_modem == LORA) {
-		writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);
-	} else {
-		writeRegister(REG_OP_MODE, FSK_STANDBY_MODE);
-	}
+	
+	writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);
 
 	freq3 = ((ch >> 16) & 0x0FF);  // MSB
 	freq2 = ((ch >> 8) & 0x0FF);   // MIB
@@ -1592,33 +1514,7 @@ int8_t SX1278::setChannel(uint32_t ch)
 	writeRegister(REG_FRF_MID, freq2);
 	writeRegister(REG_FRF_LSB, freq1);
 
-	// storing MSB in freq channel value
-	freq3 = (readRegister(REG_FRF_MSB));
-	freq = (freq3 << 8) & 0xFFFFFF;
-
-	// storing MID in freq channel value
-	freq2 = (readRegister(REG_FRF_MID));
-	freq = (freq << 8) + ((freq2 << 8) & 0xFFFFFF);
-
-	// storing LSB in freq channel value
-	freq = freq + ((readRegister(REG_FRF_LSB)) & 0xFFFFFF);
-
-	if (freq == ch) {
-		state = 0;
-		_channel = ch;
-		Serial.print(F("## Frequency channel "));
-		Serial.print(ch, HEX);
-		Serial.println(F(" has been successfully set ##"));
-	} else {
-		state = 1;
-	}
-
-	if (not isChannel(ch)) {
-		state = -1;
-		Serial.print(F("** Frequency channel "));
-		Serial.print(ch, HEX);
-		Serial.println(F("is not a correct value **"));
-	}
+	_channel = ch;
 
 	writeRegister(REG_OP_MODE, st0);  // Getting back to previous status
 	return state;

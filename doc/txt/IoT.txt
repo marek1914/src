@@ -512,6 +512,8 @@ Polar SI9000 特性阻抗计算工具
 蜿蜒倒F天线
 2.4G 波长12.5cm
 
+LPD433 (low power device 433.050-434.790)  bw: 1.74 MHz
+
 ITU-T:
 gaojie@cyclecentury.com:*2xxpy-
 
