@@ -567,31 +567,9 @@ http://linux-sunxi.org/AXP209具体问题：
 更改device/.../libswa2.so 执行make_ota_package 能更新到img文件中吗？
 A20/m3华数播放的是ts流不是m3u8
 
-A20华数能用reboot recovery升级，但是.fex配置文件升不上去。
-## 系统升级
-
-	1) galaxy
-	build.prob ro.product.ota.host=x.x.x.x 配置升级服务器ip
-	http://111.1.56.50/hansun/update.zip
-	由com.example.serverupdata 这个apk负责
-
-## 硬件
-	Nanya NT5CB256M16CP 16bit  4Gb SDRAM   256M标称是16bit单位  2片共1GByte内存
-	TOSHIBA TC58TEG5DCJT 容量4GB
-	IP101GA 10/100自适应网络芯片，台湾ICPLUS(网络芯片生产商) 应该是个phy芯片
-	MiniSD卡槽旁边是电源控制用的MCU芯片：JL4605 pin4 3.3V，（51单片机，程序事先写好。2款遥控器主cpu兼容没问题，power也能兼容吗？）
-	lm1117 电源芯片
-	av线旁边是个音频芯片，汉辰和海克做的用的芯片不同
-	（8190是更新方案）
-	串口顺序 空 红 橙 酱
-	正常待机蓝灯亮，TF卡升级完灯灭。
-	控制指示灯有2处：主cpu（status led  PD16引脚）和 mcu pin8（Power-led）
-	BAT54C：肖特基二极管，是三脚双二极管，IR通过他一分为2，一个接到主cpu A13引脚，另一个接到MCU pin7
-	galaxy: setting中按home，不出现多个launcher的选择，只会回到自己的launcher。
-	phoenixcard sd卡工具百度上可以下载到，是个比较通用的工具
-
-## 目录精简
-1. device/softwinner/A20_B133/modules是lichee编译生成，无须提交
+1) galaxy
+build.prob ro.product.ota.host=x.x.x.x 配置升级服务器ip
+http://111.1.56.50/hansun/update.zip
 
 ## img 文件生成
 a20靠 lichee/tools/pack 脚本生成.img文件

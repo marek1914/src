@@ -20,8 +20,6 @@
 #define bitSet(value, bit) ((value) |= (1UL << (bit)))
 #define bitClear(value, bit) ((value) &= ~(1UL << (bit)))
 
-//! REGISTERS //
-//	FSK	Commun	LORA
 #define REG_FIFO 0x00
 #define REG_OP_MODE 0x01
 #define REG_BITRATE_MSB 0x02
@@ -423,24 +421,6 @@ class SX1278
 	int8_t setMaxCurrent(uint8_t rate);
 
 	// It gets the content of the main configuration registers.
-	/*
-	It stores in global '_bandwidth' variable the BW.
-	It stores in global '_codingRate' variable the CR.
-	It stores in global '_spreadingFactor' variable the SF.
-	It stores in global '_power' variable the output power of the signal.
-	It stores in global '_channel' variable the frequency channel.
-	It stores in global '_CRC' variable '1' enabling CRC generation on
-	payload, or '0' disabling the CRC.
-	It stores in global '_header' variable '0' when header is sent
-	(explicit header mode) or '1' when is not sent (implicit header
-	mode).
-	It stores in global '_preamblelength' variable the preamble length.
-	It stores in global '_payloadlength' variable the payload length of
-	the last packet to send/receive.
-	It stores in global '_nodeAddress' variable the node address.
-	It stores in global '_temp' variable the module temperature.
-	\return '0' on success, '1' otherwise
-	 */
 	uint8_t getRegs();
 
 	// It sets the maximum number of bytes from a frame that fit in a packet
