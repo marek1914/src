@@ -4,7 +4,7 @@
 
 int main(void)
 {
-	char s[] = "hello world";
+	char s[] = "Hello IoT successful!";
 	char chr;
 	int i;
 
@@ -13,11 +13,11 @@ int main(void)
 	printf("space is :%d\n", fifo_space(fifo));
 
 	fifo_generic_write(fifo, s, strlen(s), NULL);
-	printf("space is :%d\n", fifo_space(fifo));
+	printf("space is :%d size if %d\n", fifo_space(fifo), fifo_size(fifo));
 
-	for (i = 0; i < 14; i++) {
-		fifo_generic_read(fifo, &chr, 1, NULL);
-		printf("%c\n", chr);
-	}
+//	for (i = 0; i < 14; i++) {
+//		fifo_generic_read(fifo, &chr, 1, NULL);
+//		printf("%c\n", chr);
+//	}
 	return 0;
 }
