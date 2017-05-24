@@ -56,9 +56,9 @@ void SX1278::OFF()
 	digitalWrite(SX1278_SS, LOW);
 }
 
-byte SX1278::readRegister(byte address)
+uint8_t SX1278::readRegister(uint8_t address)
 {
-	byte value = 0x00;
+	uint8_t value = 0x00;
 	digitalWrite(SX1278_SS, LOW);
 	delay(1);
 	bitClear(address, 7);
@@ -68,7 +68,7 @@ byte SX1278::readRegister(byte address)
 	return value;
 }
 
-void SX1278::writeRegister(byte address, byte data)
+void SX1278::writeRegister(uint8_t address, uint8_t data)
 {
 	digitalWrite(SX1278_SS, LOW);
 	delay(1);
@@ -81,33 +81,22 @@ void SX1278::writeRegister(byte address, byte data)
 /* Clears the interruption flags */
 void SX1278::clearFlags()
 {
-	byte st0;
+	uint8_t st0;
 
 	st0 = readRegister(REG_OP_MODE);
 
-	if (_modem == LORA) {
-		writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);
-		writeRegister(REG_IRQ_FLAGS, 0xFF);
-		writeRegister(REG_OP_MODE, st0);
-	} else {
-		writeRegister(REG_OP_MODE, FSK_STANDBY_MODE);
-		writeRegister(REG_IRQ_FLAGS1, 0xFF);
-		writeRegister(REG_IRQ_FLAGS2, 0xFF);
-		writeRegister(REG_OP_MODE, st0);
-	}
+	writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);
+	writeRegister(REG_IRQ_FLAGS, 0xFF);
+	writeRegister(REG_OP_MODE, st0);
 }
 
 /*
  Function: Sets the module in LoRa mode.
- Returns:  Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
 */
 uint8_t SX1278::setLORA()
 {
 	uint8_t state = 2;
-	byte st0;
+	uint8_t st0;
 
 	Serial.println(F("Starting 'setLORA'"));
 
@@ -117,11 +106,8 @@ uint8_t SX1278::setLORA()
 
 	writeRegister(REG_MAX_PAYLOAD_LENGTH, MAX_LENGTH);
 
-	// Set RegModemConfig1 to Default values
 	writeRegister(REG_MODEM_CONFIG1, 0x72);
-	// Set RegModemConfig2 to Default values
 	writeRegister(REG_MODEM_CONFIG2, 0x70);
-	// Set RegModemConfig2 to Default values
 	writeRegister(REG_MODEM_CONFIG3, 0x00);
 
 	// delay(100);
@@ -140,17 +126,50 @@ uint8_t SX1278::setLORA()
 }
 
 /*
+ Function: Sets the module in FSK mode.
+*/
+uint8_t SX1278::setFSK()
+{
+	uint8_t state = 2;
+	uint8_t st0;
+	uint8_t config1;
+
+	Serial.println(F("Starting 'setFSK'"));
+
+	writeRegister(REG_OP_MODE, FSK_SLEEP_MODE); 
+	writeRegister(REG_OP_MODE, FSK_STANDBY_MODE);
+	config1 = readRegister(REG_PACKET_CONFIG1);
+	config1 = config1 & B01111101;  // clears bits 8 and 1 from REG_PACKET_CONFIG1
+	config1 = config1 | B00000100;  // sets bit 2 from REG_PACKET_CONFIG1
+	writeRegister(REG_PACKET_CONFIG1, config1);  // AddressFiltering = NodeAddress + BroadcastAddress
+	writeRegister(REG_FIFO_THRESH, 0x80);  // condition to start packet tx
+	config1 = readRegister(REG_SYNC_CONFIG);
+	config1 = config1 & B00111111;
+	writeRegister(REG_SYNC_CONFIG, config1);
+
+	// delay(100);
+
+	st0 = readRegister(REG_OP_MODE);
+	if (st0 == FSK_STANDBY_MODE) {
+		_modem = FSK;
+		state = 0;
+		Serial.println(F("## FSK set with success ##"));
+	} else {
+		_modem = LORA;
+		state = 1;
+		Serial.println(F("** There has been an error while setting FSK **"));
+	}
+	return state;
+}
+
+/*
  * Gets the bandwidth, coding rate, spreading factor
- * Returns: Integer that determines if there has been any error
- * state = 2  --> The command has not been executed
- * state = 1  --> There has been an error while executing the command
- * state = 0  --> The command has been executed with no errors
  */
 uint8_t SX1278::getMode()
 {
-	byte st0;
+	uint8_t st0;
 	int8_t state = 2;
-	byte value = 0x00;
+	uint8_t value = 0x00;
 
 	Serial.println(F("Starting 'getMode'"));
 
@@ -191,22 +210,14 @@ uint8_t SX1278::getMode()
 }
 
 /*
- Function: Sets the bandwidth, coding rate and spreading factor of the LoRa
- modulation.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-   state = -1 --> Forbidden command for this protocol
- Parameters:
-   mode: mode number to set the required BW, SF and CR of LoRa modem.
+ Sets the bandwidth, coding rate and spreading factor of the LoRa modulation.
 */
 int8_t SX1278::setMode(uint8_t mode)
 {
 	int8_t state = 2;
-	byte st0;
-	byte config1 = 0x00;
-	byte config2 = 0x00;
+	uint8_t st0;
+	uint8_t config1 = 0x00;
+	uint8_t config2 = 0x00;
 
 	Serial.println(F("Starting 'setMode'"));
 
@@ -421,10 +432,6 @@ int8_t SX1278::setMode(uint8_t mode)
 
 /*
  * Indicates if module is configured in implicit or explicit header mode.
- * Returns: Integer that determines if there has been any error
- * state = 2  --> The command has not been executed
- * state = 1  --> There has been an error while executing the command
- * state = 0  --> The command has been executed with no errors
  */
 
 uint8_t SX1278::getHeader()
@@ -460,16 +467,11 @@ uint8_t SX1278::getHeader()
 
 /*
  Function: Sets the module in explicit header mode (header is sent).
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-   state = -1 --> Forbidden command for this protocol
 */
 int8_t SX1278::setHeaderON()
 {
 	int8_t state = 2;
-	byte config1;
+	uint8_t config1;
 
 	Serial.println(F("Starting 'setHeaderON'"));
 
@@ -505,16 +507,11 @@ int8_t SX1278::setHeaderON()
 
 /*
  Function: Sets the module in implicit header mode (header is not sent).
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-   state = -1 --> Forbidden command for this protocol
 */
 int8_t SX1278::setHeaderOFF()
 {
 	uint8_t state = 2;
-	byte config1;
+	uint8_t config1;
 
 	Serial.println(F("Starting 'setHeaderOFF'"));
 
@@ -542,63 +539,33 @@ int8_t SX1278::setHeaderOFF()
 	return state;
 }
 
-/*
- Function: Indicates if module is configured with or without checking CRC.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
+/* Indicates if module is configured with or without checking CRC */
 uint8_t SX1278::getCRC()
 {
 	int8_t state = 2;
-	byte value;
+	uint8_t value;
 
-	Serial.println(F("Starting 'getCRC'"));
+	value = readRegister(REG_MODEM_CONFIG2);
+	if (bitRead(value, 2) == CRC_OFF) {  // CRCoff
+		_CRC = CRC_OFF;
+		Serial.println(F("## CRC is desactivated ##"));
+		state = 0;
+	} else {  // CRCon
+		_CRC = CRC_ON;
+		Serial.println(F("## CRC is activated ##"));
+		state = 0;
+	}
 
-	if (_modem == LORA) {  // LoRa mode
-		// take out bit 2 from REG_MODEM_CONFIG2 indicates RxPayloadCrcOn
-		value = readRegister(REG_MODEM_CONFIG2);
-		if (bitRead(value, 2) == CRC_OFF) {  // CRCoff
-			_CRC = CRC_OFF;
-			Serial.println(F("## CRC is desactivated ##"));
-			state = 0;
-		} else {  // CRCon
-			_CRC = CRC_ON;
-			Serial.println(F("## CRC is activated ##"));
-			state = 0;
-		}
-	} else {  // FSK mode
-		// take out bit 2 from REG_PACKET_CONFIG1 indicates CrcOn
-		value = readRegister(REG_PACKET_CONFIG1);
-		if (bitRead(value, 4) == CRC_OFF) {  // CRCoff
-			_CRC = CRC_OFF;
-			Serial.println(F("## CRC is desactivated ##"));
-			state = 0;
-		} else {  // CRCon
-			_CRC = CRC_ON;
-			Serial.println(F("## CRC is activated ##"));
-			state = 0;
-		}
-	}
-	if (state != 0) {
-		state = 1;
-		Serial.println(F("There has been an error while getting configured CRC"));
-	}
 	return state;
 }
 
 /*
  Function: Sets the module with CRC on.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
 */
 uint8_t SX1278::setCRC_ON()
 {
 	uint8_t state = 2;
-	byte config;
+	uint8_t config;
 
 	Serial.println(F("Starting 'setCRC_ON'"));
 
@@ -643,51 +610,15 @@ uint8_t SX1278::setCRC_ON()
 	return state;
 }
 
-/*
- Function: Sets the module with CRC off.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
 uint8_t SX1278::setCRC_OFF()
 {
 	int8_t state = 2;
-	byte config;
+	uint8_t config;
 
-	Serial.println(F("Starting 'setCRC_OFF'"));
+	config = readRegister(REG_MODEM_CONFIG2);
+	config = config & B11111011;
+	writeRegister(REG_MODEM_CONFIG2, config);
 
-	if (_modem == LORA) {  // LORA mode
-		config = readRegister(REG_MODEM_CONFIG2);
-		config = config & B11111011;  // clears bit 1 from config1 = CRC_OFF
-		writeRegister(REG_MODEM_CONFIG2, config);
-
-		config = readRegister(REG_MODEM_CONFIG2);
-		if ((bitRead(config, 2)) == CRC_OFF) {  // take out bit 1 from
-		                                        // REG_MODEM_CONFIG2 indicates
-		                                        // RxPayloadCrcOn
-			state = 0;
-			_CRC = CRC_OFF;
-			Serial.println(F("## CRC has been desactivated ##"));
-		}
-	} else {  // FSK mode
-		config = readRegister(REG_PACKET_CONFIG1);
-		config = config & B11101111;
-		writeRegister(REG_PACKET_CONFIG1, config);
-
-		config = readRegister(REG_PACKET_CONFIG1);
-		if (bitRead(config, 4) == CRC_OFF) {  // take out bit 4 from
-		                                      // REG_PACKET_CONFIG1 indicates
-		                                      // RxPayloadCrcOn
-			state = 0;
-			_CRC = CRC_OFF;
-			Serial.println(F("## CRC has been desactivated ##"));
-		}
-	}
-	if (state != 0) {
-		state = 1;
-		Serial.println(F("There has been an error while setting CRC OFF"));
-	}
 	return state;
 }
 
@@ -731,7 +662,7 @@ boolean SX1278::isSF(uint8_t spr)
 int8_t SX1278::getSF()
 {
 	int8_t state = 2;
-	byte config2;
+	uint8_t config2;
 
 	Serial.println(F("Starting 'getSF'"));
 
@@ -765,10 +696,10 @@ int8_t SX1278::getSF()
 */
 uint8_t SX1278::setSF(uint8_t spr)
 {
-	byte st0;
+	uint8_t st0;
 	int8_t state = 2;
-	byte config2;
-	byte config3;
+	uint8_t config2;
+	uint8_t config3;
 
 	Serial.println(F("Starting 'setSF'"));
 
@@ -1006,7 +937,7 @@ boolean SX1278::isBW(uint16_t band)
 int8_t SX1278::getBW()
 {
 	uint8_t state = 2;
-	byte config1;
+	uint8_t config1;
 
 	Serial.println(F("Starting 'getBW'"));
 
@@ -1042,10 +973,10 @@ int8_t SX1278::getBW()
 */
 int8_t SX1278::setBW(uint16_t band)
 {
-	byte st0;
+	uint8_t st0;
 	int8_t state = 2;
-	byte config1;
-	byte config3;
+	uint8_t config1;
+	uint8_t config3;
 
 	Serial.println(F("Starting 'setBW'"));
 
@@ -1425,7 +1356,7 @@ boolean SX1278::isCR(uint8_t cod)
 int8_t SX1278::getCR()
 {
 	int8_t state = 2;
-	byte config1;
+	uint8_t config1;
 
 	Serial.println(F("Starting 'getCR'"));
 
@@ -1463,9 +1394,9 @@ int8_t SX1278::getCR()
 */
 int8_t SX1278::setCR(uint8_t cod)
 {
-	byte st0;
+	uint8_t st0;
 	int8_t state = 2;
-	byte config1;
+	uint8_t config1;
 
 	Serial.println(F("Starting 'setCR'"));
 
@@ -1637,7 +1568,7 @@ uint8_t SX1278::getChannel()
 */
 int8_t SX1278::setChannel(uint32_t ch)
 {
-	byte st0;
+	uint8_t st0;
 	int8_t state = 2;
 	unsigned int freq3;
 	unsigned int freq2;
@@ -1703,7 +1634,7 @@ int8_t SX1278::setChannel(uint32_t ch)
 uint8_t SX1278::getPower()
 {
 	uint8_t state = 2;
-	byte value = 0x00;
+	uint8_t value = 0x00;
 
 	Serial.println(F("Starting 'getPower'"));
 
@@ -1737,9 +1668,9 @@ uint8_t SX1278::getPower()
 */
 int8_t SX1278::setPower(char p)
 {
-	byte st0;
+	uint8_t st0;
 	int8_t state = 2;
-	byte value = 0x00;
+	uint8_t value = 0x00;
 
 	Serial.println(F("Starting 'setPower'"));
 
@@ -1798,9 +1729,9 @@ int8_t SX1278::setPower(char p)
 */
 int8_t SX1278::setPowerNum(uint8_t pow)
 {
-	byte st0;
+	uint8_t st0;
 	int8_t state = 2;
-	byte value = 0x00;
+	uint8_t value = 0x00;
 
 	Serial.println(F("Starting 'setPower'"));
 
@@ -1891,7 +1822,7 @@ uint8_t SX1278::getPreambleLength()
 */
 uint8_t SX1278::setPreambleLength(uint16_t l)
 {
-	byte st0;
+	uint8_t st0;
 	uint8_t p_length;
 	int8_t state = 2;
 
@@ -1926,33 +1857,10 @@ uint8_t SX1278::setPreambleLength(uint16_t l)
 	return state;
 }
 
-/*
- Function: Gets the payload length from the module.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
 uint8_t SX1278::getPayloadLength()
 {
-	uint8_t state = 2;
-
-	Serial.println(F("Starting 'getPayloadLength'"));
-
-	if (_modem == LORA) {
-		_payloadlength = readRegister(REG_PAYLOAD_LENGTH_LORA);
-		state = 1;
-	} else {
-		_payloadlength = readRegister(REG_PAYLOAD_LENGTH_FSK);
-		state = 1;
-	}
-
-	Serial.print(F("## Payload length configured is "));
-	Serial.print(_payloadlength, HEX);
-	Serial.println(F(" ##"));
-
-	state = 0;
-	return state;
+	_payloadlength = readRegister(REG_PAYLOAD_LENGTH_LORA);
+	return 0;
 }
 
 /*
@@ -1971,156 +1879,43 @@ int8_t SX1278::setPacketLength()
 	return setPacketLength(length);
 }
 
-/*
- Function: Sets the packet length in the module.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-   state = -1 --> Forbidden command for this protocol
- Parameters:
-   l: length value to set as payload length.
-*/
 int8_t SX1278::setPacketLength(uint8_t l)
 {
-	byte st0;
-	byte value = 0x00;
+	uint8_t st0;
+	uint8_t value = 0x00;
 	int8_t state = 2;
-
-	Serial.println(F("Starting 'setPacketLength'"));
 
 	st0 = readRegister(REG_OP_MODE);  // Save the previous status
 	//	truncPayload(l);
 	packet_sent.length = l;
-	if (_modem == LORA) {
-		writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);
-		writeRegister(REG_PAYLOAD_LENGTH_LORA, packet_sent.length);
-		// Storing payload length in LoRa mode
-		value = readRegister(REG_PAYLOAD_LENGTH_LORA);
-	} else {
-		writeRegister(REG_OP_MODE, FSK_STANDBY_MODE);
-		writeRegister(REG_PAYLOAD_LENGTH_FSK, packet_sent.length);
-		// Storing payload length in FSK mode
-		value = readRegister(REG_PAYLOAD_LENGTH_FSK);
-	}
-
-	if (packet_sent.length == value) {
-		state = 0;
-		Serial.print(F("## Packet length "));
-		Serial.print(packet_sent.length, DEC);
-		Serial.println(F(" has been successfully set ##"));
-	} else {
-		state = 1;
-	}
+	
+	writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);
+	writeRegister(REG_PAYLOAD_LENGTH_LORA, packet_sent.length);
 
 	writeRegister(REG_OP_MODE, st0);  // Getting back to previous status
 	                                  // delay(250);
 	return state;
 }
 
-/*
- Function: Gets the node address in the module.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
 uint8_t SX1278::getNodeAddress()
 {
-	byte st0 = 0;
-	uint8_t state = 2;
-
-	Serial.println(F("Starting 'getNodeAddress'"));
-
-	if (_modem == LORA) {
-		// node address is stored in _nodeAddress attribute
-		state = 0;
-	} else {
-		st0 = readRegister(REG_OP_MODE);  // Save the previous status
-		// Allowing access to FSK registers while in LoRa standby mode
-		writeRegister(REG_OP_MODE, LORA_STANDBY_FSK_REGS_MODE);
-		_nodeAddress = readRegister(REG_NODE_ADRS);
-		writeRegister(REG_OP_MODE, st0);
-		state = 0;
-	}
-
-	Serial.print(F("## Node address configured is "));
-	Serial.print(_nodeAddress, DEC);
-	Serial.println(F(" ##"));
-	return state;
+	// node address is stored in _nodeAddress attribute
+	return 0;
 }
 
-/*
- Function: Sets the node address in the module.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-   state = -1 --> Forbidden command for this protocol
- Parameters:
-   addr: address value to set as node address.
-*/
+/* add<255  */
 int8_t SX1278::setNodeAddress(uint8_t addr)
 {
-	byte st0;
-	byte value;
-	uint8_t state = 2;
-
-	Serial.println(F("Starting 'setNodeAddress'"));
-
-	// check address value is within valid range
-	if (addr > 255) {
-		state = -1;
-		Serial.println(F("** Node address must be less than 255 **"));
-	} else {
-		// Saving node address
-		_nodeAddress = addr;
-		st0 = readRegister(REG_OP_MODE);  // Save the previous status
-
-		// in LoRa mode
-		state = 0;
-
-		if (_modem == LORA) {
-			// in LoRa mode, address is SW controlled
-			// set status to success
-			state = 0;
-		} else if (_modem == FSK) {
-			// Set FSK Standby mode to write in registers
-			writeRegister(REG_OP_MODE, FSK_STANDBY_MODE);
-
-			// Storing node and broadcast address
-			writeRegister(REG_NODE_ADRS, addr);
-			writeRegister(REG_BROADCAST_ADRS, BROADCAST_0);
-
-			value = readRegister(REG_NODE_ADRS);
-			writeRegister(REG_OP_MODE, st0);  // Getting back to previous status
-
-			if (value == _nodeAddress) {
-				state = 0;
-				Serial.print(F("## Node address "));
-				Serial.print(_nodeAddress, DEC);
-				Serial.println(F(" has been successfully set ##"));
-			} else {
-				state = 1;
-				Serial.println(F("There has been an error while setting address"));
-			}
-		}
-	}
+	_nodeAddress = addr;
+	// in LoRa mode, address is SW controlled
 	return state;
 }
 
-/*
- Function: Gets the SNR value in LoRa mode.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-   state = -1 --> Forbidden command for this protocol
-*/
+/* Gets the SNR value in LoRa mode */
 int8_t SX1278::getSNR()
 {  // getSNR exists only in LoRa mode
 	int8_t state = 2;
-	byte value;
+	uint8_t value;
 
 	Serial.println(F("Starting 'getSNR'"));
 
@@ -2276,7 +2071,7 @@ uint8_t SX1278::setRetries(uint8_t ret)
 uint8_t SX1278::getMaxCurrent()
 {
 	int8_t state = 2;
-	byte value;
+	uint8_t value;
 
 	Serial.println(F("Starting 'getMaxCurrent'"));
 
@@ -2320,7 +2115,7 @@ uint8_t SX1278::getMaxCurrent()
 int8_t SX1278::setMaxCurrent(uint8_t rate)
 {
 	int8_t state = 2;
-	byte st0;
+	uint8_t st0;
 
 	Serial.println(F("Starting 'setMaxCurrent'"));
 
@@ -2347,105 +2142,33 @@ int8_t SX1278::setMaxCurrent(uint8_t rate)
 	return state;
 }
 
-/*
- Function: Gets the content of different registers.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
 uint8_t SX1278::getRegs()
 {
-	int8_t state = 2;
-	uint8_t state_f = 2;
-
-	Serial.println(F("Starting 'getRegs'"));
-
-	state_f = 1;
 	state = getMode();  // Stores the BW, CR and SF.
-	if (state == 0) {
-		state = getPower();  // Stores the power.
-	} else {
-		state_f = 1;
-		Serial.println(F("** Error getting mode **"));
-	}
-	if (state == 0) {
-		state = getChannel();  // Stores the channel.
-	} else {
-		state_f = 1;
-		Serial.println(F("** Error getting power **"));
-	}
-	if (state == 0) {
-		state = getCRC();  // Stores the CRC configuration.
-	} else {
-		state_f = 1;
-		Serial.println(F("** Error getting channel **"));
-	}
-	if (state == 0) {
-		state = getHeader();  // Stores the header configuration.
-	} else {
-		state_f = 1;
-		Serial.println(F("** Error getting CRC **"));
-	}
-	if (state == 0) {
-		state = getPreambleLength();  // Stores the preamble length.
-	} else {
-		state_f = 1;
-		Serial.println(F("** Error getting header **"));
-	}
-	if (state == 0) {
-		state = getPayloadLength();  // Stores the payload length.
-	} else {
-		state_f = 1;
-		Serial.println(F("** Error getting preamble length **"));
-	}
-	if (state == 0) {
-		state = getNodeAddress();  // Stores the node address.
-	} else {
-		state_f = 1;
-		Serial.println(F("** Error getting payload length **"));
-	}
-	if (state == 0) {
-		state = getMaxCurrent();  // Stores the maximum current supply.
-	} else {
-		state_f = 1;
-		Serial.println(F("** Error getting node address **"));
-	}
-	if (state == 0) {
-		state_f = getTemp();  // Stores the module temperature.
-	} else {
-		state_f = 1;
-		Serial.println(F("** Error getting maximum current supply **"));
-	}
-	if (state_f != 0) {
-		Serial.println(F("** Error getting temperature **"));
-	}
-	return state_f;
+	state = getPower();  // Stores the power.
+	state = getChannel();  // Stores the channel.
+	state = getCRC();  // Stores the CRC configuration.
+	state = getHeader();  // Stores the header configuration.
+	state = getPreambleLength();  // Stores the preamble length.
+	state = getPayloadLength();  // Stores the payload length.
+	state = getNodeAddress();  // Stores the node address.
+	state = getMaxCurrent();  // Stores the maximum current supply.
+	state_f = getTemp();  // Stores the module temperature.
+	return 0;
 }
 
 /*
- Function: It truncs the payload length if it is greater than 0xFF.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
+ truncs the payload length if it is greater than 0xFF.
 */
 uint8_t SX1278::truncPayload(uint16_t length16)
 {
-	uint8_t state = 2;
-
-	state = 1;
-
-	Serial.println(F("Starting 'truncPayload'"));
-
 	if (length16 > MAX_PAYLOAD) {
 		_payloadlength = MAX_PAYLOAD;
 	} else {
 		_payloadlength = (length16 & 0xFF);
 	}
-	state = 0;
 
-	return state;
+	return 0;
 }
 
 /*
@@ -2536,7 +2259,7 @@ uint8_t SX1278::receive()
 	writeRegister(REG_LNA, 0x23);
 	writeRegister(REG_FIFO_ADDR_PTR, 0x00);
 	writeRegister(REG_SYMB_TIMEOUT_LSB, 0xFF);
-	writeRegister(REG_FIFO_RX_BYTE_ADDR, 0x00);
+	writeRegister(REG_FIFO_RX_uint8_t_ADDR, 0x00);
 
 	// Proceed depending on the protocol selected
 	if (_modem == LORA) {
@@ -2719,7 +2442,7 @@ uint8_t SX1278::receiveAll() { return receiveAll(MAX_TIMEOUT); }
 uint8_t SX1278::receiveAll(uint32_t wait)
 {
 	uint8_t state = 2;
-	byte config1;
+	uint8_t config1;
 
 	Serial.println(F("Starting 'receiveAll'"));
 
@@ -2760,8 +2483,8 @@ boolean SX1278::availableData() { return availableData(MAX_TIMEOUT); }
 */
 boolean SX1278::availableData(uint32_t wait)
 {
-	byte value;
-	byte header = 0;
+	uint8_t value;
+	uint8_t header = 0;
 	boolean forme = false;
 	unsigned long previous;
 
@@ -2911,7 +2634,7 @@ int8_t SX1278::getPacket(uint32_t wait)
 {
 	uint8_t state = 2;
 	uint8_t state_f = 2;
-	byte value = 0x00;
+	uint8_t value = 0x00;
 	unsigned long previous;
 	boolean p_received = false;
 
@@ -3114,49 +2837,16 @@ int8_t SX1278::setDestination(uint8_t dest)
 	return state;
 }
 
-/*
- Function: It sets the timeout according to the configured mode.
- Link: http://www.semtech.com/images/datasheet/sx1276.pdf
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
 uint8_t SX1278::setTimeout()
 {
-	uint8_t state = 2;
 	uint16_t delay;
 
-	Serial.println(F("Starting 'setTimeout'"));
+	delay = ((0.1 * _sendTime) + 1);
 
-	state = 1;
-	if (_modem == LORA) {
-		// calculate 'delay'
-		delay = ((0.1 * _sendTime) + 1);
+	float Tpacket = timeOnAir();
+	_sendTime = (uint16_t)Tpacket + (rand() % delay) + 1000;
 
-		float Tpacket = timeOnAir();
-		// calculate final send/receive timeout adding an offset and a random value
-		_sendTime = (uint16_t)Tpacket + (rand() % delay) + 1000;
-
-		Serial.print(F("Tsym (ms):"));
-		Serial.println(Tsym);
-		Serial.print(F("Tpreamble (ms):"));
-		Serial.println(Tpreamble);
-		Serial.print(F("payloadSymbNb:"));
-		Serial.println(payloadSymbNb);
-		Serial.print(F("Tpacket:"));
-		Serial.println(Tpacket);
-
-		state = 0;
-	} else {
-		_sendTime = MAX_TIMEOUT;
-		state = 0;
-	}
-
-	Serial.print(F("Timeout to send/receive is: "));
-	Serial.println(_sendTime, DEC);
-
-	return state;
+	return 0;
 }
 
 /*
@@ -3165,11 +2855,8 @@ uint8_t SX1278::setTimeout()
  Returns: Float that determines the time-on-air
 */
 float SX1278::timeOnAir() { return timeOnAir(_payloadlength); }
-/*
- Function: It gets the theoretical value of the time-on-air of the packet
- Link: http://www.semtech.com/images/datasheet/sx1276.pdf
- Returns: Float that determines the time-on-air
-*/
+
+/* It gets the theoretical value of the time-on-air of the packet */
 float SX1278::timeOnAir(uint16_t payloadlength)
 {
 	float BW;
@@ -3202,8 +2889,7 @@ float SX1278::timeOnAir(uint16_t payloadlength)
 	float Tsym = pow(2, SF) / (BW);       // ms
 	float Tpreamble = (8 + 4.25) * Tsym;  // ms
 	float argument1 = ceil((8.0 * PL - 4.0 * SF + 28.0 + 16.0 - 20.0 * H) /
-	                       (4.0 * (SF - 2.0 * DE))) *
-	                  (CR + 4.0);
+	                       (4.0 * (SF - 2.0 * DE))) * (CR + 4.0);
 	float argument2 = 0;
 	float payloadSymbNb = 8 + max(argument1, argument2);
 	float Tpayload = payloadSymbNb * Tsym;
@@ -3212,13 +2898,7 @@ float SX1278::timeOnAir(uint16_t payloadlength)
 	return Tpacket;
 }
 
-/*
- Function: It sets a char array payload packet in a packet struct.
- Returns:  Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
+/* It sets a char array payload packet in a packet struct */
 uint8_t SX1278::setPayload(char *payload)
 {
 	uint8_t state = 2;
@@ -3252,13 +2932,7 @@ uint8_t SX1278::setPayload(char *payload)
 	return state_f;
 }
 
-/*
- Function: It sets an uint8_t array payload packet in a packet struct.
- Returns:  Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
+/* It sets an uint8_t array payload packet in a packet struct */
 uint8_t SX1278::setPayload(uint8_t *payload)
 {
 	uint8_t state = 2;
@@ -3280,17 +2954,11 @@ uint8_t SX1278::setPayload(uint8_t *payload)
 	return state;
 }
 
-/*
- Function: It sets a packet struct in FIFO in order to send it.
- Returns:  Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
+/* It sets a packet struct in FIFO in order to send it */
 uint8_t SX1278::setPacket(uint8_t dest, char *payload)
 {
 	int8_t state = 2;
-	byte st0;
+	uint8_t st0;
 
 	Serial.println(F("Starting 'setPacket'"));
 
@@ -3350,17 +3018,11 @@ uint8_t SX1278::setPacket(uint8_t dest, char *payload)
 	return state;
 }
 
-/*
- Function: It sets a packet struct in FIFO in order to sent it.
- Returns:  Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
+/* It sets a packet struct in FIFO in order to sent it */
 uint8_t SX1278::setPacket(uint8_t dest, uint8_t *payload)
 {
 	int8_t state = 2;
-	byte st0;
+	uint8_t st0;
 
 	Serial.println(F("Starting 'setPacket'"));
 
@@ -3424,38 +3086,24 @@ uint8_t SX1278::setPacket(uint8_t dest, uint8_t *payload)
 	return state;
 }
 
-/*
- Function: Configures the module to transmit information.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
-uint8_t SX1278::sendWithMAXTimeout() { return sendWithTimeout(MAX_TIMEOUT); }
-/*
- Function: Configures the module to transmit information.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
+/* Configures the module to transmit information. */
+uint8_t SX1278::sendWithMAXTimeout() 
+{ 
+	return sendWithTimeout(MAX_TIMEOUT); 
+}
+
+/* Configures the module to transmit information */
 uint8_t SX1278::sendWithTimeout()
 {
 	setTimeout();
 	return sendWithTimeout(_sendTime);
 }
 
-/*
- Function: Configures the module to transmit information.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
+/* Configures the module to transmit information */
 uint8_t SX1278::sendWithTimeout(uint32_t wait)
 {
 	uint8_t state = 2;
-	byte value = 0x00;
+	uint8_t value = 0x00;
 	unsigned long previous;
 
 	Serial.println(F("Starting 'sendWithTimeout'"));
@@ -3508,38 +3156,20 @@ uint8_t SX1278::sendWithTimeout(uint32_t wait)
 	return state;
 }
 
-/*
- Function: Configures the module to transmit information.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
+/* Configures the module to transmit information */
 uint8_t SX1278::sendPacketMAXTimeout(uint8_t dest, char *payload)
 {
 	return sendPacketTimeout(dest, payload, MAX_TIMEOUT);
 }
 
-/*
- Function: Configures the module to transmit information.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
+/* Configures the module to transmit information */
 uint8_t SX1278::sendPacketMAXTimeout(uint8_t dest, uint8_t *payload,
                                      uint16_t length16)
 {
 	return sendPacketTimeout(dest, payload, length16, MAX_TIMEOUT);
 }
 
-/*
- Function: Configures the module to transmit information.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
+/* Configures the module to transmit information */
 uint8_t SX1278::sendPacketTimeout(uint8_t dest, char *payload)
 {
 	uint8_t state = 2;
@@ -3555,13 +3185,7 @@ uint8_t SX1278::sendPacketTimeout(uint8_t dest, char *payload)
 	return state;
 }
 
-/*
- Function: Configures the module to transmit information.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
+/* Configures the module to transmit information */
 uint8_t SX1278::sendPacketTimeout(uint8_t dest, uint8_t *payload,
                                   uint16_t length16)
 {
@@ -3583,13 +3207,7 @@ uint8_t SX1278::sendPacketTimeout(uint8_t dest, uint8_t *payload,
 	return state_f;
 }
 
-/*
- Function: Configures the module to transmit information.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
+/* Configures the module to transmit information */
 uint8_t SX1278::sendPacketTimeout(uint8_t dest, char *payload, uint32_t wait)
 {
 	uint8_t state = 2;
@@ -3603,13 +3221,7 @@ uint8_t SX1278::sendPacketTimeout(uint8_t dest, char *payload, uint32_t wait)
 	return state;
 }
 
-/*
- Function: Configures the module to transmit information.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
+/* Configures the module to transmit information.*/
 uint8_t SX1278::sendPacketTimeout(uint8_t dest, uint8_t *payload,
                                   uint16_t length16, uint32_t wait)
 {
@@ -3842,7 +3454,7 @@ uint8_t SX1278::getACK() { return getACK(MAX_TIMEOUT); }
 uint8_t SX1278::getACK(uint32_t wait)
 {
 	uint8_t state = 2;
-	byte value = 0x00;
+	uint8_t value = 0x00;
 	unsigned long previous;
 	boolean a_received = false;
 
@@ -3941,12 +3553,7 @@ uint8_t SX1278::getACK(uint32_t wait)
 }
 
 /*
- Function: Configures the module to transmit information with retries in case of
- error.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
+ Configures the module to transmit information with retries in case of error.
 */
 uint8_t SX1278::sendPacketMAXTimeoutACKRetries(uint8_t dest, char *payload)
 {
@@ -3954,12 +3561,7 @@ uint8_t SX1278::sendPacketMAXTimeoutACKRetries(uint8_t dest, char *payload)
 }
 
 /*
- Function: Configures the module to transmit information with retries in case of
- error.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
+ Configures the module to transmit information with retries in case of error
 */
 uint8_t SX1278::sendPacketMAXTimeoutACKRetries(uint8_t dest, uint8_t *payload,
                                                uint16_t length16)
@@ -4098,32 +3700,18 @@ uint8_t SX1278::sendPacketTimeoutACKRetries(uint8_t dest, uint8_t *payload,
 	return state;
 }
 
-/*
- Function: It gets the temperature from the measurement block module.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
 uint8_t SX1278::getTemp()
 {
-	byte st0;
-	uint8_t state = 2;
-
-	Serial.println(F("Starting 'getTemp'"));
-
-	st0 = readRegister(REG_OP_MODE);  // Save the previous status
-
-	if (_modem ==
-	    LORA) {  // Allowing access to FSK registers while in LoRa standby mode
+	uint8_t st0;
+	// Save the previous status
+	st0 = readRegister(REG_OP_MODE);  
+	// Allowing access to FSK registers while in LoRa standby mode
+	if (_modem == LORA) {  
 		writeRegister(REG_OP_MODE, LORA_STANDBY_FSK_REGS_MODE);
 	}
 
-	state = 1;
-	// Saving temperature value
 	_temp = readRegister(REG_TEMP);
-	if (_temp & 0x80)  // The SNR sign bit is 1
-	{
+	if (_temp & 0x80) {// The SNR sign bit is 1
 		// Invert and divide by 4
 		_temp = ((~_temp + 1) & 0xFF);
 	} else {
@@ -4131,32 +3719,22 @@ uint8_t SX1278::getTemp()
 		_temp = (_temp & 0xFF);
 	}
 
-	Serial.print(F("## Temperature is: "));
-	Serial.print(_temp);
-	Serial.println(F(" ##"));
-	Serial.println();
-
 	if (_modem == LORA) {
 		writeRegister(REG_OP_MODE, st0);  // Getting back to previous status
 	}
 
-	state = 0;
-	return state;
+	return 0;
 }
 
 /*
  Function: It prints the registers related to RX
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
 */
 void SX1278::showRxRegisters()
 {
 	Serial.println(F("\n--- Show RX register ---"));
 
 	// variable
-	byte reg;
+	uint8_t reg;
 
 	for (int i = 0x00; i < 0x80; i++) {
 		reg = readRegister(i);
@@ -4168,18 +3746,15 @@ void SX1278::showRxRegisters()
 		delay(100);
 	}
 
-	Serial.println(F("------------------------"));
 }
 
 /*
  Function: It sets the CAD mode to search Channel Activity Detection
  Returns: Integer that determines if there has been any error
-   state = true   --> Channel Activity Detected
-   state = false  --> Channel Activity NOT Detected
 */
 bool SX1278::cadDetected()
 {
-	byte val = 0;
+	uint8_t val = 0;
 
 	// get actual time
 	unsigned long time = millis();

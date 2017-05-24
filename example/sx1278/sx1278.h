@@ -1,40 +1,7 @@
-/*! \file SX1278.h
-    \brief Library for managing Semtech modules
-
-    Copyright (C) 2015 Wireless Open Source
-    http://wirelessopensource.com
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Lesser General Public License as published by
-    the Free Software Foundation, either version 2.1 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-
-    You should have received a copy of the GNU Lesser General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-    Version:		1.0
-    Design:			David Gascón
-    Implementation:	Covadonga Albiñana, Yuri Carmona
-    sx1278 adapting:		Pedro del Molino
-
- */
-
-/*! \def SX1278_h
-   \brief The library flag
-
-*/
+/* Library for managing Semtech modules */
 
 #ifndef SX1278_h
 #define SX1278_h
-
-/******************************************************************************
- * Includes
- ******************************************************************************/
 
 #include <Arduino.h>
 #include <SPI.h>
@@ -45,21 +12,14 @@
 #include <inttypes.h>
 #endif
 
-/******************************************************************************
- * Definitions & Declarations
- *****************************************************************************/
-
 #define SX1278_debug_mode 0
 
 #define SX1278_SS SS
 
-//! MACROS //
-#define bitRead(value, bit) (((value) >> (bit)) & 0x01)    // read a bit
-#define bitSet(value, bit) ((value) |= (1UL << (bit)))     // set bit to '1'
-#define bitClear(value, bit) ((value) &= ~(1UL << (bit)))  // set bit to '0'
+#define bitRead(value, bit) (((value) >> (bit)) & 0x01)
+#define bitSet(value, bit) ((value) |= (1UL << (bit)))
+#define bitClear(value, bit) ((value) &= ~(1UL << (bit)))
 
-//! REGISTERS //
-//							FSK	Commun	LORA
 #define REG_FIFO 0x00
 #define REG_OP_MODE 0x01
 #define REG_BITRATE_MSB 0x02
@@ -169,14 +129,13 @@
 #define REG_AGC_THRESH3 0x64
 #define REG_PLL 0x70
 
-// LPD433 (low power device 433 MHz) is a part of ITU region 1 ISM band
-/*!
-    From 433.050 MHz to 434.790 MHz: BW: 1.74 MHz
-    More info: https://en.wikipedia.org/wiki/LPD433
+/*
+ * LPD433 (low power device 433 MHz) is a part of ITU region 1 ISM band
+ * From 433.050 MHz to 434.790 MHz: BW: 1.74 MHz
+ * More info: https://en.wikipedia.org/wiki/LPD433
  */
 
-const uint32_t CH_DEFAULT =
-    0x6c8000;  // default channel, center frequency = 434.000MHz
+const uint32_t CH_DEFAULT = 0x6c8000;  // default channel, center frequency = 434.000MHz
 
 // FREQUENCY CHANNELS (BANDWIDTH 500KHz):
 const uint32_t CH_1_BW_500 = 0x6c5345;  // channel 1, bandwidth 500KHz, center
@@ -347,628 +306,216 @@ const uint8_t MAX_RETRIES = 5;
 const uint8_t CORRECT_PACKET = 0;
 const uint8_t INCORRECT_PACKET = 1;
 
-//! Structure :
-/*!
- */
 struct pack {
-	//! Structure Variable : Packet destination
-	/*!
-	*/
 	uint8_t dst;
-
-	//! Structure Variable : Packet source
-	/*!
-	*/
 	uint8_t src;
-
-	//! Structure Variable : Packet number
-	/*!
-	*/
-	uint8_t packnum;
-
-	//! Structure Variable : Packet length
-	/*!
-	*/
-	uint8_t length;
-
-	//! Structure Variable : Packet payload
-	/*!
-	*/
-	uint8_t data[MAX_PAYLOAD];
-
-	//! Structure Variable : Retry number
-	/*!
-	*/
+	uint8_t packnum;//Packet number
+	uint8_t length; //Packet length
+	uint8_t data[MAX_PAYLOAD];//Packet payload
 	uint8_t retry;
 };
 
-/******************************************************************************
- * Class
- ******************************************************************************/
-
-//! SX1278 Class
-/*!
-    SX1278 Class defines all the variables and functions used to manage
-    sx1278 modules.
- */
 class SX1278
 {
    public:
-	//! class constructor
-	/*!
-	\param void
-	\return void
-	 */
 	SX1278();
-
-	//! It puts the module ON
-	/*!
-	\param void
-	\return void
-	 */
 	uint8_t ON();
-
-	//! It puts the module OFF
-	/*!
-	\param void
-	\return void
-	 */
 	void OFF();
-
-	//! It reads an internal module register.
-	/*!
-	\param byte address : address register to read from.
-	\return the content of the register.
-	 */
 	byte readRegister(byte address);
-
-	//! It writes in an internal module register.
-	/*!
-	\param byte address : address register to write in.
-	\param byte data : value to write in the register.
-	 */
 	void writeRegister(byte address, byte data);
-
-	//! It clears the interruption flags.
-	/*!
-	\param void
-	\return void
-	 */
 	void clearFlags();
-
-	//! It sets the LoRa mode on.
-	/*!
-	It stores in global '_LORA' variable '1' when success
-	\return '0' on success, '1' otherwise
-	 */
 	uint8_t setLORA();
 
-	//! It sets the FSK mode on.
-	/*!
-	It stores in global '_FSK' variable '1' when success
-	\return '0' on success, '1' otherwise
-	 */
+	// It sets the FSK mode on.
 	uint8_t setFSK();
 
-	//! It gets the BW, SF and CR of the module.
-	/*!
-	It stores in global '_bandwidth' variable the BW
-	It stores in global '_codingRate' variable the CR
-	It stores in global '_spreadingFactor' variable the SF
-	\return '0' on success, '1' otherwise
-	 */
+	// It gets the BW, SF and CR of the module.
 	uint8_t getMode();
 
-	//! It sets the BW, SF and CR of the module.
-	/*!
-	It stores in global '_bandwidth' variable the BW
-	It stores in global '_codingRate' variable the CR
-	It stores in global '_spreadingFactor' variable the SF
-	\param uint8_t mode : there is a mode number to different values of
-	the	configured parameters with this function.
-	\return '0' on success, '1' otherwise
-	 */
+	// It sets the BW, SF and CR of the module.
 	int8_t setMode(uint8_t mode);
 
-	//! It gets the header mode configured.
-	/*!
-	It stores in global '_header' variable '0' when header is sent
-	(explicit header mode) or '1' when is not sent (implicit header
-	mode).
-	\return '0' on success, '1' otherwise
-	 */
+	// It gets the header mode configured.
 	uint8_t getHeader();
 
-	//! It sets explicit header mode.
-	/*!
-	It stores in global '_header' variable '1' when success
-	\return '0' on success, '1' otherwise
-	 */
+	// It sets explicit header mode.
 	int8_t setHeaderON();
 
-	//! It sets implicit header mode.
-	/*!
-	It stores in global '_header' variable '0' when success
-	\return '0' on success, '1' otherwise
-	 */
+	// It sets implicit header mode.
 	int8_t setHeaderOFF();
-
-	//! It gets the CRC configured.
-	/*!
-	It stores in global '_CRC' variable '1' enabling CRC generation on
-	payload, or '0' disabling the CRC.
-	\return '0' on success, '1' otherwise
-	 */
 	uint8_t getCRC();
-
-	//! It sets CRC on.
-	/*!
-	It stores in global '_CRC' variable '1' when success
-	\return '0' on success, '1' otherwise
-	 */
 	uint8_t setCRC_ON();
-
-	//! It sets CRC off.
-	/*!
-	It stores in global '_CRC' variable '0' when success
-	\return '0' on success, '1' otherwise
-	 */
 	uint8_t setCRC_OFF();
 
 	//! It is true if the SF selected exists.
-	/*!
-	\param uint8_t spr : spreading factor value to check.
-	\return 'true' on success, 'false' otherwise
-	 */
 	boolean isSF(uint8_t spr);
 
-	//! It gets the SF configured.
-	/*!
-	It stores in global '_spreadingFactor' variable the current value of SF
-	\return '0' on success, '1' otherwise
-	 */
 	int8_t getSF();
-
-	//! It sets the SF.
-	/*!
-	It stores in global '_spreadingFactor' variable the current value of SF
-	\param uint8_t spr : spreading factor value to set in the configuration.
-	\return '0' on success, '1' otherwise
-	 */
 	uint8_t setSF(uint8_t spr);
 
-	//! It is true if the BW selected exists.
-	/*!
-	\param uint16_t band : bandwidth value to check.
-	\return 'true' on success, 'false' otherwise
-	 */
 	boolean isBW(uint16_t band);
 
-	//! It gets the BW configured.
-	/*!
-	It stores in global '_bandwidth' variable the BW selected
-	in the configuration
-	\return '0' on success, '1' otherwise
-	 */
 	int8_t getBW();
 
-	//! It sets the BW.
-	/*!
-	It stores in global '_bandwidth' variable the BW selected
-	in the configuration
-	\param uint16_t band : bandwidth value to set in the configuration.
-	\return '0' on success, '1' otherwise
-	 */
+	// It sets the BW.
 	int8_t setBW(uint16_t band);
 
-	//! It is true if the CR selected exists.
-	/*!
-	\param uint8_t cod : the coding rate value to check.
-	\return 'true' on success, 'false' otherwise
-	 */
+	// It is true if the CR selected exists.
 	boolean isCR(uint8_t cod);
 
-	//! It gets the CR configured.
-	/*!
-	It stores in global '_codingRate' variable the CR selected
-	in the configuration
-	\return '0' on success, '1' otherwise
-	 */
+	// It gets the CR configured.
 	int8_t getCR();
 
-	//! It sets the CR.
-	/*!
-	It stores in global '_codingRate' variable the CR selected
-	in the configuration
-	\param uint8_t cod : coding rate value to set in the configuration.
-	\return '0' on success, '1' otherwise
-	 */
+	// It sets the CR.
 	int8_t setCR(uint8_t cod);
 
-	//! It is true if the channel selected exists.
-	/*!
-	\param uint32_t ch : frequency channel value to check.
-	\return 'true' on success, 'false' otherwise
-	 */
+	// It is true if the channel selected exists.
 	boolean isChannel(uint32_t ch);
 
-	//! It gets frequency channel the module is using.
-	/*!
-	It stores in global '_channel' variable the frequency channel
-	\return '0' on success, '1' otherwise
-	 */
+	// It gets frequency channel the module is using.
 	uint8_t getChannel();
 
-	//! It sets frequency channel the module is using.
-	/*!
-	It stores in global '_channel' variable the frequency channel
-	\param uint32_t ch : frequency channel value to set in the configuration.
-	\return '0' on success, '1' otherwise
-	 */
+	// It sets frequency channel the module is using.
 	int8_t setChannel(uint32_t ch);
 
-	//! It gets the output power of the signal.
-	/*!
-	It stores in global '_power' variable the output power of the signal
-	\return '0' on success, '1' otherwise
-	 */
+	// It gets the output power of the signal.
 	uint8_t getPower();
 
-	//! It sets the output power of the signal.
-	/*!
-	It stores in global '_power' variable the output power of the signal
-	\param char p : 'M', 'H' or 'L' if you want Maximum, High or Low
-	output power signal.
-	\return '0' on success, '1' otherwise
-	 */
+	// It sets the output power of the signal.
 	int8_t setPower(char p);
 
-	//! It sets the output power of the signal.
-	/*!
-	It stores in global '_power' variable the output power of the signal
-	\param uint8_t pow : value to set as output power.
-	\return '0' on success, '1' otherwise
-	 */
+	// It sets the output power of the signal.
 	int8_t setPowerNum(uint8_t pow);
 
-	//! It gets the preamble length configured.
-	/*!
-	It stores in global '_preamblelength' variable the preamble length
-	\return '0' on success, '1' otherwise
-	 */
+	// It gets the preamble length configured.
 	uint8_t getPreambleLength();
 
-	//! It sets the preamble length.
-	/*!
-	It stores in global '_preamblelength' variable the preamble length
-	\param uint16_t l : preamble length to set in the configuration.
-	\return '0' on success, '1' otherwise
-	 */
+	// It sets the preamble length.
 	uint8_t setPreambleLength(uint16_t l);
 
-	//! It gets the payload length of the last packet to send/receive.
-	/*!
-	It stores in global '_payloadlength' variable the payload length of
-	the last packet to send/receive.
-	\return '0' on success, '1' otherwise
-	 */
+	// It gets the payload length of the last packet to send/receive.
 	uint8_t getPayloadLength();
 
-	//! It sets the packet length to send/receive.
-	/*!
-	It stores in global '_payloadlength' variable the payload length of
-	the last packet to send/receive.
-	\return '0' on success, '1' otherwise
-	 */
+	// It sets the packet length to send/receive.
 	int8_t setPacketLength();
 
-	//! It sets the packet length to send/receive.
-	/*!
-	It stores in global '_payloadlength' variable the payload length of
-	the last packet to send/receive.
-	\param uint8_t l : payload length to set in the configuration.
-	\return '0' on success, '1' otherwise
-	 */
+	// It sets the packet length to send/receive.
 	int8_t setPacketLength(uint8_t l);
 
-	//! It gets the node address of the mote.
-	/*!
-	It stores in global '_nodeAddress' variable the node address
-	\return '0' on success, '1' otherwise
-	 */
+	// It gets the node address of the mote.
 	uint8_t getNodeAddress();
 
-	//! It sets the node address of the mote.
-	/*!
-	It stores in global '_nodeAddress' variable the node address
-	\param uint8_t addr : address value to set as node address.
-	\return '0' on success, '1' otherwise
-	 */
+	// It sets the node address of the mote.
 	int8_t setNodeAddress(uint8_t addr);
 
-	//! It gets the SNR of the latest received packet.
-	/*!
-	It stores in global '_SNR' variable the SNR
-	\return '0' on success, '1' otherwise
-	 */
+	// It gets the SNR of the latest received packet.
 	int8_t getSNR();
 
-	//! It gets the current value of RSSI.
-	/*!
-	It stores in global '_RSSI' variable the current value of RSSI
-	\return '0' on success, '1' otherwise
-	 */
+	// It gets the current value of RSSI.
 	uint8_t getRSSI();
 
-	//! It gets the RSSI of the latest received packet.
-	/*!
-	It stores in global '_RSSIpacket' variable the RSSI of the latest
-	packet received.
-	\return '0' on success, '1' otherwise
-	 */
+	// It gets the RSSI of the latest received packet.
 	int16_t getRSSIpacket();
-
-	//! It sets the total of retries when a packet is not correctly received.
-	/*!
-	It stores in global '_maxRetries' variable the number of retries.
-	\param uint8_t ret : number of retries.
-	\return '0' on success, '1' otherwise
-	 */
 	uint8_t setRetries(uint8_t ret);
-
-	//! It gets the maximum current supply by the module.
-	/*!
-	 *
-	\return '0' on success, '1' otherwise
-	 */
 	uint8_t getMaxCurrent();
-
-	//! It sets the maximum current supply by the module.
-	/*!
-	It stores in global '_maxCurrent' variable the maximum current supply.
-	\param uint8_t rate : maximum current supply.
-	\return '0' on success, '1' otherwise
-	 */
 	int8_t setMaxCurrent(uint8_t rate);
 
-	//! It gets the content of the main configuration registers.
-	/*!
-	It stores in global '_bandwidth' variable the BW.
-	It stores in global '_codingRate' variable the CR.
-	It stores in global '_spreadingFactor' variable the SF.
-	It stores in global '_power' variable the output power of the signal.
-	It stores in global '_channel' variable the frequency channel.
-	It stores in global '_CRC' variable '1' enabling CRC generation on
-	payload, or '0' disabling the CRC.
-	It stores in global '_header' variable '0' when header is sent
-	(explicit header mode) or '1' when is not sent (implicit header
-	mode).
-	It stores in global '_preamblelength' variable the preamble length.
-	It stores in global '_payloadlength' variable the payload length of
-	the last packet to send/receive.
-	It stores in global '_nodeAddress' variable the node address.
-	It stores in global '_temp' variable the module temperature.
-	\return '0' on success, '1' otherwise
-	 */
+	// It gets the content of the main configuration registers.
 	uint8_t getRegs();
 
-	//! It sets the maximum number of bytes from a frame that fit in a packet
-	//! structure.
-	/*!
+	// It sets the maximum number of bytes from a frame that fit in a packet
+	// structure.
+	/*
 	It stores in global '_payloadlength' variable the maximum number of bytes.
 	\param uint16_t length16 : total frame length.
 	\return '0' on success, '1' otherwise
 	 */
 	uint8_t truncPayload(uint16_t length16);
 
-	//! It writes an ACK in FIFO to send it.
-	/*!
-	 *
-	\return '0' on success, '1' otherwise
-	*/
+	// It writes an ACK in FIFO to send it.
 	uint8_t setACK();
 
-	//! It puts the module in reception mode.
-	/*!
-	 *
-	\return '0' on success, '1' otherwise
-	 */
+	// It puts the module in reception mode.
 	uint8_t receive();
 
-	//! It receives a packet before MAX_TIMEOUT.
-	/*!
-	 *
-	\return '0' on success, '1' otherwise
-	 */
+	// It receives a packet before MAX_TIMEOUT.
 	uint8_t receivePacketMAXTimeout();
 
-	//! It receives a packet before a timeout.
-	/*!
-	 *
-	\return '0' on success, '1' otherwise
-	 */
+	// It receives a packet before a timeout.
 	uint8_t receivePacketTimeout();
 
-	//! It receives a packet before a timeout.
-	/*!
-	\param uint32_t wait : time to wait to receive something.
-	\return '0' on success, '1' otherwise
-	 */
+	// It receives a packet before a timeout.
 	uint8_t receivePacketTimeout(uint32_t wait);
 
-	//! It receives a packet before MAX_TIMEOUT and reply with an ACK.
-	/*!
-	 *
-	\return '0' on success, '1' otherwise
-	 */
+	// It receives a packet before MAX_TIMEOUT and reply with an ACK.
 	uint8_t receivePacketMAXTimeoutACK();
 
-	//! It receives a packet before a timeout and reply with an ACK.
-	/*!
-	 *
-	\return '0' on success, '1' otherwise
-	 */
+	// It receives a packet before a timeout and reply with an ACK.
 	uint8_t receivePacketTimeoutACK();
 
-	//! It receives a packet before a timeout and reply with an ACK.
-	/*!
-	\param uint32_t wait : time to wait to receive something.
-	\return '0' on success, '1' otherwise
-	 */
+	// It receives a packet before a timeout and reply with an ACK.
 	uint8_t receivePacketTimeoutACK(uint32_t wait);
 
-	//! It puts the module in 'promiscuous' reception mode.
-	/*!
-	 *
-	\return '0' on success, '1' otherwise
-	 */
+	// It puts the module in 'promiscuous' reception mode.
 	uint8_t receiveAll();
 
-	//! It puts the module in 'promiscuous' reception mode with a timeout.
-	/*!
-	\param uint32_t wait : time to wait to receive something.
-	\return '0' on success, '1' otherwise
-	 */
+	// It puts the module in 'promiscuous' reception mode with a timeout.
 	uint8_t receiveAll(uint32_t wait);
 
-	//! It checks if there is an available packet and its destination.
-	/*!
-	 *
-	\return 'true' on success, 'false' otherwise
-	 */
+	// It checks if there is an available packet and its destination.
 	boolean availableData();
 
-	//! It checks if there is an available packet and its destination before a
-	//! timeout.
-	/*!
-	 *
-	\param uint32_t wait : time to wait while there is no a valid header
-	received.
-	\return 'true' on success, 'false' otherwise
-	 */
+	// It checks if there is an available packet and its destination before a
+	// timeout.
 	boolean availableData(uint32_t wait);
 
-	//! It writes a packet in FIFO in order to send it.
-	/*!
-	\param uint8_t dest : packet destination.
-	\param char *payload : packet payload.
-	\return '0' on success, '1' otherwise
-	*/
+	// It writes a packet in FIFO in order to send it.
 	uint8_t setPacket(uint8_t dest, char *payload);
 
-	//! It writes a packet in FIFO in order to send it.
-	/*!
-	\param uint8_t dest : packet destination.
-	\param uint8_t *payload: packet payload.
-	\return '0' on success, '1' otherwise
-	*/
+	// It writes a packet in FIFO in order to send it.
 	uint8_t setPacket(uint8_t dest, uint8_t *payload);
 
-	//! It reads a received packet from the FIFO, if it arrives before ending
-	//! MAX_TIMEOUT time.
-	/*!
-	 *
-	\return '0' on success, '1' otherwise
-	*/
+	// It reads a received packet from the FIFO, if it arrives before ending
+	// MAX_TIMEOUT time.
 	uint8_t getPacketMAXTimeout();
 
-	//! It reads a received packet from the FIFO, if it arrives before ending
-	//! '_sendTime' time.
-	/*!
-	 *
-	\return '0' on success, '1' otherwise
-	*/
+	// It reads a received packet from the FIFO, if it arrives before ending
+	// '_sendTime' time.
 	int8_t getPacket();
 
-	//! It receives and gets a packet from FIFO, if it arrives before ending
-	//! 'wait' time.
-	/*!
-	 *
-	\param uint32_t wait : time to wait while there is not a complete packet
-	received.
-	\return '0' on success, '1' otherwise
-	*/
+	// It receives and gets a packet from FIFO, if it arrives before ending
+	// 'wait' time.
 	int8_t getPacket(uint32_t wait);
 
-	//! It sends the packet stored in FIFO before ending MAX_TIMEOUT.
-	/*!
-	 *
-	\return '0' on success, '1' otherwise
-	*/
+	// It sends the packet stored in FIFO before ending MAX_TIMEOUT.
 	uint8_t sendWithMAXTimeout();
 
-	//! It sends the packet stored in FIFO before ending _sendTime time.
-	/*!
-	 *
-	\return '0' on success, '1' otherwise
-	*/
+	// It sends the packet stored in FIFO before ending _sendTime time.
 	uint8_t sendWithTimeout();
 
-	//! It tries to send the packet stored in FIFO before ending 'wait' time.
-	/*!
-	\param uint32_t wait : time to wait to send the packet.
-	\return '0' on success, '1' otherwise
-	*/
+	// It tries to send the packet stored in FIFO before ending 'wait' time.
 	uint8_t sendWithTimeout(uint32_t wait);
 
-	//! It tries to send the packet which payload is a parameter before ending
-	//! MAX_TIMEOUT.
-	/*!
-	\param uint8_t dest : packet destination.
-	\param char *payload : packet payload.
-	\return '0' on success, '1' otherwise
-	*/
+	// It tries to send the packet which payload is a parameter before ending
+	// MAX_TIMEOUT.
 	uint8_t sendPacketMAXTimeout(uint8_t dest, char *payload);
 
-	//! It tries to send the packet which payload is a parameter before ending
-	//! MAX_TIMEOUT.
-	/*!
-	\param uint8_t dest : packet destination.
-	\param uint8_t *payload : packet payload.
-	\param uint16_t length : payload buffer length.
-	\return '0' on success, '1' otherwise
-	*/
-	uint8_t sendPacketMAXTimeout(uint8_t dest, uint8_t *payload,
-	                             uint16_t length);
+	// It tries to send the packet which payload is a parameter before ending
+	// MAX_TIMEOUT.
+	uint8_t sendPacketMAXTimeout(uint8_t dest, uint8_t *payload, uint16_t length);
 
-	//! It sends the packet which payload is a parameter before ending
-	//! MAX_TIMEOUT.
-	/*!
-	\param uint8_t dest : packet destination.
-	\param char *payload : packet payload.
-	\return '0' on success, '1' otherwise
-	*/
+	// It sends the packet which payload is a parameter before ending
+	// MAX_TIMEOUT.
 	uint8_t sendPacketTimeout(uint8_t dest, char *payload);
 
-	//! It sends the packet which payload is a parameter before ending
-	//! MAX_TIMEOUT.
-	/*!
-	\param uint8_t dest : packet destination.
-	\param uint8_t *payload: packet payload.
-	\param uint16_t length : payload buffer length.
-	\return '0' on success, '1' otherwise
-	*/
+	// It sends the packet which payload is a parameter before ending
+	// MAX_TIMEOUT.
 	uint8_t sendPacketTimeout(uint8_t dest, uint8_t *payload, uint16_t length);
 
-	//! It sends the packet which payload is a parameter before ending 'wait'
-	//! time.
-	/*!
-	\param uint8_t dest : packet destination.
-	\param char *payload : packet payload.
-	\param uint32_t wait : time to wait.
-	\return '0' on success, '1' otherwise
-	*/
+	// It sends the packet which payload is a parameter before ending 'wait' time
 	uint8_t sendPacketTimeout(uint8_t dest, char *payload, uint32_t wait);
 
-	//! It sends the packet which payload is a parameter before ending 'wait'
-	//! time.
-	/*!
-	\param uint8_t dest : packet destination.
-	\param uint8_t *payload : packet payload.
-	\param uint16_t length : payload buffer length.
-	\param uint32_t wait : time to wait.
-	\return '0' on success, '1' otherwise
-	*/
+	// It sends the packet which payload is a parameter before ending 'wait' time
 	uint8_t sendPacketTimeout(uint8_t dest, uint8_t *payload, uint16_t length,
 	                          uint32_t wait);
 
@@ -1088,18 +635,10 @@ class SX1278
 	uint8_t sendPacketTimeoutACK(uint8_t dest, uint8_t *payload,
 	                             uint16_t length, uint32_t wait);
 
-	//! It sets the destination of a packet.
-	/*!
-	\param uint8_t dest : value to set as destination address.
-	\return '0' on success, '1' otherwise
-	 */
+	// It sets the destination of a packet.
 	int8_t setDestination(uint8_t dest);
 
-	//! It sets the waiting time to send a packet.
-	/*!
-	It stores in global '_sendTime' variable the time for each mode.
-	\return '0' on success, '1' otherwise
-	 */
+	// It sets the waiting time to send a packet.
 	uint8_t setTimeout();
 
 	//! It gets the theoretical value of the time-on-air of the packet
@@ -1110,39 +649,29 @@ class SX1278
 	float timeOnAir();
 	float timeOnAir(uint16_t payloadlength);
 
-	//! It sets the payload of the packet that is going to be sent.
-	/*!
-	\param char *payload : packet payload.
-	\return '0' on success, '1' otherwise
-	 */
+	// It sets the payload of the packet that is going to be sent.
 	uint8_t setPayload(char *payload);
 
-	//! It sets the payload of the packet that is going to be sent.
-	/*!
-	\param uint8_t payload: packet payload.
-	\return '0' on success, '1' otherwise
-	 */
+	// It sets the payload of the packet that is going to be sent.
 	uint8_t setPayload(uint8_t *payload);
 
-	//! If an ACK is received, it gets it and checks its content.
-	/*!
-	 *
-	\return '8'  --> The ACK lost
-	        '7'  --> The ACK destination incorrectly received
-	        '6'  --> The ACK source incorrectly received
-	        '5'  --> The ACK number incorrectly received
-	        '4'  --> The ACK length incorrectly received
-	        '3'  --> N-ACK received
-	        '2'  --> The ACK has not been received
-	        '1'  --> not used (reserved)
-	        '0'  --> The ACK has been received with no errors
+	// If an ACK is received, it gets it and checks its content.
+	/*
+	return '8'  --> The ACK lost
+	       '7'  --> The ACK destination incorrectly received
+	       '6'  --> The ACK source incorrectly received
+	       '5'  --> The ACK number incorrectly received
+	       '4'  --> The ACK length incorrectly received
+	       '3'  --> N-ACK received
+	       '2'  --> The ACK has not been received
+	       '1'  --> not used (reserved)
+	       '0'  --> The ACK has been received with no errors
 	*/
 	uint8_t getACK();
 
-	//! It receives and gets an ACK from FIFO, if it arrives before ending
-	//! 'wait' time.
-	/*!
-	 *
+	// It receives and gets an ACK from FIFO, if it arrives before ending
+	// 'wait' time.
+	/*
 	\param uint32_t wait : time to wait while there is no an ACK received.
 	\return '8'  --> The ACK lost
 	        '7'  --> The ACK destination incorrectly received
@@ -1156,18 +685,18 @@ class SX1278
 	*/
 	uint8_t getACK(uint32_t wait);
 
-	//! It sends a packet, waits to receive an ACK and updates the _retries
-	//! value, before ending MAX_TIMEOUT time.
-	/*!
+	// It sends a packet, waits to receive an ACK and updates the _retries
+	// value, before ending MAX_TIMEOUT time.
+	/*
 	\param uint8_t dest : packet destination.
 	\param char *payload : packet payload.
 	\return '0' on success, '1' otherwise
 	*/
 	uint8_t sendPacketMAXTimeoutACKRetries(uint8_t dest, char *payload);
 
-	//! It sends a packet, waits to receive an ACK and updates the _retries
-	//! value, before ending MAX_TIMEOUT time.
-	/*!
+	// It sends a packet, waits to receive an ACK and updates the _retries
+	// value, before ending MAX_TIMEOUT time.
+	/*
 	\param uint8_t dest : packet destination.
 	\param uint8_t *payload : packet payload.
 	\param uint16_t length : payload buffer length.
@@ -1176,18 +705,16 @@ class SX1278
 	uint8_t sendPacketMAXTimeoutACKRetries(uint8_t dest, uint8_t *payload,
 	                                       uint16_t length);
 
-	//! It sends a packet, waits to receive an ACK and updates the _retries
-	//! value
-	/*!
+	// It sends a packet, waits to receive an ACK and updates the _retries
+	/*
 	\param uint8_t dest : packet destination.
 	\param char *payload : packet payload.
 	\return '0' on success, '1' otherwise
 	*/
 	uint8_t sendPacketTimeoutACKRetries(uint8_t dest, char *payload);
 
-	//! It sends a packet, waits to receive an ACK and updates the _retries
-	//! value
-	/*!
+	// It sends a packet, waits to receive an ACK and updates the _retries
+	/*
 	\param uint8_t dest : packet destination.
 	\param uint8_t *payload : packet payload.
 	\param uint16_t length : payload buffer length.
@@ -1196,9 +723,9 @@ class SX1278
 	uint8_t sendPacketTimeoutACKRetries(uint8_t dest, uint8_t *payload,
 	                                    uint16_t length);
 
-	//! It sends a packet, waits to receive an ACK and updates the _retries
-	//! value, before ending 'wait' time.
-	/*!
+	// It sends a packet, waits to receive an ACK and updates the _retries
+	// value, before ending 'wait' time.
+	/*
 	\param uint8_t dest : packet destination.
 	\param char *payload : packet payload.
 	\param uint32_t wait : time to wait while trying to send the packet.
@@ -1207,9 +734,9 @@ class SX1278
 	uint8_t sendPacketTimeoutACKRetries(uint8_t dest, char *payload,
 	                                    uint32_t wait);
 
-	//! It sends a packet, waits to receive an ACK and updates the _retries
-	//! value, before ending 'wait' time.
-	/*!
+	// It sends a packet, waits to receive an ACK and updates the _retries
+	// value, before ending 'wait' time.
+	/*
 	\param uint8_t dest : packet destination.
 	\param uint8_t *payload : packet payload.
 	\param uint16_t length : payload buffer length.
@@ -1219,231 +746,106 @@ class SX1278
 	uint8_t sendPacketTimeoutACKRetries(uint8_t dest, uint8_t *payload,
 	                                    uint16_t length, uint32_t wait);
 
-	//! It gets the internal temperature of the module.
-	/*!
+	// It gets the internal temperature of the module.
+	/*
 	It stores in global '_temp' variable the module temperature.
 	\return '0' on success, '1' otherwise
 	*/
 	uint8_t getTemp();
 
-	//! It prints the registers related to RX via USB
-	/*!
-	 * \return void
-	*/
+	// It prints the registers related to RX via USB
 	void showRxRegisters();
 
-	//! It sets the RTC settings with Meshlium timestamp configuration
-	/*! This function sends a special Frame to Meshlium (Meshlium's address must
+	// It sets the RTC settings with Meshlium timestamp configuration
+	/* This function sends a special Frame to Meshlium (Meshlium's address must
 	 * be '1'), and then Meshlium returns an answer with the timestamp. This
 	 * function parses the info and sets the RTC Time and Date.
 	 * \return  'true' on cad detected, 'false' if not detected
 	*/
 	bool cadDetected();
 
-	/// Variables /////////////////////////////////////////////////////////////
-
-	//! Variable : SD state.
-	//!    st_SD = 00  --> SD_OFF
-	//!    st_SD = 01  --> SD_ON
-	/*!
-	*/
+	// SD state.
+	// st_SD = 00  --> SD_OFF
+	// st_SD = 01  --> SD_ON
 	uint8_t st_SD;
 
-	//! Variable : bandwidth configured in LoRa mode.
-	//!    bandwidth = 0000  --> BW = 7.8KHz
-	//!    bandwidth = 0001  --> BW = 10.4KHz
-	//!    bandwidth = 0010  --> BW = 15.6KHz
-	//!    bandwidth = 0011  --> BW = 20.8KHz
-	//!    bandwidth = 0100  --> BW = 31.2KHz
-	//!    bandwidth = 0101  --> BW = 41.7KHz
-	//!    bandwidth = 0110  --> BW = 62.5KHz
-	//!    bandwidth = 0111  --> BW = 125KHz
-	//!    bandwidth = 1000  --> BW = 250KHz
-	//!    bandwidth = 1001  --> BW = 500KHz
-	/*!
-	*/
+	//bandwidth configured in LoRa mode.
+	// bandwidth = 0000  --> BW = 7.8KHz
+	// bandwidth = 0001  --> BW = 10.4KHz
+	// bandwidth = 0010  --> BW = 15.6KHz
+	// bandwidth = 0011  --> BW = 20.8KHz
+	// bandwidth = 0100  --> BW = 31.2KHz
+	// bandwidth = 0101  --> BW = 41.7KHz
+	// bandwidth = 0110  --> BW = 62.5KHz
+	// bandwidth = 0111  --> BW = 125KHz
+	// bandwidth = 1000  --> BW = 250KHz
+	// bandwidth = 1001  --> BW = 500KHz
 	uint8_t _bandwidth;
 
-	//! Variable : coding rate configured in LoRa mode.
-	//!    codingRate = 001  --> CR = 4/5
-	//!    codingRate = 010  --> CR = 4/6
-	//!    codingRate = 011  --> CR = 4/7
-	//!    codingRate = 100  --> CR = 4/8
-	/*!
-	*/
+	// coding rate configured in LoRa mode.
+	//  codingRate = 001  --> CR = 4/5
+	//  codingRate = 010  --> CR = 4/6
+	//  codingRate = 011  --> CR = 4/7
+	//  codingRate = 100  --> CR = 4/8
 	uint8_t _codingRate;
 
-	//! Variable : spreading factor configured in LoRa mode.
-	//!    spreadingFactor = 6   --> SF = 6, 64 chips/symbol
-	//!    spreadingFactor = 7   --> SF = 7, 128 chips/symbol
-	//!    spreadingFactor = 8   --> SF = 8, 256 chips/symbol
-	//!    spreadingFactor = 9   --> SF = 9, 512 chips/symbol
-	//!    spreadingFactor = 10  --> SF = 10, 1024 chips/symbol
-	//!    spreadingFactor = 11  --> SF = 11, 2048 chips/symbol
-	//!    spreadingFactor = 12  --> SF = 12, 4096 chips/symbol
-	/*!
-	*/
+	// spreading factor configured in LoRa mode.
+	// spreadingFactor = 6   --> SF = 6, 64 chips/symbol
+	// spreadingFactor = 7   --> SF = 7, 128 chips/symbol
+	// spreadingFactor = 8   --> SF = 8, 256 chips/symbol
+	// spreadingFactor = 9   --> SF = 9, 512 chips/symbol
+	// spreadingFactor = 10  --> SF = 10, 1024 chips/symbol
+	// spreadingFactor = 11  --> SF = 11, 2048 chips/symbol
+	// spreadingFactor = 12  --> SF = 12, 4096 chips/symbol
 	uint8_t _spreadingFactor;
 
-	//! Variable : frequency channel.
-	//!    channel = 0x6b0000  --> CH = 1, 428MHz
-	//!    channel = 0x6b2000  --> CH = 2, 428.5MHz
-	//!    channel = 0x6b4000  --> CH = 3, 429MHz
-	//!    channel = 0x6b6000  --> CH = 4, 429.5MHz
-	//!    channel = 0x6b8000  --> CH = 5, 430MHz
-	//!    channel = 0x6ba000  --> CH = 6, 430.5MHz
-	//!    channel = 0x6bc000  --> CH = 7, 431MHz
-	//!    channel = 0x6be000  --> CH = 8, 431.5MHz
-	//!    channel = 0x6c0000  --> CH = 9, 432MHz
-	//!    channel = 0x6c2000  --> CH = 10, 432.5MHz
-	//!    channel = 0x6c4000  --> CH = 11, 433MHz
-	//!    channel = 0x6c6000  --> CH = 12, 433.5MHz
-	//!    channel = 0x6c8000  --> CH = 13, 434MHz
-	//!    channel = 0x6ca000  --> CH = 14, 434.5MHz
-	//!    channel = 0x6cc000  --> CH = 15, 435MHz
-	//!    channel = 0x6ce000  --> CH = 16, 435.5MHz
-	//!    channel = 0x6d0000  --> CH = 17, 436MHz
-	//!    channel = 0x6d2000  --> CH = 18, 436.5MHz
-	//!    channel = 0x6d4000  --> CH = 19, 437MHz
-	//!    channel = 0x6d6000  --> CH = 20, 437.5MHz
-	//!    channel = 0x6d8000  --> CH = 21, 438MHz
-	//!    channel = 0x6da000  --> CH = 22, 438.5MHz
-	//!    channel = 0x6dc000  --> CH = 23, 439MHz
-	//!    channel = 0x6de000  --> CH = 24, 439.5MHz
-	/*!
-	*/
+	// frequency channel.
+	// channel = 0x6b0000 --> CH = 1,  28MHz
+	// channel = 0x6b2000 --> CH = 2,  28.5MHz
+	// channel = 0x6b4000 --> CH = 3,  29MHz
+	// channel = 0x6b6000 --> CH = 4,  29.5MHz
+	// channel = 0x6b8000 --> CH = 5,  30MHz
+	// channel = 0x6ba000 --> CH = 6,  30.5MHz
+	// channel = 0x6bc000 --> CH = 7,  31MHz
+	// channel = 0x6be000 --> CH = 8,  31.5MHz
+	// channel = 0x6c0000 --> CH = 9,  32MHz
+	// channel = 0x6c2000 --> CH = 10, 432.5MHz
+	// channel = 0x6c4000 --> CH = 11, 433MHz
+	// channel = 0x6c6000 --> CH = 12, 433.5MHz
+	// channel = 0x6c8000 --> CH = 13, 434MHz
+	// channel = 0x6ca000 --> CH = 14, 434.5MHz
+	// channel = 0x6cc000 --> CH = 15, 435MHz
+	// channel = 0x6ce000 --> CH = 16, 435.5MHz
+	// channel = 0x6d0000 --> CH = 17, 436MHz
+	// channel = 0x6d2000 --> CH = 18, 436.5MHz
+	// channel = 0x6d4000 --> CH = 19, 437MHz
+	// channel = 0x6d6000 --> CH = 20, 437.5MHz
+	// channel = 0x6d8000 --> CH = 21, 438MHz
+	// channel = 0x6da000 --> CH = 22, 438.5MHz
+	// channel = 0x6dc000 --> CH = 23, 439MHz
+	// channel = 0x6de000 --> CH = 24, 439.5MHz
 	uint32_t _channel;
-
-	//! Variable : output power.
-	//!
-	/*!
-	*/
 	uint8_t _power;
-
-	//! Variable : SNR from the last packet received in LoRa mode.
-	//!
-	/*!
-	*/
 	int8_t _SNR;
-
-	//! Variable : RSSI current value.
-	//!
-	/*!
-	*/
 	int8_t _RSSI;
-
-	//! Variable : RSSI from the last packet received in LoRa mode.
-	//!
-	/*!
-	*/
 	int16_t _RSSIpacket;
-
-	//! Variable : preamble length sent/received.
-	//!
-	/*!
-	*/
 	uint16_t _preamblelength;
-
-	//! Variable : payload length sent/received.
-	//!
-	/*!
-	*/
 	uint16_t _payloadlength;
-
-	//! Variable : node address.
-	//!
-	/*!
-	*/
 	uint8_t _nodeAddress;
-
-	//! Variable : implicit or explicit header in LoRa mode.
-	//!
-	/*!
-	*/
 	uint8_t _header;
-
-	//! Variable : header received while waiting a packet to arrive.
-	//!
-	/*!
-	*/
-	uint8_t _hreceived;
-
-	//! Variable : presence or absence of CRC calculation.
-	//!
-	/*!
-	*/
+	uint8_t _hreceived;//header received while waiting a packet to arrive.
 	uint8_t _CRC;
-
-	//! Variable : packet destination.
-	//!
-	/*!
-	*/
 	uint8_t _destination;
-
-	//! Variable : packet number.
-	//!
-	/*!
-	*/
 	uint8_t _packetNumber;
-
-	//! Variable : indicates if received packet is correct or incorrect.
-	//!
-	/*!
-	*/
 	uint8_t _reception;
-
-	//! Variable : number of current retry.
-	//!
-	/*!
-	*/
 	uint8_t _retries;
-
-	//! Variable : maximum number of retries.
-	//!
-	/*!
-	*/
 	uint8_t _maxRetries;
-
-	//! Variable : maximum current supply.
-	//!
-	/*!
-	*/
 	uint8_t _maxCurrent;
-
-	//! Variable : indicates FSK or LoRa modem.
-	//!
-	/*!
-	*/
-	uint8_t _modem;
-
-	//! Variable : array with all the information about a sent packet.
-	//!
-	/*!
-	*/
+	uint8_t _modem;// indicates FSK or LoRa modem.
 	pack packet_sent;
-
-	//! Variable : array with all the information about a received packet.
-	//!
-	/*!
-	*/
 	pack packet_received;
-
-	//! Variable : array with all the information about a sent/received ack.
-	//!
-	/*!
-	*/
 	pack ACK;
-
-	//! Variable : temperature module.
-	//!
-	/*!
-	*/
 	int _temp;
-
-	//! Variable : current timeout to send a packet.
-	//!
-	/*!
-	*/
 	uint16_t _sendTime;
 };
 
