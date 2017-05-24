@@ -69,6 +69,8 @@ RC: Release　Candidate
 
 Through-Hole 排针
 
+FTDI: Future Technology Devices International
+
 PCM: Pulse-code modulation
 LPCM: Linear pulse-code modulation
 
@@ -249,7 +251,6 @@ Sn63Pb37 被称为共晶焊锡，熔点183
 CSR: Cambridge Silicon Radio
 zigbee 802.15.4
 
-LDO : low dropout regulator
 
 WLCSP Wafer Level Chip Scale Packaging
 

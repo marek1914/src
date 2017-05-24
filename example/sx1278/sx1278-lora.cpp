@@ -56,9 +56,9 @@ void SX1278::OFF()
 	digitalWrite(SX1278_SS, LOW);
 }
 
-byte SX1278::readRegister(byte address)
+uint8_t SX1278::readRegister(uint8_t address)
 {
-	byte value = 0x00;
+	uint8_t value = 0x00;
 	digitalWrite(SX1278_SS, LOW);
 	delay(1);
 	bitClear(address, 7);
@@ -68,7 +68,7 @@ byte SX1278::readRegister(byte address)
 	return value;
 }
 
-void SX1278::writeRegister(byte address, byte data)
+void SX1278::writeRegister(uint8_t address, uint8_t data)
 {
 	digitalWrite(SX1278_SS, LOW);
 	delay(1);
@@ -81,7 +81,7 @@ void SX1278::writeRegister(byte address, byte data)
 /* Clears the interruption flags */
 void SX1278::clearFlags()
 {
-	byte st0;
+	uint8_t st0;
 
 	st0 = readRegister(REG_OP_MODE);
 
@@ -107,7 +107,7 @@ void SX1278::clearFlags()
 uint8_t SX1278::setLORA()
 {
 	uint8_t state = 2;
-	byte st0;
+	uint8_t st0;
 
 	Serial.println(F("Starting 'setLORA'"));
 
@@ -140,6 +140,47 @@ uint8_t SX1278::setLORA()
 }
 
 /*
+ Function: Sets the module in FSK mode.
+ Returns:   Integer that determines if there has been any error
+   state = 2  --> The command has not been executed
+   state = 1  --> There has been an error while executing the command
+   state = 0  --> The command has been executed with no errors
+*/
+uint8_t SX1278::setFSK()
+{
+	uint8_t state = 2;
+	uint8_t st0;
+	uint8_t config1;
+
+	Serial.println(F("Starting 'setFSK'"));
+
+	writeRegister(REG_OP_MODE, FSK_SLEEP_MODE); 
+	writeRegister(REG_OP_MODE, FSK_STANDBY_MODE);
+	config1 = readRegister(REG_PACKET_CONFIG1);
+	config1 = config1 & B01111101;  // clears bits 8 and 1 from REG_PACKET_CONFIG1
+	config1 = config1 | B00000100;  // sets bit 2 from REG_PACKET_CONFIG1
+	writeRegister(REG_PACKET_CONFIG1, config1);  // AddressFiltering = NodeAddress + BroadcastAddress
+	writeRegister(REG_FIFO_THRESH, 0x80);  // condition to start packet tx
+	config1 = readRegister(REG_SYNC_CONFIG);
+	config1 = config1 & B00111111;
+	writeRegister(REG_SYNC_CONFIG, config1);
+
+	// delay(100);
+
+	st0 = readRegister(REG_OP_MODE);
+	if (st0 == FSK_STANDBY_MODE) {
+		_modem = FSK;
+		state = 0;
+		Serial.println(F("## FSK set with success ##"));
+	} else {
+		_modem = LORA;
+		state = 1;
+		Serial.println(F("** There has been an error while setting FSK **"));
+	}
+	return state;
+}
+
+/*
  * Gets the bandwidth, coding rate, spreading factor
  * Returns: Integer that determines if there has been any error
  * state = 2  --> The command has not been executed
@@ -148,9 +189,9 @@ uint8_t SX1278::setLORA()
  */
 uint8_t SX1278::getMode()
 {
-	byte st0;
+	uint8_t st0;
 	int8_t state = 2;
-	byte value = 0x00;
+	uint8_t value = 0x00;
 
 	Serial.println(F("Starting 'getMode'"));
 
@@ -204,9 +245,9 @@ uint8_t SX1278::getMode()
 int8_t SX1278::setMode(uint8_t mode)
 {
 	int8_t state = 2;
-	byte st0;
-	byte config1 = 0x00;
-	byte config2 = 0x00;
+	uint8_t st0;
+	uint8_t config1 = 0x00;
+	uint8_t config2 = 0x00;
 
 	Serial.println(F("Starting 'setMode'"));
 
@@ -469,7 +510,7 @@ uint8_t SX1278::getHeader()
 int8_t SX1278::setHeaderON()
 {
 	int8_t state = 2;
-	byte config1;
+	uint8_t config1;
 
 	Serial.println(F("Starting 'setHeaderON'"));
 
@@ -514,7 +555,7 @@ int8_t SX1278::setHeaderON()
 int8_t SX1278::setHeaderOFF()
 {
 	uint8_t state = 2;
-	byte config1;
+	uint8_t config1;
 
 	Serial.println(F("Starting 'setHeaderOFF'"));
 
@@ -552,7 +593,7 @@ int8_t SX1278::setHeaderOFF()
 uint8_t SX1278::getCRC()
 {
 	int8_t state = 2;
-	byte value;
+	uint8_t value;
 
 	Serial.println(F("Starting 'getCRC'"));
 
@@ -598,7 +639,7 @@ uint8_t SX1278::getCRC()
 uint8_t SX1278::setCRC_ON()
 {
 	uint8_t state = 2;
-	byte config;
+	uint8_t config;
 
 	Serial.println(F("Starting 'setCRC_ON'"));
 
@@ -653,7 +694,7 @@ uint8_t SX1278::setCRC_ON()
 uint8_t SX1278::setCRC_OFF()
 {
 	int8_t state = 2;
-	byte config;
+	uint8_t config;
 
 	Serial.println(F("Starting 'setCRC_OFF'"));
 
@@ -731,7 +772,7 @@ boolean SX1278::isSF(uint8_t spr)
 int8_t SX1278::getSF()
 {
 	int8_t state = 2;
-	byte config2;
+	uint8_t config2;
 
 	Serial.println(F("Starting 'getSF'"));
 
@@ -765,10 +806,10 @@ int8_t SX1278::getSF()
 */
 uint8_t SX1278::setSF(uint8_t spr)
 {
-	byte st0;
+	uint8_t st0;
 	int8_t state = 2;
-	byte config2;
-	byte config3;
+	uint8_t config2;
+	uint8_t config3;
 
 	Serial.println(F("Starting 'setSF'"));
 
@@ -1006,7 +1047,7 @@ boolean SX1278::isBW(uint16_t band)
 int8_t SX1278::getBW()
 {
 	uint8_t state = 2;
-	byte config1;
+	uint8_t config1;
 
 	Serial.println(F("Starting 'getBW'"));
 
@@ -1042,10 +1083,10 @@ int8_t SX1278::getBW()
 */
 int8_t SX1278::setBW(uint16_t band)
 {
-	byte st0;
+	uint8_t st0;
 	int8_t state = 2;
-	byte config1;
-	byte config3;
+	uint8_t config1;
+	uint8_t config3;
 
 	Serial.println(F("Starting 'setBW'"));
 
@@ -1425,7 +1466,7 @@ boolean SX1278::isCR(uint8_t cod)
 int8_t SX1278::getCR()
 {
 	int8_t state = 2;
-	byte config1;
+	uint8_t config1;
 
 	Serial.println(F("Starting 'getCR'"));
 
@@ -1463,9 +1504,9 @@ int8_t SX1278::getCR()
 */
 int8_t SX1278::setCR(uint8_t cod)
 {
-	byte st0;
+	uint8_t st0;
 	int8_t state = 2;
-	byte config1;
+	uint8_t config1;
 
 	Serial.println(F("Starting 'setCR'"));
 
@@ -1637,7 +1678,7 @@ uint8_t SX1278::getChannel()
 */
 int8_t SX1278::setChannel(uint32_t ch)
 {
-	byte st0;
+	uint8_t st0;
 	int8_t state = 2;
 	unsigned int freq3;
 	unsigned int freq2;
@@ -1703,7 +1744,7 @@ int8_t SX1278::setChannel(uint32_t ch)
 uint8_t SX1278::getPower()
 {
 	uint8_t state = 2;
-	byte value = 0x00;
+	uint8_t value = 0x00;
 
 	Serial.println(F("Starting 'getPower'"));
 
@@ -1737,9 +1778,9 @@ uint8_t SX1278::getPower()
 */
 int8_t SX1278::setPower(char p)
 {
-	byte st0;
+	uint8_t st0;
 	int8_t state = 2;
-	byte value = 0x00;
+	uint8_t value = 0x00;
 
 	Serial.println(F("Starting 'setPower'"));
 
@@ -1798,9 +1839,9 @@ int8_t SX1278::setPower(char p)
 */
 int8_t SX1278::setPowerNum(uint8_t pow)
 {
-	byte st0;
+	uint8_t st0;
 	int8_t state = 2;
-	byte value = 0x00;
+	uint8_t value = 0x00;
 
 	Serial.println(F("Starting 'setPower'"));
 
@@ -1891,7 +1932,7 @@ uint8_t SX1278::getPreambleLength()
 */
 uint8_t SX1278::setPreambleLength(uint16_t l)
 {
-	byte st0;
+	uint8_t st0;
 	uint8_t p_length;
 	int8_t state = 2;
 
@@ -1983,8 +2024,8 @@ int8_t SX1278::setPacketLength()
 */
 int8_t SX1278::setPacketLength(uint8_t l)
 {
-	byte st0;
-	byte value = 0x00;
+	uint8_t st0;
+	uint8_t value = 0x00;
 	int8_t state = 2;
 
 	Serial.println(F("Starting 'setPacketLength'"));
@@ -2027,7 +2068,7 @@ int8_t SX1278::setPacketLength(uint8_t l)
 */
 uint8_t SX1278::getNodeAddress()
 {
-	byte st0 = 0;
+	uint8_t st0 = 0;
 	uint8_t state = 2;
 
 	Serial.println(F("Starting 'getNodeAddress'"));
@@ -2062,8 +2103,8 @@ uint8_t SX1278::getNodeAddress()
 */
 int8_t SX1278::setNodeAddress(uint8_t addr)
 {
-	byte st0;
-	byte value;
+	uint8_t st0;
+	uint8_t value;
 	uint8_t state = 2;
 
 	Serial.println(F("Starting 'setNodeAddress'"));
@@ -2120,7 +2161,7 @@ int8_t SX1278::setNodeAddress(uint8_t addr)
 int8_t SX1278::getSNR()
 {  // getSNR exists only in LoRa mode
 	int8_t state = 2;
-	byte value;
+	uint8_t value;
 
 	Serial.println(F("Starting 'getSNR'"));
 
@@ -2276,7 +2317,7 @@ uint8_t SX1278::setRetries(uint8_t ret)
 uint8_t SX1278::getMaxCurrent()
 {
 	int8_t state = 2;
-	byte value;
+	uint8_t value;
 
 	Serial.println(F("Starting 'getMaxCurrent'"));
 
@@ -2320,7 +2361,7 @@ uint8_t SX1278::getMaxCurrent()
 int8_t SX1278::setMaxCurrent(uint8_t rate)
 {
 	int8_t state = 2;
-	byte st0;
+	uint8_t st0;
 
 	Serial.println(F("Starting 'setMaxCurrent'"));
 
@@ -2536,7 +2577,7 @@ uint8_t SX1278::receive()
 	writeRegister(REG_LNA, 0x23);
 	writeRegister(REG_FIFO_ADDR_PTR, 0x00);
 	writeRegister(REG_SYMB_TIMEOUT_LSB, 0xFF);
-	writeRegister(REG_FIFO_RX_BYTE_ADDR, 0x00);
+	writeRegister(REG_FIFO_RX_uint8_t_ADDR, 0x00);
 
 	// Proceed depending on the protocol selected
 	if (_modem == LORA) {
@@ -2719,7 +2760,7 @@ uint8_t SX1278::receiveAll() { return receiveAll(MAX_TIMEOUT); }
 uint8_t SX1278::receiveAll(uint32_t wait)
 {
 	uint8_t state = 2;
-	byte config1;
+	uint8_t config1;
 
 	Serial.println(F("Starting 'receiveAll'"));
 
@@ -2760,8 +2801,8 @@ boolean SX1278::availableData() { return availableData(MAX_TIMEOUT); }
 */
 boolean SX1278::availableData(uint32_t wait)
 {
-	byte value;
-	byte header = 0;
+	uint8_t value;
+	uint8_t header = 0;
 	boolean forme = false;
 	unsigned long previous;
 
@@ -2911,7 +2952,7 @@ int8_t SX1278::getPacket(uint32_t wait)
 {
 	uint8_t state = 2;
 	uint8_t state_f = 2;
-	byte value = 0x00;
+	uint8_t value = 0x00;
 	unsigned long previous;
 	boolean p_received = false;
 
@@ -3290,7 +3331,7 @@ uint8_t SX1278::setPayload(uint8_t *payload)
 uint8_t SX1278::setPacket(uint8_t dest, char *payload)
 {
 	int8_t state = 2;
-	byte st0;
+	uint8_t st0;
 
 	Serial.println(F("Starting 'setPacket'"));
 
@@ -3360,7 +3401,7 @@ uint8_t SX1278::setPacket(uint8_t dest, char *payload)
 uint8_t SX1278::setPacket(uint8_t dest, uint8_t *payload)
 {
 	int8_t state = 2;
-	byte st0;
+	uint8_t st0;
 
 	Serial.println(F("Starting 'setPacket'"));
 
@@ -3455,7 +3496,7 @@ uint8_t SX1278::sendWithTimeout()
 uint8_t SX1278::sendWithTimeout(uint32_t wait)
 {
 	uint8_t state = 2;
-	byte value = 0x00;
+	uint8_t value = 0x00;
 	unsigned long previous;
 
 	Serial.println(F("Starting 'sendWithTimeout'"));
@@ -3842,7 +3883,7 @@ uint8_t SX1278::getACK() { return getACK(MAX_TIMEOUT); }
 uint8_t SX1278::getACK(uint32_t wait)
 {
 	uint8_t state = 2;
-	byte value = 0x00;
+	uint8_t value = 0x00;
 	unsigned long previous;
 	boolean a_received = false;
 
@@ -4107,7 +4148,7 @@ uint8_t SX1278::sendPacketTimeoutACKRetries(uint8_t dest, uint8_t *payload,
 */
 uint8_t SX1278::getTemp()
 {
-	byte st0;
+	uint8_t st0;
 	uint8_t state = 2;
 
 	Serial.println(F("Starting 'getTemp'"));
@@ -4156,7 +4197,7 @@ void SX1278::showRxRegisters()
 	Serial.println(F("\n--- Show RX register ---"));
 
 	// variable
-	byte reg;
+	uint8_t reg;
 
 	for (int i = 0x00; i < 0x80; i++) {
 		reg = readRegister(i);
@@ -4179,7 +4220,7 @@ void SX1278::showRxRegisters()
 */
 bool SX1278::cadDetected()
 {
-	byte val = 0;
+	uint8_t val = 0;
 
 	// get actual time
 	unsigned long time = millis();

@@ -1,3 +1,5 @@
+DA14580
+
 线序有如函数参数序列
 BBG 4pin 2.0mm：
 RXD/TXD/3V3/GND
@@ -21,6 +23,12 @@ SCL/VCC/GND/SDA
 
 --stm32--
 openstm32.org gaojie:200w200w
+
+F429i-dis:
+u-boot 201701 编译成功
+st-flash write u-boot.bin 0x8000000
+debian下，st-link模拟串口是ttyACM0,mac下不认此串口
+U-boot运行成功，但不知道干啥了 呵呵
 
 sw4stm32的编译器(plugin/.../xx.tar.bz2)：
 arm-none-eabi-gcc --version
@@ -503,6 +511,8 @@ Polar SI9000 特性阻抗计算工具
 电磁波是电磁场运动形态
 蜿蜒倒F天线
 2.4G 波长12.5cm
+
+LPD433 (low power device 433.050-434.790)  bw: 1.74 MHz
 
 ITU-T:
 gaojie@cyclecentury.com:*2xxpy-

@@ -1,3 +1,7 @@
+major.h
+#define MMC_BLOCK_MAJOR	179
+#define LOOP_MAJOR		7
+
 vm :Virtual Memory
 
 发布时间：
@@ -552,9 +556,6 @@ http://www.kernel.org
 若kernel有修改并没有git commit,就会生成-dirty
 ./scripts/setlocalversion 有解释如下：出现 version 2.6.37-2.8+
 
-major.h
-#define MMC_BLOCK_MAJOR		179
-#define LOOP_MAJOR		7  /*loop 是什么设备*/
 
 .ko不能strip: module has no symbols(stripped?)
 

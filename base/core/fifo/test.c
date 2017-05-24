@@ -4,8 +4,8 @@
 
 int main(void)
 {
-	char s[] = "Hello IoT successful!";
-	char chr;
+	char s[] = "helloworldzhaojiajia";
+	char chr, chr1;
 	int i;
 
 	FifoBuffer *fifo = fifo_alloc(128);
@@ -15,9 +15,16 @@ int main(void)
 	fifo_generic_write(fifo, s, strlen(s), NULL);
 	printf("space is :%d size if %d\n", fifo_space(fifo), fifo_size(fifo));
 
-//	for (i = 0; i < 14; i++) {
-//		fifo_generic_read(fifo, &chr, 1, NULL);
-//		printf("%c\n", chr);
-//	}
+	for (i = 0; fifo_size(fifo)>0; i++) {
+		chr1 = 'S';
+		if (fifo_size(fifo)>2) {
+			fifo_generic_peek_at(fifo, &chr1, 2, 1, NULL);
+		}
+		fifo_generic_read(fifo, &chr, 1, NULL);
+		if (i>50) {
+			break;
+		}
+		printf("%c -- %c\n", chr, chr1);
+	}
 	return 0;
 }

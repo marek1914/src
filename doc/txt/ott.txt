@@ -1,5 +1,12 @@
 ===uc===
 sdk: vendor/mstar/mi
+git push origin V370R301-ShanXi:refs/for/V370R301-ShanXi
+
+logcat MiSysSrv:s DvbNative:s 过滤打印
+
+build/config/sapprft_mstar_common.config
+flash=4G
+DDR=1G
 
 ===hisi===
 V53R304
@@ -564,31 +571,9 @@ http://linux-sunxi.org/AXP209具体问题：
 更改device/.../libswa2.so 执行make_ota_package 能更新到img文件中吗？
 A20/m3华数播放的是ts流不是m3u8
 
-A20华数能用reboot recovery升级，但是.fex配置文件升不上去。
-## 系统升级
-
-	1) galaxy
-	build.prob ro.product.ota.host=x.x.x.x 配置升级服务器ip
-	http://111.1.56.50/hansun/update.zip
-	由com.example.serverupdata 这个apk负责
-
-## 硬件
-	Nanya NT5CB256M16CP 16bit  4Gb SDRAM   256M标称是16bit单位  2片共1GByte内存
-	TOSHIBA TC58TEG5DCJT 容量4GB
-	IP101GA 10/100自适应网络芯片，台湾ICPLUS(网络芯片生产商) 应该是个phy芯片
-	MiniSD卡槽旁边是电源控制用的MCU芯片：JL4605 pin4 3.3V，（51单片机，程序事先写好。2款遥控器主cpu兼容没问题，power也能兼容吗？）
-	lm1117 电源芯片
-	av线旁边是个音频芯片，汉辰和海克做的用的芯片不同
-	（8190是更新方案）
-	串口顺序 空 红 橙 酱
-	正常待机蓝灯亮，TF卡升级完灯灭。
-	控制指示灯有2处：主cpu（status led  PD16引脚）和 mcu pin8（Power-led）
-	BAT54C：肖特基二极管，是三脚双二极管，IR通过他一分为2，一个接到主cpu A13引脚，另一个接到MCU pin7
-	galaxy: setting中按home，不出现多个launcher的选择，只会回到自己的launcher。
-	phoenixcard sd卡工具百度上可以下载到，是个比较通用的工具
-
-## 目录精简
-1. device/softwinner/A20_B133/modules是lichee编译生成，无须提交
+1) galaxy
+build.prob ro.product.ota.host=x.x.x.x 配置升级服务器ip
+http://111.1.56.50/hansun/update.zip
 
 ## img 文件生成
 a20靠 lichee/tools/pack 脚本生成.img文件
@@ -744,37 +729,7 @@ M3百视通版本：
 修改了 ./amlogic/LibPlayer/amffmpeg/libavformat 目录
 file_list.h 和 file_list2.c  文件
 
-问题2：
-在华数上面的直播播放一会，卡着不动的问题，这次在百视通版本上复现
-
-M3 华数版本：
-问题1：
-点播的时候，播放一段时间，点击返回，退出，再次进入（继续播放，此时位置为1），等一段时间，
-暂停，然后继续播放，会从位置1重新播放！& “点击继续播放的时候，进度条是从开始位置加载的”
-
-7月10日 此问题百视通版没有，百视通应用层规避了此问题。华数解决此问题的代码在百视通上存在也没有问题，无影响。可是06/27 10:37 AM
-的邮件提到百视通版本也报有这个问题。
-需要修改2个文件： framework/base/media/libmediaplayerservice/
-AmlogicPlayer.cpp   MediaPlayerService.cpp
-
-开始的邮件说 2个文件各注掉部分代码：
-AmlogicPlayer.cpp:
-if(PropGetInt("ro.serialtype")==1) {
-if(tmp_pos > 0) {
-//后来小隆回复邮件说：下面这一句屏蔽掉，会出问题，不能屏蔽。
-//mPlay_ctl.t_pos = tmp_pos/1000.0;
-} 
-
-
 writeSysfs("/sys/class/gpio/mcu_standby_ctrl","2");
-
-提示升级,选择Y：
-init: Save ubootenv to /dev/mtd/mtd7 succeed!
-nftl release flush cache data: 0
-SysRq : Emergency Remount R/O
-Emergency Remount complete
-m3_nand_reboot_notifier 895 
-Restarting system with command 'recovery'.
 
 开机按电源按键，打印 Run recovery！
 在./board/amlogic/m3_mbox/m3_mbox.c 文件里
@@ -785,26 +740,10 @@ Restarting system with command 'recovery'.
 
 执行update_reboot还是 charging_reboot，现在竟然进不去recovery了。
 
-uboot修改mac地址：
-2 在uboot里面，板子上的待机按键不灵
-  上电，串口无打印，按待机键才有打印（板子或IR的待机按键）
-3 setenv ethaddr= 新mac
-  saveenv  提示擦除了spi flash，写了spi flash 但是重启后又恢复成了原来的mac了
-4 能够激活的mac应该是 00:16:FB:81:19:CF
-uboot使用的是：
-uboot/board/amlogic/m3_mbox 的配置目录
-
-测试升级：
-制作一个1.0.1版本程序用adb push 升级。启动进入“系统升级”，开始下载，提示是否升级，选择“是”
-这时候进入 SPI的 recovery ，（因为小机器人提示图片是 spi里面的，那么，这是如何做到的呢？
-因为）
+uboot修改mac地址 setenv ethaddr= 新mac
 
 百视通的设置程序是：
 amlogic/bestv/apk/SWSettings_chinamobile.apk
-
-本地播放反复进入花屏可能是因为切换了分辨率
-
-系统有2个recovery，一个是通过 spi.bin 写到spi flash里面的，一个是通过ota写到nand里的。
 
 开机logo显示：
 在device目录下面：aml_logo.bmp，替换了执行 make
