@@ -27,8 +27,6 @@ uint8_t SX1278::ON()
 {
 	uint8_t state = 2;
 
-	Serial.println(F("\nStarting 'ON'"));
-
 	// Powering the module
 	pinMode(SX1278_SS, OUTPUT);
 	digitalWrite(SX1278_SS, HIGH);
@@ -36,14 +34,8 @@ uint8_t SX1278::ON()
 	SPI.setBitOrder(MSBFIRST);
 	SPI.setClockDivider(SPI_CLOCK_DIV2);
 	SPI.setDataMode(SPI_MODE0);
-	state = setMaxCurrent(0x1B);
-
-	if (state == 0) {
-		Serial.println(F("## Setting ON with maximum current supply ##"));
-	} else {
-		return 1;
-	}
-	state = setLORA();
+	setMaxCurrent(0x1B);
+	setLORA();
 	return state;
 }
 
@@ -90,15 +82,11 @@ void SX1278::clearFlags()
 	writeRegister(REG_OP_MODE, st0);
 }
 
-/*
- Function: Sets the module in LoRa mode.
-*/
+/* Sets the module in LoRa mode */
 uint8_t SX1278::setLORA()
 {
 	uint8_t state = 2;
 	uint8_t st0;
-
-	Serial.println(F("Starting 'setLORA'"));
 
 	writeRegister(REG_OP_MODE, FSK_SLEEP_MODE);
 	writeRegister(REG_OP_MODE, LORA_SLEEP_MODE);
@@ -110,17 +98,11 @@ uint8_t SX1278::setLORA()
 	writeRegister(REG_MODEM_CONFIG2, 0x70);
 	writeRegister(REG_MODEM_CONFIG3, 0x00);
 
-	// delay(100);
-
 	st0 = readRegister(REG_OP_MODE);
 	if (st0 == LORA_STANDBY_MODE) {
 		_modem = LORA;
-		state = 0;
-		Serial.println(F("## LoRa set with success ##"));
 	} else {
 		_modem = FSK;
-		state = 1;
-		Serial.println(F("** There has been an error while setting LoRa **"));
 	}
 	return state;
 }
@@ -1957,9 +1939,6 @@ uint8_t SX1278::setRetries(uint8_t ret)
  Function: Gets the current supply limit of the power amplifier, protecting
  battery chemistries.
  Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
  Parameters:
    rate: value to compute the maximum current supply. Maximum current is
  45+5*'rate' [mA]
@@ -1994,48 +1973,27 @@ uint8_t SX1278::getMaxCurrent()
 }
 
 /*
- Function: Limits the current supply of the power amplifier, protecting battery
- chemistries.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-   state = -1 --> Forbidden parameter value for this function
- Parameters:
-   rate: value to compute the maximum current supply. Range: 0x00 to 0x1B. The
-   Maximum current is:
-    Imax = 45+5*OcpTrim [mA] 	if OcpTrim <= 15 (120 mA) /
-    Imax = -30+10*OcpTrim [mA] 	if 15 < OcpTrim <= 27 (130 to 240 mA)
-    Imax = 240mA 				for higher settings
+ Limits current of the power amplifier, protecting battery.
+   Maximum current:
+   Imax = 45+5*OcpTrim [mA] 	if OcpTrim <= 15 (120 mA) /
+   Imax = -30+10*OcpTrim [mA] 	if 15 < OcpTrim <= 27 (130 to 240 mA)
+   Imax = 240mA 				for higher settings
 */
 int8_t SX1278::setMaxCurrent(uint8_t rate)
 {
-	int8_t state = 2;
 	uint8_t st0;
 
-	Serial.println(F("Starting 'setMaxCurrent'"));
+	if (rate > 0x1B)
+		rate = 0x1B;
 
-	// Maximum rate value = 0x1B, because maximum current supply = 240 mA
-	if (rate > 0x1B) {
-		state = -1;
-		Serial.print(F("** Maximum current supply is 240 mA, "));
-		Serial.println(F("so maximum parameter value must be 27 (DEC) or 0x1B (HEX)"));
-	} else {
-		// Enable Over Current Protection
-		rate |= B00100000;
+	/* Enable Over Current Protection */
+	rate |= 0x20;
 
-		state = 1;
-		st0 = readRegister(REG_OP_MODE);
-		if (_modem == LORA) {
-			writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);
-		} else {
-			writeRegister(REG_OP_MODE, FSK_STANDBY_MODE);
-		}
-		writeRegister(REG_OCP, rate);
-		writeRegister(REG_OP_MODE, st0);
-		state = 0;
-	}
-	return state;
+	st0 = readRegister(REG_OP_MODE);
+	writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);
+	writeRegister(REG_OCP, rate);
+	writeRegister(REG_OP_MODE, st0);
+	return 0;
 }
 
 uint8_t SX1278::getRegs()
