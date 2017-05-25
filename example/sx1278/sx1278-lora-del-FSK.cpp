@@ -98,49 +98,8 @@ uint8_t SX1278::setLORA()
 	writeRegister(REG_MODEM_CONFIG2, 0x70);
 	writeRegister(REG_MODEM_CONFIG3, 0x00);
 
-	st0 = readRegister(REG_OP_MODE);
-	if (st0 == LORA_STANDBY_MODE) {
-		_modem = LORA;
-	} else {
-		_modem = FSK;
-	}
-	return state;
-}
+	_modem = LORA;
 
-/*
- Function: Sets the module in FSK mode.
-*/
-uint8_t SX1278::setFSK()
-{
-	uint8_t state = 2;
-	uint8_t st0;
-	uint8_t config1;
-
-	Serial.println(F("Starting 'setFSK'"));
-
-	writeRegister(REG_OP_MODE, FSK_SLEEP_MODE); 
-	writeRegister(REG_OP_MODE, FSK_STANDBY_MODE);
-	config1 = readRegister(REG_PACKET_CONFIG1);
-	config1 = config1 & B01111101;  // clears bits 8 and 1 from REG_PACKET_CONFIG1
-	config1 = config1 | B00000100;  // sets bit 2 from REG_PACKET_CONFIG1
-	writeRegister(REG_PACKET_CONFIG1, config1);  // AddressFiltering = NodeAddress + BroadcastAddress
-	writeRegister(REG_FIFO_THRESH, 0x80);  // condition to start packet tx
-	config1 = readRegister(REG_SYNC_CONFIG);
-	config1 = config1 & B00111111;
-	writeRegister(REG_SYNC_CONFIG, config1);
-
-	// delay(100);
-
-	st0 = readRegister(REG_OP_MODE);
-	if (st0 == FSK_STANDBY_MODE) {
-		_modem = FSK;
-		state = 0;
-		Serial.println(F("## FSK set with success ##"));
-	} else {
-		_modem = LORA;
-		state = 1;
-		Serial.println(F("** There has been an error while setting FSK **"));
-	}
 	return state;
 }
 
@@ -157,35 +116,12 @@ uint8_t SX1278::getMode()
 
 	st0 = readRegister(REG_OP_MODE);
 
-	if (_modem == FSK) {
-		setLORA();
-	}
 	value = readRegister(REG_MODEM_CONFIG1);
 	_bandwidth = (value >> 4);
 	_codingRate = (value >> 1) & 0x07;
 	value = readRegister(REG_MODEM_CONFIG2);
 	_spreadingFactor = (value >> 4) & 0x0F;
 	state = 1;
-
-	if (isBW(_bandwidth)) {
-		if (isCR(_codingRate)) {
-			if (isSF(_spreadingFactor)) {
-				state = 0;
-			}
-		}
-	}
-
-	Serial.println(F("## Parameters from configuration mode are:"));
-	Serial.print(F("Bandwidth: "));
-	Serial.print(_bandwidth, HEX);
-	Serial.println();
-	Serial.print(F("\t Coding Rate: "));
-	Serial.print(_codingRate, HEX);
-	Serial.println();
-	Serial.print(F("\t Spreading Factor: "));
-	Serial.print(_spreadingFactor, HEX);
-	Serial.println(F(" ##"));
-	Serial.println();
 
 	writeRegister(REG_OP_MODE, st0);  // Getting back to previous status
 	return state;
@@ -201,14 +137,7 @@ int8_t SX1278::setMode(uint8_t mode)
 	uint8_t config1 = 0x00;
 	uint8_t config2 = 0x00;
 
-	Serial.println(F("Starting 'setMode'"));
-
 	st0 = readRegister(REG_OP_MODE);  // Save the previous status
-
-	// 'setMode' function only can be called in LoRa mode
-	if (_modem == FSK) {
-		setLORA();
-	}
 
 	// LoRa standby mode
 	writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);
@@ -278,149 +207,17 @@ int8_t SX1278::setMode(uint8_t mode)
 			state = -1;  // The indicated mode doesn't exist
 	};
 
-	// Check proper register configuration
-	if (state == -1) {
-		Serial.print(F("** The indicated mode doesn't exist, "));
-		Serial.println(F("please select from 1 to 10 **"));
-	} else {
-		state = 1;
-		config1 = readRegister(REG_MODEM_CONFIG1);
-		switch (mode) {
-			// (config1 >> 4) ---> take out bits 7-4 from REG_MODEM_CONFIG1
-			// (=_bandwidth)
-			// ((config1 >> 1) & 0x07) ---> take out bits 3-1 from
-			// REG_MODEM_CONFIG1 (=_codingRate)
-			// (config2 >> 4) ---> take out bits 7-4 from REG_MODEM_CONFIG2
-			// (=_spreadingFactor)
-
-			// mode 1: BW = 125 KHz, CR = 4/5, SF = 12.
-			case 1:
-				if ((config1 >> 4) == BW_125 &&
-				    ((config1 >> 1) & 0x07) == CR_5) {
-					config2 = readRegister(REG_MODEM_CONFIG2);
-					if ((config2 >> 4) == SF_12) {
-						state = 0;
-					}
-				}
-				break;
-			// mode 2: BW = 250 KHz, CR = 4/5, SF = 12.
-			case 2:
-				if ((config1 >> 4) == BW_250 &&
-				    ((config1 >> 1) & 0x07) == CR_5) {
-					config2 = readRegister(REG_MODEM_CONFIG2);
-					if ((config2 >> 4) == SF_12) {
-						state = 0;
-					}
-				}
-				break;
-			// mode 3: BW = 125 KHz, CR = 4/5, SF = 10.
-			case 3:
-				if ((config1 >> 4) == BW_125 &&
-				    ((config1 >> 1) & 0x07) == CR_5) {
-					config2 = readRegister(REG_MODEM_CONFIG2);
-					if ((config2 >> 4) == SF_10) {
-						state = 0;
-					}
-				}
-				break;
-			// mode 4: BW = 500 KHz, CR = 4/5, SF = 12.
-			case 4:
-				if ((config1 >> 4) == BW_500 &&
-				    ((config1 >> 1) & 0x07) == CR_5) {
-					config2 = readRegister(REG_MODEM_CONFIG2);
-					if ((config2 >> 4) == SF_12) {
-						state = 0;
-					}
-				}
-				break;
-			// mode 5: BW = 250 KHz, CR = 4/5, SF = 10.
-			case 5:
-				if ((config1 >> 4) == BW_250 &&
-				    ((config1 >> 1) & 0x07) == CR_5) {
-					config2 = readRegister(REG_MODEM_CONFIG2);
-					if ((config2 >> 4) == SF_10) {
-						state = 0;
-					}
-				}
-				break;
-			// mode 6: BW = 500 KHz, CR = 4/5, SF = 11.
-			case 6:
-				if ((config1 >> 4) == BW_500 &&
-				    ((config1 >> 1) & 0x07) == CR_5) {
-					config2 = readRegister(REG_MODEM_CONFIG2);
-					if ((config2 >> 4) == SF_11) {
-						state = 0;
-					}
-				}
-				break;
-			// mode 7: BW = 250 KHz, CR = 4/5, SF = 9.
-			case 7:
-				if ((config1 >> 4) == BW_250 &&
-				    ((config1 >> 1) & 0x07) == CR_5) {
-					config2 = readRegister(REG_MODEM_CONFIG2);
-					if ((config2 >> 4) == SF_9) {
-						state = 0;
-					}
-				}
-				break;
-			// mode 8: BW = 500 KHz, CR = 4/5, SF = 9.
-			case 8:
-				if ((config1 >> 4) == BW_500 &&
-				    ((config1 >> 1) & 0x07) == CR_5) {
-					config2 = readRegister(REG_MODEM_CONFIG2);
-					if ((config2 >> 4) == SF_9) {
-						state = 0;
-					}
-				}
-				break;
-			// mode 9: BW = 500 KHz, CR = 4/5, SF = 8.
-			case 9:
-				if ((config1 >> 4) == BW_500 &&
-				    ((config1 >> 1) & 0x07) == CR_5) {
-					config2 = readRegister(REG_MODEM_CONFIG2);
-					if ((config2 >> 4) == SF_8) {
-						state = 0;
-					}
-				}
-				break;
-			// mode 10: BW = 500 KHz, CR = 4/5, SF = 7.
-			case 10:
-				if ((config1 >> 4) == BW_500 &&
-				    ((config1 >> 1) & 0x07) == CR_5) {
-					config2 = readRegister(REG_MODEM_CONFIG2);
-					if ((config2 >> 4) == SF_7) {
-						state = 0;
-					}
-				}
-				break;
-		}  // end switch
-	}
-
-	if (state == 0) {
-		Serial.print(F("## Mode "));
-		Serial.print(mode, DEC);
-		Serial.println(F(" configured with success ##"));
-	} else {
-		Serial.print(F("** There has been an error while configuring mode "));
-		Serial.print(mode, DEC);
-		Serial.println(F(". **"));
-	}
-
 	// Getting back to previous status
 	writeRegister(REG_OP_MODE, st0);
 
 	return state;
 }
 
-/*
- * Indicates if module is configured in implicit or explicit header mode.
- */
+/* implicit or explicit header mode */
 
 uint8_t SX1278::getHeader()
 {
 	int8_t state = 2;
-
-	Serial.println(F("Starting 'getHeader'"));
 
 	// take out bit 2 from REG_MODEM_CONFIG1 indicates ImplicitHeaderModeOn
 	if (bitRead(REG_MODEM_CONFIG1, 0) == 0) {  // explicit header mode (ON)
@@ -432,56 +229,32 @@ uint8_t SX1278::getHeader()
 	}
 
 	state = 0;
-
-	if (_modem == FSK) {
-		Serial.println(F("## Notice that FSK mode packets hasn't header ##"));
-	} else {
-		Serial.print(F("## Header is "));
-		if (_header == HEADER_ON) {
-			Serial.println(F("in explicit header mode ##"));
-		} else {
-			Serial.println(F("in implicit header mode ##"));
-		}
-		Serial.println();
-	}
 	return state;
 }
 
-/*
- Function: Sets the module in explicit header mode (header is sent).
-*/
+/* Sets the module in explicit header mode (header is sent) */
 int8_t SX1278::setHeaderON()
 {
 	int8_t state = 2;
 	uint8_t config1;
 
-	Serial.println(F("Starting 'setHeaderON'"));
-
-	if (_modem == FSK) {
-		state = -1;  // header is not available in FSK mode
-		Serial.println(F("## FSK mode packets hasn't header ##"));
+	config1 = readRegister(REG_MODEM_CONFIG1);
+	if (_spreadingFactor == 6) {
+		state = -1;  // Mandatory headerOFF with SF = 6
+		Serial.println(
+			F("Mandatory implicit header mode with spreading factor = 6 "));
 	} else {
-		config1 = readRegister(
-		    REG_MODEM_CONFIG1);  // Save config1 to modify only the header bit
-		if (_spreadingFactor == 6) {
-			state = -1;  // Mandatory headerOFF with SF = 6
-			Serial.println(
-			    F("Mandatory implicit header mode with spreading factor = 6 "));
+		config1 = config1 & B11111110;
+		writeRegister(REG_MODEM_CONFIG1, config1);
+	}
+	if (_spreadingFactor != 6) {  // checking headerON taking out bit 2 from REG_MODEM_CONFIG1
+		config1 = readRegister(REG_MODEM_CONFIG1);
+		if (bitRead(config1, 0) == HEADER_ON) {
+			state = 0;
+			_header = HEADER_ON;
+			Serial.println(F("## Header has been activated ##"));
 		} else {
-			config1 =
-			    config1 & B11111110;  // clears bit 2 from config1 = headerON
-			writeRegister(REG_MODEM_CONFIG1, config1);  // Update config1
-		}
-		if (_spreadingFactor !=
-		    6) {  // checking headerON taking out bit 2 from REG_MODEM_CONFIG1
-			config1 = readRegister(REG_MODEM_CONFIG1);
-			if (bitRead(config1, 0) == HEADER_ON) {
-				state = 0;
-				_header = HEADER_ON;
-				Serial.println(F("## Header has been activated ##"));
-			} else {
-				state = 1;
-			}
+			state = 1;
 		}
 	}
 	return state;
@@ -524,72 +297,28 @@ int8_t SX1278::setHeaderOFF()
 /* Indicates if module is configured with or without checking CRC */
 uint8_t SX1278::getCRC()
 {
-	int8_t state = 2;
 	uint8_t value;
 
 	value = readRegister(REG_MODEM_CONFIG2);
 	if (bitRead(value, 2) == CRC_OFF) {  // CRCoff
 		_CRC = CRC_OFF;
-		Serial.println(F("## CRC is desactivated ##"));
-		state = 0;
 	} else {  // CRCon
 		_CRC = CRC_ON;
-		Serial.println(F("## CRC is activated ##"));
-		state = 0;
 	}
 
-	return state;
+	return 0;
 }
 
-/*
- Function: Sets the module with CRC on.
-*/
+/* Sets the module with CRC on */
 uint8_t SX1278::setCRC_ON()
 {
-	uint8_t state = 2;
 	uint8_t config;
 
-	Serial.println(F("Starting 'setCRC_ON'"));
+	config = readRegister(REG_MODEM_CONFIG2);
+	config = config | B00000100;
+	writeRegister(REG_MODEM_CONFIG2, config);
 
-	if (_modem == LORA) {  // LORA mode
-		config = readRegister(
-		    REG_MODEM_CONFIG2);  // Save config to modify only the CRC bit
-		config =
-		    config | B00000100;  // sets bit 2 from REG_MODEM_CONFIG2 = CRC_ON
-		writeRegister(REG_MODEM_CONFIG2, config);
-
-		state = 1;
-
-		config = readRegister(REG_MODEM_CONFIG2);
-		if (bitRead(config, 2) == CRC_ON) {  // take out bit 1 from
-		                                     // REG_MODEM_CONFIG2 indicates
-		                                     // RxPayloadCrcOn
-			state = 0;
-			_CRC = CRC_ON;
-			Serial.println(F("## CRC has been activated ##"));
-		}
-	} else {  // FSK mode
-		config = readRegister(
-		    REG_PACKET_CONFIG1);  // Save config to modify only the CRC bit
-		config =
-		    config | B00010000;  // set bit 4 from REG_PACKET_CONFIG1 = CRC_ON
-		writeRegister(REG_PACKET_CONFIG1, config);
-
-		state = 1;
-
-		config = readRegister(REG_PACKET_CONFIG1);
-		if (bitRead(config, 4) ==
-		    CRC_ON) {  // take out bit 4 from REG_PACKET_CONFIG1 indicates CrcOn
-			state = 0;
-			_CRC = CRC_ON;
-			Serial.println(F("## CRC has been activated ##"));
-		}
-	}
-	if (state != 0) {
-		state = 1;
-		Serial.println(F("** There has been an error while setting CRC ON **"));
-	}
-	return state;
+	return 0;
 }
 
 uint8_t SX1278::setCRC_OFF()
@@ -604,43 +333,7 @@ uint8_t SX1278::setCRC_OFF()
 	return state;
 }
 
-/*
- Function: Checks if SF is a valid value.
- Returns: Boolean that's 'true' if the SF value exists and
-          it's 'false' if the SF value does not exist.
- Parameters:
-   spr: spreading factor value to check.
-*/
-boolean SX1278::isSF(uint8_t spr)
-{
-	Serial.println(F("Starting 'isSF'"));
-
-	// Checking available values for _spreadingFactor
-	switch (spr) {
-		case SF_6:
-		case SF_7:
-		case SF_8:
-		case SF_9:
-		case SF_10:
-		case SF_11:
-		case SF_12:
-			return true;
-			break;
-
-		default:
-			return false;
-	}
-	Serial.println(F("## Finished 'isSF' ##"));
-}
-
-/*
- Function: Gets the SF within the module is configured.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-   state = -1 --> Forbidden command for this protocol
-*/
+/* Function: Gets the SF within the module is configured */
 int8_t SX1278::getSF()
 {
 	int8_t state = 2;
@@ -657,7 +350,7 @@ int8_t SX1278::getSF()
 		_spreadingFactor = config2;
 		state = 1;
 
-		if ((config2 == _spreadingFactor) && isSF(_spreadingFactor)) {
+		if (config2 == _spreadingFactor) {
 			state = 0;
 			Serial.print(F("## Spreading factor is "));
 			Serial.print(_spreadingFactor, HEX);
@@ -667,15 +360,7 @@ int8_t SX1278::getSF()
 	return state;
 }
 
-/*
- Function: Sets the indicated SF in the module.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
- Parameters:
-   spr: spreading factor value to set in LoRa modem configuration.
-*/
+/* Sets SF spr: spreading factor value to set in LoRa */
 uint8_t SX1278::setSF(uint8_t spr)
 {
 	uint8_t st0;
@@ -683,276 +368,105 @@ uint8_t SX1278::setSF(uint8_t spr)
 	uint8_t config2;
 	uint8_t config3;
 
-	Serial.println(F("Starting 'setSF'"));
-
 	st0 = readRegister(REG_OP_MODE);  // Save the previous status
 
-	if (_modem == FSK) {
-/// FSK mode
-		Serial.print(F("## Notice that FSK hasn't Spreading Factor parameter, "));
-		Serial.println(F("so you are configuring it in LoRa mode ##"));
-		state = setLORA();  // Setting LoRa mode
-	} else {
-		/// LoRa mode
-		// LoRa standby mode
-		writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);
+	// LoRa standby mode
+	writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);
 
-		// Read config2 to modify SF value (bits 7-4)
-		config2 = (readRegister(REG_MODEM_CONFIG2));
-		// Read config3 to modify only the LowDataRateOptimize
-		config3 = (readRegister(REG_MODEM_CONFIG3));
+	// Read config2 to modify SF value (bits 7-4)
+	config2 = readRegister(REG_MODEM_CONFIG2);
+	// Read config3 to modify only the LowDataRateOptimize
+	config3 = readRegister(REG_MODEM_CONFIG3);
 
-		switch (spr) {
-			case SF_6:
-				config2 =
-				    config2 &
-				    B01101111;  // clears bits 7 & 4 from REG_MODEM_CONFIG2
-				config2 = config2 |
-				          B01100000;  // sets bits 6 & 5 from REG_MODEM_CONFIG2
-				break;
-			case SF_7:
-				config2 = config2 &
-				          B01111111;  // clears bits 7 from REG_MODEM_CONFIG2
-				config2 = config2 | B01110000;  // sets bits 6, 5 & 4
-				break;
-
-			case SF_8:
-				config2 =
-				    config2 &
-				    B10001111;  // clears bits 6, 5 & 4 from REG_MODEM_CONFIG2
-				config2 =
-				    config2 | B10000000;  // sets bit 7 from REG_MODEM_CONFIG2
-				break;
-
-			case SF_9:
-				config2 =
-				    config2 &
-				    B10011111;  // clears bits 6, 5 & 4 from REG_MODEM_CONFIG2
-				config2 = config2 |
-				          B10010000;  // sets bits 7 & 4 from REG_MODEM_CONFIG2
-				break;
-
-			case SF_10:
-				config2 =
-				    config2 &
-				    B10101111;  // clears bits 6 & 4 from REG_MODEM_CONFIG2
-				config2 = config2 |
-				          B10100000;  // sets bits 7 & 5 from REG_MODEM_CONFIG2
-				break;
-
-			case SF_11:
-				config2 =
-				    config2 & B10111111;  // clears bit 6 from REG_MODEM_CONFIG2
-				config2 =
-				    config2 |
-				    B10110000;  // sets bits 7, 5 & 4 from REG_MODEM_CONFIG2
-				getBW();
-				if (_bandwidth == BW_125) {  // LowDataRateOptimize (Mandatory
-				                             // with SF_11 if BW_125)
-					config3 = config3 | B00001000;
-				}
-				break;
-
-			case SF_12:
-				config2 =
-				    config2 &
-				    B11001111;  // clears bits 5 & 4 from REG_MODEM_CONFIG2
-				config2 = config2 |
-				          B11000000;  // sets bits 7 & 6 from REG_MODEM_CONFIG2
-
-				getBW();
-				if (_bandwidth == BW_125) {  // LowDataRateOptimize (Mandatory
-				                             // with SF_12 if BW_125)
-					config3 = config3 | B00001000;
-				}
-				break;
-		}
-
-		// Check if it is neccesary to set special settings for SF=6
-		if (spr == SF_6) {
-			// Mandatory headerOFF with SF = 6 (Implicit mode)
-			setHeaderOFF();
-
-			// Set the bit field DetectionOptimize of
-			// register RegLoRaDetectOptimize to value "0b101".
-			writeRegister(REG_DETECT_OPTIMIZE, 0x05);
-
-			// Write 0x0C in the register RegDetectionThreshold.
-			writeRegister(REG_DETECTION_THRESHOLD, 0x0C);
-		} else {
-			// LoRa detection Optimize: 0x03 --> SF7 to SF12
-			writeRegister(REG_DETECT_OPTIMIZE, 0x03);
-
-			// LoRa detection threshold: 0x0A --> SF7 to SF12
-			writeRegister(REG_DETECTION_THRESHOLD, 0x0A);
-		}
-
-		// sets bit 1-0 of REG_MODEM_CONFIG2 (SymbTimout) and bit 2 of
-		// REG_MODEM_CONFIG3 (AgcAutoOn) for any SF value
-		config2 = config2 | B00000011;
-		config3 = config3 | B00000100;
-
-		// Update 'config2' and 'config3'
-		writeRegister(REG_MODEM_CONFIG2, config2);
-		writeRegister(REG_MODEM_CONFIG3, config3);
-
-		// Read 'config2' and 'config3' to check update
-		config2 = (readRegister(REG_MODEM_CONFIG2));
-		config3 = (readRegister(REG_MODEM_CONFIG3));
-
-		// (config2 >> 4) ---> take out bits 7-4 from REG_MODEM_CONFIG2
-		// (=_spreadingFactor)
-		// bitRead(config3, 3) ---> take out bits 1 from config3
-		// (=LowDataRateOptimize)
-		switch (spr) {
-			case SF_6:
-				if (((config2 >> 4) == spr) && (bitRead(config3, 2) == 1) &&
-				    (_header == HEADER_OFF)) {
-					state = 0;
-				}
-				break;
-			case SF_7:
-				if (((config2 >> 4) == 0x07) && (bitRead(config3, 2) == 1)) {
-					state = 0;
-				}
-				break;
-			case SF_8:
-				if (((config2 >> 4) == 0x08) && (bitRead(config3, 2) == 1)) {
-					state = 0;
-				}
-				break;
-			case SF_9:
-				if (((config2 >> 4) == 0x09) && (bitRead(config3, 2) == 1)) {
-					state = 0;
-				}
-				break;
-			case SF_10:
-				if (((config2 >> 4) == 0x0A) && (bitRead(config3, 2) == 1)) {
-					state = 0;
-				}
-				break;
-			case SF_11:
-				getBW();
-				if (((config2 >> 4) == 0x0B) && (bitRead(config3, 2) == 1) &&
-				    (_bandwidth != BW_125)) {
-					state = 0;
-				} else if ((_bandwidth == BW_125) &&
-				           (bitRead(config3, 3) == 1)) {
-					state = 0;
-				}
-				break;
-			case SF_12:
-				getBW();
-				if (((config2 >> 4) == 0x0C) && (bitRead(config3, 2) == 1) &&
-				    (_bandwidth != BW_125)) {
-					state = 0;
-				} else if ((_bandwidth == BW_125) &&
-				           (bitRead(config3, 3) == 1)) {
-					state = 0;
-				}
-				break;
-			default:
-				state = 1;
-		}
-	}
-
-	writeRegister(REG_OP_MODE, st0);  // Getting back to previous status
-
-	if (isSF(spr)) {  // Checking available value for _spreadingFactor
-		state = 0;
-		_spreadingFactor = spr;
-		Serial.print(F("## Spreading factor "));
-		Serial.print(_spreadingFactor, DEC);
-		Serial.println(F(" has been successfully set ##"));
-		Serial.println();
-	} else {
-		if (state != 0) {
-			Serial.print(
-			    F("** There has been an error while setting the spreading "
-			      "factor **"));
-			Serial.println();
-		}
-	}
-	return state;
-}
-
-/*
- Function: Checks if BW is a valid value.
- Returns: Boolean that's 'true' if the BW value exists and
-          it's 'false' if the BW value does not exist.
- Parameters:
-   band: bandwidth value to check.
-*/
-boolean SX1278::isBW(uint16_t band)
-{
-	Serial.println(F("Starting 'isBW'"));
-
-	// Checking available values for _bandwidth
-	switch (band) {
-		case BW_7_8:
-		case BW_10_4:
-		case BW_15_6:
-		case BW_20_8:
-		case BW_31_2:
-		case BW_41_7:
-		case BW_62_5:
-		case BW_125:
-		case BW_250:
-		case BW_500:
-			return true;
+	switch (spr) {
+		case SF_6:
+			config2 = config2 & B01101111;
+			config2 = config2 | B01100000;
+			break;
+		case SF_7:
+			config2 = config2 & B01111111;
+			config2 = config2 | B01110000;
 			break;
 
-		default:
-			return false;
+		case SF_8:
+			config2 = config2 & B10001111;
+			config2 = config2 | B10000000;
+			break;
+
+		case SF_9:
+			config2 = config2 & B10011111;
+			config2 = config2 | B10010000;
+			break;
+
+		case SF_10:
+			config2 = config2 & B10101111;
+			config2 = config2 | B10100000;
+			break;
+
+		case SF_11:
+			config2 = config2 & B10111111;
+			config2 = config2 | B10110000;
+			getBW();
+			if (_bandwidth == BW_125) {  // LowDataRateOptimize
+				config3 = config3 | B00001000;
+			}
+			break;
+
+		case SF_12:
+			config2 = config2 & B11001111;
+			config2 = config2 | B11000000;
+
+			getBW();
+			if (_bandwidth == BW_125) {  // LowDataRateOptimize
+				config3 = config3 | B00001000;
+			}
+			break;
 	}
-	Serial.println(F("## Finished 'isBW' ##"));
+
+	// Check if it is neccesary to set special settings for SF=6
+	if (spr == SF_6) {
+		// Mandatory headerOFF with SF = 6 (Implicit mode)
+		setHeaderOFF();
+
+		// Set the bit field DetectionOptimize of
+		// register RegLoRaDetectOptimize to value "0b101".
+		writeRegister(REG_DETECT_OPTIMIZE, 0x05);
+
+		// Write 0x0C in the register RegDetectionThreshold.
+		writeRegister(REG_DETECTION_THRESHOLD, 0x0C);
+	} else {
+		// LoRa detection Optimize: 0x03 --> SF7 to SF12
+		writeRegister(REG_DETECT_OPTIMIZE, 0x03);
+
+		// LoRa detection threshold: 0x0A --> SF7 to SF12
+		writeRegister(REG_DETECTION_THRESHOLD, 0x0A);
+	}
+
+	// sets bit 1-0 of REG_MODEM_CONFIG2 (SymbTimout) and bit 2 of
+	// REG_MODEM_CONFIG3 (AgcAutoOn) for any SF value
+	config2 = config2 | B00000011;
+	config3 = config3 | B00000100;
+
+	// Update 'config2' and 'config3'
+	writeRegister(REG_MODEM_CONFIG2, config2);
+	writeRegister(REG_MODEM_CONFIG3, config3);
+
+	writeRegister(REG_OP_MODE, st0);
+
+	return 0;
 }
 
-/*
- Function: Gets the BW within the module is configured.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-   state = -1 --> Forbidden command for this protocol
-*/
 int8_t SX1278::getBW()
 {
-	uint8_t state = 2;
 	uint8_t config1;
 
-	Serial.println(F("Starting 'getBW'"));
+	config1 = readRegister(REG_MODEM_CONFIG1) >> 4;
+	_bandwidth = config1;
 
-	if (_modem == FSK) {
-		state = -1;  // BW is not available in FSK mode
-		Serial.println(F("** FSK mode hasn't bandwidth **"));
-	} else {
-		// take out bits 7-4 from REG_MODEM_CONFIG1 indicates _bandwidth
-		config1 = (readRegister(REG_MODEM_CONFIG1)) >> 4;
-		_bandwidth = config1;
-
-		if ((config1 == _bandwidth) && isBW(_bandwidth)) {
-			state = 0;
-			Serial.print(F("## Bandwidth is "));
-			Serial.print(_bandwidth, HEX);
-			Serial.println(F(" ##"));
-		} else {
-			state = 1;
-			Serial.print(F("There has been an error while getting bandwidth"));
-		}
-	}
-	return state;
+	return 0;
 }
 
-/*
- Function: Sets the indicated BW in the module.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
- Parameters:
-   band: bandwith value to set in LoRa modem configuration.
-*/
+/* bandwith */
 int8_t SX1278::setBW(uint16_t band)
 {
 	uint8_t st0;
@@ -960,372 +474,119 @@ int8_t SX1278::setBW(uint16_t band)
 	uint8_t config1;
 	uint8_t config3;
 
-	Serial.println(F("Starting 'setBW'"));
-
 	st0 = readRegister(REG_OP_MODE);  // Save the previous status
 
-	if (_modem == FSK) {
-		Serial.print(F("## Notice that FSK hasn't Bandwidth parameter, "));
-		Serial.println(F("so you are configuring it in LoRa mode ##"));
-		state = setLORA();
-	}
 	writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);  // LoRa standby mode
-	config1 =
-	    (readRegister(REG_MODEM_CONFIG1));  // Save config1 to modify the BW
-	config3 = (readRegister(REG_MODEM_CONFIG3));  // Save config3 to modify the
-	                                              // Low Data Rate Optimization
+	config1 = readRegister(REG_MODEM_CONFIG1); 
+	config3 = readRegister(REG_MODEM_CONFIG3);
+
 	switch (band) {
 		case BW_7_8:
-			config1 =
-			    config1 & B00001111;  // clears bits 7-4 from REG_MODEM_CONFIG1
-			config1 =
-			    config1 | B00000000;  // sets bit 7-4 from REG_MODEM_CONFIG1
+			config1 = config1 & B00001111;
+			config1 = config1 | B00000000;
 			getSF();
-			if (_spreadingFactor ==
-			    11) {  // LowDataRateOptimize (Mandatory with BW_125 if SF_11)
-				config3 = config3 | B00001000;
+			if (_spreadingFactor == 11) {
+				config3 = config3 | B00001000; // why?  ugly!!!!
 			}
-			if (_spreadingFactor ==
-			    12) {  // LowDataRateOptimize (Mandatory with BW_125 if SF_12)
+			if (_spreadingFactor == 12) {
 				config3 = config3 | B00001000;
 			}
 			break;
 		case BW_10_4:
-			config1 =
-			    config1 & B00011111;  // clears bits 7-4 from REG_MODEM_CONFIG1
-			config1 =
-			    config1 | B00010000;  // sets bit 7-4 from REG_MODEM_CONFIG1
+			config1 = config1 & B00011111;
+			config1 = config1 | B00010000;
 			getSF();
-			if (_spreadingFactor ==
-			    11) {  // LowDataRateOptimize (Mandatory with BW_125 if SF_11)
+			if (_spreadingFactor == 11) {
 				config3 = config3 | B00001000;
 			}
-			if (_spreadingFactor ==
-			    12) {  // LowDataRateOptimize (Mandatory with BW_125 if SF_12)
+			if (_spreadingFactor == 12) {
 				config3 = config3 | B00001000;
 			}
 			break;
 		case BW_15_6:
-			config1 =
-			    config1 & B00101111;  // clears bits 7-4 from REG_MODEM_CONFIG1
-			config1 =
-			    config1 | B00100000;  // sets bit 7-4 from REG_MODEM_CONFIG1
+			config1 = config1 & B00101111;
+			config1 = config1 | B00100000;
 			getSF();
-			if (_spreadingFactor ==
-			    11) {  // LowDataRateOptimize (Mandatory with BW_125 if SF_11)
+			if (_spreadingFactor == 11) {
 				config3 = config3 | B00001000;
 			}
-			if (_spreadingFactor ==
-			    12) {  // LowDataRateOptimize (Mandatory with BW_125 if SF_12)
+			if (_spreadingFactor == 12) {
 				config3 = config3 | B00001000;
 			}
 			break;
 		case BW_20_8:
-			config1 =
-			    config1 & B00111111;  // clears bits 7-4 from REG_MODEM_CONFIG1
-			config1 =
-			    config1 | B00110000;  // sets bit 7-4 from REG_MODEM_CONFIG1
+			config1 = config1 & B00111111;
+			config1 = config1 | B00110000;
 			getSF();
-			if (_spreadingFactor ==
-			    11) {  // LowDataRateOptimize (Mandatory with BW_125 if SF_11)
+			if (_spreadingFactor == 11) {
 				config3 = config3 | B00001000;
 			}
-			if (_spreadingFactor ==
-			    12) {  // LowDataRateOptimize (Mandatory with BW_125 if SF_12)
+			if (_spreadingFactor == 12) {
 				config3 = config3 | B00001000;
 			}
 			break;
 		case BW_31_2:
-			config1 =
-			    config1 & B01001111;  // clears bits 7-4 from REG_MODEM_CONFIG1
-			config1 =
-			    config1 | B01000000;  // sets bit 7-4 from REG_MODEM_CONFIG1
+			config1 = config1 & B01001111;
+			config1 = config1 | B01000000;
 			getSF();
-			if (_spreadingFactor ==
-			    11) {  // LowDataRateOptimize (Mandatory with BW_125 if SF_11)
+			if (_spreadingFactor == 11) {
 				config3 = config3 | B00001000;
 			}
-			if (_spreadingFactor ==
-			    12) {  // LowDataRateOptimize (Mandatory with BW_125 if SF_12)
+			if (_spreadingFactor == 12) {
 				config3 = config3 | B00001000;
 			}
 			break;
 		case BW_41_7:
-			config1 =
-			    config1 & B01011111;  // clears bits 7-4 from REG_MODEM_CONFIG1
-			config1 =
-			    config1 | B01010000;  // sets bit 7-4 from REG_MODEM_CONFIG1
+			config1 = config1 & B01011111;
+			config1 = config1 | B01010000;
 			getSF();
-			if (_spreadingFactor ==
-			    11) {  // LowDataRateOptimize (Mandatory with BW_125 if SF_11)
+			if (_spreadingFactor == 11) {
 				config3 = config3 | B00001000;
 			}
-			if (_spreadingFactor ==
-			    12) {  // LowDataRateOptimize (Mandatory with BW_125 if SF_12)
+			if (_spreadingFactor == 12) {
 				config3 = config3 | B00001000;
 			}
 			break;
 		case BW_62_5:
-			config1 =
-			    config1 & B01101111;  // clears bits 7-4 from REG_MODEM_CONFIG1
-			config1 =
-			    config1 | B01100000;  // sets bit 7-4 from REG_MODEM_CONFIG1
+			config1 = config1 & B01101111;
+			config1 = config1 | B01100000;
 			getSF();
-			if (_spreadingFactor ==
-			    11) {  // LowDataRateOptimize (Mandatory with BW_125 if SF_11)
+			if (_spreadingFactor == 11) {
 				config3 = config3 | B00001000;
 			}
-			if (_spreadingFactor ==
-			    12) {  // LowDataRateOptimize (Mandatory with BW_125 if SF_12)
+			if (_spreadingFactor == 12) {
 				config3 = config3 | B00001000;
 			}
 			break;
 		case BW_125:
-			config1 =
-			    config1 & B01111111;  // clears bits 7-4 from REG_MODEM_CONFIG1
-			config1 =
-			    config1 | B01110000;  // sets bit 7-4 from REG_MODEM_CONFIG1
+			config1 = config1 & B01111111;
+			config1 = config1 | B01110000;
 			getSF();
-			if (_spreadingFactor ==
-			    11) {  // LowDataRateOptimize (Mandatory with BW_125 if SF_11)
+			if (_spreadingFactor == 11) {
 				config3 = config3 | B00001000;
 			}
-			if (_spreadingFactor ==
-			    12) {  // LowDataRateOptimize (Mandatory with BW_125 if SF_12)
+			if (_spreadingFactor == 12) {
 				config3 = config3 | B00001000;
 			}
 			break;
 		case BW_250:
-			config1 =
-			    config1 & B10001111;  // clears bit 7 from REG_MODEM_CONFIG1
-			config1 = config1 | B10000000;  // sets bit 6 from REG_MODEM_CONFIG1
+			config1 = config1 & B10001111;
+			config1 = config1 | B10000000;
 			break;
 		case BW_500:
-			config1 =
-			    config1 & B10011111;  // clears bit 6 from REG_MODEM_CONFIG1
-			config1 = config1 | B10010000;  // sets bit 7 from REG_MODEM_CONFIG1
+			config1 = config1 & B10011111;
+			config1 = config1 | B10010000;
 			break;
 	}
-	writeRegister(REG_MODEM_CONFIG1, config1);  // Update config1
-	writeRegister(REG_MODEM_CONFIG3, config3);  // Update config3
+	writeRegister(REG_MODEM_CONFIG1, config1);
+	writeRegister(REG_MODEM_CONFIG3, config3);
 
-	config1 = (readRegister(REG_MODEM_CONFIG1));
-	config3 = (readRegister(REG_MODEM_CONFIG3));
-	// (config1 >> 4) ---> take out bits 7-4 from REG_MODEM_CONFIG1
-	// (=_bandwidth)
-	switch (band) {
-		case BW_7_8:
-			if ((config1 >> 4) == BW_125) {
-				state = 0;
-				getSF();
-				if (_spreadingFactor == 11) {
-					if (bitRead(config3, 3) == 1) {  // LowDataRateOptimize
-						state = 0;
-					} else {
-						state = 1;
-					}
-				}
-				if (_spreadingFactor == 12) {
-					if (bitRead(config3, 3) == 1) {  // LowDataRateOptimize
-						state = 0;
-					} else {
-						state = 1;
-					}
-				}
-			}
-			break;
-		case BW_10_4:
-			if ((config1 >> 4) == BW_125) {
-				state = 0;
-				getSF();
-				if (_spreadingFactor == 11) {
-					if (bitRead(config3, 3) == 1) {  // LowDataRateOptimize
-						state = 0;
-					} else {
-						state = 1;
-					}
-				}
-				if (_spreadingFactor == 12) {
-					if (bitRead(config3, 3) == 1) {  // LowDataRateOptimize
-						state = 0;
-					} else {
-						state = 1;
-					}
-				}
-			}
-			break;
-		case BW_15_6:
-			if ((config1 >> 4) == BW_125) {
-				state = 0;
-				getSF();
-				if (_spreadingFactor == 11) {
-					if (bitRead(config3, 3) == 1) {  // LowDataRateOptimize
-						state = 0;
-					} else {
-						state = 1;
-					}
-				}
-				if (_spreadingFactor == 12) {
-					if (bitRead(config3, 3) == 1) {  // LowDataRateOptimize
-						state = 0;
-					} else {
-						state = 1;
-					}
-				}
-			}
-			break;
-		case BW_20_8:
-			if ((config1 >> 4) == BW_125) {
-				state = 0;
-				getSF();
-				if (_spreadingFactor == 11) {
-					if (bitRead(config3, 3) == 1) {  // LowDataRateOptimize
-						state = 0;
-					} else {
-						state = 1;
-					}
-				}
-				if (_spreadingFactor == 12) {
-					if (bitRead(config3, 3) == 1) {  // LowDataRateOptimize
-						state = 0;
-					} else {
-						state = 1;
-					}
-				}
-			}
-			break;
-		case BW_31_2:
-			if ((config1 >> 4) == BW_125) {
-				state = 0;
-				getSF();
-				if (_spreadingFactor == 11) {
-					if (bitRead(config3, 3) == 1) {  // LowDataRateOptimize
-						state = 0;
-					} else {
-						state = 1;
-					}
-				}
-				if (_spreadingFactor == 12) {
-					if (bitRead(config3, 3) == 1) {  // LowDataRateOptimize
-						state = 0;
-					} else {
-						state = 1;
-					}
-				}
-			}
-			break;
-		case BW_41_7:
-			if ((config1 >> 4) == BW_125) {
-				state = 0;
-				getSF();
-				if (_spreadingFactor == 11) {
-					if (bitRead(config3, 3) == 1) {  // LowDataRateOptimize
-						state = 0;
-					} else {
-						state = 1;
-					}
-				}
-				if (_spreadingFactor == 12) {
-					if (bitRead(config3, 3) == 1) {  // LowDataRateOptimize
-						state = 0;
-					} else {
-						state = 1;
-					}
-				}
-			}
-			break;
-		case BW_62_5:
-			if ((config1 >> 4) == BW_125) {
-				state = 0;
-				getSF();
-				if (_spreadingFactor == 11) {
-					if (bitRead(config3, 3) == 1) {  // LowDataRateOptimize
-						state = 0;
-					} else {
-						state = 1;
-					}
-				}
-				if (_spreadingFactor == 12) {
-					if (bitRead(config3, 3) == 1) {  // LowDataRateOptimize
-						state = 0;
-					} else {
-						state = 1;
-					}
-				}
-			}
-			break;
-		case BW_125:
-			if ((config1 >> 4) == BW_125) {
-				state = 0;
-				getSF();
-				if (_spreadingFactor == 11) {
-					if (bitRead(config3, 3) == 1) {  // LowDataRateOptimize
-						state = 0;
-					} else {
-						state = 1;
-					}
-				}
-				if (_spreadingFactor == 12) {
-					if (bitRead(config3, 3) == 1) {  // LowDataRateOptimize
-						state = 0;
-					} else {
-						state = 1;
-					}
-				}
-			}
-			break;
-		case BW_250:
-			if ((config1 >> 4) == BW_250) {
-				state = 0;
-			}
-			break;
-		case BW_500:
-			if ((config1 >> 4) == BW_500) {
-				state = 0;
-			}
-			break;
-	}
+	_bandwidth = band;
 
-	if (not isBW(band)) {
-		state = 1;
-		Serial.print(F("** Bandwidth "));
-		Serial.print(band, HEX);
-		Serial.println(F(" is not a correct value **"));
-	} else {
-		_bandwidth = band;
-		Serial.print(F("## Bandwidth "));
-		Serial.print(band, HEX);
-		Serial.println(F(" has been successfully set ##"));
-	}
 	writeRegister(REG_OP_MODE, st0);  // Getting back to previous status
 	return state;
 }
 
-/*
- Function: Checks if CR is a valid value.
- Returns: Boolean that's 'true' if the CR value exists and
-          it's 'false' if the CR value does not exist.
- Parameters:
-   cod: coding rate value to check.
-*/
-boolean SX1278::isCR(uint8_t cod)
-{
-	Serial.println(F("Starting 'isCR'"));
-
-	// Checking available values for _codingRate
-	switch (cod) {
-		case CR_5:
-		case CR_6:
-		case CR_7:
-		case CR_8:
-			return true;
-			break;
-
-		default:
-			return false;
-	}
-	Serial.println(F("## Finished 'isCR' ##"));
-}
 
 /*
  Function: Indicates the CR within the module is configured.
@@ -1354,7 +615,7 @@ int8_t SX1278::getCR()
 		_codingRate = config1;
 		state = 1;
 
-		if ((config1 == _codingRate) && isCR(_codingRate)) {
+		if (config1 == _codingRate) {
 			state = 0;
 			Serial.print(F("## Coding rate is "));
 			Serial.print(_codingRate, HEX);
@@ -1364,87 +625,39 @@ int8_t SX1278::getCR()
 	return state;
 }
 
-/*
- Function: Sets the indicated CR in the module.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-   state = -1 --> Forbidden command for this protocol
- Parameters:
-   cod: coding rate value to set in LoRa modem configuration.
-*/
+/* coding rate */
 int8_t SX1278::setCR(uint8_t cod)
 {
 	uint8_t st0;
 	int8_t state = 2;
 	uint8_t config1;
 
-	Serial.println(F("Starting 'setCR'"));
-
 	st0 = readRegister(REG_OP_MODE);  // Save the previous status
 
-	if (_modem == FSK) {
-		Serial.print(F("## Notice that FSK hasn't Coding Rate parameter, "));
-		Serial.println(F("so you are configuring it in LoRa mode ##"));
-		state = setLORA();
-	} else {
-		writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);
-		config1 = readRegister(REG_MODEM_CONFIG1);
-		switch (cod) {
-			case CR_5:
-				config1 = config1 & B11110011;
-				config1 = config1 | B00000010;
-				break;
-			case CR_6:
-				config1 = config1 & B11110101;
-				config1 = config1 | B00000100;
-				break;
-			case CR_7:
-				config1 = config1 & B11110111;
-				config1 = config1 | B00000110;
-				break;
-			case CR_8:
-				config1 = config1 & B11111001;
-				config1 = config1 | B00001000;
-				break;
-		}
-		writeRegister(REG_MODEM_CONFIG1, config1);  // Update config1
-
-		config1 = readRegister(REG_MODEM_CONFIG1);
-		// ((config1 >> 3) & B0000111) ---> take out bits 5-3 from
-		// REG_MODEM_CONFIG1 (=_codingRate)
-		switch (cod) {
-			case CR_5:
-				if (((config1 >> 1) & B0000111) == 0x01)
-					state = 0;
-				break;
-			case CR_6:
-				if (((config1 >> 1) & B0000111) == 0x02)
-					state = 0;
-				break;
-			case CR_7:
-				if (((config1 >> 1) & B0000111) == 0x03)
-					state = 0;
-				break;
-			case CR_8:
-				if (((config1 >> 1) & B0000111) == 0x04)
-					state = 0;
-				break;
-		}
+	writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);
+	config1 = readRegister(REG_MODEM_CONFIG1);
+	switch (cod) {
+		case CR_5:
+			config1 = config1 & B11110011;
+			config1 = config1 | B00000010;
+			break;
+		case CR_6:
+			config1 = config1 & B11110101;
+			config1 = config1 | B00000100;
+			break;
+		case CR_7:
+			config1 = config1 & B11110111;
+			config1 = config1 | B00000110;
+			break;
+		case CR_8:
+			config1 = config1 & B11111001;
+			config1 = config1 | B00001000;
+			break;
 	}
+	writeRegister(REG_MODEM_CONFIG1, config1);
 
-	if (isCR(cod)) {
-		_codingRate = cod;
-		Serial.print(F("## Coding Rate "));
-		Serial.print(cod, HEX);
-		Serial.println(F(" has been successfully set ##"));
-	} else {
-		state = 1;
-		Serial.println(
-		    F("** There has been an error while configuring Coding Rate "
-		      "parameter **"));
-	}
+	_codingRate = cod;
+
 	writeRegister(REG_OP_MODE, st0);
 	return state;
 }
@@ -1905,14 +1118,6 @@ int16_t SX1278::getRSSIpacket()
 	return state;
 }
 
-/*
- Function: It sets the maximum number of retries.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-   state = -1 -->
-*/
 uint8_t SX1278::setRetries(uint8_t ret)
 {
 	uint8_t state = 2;
@@ -2025,13 +1230,6 @@ uint8_t SX1278::truncPayload(uint16_t length16)
 	return 0;
 }
 
-/*
- Function: It sets an ACK in FIFO in order to send it.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
 uint8_t SX1278::setACK()
 {
 	uint8_t state = 2;
@@ -2092,13 +1290,6 @@ uint8_t SX1278::setACK()
 	return state;
 }
 
-/*
- Function: Configures the module to receive information.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-*/
 uint8_t SX1278::receive()
 {
 	uint8_t state = 1;
@@ -2136,10 +1327,6 @@ uint8_t SX1278::receive()
 
 /*
  Function: Configures the module to receive information.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
 */
 uint8_t SX1278::receivePacketMAXTimeout()
 {
@@ -2148,10 +1335,6 @@ uint8_t SX1278::receivePacketMAXTimeout()
 
 /*
  Function: Configures the module to receive information.
- Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
 */
 uint8_t SX1278::receivePacketTimeout()
 {
@@ -2162,9 +1345,6 @@ uint8_t SX1278::receivePacketTimeout()
 /*
  Function: Configures the module to receive information.
  Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
 */
 uint8_t SX1278::receivePacketTimeout(uint32_t wait)
 {
@@ -2194,9 +1374,6 @@ uint8_t SX1278::receivePacketTimeout(uint32_t wait)
 /*
  Function: Configures the module to receive information and send an ACK.
  Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
 */
 uint8_t SX1278::receivePacketMAXTimeoutACK()
 {
@@ -2206,9 +1383,6 @@ uint8_t SX1278::receivePacketMAXTimeoutACK()
 /*
  Function: Configures the module to receive information and send an ACK.
  Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
 */
 uint8_t SX1278::receivePacketTimeoutACK()
 {
@@ -2281,17 +1455,11 @@ uint8_t SX1278::receivePacketTimeoutACK(uint32_t wait)
  Function: Configures the module to receive all the information on air, before
  MAX_TIMEOUT expires.
  Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
 */
 uint8_t SX1278::receiveAll() { return receiveAll(MAX_TIMEOUT); }
 /*
  Function: Configures the module to receive all the information on air.
  Returns: Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
 */
 uint8_t SX1278::receiveAll(uint32_t wait)
 {
@@ -2349,16 +1517,29 @@ boolean SX1278::availableData(uint32_t wait)
 
 	previous = millis();
 
-	if (_modem == LORA) {
-		/// LoRa mode
+	// read REG_IRQ_FLAGS
+	value = readRegister(REG_IRQ_FLAGS);
+
+	// Wait to ValidHeader interrupt in REG_IRQ_FLAGS
+	while ((bitRead(value, 4) == 0) &&
+		   (millis() - previous < (unsigned long)wait)) {
 		// read REG_IRQ_FLAGS
 		value = readRegister(REG_IRQ_FLAGS);
 
-		// Wait to ValidHeader interrupt in REG_IRQ_FLAGS
-		while ((bitRead(value, 4) == 0) &&
-		       (millis() - previous < (unsigned long)wait)) {
-			// read REG_IRQ_FLAGS
-			value = readRegister(REG_IRQ_FLAGS);
+		// Condition to avoid an overflow (DO NOT REMOVE)
+		if (millis() < previous) {
+			previous = millis();
+		}
+	}
+
+	// Check if ValidHeader was received
+	if (bitRead(value, 4) == 1) {
+		Serial.println(F("## Valid Header received in LoRa mode ##"));
+		_hreceived = true;
+		while ((header == 0) &&
+			   (millis() - previous < (unsigned long)wait)) {
+			// Wait for the increment of the RX buffer pointer
+			header = readRegister(REG_FIFO_RX_BYTE_ADDR);
 
 			// Condition to avoid an overflow (DO NOT REMOVE)
 			if (millis() < previous) {
@@ -2366,53 +1547,14 @@ boolean SX1278::availableData(uint32_t wait)
 			}
 		}
 
-		// Check if ValidHeader was received
-		if (bitRead(value, 4) == 1) {
-			Serial.println(F("## Valid Header received in LoRa mode ##"));
-			_hreceived = true;
-			while ((header == 0) &&
-			       (millis() - previous < (unsigned long)wait)) {
-				// Wait for the increment of the RX buffer pointer
-				header = readRegister(REG_FIFO_RX_BYTE_ADDR);
-
-				// Condition to avoid an overflow (DO NOT REMOVE)
-				if (millis() < previous) {
-					previous = millis();
-				}
-			}
-
-			// If packet received: Read first byte of the received packet
-			if (header != 0) {
-				_destination = readRegister(REG_FIFO);
-			}
-		} else {
-			forme = false;
-			_hreceived = false;
-			Serial.println(F("** The timeout has expired **"));
+		// If packet received: Read first byte of the received packet
+		if (header != 0) {
+			_destination = readRegister(REG_FIFO);
 		}
 	} else {
-		/// FSK mode
-		// read REG_IRQ_FLAGS2
-		value = readRegister(REG_IRQ_FLAGS2);
-		// Wait to Payload Ready interrupt
-		while ((bitRead(value, 2) == 0) && (millis() - previous < wait)) {
-			value = readRegister(REG_IRQ_FLAGS2);
-			// Condition to avoid an overflow (DO NOT REMOVE)
-			if (millis() < previous) {
-				previous = millis();
-			}
-		}                            // end while (millis)
-		if (bitRead(value, 2) == 1)  // something received
-		{
-			_hreceived = true;
-			Serial.println(F("## Valid Preamble detected in FSK mode ##"));
-			// Reading first byte of the received packet
-			_destination = readRegister(REG_FIFO);
-		} else {
-			forme = false;
-			_hreceived = false;
-			Serial.println(F("** The timeout has expired **"));
-		}
+		forme = false;
+		_hreceived = false;
+		Serial.println(F("** The timeout has expired **"));
 	}
 
 	/* We use '_hreceived' because we need to ensure that '_destination' value
@@ -2459,30 +1601,15 @@ boolean SX1278::availableData(uint32_t wait)
 /*
  Function: It gets and stores a packet if it is received before MAX_TIMEOUT
  expires.
- Returns:  Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
 */
 uint8_t SX1278::getPacketMAXTimeout() { return getPacket(MAX_TIMEOUT); }
 /*
  Function: It gets and stores a packet if it is received.
- Returns:  Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
 */
 int8_t SX1278::getPacket() { return getPacket(MAX_TIMEOUT); }
 /*
  Function: It gets and stores a packet if it is received before ending 'wait'
  time.
- Returns:  Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
-   state = -1 --> Forbidden parameter value for this function
- Parameters:
-   wait: time to wait while there is no a valid header received.
 */
 int8_t SX1278::getPacket(uint32_t wait)
 {
@@ -2658,12 +1785,6 @@ int8_t SX1278::getPacket(uint32_t wait)
 
 /*
  Function: It sets the packet destination.
- Returns:  Integer that determines if there has been any error
-   state = 2  --> The command has not been executed
-   state = 1  --> There has been an error while executing the command
-   state = 0  --> The command has been executed with no errors
- Parameters:
-   dest: destination value of the packet sent.
 */
 int8_t SX1278::setDestination(uint8_t dest)
 {
