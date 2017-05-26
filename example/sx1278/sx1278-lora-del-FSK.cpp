@@ -324,8 +324,7 @@ uint8_t SX1278::setSF(uint8_t spr)
 
 	st0 = readRegister(REG_OP_MODE);
 	writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);
-
-	// Read config2 to modify SF value (bits 7-4)
+	/* 4-7 */
 	config2 = readRegister(REG_MODEM_CONFIG2);
 	// Read config3 to modify only the LowDataRateOptimize
 	config3 = readRegister(REG_MODEM_CONFIG3);
