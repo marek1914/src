@@ -740,7 +740,7 @@ download 目录有资料
 --TI--
 账户：13**67@qq.com : -2y50wpy-
 
-TI 收购 Chipcon(cc系列芯片)
+TI 收购 Chipcon(cc系列)
 
 TI narrowband solutions for over 100 km
 wireless_connectivity
@@ -758,7 +758,7 @@ CC1101 低于1GHz的射频收发器，仅射频发射，不是zigbee
 CC2520: 2.4 GHz ZigBee RF transceiver 收发器 相当于phy
 CC2530: 8051 core, no USB
 CC2531: 8051 core, Full Speed USB Device
-CC2533: 8051 core, no USB，比CC2530发射功率更大
+CC2533: 8051 core, no USB，比CC2530发射功率大
 
 CC2538: Cortex-M3 
 CC2630: Cortex-M3 
@@ -766,15 +766,15 @@ CC2592: Range Extender
 
 SMA天线
 
-CC Debuger : CC2511-F32  8051+usb+2.4G 这个2.4G貌似不是蓝牙，wifi啥的，就是2.4G
+CC Debuger : CC2511-F32  8051+usb+2.4G 这个2.4G貌似不是蓝牙/wifi，就是2.4G
 
 IAR Embedded Workbench for 8051
+IAR Embedded Workbench for ARM  (for STM32)
 SmartRF Flash Programmer
 SmartRF Studio
 
-IAR公司C编译器: IAR Embedded Workbench
+IAR C编译器
 
-IAR Embedded Workbench for ARM  可用于STM32
 CC2530+RFX2401C(PA:功率放大器 模块)，内置IPX连接器 
 
 LM4128-Q1 SOT-23 精密微功耗串联电压基准 

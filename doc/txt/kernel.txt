@@ -350,7 +350,7 @@ zImage生成：
 5 生成新的vmlinux:
 	arm-xx-ld head.o piggy.gzip.o misc.o ... decompress.o -o arch/arm/boot/compressed/vmlinux
 	piggy.gzip.o是Image压缩后的数据，其他.o是解码程序(解压代码来自gzip)
-6 arm-xx-objcopy -O binary -R .comment -S  arch/arm/boot/compressed/vmlinux arch/arm/boot/zImage (此文件显然不能用gzip程序解压)
+6 arm-xx-objcopy -O binary -R .comment -S  arch/arm/boot/compressed/vmlinux arch/arm/boot/zImage (此文件不能用gzip解压)
 
 vmlinux elf转bin，可用uboot go命令启动
 nxp  :arm-xx-objcopy -O binary -R .note.gnu.build-id -S vmlinux vmlinux.bin (同Image，不标准)

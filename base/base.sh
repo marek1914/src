@@ -13,7 +13,11 @@ parallel
 
 pkg-config #返回库路径版本号
 
+zip/unzip
+gzip/gunzip (gnu zip)
+
 gzip # -9 --fast -9 --best
+
 zip -Z store bootanimation.zip part*/* desc.txt  #store 不压缩 or -0
 
 # {} 任何不易出现字符, -I 包含 -L 1
