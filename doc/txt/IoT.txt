@@ -678,6 +678,8 @@ REG_MODEM_CONFIG1
 REG_MODEM_CONFIG2
 REG_MODEM_CONFIG3
 
+config3 bit3 低数据率优化 符号长度超过16ms  arduino版 
+SF为11|12 时，就设置优化bit
 -=-=-=-=-=-
 
 接收灵敏度
