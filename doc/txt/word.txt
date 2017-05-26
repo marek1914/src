@@ -161,6 +161,16 @@ overlap  交叠
 override 覆盖，替换掉原来，如c++重新定义函数
 overload 重载 超载
 
+OBOE: off-by-one error
+OBOB: off-by-one bug
+or OB1
+
+OpenSSH off-by-one 经典例子
+
+Boundary-value analysis: software testing technique
+
+fence post error
+Vitruvius  维特鲁威
 Brain Burst  <加速世界>
 supersede   ITU-T 里被废弃的文档版本 用这个词标示
 Her stockings wrinkled at the ankles
