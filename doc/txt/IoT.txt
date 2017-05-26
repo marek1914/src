@@ -1,4 +1,6 @@
 DA14580
+Contiki os
+6LoWPAN 基于IPv6的低速无线个域网标准，即IPv6 over IEEE 802.15.4
 
 线序有如函数参数序列
 BBG 4pin 2.0mm：
@@ -666,7 +668,17 @@ SubMiniature version A
 
 ---lora---
 LoRa网关SX1301，8 LoRa信道，1 FSK信道，可看做 FPGA+8路LoRa调制解调器
-数据手册，驱动，都不公开；缴费成为LoRa Alliance会员，才能获得相关资料
+数据手册驱动不公开；缴费成为LoRa Alliance会员，才能获得相关资料
+
+sx1278:
+-=-=-=-=-=-
+电流 45 50 55 60 ... 115 120 130 140 ... 230 240
+lora modem phy conf 1/2/3
+REG_MODEM_CONFIG1
+REG_MODEM_CONFIG2
+REG_MODEM_CONFIG3
+
+-=-=-=-=-=-
 
 接收灵敏度
 http://www.cnblogs.com/diyingyun/p/3722936.html
@@ -674,22 +686,7 @@ http://www.cnblogs.com/diyingyun/p/3722936.html
 www.semtech.com
 www.lora-alliance.org
 
-6LoWPAN 基于IPv6的低速无线个域网标准，即IPv6 over IEEE 802.15.4
-
 microchip RN2483
-
-openRF
-
-SX1278 LoRa射频芯片
-
-Contiki IoT操作系统
-
-machine-to-machine (M2M) applications. 
-
-长沙市锐米通信
-http://www.rimelink.com/pd.jsp?id=20  用的sx1278 (137 MHz to 525 MHz)
-
-常州乐琪（各种无线模块）
 
 http://blog.csdn.net/jiangjunjie_2005/article/details/47857259
 
@@ -697,25 +694,16 @@ http://blog.csdn.net/jiangjunjie_2005/article/details/47857259
 终端:sx1272/73/76/77/78/79
 工作频段及扩频因子不同
 
-LoRa frequency bands
-
-The LoRa wireless system makes use of the unlicensed frequencies that are available worldwide. The most widely used frequencies / bands are:
-
+LoRa use unlicensed frequencies:
     868 MHz for Europe
     915 MHz for North America
     433 MHz band for Asia
 
-Using lower frequencies than those of the 2.4 or 5.8 GHz ISM bands enables much better coverage to be achieved especially when the nodes are within buildings.
+成都泽耀： sx1278 100mW/3000米  1W/8000米
+深圳安信可科技 Lora / nodeMedia
+长沙市锐米通信
 
-成都泽耀：
-同是sx1278 有100mW  3000米  和 1W 8000米
-功率怎么控制
-
-深圳安信可科技 Lora （看着质量不错） 那个nodeMedia 模块也是这家。这家公司的东西看着还行
-
-旋转天线猜测：
-433MHz 波长69cm，单极天线 1/4  17cm，拉直是不是这么长
-
+旋转天线猜测：433MHz 波长69cm，单极天线 1/4  17cm，拉直是不是这么长
 TT02高增益纯铜弹簧天线 433Mhz 2.5dBi高增益   (再次理解增益)
 IPEX 座
 
