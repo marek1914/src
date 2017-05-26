@@ -1,3 +1,9 @@
+/*
+ * binary
+ * arduino binary.h #define B00000011 3
+ * gcc 支持 0b00000011 但这不是c99标准，其他编译器可能不支持
+ */
+
 //ring buffer / circular buffer / fifo
 //De Morgan's laws
 
