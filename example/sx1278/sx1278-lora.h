@@ -155,15 +155,6 @@ const uint8_t CR_6 = 0x02;  // CR = 4/6
 const uint8_t CR_7 = 0x03;  // CR = 4/7
 const uint8_t CR_8 = 0x04;  // CR = 4/8
 
-// LORA SPREADING FACTOR:
-const uint8_t SF_6 = 0x06;
-const uint8_t SF_7 = 0x07;
-const uint8_t SF_8 = 0x08;
-const uint8_t SF_9 = 0x09;
-const uint8_t SF_10 = 0x0A;
-const uint8_t SF_11 = 0x0B;
-const uint8_t SF_12 = 0x0C;
-
 // LORA MODES:
 const uint8_t LORA_SLEEP_MODE = 0x80;
 const uint8_t LORA_STANDBY_MODE = 0x81;

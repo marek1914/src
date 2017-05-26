@@ -426,3 +426,4 @@ Better Save Space
 
 
 SDCC: Small Device C Compiler
+SNR: signal noise ratio 信噪比
