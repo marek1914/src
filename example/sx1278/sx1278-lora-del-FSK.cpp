@@ -99,27 +99,20 @@ uint8_t SX1278::setLORA()
 	return state;
 }
 
-/* Gets the bandwidth, coding rate, spreading factor */
 uint8_t SX1278::getMode()
 {
-	uint8_t st0;
-	int8_t state = 2;
-	uint8_t value = 0x00;
-
-	st0 = readRegister(REG_OP_MODE);
+	uint8_t value;
 
 	value = readRegister(REG_MODEM_CONFIG1);
 	_bandwidth = (value >> 4);
 	_codingRate = (value >> 1) & 0x07;
 	value = readRegister(REG_MODEM_CONFIG2);
 	_spreadingFactor = (value >> 4) & 0x0F;
-	state = 1;
 
-	writeRegister(REG_OP_MODE, st0);
-	return state;
+	return 0;
 }
 
-/* Sets the bandwidth, coding rate and spreading factor */
+/* Sets bandwidth, coding rate ,spreading factor */
 int8_t SX1278::setMode(uint8_t mode)
 {
 	int8_t state = 2;
@@ -131,61 +124,56 @@ int8_t SX1278::setMode(uint8_t mode)
 	writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);
 
 	switch (mode) {
-		// mode 1 (better reach, medium time on air)
-		case 1:
+		case 1:// better reach, medium time on air
 			setCR(CR_5);
 			setSF(SF_12);
 			setBW(BW_125);
 			break;
-		// mode 2 (medium reach, less time on air)
-		case 2:
+		case 2:// medium reach, less time on air
 			setCR(CR_5);
 			setSF(SF_12);
 			setBW(BW_250);
 			break;
-		// mode 3 (worst reach, less time on air)
-		case 3:
+		case 3:// worst reach, less time on air
 			setCR(CR_5);
 			setSF(SF_10);
 			setBW(BW_125);
 			break;
-		// mode 4 (better reach, low time on air)
-		case 4:
+		case 4:// better reach, low time on air
 			setCR(CR_5);
 			setSF(SF_12);
 			setBW(BW_500);
 			break;
-		// mode 5 (better reach, medium time on air)
-		case 5:
+		case 5:// better reach, medium time on air
 			setCR(CR_5);
 			setSF(SF_10);
 			setBW(BW_250);
 			break;
-		// mode 6 (better reach, worst time-on-air)
+		// better reach, worst time-on-air
 		case 6:
 			setCR(CR_5);
 			setSF(SF_11);
 			setBW(BW_500);
 			break;
-		// mode 7 (medium-high reach, medium-low time-on-air)
+		// medium-high reach, medium-low time-on-air
 		case 7:
 			setCR(CR_5);
 			setSF(SF_9);
 			setBW(BW_250);
 			break;
-		// mode 8 (medium reach, medium time-on-air)
+		// medium reach, medium time-on-air
 		case 8:
 			setCR(CR_5);
 			setSF(SF_9);
 			setBW(BW_500);
 			break;
-		// mode 9 (medium-low reach, medium-high time-on-air)
+		// medium-low reach, medium-high time-on-air
 		case 9:
 			setCR(CR_5);
 			setSF(SF_8);
 			setBW(BW_500);
 			break;
-		// mode 10 (worst reach, less time_on_air)
+		// worst reach, less time_on_air
 		case 10:
 			setCR(CR_5);
 			setSF(SF_7);
@@ -331,45 +319,38 @@ uint8_t SX1278::setSF(uint8_t spr)
 
 	switch (spr) {
 		case SF_6:
-			config2 = config2 & B01101111;
-			config2 = config2 | B01100000;
+			config2 = config2 & 0x0f | 6 << 4;
 			break;
 		case SF_7:
-			config2 = config2 & B01111111;
-			config2 = config2 | B01110000;
+			config2 = config2 & 0x0f | 7 << 4;
 			break;
 
 		case SF_8:
-			config2 = config2 & B10001111;
-			config2 = config2 | B10000000;
+			config2 = config2 & 0x0f | 8 << 4;
 			break;
 
 		case SF_9:
-			config2 = config2 & B10011111;
-			config2 = config2 | B10010000;
+			config2 = config2 & 0x0f | 9 << 4;
 			break;
 
 		case SF_10:
-			config2 = config2 & B10101111;
-			config2 = config2 | B10100000;
+			config2 = config2 & 0x0f | 10 << 4;
 			break;
 
 		case SF_11:
-			config2 = config2 & B10111111;
-			config2 = config2 | B10110000;
+			config2 = config2 & 0x0f | 11 << 4;
 			getBW();
 			if (_bandwidth == BW_125) {  // LowDataRateOptimize
-				config3 = config3 | B00001000;
+				config3 = config3 | 0x08;
 			}
 			break;
 
 		case SF_12:
-			config2 = config2 & B11001111;
-			config2 = config2 | B11000000;
+			config2 = config2 & 0x0f | 12 << 4;
 
 			getBW();
 			if (_bandwidth == BW_125) {  // LowDataRateOptimize
-				config3 = config3 | B00001000;
+				config3 = config3 | 0x08;
 			}
 			break;
 	}
@@ -405,9 +386,7 @@ uint8_t SX1278::setSF(uint8_t spr)
 
 int8_t SX1278::getBW()
 {
-	uint8_t config1;
-	config1 = readRegister(REG_MODEM_CONFIG1) >> 4;
-	_bandwidth = config1;
+	_bandwidth = readRegister(REG_MODEM_CONFIG1) >> 4;
 	return 0;
 }
 
@@ -415,7 +394,6 @@ int8_t SX1278::getBW()
 int8_t SX1278::setBW(uint16_t band)
 {
 	uint8_t st0;
-	int8_t state = 2;
 	uint8_t config1;
 	uint8_t config3;
 
@@ -425,111 +403,22 @@ int8_t SX1278::setBW(uint16_t band)
 	config1 = readRegister(REG_MODEM_CONFIG1); 
 	config3 = readRegister(REG_MODEM_CONFIG3);
 
-	switch (band) {
-		case BW_7_8:
-			config1 = config1 & B00001111;
-			config1 = config1 | B00000000;
-			getSF();
-			if (_spreadingFactor == 11) {
-				config3 = config3 | B00001000; // why?  ugly!!!!
-			}
-			if (_spreadingFactor == 12) {
-				config3 = config3 | B00001000;
-			}
-			break;
-		case BW_10_4:
-			config1 = config1 & B00011111;
-			config1 = config1 | B00010000;
-			getSF();
-			if (_spreadingFactor == 11) {
-				config3 = config3 | B00001000;
-			}
-			if (_spreadingFactor == 12) {
-				config3 = config3 | B00001000;
-			}
-			break;
-		case BW_15_6:
-			config1 = config1 & B00101111;
-			config1 = config1 | B00100000;
-			getSF();
-			if (_spreadingFactor == 11) {
-				config3 = config3 | B00001000;
-			}
-			if (_spreadingFactor == 12) {
-				config3 = config3 | B00001000;
-			}
-			break;
-		case BW_20_8:
-			config1 = config1 & B00111111;
-			config1 = config1 | B00110000;
-			getSF();
-			if (_spreadingFactor == 11) {
-				config3 = config3 | B00001000;
-			}
-			if (_spreadingFactor == 12) {
-				config3 = config3 | B00001000;
-			}
-			break;
-		case BW_31_2:
-			config1 = config1 & B01001111;
-			config1 = config1 | B01000000;
-			getSF();
-			if (_spreadingFactor == 11) {
-				config3 = config3 | B00001000;
-			}
-			if (_spreadingFactor == 12) {
-				config3 = config3 | B00001000;
-			}
-			break;
-		case BW_41_7:
-			config1 = config1 & B01011111;
-			config1 = config1 | B01010000;
-			getSF();
-			if (_spreadingFactor == 11) {
-				config3 = config3 | B00001000;
-			}
-			if (_spreadingFactor == 12) {
-				config3 = config3 | B00001000;
-			}
-			break;
-		case BW_62_5:
-			config1 = config1 & B01101111;
-			config1 = config1 | B01100000;
-			getSF();
-			if (_spreadingFactor == 11) {
-				config3 = config3 | B00001000;
-			}
-			if (_spreadingFactor == 12) {
-				config3 = config3 | B00001000;
-			}
-			break;
-		case BW_125:
-			config1 = config1 & B01111111;
-			config1 = config1 | B01110000;
-			getSF();
-			if (_spreadingFactor == 11) {
-				config3 = config3 | B00001000;
-			}
-			if (_spreadingFactor == 12) {
-				config3 = config3 | B00001000;
-			}
-			break;
-		case BW_250:
-			config1 = config1 & B10001111;
-			config1 = config1 | B10000000;
-			break;
-		case BW_500:
-			config1 = config1 & B10011111;
-			config1 = config1 | B10010000;
-			break;
+	getSF();
+	config1 &= 0x0f;
+
+	config1 |= band << 4;
+
+	if (band < 8 && (_spreadingFactor == 11 || _spreadingFactor == 12 )) {
+		config3 = config3 | 0x08;
 	}
+
 	writeRegister(REG_MODEM_CONFIG1, config1);
 	writeRegister(REG_MODEM_CONFIG3, config3);
 
 	_bandwidth = band;
 
 	writeRegister(REG_OP_MODE, st0);
-	return state;
+	return 0;
 }
 
 /* coding rate */
