@@ -462,9 +462,6 @@ public class KeyEvent implements Parcelable {
 
 网络获取时间： NetworkTimeUpdateService
 
-java标准类在/libcore，未使用jdk实现，就像bionic替代glibc。对标准库做了精简。
-包括java.lang  java.net等。
-
 public interface Runnable {
     public void run();
 }
@@ -1142,10 +1139,9 @@ lib32z1 lib32ncurses5 lib32bz2-1.0 (这是zlib库，与32bit程序无关)
 	gawk 4.0.x (好像不需要)
 
 2 jdk
-	open:openjdk-6-jdk/openjdk-7-jdk(依赖openjdk-6-jre-headless)
-    /usr/lib/jvm/java-6-openjdk-amd64
+	open:openjdk-6/7-jdk  : /usr/lib/jvm/java-6-openjdk-amd64
 
-	sun: oracal官网注册下载如
+	sun: oracal官网注册下载:
     jdk-6u35-linux-x64.bin(jdk1.6第35个版本)，执行并拷贝到/usr/lib/jvm(与openjdk并列)
     PATH=$PATH:/usr/lib/jdk1.6.0_35/bin 或：
 	update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.6.0_35/jre/bin/java" 1

@@ -3,6 +3,18 @@
 #有些命令是shell/perl脚本
 # rc :run command
 # ctrl+d #terminal
+
+# here document  EOF 是分隔符，可以任意字符串
+<< EOF
+foo
+bar
+EOF
+#等价于
+echo foo
+echo bar
+#或等价于
+echo -e "foo\nbar"
+
 Bash:Bourne Again Shell
 
 more	less	clear	reset	fdisk	wc	basename
