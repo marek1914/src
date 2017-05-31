@@ -1,5 +1,6 @@
 DA14580
 Contiki os
+Cooja Simulator (need java-1.7)
 6LoWPAN 基于IPv6的低速无线个域网标准，即IPv6 over IEEE 802.15.4
 
 线序有如函数参数序列
@@ -768,6 +769,7 @@ CC2630: Cortex-M3
 CC2592: Range Extender
 
 CC2540: blue tooth
+CC2650 多协议
 
 SMA天线
 
