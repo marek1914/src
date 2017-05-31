@@ -481,6 +481,9 @@ sed -i '$d' # delete last line
 sed -i '/bar/d'  # delete line contain "bar"
 sed -i '/bar/,+2d'
 
+#android 取函数名
+sed -n "/^function /s/function \([a-z_]*\).*/\1/p"
+
 echo `echo 00.00.00.03 |sed 's/\\.//g'` #.需要转义,\本身还有特殊含义，又需要转义，所以需要\\
 
 find -name *.c -print0 | xargs -0 sed -i 's/x_a/x_b/g'
