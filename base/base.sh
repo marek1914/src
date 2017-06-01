@@ -482,6 +482,8 @@ sed -i '/bar/d'  # delete line contain "bar"
 sed -i '/bar/,+2d'
 
 #android 取函数名
+# /^function / 定位到以此开头的行
+# \1 匹配第一个()里的内容
 sed -n "/^function /s/function \([a-z_]*\).*/\1/p"
 
 echo `echo 00.00.00.03 |sed 's/\\.//g'` #.需要转义,\本身还有特殊含义，又需要转义，所以需要\\

@@ -28,3 +28,62 @@ int main(void)
 	}
 	return 0;
 }
+
+
+/* test */
+#ifdef TEST
+int main(void)
+{
+    int i, j, n;
+
+    /* create a FIFO buffer */
+    FifoBuffer *fifo = fifo_alloc(13 * sizeof(int));
+
+    /* fill data */
+    for (i = 0; fifo_space(fifo) >= sizeof(int); i++)
+        fifo_generic_write(fifo, &i, sizeof(int), NULL);
+
+    /* peek at FIFO */
+    n = fifo_size(fifo) / sizeof(int);
+    for (i = -n + 1; i < n; i++) {
+        int *v = (int *)fifo_peek2(fifo, i * sizeof(int));
+        printf("%d: %d\n", i, *v);
+    }
+    printf("\n");
+
+    /* peek_at at FIFO */
+    n = fifo_size(fifo) / sizeof(int);
+    for (i = 0; i < n; i++) {
+        fifo_generic_peek_at(fifo, &j, i * sizeof(int), sizeof(j), NULL);
+        printf("%d: %d\n", i, j);
+    }
+    printf("\n");
+
+    /* read data */
+    for (i = 0; fifo_size(fifo) >= sizeof(int); i++) {
+        fifo_generic_read(fifo, &j, sizeof(int), NULL);
+        printf("%d ", j);
+    }
+    printf("\n");
+
+    /* test *ndx overflow */
+    fifo_reset(fifo);
+    fifo->rndx = fifo->wndx = ~(uint32_t)0 - 5;
+
+	printf("-----\n");
+    /* fill data */
+    for (i = 0; fifo_space(fifo) >= sizeof(int); i++)
+        fifo_generic_write(fifo, &i, sizeof(int), NULL);
+
+    /* peek_at at FIFO */
+    n = fifo_size(fifo) / sizeof(int);
+    for (i = 0; i < n; i++) {
+        fifo_generic_peek_at(fifo, &j, i * sizeof(int), sizeof(j), NULL);
+        printf("%d: %d\n", i, j);
+    }
+
+    fifo_free(fifo);
+
+    return 0;
+}
+#endif

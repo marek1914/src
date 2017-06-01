@@ -367,18 +367,10 @@ PROPERTY_VALUE_MAX  android里定义为92
 system/core/libcutils/ properties.c 
 多个property_get 函数 情况不同 arm使用的是 HAVE_LIBC_SYSTEM_PROPERTIES
 
-
 ==========
 un.h等 根据external/kernel-headers/original自动生成
 
 socket 类型把AF_xx 都改成了PF_xx
-
-bionic
-更小更快的pthread；
-	提供Android所需重要函数，如”getprop”, “LOGI”等；
-	不完全支持POSIX标准，比如C++ exceptions，wide chars等；
-
-bionic/libstdc++ -> libstdc++.so   //仅有几个文件
 
 广播：
 ACTION_BOOT_COMPLETED = "android.intent.action.BOOT_COMPLETED"

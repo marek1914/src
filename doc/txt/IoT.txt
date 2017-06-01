@@ -743,7 +743,7 @@ download 目录有资料
 --TI--
 账户：13**67@qq.com : -2y50wpy-
 
-sensortag !! 好设计！
+sensortag
 TI 收购 Chipcon(cc系列)
 
 TI narrowband solutions for over 100 km
@@ -768,7 +768,7 @@ CC2538: Cortex-M3
 CC2630: Cortex-M3 
 CC2592: Range Extender
 
-CC2540: blue tooth
+CC2540/1: bluetooth 4.0
 CC2650 多协议
 
 SMA天线
@@ -776,11 +776,13 @@ SMA天线
 CC Debuger : CC2511-F32  8051+usb+2.4G 这个2.4G貌似不是蓝牙/wifi，就是2.4G
 
 IAR Embedded Workbench for 8051
-IAR Embedded Workbench for ARM  (for STM32)
+IAR Embedded Workbench for ARM
+
+下载了:
+EW8051 830/930(mac os 可用)
+
 SmartRF Flash Programmer
 SmartRF Studio
-
-IAR C编译器
 
 CC2530+RFX2401C(PA:功率放大器 模块)，内置IPX连接器 
 
@@ -855,11 +857,9 @@ SM04B-SRSS-TB
 --------------
 
 --keil--
-ARM收购Keil，现keil.com叫ARMKEIL
-产品分为：MDK-ARM C51 C251(for 80251 mcu) C166(for C166 mcu)
-MDK-ARM 也称KEIL MDK-ARM、KEIL ARM、KEIL MDK、Realview MDK
+ARM收购Keil ,产品分：MDK-ARM(也称KEIL-ARM) C51
 
-C51 分为：
+C51分：
 PK51 professional developer's kit
 CA51 compiler kit
 A51  assembler kit

@@ -32,6 +32,8 @@ DT_SOCK	dirent.h	9;"	d
 DT_UNKNOWN	dirent.h	2;"	d
 DT_WHT	dirent.h	10;"	d
 F_OK	unistd.h	76;"	d
+HAVE_PTHREAD_COND_TIMEDWAIT_MONOTONIC	pthread.h	116;"	d
+HAVE_PTHREAD_COND_TIMEDWAIT_RELATIVE	pthread.h	122;"	d
 HLIST_HEAD	list.h	551;"	d
 HLIST_HEAD_INIT	list.h	550;"	d
 INIT_HLIST_HEAD	list.h	552;"	d
@@ -324,15 +326,15 @@ LIBUSB_H	libusb/test1.c	3;"	d	file:
 LIBUSB_HIGH_SPEED_OPERATION	libusb/libusb.h	/^	LIBUSB_HIGH_SPEED_OPERATION  = 4,$/;"	e	enum:libusb_supported_speed
 LIBUSB_HIGH_SPEED_OPERATION	libusb/test.c	/^	LIBUSB_HIGH_SPEED_OPERATION  = 4,$/;"	e	enum:libusb_supported_speed	file:
 LIBUSB_HIGH_SPEED_OPERATION	libusb/test1.c	/^ LIBUSB_HIGH_SPEED_OPERATION = 4,$/;"	e	enum:libusb_supported_speed	file:
-LIBUSB_HOTPLUG_ENUMERATE	libusb/libusb.h	/^	LIBUSB_HOTPLUG_ENUMERATE = 1,$/;"	e	enum:__anon7
-LIBUSB_HOTPLUG_ENUMERATE	libusb/test.c	/^	LIBUSB_HOTPLUG_ENUMERATE = 1,$/;"	e	enum:__anon5	file:
-LIBUSB_HOTPLUG_ENUMERATE	libusb/test1.c	/^ LIBUSB_HOTPLUG_ENUMERATE = 1,$/;"	e	enum:__anon9	file:
-LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED	libusb/libusb.h	/^	LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED = 0x01,$/;"	e	enum:__anon8
-LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED	libusb/test.c	/^	LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED = 0x01,$/;"	e	enum:__anon6	file:
-LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED	libusb/test1.c	/^ LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED = 0x01,$/;"	e	enum:__anon10	file:
-LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT	libusb/libusb.h	/^	LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT    = 0x02,$/;"	e	enum:__anon8
-LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT	libusb/test.c	/^	LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT    = 0x02,$/;"	e	enum:__anon6	file:
-LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT	libusb/test1.c	/^ LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT = 0x02,$/;"	e	enum:__anon10	file:
+LIBUSB_HOTPLUG_ENUMERATE	libusb/libusb.h	/^	LIBUSB_HOTPLUG_ENUMERATE = 1,$/;"	e	enum:__anon3
+LIBUSB_HOTPLUG_ENUMERATE	libusb/test.c	/^	LIBUSB_HOTPLUG_ENUMERATE = 1,$/;"	e	enum:__anon1	file:
+LIBUSB_HOTPLUG_ENUMERATE	libusb/test1.c	/^ LIBUSB_HOTPLUG_ENUMERATE = 1,$/;"	e	enum:__anon5	file:
+LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED	libusb/libusb.h	/^	LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED = 0x01,$/;"	e	enum:__anon4
+LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED	libusb/test.c	/^	LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED = 0x01,$/;"	e	enum:__anon2	file:
+LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED	libusb/test1.c	/^ LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED = 0x01,$/;"	e	enum:__anon6	file:
+LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT	libusb/libusb.h	/^	LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT    = 0x02,$/;"	e	enum:__anon4
+LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT	libusb/test.c	/^	LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT    = 0x02,$/;"	e	enum:__anon2	file:
+LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT	libusb/test1.c	/^ LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT = 0x02,$/;"	e	enum:__anon6	file:
 LIBUSB_HOTPLUG_MATCH_ANY	libusb/libusb.h	1832;"	d
 LIBUSB_HOTPLUG_MATCH_ANY	libusb/test.c	1865;"	d	file:
 LIBUSB_HOTPLUG_MATCH_ANY	libusb/test1.c	1385;"	d	file:
@@ -520,6 +522,25 @@ LIST_POISON2	list.h	10;"	d
 MaxPower	libusb/libusb.h	/^	uint8_t  MaxPower;$/;"	m	struct:libusb_config_descriptor
 MaxPower	libusb/test.c	/^	uint8_t  MaxPower;$/;"	m	struct:libusb_config_descriptor	file:
 MaxPower	libusb/test1.c	/^ uint8_t MaxPower;$/;"	m	struct:libusb_config_descriptor	file:
+PTHREAD_COND_INITIALIZER	pthread.h	47;"	d
+PTHREAD_CREATE_DETACHED	pthread.h	49;"	d
+PTHREAD_CREATE_JOINABLE	pthread.h	50;"	d
+PTHREAD_ERRORCHECK_MUTEX_INITIALIZER	pthread.h	12;"	d
+PTHREAD_MUTEX_DEFAULT	pthread.h	/^    PTHREAD_MUTEX_DEFAULT = PTHREAD_MUTEX_NORMAL$/;"	e	enum:__anon12
+PTHREAD_MUTEX_ERRORCHECK	pthread.h	/^    PTHREAD_MUTEX_ERRORCHECK = 2,$/;"	e	enum:__anon12
+PTHREAD_MUTEX_ERRORCHECK_NP	pthread.h	/^    PTHREAD_MUTEX_ERRORCHECK_NP = PTHREAD_MUTEX_ERRORCHECK,$/;"	e	enum:__anon12
+PTHREAD_MUTEX_INITIALIZER	pthread.h	10;"	d
+PTHREAD_MUTEX_NORMAL	pthread.h	/^    PTHREAD_MUTEX_NORMAL = 0,$/;"	e	enum:__anon12
+PTHREAD_MUTEX_RECURSIVE	pthread.h	/^    PTHREAD_MUTEX_RECURSIVE = 1,$/;"	e	enum:__anon12
+PTHREAD_MUTEX_RECURSIVE_NP	pthread.h	/^    PTHREAD_MUTEX_RECURSIVE_NP  = PTHREAD_MUTEX_RECURSIVE,$/;"	e	enum:__anon12
+PTHREAD_ONCE_INIT	pthread.h	51;"	d
+PTHREAD_PROCESS_PRIVATE	pthread.h	52;"	d
+PTHREAD_PROCESS_SHARED	pthread.h	53;"	d
+PTHREAD_RECURSIVE_MUTEX_INITIALIZER	pthread.h	11;"	d
+PTHREAD_RWLOCK_INITIALIZER	pthread.h	139;"	d
+PTHREAD_SCOPE_PROCESS	pthread.h	55;"	d
+PTHREAD_SCOPE_SYSTEM	pthread.h	54;"	d
+PTHREAD_STACK_MIN	pthread.h	48;"	d
 PTRDIFF_C	stdint.h	208;"	d
 PTRDIFF_MAX	stdint.h	202;"	d
 PTRDIFF_MIN	stdint.h	201;"	d
@@ -993,16 +1014,27 @@ __LIST_H	list.h	2;"	d
 __PRI64_RANK	stdint.h	186;"	d
 __PRIFAST_RANK	stdint.h	187;"	d
 __PRIPTR_RANK	stdint.h	188;"	d
+__PTHREAD_ERRORCHECK_MUTEX_INIT_VALUE	pthread.h	8;"	d
+__PTHREAD_MUTEX_INIT_VALUE	pthread.h	6;"	d
+__PTHREAD_RECURSIVE_MUTEX_INIT_VALUE	pthread.h	7;"	d
 __STDINT_LIMITS	stdint.h	35;"	d
 __STDINT_MACROS	stdint.h	39;"	d
 __UINT64_C	stdint.h	174;"	d
 __brk	unistd.h	/^void *__brk(void *);$/;"	p
+__cleanup_arg	pthread.h	/^    void*                         __cleanup_arg;$/;"	m	struct:__pthread_cleanup_t
+__cleanup_prev	pthread.h	/^    struct __pthread_cleanup_t*   __cleanup_prev;$/;"	m	struct:__pthread_cleanup_t	typeref:struct:__pthread_cleanup_t::__pthread_cleanup_t
+__cleanup_routine	pthread.h	/^    __pthread_cleanup_func_t      __cleanup_routine;$/;"	m	struct:__pthread_cleanup_t
 __hlist_del	list.h	/^static inline void __hlist_del(struct hlist_node *n)$/;"	f
 __list_add	list.h	/^static inline void __list_add(struct list_head *new,$/;"	f
 __list_cut_position	list.h	/^static inline void __list_cut_position(struct list_head *list,$/;"	f
 __list_del	list.h	/^static inline void __list_del(struct list_head *prev, struct list_head *next)$/;"	f
 __list_for_each	list.h	369;"	d
 __list_splice	list.h	/^static inline void __list_splice(const struct list_head *list,$/;"	f
+__pthread_cleanup_func_t	pthread.h	/^typedef void  (*__pthread_cleanup_func_t)(void*);$/;"	t
+__pthread_cleanup_pop	pthread.h	/^extern void  __pthread_cleanup_pop(__pthread_cleanup_t*  c,$/;"	p
+__pthread_cleanup_push	pthread.h	/^extern void  __pthread_cleanup_push(__pthread_cleanup_t*      c,$/;"	p
+__pthread_cleanup_t	pthread.h	/^typedef struct __pthread_cleanup_t {$/;"	s
+__pthread_cleanup_t	pthread.h	/^} __pthread_cleanup_t;$/;"	t	typeref:struct:__pthread_cleanup_t
 _exit	unistd.h	/^__noreturn void _exit(int);$/;"	p
 abort	stdlib.h	/^void abort(void);$/;"	p
 access	unistd.h	/^int access(const char *, int);$/;"	p
@@ -1249,7 +1281,7 @@ capability	linux/videodev2.h	/^ __u32 capability;$/;"	m	struct:v4l2_outputparm
 capability	linux/videodev2.h	/^ __u32 capability;$/;"	m	struct:v4l2_tuner
 capget	unistd.h	/^int capget(cap_user_header_t hdrp, cap_user_data_t datap);$/;"	p
 capset	unistd.h	/^int capset(cap_user_header_t hdrp, const cap_user_data_t datap);$/;"	p
-capture	linux/videodev2.h	/^ struct v4l2_captureparm capture;$/;"	m	union:v4l2_streamparm::__anon4	typeref:struct:v4l2_streamparm::__anon4::v4l2_captureparm
+capture	linux/videodev2.h	/^ struct v4l2_captureparm capture;$/;"	m	union:v4l2_streamparm::__anon10	typeref:struct:v4l2_streamparm::__anon10::v4l2_captureparm
 capturemode	linux/videodev2.h	/^ __u32 capturemode;$/;"	m	struct:v4l2_captureparm
 card	linux/videodev2.h	/^ __u8 card[32];$/;"	m	struct:v4l2_capability
 cbrt	math.h	/^double	cbrt(double);$/;"	p
@@ -1273,6 +1305,7 @@ clock_settime	time.h	/^int clock_settime(clockid_t clk_id, const struct timespec
 close	unistd.h	/^int close(int);$/;"	p
 closedir	dirent.h	/^int closedir(DIR *dirp);$/;"	p
 colorspace	linux/videodev2.h	/^ enum v4l2_colorspace colorspace;$/;"	m	struct:v4l2_pix_format	typeref:enum:v4l2_pix_format::v4l2_colorspace
+cond	pthread.h	/^    pthread_cond_t   cond;$/;"	m	struct:__anon15
 container_of	list.h	12;"	d
 controls	linux/videodev2.h	/^ struct v4l2_ext_control *controls;$/;"	m	struct:v4l2_ext_controls	typeref:struct:v4l2_ext_controls::v4l2_ext_control
 copysign	math.h	/^double	copysign(double, double);$/;"	p
@@ -1417,6 +1450,7 @@ flags	linux/videodev2.h	/^ __u32 flags;$/;"	m	struct:v4l2_framebuffer
 flags	linux/videodev2.h	/^ __u32 flags;$/;"	m	struct:v4l2_queryctrl
 flags	linux/videodev2.h	/^ __u32 flags;$/;"	m	struct:v4l2_timecode
 flags	linux/videodev2.h	/^ __u32 flags;$/;"	m	struct:v4l2_vbi_format
+flags	pthread.h	/^    uint32_t flags;$/;"	m	struct:__anon14
 flock	unistd.h	/^int flock(int, int);$/;"	p
 floor	math.h	/^double	floor(double);$/;"	p
 floorf	math.h	/^float	floorf(float);$/;"	p
@@ -1434,7 +1468,7 @@ fmod	math.h	/^double	fmod(double, double);$/;"	p
 fmodf	math.h	/^float	fmodf(float, float);$/;"	p
 fmodl	math.h	/^long double	fmodl(long double, long double);$/;"	p
 fmt	linux/videodev2.h	/^ struct v4l2_pix_format fmt;$/;"	m	struct:v4l2_framebuffer	typeref:struct:v4l2_framebuffer::v4l2_pix_format
-fmt	linux/videodev2.h	/^ } fmt;$/;"	m	struct:v4l2_format	typeref:union:v4l2_format::__anon3
+fmt	linux/videodev2.h	/^ } fmt;$/;"	m	struct:v4l2_format	typeref:union:v4l2_format::__anon9
 fopen	stdio.h	/^FILE *fopen(const char *path, const char *mode);$/;"	p
 fork	unistd.h	/^pid_t  fork(void);$/;"	p
 fprintf	stdio.h	/^int fprintf(FILE *stream, const char *format, ...);$/;"	p
@@ -1494,6 +1528,7 @@ getusershell	unistd.h	/^char* getusershell(void);$/;"	p
 gmtime	time.h	/^struct tm *gmtime(const time_t *timep);$/;"	p
 gmtime_r	time.h	/^struct tm *gmtime_r(const time_t *timep, struct tm *result);$/;"	p
 grantpt	stdlib.h	/^int grantpt(int fd);$/;"	p
+guard_size	pthread.h	/^    size_t guard_size;$/;"	m	struct:__anon14
 height	linux/videodev2.h	/^ __s32 height;$/;"	m	struct:v4l2_rect
 height	linux/videodev2.h	/^ __u32 height;$/;"	m	struct:v4l2_pix_format
 hlist_add_after	list.h	/^static inline void hlist_add_after(struct hlist_node *n,$/;"	f
@@ -1863,12 +1898,12 @@ libusb_hotplug_callback_handle	libusb/test1.c	/^typedef int libusb_hotplug_callb
 libusb_hotplug_deregister_callback	libusb/libusb.h	/^void libusb_hotplug_deregister_callback(libusb_context *ctx, libusb_hotplug_callback_handle handle);$/;"	p
 libusb_hotplug_deregister_callback	libusb/test.c	/^void LIBUSB_CALL libusb_hotplug_deregister_callback(libusb_context *ctx,$/;"	p	file:
 libusb_hotplug_deregister_callback	libusb/test1.c	/^void LIBUSB_CALL libusb_hotplug_deregister_callback(libusb_context *ctx,$/;"	p	file:
-libusb_hotplug_event	libusb/libusb.h	/^} libusb_hotplug_event;$/;"	t	typeref:enum:__anon8
-libusb_hotplug_event	libusb/test.c	/^} libusb_hotplug_event;$/;"	t	typeref:enum:__anon6	file:
-libusb_hotplug_event	libusb/test1.c	/^} libusb_hotplug_event;$/;"	t	typeref:enum:__anon10	file:
-libusb_hotplug_flag	libusb/libusb.h	/^} libusb_hotplug_flag;$/;"	t	typeref:enum:__anon7
-libusb_hotplug_flag	libusb/test.c	/^} libusb_hotplug_flag;$/;"	t	typeref:enum:__anon5	file:
-libusb_hotplug_flag	libusb/test1.c	/^} libusb_hotplug_flag;$/;"	t	typeref:enum:__anon9	file:
+libusb_hotplug_event	libusb/libusb.h	/^} libusb_hotplug_event;$/;"	t	typeref:enum:__anon4
+libusb_hotplug_event	libusb/test.c	/^} libusb_hotplug_event;$/;"	t	typeref:enum:__anon2	file:
+libusb_hotplug_event	libusb/test1.c	/^} libusb_hotplug_event;$/;"	t	typeref:enum:__anon6	file:
+libusb_hotplug_flag	libusb/libusb.h	/^} libusb_hotplug_flag;$/;"	t	typeref:enum:__anon3
+libusb_hotplug_flag	libusb/test.c	/^} libusb_hotplug_flag;$/;"	t	typeref:enum:__anon1	file:
+libusb_hotplug_flag	libusb/test1.c	/^} libusb_hotplug_flag;$/;"	t	typeref:enum:__anon5	file:
 libusb_hotplug_register_callback	libusb/libusb.h	/^int libusb_hotplug_register_callback(libusb_context *ctx,$/;"	p
 libusb_hotplug_register_callback	libusb/test.c	/^int LIBUSB_CALL libusb_hotplug_register_callback(libusb_context *ctx,$/;"	p	file:
 libusb_hotplug_register_callback	libusb/test1.c	/^int LIBUSB_CALL libusb_hotplug_register_callback(libusb_context *ctx,$/;"	p	file:
@@ -2069,6 +2104,7 @@ llroundf	math.h	/^long long llroundf(float);$/;"	p
 llroundl	math.h	/^long long	llroundl(long double);$/;"	p
 localtime	time.h	/^struct tm *localtime(const time_t *timep);$/;"	p
 localtime_r	time.h	/^struct tm *localtime_r(const time_t *timep, struct tm *result);$/;"	p
+lock	pthread.h	/^    pthread_mutex_t  lock;$/;"	m	struct:__anon15
 log	math.h	/^double	log(double);$/;"	p
 log10	math.h	/^double	log10(double);$/;"	p
 log10f	math.h	/^float	log10f(float);$/;"	p
@@ -2094,7 +2130,7 @@ lroundl	math.h	/^long		lroundl(long double);$/;"	p
 lseek	unistd.h	/^off_t lseek(int fd, off_t offset, int whence);$/;"	p
 lseek64	unistd.h	/^off64_t lseek64(int fd, off64_t offset, int whence);$/;"	p
 lstat	unistd.h	/^int lstat(const char *path, struct stat *buf);$/;"	p
-m	linux/videodev2.h	/^ } m;$/;"	m	struct:v4l2_buffer	typeref:union:v4l2_buffer::__anon1
+m	linux/videodev2.h	/^ } m;$/;"	m	struct:v4l2_buffer	typeref:union:v4l2_buffer::__anon7
 major	libusb/libusb.h	/^	const uint16_t major;$/;"	m	struct:libusb_version
 major	libusb/test.c	/^	const uint16_t major;$/;"	m	struct:libusb_version	file:
 major	libusb/test1.c	/^ const uint16_t major;$/;"	m	struct:libusb_version	file:
@@ -2161,6 +2197,7 @@ nexttowardf	math.h	/^float		nexttowardf(float, long double);$/;"	p
 nexttowardl	math.h	/^long double	nexttowardl(long double, long double);$/;"	p
 nice	unistd.h	/^int nice(int);$/;"	p
 nrand48	stdlib.h	/^long nrand48(unsigned short *);$/;"	p
+numLocks	pthread.h	/^    int              numLocks;$/;"	m	struct:__anon15
 num_altsetting	libusb/libusb.h	/^	int num_altsetting;$/;"	m	struct:libusb_interface
 num_altsetting	libusb/test.c	/^	int num_altsetting;$/;"	m	struct:libusb_interface	file:
 num_altsetting	libusb/test1.c	/^ int num_altsetting;$/;"	m	struct:libusb_interface	file:
@@ -2169,7 +2206,7 @@ num_iso_packets	libusb/test.c	/^	int num_iso_packets;$/;"	m	struct:libusb_transf
 num_iso_packets	libusb/test1.c	/^ int num_iso_packets;$/;"	m	struct:libusb_transfer	file:
 numerator	linux/videodev2.h	/^ __u32 numerator;$/;"	m	struct:v4l2_fract
 offset	linux/videodev2.h	/^ __u32 offset;$/;"	m	struct:v4l2_vbi_format
-offset	linux/videodev2.h	/^ __u32 offset;$/;"	m	union:v4l2_buffer::__anon1
+offset	linux/videodev2.h	/^ __u32 offset;$/;"	m	union:v4l2_buffer::__anon7
 open	fcntl.h	/^int open(const char *pathname, int flags);$/;"	p
 open	fcntl.h	/^int open(const char *pathname, int flags, mode_t mode);$/;"	p
 openat	fcntl.h	/^int openat(int dirfd, const char *pathname, int flags);$/;"	p
@@ -2179,14 +2216,16 @@ optarg	unistd.h	/^char *optarg;$/;"	v
 opterr	unistd.h	/^int optind, opterr, optopt;$/;"	v
 optind	unistd.h	/^int optind, opterr, optopt;$/;"	v
 optopt	unistd.h	/^int optind, opterr, optopt;$/;"	v
-output	linux/videodev2.h	/^ struct v4l2_outputparm output;$/;"	m	union:v4l2_streamparm::__anon4	typeref:struct:v4l2_streamparm::__anon4::v4l2_outputparm
+output	linux/videodev2.h	/^ struct v4l2_outputparm output;$/;"	m	union:v4l2_streamparm::__anon10	typeref:struct:v4l2_streamparm::__anon10::v4l2_outputparm
 outputmode	linux/videodev2.h	/^ __u32 outputmode;$/;"	m	struct:v4l2_outputparm
-parm	linux/videodev2.h	/^ } parm;$/;"	m	struct:v4l2_streamparm	typeref:union:v4l2_streamparm::__anon4
+parm	linux/videodev2.h	/^ } parm;$/;"	m	struct:v4l2_streamparm	typeref:union:v4l2_streamparm::__anon10
 pause	unistd.h	/^int pause(void);$/;"	p
+pendingReaders	pthread.h	/^    int              pendingReaders;$/;"	m	struct:__anon15
+pendingWriters	pthread.h	/^    int              pendingWriters;$/;"	m	struct:__anon15
 perror	stdio.h	/^void perror(const char *s);$/;"	p
 pipe	unistd.h	/^int pipe(int *);$/;"	p
 pipe2	unistd.h	/^int pipe2(int *, int);$/;"	p
-pix	linux/videodev2.h	/^ struct v4l2_pix_format pix;$/;"	m	union:v4l2_format::__anon3	typeref:struct:v4l2_format::__anon3::v4l2_pix_format
+pix	linux/videodev2.h	/^ struct v4l2_pix_format pix;$/;"	m	union:v4l2_format::__anon9	typeref:struct:v4l2_format::__anon9::v4l2_pix_format
 pixelaspect	linux/videodev2.h	/^ struct v4l2_fract pixelaspect;$/;"	m	struct:v4l2_cropcap	typeref:struct:v4l2_cropcap::v4l2_fract
 pixelformat	linux/videodev2.h	/^ __u32 pixelformat;$/;"	m	struct:v4l2_fmtdesc
 pixelformat	linux/videodev2.h	/^ __u32 pixelformat;$/;"	m	struct:v4l2_pix_format
@@ -2200,6 +2239,95 @@ prefetch	list.h	/^static inline void prefetch(const void *x) {;}$/;"	f
 prev	list.h	/^	struct list_head *next, *prev;$/;"	m	struct:list_head	typeref:struct:list_head::
 printf	stdio.h	/^int printf(const char *format, ...);$/;"	p
 priv	linux/videodev2.h	/^ __u32 priv;$/;"	m	struct:v4l2_pix_format
+pthread_atfork	pthread.h	/^int pthread_atfork(void (*prepare)(void), void (*parent)(void), void(*child)(void));$/;"	p
+pthread_attr_destroy	pthread.h	/^int pthread_attr_destroy(pthread_attr_t * attr);$/;"	p
+pthread_attr_getdetachstate	pthread.h	/^int pthread_attr_getdetachstate(pthread_attr_t const * attr, int * state);$/;"	p
+pthread_attr_getguardsize	pthread.h	/^int pthread_attr_getguardsize(pthread_attr_t const * attr, size_t * guard_size);$/;"	p
+pthread_attr_getschedparam	pthread.h	/^int pthread_attr_getschedparam(pthread_attr_t const * attr, struct sched_param * param);$/;"	p
+pthread_attr_getschedpolicy	pthread.h	/^int pthread_attr_getschedpolicy(pthread_attr_t const * attr, int * policy);$/;"	p
+pthread_attr_getscope	pthread.h	/^int pthread_attr_getscope(pthread_attr_t const *attr);$/;"	p
+pthread_attr_getstack	pthread.h	/^int pthread_attr_getstack(pthread_attr_t const * attr, void ** stackaddr, size_t * stack_size);$/;"	p
+pthread_attr_getstackaddr	pthread.h	/^int pthread_attr_getstackaddr(pthread_attr_t const * attr, void ** stackaddr);$/;"	p
+pthread_attr_getstacksize	pthread.h	/^int pthread_attr_getstacksize(pthread_attr_t const * attr, size_t * stack_size);$/;"	p
+pthread_attr_init	pthread.h	/^int pthread_attr_init(pthread_attr_t * attr);$/;"	p
+pthread_attr_setdetachstate	pthread.h	/^int pthread_attr_setdetachstate(pthread_attr_t * attr, int state);$/;"	p
+pthread_attr_setguardsize	pthread.h	/^int pthread_attr_setguardsize(pthread_attr_t * attr, size_t guard_size);$/;"	p
+pthread_attr_setschedparam	pthread.h	/^int pthread_attr_setschedparam(pthread_attr_t * attr, struct sched_param const * param);$/;"	p
+pthread_attr_setschedpolicy	pthread.h	/^int pthread_attr_setschedpolicy(pthread_attr_t * attr, int policy);$/;"	p
+pthread_attr_setscope	pthread.h	/^int pthread_attr_setscope(pthread_attr_t *attr, int  scope);$/;"	p
+pthread_attr_setstack	pthread.h	/^int pthread_attr_setstack(pthread_attr_t * attr, void * stackaddr, size_t stack_size);$/;"	p
+pthread_attr_setstackaddr	pthread.h	/^int pthread_attr_setstackaddr(pthread_attr_t * attr, void * stackaddr);$/;"	p
+pthread_attr_setstacksize	pthread.h	/^int pthread_attr_setstacksize(pthread_attr_t * attr, size_t stack_size);$/;"	p
+pthread_attr_t	pthread.h	/^} pthread_attr_t;$/;"	t	typeref:struct:__anon14
+pthread_cleanup_pop	pthread.h	193;"	d
+pthread_cleanup_push	pthread.h	188;"	d
+pthread_cond_broadcast	pthread.h	/^int pthread_cond_broadcast(pthread_cond_t *cond);$/;"	p
+pthread_cond_destroy	pthread.h	/^int pthread_cond_destroy(pthread_cond_t *cond);$/;"	p
+pthread_cond_init	pthread.h	/^int pthread_cond_init(pthread_cond_t *cond, const pthread_condattr_t *attr);$/;"	p
+pthread_cond_signal	pthread.h	/^int pthread_cond_signal(pthread_cond_t *cond);$/;"	p
+pthread_cond_t	pthread.h	/^} pthread_cond_t;$/;"	t	typeref:struct:__anon13
+pthread_cond_timedwait	pthread.h	/^int pthread_cond_timedwait(pthread_cond_t *cond, pthread_mutex_t * mutex, const struct timespec *abstime);$/;"	p
+pthread_cond_timedwait_monotonic	pthread.h	/^int pthread_cond_timedwait_monotonic(pthread_cond_t *cond, pthread_mutex_t *mutex,$/;"	p
+pthread_cond_timedwait_monotonic_np	pthread.h	/^int pthread_cond_timedwait_monotonic_np(pthread_cond_t *cond, pthread_mutex_t *mutex,$/;"	p
+pthread_cond_timedwait_relative_np	pthread.h	/^int pthread_cond_timedwait_relative_np(pthread_cond_t         *cond,$/;"	p
+pthread_cond_timeout_np	pthread.h	/^int pthread_cond_timeout_np(pthread_cond_t *cond, pthread_mutex_t * mutex, unsigned msecs);$/;"	p
+pthread_cond_wait	pthread.h	/^int pthread_cond_wait(pthread_cond_t *cond, pthread_mutex_t *mutex);$/;"	p
+pthread_condattr_destroy	pthread.h	/^int pthread_condattr_destroy(pthread_condattr_t *attr);$/;"	p
+pthread_condattr_getpshared	pthread.h	/^int pthread_condattr_getpshared(pthread_condattr_t *attr, int *pshared);$/;"	p
+pthread_condattr_init	pthread.h	/^int pthread_condattr_init(pthread_condattr_t *attr);$/;"	p
+pthread_condattr_setpshared	pthread.h	/^int pthread_condattr_setpshared(pthread_condattr_t* attr, int pshared);$/;"	p
+pthread_condattr_t	pthread.h	/^typedef long pthread_condattr_t;$/;"	t
+pthread_create	pthread.h	/^int pthread_create(pthread_t *thread, pthread_attr_t const * attr, void *(*start_routine)(void *), void * arg);$/;"	p
+pthread_detach	pthread.h	/^int pthread_detach(pthread_t  thid);$/;"	p
+pthread_equal	pthread.h	/^int pthread_equal(pthread_t one, pthread_t two);$/;"	p
+pthread_exit	pthread.h	/^void pthread_exit(void * retval);$/;"	p
+pthread_getattr_np	pthread.h	/^int pthread_getattr_np(pthread_t thid, pthread_attr_t * attr);$/;"	p
+pthread_getcpuclockid	pthread.h	/^int pthread_getcpuclockid(pthread_t  tid, clockid_t  *clockid);$/;"	p
+pthread_getschedparam	pthread.h	/^int pthread_getschedparam(pthread_t thid, int * policy, struct sched_param * param);$/;"	p
+pthread_getspecific	pthread.h	/^void *pthread_getspecific(pthread_key_t key);$/;"	p
+pthread_join	pthread.h	/^int pthread_join(pthread_t thid, void ** ret_val);$/;"	p
+pthread_key_create	pthread.h	/^int pthread_key_create(pthread_key_t *key, void (*destructor_function)(void *));$/;"	p
+pthread_key_delete	pthread.h	/^int pthread_key_delete (pthread_key_t);$/;"	p
+pthread_key_t	pthread.h	/^typedef int pthread_key_t;$/;"	t
+pthread_kill	pthread.h	/^int pthread_kill(pthread_t tid, int sig);$/;"	p
+pthread_mutex_destroy	pthread.h	/^int pthread_mutex_destroy(pthread_mutex_t *mutex);$/;"	p
+pthread_mutex_init	pthread.h	/^int pthread_mutex_init(pthread_mutex_t *mutex, const pthread_mutexattr_t *attr);$/;"	p
+pthread_mutex_lock	pthread.h	/^int pthread_mutex_lock(pthread_mutex_t *mutex);$/;"	p
+pthread_mutex_lock_timeout_np	pthread.h	/^int pthread_mutex_lock_timeout_np(pthread_mutex_t *mutex, unsigned msecs);$/;"	p
+pthread_mutex_t	pthread.h	/^} pthread_mutex_t;$/;"	t	typeref:struct:__anon11
+pthread_mutex_timedlock	pthread.h	/^int pthread_mutex_timedlock(pthread_mutex_t *mutex, struct timespec*  ts);$/;"	p
+pthread_mutex_trylock	pthread.h	/^int pthread_mutex_trylock(pthread_mutex_t *mutex);$/;"	p
+pthread_mutex_unlock	pthread.h	/^int pthread_mutex_unlock(pthread_mutex_t *mutex);$/;"	p
+pthread_mutexattr_destroy	pthread.h	/^int pthread_mutexattr_destroy(pthread_mutexattr_t *attr);$/;"	p
+pthread_mutexattr_getpshared	pthread.h	/^int pthread_mutexattr_getpshared(pthread_mutexattr_t *attr, int *pshared);$/;"	p
+pthread_mutexattr_gettype	pthread.h	/^int pthread_mutexattr_gettype(const pthread_mutexattr_t *attr, int *type);$/;"	p
+pthread_mutexattr_init	pthread.h	/^int pthread_mutexattr_init(pthread_mutexattr_t *attr);$/;"	p
+pthread_mutexattr_setpshared	pthread.h	/^int pthread_mutexattr_setpshared(pthread_mutexattr_t *attr, int  pshared);$/;"	p
+pthread_mutexattr_settype	pthread.h	/^int pthread_mutexattr_settype(pthread_mutexattr_t *attr, int type);$/;"	p
+pthread_mutexattr_t	pthread.h	/^typedef long pthread_mutexattr_t;$/;"	t
+pthread_once	pthread.h	/^int pthread_once(pthread_once_t  *once_control, void (*init_routine)(void));$/;"	p
+pthread_once_t	pthread.h	/^typedef volatile int  pthread_once_t;$/;"	t
+pthread_rwlock_destroy	pthread.h	/^int pthread_rwlock_destroy(pthread_rwlock_t *rwlock);$/;"	p
+pthread_rwlock_init	pthread.h	/^int pthread_rwlock_init(pthread_rwlock_t *rwlock, const pthread_rwlockattr_t *attr);$/;"	p
+pthread_rwlock_rdlock	pthread.h	/^int pthread_rwlock_rdlock(pthread_rwlock_t *rwlock);$/;"	p
+pthread_rwlock_t	pthread.h	/^} pthread_rwlock_t;$/;"	t	typeref:struct:__anon15
+pthread_rwlock_timedrdlock	pthread.h	/^int pthread_rwlock_timedrdlock(pthread_rwlock_t *rwlock, const struct timespec *abs_timeout);$/;"	p
+pthread_rwlock_timedwrlock	pthread.h	/^int pthread_rwlock_timedwrlock(pthread_rwlock_t *rwlock, const struct timespec *abs_timeout);$/;"	p
+pthread_rwlock_tryrdlock	pthread.h	/^int pthread_rwlock_tryrdlock(pthread_rwlock_t *rwlock);$/;"	p
+pthread_rwlock_trywrlock	pthread.h	/^int pthread_rwlock_trywrlock(pthread_rwlock_t *rwlock);$/;"	p
+pthread_rwlock_unlock	pthread.h	/^int pthread_rwlock_unlock(pthread_rwlock_t *rwlock);$/;"	p
+pthread_rwlock_wrlock	pthread.h	/^int pthread_rwlock_wrlock(pthread_rwlock_t *rwlock);$/;"	p
+pthread_rwlockattr_destroy	pthread.h	/^int pthread_rwlockattr_destroy(pthread_rwlockattr_t *attr);$/;"	p
+pthread_rwlockattr_getpshared	pthread.h	/^int pthread_rwlockattr_getpshared(pthread_rwlockattr_t *attr, int *pshared);$/;"	p
+pthread_rwlockattr_init	pthread.h	/^int pthread_rwlockattr_init(pthread_rwlockattr_t *attr);$/;"	p
+pthread_rwlockattr_setpshared	pthread.h	/^int pthread_rwlockattr_setpshared(pthread_rwlockattr_t *attr, int  pshared);$/;"	p
+pthread_rwlockattr_t	pthread.h	/^typedef int pthread_rwlockattr_t;$/;"	t
+pthread_self	pthread.h	/^pthread_t pthread_self(void);$/;"	p
+pthread_setname_np	pthread.h	/^int pthread_setname_np(pthread_t thid, const char *thname);$/;"	p
+pthread_setschedparam	pthread.h	/^int pthread_setschedparam(pthread_t thid, int policy, struct sched_param const * param);$/;"	p
+pthread_setspecific	pthread.h	/^int pthread_setspecific(pthread_key_t key, const void *value);$/;"	p
+pthread_sigmask	pthread.h	/^int pthread_sigmask(int how, const sigset_t *set, sigset_t *oset);$/;"	p
+pthread_t	pthread.h	/^typedef long pthread_t;$/;"	t
 ptsname	stdlib.h	/^char*  ptsname(int);$/;"	p
 ptsname_r	stdlib.h	/^int    ptsname_r(int, char*, size_t);$/;"	p
 putc	stdio.h	/^int putc(int c, FILE *stream);$/;"	p
@@ -2215,8 +2343,8 @@ rangehigh	linux/videodev2.h	/^ __u32 rangehigh;$/;"	m	struct:v4l2_modulator
 rangehigh	linux/videodev2.h	/^ __u32 rangehigh;$/;"	m	struct:v4l2_tuner
 rangelow	linux/videodev2.h	/^ __u32 rangelow;$/;"	m	struct:v4l2_modulator
 rangelow	linux/videodev2.h	/^ __u32 rangelow;$/;"	m	struct:v4l2_tuner
-raw_data	linux/videodev2.h	/^ __u8 raw_data[200];$/;"	m	union:v4l2_format::__anon3
-raw_data	linux/videodev2.h	/^ __u8 raw_data[200];$/;"	m	union:v4l2_streamparm::__anon4
+raw_data	linux/videodev2.h	/^ __u8 raw_data[200];$/;"	m	union:v4l2_format::__anon9
+raw_data	linux/videodev2.h	/^ __u8 raw_data[200];$/;"	m	union:v4l2_streamparm::__anon10
 rc	libusb/libusb.h	/^	const char *rc;$/;"	m	struct:libusb_version
 rc	libusb/test.c	/^	const char *rc;$/;"	m	struct:libusb_version	file:
 rc	libusb/test1.c	/^ const char *rc;$/;"	m	struct:libusb_version	file:
@@ -2256,7 +2384,8 @@ reserved	linux/videodev2.h	/^ __u32 reserved[4];$/;"	m	struct:v4l2_sliced_vbi_ca
 reserved	linux/videodev2.h	/^ __u32 reserved[4];$/;"	m	struct:v4l2_standard
 reserved	linux/videodev2.h	/^ __u32 reserved[4];$/;"	m	struct:v4l2_tuner
 reserved	linux/videodev2.h	/^ __u32 reserved[8];$/;"	m	struct:v4l2_frequency
-reserved	linux/videodev2.h	/^ void *reserved;$/;"	m	union:v4l2_ext_control::__anon2
+reserved	linux/videodev2.h	/^ void *reserved;$/;"	m	union:v4l2_ext_control::__anon8
+reserved	pthread.h	/^    void*            reserved[4];$/;"	m	struct:__anon15
 reserved2	linux/videodev2.h	/^ __u32 reserved2[2];$/;"	m	struct:v4l2_ext_control
 rewind	stdio.h	/^void rewind(FILE *stream);$/;"	p
 rewinddir	dirent.h	/^void rewinddir(DIR *dirp);$/;"	p
@@ -2283,6 +2412,8 @@ scalbnf	math.h	/^float	scalbnf(float, int);$/;"	p
 scalbnl	math.h	/^long double	scalbnl(long double, int);$/;"	p
 scandir	dirent.h	/^int scandir(const char *dirp, struct dirent ***namelist,$/;"	p
 scanf	stdio.h	/^int scanf(const char *format, ...);$/;"	p
+sched_policy	pthread.h	/^    int32_t sched_policy;$/;"	m	struct:__anon14
+sched_priority	pthread.h	/^    int32_t sched_priority;$/;"	m	struct:__anon14
 seconds	linux/videodev2.h	/^ __u8 seconds;$/;"	m	struct:v4l2_timecode
 seed48	stdlib.h	/^unsigned short *seed48(unsigned short*);$/;"	p
 sequence	linux/videodev2.h	/^ __u32 sequence;$/;"	m	struct:v4l2_buffer
@@ -2318,7 +2449,7 @@ sinhl	math.h	/^long double	sinhl(long double);$/;"	p
 sinl	math.h	/^long double	sinl(long double);$/;"	p
 sizeimage	linux/videodev2.h	/^ __u32 sizeimage;$/;"	m	struct:v4l2_pix_format
 sleep	unistd.h	/^unsigned int sleep(unsigned int);$/;"	p
-sliced	linux/videodev2.h	/^ struct v4l2_sliced_vbi_format sliced;$/;"	m	union:v4l2_format::__anon3	typeref:struct:v4l2_format::__anon3::v4l2_sliced_vbi_format
+sliced	linux/videodev2.h	/^ struct v4l2_sliced_vbi_format sliced;$/;"	m	union:v4l2_format::__anon9	typeref:struct:v4l2_format::__anon9::v4l2_sliced_vbi_format
 snprintf	stdio.h	/^int snprintf(char *str, size_t size, const char *format, ...);$/;"	p
 sprintf	stdio.h	/^int sprintf(char *str, const char *format, ...);$/;"	p
 sqrt	math.h	/^double	sqrt(double);$/;"	p
@@ -2351,6 +2482,8 @@ st_nlink	unistd.h	/^   nlink_t   st_nlink;   \/* number of hard links *\/$/;"	m	
 st_rdev	unistd.h	/^   dev_t     st_rdev;    \/* device ID (if special file) *\/$/;"	m	struct:stat
 st_size	unistd.h	/^   off_t     st_size;    \/* total size, in bytes *\/$/;"	m	struct:stat
 st_uid	unistd.h	/^   uid_t     st_uid;     \/* user ID of owner *\/$/;"	m	struct:stat
+stack_base	pthread.h	/^    void * stack_base;$/;"	m	struct:__anon14
+stack_size	pthread.h	/^    size_t stack_size;$/;"	m	struct:__anon14
 start	linux/videodev2.h	/^ __s32 start[2];$/;"	m	struct:v4l2_vbi_format
 stat	unistd.h	/^int stat(const char *path, struct stat *buf);$/;"	p
 stat	unistd.h	/^struct stat {$/;"	s
@@ -2507,7 +2640,7 @@ user_data	libusb/libusb.h	/^	void *user_data;$/;"	m	struct:libusb_transfer
 user_data	libusb/test.c	/^	void *user_data;$/;"	m	struct:libusb_transfer	file:
 user_data	libusb/test1.c	/^ void *user_data;$/;"	m	struct:libusb_transfer	file:
 userbits	linux/videodev2.h	/^ __u8 userbits[4];$/;"	m	struct:v4l2_timecode
-userptr	linux/videodev2.h	/^ unsigned long userptr;$/;"	m	union:v4l2_buffer::__anon1
+userptr	linux/videodev2.h	/^ unsigned long userptr;$/;"	m	union:v4l2_buffer::__anon7
 usleep	unistd.h	/^int usleep(unsigned long);$/;"	p
 v4l2_audio	linux/videodev2.h	/^struct v4l2_audio$/;"	s
 v4l2_audioout	linux/videodev2.h	/^struct v4l2_audioout$/;"	s
@@ -2578,9 +2711,11 @@ va_end	stdarg.h	/^void va_end(va_list ap);$/;"	p
 va_list	stdarg.h	/^void *va_list;$/;"	v
 va_start	stdarg.h	/^void va_start(va_list ap, last);$/;"	p
 value	linux/videodev2.h	/^ __s32 value;$/;"	m	struct:v4l2_control
-value	linux/videodev2.h	/^ __s32 value;$/;"	m	union:v4l2_ext_control::__anon2
-value64	linux/videodev2.h	/^ __s64 value64;$/;"	m	union:v4l2_ext_control::__anon2
-vbi	linux/videodev2.h	/^ struct v4l2_vbi_format vbi;$/;"	m	union:v4l2_format::__anon3	typeref:struct:v4l2_format::__anon3::v4l2_vbi_format
+value	linux/videodev2.h	/^ __s32 value;$/;"	m	union:v4l2_ext_control::__anon8
+value	pthread.h	/^    int volatile value;$/;"	m	struct:__anon11
+value	pthread.h	/^    int volatile value;$/;"	m	struct:__anon13
+value64	linux/videodev2.h	/^ __s64 value64;$/;"	m	union:v4l2_ext_control::__anon8
+vbi	linux/videodev2.h	/^ struct v4l2_vbi_format vbi;$/;"	m	union:v4l2_format::__anon9	typeref:struct:v4l2_format::__anon9::v4l2_vbi_format
 version	linux/videodev2.h	/^ __u32 version;$/;"	m	struct:v4l2_capability
 vfork	unistd.h	/^pid_t  vfork(void);$/;"	p
 vfprintf	stdio.h	/^int vfprintf(FILE *stream, const char *format, va_list ap);$/;"	p
@@ -2616,9 +2751,10 @@ wcstombs	stdlib.h	/^size_t	wcstombs(char *, const wchar_t *, size_t);$/;"	p
 wctomb	stdlib.h	/^int	wctomb(char *, wchar_t);$/;"	p
 width	linux/videodev2.h	/^ __s32 width;$/;"	m	struct:v4l2_rect
 width	linux/videodev2.h	/^ __u32 width;$/;"	m	struct:v4l2_pix_format
-win	linux/videodev2.h	/^ struct v4l2_window win;$/;"	m	union:v4l2_format::__anon3	typeref:struct:v4l2_format::__anon3::v4l2_window
+win	linux/videodev2.h	/^ struct v4l2_window win;$/;"	m	union:v4l2_format::__anon9	typeref:struct:v4l2_format::__anon9::v4l2_window
 write	unistd.h	/^ssize_t write(int, const void *, size_t);$/;"	p
 writebuffers	linux/videodev2.h	/^ __u32 writebuffers;$/;"	m	struct:v4l2_outputparm
+writerThreadId	pthread.h	/^    int              writerThreadId;$/;"	m	struct:__anon15
 y0	math.h	/^double	y0(double);$/;"	p
 y0f	math.h	/^float	y0f(float);$/;"	p
 y1	math.h	/^double	y1(double);$/;"	p

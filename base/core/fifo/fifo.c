@@ -8,26 +8,6 @@
 #define FFMAX(a,b) ((a) > (b) ? (a) : (b))
 #define FFMIN(a,b) ((a) > (b) ? (b) : (a))
 
-#if 0
-void freep(void *arg)
-{
-    void *val;
-
-	/* ugly! why? sb! */
-    memcpy(&val, arg, sizeof(val));
-	/* c99 6.5.2.5 Compound literals */
-    memcpy(arg, &(void *){NULL}, sizeof(val));
-    free(val);
-}
-#endif
-
-void freep(void *arg)  
-{  
-    void **ptr = (void **)arg;  
-    free(*ptr);  
-    *ptr = NULL;  
-}
-
 static FifoBuffer *fifo_alloc_common(void *buffer, size_t size)
 {
     FifoBuffer *f;
@@ -41,7 +21,6 @@ static FifoBuffer *fifo_alloc_common(void *buffer, size_t size)
     } else {
     	memset(f, 0, sizeof(FifoBuffer));
     }
-    
     f->buffer = buffer;
     f->end    = f->buffer + size;
     fifo_reset(f);
@@ -63,7 +42,8 @@ FifoBuffer *fifo_alloc_array(size_t nmemb, size_t size)
 void fifo_free(FifoBuffer *f)
 {
     if (f) {
-        freep(&f->buffer);
+        free(f->buffer);
+		f->buffer = NULL;
         free(f);
     }
 }
@@ -100,8 +80,7 @@ int fifo_realloc2(FifoBuffer *f, unsigned int new_size)
         int len          = fifo_size(f);
         FifoBuffer *f2 = fifo_alloc(new_size);
 
-        if (!f2)
-            return -1; //AVERROR(ENOMEM);
+        if (!f2) return -1;
         fifo_generic_read(f, f2->buffer, len, NULL);
         f2->wptr += len;
         f2->wndx += len;
@@ -116,17 +95,14 @@ int fifo_grow(FifoBuffer *f, unsigned int size)
 {
     unsigned int old_size = f->end - f->buffer;
     if(size + (unsigned)fifo_size(f) < size)
-        return -1;//AVERROR(EINVAL);
+        return -1;
 
     size += fifo_size(f);
-
     if (old_size < size)
         return fifo_realloc2(f, FFMAX(size, 2*size));
     return 0;
 }
 
-/* src must NOT be const as it can be a context for func that may need
- * updating (like a pointer or byte counter) */
 int fifo_generic_write(FifoBuffer *f, void *src, int size,
                           int (*func)(void *, void *, int))
 {
@@ -144,7 +120,6 @@ int fifo_generic_write(FifoBuffer *f, void *src, int size,
             memcpy(wptr, src, len);
             src = (uint8_t *)src + len;
         }
-// Write memory barrier needed for SMP here in theory
         wptr += len;
         if (wptr >= f->end)
             wptr = f->buffer;
@@ -156,16 +131,13 @@ int fifo_generic_write(FifoBuffer *f, void *src, int size,
     return total - size;
 }
 
-int fifo_generic_peek_at(FifoBuffer *f, void *dest, int offset, int buf_size, void (*func)(void*, void*, int))
+int fifo_generic_peek_at(FifoBuffer *f, void *dest, int offset, 
+						int buf_size, void (*func)(void*, void*, int))
 {
     uint8_t *rptr = f->rptr;
 
     assert(offset >= 0);
 
-    /*
-     * *ndx are indexes modulo 2^32, they are intended to overflow,
-     * to handle *ndx greater than 4gb.
-     */
     assert(buf_size + (unsigned)offset <= f->wndx - f->rndx);
 
     if (offset >= f->end - rptr)
@@ -186,7 +158,6 @@ int fifo_generic_peek_at(FifoBuffer *f, void *dest, int offset, int buf_size, vo
             memcpy(dest, rptr, len);
             dest = (uint8_t *)dest + len;
         }
-
         buf_size -= len;
         rptr     += len;
     }
@@ -197,7 +168,6 @@ int fifo_generic_peek_at(FifoBuffer *f, void *dest, int offset, int buf_size, vo
 int fifo_generic_peek(FifoBuffer *f, void *dest, int buf_size,
                          void (*func)(void *, void *, int))
 {
-// Read memory barrier needed for SMP here in theory
     uint8_t *rptr = f->rptr;
 
     do {
@@ -208,7 +178,6 @@ int fifo_generic_peek(FifoBuffer *f, void *dest, int buf_size,
             memcpy(dest, rptr, len);
             dest = (uint8_t *)dest + len;
         }
-// memory barrier needed for SMP here in theory
         rptr += len;
         if (rptr >= f->end)
             rptr -= f->end - f->buffer;
@@ -221,7 +190,6 @@ int fifo_generic_peek(FifoBuffer *f, void *dest, int buf_size,
 int fifo_generic_read(FifoBuffer *f, void *dest, int buf_size,
                          void (*func)(void *, void *, int))
 {
-// Read memory barrier needed for SMP here in theory
     do {
         int len = FFMIN(f->end - f->rptr, buf_size);
         if (func)
@@ -230,77 +198,17 @@ int fifo_generic_read(FifoBuffer *f, void *dest, int buf_size,
             memcpy(dest, f->rptr, len);
             dest = (uint8_t *)dest + len;
         }
-// memory barrier needed for SMP here in theory
         fifo_drain(f, len);
         buf_size -= len;
     } while (buf_size > 0);
     return 0;
 }
 
-/* Discard data from the FIFO */
 void fifo_drain(FifoBuffer *f, int size)
-{
+{ 
     assert(fifo_size(f) >= size);
     f->rptr += size;
     if (f->rptr >= f->end)
         f->rptr -= f->end - f->buffer;
     f->rndx += size;
 }
-
-/* test */
-#ifdef TEST
-int main(void)
-{
-    int i, j, n;
-
-    /* create a FIFO buffer */
-    FifoBuffer *fifo = fifo_alloc(13 * sizeof(int));
-
-    /* fill data */
-    for (i = 0; fifo_space(fifo) >= sizeof(int); i++)
-        fifo_generic_write(fifo, &i, sizeof(int), NULL);
-
-    /* peek at FIFO */
-    n = fifo_size(fifo) / sizeof(int);
-    for (i = -n + 1; i < n; i++) {
-        int *v = (int *)fifo_peek2(fifo, i * sizeof(int));
-        printf("%d: %d\n", i, *v);
-    }
-    printf("\n");
-
-    /* peek_at at FIFO */
-    n = fifo_size(fifo) / sizeof(int);
-    for (i = 0; i < n; i++) {
-        fifo_generic_peek_at(fifo, &j, i * sizeof(int), sizeof(j), NULL);
-        printf("%d: %d\n", i, j);
-    }
-    printf("\n");
-
-    /* read data */
-    for (i = 0; fifo_size(fifo) >= sizeof(int); i++) {
-        fifo_generic_read(fifo, &j, sizeof(int), NULL);
-        printf("%d ", j);
-    }
-    printf("\n");
-
-    /* test *ndx overflow */
-    fifo_reset(fifo);
-    fifo->rndx = fifo->wndx = ~(uint32_t)0 - 5;
-
-	printf("-----\n");
-    /* fill data */
-    for (i = 0; fifo_space(fifo) >= sizeof(int); i++)
-        fifo_generic_write(fifo, &i, sizeof(int), NULL);
-
-    /* peek_at at FIFO */
-    n = fifo_size(fifo) / sizeof(int);
-    for (i = 0; i < n; i++) {
-        fifo_generic_peek_at(fifo, &j, i * sizeof(int), sizeof(j), NULL);
-        printf("%d: %d\n", i, j);
-    }
-
-    fifo_free(fifo);
-
-    return 0;
-}
-#endif
