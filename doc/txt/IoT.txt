@@ -21,7 +21,7 @@ SCL/VCC/GND/SDA
 
 焊点间距以2.0 2.54为主, 1.27
 
-一直纠结 xbee适配板，从函数角度讲，这个组合功能不清晰，应该是usb-uart uart-xbee 所以不要再想着买xbee适配板
+xbee适配板，从函数角度讲，这个组合功能不清晰，应该是usb-uart uart-xbee 不要再想买xbee适配板
 
 
 --stm32--
