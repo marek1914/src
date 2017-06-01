@@ -1,7 +1,7 @@
-#define eprintf(...) fprintf (stderr, __VA_ARGS__)
+#define eprintf(...) fprintf (stderr, __VA_ARGS__) //c99
 #define eprintf(args...) fprintf (stderr, args)
 #define INFO(fmt, a...)  printf(fmt, ##a)
-#define INFO(fmt, ...)  printf(fmt, ##__VA_ARGS__)
+#define INFO(fmt, ...)  printf(fmt, ##__VA_ARGS__) //## 无第二参时起作用
 
 /* 意义不大 */
 #define VERSION_MAIN   (0x02U)
@@ -10,7 +10,6 @@
 #define VERSION_RC     (0x00U) /* release candidate */
 #define VERSION        ((VERSION_MAIN << 24)|(VERSION_SUB1 << 16)\
                        |(VERSION_SUB2 << 8 )|(VERSION_RC))
-
 
 #if defined(foo)
 #elif defined(bar)
@@ -31,6 +30,8 @@
 #include "stm32f413xx.h"
 #else
 #error "Please select the target"
+
+flag = 0b11001100; //gcc扩展，非c99
 
 /* 代码检查侵入太多 */
 int sys_init(void)
