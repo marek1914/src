@@ -1,5 +1,6 @@
 DA14580
 Contiki os
+Cooja Simulator (need java-1.7)
 6LoWPAN 基于IPv6的低速无线个域网标准，即IPv6 over IEEE 802.15.4
 
 线序有如函数参数序列
@@ -767,6 +768,9 @@ CC2538: Cortex-M3
 CC2630: Cortex-M3 
 CC2592: Range Extender
 
+CC2540: blue tooth
+CC2650 多协议
+
 SMA天线
 
 CC Debuger : CC2511-F32  8051+usb+2.4G 这个2.4G貌似不是蓝牙/wifi，就是2.4G
@@ -786,7 +790,7 @@ LM4128-Q1 SOT-23 精密微功耗串联电压基准
 解决信号路由问题
 模拟开关、数字开关，负载开关、高速开关
 TI开关涵盖了面向任何应用的各种通道数、配置、电压范围、导通电阻 (RON) 和带宽
-CC2540: blue tooth
+
 
 ---
 二极管矩阵：
@@ -888,4 +892,9 @@ pc编译，sys/arduino目录 .uno文件不认
 
 https://learn.adafruit.com/ssd1306-oled-displays-with-raspberry-pi-and-beaglebone-black/wiring
 u8glib/sys/arduino/Chess/Chess.cpp  //这个文件是自动生成的
+
+
+
+----
+6502 CPU  apple I/II  任天堂
 

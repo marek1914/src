@@ -3,6 +3,18 @@
 #有些命令是shell/perl脚本
 # rc :run command
 # ctrl+d #terminal
+
+# here document  EOF 是分隔符，可以任意字符串
+<< EOF
+foo
+bar
+EOF
+#等价于
+echo foo
+echo bar
+#或等价于
+echo -e "foo\nbar"
+
 Bash:Bourne Again Shell
 
 more	less	clear	reset	fdisk	wc	basename
@@ -468,6 +480,9 @@ sed '$d'
 sed -i '$d' # delete last line
 sed -i '/bar/d'  # delete line contain "bar"
 sed -i '/bar/,+2d'
+
+#android 取函数名
+sed -n "/^function /s/function \([a-z_]*\).*/\1/p"
 
 echo `echo 00.00.00.03 |sed 's/\\.//g'` #.需要转义,\本身还有特殊含义，又需要转义，所以需要\\
 
