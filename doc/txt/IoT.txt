@@ -743,6 +743,8 @@ download 目录有资料
 --TI--
 账户：13**67@qq.com : -2y50wpy-
 
+cc2531 sniffer   Ubiqua
+
 sensortag
 TI 收购 Chipcon(cc系列)
 
@@ -755,9 +757,10 @@ Bluetooth
 Wifi
 Sub-1GHz (315MHz 433MHz 868MHz 920MHz)
 
-Z-Stack开源，支持Beaglebone black
+Z-Stack support BBB
+OSAL: OS抽象层
 
-CC1101 低于1GHz的射频收发器，仅射频发射，不是zigbee
+CC1101 sub-1GHz 射频收发器，仅射频发射，不是zigbee
 
 CC2520: 2.4 GHz ZigBee RF transceiver 收发器 相当于phy
 CC2530: 8051 core, no USB

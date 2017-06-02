@@ -1,3 +1,85 @@
+不要再去修改别的项目的代码，这样的事我干了太多，没意义
+自己写代码用自己的风格，别人写好的，不要试图改成自己的风格，浪费时间没效果
+
+---C++----
+int a(5)；即 int a=5; 用构造函数构造初始化类，如classA a(b);
+
+<<C++ Coding Standards: 101 Rules, Guidelines, and Best Practices>>
+
+增加 .*  ->*
+C++将前++/-- 和后++/-- 分为不同优先级
+C++ 前++/-- 定为第一有限级，跟. [] () 同级，C没有这种情况
+
+                                                          *cpp-base*
+#include <stdio.h>
+#include <iostream>
+using namespace std;
+
+// 16.8 Predefined macro names
+#if defined __cplusplus
+#endif
+
+
+
+boost (libboost-dev)
+
+www.open-std.org
+libcxx.llvm.org/
+libc++ is a new implementation of the C++ standard library, targeting C++11.
+
+C++11: ISO/IEC 14882:2011 Information technology-Programming languages C++
+
+In addition to the facilities provided by C, C ++ provides additional data types, 
+classes, templates, exceptions, namespaces,
+operator overloading, function name overloading, references, free store management 
+operators, and additional library facilities.
+
+1 类中类，结构体中结构体
+2 含纯虚函数的类是抽象基类
+3 gcc/g++识别c++: .C/.cc(C with classes)/.cpp(C plus plus)/.CPP/.c++/.cp/.cxx
+4 non-const references can't bind temp objects.  Foo &obj = Foo(); //vs ok,gcc fail
+
+C++11:
+7.3
+Namespaces
+
+标准头文件位置：
+/usr/include/c++/4.8/ostream
+文件头注释：
+forwarding header (转接头文件)
+GNU ISO C++ Library
+ISO C++ 14882: 27.8.2  C Library files
+
+const_cast<>
+reinterpret_cast<>
+dynamic_cast<>
+static_cast<> 类型转换
+用于类层次结构中基类和派生类之间指针或引用的转换。进行上行转换
+（把派生类的指针或引用转换成基类表示）是安全的；进行下行转换（把基
+类指针或引用转换成派生类表示）时，由于没有动态类型检查，所以是不安全的
+
+cout /cin 字符输出
+endl end line
+
+static const
+
+static final Singleton<IActivityManager> gDefault = 
+static const int COUNT=5;
+
+static inline int foo(void)
+{
+}
+
+int main(void)
+{
+	cout << "Hello World!"<<endl;
+
+	printf("i=%d\n", i);
+	return 1;
+}
+
+---END-C++-----
+
 off-by-one
 
 CMockery

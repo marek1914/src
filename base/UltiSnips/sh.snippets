@@ -14,6 +14,13 @@ if ${2:[[ ${1} ]]}; then
 fi
 endsnippet
 
+
+snippet if[
+if [ ! "$${1:T}"  ]; then
+	${0}
+fi
+endsnippet
+
 snippet elif
 elif ${2:[[ ${1} ]]}; then
 	${0}
@@ -64,7 +71,7 @@ esac
 endsnippet
 
 snippet fun
-function ${1}() {
+function ${1:foo}() {
 	${0}
 }
 endsnippet

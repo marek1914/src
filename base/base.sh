@@ -93,12 +93,12 @@ time dd if=/mnt/sda/sda3/4Gb.file of=/dev/null bs=4096
 # single quotes(3.1.2.2)不展开变量，双引号扩展，如 echo '$PATH' #输出$PATH
 # Double Quotes(3.1.2.3)不展开，除 ‘$’, ‘`’, ‘\’, ‘!’
 # 预定义变量 PATH, PWD
-# foo.sh V=1 B # ${1} = V=1  ${2} = B
-# make V=1 B   #定义变量V=1，编译目标B
+# foo.sh V=1  # ${1} = V=1
+# make V=1 B  #定义变量V=1，编译目标B
 # 函数内部$1接收函数参数，函数外部$1接收命令行参数（.sh文件可理解为最外层函数）
 
-# 为子进程定义环境变量如 ARCH=arm make (当前进程看不见ARCH，不同于ARCH=arm; make)
-# [] [[]] 相似但不完全相同
+# 为子进程定义环境变量 ARCH=arm make (当前进程看不见，不同于ARCH=arm; make)
+# [] [[]] 不完全等价
 # 区分内建命令和关键词 (4 Shell Builtin Commands)
 # 命令行编辑 ctl+left 跳一个词
  
