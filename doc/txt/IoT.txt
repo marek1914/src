@@ -757,6 +757,7 @@ Sub-1GHz (315MHz 433MHz 868MHz 920MHz)
 
 Z-Stack开源，支持Beaglebone black
 
+开发环境需要 IAR
 CC1101 低于1GHz的射频收发器，仅射频发射，不是zigbee
 
 CC2520: 2.4 GHz ZigBee RF transceiver 收发器 相当于phy
