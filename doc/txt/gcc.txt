@@ -242,7 +242,7 @@ The executables in this directory are for internal use by the compiler and may n
 This directory should not be placed on your PATH. you should use ../../bin/ and place that directory on your PATH.
   
   
-ndk里没有pthread库，pthread函数在libc.so里，所以不用包含-lpthread  -lrt
+ndk里无pthread库，pthread函数在libc.so里，故无须包含-lpthread
 
 ndk 编译 ffmpeg ok
 ndk 编译 jpeg-turbo ok (guwb)

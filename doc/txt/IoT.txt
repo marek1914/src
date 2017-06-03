@@ -21,7 +21,7 @@ SCL/VCC/GND/SDA
 
 焊点间距以2.0 2.54为主, 1.27
 
-一直纠结 xbee适配板，从函数角度讲，这个组合功能不清晰，应该是usb-uart uart-xbee 所以不要再想着买xbee适配板
+xbee适配板，从函数角度讲，这个组合功能不清晰，应该是usb-uart uart-xbee 不要再想买xbee适配板
 
 
 --stm32--
@@ -743,7 +743,9 @@ download 目录有资料
 --TI--
 账户：13**67@qq.com : -2y50wpy-
 
-sensortag !! 好设计！
+cc2531 sniffer   Ubiqua
+
+sensortag
 TI 收购 Chipcon(cc系列)
 
 TI narrowband solutions for over 100 km
@@ -755,10 +757,10 @@ Bluetooth
 Wifi
 Sub-1GHz (315MHz 433MHz 868MHz 920MHz)
 
-Z-Stack开源，支持Beaglebone black
+Z-Stack support BBB
+OSAL: OS抽象层
 
-开发环境需要 IAR
-CC1101 低于1GHz的射频收发器，仅射频发射，不是zigbee
+CC1101 sub-1GHz 射频收发器，仅射频发射，不是zigbee
 
 CC2520: 2.4 GHz ZigBee RF transceiver 收发器 相当于phy
 CC2530: 8051 core, no USB
@@ -769,7 +771,7 @@ CC2538: Cortex-M3
 CC2630: Cortex-M3 
 CC2592: Range Extender
 
-CC2540: blue tooth
+CC2540/1: bluetooth 4.0
 CC2650 多协议
 
 SMA天线
@@ -777,11 +779,13 @@ SMA天线
 CC Debuger : CC2511-F32  8051+usb+2.4G 这个2.4G貌似不是蓝牙/wifi，就是2.4G
 
 IAR Embedded Workbench for 8051
-IAR Embedded Workbench for ARM  (for STM32)
+IAR Embedded Workbench for ARM
+
+下载了:
+EW8051 830/930(mac os 可用)
+
 SmartRF Flash Programmer
 SmartRF Studio
-
-IAR C编译器
 
 CC2530+RFX2401C(PA:功率放大器 模块)，内置IPX连接器 
 
@@ -856,11 +860,9 @@ SM04B-SRSS-TB
 --------------
 
 --keil--
-ARM收购Keil，现keil.com叫ARMKEIL
-产品分为：MDK-ARM C51 C251(for 80251 mcu) C166(for C166 mcu)
-MDK-ARM 也称KEIL MDK-ARM、KEIL ARM、KEIL MDK、Realview MDK
+ARM收购Keil ,产品分：MDK-ARM(也称KEIL-ARM) C51
 
-C51 分为：
+C51分：
 PK51 professional developer's kit
 CA51 compiler kit
 A51  assembler kit

@@ -434,37 +434,23 @@ int8_t SX1278::getCR()
 /* coding rate */
 int8_t SX1278::setCR(uint8_t cod)
 {
-	uint8_t st0;
-	int8_t state = 2;
+	uint8_t st0, i;
 	uint8_t config1;
 
 	st0 = readRegister(REG_OP_MODE);
 
 	writeRegister(REG_OP_MODE, LORA_STANDBY_MODE);
 	config1 = readRegister(REG_MODEM_CONFIG1);
-	switch (cod) {
-		case CR_5:
-			config1 = config1 & B11110011;
-			config1 = config1 | B00000010;
-			break;
-		case CR_6:
-			config1 = config1 & B11110101;
-			config1 = config1 | B00000100;
-			break;
-		case CR_7:
-			config1 = config1 & B11110111;
-			config1 = config1 | B00000110;
-			break;
-		case CR_8:
-			config1 = config1 & B11111001;
-			config1 = config1 | B00001000;
-			break;
+
+	for (i = 1; i <= 4; i++) {
+		config1 = config1 & 0xf1 | i;
 	}
+
 	writeRegister(REG_MODEM_CONFIG1, config1);
 	_codingRate = cod;
 
 	writeRegister(REG_OP_MODE, st0);
-	return state;
+	return 0;
 }
 
 uint8_t SX1278::getChannel()

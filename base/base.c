@@ -4,6 +4,9 @@
  * gcc 支持 0b00000011 但这不是c99标准，其他编译器可能不支持
  */
 
+/* c99 6.5.2.5 Compound literals  ffmpeg fifo.c*/
+memcpy(arg, &(void *){NULL}, sizeof(val));
+
 //ring buffer / circular buffer / fifo
 //De Morgan's laws
 

@@ -1,4 +1,5 @@
 git help -a
+git submodule
 
 reflog
 <refspec> :reference specify
@@ -56,3 +57,5 @@ ssh -p 29418 192.168.7.32  gerrit set-project-parent --parent appStore commons
 
 ssh-copy-id
 
+macOS 不能tab，需要安装 git-completion.bash(git官方提供)
+ubuntu 执行set 能看到__git_complete_xx 相应函数，不知道在哪里安装的

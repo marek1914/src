@@ -23,7 +23,13 @@ ${1:out}: $1.o
 	$(CC) $(CFLAGS) -o $@ $+
 endsnippet
 
-snippet if
+snippet if 
+ifeq (${1:cond0}, ${2:cond1})
+${0}
+endif
+endsnippet
+
+snippet ifeq 
 ifeq (${1:cond0}, ${2:cond1})
 ${0}
 endif
@@ -35,6 +41,13 @@ ${3}
 else
 ${0}
 endif
+endsnippet
+
+snippet ifdef
+ifdef ${1:var}
+${2}
+endif
+${0}
 endsnippet
 
 #Function
@@ -82,9 +95,10 @@ snippet addprefix
 $(addprefix ${1:prefix},${2:names...})
 endsnippet
 
-
-#Functions for Conditionals
 snippet if-func
 $(if condition,then-part[,else-part])
 endsnippet
 
+snippet info
+$(info ${1})${0}
+endsnippet

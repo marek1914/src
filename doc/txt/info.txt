@@ -54,7 +54,7 @@ https://docs.particle.io/datasheets/photon-datasheet
 
 投入（计划10万）：
 2016: 4.4
-2017: 18384 (5.6)
+2017: 18434 (5.6)
 
 电脑相关： 22328 元
 macbook pro				11788
@@ -100,7 +100,8 @@ ST STM32F407G-DISC1		143
 ST STM32F37x			88
 ST STM32L152C-DISC		98
 ST STM32F429I-DISC		150
-地源STM32/蓝牙/调试器		264
+源地STM32/蓝牙/调试器	264
+源地zigbee cc2530x2		50
 
 partical IoT x2			288
 XBee X36				720
