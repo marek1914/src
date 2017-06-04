@@ -495,3 +495,22 @@ apt-get install gcc-4.4 g++-4.4 g++-4.4-multilib gcc-4.4-multilib
 
 update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 50
 
+
+--
+
+libstdc++ (The GNU C++ Library, The C++ Runtime Library)
+
+sdcc x64版运行错误
+/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `CXXABI_1.3.8' not found
+sdcc i386版：
+/usr/lib/i386-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.20' not found
+发现只有：
+/usr/lib/i386-linux-gnu/libstdc++.so.6.0.19
+没有:
+libstdc++.so.6.0.20 (need gcc4.9)
+
+安装gcc 4.9:
+add-apt-repository ppa:ubuntu-toolchain-r/test
+apt-get update
+apt-get install gcc-4.9 g++-4.9 (自动删除了libstdc++.so.6.0.19 安装了libstdc++.so.6.0.23)
+

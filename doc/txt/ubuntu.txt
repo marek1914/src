@@ -52,7 +52,7 @@ virtual Box
 5) 4.1.12版有错误，命令行运行，提示需安装virtualbox-ose-dkms和linux-headers-generic
    	/dev/vboxdrv does not exist，按提示：/etc/init.d/vboxdrv setup 找不到vboxdrv。
 	官网下载64位deb包安装，vboxdrv命令有了，但setup失败，查dmesg有 vboxdrv: Unknown symbol mcount
-	通过grub选择老版本kernel仍不行，baidu说需要gcc4.6(之前被切到4.4了）
+	通过grub选择老版本kernel仍不行，需要gcc4.6(之前被切到4.4）
 6) 设置共享文件夹自动mount，fs类型vboxsf，默认不支持symbolic link
 	ln: creating symbolic link `xx': Read-only file system,（拷贝带链接目录时）执行：
 	VBoxManage setextradata VM_NAME VBoxInternal2/SharedFoldersEnableSymlinksCreate/SHARE_NAME 1
@@ -191,7 +191,7 @@ Nginx: /usr/local/nginx
 	/etc/init.d/ 目录下都是shell脚本
 	apache2 restart 
 
-    ubuntu-desktop有gcc无g++ 安装g++-multilib，自动安装依赖包：g++-4.8 g++-4.8-multilib gcc-4.8-multilib
+    ubuntu-desktop有gcc无g++ 安装g++-multilib
 
 输入法
     u14.04 text entry +PinYin（需先按提示更新语言包，不可中断，否则不能切全拼）
@@ -275,8 +275,9 @@ firefox has prevented outdated plugin "Adobe Flash" 浏览器升级但插件没�
 
 zh-hans_windows_xp vol
 MRX3F-47B9T-2487J-KWKMF-RPWBY
+
 gpedit.msc 
-用户配置/管理模板/Windows组件/Windows资源管理器 在右侧选“从我的电脑删除共享文档” 选已启用
+管理模板/Windows组件/Windows资源管理器/从我的电脑删除共享文档 选已启用
 
 ---
 www.debian.org [ˈdebiən]  37500+ package
