@@ -763,9 +763,8 @@ OSAL: OS抽象层
 CC1101 sub-1GHz 射频收发器，仅射频发射，不是zigbee
 
 CC2520: 2.4 GHz ZigBee RF transceiver 收发器 相当于phy
-CC2530: 8051 core, no USB
-CC2531: 8051 core, Full Speed USB Device
-CC2533: 8051 core, no USB，比CC2530发射功率大
+CC2530: 8051
+CC2531: 8051 usb (pin兼容2530，原4 gnd 变为usb)
 
 CC2538: Cortex-M3 
 CC2630: Cortex-M3 
