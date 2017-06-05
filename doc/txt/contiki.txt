@@ -5,9 +5,12 @@ https://github.com/contiki-os/contiki/wiki/8051-Requirements
 
 cc2530 指示灯在P10引脚
 
+chapter 7.6:
 UART0: Rx-P0_2 Tx-P0_3 / Rx-P1_4 Tx-P1_5
 UART1: Rx–P0_5 Tx–P0_4 / Rx-P1_7 Tx-P1_6
+p0.3 上有打印：^_^
 
 
-p0.3 上有打印：
+multi-thread 例子，native编译，macOS 运行不正常，ubuntu正常
+
 

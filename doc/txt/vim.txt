@@ -4,6 +4,8 @@ Python complete: jedi-vim/python-mode
 
 ignorecase/noic 忽略大小写
 
+.c文件用2个空格替换tab:
+// vim:set ts=2 sw=2 expandtab:
 
 v characterwise-visual
 V linewise-visual
