@@ -340,9 +340,11 @@ http://www.wikihow.com/Test-a-Capacitor
 AA 5
 AAA 7
 <1000mAh
-碱性电池容量随输出电流增加而变小，
-如低输出电流时有3000mAh容量，1A电流时只有700mAh
-随输出电流的增加电压会下降，在一般负载下电压会降至约在1.1V-1.3V
+碱性电池容量随输出电流增加而变小，电压会持续下降
+
+CR表示3V锂电池
+CR 2032 纽扣电池  20mm 3.2mm
+CR 
 
 --avr--
 The AVR is a "modified Harvard architecture" machine 
