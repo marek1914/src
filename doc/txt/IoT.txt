@@ -23,8 +23,8 @@ SCL/VCC/GND/SDA
 
 xbee适配板，从函数角度讲，这个组合功能不清晰，应该是usb-uart uart-xbee 不要再想买xbee适配板
 
-南孚 AA 5  1600mAh
-南孚 AAA 7 1000mAh
+AA 5  1600mAh
+AAA 7 1000mAh
 CR2032: 3V-Li 20x3.2mm 210mAh(放电到2V)
 
 --stm32--
@@ -166,20 +166,18 @@ Dallas被Maxim收购
 --chip--
 sparkfun : Teensy 3.2
 
-压敏电阻（用于usb数据线，便宜）
-共模电感（用于usb数据线，做emc测试时防辐射用的）
+压敏电阻（用于usb，便宜）
+共模电感（用于usb）
 
 usb转网口线
 usb接口上用的共模电感：acm2012-2p ：Common Mode Filters(共模滤波器) for high-speed 差分信号或普通信号。
-Usb下拉AZ5325-01F 瞬变抑制二极管，保留，usb插入的设备比较组杂，这样保险
 
 usb电源滤波2个电容，参考rasp用47u+100n 
 
 USB部分的电源怎么关断：整个VCC5V 靠MOS管关闭
-AO4803A：Dual P-Channel Enhancement Mode Field Effect Transistor（可理解为2个三极管，应该是控制电源的）
+AO4803A：Dual P-Channel Enhancement Mode Field Effect Transistor
 Micro usb 5P 牛角 无卷边（rasp是卷边的）0.88
-micro sd 卡座自弹8P 内焊（rasp用的） 0.65
-无法找到品质与rasp一样的，日本JST的看着高档3.00起
+日本JST的3.00起
 
 s805 18x18 306pin
 usb hub：GL852G 12M贴片晶体
@@ -189,12 +187,7 @@ gl852g
 
 复位芯片 MAX809RD/RS809R  跟rasp用了类似的复位芯片
 
-音频输出CS4354(DAC) + 运放（放大器）
-
-现在能找到的usb hub芯片都比较大，包括microchip的几款
-
-usb切换器microchip USB3740B  1.3mm x 1.8mm 大小等于一个发光二极管，人民币3.63
-USB3750 qfn 3x3 mm  人民币5
+usb切换器USB3740B
 
 封装尺寸（不能精确对应）:
 0201 0.6mm x 0.3mm
@@ -216,7 +209,6 @@ asm1117  800mA Low dropout voltage regulator
 
 RechTEK  台湾立锜
 RT9193 300mA Ultra-low noise ultra-fast cmos ldo regulator
-fast体现在何处
 最小压差 220mV
 
 TPS61090: 2A Switch, 96% Efficient Boost Converter
@@ -224,12 +216,9 @@ TPS61090: 2A Switch, 96% Efficient Boost Converter
 MCP73871-2CCI/ML:
 Microchip's Battery Management Solutions
 
-sgm9119 46片 视频滤波器
-
 3.2x2.5 4脚晶体 SMD4P3225
 
 adafruit 充电装置：
-
 锂离子电池充电电压4.2V，
 锂聚合物4.25V
 
@@ -240,32 +229,21 @@ MAX6225 低噪声高精度 +2.5V/+4.096V/+5V电压基准
 Low 1.0ppm/°C Temperature Coefficient
 Very Low 1.5µVp-p Noise (0.1Hz to 10Hz) 
 
-理想电压基准源在负载电流温度和时间变化时电压保持稳定不变。
-在初始电压精度、电压温漂、迟滞以及供出/吸入电流的能力、静态电流(即功耗)、长期稳定性、噪声和成本等指标中进行权衡与折衷。
-
-小功率电阻碳膜/大功率电阻
-
 1N4007 1V/1A时本身功耗1W，转换为热量
 
 sy8113b dc-dc
 
 DC-DC  662K  5V-3.3V  串口小板用
-串口小板  电源地之间 加了T7二极管（3.3/5V各一个）（什么是T7二极管） 整流用？感觉多此一举呢
-串口小板数据指示灯，从电源串电阻串LED到信号线（信号为低时，倒灌电流进入？）
-CH340需12MHz晶体
+串口小板  电源地之间 加了T7二极管（3.3/5V各一个）（什么是T7二极管） 何用？
 
 低压MOS场效应管AO3401
 mp1484
 Medium power Transistor中等功率晶体管
 B1182 功率三极管  PNP silicon transistor
-
-TI 运放
 maxim 各232，485芯片型号，各种应用？
 
-AD5933
----
-
 --gnuradio--
+
 https://myriadrf.org/
 
 https://github.com/gnuradio/pybombs
@@ -287,11 +265,9 @@ cd gr-osmosdr/
 
 apt-get install libboost-all-dev
 
-
 https://github.com/Nuand/bladeRF  //bladeRF库 比如fpga的image
 
 rtl-sdr, gr-osmosdr, gr-iqbal, hackrf, bladeRF and airspy
-
 
 bladeRF-cli -i
 
@@ -300,29 +276,10 @@ bladeRF-cli -l <path/to/fpga/file>
 bladeRF> load fpga <path/to/fpga/file> 
 ---
 
---ADI--
-AD公司专业ADC:
-16bit 100ksps (采集声音足够)
-F330:10bit 200ksps   250kByte/s 数据只能通过spi发出了
-USB隔离：
-医疗和工业应用要求隔离
-接口和隔离
-ADI公司提供各种接口产品，其解决方案符合许多工业标准通信标准。
-数字隔离器、隔离收发器和隔离模数转换器采用获奖的iCoupler®和isoPower®技术，
-而且也能够在设计中实现隔离，并且不存在采用光耦合器时的许多限制。
-其他接口器件包括键盘控制器、电平转换器和高压保护产品，
-如通道保护、故障保护、过压保护以及防闩锁开关和多路复用器
-电平转换器
-
-利用ADI公司的iCoupler®标准数字隔离器技术，设计人员可以摆脱光耦合器的成本、尺寸、功耗、性能和可靠性限制，在设计中实现隔离。这些磁性隔离产品是光耦合器的理想替代产品。
-RMS-DC转换器
-AD5175 单通道1024位数字变阻器 10K（超贵  30+）
-
 ----
 Pspice电路仿真软件
 
 www.wikihow.com/Measure-Inductance 太棒了！
-
 http://www.wikihow.com/Test-a-Capacitor
 
 耳机的阻抗由电阻和感抗组成，感抗在1KHz测得
@@ -339,30 +296,9 @@ http://www.wikihow.com/Test-a-Capacitor
 问题：电机卡住时，电流变大,因为运动时，产生反电动势
 
 --avr--
-The AVR is a "modified Harvard architecture" machine 
-where program and data are stored in separate physical 
-memory systems that appear in different address spaces, 
-but having the ability to read data items from 
-program memory using special instructions.
-哈佛和冯诺依曼主要区别是否区分指令与数据
-内存里指令和数据在一起
-CPU区分指令缓存和数据缓存，指令和数据从两个不同的地方出来
-可以理解为CPU外部，是冯诺依曼，内部是哈佛
-哈佛结构复杂，效率高
-冯诺依曼简单，效率底
-为了提高速度，CPU增加指令缓存和数据缓存，为解决现实问题，什么主义不重要
-指令和数据共享同一 address space，但缓存分开，是两种架构的折中
-c51有sfr sbit访问特殊寄存器，非统一编址，与x86都是intel技术体系
-
-atmel被Microchip收购
-产品线从tinyAVR（1K FLASH）到megaAVR（128K FLASH）
-
-Atmel MCU 3类：avr 8/32-bit mcu; smart arm-based mcu (atsamxx); 8051 arch
+atmel被Microchip收购产品线从tinyAVR（1K FLASH）到megaAVR（128K FLASH）
+Atmel MCU 3类：avr 8/32-bit mcu; smart arm-based mcu(atsamxx); 8051
 AT tiny4 6pin 单片机
-AT tiny12
-
-Small — Atmel tinyAVR devices are designed specifically for applications where size and cost are critical. The smallest tinyAVR MCU measures only 1.5 mm x 1.4 mm. You can employ it as a single-chip solution in small systems or use it to deliver glue logic and distributed intelligence in larger systems.
-
 
 --antenna--
 倒F天线是从单极子天线演变过来的, 开路那边相当于电容，短路那边相当于电感，两个谐振就剩电阻
@@ -375,14 +311,11 @@ A: printed inverted-F antenna, B: meandered printed inverted-F antenna
 
 Inverted-F antenna
 Monopole antenna 单极天线
-2.4G 10db定向天线
 
-TI 天线设计参考资料：
-该天线板参考设计包含多个低成本天线解决方案，适用于低于 1 GHz 及 2.4 GHz 近距离无线系统
+TI 天线设计参考资料
 
 ---nodemcu---
 arduino ide 开发esp8266 nodemedia
-
 乐鑫espressif   amica
 
 User/mac/Library/Arduino15/packages/esp8266
@@ -395,7 +328,7 @@ www.espressif.com/en/products/hardware/esp8266ex/resources
 
 http://my.oschina.net/u/2306127/blog/402931
 
-ESP8266 5mm x 5mm, 集成 32bit Xtensa MCU
+ESP8266 32bit Xtensa MCU
 
 资料：
 http://nodemcu.readthedocs.io/en/master/
@@ -445,23 +378,14 @@ XBee：
 
 --wifi--
 partical:
-
 https://docs.particle.io/guide/tools-and-features/dev/
 
-realtek 瑞昱台湾螃蟹
-IEEE 802.11a/b/g/n Single-Chip
-分usb和pci-e接口
-RT(realtek)---L
-RTL8192DU-VC IEEE 802.11a/b/g/n 2T2R WLAN USB2.0
-RTL8188CUS 	 IEEE 802.11  b/g/n 1T1R WLAN USB2.0
-
+(RT)realtek 瑞昱台湾螃蟹
 usb wifi模块:
 RTL8188CUS 802.11n WLAN Adapter
 
 lsmod:
 cfg80211  is the Linux 802.11 configuration API   kernel支持的
-
-ott盒子rtl8188/rtl8192
 
 驻波系数
 能量全发射出去，效率最高，如果50%反射回来，效率不高。
@@ -471,18 +395,13 @@ WIreless-FIdelity  无线保真， 无线宽带
 
 I-PEX (天线扣子连接器)
 
-陶瓷天线也要金属作为辐射单元，陶瓷只是基材，利用它的高介电常数，减小天线体积
-内部结构是一段螺旋走线，优点节省空间，缺点效率低（10%-50%）
-使用陶瓷天线要外加π型网络 并要求供应商提供匹配网络，以便达到理想效果。
-
-倒F型 PCB天线是常用2.4G天线，优点：节省成本。辐射方向性和辐射效率都是经过验证的。阻抗50欧姆。
+陶瓷天线也要金属作为辐射单元
+倒F型 PCB天线是常用2.4G天线，优点：节省成本。阻抗50欧姆。
 天线的馈点。倒F是单极天线
 
 50欧姆传输线
-天线效率41%（何为天线效率，如何测量）
+天线效率41%
 计算微带线的阻抗
-
-模块：usb/sdio
 
 --rf--
 sudo apt-get install gqrx-sdr
@@ -491,57 +410,16 @@ sudo apt-get install gqrx-sdr
 https://www.maximintegrated.com/cn/app-notes/index.mvp/id/4338
 https://www.maximintegrated.com/cn/products/analog/amplifiers/MAX9979.html/tb_tab2
 
-同轴电缆特性阻抗测量方法：
-TDR ， 史密斯图法， 谐振频率法
-除VNA,还可：
-时域测试法：专门TDR设备，信号发生器+示波器组合，网络分析仪（电缆厂家多利用网络分析仪的时玉功能）
-
 google 搜 afg oscilloscope tdr
 A network analyzer
 scalar network analyzer (SNA)—measures amplitude properties only
 vector network analyzer (VNA)—measures both amplitude and phase properties
 
-http://www.rtl-sdr.com
-
-Polar SI9000 特性阻抗计算工具
-磁力线是便于理解想象出来的
-电磁波是电磁场运动形态
-蜿蜒倒F天线
-2.4G 波长12.5cm
-
 LPD433 (low power device 433.050-434.790)  bw: 1.74 MHz
+ISM
 
 ITU-T:
 gaojie@cyclecentury.com:*2xxpy-
-
-ISM(ITU-R)
-Fre range			Center fre 	Availability
-6.765-6.795 MHz		6.78 MHz 			
-13.553-13.567 MHz	13.56 MHz 	Worldwide
-26.957-27.283 MHz	27.12 MHz 	Worldwide
-40.66-40.7 MHz		40.68 MHz 	Worldwide
-433.05-434.79 MHz	433.92 MHz 	 	      
-902-928 MHz			915 MHz
-2.4-2.5 GHz			2.45 GHz 	Worldwide
-5.725-5.875 GHz		5.8 GHz 	Worldwide
-24-24.25 GHz		24.125 GHz 	Worldwide
-61-61.5 GHz			61.25 GHz
-122-123 GHz			122.5 GHz
-244-246 GHz			245 GHz
-
-Frequency 		Wavelength		Designation 					Abbre
-3 – 30 Hz		105 – 104 km 	Extremely low frequency 		ELF
-30 – 300 Hz 	104 – 103 km 	Super low frequency 			SLF
-300 – 3000 Hz 	103 – 100 km 	Ultra low frequency 			ULF
-3 – 30 kHz		100 – 10 km 	Very low frequency 				VLF
-30 – 300 kHz 	10- – 1 km		Low frequency 					LF
-300kHz–3MHz		1km – 100m	 	Medium frequency 				MF
-3 – 30 MHz		100 – 10m 		High frequency 					HF
-30 – 300 MHz 	10 – 1m 		Very high frequency 			VHF
-300MHz–3GHz		1m – 10cm 		Ultra high frequency 			UHF
-3 – 30 GHz		10 – 1cm 		Super high frequency 			SHF
-30 – 300 GHz 	1cm – 1mm 		Extremely high frequency 		EHF
-300GHz-3000GHz 	1mm - 0.1mm 	Tremendously high frequency 	THF
 
 http://www.freebuf.com/articles/wireless/35354.html
 http://whiteboard.ping.se/SDR/IQ
@@ -549,78 +427,24 @@ http://whiteboard.ping.se/SDR/IQ
 I : In-Phase(同相 同步) signal component
 Q : Quadrature signal component 
 
-Great Scott Gadgets  HackRF One(1MHz-6GHz) 8bitDAC 1200+ (最便宜的)
-Nuand bladeRF x40 USB 3.0 (300M-3.8G) http://www.nuand.com/ 4000+
-XB-200 下变频到 60kHz to 300MHz
-Ettus USRP B200/B210 14bit DAC 10000+
-FreeSRP
-LimeSDR 3000+
-
-YARD Stick One
-RTL2832U + R820T  40+
-
 http://wiki.spench.net/wiki/RTL2832U
 
-FreeSRP A New USB Software-Defined Radio
-
-Analog Devices AD9364 transceiver  600+
-Xilinx Artix 7 FPGA
-Cypress EZ-USB FX3 USB 3.0 controller
-
-56 MHz bandwidth
-70 MHz to 6 GHz center frequency
-12-bit resolution
-Full-duplex operation
-
-bladeRF和USRP B210/200都有比较强大的FPGA，还有FX3微控制器。
-B210使用Spartan 6 LX150 FPGA，它有150k逻辑单元；
-B200使用LX75 FPGA，有75k的逻辑单元。
-bladeRF使用Cyclone 4 FPGA，x40有40k逻辑单元，x115有115k逻辑单元。
-USRP B100用的是比较小的FPGA，有25k逻辑单元。
-HackRF使用的是CPLD
-
-便宜的8-bit精度的RTL-SDR就可以接收NOAA的气象卫星图像，但是更高的精度显然更有用
-
-示波器连接铜柱一端，那参考地在哪里呢？
-频谱仪来听收音机
+SDR: Software-Defined Radio
+Nuand bladeRF x40 USB 3.0 (300M-3.8G)
 
 传输线阻抗是从电报方程推导出来(查微波理论)
 传输线特性阻抗 (Characteristic impedance   wiki)
 
-电磁波会反射？ 那电磁波到底是穿透还是反射?
-可见光也是电磁波，它就不会穿透而是被反射，可见光却可以穿透透明物体
-
-可见光不可穿透，比他波长更长和更短的电磁波都可以穿透
-
 电磁波:TE，TM，TEM,
-
-The electric field is a component of the electromagnetic field. 
-It is a vector field and is generated by electric charges or time-varying magnetic fields, as described by Maxwell's equations. 
-The concept of an electric field was introduced by Michael Faraday.
 
 天线：
 陶瓷天线
 外接柱状天线
 PCB板载天线
 
-Antenna Magus
-
 www.reseau.org/arduinorc/
 http://www.reseau.org/arduinorc/index.php?n=Main.Gallery
-
 多少V 能产生电火花？ 5V的拉弧距离太短！你增大电压可以增大拉弧距离
-
-实验
-2金属片10MHz发电磁波
-注意：泰克示波器，auto按键不好用，信号弱时，无法auto设置合适参数，
-窍门：先连接信号源auto，然后不要断电，再去接收无线信号。
-10MHz 波长30米，20MHz，波长15米（没超过一个波长）
-
-示波器测试天线信号，有时显示50Hz，这是市电频率，为何？
-发射天线用手触摸，能明显提高发射频率。这跟用手模收音机天线，一下声音变清楚一样。
-
-FM 76.0- 90.0MHz 日频
-AM 531-1710KHz
 
 Distributed antenna system (wikipedia)
 
@@ -643,30 +467,18 @@ wikipedia 搜索 Dipole antenna
 
 串联电路电流处处相等，是近似，忽略场传播所需时间
 
-检流计:检测微弱电量用的高灵敏度的机械式电表 淘宝几十元
-
 https://en.wikipedia.org/wiki/Colpitts_oscillator
-
-运动电荷在磁场中所受到的力称为洛伦兹力
-洛伦兹 ：荷兰物理学家
-
-电感就像安全带，慢慢可以拉出，猛拉会有极大阻力
-切割磁力线/变化磁场产生电场 
 
 ----
 U.FL
 Ultra Small Surface Mount Coaxial Connectors - 1.9mm or 2.3mm, 2.4mm Mated Height
-Supports high frequency up to 6GHz
-
-SMA connector
-SubMiniature version A
+SMA connector  SubMiniature version A
 
 ---lora---
 LoRa网关SX1301，8 LoRa信道，1 FSK信道，可看做 FPGA+8路LoRa调制解调器
 数据手册驱动不公开；缴费成为LoRa Alliance会员，才能获得相关资料
 
 sx1278:
--=-=-=-=-=-
 电流 45 50 55 60 ... 115 120 130 140 ... 230 240
 lora modem phy conf 1/2/3
 REG_MODEM_CONFIG1
@@ -706,33 +518,11 @@ IPEX 座
 
 --bluetooth--
 https://www.youtube.com/watch?v=tclS9arLFzk   下载这个视频   来自bluez.org
-
 www.bluetooth.com  #Bluetooth Special Interest Group (SIG) (802.15.1不再维护)
 
 Bluetooth Basic Rate(BR) 2.0
 Enhanced Data Rate (EDR) 2.1
-Bluetooth with low energy (LE for IoT) 4.0/4.1/4.2  
-
-The CSR8510 chipset is a Bluetooth v4.0 single-chip radio and baseband IC for PCs and consumer electronics devices.
-
-CSR101x 系列
-
-手里的适配器：
-CSR BC212  USB1.0  Bluetooth 1.2
-
-https://wiki.csr.com/wiki/Main_Page
-可以下载到几篇文档，很好
-
-https://www.csrsupport.com  
-Username: gaojie
-Password: 0;.6vO
-没有权限，需要建立商业关系
-
-https://developer.qualcomm.com/user/register
-13492467@qq.com
-*200w200W*
-
-download 目录有资料
+Bluetooth with low energy (LE for IoT) 4.0/4.1/4.2
 
 --TI--
 账户：13**67@qq.com : -2y50wpy-
@@ -774,42 +564,16 @@ EW8051 830/930(mac os 可用)
 SmartRF Flash Programmer
 SmartRF Studio
 
-CC2530+RFX2401C(PA:功率放大器 模块)，内置IPX连接器 
-
-LM4128-Q1 SOT-23 精密微功耗串联电压基准 
-
-开关和多路复用器:
-解决信号路由问题
-模拟开关、数字开关，负载开关、高速开关
-TI开关涵盖了面向任何应用的各种通道数、配置、电压范围、导通电阻 (RON) 和带宽
-
-
 ---
 二极管矩阵：
-1 板子上就是I2C，芯片与矩阵不分离 最多4块板子级联，设置4个i2c地址
-4 不要int引脚和shutdown引脚（6个引脚太多，与4针接口不兼容）
-板子加上拉，串联后上拉会变小
-板子不加，主控器可能没有（一般io都有内部上拉功能的）
 普通发光二极管1.8V导通
 高亮二极管3.1V导通，2.5V也可，电流小，不亮
 蓝色高亮 2.4v 才开始亮
 
-74hc138
-片选1高2低设计，实现1线控制2片，2线控制3片效果，2线控制4片无法实现，除非有多余的反向器。
-再多级联，可1片138控制另外8片，实现6线64译码，再多无意义
-
-L7805 电压调节器 短路保护
-CAT-I CAT-II CAT-III CAT-IV 电工工作区域四等级
-
-
-http://www.jst.com/home23.html
-C&K进口原装正品 KSS331GLFS 贴片触摸开关 轻触开关7*3.5MM
 Japan Solderless Terminal
-AWG是美国的线规标准，32表示0.202mm直径大小的线缆
+http://www.jst.com/home23.html
 
-线分单芯， 单芯并非值1股，而是一条线路
-常见面板白色红点排线 7芯（比较硬）
-那种排线呢？很软的那种
+AWG:美国线规标准
 
 Insulation-displacement connector 就是早前用的20针/40针 将绝缘层割开的座子
 Contact 金属触点
@@ -882,8 +646,6 @@ pc编译，sys/arduino目录 .uno文件不认
 
 https://learn.adafruit.com/ssd1306-oled-displays-with-raspberry-pi-and-beaglebone-black/wiring
 u8glib/sys/arduino/Chess/Chess.cpp  //这个文件是自动生成的
-
-
 
 ----
 6502 CPU  apple I/II  任天堂
