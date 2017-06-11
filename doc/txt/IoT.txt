@@ -25,7 +25,7 @@ xbee适配板，从函数角度讲，这个组合功能不清晰，应该是usb-
 
 AA 5  1600mAh
 AAA 7 1000mAh
-CR2032: 3V-Li 20x3.2mm 210mAh(放电到2V)
+CR2032: 3V-Li 20x3.2mm 210mAh(放电到2V) 	BK-912电池座
 
 --stm32--
 openstm32.org gaojie:200w200w
@@ -177,7 +177,6 @@ usb电源滤波2个电容，参考rasp用47u+100n
 USB部分的电源怎么关断：整个VCC5V 靠MOS管关闭
 AO4803A：Dual P-Channel Enhancement Mode Field Effect Transistor
 Micro usb 5P 牛角 无卷边（rasp是卷边的）0.88
-日本JST的3.00起
 
 s805 18x18 306pin
 usb hub：GL852G 12M贴片晶体
@@ -570,6 +569,7 @@ SmartRF Studio
 高亮二极管3.1V导通，2.5V也可，电流小，不亮
 蓝色高亮 2.4v 才开始亮
 
+------
 Japan Solderless Terminal
 http://www.jst.com/home23.html
 
@@ -594,8 +594,6 @@ SPH-002T-P0.5S / SPH-002T-P0.5L /SPH-004T-P0.5S(线更细)  整盘8000个 3分
 
 04KR-D8M-P / 04KR-D6S-P 割开绝缘层的壳
 
---------------
-molex
 jst:
 shr-02v-s-b 0.069
 ssh-003t-p0.2  金属片
