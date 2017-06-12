@@ -2,14 +2,13 @@ http://www.fourcc.org/
 YUV pixel formats
 Video Codecs
 
-
 Icecast is a streaming media (audio/video) server which currently supports Ogg (Vorbis and Theora), Opus, WebM and MP3 streams.
 
 google webp 图片格式
 
 --格式--
 WAV :microsoft 开发(codecs and formats)，符合RIFF，类似AIFF , video/x-ms-wmv
---背--
+
 H.262 / MPEG-2 Video editions
 Edition	Release	Amendment	ISO/IEC standard	ITU-T
 1st		1995	2000 		13818-2:1996		H.262 (07/95)
@@ -117,7 +116,6 @@ wiki H.264 vs VC-1：VC-1性能接近H264
 
 VC-1 视频编码格式被 SMPTE 标准化 and implemented by Microsoft as Microsoft Windows Media Video (WMV) 9
 
-
 MPEG-2 MP@HL MP@ML MP@LL  SP@ML
 MPEG-4-AVC HP@L4.2 HP@L4.1
 VC-1 AP@L3 MP@HL
@@ -170,11 +168,7 @@ Nokia N82 描述:
 MPEG-4 Part 2 (DivX/XviD), MPEG-4 Part 10 (H.264), RealVideo up to RealVideo 10
 Apple Lossless苹果无损音频
 
-ASF(Advanced Streaming Format)是专为在IP网上传送多媒体数据而设计，既可以传送视频文件，也可传送实时产生的节目。 
-
-Advanced Systems Format (formerly Advanced Streaming Format, Active Streaming Format) is 
-Microsoft's proprietary digital audio/digital video container format, especially meant for 
-streaming media. ASF is part of the Windows Media framework.以前叫 streaming format 现在叫 system format
+ASF(Advanced Streaming Format)是专为在IP网上传送多媒体数据而设计，既可以传送视频文件，也可传送实时产生的节目。
 
 webm
 
