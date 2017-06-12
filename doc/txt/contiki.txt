@@ -1,5 +1,14 @@
 sdcc 编译方法：
 https://github.com/contiki-os/contiki/wiki/8051-Requirements
+macOS:
+brew install srecord boost
+修改：
+incl.mk: MODELS = small medium large -> small large huge
+device/lib/Makefile.in:
+TARGETS += models small-mcs51-stack-auto -> models model-mcs51-stack-auto
+./configure --disable-xx (除mcs51 都可disable掉)
+make
+make install
 
 默认发布的bin 不支持huge（for 8051） 需源码编译
 

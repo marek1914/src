@@ -126,7 +126,7 @@ file显示：Java Jar file data (zip)
 
 ota zip包解压再压缩不能升级（签名没有变，不是java格式）
 
-有系统属性的apk xu xi tong key qian ming  安装错误：INSTALL_FAILED_SHARED_USER_INCOMPATIBLE
+系统属性apk需系统签名：INSTALL_FAILED_SHARED_USER_INCOMPATIBLE
 
 生成key的过程：
 1. 把pkcs8格式的私钥转换为pkcs12格式

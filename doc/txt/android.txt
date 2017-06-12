@@ -190,15 +190,9 @@ pppoe得独立ip可远程adb
 
 
 adb install 错误：
-Failure [INSTALL_PARSE_FAILED_INCONSISTENT_CERTIFICATES] 之前安装了不同人编译的包名相同的apk
-可以先删除了。 但是直接在/data/app下面删除，再安装，提示：
-Failure [INSTALL_FAILED_UPDATE_INCOMPATIBLE] 因为apk删除不彻底。把/data/data/相应包名/ 目录 还有 ./dalvik-cache 目录还是不行
-只能卸载或者恢复出厂设置
-
-
-分离形式无法安装，如 ApiDemos.odex ApiDemos.apk
-adb install -r ApiDemos.apk  提示 Failure [INSTALL_FAILED_DEXOPT] (-r 如已安装则覆盖否则提示：INSTALL_FAILED_ALREADY_EXISTS)
-adb push ApiDemo.apk ApiDemo.odex 不能运行，打印: mismatch dep signature for
+[INSTALL_PARSE_FAILED_INCONSISTENT_CERTIFICATES] 之前安装了不同人编译的包名相同的apk
+在/data/app下删除再安装：
+[INSTALL_FAILED_UPDATE_INCOMPATIBLE] 因为apk删除不彻底,可恢复出厂
 
 adb -s devicename //多设备连接时选择
 

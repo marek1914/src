@@ -358,17 +358,11 @@ option 60
 REST:Representational State Transfer 表述性状态传递,Roy Fielding博士在2000年他的博士论文中提出来的一种软件架构风格
 比 SOAP和XML-RPC 简洁
 
-
-
 ---
 ntp port 123
 
-
 rdate -puvno 123  202.118.1.81
 
-
-
-------
 ubuntu ip 保存在/etc/network/interface
 android ip 保存在数据库里
 
@@ -376,17 +370,9 @@ android ip 保存在数据库里
 
 ping : external/iputils/
 
-dhcpcd (dhcp client daemon) 是 DHCP client (RFC2131)的实现
+dhcpcd (dhcp client daemon) 是 RFC2131 的实现
 
-android Ethernet实现来自 The Android-X86 Open Source Project
-a20在framework/base/ethernet
-EthernetDataTracker.java(这是android原生文件 不知为何移动到这里)
-EthernetDevInfo.aidl
-IEthernetManager.aidl
-EthernetDevInfo.java
-EthernetManager.java
-
-system/netd -> /system/bin/netd
+/system/bin/netd
 
 showlease.c 用于测试
 

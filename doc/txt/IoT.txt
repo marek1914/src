@@ -19,9 +19,7 @@ SCL/VCC/GND/SDA
 次: VCC/GND/IO
 差: VCC/IO/GND
 
-焊点间距以2.0 2.54为主, 1.27
-
-xbee适配板，从函数角度讲，这个组合功能不清晰，应该是usb-uart uart-xbee 不要再想买xbee适配板
+间距以2.54/2.0/1.27
 
 AA 5  1600mAh
 AAA 7 1000mAh
@@ -155,9 +153,6 @@ CP2102N-QFN20   13+
 
 Si4010/Si4355 发/收
 
-AN112:串口升级固件
-
-
 ----
 DS1803 数字电位器
 Dallas's 1-wire(kernel support) 
@@ -177,7 +172,6 @@ usb电源滤波2个电容，参考rasp用47u+100n
 USB部分的电源怎么关断：整个VCC5V 靠MOS管关闭
 AO4803A：Dual P-Channel Enhancement Mode Field Effect Transistor
 Micro usb 5P 牛角 无卷边（rasp是卷边的）0.88
-日本JST的3.00起
 
 s805 18x18 306pin
 usb hub：GL852G 12M贴片晶体
@@ -218,9 +212,9 @@ Microchip's Battery Management Solutions
 
 3.2x2.5 4脚晶体 SMD4P3225
 
-adafruit 充电装置：
-锂离子电池充电电压4.2V，
-锂聚合物4.25V
+adafruit 充电电压：
+锂离子电池 4.2V
+锂聚合物   4.25V
 
 IS31FL3731
 ST VL53L0X Time-of-Flight (ToF)
@@ -570,12 +564,12 @@ SmartRF Studio
 高亮二极管3.1V导通，2.5V也可，电流小，不亮
 蓝色高亮 2.4v 才开始亮
 
+------------
 Japan Solderless Terminal
 http://www.jst.com/home23.html
 
 AWG:美国线规标准
-
-Insulation-displacement connector 就是早前用的20针/40针 将绝缘层割开的座子
+Insulation-displacement connector 将绝缘层割开的座子
 Contact 金属触点
 Shrouded Header 座子
 Housing/socket 壳
@@ -594,8 +588,6 @@ SPH-002T-P0.5S / SPH-002T-P0.5L /SPH-004T-P0.5S(线更细)  整盘8000个 3分
 
 04KR-D8M-P / 04KR-D6S-P 割开绝缘层的壳
 
---------------
-molex
 jst:
 shr-02v-s-b 0.069
 ssh-003t-p0.2  金属片
@@ -631,9 +623,7 @@ keil/arm/下有 Segger/STLink/ULink 多个驱动支持，
 
 MDK Plus/Professional
 
-与MDK4不同，MDK5分成MDK Core和Software Packs两部分。
-MDK Core包含uVision5 IDE集成开发环境和ARM Compiler5
-Software Packs可在不更换MDK Core情况下，单独管理设备支持包和中间件更新包。  
+MDK5分成MDK Core(uVision5&Compiler5)和Software Packs两部分
 
 --u8glib--
 m2tklib
