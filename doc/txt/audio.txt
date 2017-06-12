@@ -357,42 +357,10 @@ alsa : http://www.sabi.co.uk/Notes/linuxSoundALSA.html
 
 -----------
 strace arecord -Dhw:1,0  -d 40 -c 1 -t wav -r 16000 -f "Signed 16 bit Little Endian"  xx.wav
-
 open("/dev/snd/controlC1", O_RDONLY|O_CLOEXEC) = 3
-fcntl(3, F_SETFD, FD_CLOEXEC)           = 0
-ioctl(3, SNDRV_CTL_IOCTL_CARD_INFO or UI_DEV_CREATE, 0x7fffee669840) = 0
-
-open("/dev/snd/controlC1", O_RDWR|O_CLOEXEC) = 3
-fcntl(3, F_SETFD, FD_CLOEXEC)           = 0
-ioctl(3, SNDRV_CTL_IOCTL_PVERSION or USBDEVFS_CONTROL, 0x7fffee6699c4) = 0
-ioctl(3, SNDRV_CTL_IOCTL_PCM_PREFER_SUBDEVICE, 0x7fffee669a2c) = 0
-
-open("/dev/snd/pcmC1D0c", O_RDWR|O_NONBLOCK|O_CLOEXEC) = 4
-fcntl(4, F_SETFD, FD_CLOEXEC)           = 0
-ioctl(4, AGPIOC_ACQUIRE or APM_IOC_STANDBY or SNDRV_PCM_IOCTL_INFO, 0x7fffee6698d0) = 0
-fcntl(4, F_GETFL)                       = 0x8802 (flags O_RDWR|O_NONBLOCK|O_LARGEFILE)
-ioctl(4, AGPIOC_INFO or SNDRV_PCM_IOCTL_PVERSION, 0x7fffee669820) = 0
-ioctl(4, AGPIOC_SETUP or SNDRV_PCM_IOCTL_TTSTAMP, 0x7fffee669824) = 0
-ioctl(4, AGPIOC_ACQUIRE or APM_IOC_STANDBY or SNDRV_PCM_IOCTL_INFO, 0x7fffee669e10) = 0
-ioctl(4, SNDRV_PCM_IOCTL_HW_REFINE, 0x7fffee667980) = 0
-ioctl(4, SNDRV_PCM_IOCTL_PREPARE, 0x7d0) = 0
-
-open("xx.wav", O_WRONLY|O_CREAT, 0644)  = 3
-
-write(3, "RIFF$\210\23\0WAVE", 12)      = 12
-write(3, "fmt \20\0\0\0", 8)            = 8
-write(3, "data\0\210\23\0", 8)          = 8
-
-ioctl(4, SNDRV_PCM_IOCTL_READI_FRAMES, 0x7fffee667d30) = 0
-ioctl(4, SNDRV_PCM_IOCTL_READI_FRAMES, 0x7fffee667d30) = 0
-ioctl(4, SNDRV_PCM_IOCTL_READI_FRAMES, 0x7fffee667d30) = 0
-
-----
-语音遥控器
 
 问题：
 如果摄像头和语音遥控同时插这，audiorecoder，如何区分设备？
-
 
 发送广播事件：
 com.funshion.android.intent.action.FUN_TV_RECORD_BUTTON_START
@@ -416,7 +384,6 @@ pcmC1D0c
     |__ Port 4: Dev 5, If 2, Class=Human Interface Device, Driver=usbhid, 12M
     |__ Port 4: Dev 5, If 3, Class=Human Interface Device, Driver=usbhid, 12M
     |__ Port 4: Dev 5, If 4, Class=Human Interface Device, Driver=usbhid, 12M
-
 
 ---------
 sys目录下的

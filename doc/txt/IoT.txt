@@ -23,7 +23,7 @@ SCL/VCC/GND/SDA
 
 AA 5  1600mAh
 AAA 7 1000mAh
-CR2032: 3V-Li 20x3.2mm 210mAh(放电到2V)
+CR2032: 3V-Li 20x3.2mm 210mAh(放电到2V) 	BK-912电池座
 
 --stm32--
 openstm32.org gaojie:200w200w

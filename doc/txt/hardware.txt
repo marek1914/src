@@ -1,5 +1,3 @@
-AFG1022 长周期方波产生step signal
-
 耦合：直流，交流，接地，选择交流，无法测出直流电压
 探头衰减x10的含义
 波形可以在屏幕上留下痕迹，此功能可用于分析一些趋势
@@ -156,10 +154,7 @@ F (farad)
 1pF 相当于 6.24146 x 10^6，即 624万个电子产生1V电势差（有认识了） 电容面积非常小即可
 1pF 用 1uA电流充电，电势差达到1V需 1uS，而1uS 只是1MHz的周期，是很大的值了。
 
-
 220V交流电是有效值，峰值220*1.414=311V
-
-《The Art of Electronics》
 
 单位时间通过导体横截面的电量叫电流强度，简称电流
 
@@ -347,8 +342,6 @@ ns16550(fifo mode)
 Character Timeout Indication：
 No Characters Have Been Removed From or Input to the RCVR FIFO During the Last 4 Char Times and There Is at Least 1 Char in It During This Time
 
-
-
 RTS：request to send
 CTS：clear to send(RTS的应答)
 
@@ -364,7 +357,6 @@ RS232 full-duplex
 RS485 half-duplex：RX+/TX+并联为Data+，RX-/TX-并联为Data-，MAX485是半双工模式的485收发器
 
 ------------
-
 
 CDC: Communication Device Class
 Vendor ID 查询
@@ -409,21 +401,18 @@ setup的数据阶段的流程跟bulk传输一样
 9 控制传输最为特殊，他规定了数据格式。而其他3种传输方式都没有规定传输格式。这相当于在数据连路层增加了一层协议，他跟bulk only 协议是同一个级别的。
 10 u盘使用的协议有bulk only还有CBI但不常用
 
-micro(2007年) usb 比 mini usb(时间更早)更小，都是5线: 1:vcc 2:d- 3:d+ 5:gnd 4:ID(OTG功能时使用，ID高电平Host模式)
-所以一般的usb数据线，都是slave模式，用otg线（内部4脚连1脚）切换到主模式
 
 Micro usb系列的独特之处是他们包含了不锈钢外壳(材质也有要求)，万次插拔没问题
 
-zero-length packet(20141220 guwb 这么多年都没搞明白，帮人就是帮己)
+zero-length packet()
 Bulk传输终止于如下情况(USB1.1 5.8.3):
 1 已经传输了host请求的数据大小
-2 收到一个负载小于最大包长的数据包，或者一个0长度包 （充分考虑了host请求的数据比设备要发送的多的情况）
+2 收到一个负载小于最大包长，或0长度数据包 （host请求的比设备发送的多的情况）
 
 请求长度大于实际返回长度，且返回数据包长度是端点最大包长的整数倍时，需要返回0长度数据包。例如端点最大包长为8字节，若host请求18字节，但设备只有12字节要返回，那么只返回12字节的数据即可，但如果要返回8或16字节，就要在返回这些字节后再返回0长度数据包。
 
-guwb:
-MAX3420 SPI slave 转USB Device，我的猜测很准。但此片很贵
-FT121 功能同max3420，较便宜 10块+
+
+MAX3420 / FT121  SPI slave 转USB Device
 
 gu:
 rockchip 芯片otg usb device 模拟网卡，NCM协议， 开始在freescal平台调试ok，移植到rockchip，枚举基本ok，mac地址获取不到，数据丢失几个字节
