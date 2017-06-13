@@ -232,11 +232,6 @@ ndk10: --arch没有默认，必须指定
 
 arm-linux-androideabi-gcc与gcc相同，一长串和简写一一对应
 
-./arm-linux-androideabi/bin/ar as c++ g++ gcc ld ld.bfd ld.gold ld.mcld nm objcopy objdump ranlib strip
-./bin/arm-linux-androideabi-ar -as -c++ -g++ -gcc -ld -ld.bfd -ld.gold -ld.mcld -nm -objcopy -objdump -ranlib -strip
-多
-./bin/arm-linux-androideabi-addr2line i-c++filt -cpp -elfedit -gcc-4.6 -gcov -gdb -gprof -readelf -run -size -strings
-
 ./arm-linux-androideabi/bin/README 也有如下描述：
 The executables in this directory are for internal use by the compiler and may not operate correctly when used directly.  
 This directory should not be placed on your PATH. you should use ../../bin/ and place that directory on your PATH.
@@ -411,7 +406,7 @@ Without that option, why do I still see when I run readelf on the generated exec
 TAG_THUMB_ISA_use: Thumb-2 ?
 You are probably linking in at least one Thumb-2 object file, perhaps
 something from one of the run-time libraries.
-运行readelf -A 可以看到详细信息，仍然有TAG_THUMB_ISA_use:Thumb-2是因为调用的库里面有thumb-2指令,编译android时在最上层指定 LOCAL_ARM_MODE = arm 就没有thumb-2了
+readelf -A 仍有TAG_THUMB_ISA_use:Thumb-2是因为调用的库里面有thumb-2指令,编译android时在最上层指定 LOCAL_ARM_MODE = arm 就没有thumb-2了
 
 -D name  Predefine name as a macro, with definition 1
 -D name=definition

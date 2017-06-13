@@ -8,10 +8,11 @@ jsq.re
 
 TIOBE
 
-http://stackoverflow.com/questions
-http://mikewootc.com //wuyuntao
-http://en.savefrom.net
-http://downsub.com  subtitle
+stackoverflow.com
+mikewootc.com //wuyuntao
+
+en.savefrom.net
+downsub.com  youtube subtitle
 
 ID/79864406 id:410425198511202520
 
@@ -20,6 +21,7 @@ abandon sourceinsight, eclipse, qcreator
 abandon !protel99/ADS
 abandon C++ (20170428) ffmpeg/kernel/minigui的设计技术足矣
 
+iot-lab.info
 esacademy.com
 gnu.org
 kernel.org
