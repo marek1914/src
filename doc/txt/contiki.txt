@@ -23,3 +23,8 @@ p0.3 上有打印：^_^
 multi-thread 例子，native编译，macOS 运行不正常，ubuntu正常
 
 
+core/net/mac/contikimac/contikimac.c
+NETSTACK_RADIO.receiving_packet() //静态配置的，并不太好
+
+struct rdc_driver contikimac_driver
+
