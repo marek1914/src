@@ -1,4 +1,5 @@
-www.lllab.tech (2017.6-2019.6) 暂无法备案
+lllab.tech LL实验室(2017.6-2019.6) 无法备案
+elegantlab.cn 
 
 jsq.re
 
@@ -22,6 +23,7 @@ abandon sourceinsight, eclipse, qcreator
 abandon !protel99/ADS
 abandon C++ (20170428) ffmpeg/kernel/minigui的设计技术足矣
 
+mdpi.com
 iot-lab.info
 esacademy.com
 gnu.org

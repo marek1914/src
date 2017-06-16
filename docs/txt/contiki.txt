@@ -22,4 +22,6 @@ p0.3 上有打印：^_^
 
 multi-thread 例子，native编译，macOS 运行不正常，ubuntu正常
 
-
+--sdcc--
+1 char 默认是无符号
+2 不能函数中间定义变量

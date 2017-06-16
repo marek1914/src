@@ -748,9 +748,6 @@ amlogic/bestv/apk/SWSettings_chinamobile.apk
 开机logo显示：
 在device目录下面：aml_logo.bmp，替换了执行 make
 
-./recovery.c:
-static const char *SDCARD_COMMAND_FILE = "/sdcard/factory_update_param.aml";
-
 u盘升级，检查脚本文件是在recovery而非uboot里
 
 spi.bin 的那个生成工具：
