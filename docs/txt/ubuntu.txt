@@ -356,6 +356,6 @@ Preference - Use localized rescources 变为简体中文版
 用Protel2004_sp2_Genkey.exe,将它放在Protel_DXP_2004安装目录注册
 
 --建站---
-万网申请域名（阿里收购，淘宝账户登录），在域名管理中“添加解析”到github的ip(ping得到)
-20170614 lllab.tech可以访问
-
+万网申请域名（淘宝账户登录），在域名管理中“添加解析”到github的ip(ping)
+lllab.tech可访问
+aliyun: 200wguiqiyi

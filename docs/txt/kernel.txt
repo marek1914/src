@@ -65,7 +65,7 @@ Perface
        （2）修改linux/include/asm-mips/emma/emma3slp.h中EMMA_NAND_BASE和EMMA_NAND_SIZE两个宏，
 其中EMMA_NAND_BASE为nand flash的基地址，EMMA_NAND_SIZE为nand flash的大小。
        （3）修改linux/arch/mips/emma/nec-emma3slx/platform.c    文件，修改emma_nand_platform_data结构如下：
-	 static struct emma_nand_platform_data emma_nand_pdata = {
+	struct emma_nand_platform_data emma_nand_pdata = {
  	.parts          = nand_parts,
 	.nr_parts       = ARRAY_SIZE(nand_parts),
 	.large_page     = 2112,//nand flash一页的大小

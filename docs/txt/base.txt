@@ -62,18 +62,11 @@ cout /cin 字符输出
 endl end line
 
 static const
-
-static final Singleton<IActivityManager> gDefault = 
 static const int COUNT=5;
-
-static inline int foo(void)
-{
-}
 
 int main(void)
 {
 	cout << "Hello World!"<<endl;
-
 	printf("i=%d\n", i);
 	return 1;
 }

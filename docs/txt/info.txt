@@ -1,4 +1,5 @@
-www.lllab.tech (2017.6-2019.6) 暂无法备案
+lllab.tech LL lab(2017.6-2019.6) 无法备案
+elelab.cn (electronics/elegant lab) 2017.6-2020.6 备案名：平凡的世界
 
 jsq.re
 
@@ -22,6 +23,7 @@ abandon sourceinsight, eclipse, qcreator
 abandon !protel99/ADS
 abandon C++ (20170428) ffmpeg/kernel/minigui的设计技术足矣
 
+mdpi.com
 iot-lab.info
 esacademy.com
 gnu.org
@@ -43,6 +45,7 @@ openhw.org
 beagleboard.org
 cn.element14.com
 json.org
+electronics-lab.com
 
 embeddedmicro.com //mojo
 wiki.openmusiclabs.com/wiki/PWMDAC
@@ -63,7 +66,7 @@ https://docs.particle.io/datasheets/photon-datasheet
 
 投入（计划10万）：
 2016: 4.4
-2017: 18815 (5.6)
+2017: 18914 (5.6)
 
 电脑相关： 22328 元
 macbook pro				11788
@@ -136,15 +139,15 @@ TH2822E					1588
 基础工具： 2747+2650元
 proxxon 台锯				2650
 博士电钻					399
-琢美胶枪+雕刻笔				300
-琢美手钻+瓦斯喷枪				747
+琢美胶枪+雕刻笔			300
+琢美手钻+瓦斯喷枪		747
 镊子+烙铁头				51
-得力文件柜 X5				350
-快克风枪850+misc				370
+得力文件柜 X5			350
+快克风枪850+misc			370
 超声波清洗机				150
 凝睿元件盒x2				300
-alpha焊锡/锡条				290
-偏口钳+尖嘴钳				200
+alpha焊锡/锡条			290
+偏口钳+尖嘴钳			200
 压线钳					100
 
 基础元件：803元
@@ -156,8 +159,7 @@ F330      x20			73
 JST接插件				121
 高压包  x2				35
 数码管单排针/母74hc14    210
-面包板2.54				20
-面包板2.0				20
+面包板2.54/2.0          40
 Qfn20/28 转接板			26
 1.2国标线（红/黑）       70
 单节锂电池				20
@@ -171,17 +173,15 @@ AAA电池扣               40
 2917年VPN				158
 阿里云普惠版             6
 lllab.tech 2年域名      45
+elelab.cn  3年域名      99
 
 技术书籍： 3194元
-Wireshark数据包分析				40
+Wireshark数据包分析				45
 计算机程序设计艺术卷1/2/3/4a		387
 UNIX网络编程 卷1/2				152
 爱上制作 X32						517
 精通正则表达式					74
-创新的神话
-编写可读代码的艺术
-UNIX环境高级编程
-网络安全评估
+创新的神话 等
 社交网站数据挖掘与分析			400
 算法导论							63
 微波工程							40
@@ -199,5 +199,4 @@ Shell脚本学习指南				65
 Python计算机视觉编程				57
 天线手册							193
 数电+模电（2本）					200
-ZigBee电子版						5
 其他未统计估计					500

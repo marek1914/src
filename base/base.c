@@ -102,7 +102,7 @@ for (i = 0; i < 4; i++) {
     }
 }  
 
-static int controller_busy(void)
+int controller_busy(void)
 {
     int retries = 100;
     unsigned char status;
@@ -202,7 +202,7 @@ void *dest, const void *src
 getCount() 
 mCount
 eventType
-static int array_resize(...)
+int array_resize(...)
 typedef struct mtd_info nand_info_t;
 is_dir()
 u32 attr, oldattr;
@@ -214,7 +214,7 @@ u32 attr, oldattr;
 //invalid conversion from 'void*' to 'uint8_t* {aka unsigned char*}'[-fpermissive]
 ((void(*)(void))((int*)0x80600000))();
 
-static int _do_env_set() //内部函数 _始
+int _do_env_set() //内部函数 _始
 __pf // __开头
 
 void *malloc(size_t size);
@@ -274,7 +274,7 @@ char argv[]; //仅用于形参，正常语句提示需要数组长度
 //gid uid
 
 /* The how field should be either SVC_DISABLED or SVC_RESET */
-static void service_stop_or_reset(struct service *svc, int how)
+void service_stop_or_reset(struct service *svc, int how)
 {
     /* we are no longer running, nor should we attempt to restart */
     svc->flags &= (~(SVC_RUNNING|SVC_RESTARTING));
@@ -300,7 +300,7 @@ struct i2c_dev *i2c_dev;
 foo(...)  //fail, at least 1
   
 //6.7.1 Storage-class specifiers
-//typedef/extern/static/auto/register
+//typedef extern static auto register
 
 
 error: break statement not within loop or switch
