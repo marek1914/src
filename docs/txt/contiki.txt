@@ -1,4 +1,4 @@
-sdcc 编译方法：
+sdcc :
 https://github.com/contiki-os/contiki/wiki/8051-Requirements
 macOS:
 brew install srecord boost
@@ -22,6 +22,12 @@ p0.3 上有打印：^_^
 
 multi-thread 例子，native编译，macOS 运行不正常，ubuntu正常
 
+ant run
+sky:  apt-get install msp430-libc msp430mcu binutils-msp430 gcc-msp430
+
 --sdcc--
 1 char 默认是无符号
 2 不能函数中间定义变量
+
+
+https://github.com/contiki-os/contiki/wiki/MSP430X 
