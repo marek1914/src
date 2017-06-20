@@ -251,12 +251,12 @@ nautilus: [ˈnɔ:tɪləs]鹦鹉螺 file manager and graphical shell for GNOME
 apache log 查看mantis访问记录: /var/log/apache2
 
 firefox has prevented outdated plugin "Adobe Flash" 浏览器升级但插件没有更新
-20160628 u14.04 按照提示，选择update，选apt，进入软件中心（因为链接不是一个文件，而是引向软件中心），提示找不到新版本
+按提示update，选apt，进入软件中心，32bit ok, 64bit提示找不到adobe-flashplugin:
+sudo apt-get install flashplugin-installer
 
 ---winxp ---
 
-zh-hans_windows_xp vol
-MRX3F-47B9T-2487J-KWKMF-RPWBY
+zh-hans_windows_xp: MRX3F-47B9T-2487J-KWKMF-RPWBY
 
 gpedit.msc 
 管理模板/Windows组件/Windows资源管理器/从我的电脑删除共享文档 选已启用
