@@ -60,23 +60,7 @@ const String8 leaf(entryName.getPathLeaf());
 调用这个画面才会显示到屏幕
 eglSwapBuffers(mDisplay, mSurface);
 
-
-文件排序靠 SortedVector，可 1.jpg 2.jpg 3.jpg  或a.jpg b.jpg c.jpg
-
-------------------------
-
-
-带jni，本地.so库的apk，安装完在：/data/data/xx.xxx.xx/lib，这里删除不行
-
-14 ./AndroidManifest.xml:    android:versionName="0.0.2" 会显示在setting 应用程序管理处
-surfaceview
-1 全屏 在manifast.xml中 android:theme="@android:style/Theme.NoTitleBar.Fullscreen" 
-2 宽高 设置为匹配父窗口，而不是wrap_content
-TextUtils.isEmpty(mVideoPath)    与直接判断字符串是否等于 NULL 有何区别
-
-import android.hardware.Camera; //!!
-import android.hardware.Camera.CameraInfo;
-import android.hardware.Camera.Parameters;
+文件排序:SortedVector 可1/2/3，a/b/c
 
 setPreviewDisplay（null）就可以不预览了
 
@@ -84,32 +68,13 @@ setPreviewDisplay（null）就可以不预览了
 http://blog.csdn.net/kesenhoo/article/details/6544094
 dex2jar  jd-gui
 
-rm-linux-androideabi-objdump -T  libLiveEncoder.so
 
+设置保存在：./data/com.android.providers.settings/databases/settings.db-journal
 
-Setting apk分析
-
-多语言 res/values-zh-rCN/strings.xml  简体中文
-
-2 Setting怎样在模拟器中调试呢？eclipes 是不能编译setting的
-setting目录里面怎么没有jni呢？难道所有底层操作都是》
-setting里面用了大量的 PreferenceActivity
-
-framework/base/core/java/android/provider/Settings.java
-
-设置保存在：
-./data/com.android.providers.settings/databases/settings.db-journal
-
-.db
-.db-journal (什么文件)
+sqlit: .db .db-journal
 
 https://www.sqlite.org/tempfiles.html
 2.1 Rollback Journals
-
-ETHERNET_IP
-
-
-
 
 $dumpsys packet
 service list  查看系统提供的服务
@@ -118,20 +83,15 @@ $ndc monitor
 $ndc netd list
 $ndc mdns mdnsd start service
 
-system_server 由zygote启动
-
-Android线程对应Linux线程
-
 android按键码的解析
 /frameworks/base/include/androidfw/KeycodeLabels.h 这里解析
 
-android:versionCode="1"    比较版本
-android:versionName="1.0"  显示  
+android:versionCode="1"
+android:versionName="1.0"
 android.intent.category.HOME //launcher
 
 ===
 data目录是system权限 system 会挂载成 ro 形式。
-android系统权限问题，还需要增强：
 
 $ adb root
 adbd cannot run as root in production builds
@@ -381,22 +341,6 @@ core/java/android/setdisplayattr/SetDisplayAttrService.java
 3 dvb没在data区创建文件权限。data分区权限771，dev apk为user权限。将data
 区改为777即可。但这样是否破坏android权限系统？ 可以查查平板电脑的权限如何。
 
-4 多个home属性，开机出现选择界面
-String HOME_CATEGORY 类别：主屏幕 (activity)，设备启动后显示的第一个 activity。 
-"android.intent.category.HOME" 
-
-new AlertDialog.Builder(this)  //new和.操作可以同时进行。
-
-8 可通过修改xml和Android.mk最高获得system权限（要获得root权限需改init，变为服务有些麻烦）
-  system权限仍然没有办法通过调用linux的系统调用设置时间。seting程序调用的是 systemClock.cpp 里面的setCurrentTimeMillis 里面操作了/dev/alarm设备节点
-
-10 ApiDemo ./res/raw/test_cbr.mp3
-11 <精通android3> Android java API 包含40多个包和700多个类，并且每一版的数量在不断增加。
-
-12 android.media 包，此包核心是android.media.MediaPlayer类
-
-13 android4.0/frameworks/base/core/java/android/os/Environment.java
-
 udp socket创建失败，因为没有权限
 在AndroidManifest.xml中，加上这一句话，取得权限。
 <uses-permission android:name="android.permission.INTERNET" />
@@ -511,9 +455,6 @@ uevent
 2 android_secure
 这个文件夹里面的内容是app2sd产生的文件夹
 ---
-
-
-
 frameworks/base/preloaded-classes 指定zygote预加载的类，所有apk子进程复制所有类。去掉它可提高开机速度，apk运行时再加载
 模拟按键
 KeyEvent mKeyEvent= new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK);//new 按键
@@ -538,7 +479,6 @@ I = Interface defines an object that will be accessible over binder
 B = Base class implementation 
 Bn = Base native (local object implementation)
 Bp = Base proxy
-
 
 keycode:
 qwerty.kl:
@@ -605,17 +545,8 @@ linux/drivers/input/keyboard/atakbd.c : (一款游戏机)
 
 在命令行里，F12等，显示~, 编辑状态显示 ^[[24~
 ^[[24~   F12
-
 ^[[21~   F10
 ^[[20~   F9
-^[[19~   F8
-^[[18~   F7
-^[[17~   F6
-^[[16~   F5
-
-^[OS     F4
-^[OR     F3
-^[OQ     F2
 
 --logcat--
 logcat *:S MountService:V
