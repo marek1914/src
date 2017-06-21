@@ -41,3 +41,10 @@ struct rdc_driver contikimac_driver
 
 
 https://github.com/contiki-os/contiki/wiki/MSP430X 
+
+https://github.com/contiki-os/contiki/wiki/8051-Memory-Spaces
+
+//重要  按照这个说明，udp-ipv6 程序运行正常
+https://github.com/contiki-os/contiki/wiki/8051-Install-and-Use
+
+但是, RF 好像连接不上呀!
