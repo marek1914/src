@@ -22,6 +22,11 @@ p0.3 上有打印：^_^
 
 multi-thread 例子，native编译，macOS 运行不正常，ubuntu正常
 
+使用cooja运行udp-ipv6，打印：Can't get connection address
+圈圈挪动时，会显示半径，要在半径范围内
+可以2个client 1个server（udp-ipv6）
+
+
 ant run
 sky:  apt-get install msp430-libc msp430mcu binutils-msp430 gcc-msp430
 
@@ -38,3 +43,9 @@ struct rdc_driver contikimac_driver
 https://github.com/contiki-os/contiki/wiki/MSP430X 
 gcc4.7 编译失败，下载了一个现成的
 
+https://github.com/contiki-os/contiki/wiki/8051-Memory-Spaces
+
+//重要  按照这个说明，udp-ipv6 程序运行正常
+https://github.com/contiki-os/contiki/wiki/8051-Install-and-Use
+
+但是, RF 好像连接不上呀!

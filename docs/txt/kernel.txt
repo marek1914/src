@@ -1265,9 +1265,7 @@ kernel里面的分区，制作image的时候的分区信息从哪里读出来？
 
 emmc flash    mlc 模拟成block设备。
 
-
 image烧写。
-
 
 #cat /proc/mtd
 dev:    size   erasesize  name
@@ -1457,118 +1455,11 @@ Kernel hacking->Default kernel command string.:
 On some platforms,there is currently no way for the boot loader to pass arguments to the kernel. For these platforms, you can supply some command-line options at build time by entering them here.
 如果u-boot传递参数给内核，这里就不用设置了。如果参数配置到内核里面就不需要传递参数了。
 
-
 pivot_root() 用于启动过程中改变 rootfs 
 
 parse_cmdline(...)
 =======
-----
 MDEV Primer
-
-For those of us who know how to use mdev, a primer might seem lame.  For
-everyone else, mdev is a weird black box that they hear is awesome, but can't
-seem to get their head around how it works.  Thus, a primer.
-
-Basic Use
-
-Mdev has two primary uses: initial population and dynamic updates.  Both
-require sysfs support in the kernel and have it mounted at /sys.  For dynamic
-updates, you also need to have hotplugging enabled in your kernel.
-
-Here's a typical code snippet from the init script:
-[0] mount -t proc proc /proc
-[1] mount -t sysfs sysfs /sys
-[2] echo /sbin/mdev > /proc/sys/kernel/hotplug
-[3] mdev -s
-
-Alternatively, without procfs the above becomes:
-[1] mount -t sysfs sysfs /sys
-[2] sysctl -w kernel.hotplug=/sbin/mdev
-[3] mdev -s
-
-
-Of course, a more "full" setup would entail executing this before the previous
-code snippet:
-[4] mount -t tmpfs -o size=64k,mode=0755 tmpfs /dev
-[5] mkdir /dev/pts
-[6] mount -t devpts devpts /dev/pts
-
-The simple explanation here is that [1] you need to have /sys mounted before
-executing mdev.  Then you [2] instruct the kernel to execute /sbin/mdev whenever
-a device is added or removed so that the device node can be created or
-destroyed.  Then you [3] seed /dev with all the device nodes that were created
-while the system was booting.
-
-For the "full" setup, you want to [4] make sure /dev is a tmpfs filesystem
-(assuming you're running out of flash).  Then you want to [5] create the
-/dev/pts mount point and finally [6] mount the devpts filesystem on it.
-
-MDEV Config   (/etc/mdev.conf)
-
-Mdev has an optional config file for controlling ownership/permissions of
-device nodes if your system needs something more than the default root/root
-660 permissions.
-
-The file has the format:
-    <device regex>       <uid>:<gid> <permissions>
- or @<maj[,min1[-min2]]> <uid>:<gid> <permissions>
-
-For example:
-    hd[a-z][0-9]* 0:3 660
-
-The config file parsing stops at the first matching line.  If no line is
-matched, then the default of 0:0 660 is used.  To set your own default, simply
-create your own total match like so:
-	.* 1:1 777
-
-You can rename/move device nodes by using the next optional field.
-	<device regex> <uid>:<gid> <permissions> [=path]
-So if you want to place the device node into a subdirectory, make sure the path
-has a trailing /.  If you want to rename the device node, just place the name.
-	hda 0:3 660 =drives/
-This will move "hda" into the drives/ subdirectory.
-	hdb 0:3 660 =cdrom
-This will rename "hdb" to "cdrom".
-
-Similarly, ">path" renames/moves the device but it also creates
-a direct symlink /dev/DEVNAME to the renamed/moved device.
-
-You can also prevent creation of device nodes with the 4th field as "!":
-	tty[a-z]. 0:0 660 !
-	pty[a-z]. 0:0 660 !
-
-If you also enable support for executing your own commands, then the file has
-the format:
-	<device regex> <uid>:<gid> <permissions> [=path] [@|$|*<command>]
-    or
-	<device regex> <uid>:<gid> <permissions> [>path] [@|$|*<command>]
-    or
-	<device regex> <uid>:<gid> <permissions> [!] [@|$|*<command>]
-
-For example:
----8<---
-# block devices
-([hs]d[a-z])		root:disk	660	>disk/%1/0
-([hs]d[a-z])([0-9]+)	root:disk	660	>disk/%1/%2
-mmcblk([0-9]+)		root:disk	660	>disk/mmc/%1/0
-mmcblk([0-9]+)p([0-9]+)	root:disk	660	>disk/mmc/%1/%2
-# network devices
-(tun|tap)		root:network	660	>net/%1
----8<---
-
-The special characters have the meaning:
-	@ Run after creating the device.
-	$ Run before removing the device.
-	* Run both after creating and before removing the device.
-
-The command is executed via the system() function (which means you're giving a
-command to the shell), so make sure you have a shell installed at /bin/sh.  You
-should also keep in mind that the kernel executes hotplug helpers with stdin,
-stdout, and stderr connected to /dev/null.
-
-For your convenience, the shell env var $MDEV is set to the device name.  So if
-the device "hdc" was matched, MDEV would be set to "hdc".
-
 
 === permission ===
 整个u盘没有写权限（有时会遇到）
@@ -1584,8 +1475,7 @@ gid_t	sgid;	/* saved GID of the task */
 uid_t	euid;	/* effective UID of the task */
 gid_t	egid;	/* effective GID of the task */
 
-3种uid的区别：
-每个进程包含三个ID：real user ID，effective user ID，saved set user ID
+三个ID：real user ID，effective user ID，saved set user ID
 
 ps怎么显示 uid的int形式？
 
@@ -1599,7 +1489,6 @@ media 用户的uid 是 1013
 #define AID_APP          10000 /* first app user */  应用程序从10000开始
 
 最终在bionic里面的stubs.c中处理
-最终靠 
 app_id_to_passwd
 android_id_to_passwd
 两个函数，向系统中注册了uid

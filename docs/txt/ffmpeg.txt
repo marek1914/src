@@ -1,9 +1,8 @@
-Vitamin:
-av_log 靠log.c中 av_log_set_callback()函数 对接android log
+Vitamin: av_log 对接 av_log_set_callback()
 
 avcodec_encode_video(.., uint8_t *buf,..., const AVFrame *pict);
-avcodec_default_get_buffer2() //获取AVFrame 中3个通道的buffer
-靠stream_index 字段判断是音频还是视频
+avcodec_default_get_buffer2() //获取AVFrame 中3通道的buffer
+stream_index 字段判断音频/视频
 
 graph2dot
 
@@ -12,9 +11,6 @@ https://trac.ffmpeg.org/wiki //用trac 维护wiki和trace
 libavformat -> AVPacket
 libavcodec  -> AVFrame
 
-//最简
-ffmpeg -i input.mp4 output.avi
-
 EasyICE 分析hls
 
 -f 文件扩展名无效
@@ -22,9 +18,9 @@ EasyICE 分析hls
 https://trac.ffmpeg.org/wiki/AudioChannelManipulation
 ffplay 只播放一个声道
 
-作者主页
-http://bellard.org/
+作者 http://bellard.org/
 
+ffmpeg -i input.mp4 output.avi //最简
 ffplay -h filter=codecview  查看某个filter的帮助
 "Filtering and streamcopy cannot be used together"
 
@@ -35,7 +31,7 @@ http://blog.csdn.net/leixiaohua1020/article/details/11729929
 http://forum.doom9.org/ 专业视频论坛
 
 
-1 编译安装
+1 compile
 
 libsdl1.2-dev
 yasm
@@ -67,8 +63,8 @@ configure（搜optimizations）无-O3，否则有，在_type=gcc，_cflags_noopt
 
 --enable-pic (config.mak多处产生PIC字样)
 
---disable-dct            disable DCT code
---disable-dwt            disable DWT code // ?
+--disable-dct     disable DCT code
+--disable-dwt     disable DWT code
 
 --disable-programs
 --disable-ffmpeg
@@ -308,7 +304,7 @@ ffprobe -show_packets
 这2个参数是给ffmpeg 用的，而不是ffplay
 //4x4
 ffmpeg -i why.mp4 -filter_complex 'scale=480x270,split=16[0][1][2][3][4][5][6][7][8][9][10][11][12][13][14][15];nullsrc=s=1920x1080[b];[0]ocv=filter_name=smooth:gaussian|49,[b]overlay[o0];[o0][1]overlay=x=480[o1];[o1][2]overlay=x=960[o2];[o2][3]overlay=x=1440[o3];[o3][4]overlay=y=270[o4];[o4][5]overlay=y=270:x=480[o5];[o5][6]overlay=y=270:x=960[o6];[o6][7]overlay=y=270:x=1440[o7];[o7][8]overlay=y=540[o8];[o8][9]overlay=y=540:x=480[o9];[o9][10]overlay=y=540:x=960[o10];[o10][11]overlay=y=540:x=1440[o11];[o11][12]overlay=y=810[o12];[o12][13]overlay=y=810:x=480[o13];[o13][14]overlay=y=810:x=960[o14];[o14][15]overlay=y=810:x=1440' why-4.ts
-//因nullsrc无限长，不会终止，改为 nullsrc=s=1920x1080:d=205 即可
+//因nullsrc无限长，不会终止，改为 nullsrc=s=1920x1080:d=205
 源码中d参数默认-1，表示无限长
 
 2x2马赛克：
@@ -384,17 +380,9 @@ sub_packet_size is invalid
 一个rm视频，用视频截断出来新的rm，播放或者fprobe都提示sub_packet_size is invalid，然后终止运行.
 
 -v :
-log.h : 间隔有可能是预留，用于再细分
-#define AV_LOG_QUIET    -8
-#define AV_LOG_PANIC     0
-#define AV_LOG_FATAL     8
-#define AV_LOG_ERROR    16
-#define AV_LOG_WARNING  24
-#define AV_LOG_INFO     32 (default)
-#define AV_LOG_DEBUG    48
+log.h : AV_LOG_QUIET / AV_LOG_PANIC
 
-
-有相当多的选项支持[:stream_specifier]
+很多选项支持[:stream_specifier]
 
 用pins或pads描述各级滤波器的连接点，输出不写默认为out0
 asplit=3 //默认2
@@ -447,17 +435,17 @@ stream_index 是什么含义？
 int seek_frame_internal(AVFormatContext *s, int stream_index, int64_t timestamp, int flags)
 hls 点播wowza时候 stream_index == -1
 
-    if (s->iformat->read_seek || 1) {//gaojie
-        int dir = (ts - (uint64_t)min_ts > (uint64_t)max_ts - ts ? AVSEEK_FLAG_BACKWARD : 0);
-        int ret = av_seek_frame(s, stream_index, ts, flags | dir);//vod只走这个下面条件不满足
-        if (ret<0 && ts != min_ts && max_ts != ts) {
-            ret = av_seek_frame(s, stream_index, dir ? max_ts : min_ts, flags | dir);
-            if (ret >= 0){
-                ret = av_seek_frame(s, stream_index, ts, flags | (dir^AVSEEK_FLAG_BACKWARD));
-            }
+if (s->iformat->read_seek || 1) {//gaojie
+    int dir = (ts - (uint64_t)min_ts > (uint64_t)max_ts - ts ? AVSEEK_FLAG_BACKWARD : 0);
+    int ret = av_seek_frame(s, stream_index, ts, flags | dir);//vod只走这个下面条件不满足
+    if (ret<0 && ts != min_ts && max_ts != ts) {
+        ret = av_seek_frame(s, stream_index, dir ? max_ts : min_ts, flags | dir);
+        if (ret >= 0){
+            ret = av_seek_frame(s, stream_index, ts, flags | (dir^AVSEEK_FLAG_BACKWARD));
         }
-        return ret;
     }
+    return ret;
+}
 
 seek位置的设置：
 ffplay.c中 event_loop -> case SDL_MOUSEMOTION
@@ -470,29 +458,8 @@ previous_duration 是vitomio加的，增加EXT-X-DISCONTINUITY的解析（用于
 
 hls.c 和 hlsproto.c中各有一处 parse_playlist  ，hlsproto.c 好像没有使用
 
-编译出的libffmpeg.so死机，是因为配置少了 avfilter模块
-运行起来了，但是音频解析成了2kHz，运行出错
-并且解析出的 video_width:	4  这显然不对。
-ffmpeg显示的信息 720x576  48KHz 都是正确的，传到上面就出错了。
-
-so文件应该不能再变成.o文件了！
-
-.sh文件configure时候  --disable-xx=xx \
-
-
-关于直播/时移进度条的处理:
-苹果浏览器
-直播：左侧 --:-- 右侧显示live 划块在左侧
-时移：进入时候左侧--:-- 右侧显示live 划块在右侧，划块左移后左侧显示13:00右侧显示-7:00
-
-VPlayer
-直播：左侧视频播放的时间，右侧显示00:00,划块在右侧。
-
 -mpegts解析---
 mpegts_read_packet -> handle_packets -> read_packet & handle_packet
-
-
-parser 与 decoder 之间的接口是什么？
 
 
 enum AVPictureType {
@@ -500,21 +467,13 @@ enum AVPictureType {
     AV_PICTURE_TYPE_I,     ///< Intra
     AV_PICTURE_TYPE_P,     ///< Predicted
     AV_PICTURE_TYPE_B,     ///< Bi-dir predicted
-    AV_PICTURE_TYPE_S,     ///< S(GMC)-VOP MPEG4
-    AV_PICTURE_TYPE_SI,    ///< Switching Intra
-    AV_PICTURE_TYPE_SP,    ///< Switching Predicted
-    AV_PICTURE_TYPE_BI,    ///< BI type
+    ...
 };
 
 直播信号AVFormatContext -> start_time(pts)
-1056201620
-1145801620
-1176521620
-1236681620
-
 测了几个点播节目，这个值固定是1s 即 1000000
 
-seek的时候，为啥要加上 pts(即这里说的start_time)呢？
+seek时，为啥要加 pts(即start_time)呢？
 
 android-ffmpeg 
 hls_seek 中的pos 值会随时间推移增加
@@ -539,11 +498,8 @@ hls_read_header
 1.移植了ffmpeg并将与媒体相关的结构体在java层重新进行了封装，方便应用程序在java层直接操作ffmpeg API,如各种媒体格式转码及播放
 2.模仿Android的MediaPlayer类实现了ffmpeg的播放接口，如setDataSource(),setDisplay(),start(), stop(),pause()等，缺点是没有实现seek功能。
 
-seek问题
 ffplay 回退的时候非常快，怎么做到的
-
 http://192.168.7.35:1935/dvr/cctv2.stream/playlist.m3u8?DVR: error while seeking
-
 
 按键控制seek 走event_loop处的do_seek: 调用stream_seek 指定rel参数
 点击屏幕位置时，seek_rel 为0  
@@ -1728,21 +1684,12 @@ void ffp_toggle_buffering_l(FFPlayer *ffp, int buffering_on)
     }
 }
 
-藏：
-开始推送打印：
- av_interleaved_write_frame(): Broken pipe  他说开始只允许本地推送，后来修改后就可以了
+开始推送打印： av_interleaved_write_frame(): Broken pipe  他说开始只允许本地推送，后来修改后就可以了
 
-背：
 AVFormatContext.nb_streams  节目中流个数，如:1 video + 2 audio + 1 subtitle = 4，流index从0计
-
-他们分别来自蓝翔技校手扶拖拉机、美容美发、挖掘机班
-
-视频列表里的 serial 和 pkt_serial 不停出现，什么含义
 packet_pending 的含义理解了
 
 ----
-我先假设，wifi在环境差的时候，网络就是通一下，断一下，有可能吗？
-
 packet_pending:音频有时1个Packet包含多个帧（For audio it may contain several compressed frames），这时，直到解码完成才将packet_pending清零
 实测，why.mp4 每个AVPacket只装载一个AAC Frame！
 mp4一个包一个aac帧，ts一个AVPacket一个PES包，包含多个AAC帧。
@@ -1752,10 +1699,8 @@ Intel 酷睿i5 3470 Intel 酷睿i5 3470
 
 或者 --disable-parser=aac 也能阻止拆解
 
-
 AVPacket is one of the few structs in FFmpeg, whose size is a part of public
  * ABI. Thus it may be allocated on stack
-
 
 d->queue->serial != d->pkt_serial  开始播放时是不同的，以后就一直都是1，
 seek后 d->queue->serial == 2   d->pkt_serial == 1
@@ -1804,7 +1749,7 @@ read_frame_internal(){
  * returning samples. It is safe to flush even those decoders that are not
  * marked with CODEC_CAP_DELAY, then no samples will be returned.
 
-EOF时插入空包是为了把B帧挤出来，否则最后几帧不显示
+EOF时插入空包是为了把最后B帧挤出来显示
 
 rtmpdump
 
@@ -1812,32 +1757,16 @@ ffplay -f rawvideo -c:v rawvideo -s 1280*720 -pix_fmt nv12 xx.bat
 
 ffplay test1.flv -vf "rotate=PI/2"
 
-------------------------
-这个结构体很简单，主要是 init和encode2
-typedef struct AVCodec {
-const char *name;
-const char *long_name;
-enum AVMediaType type;
-enum AVCodecID id;
-int capabilities;
-const AVRational *supported_framerates; //array of supported framerates, or NULL if any, array is terminated by {0,0} 
-int priv_data_size;
-struct AVCodec *next;
+--------
 
-int (*init_thread_copy)(AVCodecContext *);
-int (*update_thread_context)(AVCodecContext *dst, const AVCodecContext *src);
-const AVCodecDefault *defaults;
-void (*init_static_data)(struct AVCodec *codec);
-int (*init)(AVCodecContext *);
-int (*encode_sub)(AVCodecContext *, uint8_t *buf, int buf_size, const struct AVSubtitle *sub);
-int (*encode2)(AVCodecContext *avctx, AVPacket *avpkt, const AVFrame *frame, int *got_packet_ptr);
-int (*decode)(AVCodecContext *, void *outdata, int *outdata_size, AVPacket *avpkt);
-int (*close)(AVCodecContext *);
-void (*flush)(AVCodecContext *);
-int caps_internal;
+typedef struct AVCodec { //主要是 init和encode2
+	int (*init)(AVCodecContext *);
+	int (*encode2)(AVCodecContext *avctx, AVPacket *avpkt, const AVFrame *frame, int *got_packet_ptr);
+	void (*flush)(AVCodecContext *);
+	...
 } AVCodec;
 
-各种时间都是以AVStream->time_base为单位
+各种时间都以AVStream->time_base为单位
 
 * pts MUST be larger or equal to dts as presentation cannot happen before
 * decompression, unless one wants to view hex dumps. Some formats misuse
@@ -1865,7 +1794,6 @@ typedef struct AVPacket {
     int64_t convergence_duration; //解释没看明白
 } AVPacket;
 
-
 -----
 -threads  -thread_type 参数
 
@@ -1891,9 +1819,6 @@ AVCodecDefault x264_defaults又是如何影响的呢？
 
 每个解码器里的 AVCodecDefault 也是会在参数系统里解析的
 
-超线程性能大于单核小于双核
-奔腾2核2线程，i3 2核4线程，i5 4核4线程，i7 4核8线程
-
 在后面加 -threads auto 提示：
 [AVFilterGraph @ 0x292c8c0] Unable to parse option value "auto"  //需要在avfiltergraph.c中threads组增加auto子项
 这又涉及到复杂的参数系统了：
@@ -1910,7 +1835,6 @@ AVCodecDefault x264_defaults又是如何影响的呢？
 ./libavutil/opt.c:            av_log(obj, AV_LOG_ERROR, "Error setting option %s to value %s.\n", t->key, t->value);
 
 
-还有个问题：
 -threads au 为啥 AVFilterGraph模块没解析出来没事，libx264模块就导致程序退出呢？
 [AVFilterGraph @ 0x3b38ce0] [Eval @ 0x7ffe5ad2c560] Undefined constant or missing '(' in 'au'
 [AVFilterGraph @ 0x3b38ce0] Unable to parse option value "au"
@@ -1930,7 +1854,6 @@ if (e)
 -threads 有多个模块都有
 
 eval.c (libavutil) 
-
 
 9 Expression Evaluation
 
@@ -1958,13 +1881,10 @@ av_err2str()  转化错误码到字符串
 
 aac_adtstoasc
 
-
 AVFormatContext 的priv_data字段
-
 
 (gdb) p *(AVClass*)child
 (gdb) p **(AVClass**)child
-
 
 av_opt_find2() 递归
 
@@ -1981,7 +1901,6 @@ compute_pkt_fields2() 里面有 st->cur_dts > pkt->dts
 Application provided invalid, non monotonically increasing dts to muxer in stream
 收取udp ts流，输入设为nopts，输出的AVPacket 的pts从0开始，到最大值33bit会折回。而cur_dts持续增加，在边界处，错误条件被触发。
 这是bug吧！
-
 
 xuss:
 播放RTMP直播偶发只有音频，视频无法解码或需时较长问题：

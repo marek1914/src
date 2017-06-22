@@ -179,26 +179,21 @@ Nginx: /usr/local/nginx
 		/home/username/NFS/fawn  *(rw,sync,no_subtree_check,no_root_squash)
 
 	8) minicom
-		Modem and dialing parameter setup 依次输入A B K 将后面的字符删除
-		ctrl+a +l 捕获数据到当前目录minicom.cap文件中，ctrl+a +w 开启自动换行
-		USB串口	/dev/ttyUSBx (root or dialout group)
-
+		Modem and dialing parameter setup 输入A B K 将后面的字符删除
+		ctrl+a +l 捕获数据到minicom.cap，ctrl+a +w 自动换行
 		minicom.log :ctrl+a O "Filenames and paths" "Logging options"关闭
-
-		ymodem下载内核:
-			uboot执行 loady
-			minicom选择 send file 选ymodem，选择文件
+		ymodem下载内核:uboot执行 loady,minicom选择 send file 选ymodem，选择文件
 		显示hex：cOnfigure -> Screen and keyboard ->hex display (需设置w)
 
 重启服务：
-	/etc/init.d/ 目录下都是shell脚本
+	/etc/init.d/ (shell script)
 	apache2 restart 
 
-    ubuntu-desktop有gcc无g++ 安装g++-multilib
+    g++-multilib
 
 输入法
-    u14.04 text entry +PinYin（需先按提示更新语言包，不可中断，否则不能切全拼）
-    u14.04 PinYin ibus与firefox不兼容，文字选中变删除（chromium没问题）
+    u14.04 text entry +PinYin
+    u14.04 PinYin ibus firefox文字选中变删除（chromium ok）
     ibus-setup，取消：Embed Preedit text in application window
     取消前，汉字直接出现在光标后，取消后按空格才出现
 
@@ -219,14 +214,11 @@ fi
 打开terminal就执行.bashrc，并且因为是图形界面的子进程，会继承.profile的所有设置。
 但.bashrc设置的变量图形界面里却没有（jre路径设置在.bashrc中双击打不开，terminal可以打开，或者按提示建立eclipse/jre/bin软链接）
 
-U14.04 System program problem detected 提示：
-临时:删除/var/crash
-永久:/etc/default/apport enabled=0
-
+U14.04 System program problem detected 提示：/etc/default/apport enabled=0
 
 某应用不更新：
-sudo dpkg --set-selections  然后在stdin，输入iptux hold  ctrl+D退出
-sudo dpkg --get-selections  可以看到iptux变为hold状态了。
+sudo dpkg --set-selections  输入iptux hold
+sudo dpkg --get-selections  可见iptux变hold状态
 
 pci转串口卡
 lspci -v
@@ -234,15 +226,7 @@ apt-get install setserial
 执行 setserial /dev/ttyS1 port 0xec00 UART 16550A irq 16 Baud_base 115200
 irq是lspci -v显示的，ttyS1地址靠蒙，定是上面列出来几个之一。
 
-20 系统recovery 模式，可在紧急情况下进入shell。某次对bash执行chmod u+s ，导致系统无法启动。进入recovery(很多选项，有一种进去后只读)执行 chmod u-s 即可
-
-是qtss用户未能创建导致，看Install脚本：
-if [ $INSTALL_OS = "Linux" ]; then
-/usr/sbin/useradd -M qtss
-else
-/usr/sbin/useradd qtss
-fi
-useradd参数应为-m
+20 系统recovery 模式，可在紧急情况下进入shell。某次对bash执行chmod u+s ，导致系统无法启动。进入recovery 执行 chmod u-s 即可
 
 sudoers
 
@@ -253,10 +237,9 @@ sudoers
 
 由NetworkManager管理eth0，要刪掉 network/interfaces eth0的设定（lo必要）
 
-动态库：
-主版本号表明程序库版本之间的潜在不兼容性。次版本号表明只是修正了缺陷。
+动态库：主版本号表明程序库版本之间的潜在不兼容性。次版本号表明只是修正了缺陷。
 
-删除gnome panel图标：删除 ~/.config/gnome-panel/launchers 相应文件
+删除gnome panel图标： ~/.config/gnome-panel/launchers/xxx
 
 打开winmail.dat 附件：
 tnef winmail.dat 
@@ -268,16 +251,15 @@ subtitle/osd字体渲染选择中文，字幕编码选择gb18030
 
 nautilus: [ˈnɔ:tɪləs]鹦鹉螺 file manager and graphical shell for GNOME
 
-apache log 查看mantis/mediawiki访问记录
-/var/log/apache2
+apache log 查看mantis访问记录: /var/log/apache2
 
 firefox has prevented outdated plugin "Adobe Flash" 浏览器升级但插件没有更新
-20160628 u14.04 按照提示，选择update，选apt，进入软件中心（因为链接不是一个文件，而是引向软件中心），提示找不到新版本
+按提示update，选apt，进入软件中心，32bit ok, 64bit提示找不到adobe-flashplugin:
+sudo apt-get install flashplugin-installer
 
 ---winxp ---
 
-zh-hans_windows_xp vol
-MRX3F-47B9T-2487J-KWKMF-RPWBY
+zh-hans_windows_xp: MRX3F-47B9T-2487J-KWKMF-RPWBY
 
 gpedit.msc 
 管理模板/Windows组件/Windows资源管理器/从我的电脑删除共享文档 选已启用
@@ -292,7 +274,7 @@ wheezy [ˈwi:zi] debian 7
 
 5分支：oldstable、stable、testing、unstable、experimental
 
-官网下载debian-7.6.0-armhf-netinst.iso  158M 解压也是158M  好像不包含kernel
+官网debian-7.6.0-armhf-netinst.iso  158M 好像不包含kernel
 debootstrap --foreign --arch armhf wheezy .
 把armv7 版基础版本的跟目录down下来了，就是linux系统的根目录结构 144M，
 这与debian-7.6.0-armhf-netinst.iso解压候的不同（这个是一个一个的包的形式）
@@ -301,11 +283,7 @@ debootstrap --foreign --arch armhf wheezy .
 升腾690：
 CPU: AMD G-T48N 1.4G , 1G DDR
 
-G-T48N
-1400MHz, 2-core, 2-thread, 64bit, AMD-64
-
 rtl_nic/rtl8105e-1.fw
-
 
 https://wiki.debian.org/ATIProprietary
 
@@ -336,18 +314,16 @@ service udev restart 与 /etc/init.d/udev restart 本质一样
 service用了start stop exec 这些命令
 udev脚本里的start字段的打印，在service udev start中不显示（？）
 
-开始/结束 防火墙
+防火墙 ufw基于iptable
 ufw enable|disable
-LInux防火墙iptables过于繁琐，ubuntu提供基于iptable的工具ufw
-enable 导致所有web服务无法使用：apache/wiki
-ufw 难道默认不是enable的吗？enable后 tftp都无法使用了
+enable 导致服务无法使用：apache/wiki/tftp
 
-
+---
 waveforms 2015
-安装依赖Adept 2，digilent官方站下载: Communicate with Digilent system boards
+安装依赖Adept 2，digilent官方: Communicate with Digilent system boards
 https://reference.digilentinc.com/reference/instrumentation/analog-discovery-2/reference-manual
 
-1 PCB右键可拖动，原理图默认不可以：工具栏上带光的红笔 可以移动，或者下载一个小软件可以鼠标放大缩小
+1 PCB右键可拖动，原理图默认不可以：工具栏上带光的红笔 可以移动
 Altium 公司
 在 protel99se 基础上
 protel DXP 2004
@@ -362,3 +338,7 @@ Preference - Use localized rescources 变为简体中文版
 万网申请域名（淘宝账户登录），在域名管理中“添加解析”到github的ip(ping)
 lllab.tech可访问
 aliyun: 200wguiqiyi
+
+jekyll:
+编译ruby2.x 需要openssl： apt-get install libssl-dev libreadline-dev libgdbm-dev
+

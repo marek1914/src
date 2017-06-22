@@ -1,1 +1,4 @@
 *.ldb
+*.Bkp
+Backup*
+Previous*
