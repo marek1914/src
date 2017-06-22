@@ -36,3 +36,5 @@ struct rdc_driver contikimac_driver
 
 
 https://github.com/contiki-os/contiki/wiki/MSP430X 
+gcc4.7 编译失败，下载了一个现成的
+
