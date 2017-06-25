@@ -44,7 +44,10 @@ https://github.com/contiki-os/contiki/wiki/MSP430X
 
 https://github.com/contiki-os/contiki/wiki/8051-Memory-Spaces
 
-//重要  按照这个说明，udp-ipv6 程序运行正常
 https://github.com/contiki-os/contiki/wiki/8051-Install-and-Use
 
-但是, RF 好像连接不上呀!
+udp-ipv6 运行不成功
+contiki-sensinode/examples/ipv6/rpl-udp 板载天线导致传输不稳，外接6cm天线OK
+client端 有时会自动重启
+client: DATA send to 1 'Hello 1'
+server: DATA recv 'Hello 1 from the client' from 210
