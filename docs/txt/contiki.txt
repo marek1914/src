@@ -48,3 +48,9 @@ https://github.com/contiki-os/contiki/wiki/8051-Memory-Spaces
 https://github.com/contiki-os/contiki/wiki/8051-Install-and-Use
 
 但是, RF 好像连接不上呀!
+
+CC2530_RF_LEDS
+
+http://senstools.gforge.inria.fr/doku.php?id=contiki:examples #!!!
+
+https://github.com/g-oikonomou 
