@@ -7,6 +7,9 @@ lubuntu = lxde+ubuntu
 fonts-wqy-zenhei
 ia32-libs
 
+//
+awesomewm.org
+
 apt-get source gnome-system-monitor 获取system monitor源码到/usr/src (需dpkg-dev)
 
 纯字符模式，显示中文
@@ -17,7 +20,7 @@ ImageMagick
 SpeedCrunch 高精度计算器
 nautilus-open-terminal
 gnome-session-fallback / gnome-panel
-python-markdown Python实现Markdown(转HTML)
+python-markdown
 openssh-server
 netgen
 libncurses5 libncurses5-dev libncursesw(wide character support)

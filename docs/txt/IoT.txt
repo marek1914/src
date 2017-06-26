@@ -567,6 +567,13 @@ EW8051 830/930(mac os 可用)
 SmartRF Flash Programmer
 SmartRF Studio
 
+Debugger Devpack:
+P1 是TM4C芯片本身的JTAG 
+J1/J4 是正反对着的2个接口
+P2 是20个孔
+J2 10孔 1.27间距 是jtag输出
+
+
 ---
 二极管矩阵：
 普通发光二极管1.8V导通

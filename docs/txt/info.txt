@@ -1,6 +1,8 @@
 lllab.tech LL lab(2017.6-2019.6) 无法备案
 elelab.cn (electronics/elegant lab) 2017.6-2020.6 备案名：平凡的世界
 
+xxxx.cn 四字符.cn几乎没了
+
 jsq.re
 
 “我本不是生来适于研究学问的人，因为我用功的时间稍长就感到疲倦，我不能一连半小时集中精力于一个问题上。
@@ -49,17 +51,17 @@ electronics-lab.com
 
 embeddedmicro.com //mojo
 wiki.openmusiclabs.com/wiki/PWMDAC
-www.openmusiclabs.com/learning/digital/pwm-dac
+openmusiclabs.com/learning/digital/pwm-dac
 electronics.howstuffworks.com/radio.htm
 science.howstuffworks.com/electromagnet.htm
 en.wikipedia.org/wiki/Hartley_oscillator
 en.wikipedia.org/wiki/LC_circuit
-www.electronics-tutorials.com/oscillators/hartley-oscillator.htm
-www.learnabout-electronics.org/Oscillators/osc21.php
-www.allaboutcircuits.com/projects/introduction-to-the-mqtt-protocol-on-nodemcu
-www.allaboutcircuits.com/projects/communicate-with-your-arduino-through-android
-www.allaboutcircuits.com/projects/light-bar-relative-comfort-thermometer-with-nodemcu
-www.linux-mtd.infradead.org/faq/ubifs.html
+electronics-tutorials.com/oscillators/hartley-oscillator.htm
+learnabout-electronics.org/Oscillators/osc21.php
+allaboutcircuits.com/projects/introduction-to-the-mqtt-protocol-on-nodemcu
+allaboutcircuits.com/projects/communicate-with-your-arduino-through-android
+allaboutcircuits.com/projects/light-bar-relative-comfort-thermometer-with-nodemcu
+linux-mtd.infradead.org/faq/ubifs.html
 redhat.com  //min_free_kbytes
 https://docs.particle.io/datasheets/photon-datasheet
 
@@ -170,7 +172,7 @@ AAA电池扣               40
 
 资料费用
 2016年VPN				158
-2917年VPN				158
+2017年VPN				158
 阿里云普惠版             6
 lllab.tech 2年域名      45
 elelab.cn  3年域名      99
