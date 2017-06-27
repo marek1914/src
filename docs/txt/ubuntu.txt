@@ -264,6 +264,9 @@ zh-hans_windows_xp: MRX3F-47B9T-2487J-KWKMF-RPWBY
 gpedit.msc 
 管理模板/Windows组件/Windows资源管理器/从我的电脑删除共享文档 选已启用
 
+
+虚拟机安装win7需要20G(xp 1.5G) 太不轻量了
+
 ---
 www.debian.org [ˈdebiən]  37500+ package
 
