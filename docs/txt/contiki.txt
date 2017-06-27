@@ -47,7 +47,15 @@ https://github.com/contiki-os/contiki/wiki/8051-Memory-Spaces
 
 https://github.com/contiki-os/contiki/wiki/8051-Install-and-Use
 
+
+CC2530_RF_LEDS
+
+http://senstools.gforge.inria.fr/doku.php?id=contiki:examples #!!!
+
+https://github.com/g-oikonomou 
+
 udp-ipv6 运行不成功
+
 contiki-sensinode/examples/ipv6/rpl-udp 板载天线导致传输不稳，外接6cm天线OK
 client端 有时会自动重启
 client: DATA send to 1 'Hello 1'
