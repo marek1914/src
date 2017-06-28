@@ -344,4 +344,4 @@ aliyun: 200wguiqiyi
 
 jekyll:
 编译ruby2.x 需要openssl： apt-get install libssl-dev libreadline-dev libgdbm-dev
-
+临时域名： bxu2713310005.my3w.com
