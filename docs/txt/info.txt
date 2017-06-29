@@ -25,6 +25,8 @@ abandon sourceinsight, eclipse, qcreator
 abandon !protel99/ADS
 abandon C++ (20170428) ffmpeg/kernel/minigui的设计技术足矣
 
+riot-os.org
+
 mdpi.com
 iot-lab.info
 esacademy.com
