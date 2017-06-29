@@ -23,3 +23,8 @@ https://github.com/jekyll/minima
 
 jekyll主题安装地址：
 /usr/local/lib/ruby/gems/2.4.0/gems/minima-2.1.1
+
+
+hexo 有很多主题:
+hexo.io/themes
+next 主题不错

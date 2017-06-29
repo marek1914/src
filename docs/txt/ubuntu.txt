@@ -47,6 +47,10 @@ add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ hardy multiverse"
 apt-cache
 apt-add-repository ppa:user/repository  //Launchpad PPA
 
+Hash Sum mismatch 解决办法:
+sudo apt-get clean  
+sudo apt-get update --fix-missing 
+
 virtual Box
 1) 安装VirtualBox Extension Pack (要与Virtualbox版本一致，VirtualBox older builds处下载旧版本)
    USB设备:adduser gao vboxusers(注销生效)，重启，Devices->USB Devices看到U盘

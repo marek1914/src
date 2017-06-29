@@ -50,7 +50,7 @@ openhw.org
 beagleboard.org
 cn.element14.com
 json.org
-electronics-lab.com
+electronics-lab.com  **
 
 embeddedmicro.com //mojo
 wiki.openmusiclabs.com/wiki/PWMDAC
