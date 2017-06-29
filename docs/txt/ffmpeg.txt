@@ -343,6 +343,9 @@ ffmpeg -i x.mp4 -b:v 12000k x.ts //mp4 h264 6M码率，转为mpeg2基本双倍�
 ffmpeg -i INPUT -vf '[in]select=eq(pict_type\,I)' I.frames.ts //提取I帧
 ffmpeg -i INPUT -vf '[in]select=eq(pict_type\,I),showinfo[out]' I%03d.jpeg //提取I帧
 ffmpeg -i INPUT -vf select="eq(pict_type\,PICT_TYPE_I)" -vsync 0 frame%03d.jpg
+ffmpeg -i INPUT -vf %04d.jpg //所有帧
+图片转视频：
+ffmpeg -r 24 -i %04d.jpg test.mp4
 
 
 -qp (quantification parameter) 用于控制码率，默认20左右
