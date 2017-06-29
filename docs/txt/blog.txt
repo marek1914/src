@@ -1,0 +1,25 @@
+hexo/jekyll
+
+原则：版式简单，凸显内容
+
+GitHub page:
+http://www.jianshu.com/p/e99ed60390a8
+
+github page 的编译部分在github上，本地只有markdown文件，也接受html
+
+不错的例子
+http://andersonlu.github.io/ALBOG/
+
+貌似hexo更简洁些
+
+方法：
+别想太多，先用一段时间 hexo，关键是内容，精力别跑偏了
+
+有道云笔记
+http://note.youdao.com/iyoudao/?p=2411&vendor=unsilent14
+
+minia的主题源码
+https://github.com/jekyll/minima
+
+jekyll主题安装地址：
+/usr/local/lib/ruby/gems/2.4.0/gems/minima-2.1.1

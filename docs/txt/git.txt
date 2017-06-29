@@ -60,9 +60,4 @@ ssh-copy-id
 macOS 不能tab，需要安装 git-completion.bash(git官方提供)
 ubuntu 执行set 能看到__git_complete_xx 相应函数，不知道在哪里安装的
 
-GitHub page:
-
-hexo、jekyll、wordpress
-
-http://www.jianshu.com/p/e99ed60390a8
 

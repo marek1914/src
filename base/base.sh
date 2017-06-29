@@ -34,6 +34,10 @@ zip -Z store bootanimation.zip part*/* desc.txt  #store 不压缩 or -0
 
 # {} 任何不易出现字符, -I 包含 -L 1
 ls |xargs -I{} java -jar signapk.jar xx.x509.pem xx.pk8 {} sign/{}
+ls ori_apk | xargs -I{} java -jar .... ori_apk/{} sing_apk/{} #yuantb
+ls *.apk|xargs -n 1 aapt dump badging  //apk依次执行aapt
+#注意
+ls 和 ls * 显示内容是不同的 根据实际情况切换
 
 #拷贝所有png到某目录
 find -name "*.png" | xargs cp ./png  #fail 参数顺序不对
@@ -498,7 +502,6 @@ xargs - build and execute command lines from standard input
 组建命令1条或多条  -n 1 就会每个前级输出组建一条
 不指定也有最大值限制，所以find结果很多时cp命令会自动分次数
 
-ls *.apk|xargs -n 1 aapt dump badging  //apk依次执行aapt
 
 -n 1  一个
 -L 1  一行  一行里可能有多个
@@ -561,3 +564,6 @@ modprobe usbmon
 
 lsof
 /lib/modules/`uname -r`/build
+
+#这条命令有点意思 下载脚本并执行
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
