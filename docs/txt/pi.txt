@@ -275,3 +275,7 @@ classic SPI library for Arduino
 -----
 typedef bool boolean;
 typedef uint8_t byte;
+
+
+Arduino Yun: Atheros AR9331 + AVR microcontroller
+

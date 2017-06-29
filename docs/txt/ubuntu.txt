@@ -335,9 +335,8 @@ Preference - Use localized rescources 变为简体中文版
 用Protel2004_sp2_Genkey.exe,将它放在Protel_DXP_2004安装目录注册
 
 --建站---
-万网申请域名（淘宝账户登录），在域名管理中“添加解析”到github的ip(ping)
-lllab.tech可访问
-aliyun: 200wguiqiyi
+aliyun ftp: 200wguiqiyi
+上传ftp htdocs/
 
 jekyll:
 编译ruby2.x 需要openssl： apt-get install libssl-dev libreadline-dev libgdbm-dev
