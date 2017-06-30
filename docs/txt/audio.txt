@@ -1,10 +1,10 @@
 ===webrtc===
-Webrtc
-
-Android/external/chromium_org/third_party/webrtc/modules/audio_processing
-声音处理 audio_processing 库包括：
-回声消除(AEC)、AECM(AEC Mobile)、自动增益(AGC)、降噪(NS)、静音检测(VAD)等功能，提升声音质量
-音频编码：采用iLIBC/iSAC/G722/PCM16/RED/AVT
+modules/audio_processing:
+AEC:acoustic echo cancellation
+AECM:AEC Mobile
+AGC:Automatic gain control
+NS :noise suppression
+VAD:Voice Activity Detection
 
 ===aac===
 Pulseaudio

@@ -12,6 +12,8 @@ make install
 
 默认发布的bin 不支持huge（for 8051） 需源码编译
 
+Cooja Simulator (need java-1.7)
+
 cc2530 led P10
 
 chapter 7.6:
