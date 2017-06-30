@@ -28,3 +28,5 @@ jekyll主题安装地址：
 hexo 有很多主题:
 hexo.io/themes
 next 主题不错
+
+yplam.com
