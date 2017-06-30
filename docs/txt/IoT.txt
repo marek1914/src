@@ -565,8 +565,18 @@ IAR EW8051/EWARM
 下载了:
 EW8051 830/930(mac os 可用)
 
-SmartRF Flash Programmer
+SmartRF Flash Programmer  (winxp ok)
+SmartRF Flash Programmer2 (run on 32/64-bit Win7/8, winxp fail)
 SmartRF Studio
+
+Debugger Devpack:
+P1 是TM4C芯片本身的JTAG 
+J1/J4 是正反对着的2个接口
+P2 是20个孔
+J2 10孔 1.27间距 是jtag输出
+
+飞线成功 可以发现源地红色2650板子
+
 
 ---
 二极管矩阵：
@@ -649,4 +659,9 @@ u8glib/sys/arduino/Chess/Chess.cpp  //这个文件是自动生成的
 
 ----
 6502 CPU  apple I/II  任天堂
+
+
+1117 稳压新片，输入输出都要加电容，实测，f330调试器输出5V有很强抖动，
+输入加电容后，1117输出稳定，但是加了负载后输出开始抖动，输出也加电容后，f330正常工作
+
 

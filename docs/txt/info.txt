@@ -14,6 +14,7 @@ TIOBE
 
 stackoverflow.com
 mikewootc.com //wuyuntao
+jmcglone.com/about //github page jekyll
 
 en.savefrom.net
 downsub.com  youtube subtitle
@@ -24,6 +25,8 @@ abandon java, android, opengl, mysql
 abandon sourceinsight, eclipse, qcreator
 abandon !protel99/ADS
 abandon C++ (20170428) ffmpeg/kernel/minigui的设计技术足矣
+
+riot-os.org
 
 mdpi.com
 iot-lab.info
@@ -47,7 +50,7 @@ openhw.org
 beagleboard.org
 cn.element14.com
 json.org
-electronics-lab.com
+electronics-lab.com  **
 
 embeddedmicro.com //mojo
 wiki.openmusiclabs.com/wiki/PWMDAC
@@ -68,7 +71,7 @@ https://docs.particle.io/datasheets/photon-datasheet
 
 投入（计划10万）：
 2016: 4.4
-2017: 18914 (5.6)
+2017: 19044 (5.6)
 
 电脑相关： 22328 元
 macbook pro				11788
@@ -116,7 +119,9 @@ ST STM32L152C-DISC		98
 ST STM32F429I-DISC		150
 源地STM32/蓝牙/调试器	264
 源地zigbee cc2530x2		50
+源地 cc2650  x4                  130
 SensorTag CC2650		240
+
 
 partical IoT x2			288
 XBee X36				720
@@ -172,7 +177,7 @@ AAA电池扣               40
 
 资料费用
 2016年VPN				158
-2917年VPN				158
+2017年VPN				158
 阿里云普惠版             6
 lllab.tech 2年域名      45
 elelab.cn  3年域名      99

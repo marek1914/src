@@ -35,10 +35,6 @@ mmm frameworks/base/policy
 
 persist.sys.bootanim.enable”来决定是否播放开机动画
 
-https://knight.yunos.com
-账号: ott_ljwl@126.com 
-密码: ljwl666
-
 zhangh:1
 
 阿里升级包要点：
@@ -188,8 +184,6 @@ ftp:
 csprodftp : ccdt@2013
 
 
-image ./img-yunos.sh：
-
 原Launcher: 
 AliTvHomeshell.apk
 
@@ -198,7 +192,6 @@ keylayout:
 AVRCP.kl
 Generic.kl
 Vendor_0001_Product_0001_Version_0100.kl
-YunOS_fd01.kl
 qwerty.kl
 
 
@@ -276,36 +269,18 @@ android.policy.jar:  PhoneWindowManager.java
 mstar检测启动完成位置：
 services.jar:
 
-====yunos====
-http://bbs.yunos.com/read/263232332/fp/2/（密码open_tv）
-基于3716CV200出demo
 
 android/custom/mso9280/config.yml 配置各apk版本
 build.sh 调用 bmw_xxx.sh 下载apk
 
-
 3718CV100
-
-repo init -u ssh://CycleCentury_GaoJie@opencode-v.alibaba-inc.com:29418/repo/Hisi_3718CV100 -b Hisi/3718CV100/4.2/stable_2.x -m Hi3718C_YunOS2.2.0.xml
-
-mstar bnq
-repo init -u ssh://CycleCentury_GaoJie@opencode-v.alibaba-inc.com:29418/repo/mstar_9180 -b mstar/9280/yunos/4.4/2.x.x -m tag_mso9280_yunos_2.2.1.xml
-
-本地：
-repo init -u ssh://gaojie@192.168.7.32:29418/YunOS/manifests.git -b Hisi/3718CV100/4.2/stable_2.x -m Hi3718C_YunOS2.2.0.xml
 
 建立本地仓库时：
 branch 'stable' has not been signed
 
 repo要有stable分支
 
-
 push an existing repository from the command line
-
-git remote add yunos https://github.com/2000000/test.git
-git push -u yunos master
-
-repo init -u ssh://gaojie@192.168.7.32:29418/YunOS/manifests.git -b default -m Hi3718C_YunOS2.2.0.xml
 
 ./build.sh eng Hi3716CV200   (默认是hi3718cv100)
 
@@ -313,12 +288,6 @@ repo init -u ssh://gaojie@192.168.7.32:29418/YunOS/manifests.git -b default -m H
 
 mmcblk0:1M(fastboot),1M(bootargs),10M(recovery),2M(deviceinfo),8M(baseparam),8M(pqparam),20M(log
 o),20M(logobak),40M(fastplay),40M(fastplaybak),40M(kernel),20M(misc),500M(system),1024M(userdata),100M(cache),-(sdcard)
-
-launcher:
-com.yunos.tv.homeshell  这个是桌面，杀死就自动启动（自动启动怎么做到的？）
-com.yunos.tv.launchercust  这个杀死也会自动启动
-
-原始mstar版本 4.4.4 yunos也是4.4.4
 
 编译 ./build.sh eng
 
