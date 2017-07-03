@@ -95,7 +95,7 @@ TCP头：20-60
 MAC头，UDP头固定长度，所以无须表示头长度字段，IP头，TCP头长度不定，所以需要4bit表示头长度。IP和UDP有字段标示包头+内容的总长度。为什么不表示内容长度而是总长度？
 
 TCP是流，流没有长度，没有字段表示长度，什么时候关闭什么时候结束。像水龙头。
-UDP的包长度可以通过IP包长度-IP头算出，还要字段表示，因为当发送超出MTU的大UDP包时，会切成多个小片，第一个包有udp包头，后面的没有。见wireshark抓包。
+UDP的包长度可以通过IP包长度-IP头算出，还要字段表示，因为当发送超出MTU的大UDP包时，会切成多个小片，第一个包有udp包头，后面的没有。
 
 UDP分片后，收到的数据不一定按照原来的顺序（xuss ？）
 
@@ -444,7 +444,7 @@ http头用字符串，开始理解：为了可读/灵活性牺牲了一点点空
 
 实现：curl，wget，libavformat/http.c， http-parser
 
-http头字段后的空格，wireshark有，书中也有，但用curl测试，不加或多加都行。
+http头字段后的空格，wireshark有，用curl测试，不加或多加都行。
 
 Common Gateway Interface(CGI)  服务器上的cgi程序可用任何语言：C，perl，shell，php，python
 

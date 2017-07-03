@@ -184,10 +184,11 @@ Nginx: /usr/local/nginx
 
 	8) minicom
 		Modem and dialing parameter setup 输入A B K 将后面的字符删除
-		ctrl+a +l 捕获数据到minicom.cap，ctrl+a +w 自动换行
-		minicom.log :ctrl+a O "Filenames and paths" "Logging options"关闭
-		ymodem下载内核:uboot执行 loady,minicom选择 send file 选ymodem，选择文件
-		显示hex：cOnfigure -> Screen and keyboard ->hex display (需设置w)
+		L: Capture
+        W: lineWrap
+		minicom.log : O "Filenames and paths" "Logging options"
+		ymodem下载内核:uboot执行 loady,minicom选择 send file 选ymodem
+		hex：O -> Screen and keyboard ->hex display
 
 重启服务：
 	/etc/init.d/ (shell script)

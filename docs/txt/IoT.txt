@@ -527,56 +527,6 @@ Bluetooth Basic Rate(BR) 2.0
 Enhanced Data Rate (EDR) 2.1
 Bluetooth with low energy (LE for IoT) 4.0/4.1/4.2
 
---TI--
-账户：13**67@qq.com : -2y50wpy-
-
-cc2531 sniffer   Ubiqua
-
-sensortag
-TI 收购 Chipcon(cc-xx)
-
-Z-Stack support BBB
-OSAL: OS抽象层
-
-CC1101 sub-1GHz 射频收发器
-CC2520: 2.4 GHz ZigBee RF transceiver phy
-CC2592: Range Extender
-CC2540/1: bluetooth 4.0
-CC2640: bluetooth
-
-zigbee(4):
-cc2530/1(usb): 8051
-cc2538: m3
-cc2630: m3 (60+ expensive)
-cc2650: m3 (zigbee&ble 60+ expensive)
-
-cc26xx: lower power than cc25xx 
-4×4 RSM QFN32 0.4
-5×5 RHB QFN32 0.5 use this!
-7×7 RGZ QFN48 0.5
-
-SMA天线
-
-CC Debuger : CC2511-F32(8051/usb)
-
-IAR EW8051/EWARM
-
-下载了:
-EW8051 830/930(mac os 可用)
-
-SmartRF Flash Programmer  (winxp ok)
-SmartRF Flash Programmer2 (run on 32/64-bit Win7/8, winxp fail)
-SmartRF Studio
-
-Debugger Devpack:
-P1 是TM4C芯片本身的JTAG 
-J1/J4 是正反对着的2个接口
-P2 是20个孔
-J2 10孔 1.27间距 是jtag输出
-
-飞线成功 可以发现源地红色2650板子
-
-
 ---
 二极管矩阵：
 普通发光二极管1.8V导通
