@@ -21,3 +21,8 @@ next 主题 _config:
 auto_excerpt  主页摘录
 length:字数
 
+hexo 有很多主题:
+hexo.io/themes
+next 主题不错
+
+yplam.com
