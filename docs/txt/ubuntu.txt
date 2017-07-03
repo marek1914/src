@@ -14,6 +14,14 @@ apt-get source gnome-system-monitor 获取system monitor源码到/usr/src (需dp
 
 纯字符模式，显示中文
 
+shadowsocks 代理(u14.04 直接安装没有) baidu不到，被墙
+sudo pip install shadowsocks
+sslocal -c ~/tt.txt
+浏览器plugin autoproxy-ng
+Proxy Rule->Add Rule Subscription :gfwlist
+小地球标志：preference：port 1080 socks5
+
+
 AdobeIllustrator
 kolourpaint 类似画图板工具
 ImageMagick 

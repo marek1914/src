@@ -132,4 +132,8 @@ target remote localhost:<port>
  monitor help 看看这个命令显示啥
 
 
+看看 ccs是怎么调试的，
+
+或者把contiki 弄到ccs里面， 总之有突破口
+
 
