@@ -125,3 +125,11 @@ gdb_agent_console testBoard.dat 运行成功
 target remote localhost:<port>
 
 
+
+
+
+显示 0x00000000 in ?? () 貌似是对的
+ monitor help 看看这个命令显示啥
+
+
+
