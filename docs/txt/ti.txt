@@ -129,7 +129,7 @@ target remote localhost:<port>
 
 
 显示 0x00000000 in ?? () 貌似是对的
- monitor help 看看这个命令显示啥
+
 
 
 看看 ccs是怎么调试的，
@@ -137,3 +137,30 @@ target remote localhost:<port>
 或者把contiki 弄到ccs里面， 总之有突破口
 
 
+contiki link 文件 cpu/... cc26xx.ld
+
+
+turn of LPM and Watchdog ??
+
+github pages   minima
+http://pablocorbalan.com/getting-started-with-ti-cc2650-launchpad
+
+
+mem 0x00 0x20000 ro 32 nocache
+mem 0x10000000 0x10020000 ro 32 nocache
+mem 0x20000000 0x20005000 rw 32 nocache
+mem 0x40000000 0x400E1028 rw 32 nocache
+mem 0xE000E000 0xE000F000 rw 32 nocache
+target remote localhost:55000
+
+唉，gdb不行呀！
+
+
+target remote localhost:55000
+
+file image.out
+
+monitor sleep 100  ???
+break main
+load             //这句需要的！下载程序
+continue
