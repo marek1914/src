@@ -412,7 +412,7 @@ http头用字符串，开始理解：为了可读/灵活性牺牲了一点点空
 
 实现：curl，wget，libavformat/http.c， http-parser
 
-http头字段后的空格，wireshark有，书中也有，但用curl测试，不加或多加都行。
+http头字段后的空格，wireshark有，用curl测试，不加或多加都行。
 
 Common Gateway Interface(CGI)  服务器上的cgi程序可用任何语言：C，perl，shell，php，python
 

@@ -1093,8 +1093,6 @@ mistmatches(Lucid is 2.11, Hardy is 2.7)，Lucid 编译的代码不能在previou
 # that's why we have "sdk" in the path name. (指的是prebuilts/tools/gcc-sdk)
 //所有情况都使用prebiult编译器了（对于我的应用没有必要）
 prebuilts/gcc/linux-x86/host/  目录删除
-这样也有弊端^_^ 
-原来用prebuild编译器，相应库都在自己目录准备好了，如libz，现在用系统的编译s805 4.4.2 提示找不到 -lz，需要32bit开发版，倒是好解决^^
 或者改成 -m64 更好，在 BoardConfig.mk 中增加：BUILD_HOST_64bit := 1
 
 BUILD_HOST_64bit := 1 不行，无论系统cc还是prebuild gcc，在生成package-export.apk时一堆错误
@@ -1102,12 +1100,10 @@ BUILD_HOST_64bit := 1 不行，无论系统cc还是prebuild gcc，在生成packa
 
 说明系统gcc 是64bit程序，可加-m32/-m64参数，那prebuild分2个版本，分别是32bit/64bit程序（？兼容32bit ubuntu系统？）
 
-
 删除x86_64-linux-glibc2.7-4.6还不行，因为工具一般-m32，个别的还是-m64
 情况1：
 提示找不到 x86_64-linux-glibc2.7-4.6/bin/x86_64-linux-ar
 gcc-sdk/gcc 脚本：
 # Choose 64-bit if -m64 only, -m64 appears after -m32, or neither exist (-eq)
 -m32 -m64 都没有，默认-m64 
-
 

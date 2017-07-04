@@ -1,0 +1,139 @@
+--TI--
+账户：13**67@qq.com : -2y50wpy-
+
+cc2531 sniffer   Ubiqua
+
+sensortag
+TI 收购 Chipcon(cc-xx)
+
+Z-Stack support BBB
+OSAL: OS抽象层
+
+CC1101 sub-1GHz 射频收发器
+CC2520: 2.4 GHz ZigBee RF transceiver phy
+CC2592: Range Extender
+CC2540/1: bluetooth 4.0
+CC2640: bluetooth
+
+zigbee(4):
+cc2530/1(usb): 8051
+cc2538: m3
+cc2630: m3
+cc2650: m3
+ 
+4×4 RSM QFN32 0.4
+5×5 RHB QFN32 0.5 use this!
+7×7 RGZ QFN48 0.5
+
+CC Debuger : CC2511-F32(8051/usb)
+
+IAR EW8051/EWARM
+
+下载了:
+EW8051 830/930(mac os 可用)
+
+cc2650 需要EWARM
+
+CC26xxWare与EmuPack:
+CC26xxWare is no longer released as a standalone software package
+is included in TI-RTOS
+
+SmartRF Flash Programmer  (winxp ok)
+SmartRF Flash Programmer2 (run on 32/64-bit Win7/8, winxp fail)
+SmartRF Studio
+
+Debugger Devpack:
+P1 是TM4C芯片本身的JTAG 
+J1/J4 是正反对着的2个接口
+P2 是20个孔
+J2 10孔 1.27间距 是jtag输出
+
+飞线成功 可以发现源地红色2650板子
+
+TIMAC:
+
+安装CCS:
+linux版下载仅8M+，安装过程选择相应组件，再网络下载
+集成度很高，在Resource Explorer 中在线下载UART例子到～/TI目录（暂时别动）
+下载后，import的时候出错，重启，会提示有内容需要安装
+windows->preferences->ccs->products->可以看到
+再回到Resource Explorer，可以import了
+
+XDS110 连不上，是因为权限问题：
+
+/ccsv7/ccs_base/common/uscif/xds110$ sudo ./xdsdfu -e
+VID: 0x0451    PID: 0xbef3
+Device Name:   XDS110 with CMSIS-DAP
+Version:       2.3.0.1
+Manufacturer:  Texas Instruments
+Serial Num:    L3003317
+
+不sudo就没有打印
+
+sudo ti/ccsv7/eclipse/ccstudio    xds可以工作了，但提示需要更新固件
+直接更新失败(没看清楚，可能因为cc2650板子没上电)
+
+sudo ./xdsdfu -m
+sudo ./xdsdfu -f firmware.bin -r
+
+成功（方法来自同级目录 README）
+
+uart_echo例子程序使用cc2650sdk原理图，串口P28/P29，可以回显，实验成功
+波特率9600（minicom设置为不可会显，靠板子输出回显）
+
+插入xds，多出 hidraw2 ttyACM0 ttyACM1
+
+install_scripts/ 驱动安装脚本，本质是/etc/udev/rules.d/添加
+SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",ATTRS{idVendor}=="0451",ATTRS{idProduct}=="bef3",MODE:="0666"
+
+dev.ti.com
+
+
+
+tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/startup_files/startup_gcc.c
+keil的启动文件是.s gcc和ccs的都是.c
+
+这个文件与contiki中 cc26xxware目录中的同名文件一致
+
+
+IOCPinTypeUart 是cc26xxware里面的函数， contiki里直接封装
+
+
+
+-----
+http://processors.wiki.ti.com/index.php/CC13xx_CC26xx_Tools_Overview
+http://processors.wiki.ti.com/index.php/XDS_GDB_Agent
+
+
+uniflash: flash tool for linux
+
+CCS Uniflash includes the TI Emupack and GDB Server
+下载安装 .run  按照提示解决libudev.so.0找不到问题:
+sudo ln -sf /lib/x86_64-linux-gnu/libudev.so.1 /lib/x86_64-linux-gnu/libudev.so.0
+
+
+emupack 在安装ccs的时候，已经安装
+
+Board Configuration File:
+在生成的uartecho项目中，打开 targetConfigs/CC2650F128.ccxml 能找到Test Connection
+可以看到 ～/.ti/ti/0/0/BrdDat/testBoard.dat
+
+gdb_agent_console testBoard.dat 运行成功
+
+开始无法调试，因为没有-g参数  在例子目录的makefile中加入 CFLAGS += -g
+
+target remote localhost:<port>
+
+
+
+
+
+显示 0x00000000 in ?? () 貌似是对的
+ monitor help 看看这个命令显示啥
+
+
+看看 ccs是怎么调试的，
+
+或者把contiki 弄到ccs里面， 总之有突破口
+
+
