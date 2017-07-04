@@ -1,20 +1,16 @@
-frameworks/base/cmds/bootanimation
-mstar，bootanim在init.rc里改为system uid， 出现bootanimation就从8s延长到15s
+mstar，bootanim在init.rc里改为system uid， bootanimation从8s延长到15s
 改为graphics uid ok（new时不返回）
 
 setprop ctl.start bootanim
 setprop ctl.stop bootanim
 
-service bootanim /system/bin/bootanimation  //这个服务没起
-    disabled //没启动
-
 bootanimation在init.rc配置为disable，
-surfaceflinger的readyToRun函数内的startBootAnim();//开启动画属性，通过设置内存属性值来触发Init进程来启动：
+surfaceflinger的readyToRun的startBootAnim();//通过属性值触发Init进程启动
 
 void SurfaceFlinger::startBootAnim() {  
     // start boot animation  
     mBootFinished = false;  
-    property_set("service.bootanim.exit", "0");//先清零，bootanimation进程周期检测
+    property_set("service.bootanim.exit", "0");//清零，bootanimation周期检测
     property_set("ctl.start", "bootanim");//启动bootanim进程
 }  
 
