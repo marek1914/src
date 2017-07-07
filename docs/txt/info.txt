@@ -35,7 +35,6 @@ gnu.org
 kernel.org
 vim.org
 busybox.net 
-gnuradio.org
 particle.io
 micropython.org
 wiring.org.co

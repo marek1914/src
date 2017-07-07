@@ -246,40 +246,6 @@ Medium power Transistor中等功率晶体管
 B1182 功率三极管  PNP silicon transistor
 maxim 各232，485芯片型号，各种应用？
 
---gnuradio--
-
-https://myriadrf.org/
-
-https://github.com/gnuradio/pybombs
-
-apt-get install gnuradio (或者从源码安装)
-gr-iqbal  用于iq平衡
-gr-osmosdr 
-
-gr代表gnuradio，是gnuradio的模块
-
- The bladeRF is supported via gr-osmosdr
-
-GQRX is a software defined radio receiver powered by GNU Radio and Qt
-
-编译gr-osmosdr：
-
-git clone git://git.osmocom.org/gr-osmosdr
-cd gr-osmosdr/
-
-apt-get install libboost-all-dev
-
-https://github.com/Nuand/bladeRF  //bladeRF库 比如fpga的image
-
-rtl-sdr, gr-osmosdr, gr-iqbal, hackrf, bladeRF and airspy
-
-bladeRF-cli -i
-
-bladeRF-cli -l <path/to/fpga/file>
-或者
-bladeRF> load fpga <path/to/fpga/file> 
----
-
 ----
 Pspice电路仿真软件
 
