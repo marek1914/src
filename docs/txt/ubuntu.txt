@@ -20,6 +20,12 @@ plugin: autoproxy-ng
 Proxy Rule->Add Rule Subscription :gfwlist
 preference：port 1080 socks5
 
+shell: 下载 proxychains V4 源码编译
+/etc/proxychains.conf : socks5  127.0.0.1 1080
+usage: proxychains4 <prog> [args]
+
+sudo proxychain apt-get update //ok
+proxychain sudo apt-get update //no!
 
 AdobeIllustrator
 kolourpaint 类似画图板工具
@@ -47,16 +53,24 @@ apt-get -f install  可卸载依赖错误的软件包
 apt-get -d install foo // only download
 apt-get clean/autoclean // clean cache [/var/cache/apt/archives]
 apt-get remove //remove pkg
-apt-get autoremove 自动删除没用的依赖包。--purge
+apt-get autoremove 自动删除没用的依赖包 --purge
 apt-get update //错误时需删除 apt/lists/partial/ apt/mirrors/partial/
 apt-get upgrade 更新所有已安装软件，不接受指定某个软件 
 add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ hardy multiverse"
 apt-cache
 apt-add-repository ppa:user/repository  //Launchpad PPA
 
-Hash Sum mismatch 解决办法:
+Hash Sum mismatch: 因为网不好
 sudo apt-get clean  
 sudo apt-get update --fix-missing 
+
+若还不行，把mismatch地址用firefox等下载，放到 /var/cache/apt/archives/ 下即可，或vpn
+
+ppa 添加位置：
+/etc/apt/sources.list.d   遇到mismatch时，去这里删除部分
+
+若还有mismatch，删除/var/lib/apt/lists/* （apt-get clean 并不会删除这些）
+
 
 virtual Box
 1) 安装VirtualBox Extension Pack (要与Virtualbox版本一致，VirtualBox older builds处下载旧版本)
@@ -265,8 +279,9 @@ nautilus: [ˈnɔ:tɪləs]鹦鹉螺 file manager and graphical shell for GNOME
 
 apache log 查看mantis访问记录: /var/log/apache2
 
-firefox has prevented outdated plugin "Adobe Flash" 浏览器升级但插件没有更新
-按提示update，选apt，进入软件中心，32bit ok, 64bit提示找不到adobe-flashplugin:
+firefox has prevented outdated plugin "Adobe Flash" 浏览器升级插件没更新
+按提示update，选apt，32bit ok, 
+64bit提示找不到adobe-flashplugin:
 sudo apt-get install flashplugin-installer
 
 ---winxp ---
