@@ -1,3 +1,5 @@
+公司笔记本 jvm 是1.8了？
+
 --TI--
 账户：13**67@qq.com : -2y50wpy-
 
@@ -61,20 +63,18 @@ windows->preferences->ccs->products->可以看到
 
 XDS110 连不上，是因为权限问题：
 
-/ccsv7/ccs_base/common/uscif/xds110$ sudo ./xdsdfu -e
+/ccsv7/ccs_base/common/uscif/xds110$ ./xdsdfu -e
 VID: 0x0451    PID: 0xbef3
 Device Name:   XDS110 with CMSIS-DAP
 Version:       2.3.0.1
 Manufacturer:  Texas Instruments
 Serial Num:    L3003317
 
-不sudo就没有打印
-
 sudo ti/ccsv7/eclipse/ccstudio    xds可以工作了，但提示需要更新固件
 直接更新失败(没看清楚，可能因为cc2650板子没上电)
 
-sudo ./xdsdfu -m
-sudo ./xdsdfu -f firmware.bin -r
+xdsdfu -m
+xdsdfu -f firmware.bin -r
 
 成功（方法来自同级目录 README）
 
@@ -153,10 +153,6 @@ mem 0x40000000 0x400E1028 rw 32 nocache
 mem 0xE000E000 0xE000F000 rw 32 nocache
 target remote localhost:55000
 
-唉，gdb不行呀！
-
-
-target remote localhost:55000
 
 file image.out
 
@@ -164,3 +160,128 @@ monitor sleep 100  ???
 break main
 load             //这句需要的！下载程序
 continue
+
+
+
+
+----
+uniFlash 4.1.2
+Standalone Command Line -> Generate Package  里面有需要的ccxml文件
+
+下载文件是： dslite.sh  不是文档图中说的uniflash.sh (可能因为版本不同)
+
+
+
+
+uniflash V3 :
+需要 libgconf-2.so.4
+apt-get install libcanberra0:i386
+apt-get install libgconf2-4:i386  (数字2和4 有这种对应关系？ )
+其他以此类推
+
+
+
+ –program “${project_loc:blink_led}/../../bin/gcc/blink_led.elf”
+
+
+
+uniflash 3.4 里的固件要求是2.2.5.1 (Emulation package 6.0.83.1 里的固件是这个版本)
+而新的uscif/xds110 里的最新固件是2.3.0.8
+
+
+uniflash 3.4 搭配的版本（固件不对的时候，自动提示）：
+ A firmware update is required for the debug probe. Click the "Update" button to update the firmware and connect to the debug target. DO NOT UNPLUG THE DEBUG PROBE DURING THE UPDATE. (Emulation package 6.0.83.1) 
+
+
+
+OK一次： 但不是每次都能成功 (用的最新 2.3.0.8)
+target remote localhost:55000
+hb main  (b的话，提示内存不能访问)
+load
+c
+
+多数时候，c后没反应，停止后发现停在这里：
+FaultISRHandler () at ../../../../cc26xxware/startup_files/startup_gcc.c:288
+288	    }
+
+
+
+CPUdelay
+
+This function provides means for generating a constant length delay. It is written in assembly to keep the delay consistent across tool chains, avoiding the need to tune the delay based on the tool chain in use.
+
+The loop takes 3 cycles/loop.
+
+CPUdelay(1000000);  示波器测出 延时104ms  设置gpio还需要时间，这样看，就是100ms
+
+
+奇怪现象：
+直接执行命令，能烧写
+./uniflash.sh -ccxml  cc2650f128.ccxml  –program blink_led.elf
+写到 flash.sh脚本里面，就不能烧写:
+> Configuring the Flash Programmer with the given configuration ...
+
+> Flash Manager is configured for the following part: CC2650F128
+
+> Connecting to the target for Flash operations ... 
+
+> Connected.
+
+> Disconnecting from target. 
+
+中间没有 download过程，就直接退出了
+
+这跟eclipse里面没有下载成功，就对上了
+
+
+----
+勉强能调试了，可是 n，s都是step，不能跳过函数，咋回事
+
+
+SetupTrimDevice  199
+
+
+有时候 ./uniflash.sh 不好用，不下载
+这时候，重建一个cc2650f128.ccxml  擦出板子，重新来，就可能ok
+
+
+
+automatically using hardware breakpoints for read-only addresses  //如何做到   gdb版本问题？
+
+
+单步不能是因为：
+gdb server端：
+FAILED! GTI_SETBP_EX(hpid=0x9b8f748,addr=0x15190,type=0,count=1,access=0)=ffffffff
+(Error -1066 @ 0x15190)
+Unable to set/clear requested breakpoint. Verify that the breakpoint address is in valid memory.
+(Emulation package 6.0.83.1)
+
+ERROR: set_breakpoint() backend call returned 64
+
+
+每当遇到函数调用的时候：
+Warning:
+Cannot insert breakpoint 0.
+Cannot access memory at address 0x15c8c
+
+
+sensortag:
+注释掉几行代码的版本，烧写 cc26xx-demo.elf  会有打印，(devpack 的ttyACM0)
+后面，拔电池，按2个按键，都不行，只能执行 /xds110reset 让devpack发出复位信号，可以重新看到打印
+
+setup.c 199行
+contiki-main.c  lpm_init();
+
+sensortag 也许不用注释掉
+
+ttyACM0 看到打印：
+Starting Contiki-3.x-3328-ga08fc6a                                                                                                                                
+With DriverLib v0.47020                                                                                                                                           
+TI CC2650 SensorTag                                                                                                                                               
+IEEE 802.15.4: Yes, Sub-GHz: No, BLE: Yes, Prop: Yes                                                                                                              
+ Net: sicslowpan                                                                                                                                                  
+ MAC: CSMA                                                                                                                                                        
+ RDC: ContikiMAC, Channel Check Interval: 16 ticks
+
+
+这些打印是不全的！
