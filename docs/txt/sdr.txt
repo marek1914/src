@@ -27,7 +27,7 @@ rtl-sdr, gr-osmosdr, gr-iqbal, hackrf, bladeRF and airspy
 bladeRF-cli -i
 
 bladeRF-cli -l <path/to/fpga/file>
-或者
+或
 bladeRF> load fpga <path/to/fpga/file> 
 
 
@@ -37,28 +37,10 @@ bladeRF-cli 需要 sudo，但是 /dev/udev/rule.d 里面已经加了，只是066
 改为0666，还是无法打开
 strace发现，并非是设备节点无法打开，而是
 /usr/share/Nuand/bladeRF/hostedx40.rbf(fpga固件) 只有root可读，修改后，可以正常启动了，那之前的660还是666 有作用吗？（这里一直没有搞明白）
-
-
-
 插入bladerf后多出 /dev/char/ ../bus/usb/001/009  当然，usb地址，每次会有变化
 
-
-很容易导致各版本库不兼容
-按照这个流程 走一遍
+20170710 安装成功
 http://gqrx.dk/download/install-ubuntu
 
-
-添加ppa后，错误：
-Failed to fetch http://ppa.launchpad.net/bladerf/bladerf/ubuntu/dists/trusty/main/binary-amd64/Packages  Hash Sum mismatch
-这个url打不开，实际文件应该是Packages.bz2 或 .gz 为啥没有扩展名？
-Packages 是解压后的文件，可是源文件，发布者压缩了
-
-apt-get update:
-
-amd64 Packages          
-i386 Packages         
-Translation-en  
-
-
-0708: 01:39 妈的，没搞定！！！！
+好难受，安装终于成功了，可是不知道能干啥
 

@@ -55,21 +55,22 @@ apt-get clean/autoclean // clean cache [/var/cache/apt/archives]
 apt-get remove //remove pkg
 apt-get autoremove 自动删除没用的依赖包 --purge
 apt-get update //错误时需删除 apt/lists/partial/ apt/mirrors/partial/
-apt-get upgrade 更新所有已安装软件，不接受指定某个软件 
+apt-get upgrade 更新所有已安装软件
 add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ hardy multiverse"
 apt-cache
-apt-add-repository ppa:user/repository  //Launchpad PPA
+apt-add-repository ppa:user/repository  //Launchpad PPA (/etc/apt/sources.list.d)
 
-Hash Sum mismatch: 因为网不好
-sudo apt-get clean  
-sudo apt-get update --fix-missing 
+Package 包括 amd64/i386/Translation-en(?)
+Failed to fetch http://.../Packages (实际此路径存放 Packages.bz2 和 Packages.gz)
 
-若还不行，把mismatch地址用firefox等下载，放到 /var/cache/apt/archives/ 下即可，或vpn
-
-ppa 添加位置：
-/etc/apt/sources.list.d   遇到mismatch时，去这里删除部分
-
-若还有mismatch，删除/var/lib/apt/lists/* （apt-get clean 并不会删除这些）
+Hash Sum mismatch:
+apt-get clean
+rm -rf /var/lib/apt/lists/*
+apt-get update --fix-missing 
+(装bladerf时，上述步骤仍不行，在另一台ubuntu上ok，最后vpn偶然行了)
+失败时是能单独访问http://.../Packages(.bz2)的，下载解压到/var/lib/apt/lists/应该也可
+下载失败的在/var/lib/apt/lists/partial目录
+Acquire-by-hash
 
 
 virtual Box
