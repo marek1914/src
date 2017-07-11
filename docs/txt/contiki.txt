@@ -64,6 +64,14 @@ client: DATA send to 1 'Hello 1'
 server: DATA recv 'Hello 1 from the client' from 210
 
 
+platform目录：
+autostart_start(autostart_processes);
+这句调用到具体例子的 进程里面，比如helloworld例子，  在这句前后
+
+
+cpu/cc26xx-cc13xx/dev/oscillators.c 
+
+while(ti_lib_osc_clock_source_get(OSC_SRC_CLK_LF) != OSC_XOSC_LF); 这里过不去
 
 
 
