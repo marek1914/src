@@ -303,6 +303,11 @@ Mac
 
 sudo port clean openssl
 
+nodejs:
+/usr/local/bin/node
+/usr/local/bin/npm
+
+
 显示
 defaults write com.apple.finder AppleShowAllFiles YES
 killall Finder
