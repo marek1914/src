@@ -1,9 +1,9 @@
 lllab.tech LL lab(2017.6-2019.6) 无法备案
 elelab.cn (electronics/elegant lab) 2017.6-2020.6 备案名：平凡的世界
 
-xxxx.cn 四字符.cn几乎没了
-
 jsq.re
+
+testtest007:-2y*y-
 
 “我本不是生来适于研究学问的人，因为我用功的时间稍长就感到疲倦，我不能一连半小时集中精力于一个问题上。
 但我连续研究几个不同问题，即使是不间断，也能够轻松地一个一个地寻思下去，这一个问题可以消除另一个问题
@@ -26,6 +26,8 @@ abandon sourceinsight, eclipse, qcreator
 abandon !protel99/ADS
 abandon C++ (20170428) ffmpeg/kernel/minigui的设计技术足矣
 
+riot-os.org
+
 mdpi.com
 iot-lab.info
 esacademy.com
@@ -33,7 +35,6 @@ gnu.org
 kernel.org
 vim.org
 busybox.net 
-gnuradio.org
 particle.io
 micropython.org
 wiring.org.co
@@ -48,7 +49,7 @@ openhw.org
 beagleboard.org
 cn.element14.com
 json.org
-electronics-lab.com
+electronics-lab.com  **
 
 embeddedmicro.com //mojo
 wiki.openmusiclabs.com/wiki/PWMDAC

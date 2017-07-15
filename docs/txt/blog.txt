@@ -1,0 +1,28 @@
+hexo/jekyll
+
+GitHub page:
+http://www.jianshu.com/p/e99ed60390a8
+
+github page 可以html，也可md(page负责编译)
+
+不错的例子
+http://andersonlu.github.io/ALBOG/
+
+有道云笔记
+http://note.youdao.com/iyoudao/?p=2411&vendor=unsilent14
+
+minia:
+https://github.com/jekyll/minima
+
+jekyll主题位置：
+/usr/local/lib/ruby/gems/2.4.0/gems/minima-2.1.1
+
+next 主题 _config:
+auto_excerpt  主页摘录
+length:字数
+
+hexo 有很多主题:
+hexo.io/themes
+next 主题不错
+
+yplam.com

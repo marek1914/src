@@ -564,3 +564,6 @@ modprobe usbmon
 
 lsof
 /lib/modules/`uname -r`/build
+
+#这条命令有点意思 下载脚本并执行
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -

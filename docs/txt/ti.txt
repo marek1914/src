@@ -1,0 +1,261 @@
+suxiang198的博客
+
+--TI--
+账户：13**67@qq.com : -2y50wpy-
+
+cc2531 sniffer   Ubiqua
+
+sensortag
+TI 收购 Chipcon(cc-xx)
+
+Z-Stack support BBB
+OSAL: OS抽象层
+
+CC1101 sub-1GHz 射频收发器
+CC2520: 2.4 GHz ZigBee RF transceiver phy
+CC2592: Range Extender
+CC2540/1: bluetooth 4.0
+CC2640: bluetooth
+
+zigbee(4):
+cc2530/1(usb): 8051
+cc2538: m3
+cc2630: m3
+cc2650: m3
+ 
+4×4 RSM QFN32 0.4
+5×5 RHB QFN32 0.5 use this!
+7×7 RGZ QFN48 0.5
+
+CC Debuger : CC2511-F32(8051/usb)
+
+IAR EW8051/EWARM
+
+下载了:
+EW8051 830/930(mac os 可用)
+
+cc2650 需要EWARM
+
+CC26xxWare与EmuPack:
+CC26xxWare is no longer released as a standalone software package
+is included in TI-RTOS
+
+SmartRF Flash Programmer  (winxp ok)
+SmartRF Flash Programmer2 (run on 32/64-bit Win7/8, winxp fail)
+SmartRF Studio
+
+Debugger Devpack:
+P1 是TM4C芯片本身的JTAG 
+J1/J4 是正反对着的2个接口
+P2 是20个孔
+J2 10孔 1.27间距 是jtag输出
+
+飞线成功 可以发现源地红色2650板子
+
+TIMAC:
+
+安装CCS:
+linux版下载仅8M+，安装过程选择相应组件，再网络下载
+集成度很高，在Resource Explorer 中在线下载UART例子到～/TI目录（暂时别动）
+下载后，import的时候出错，重启，会提示有内容需要安装
+windows->preferences->ccs->products->可以看到
+再回到Resource Explorer，可以import了
+
+XDS110 连不上，是因为权限问题：
+
+/ccsv7/ccs_base/common/uscif/xds110$ ./xdsdfu -e
+VID: 0x0451    PID: 0xbef3
+Device Name:   XDS110 with CMSIS-DAP
+Version:       2.3.0.1
+Manufacturer:  Texas Instruments
+Serial Num:    L3003317
+
+sudo ti/ccsv7/eclipse/ccstudio    xds可以工作了，但提示需要更新固件
+直接更新失败(没看清楚，可能因为cc2650板子没上电)
+
+xdsdfu -m
+xdsdfu -f firmware.bin -r
+
+成功（方法来自同级目录 README）
+
+uart_echo例子程序使用cc2650sdk原理图，串口P28/P29，可以回显，实验成功
+波特率9600（minicom设置为不可会显，靠板子输出回显）
+
+插入xds，多出 hidraw2 ttyACM0 ttyACM1
+
+install_scripts/ 驱动安装脚本，本质是/etc/udev/rules.d/添加
+SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",ATTRS{idVendor}=="0451",ATTRS{idProduct}=="bef3",MODE:="0666"
+
+dev.ti.com
+
+
+
+tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/startup_files/startup_gcc.c
+keil的启动文件是.s gcc和ccs的都是.c
+
+这个文件与contiki中 cc26xxware目录中的同名文件一致
+
+
+IOCPinTypeUart 是cc26xxware里面的函数， contiki里直接封装
+
+
+
+-----
+http://processors.wiki.ti.com/index.php/CC13xx_CC26xx_Tools_Overview
+http://processors.wiki.ti.com/index.php/XDS_GDB_Agent
+
+
+uniflash: flash tool for linux
+
+CCS Uniflash includes the TI Emupack and GDB Server
+下载安装 .run  按照提示解决libudev.so.0找不到问题:
+sudo ln -sf /lib/x86_64-linux-gnu/libudev.so.1 /lib/x86_64-linux-gnu/libudev.so.0
+
+
+emupack 在安装ccs的时候，已经安装
+
+Board Configuration File:
+在生成的uartecho项目中，打开 targetConfigs/CC2650F128.ccxml 能找到Test Connection
+可以看到 ～/.ti/ti/0/0/BrdDat/testBoard.dat
+
+gdb_agent_console testBoard.dat 运行成功
+
+开始无法调试，因为没有-g参数  在例子目录的makefile中加入 CFLAGS += -g
+
+显示 0x00000000 in ?? () 貌似是对的
+
+
+看看 ccs是怎么调试的，
+
+或者把contiki 弄到ccs里面， 总之有突破口
+
+contiki link 文件 cpu/... cc26xx.ld
+
+turn of LPM and Watchdog ??
+
+github pages   minima
+http://pablocorbalan.com/getting-started-with-ti-cc2650-launchpad
+
+
+mem 0x00 0x20000 ro 32 nocache
+mem 0x10000000 0x10020000 ro 32 nocache
+mem 0x20000000 0x20005000 rw 32 nocache
+mem 0x40000000 0x400E1028 rw 32 nocache
+mem 0xE000E000 0xE000F000 rw 32 nocache
+target remote localhost:55000
+
+
+file image.out
+
+monitor sleep 100  ???
+break main
+load             //这句需要的！下载程序
+continue
+
+----
+uniFlash 4.1.2
+Standalone Command Line -> Generate Package  里面有需要的ccxml文件
+
+下载文件是： dslite.sh  不是文档图中说的uniflash.sh (可能因为版本不同)
+
+uniflash V3 :
+需要 libgconf-2.so.4
+apt-get install libcanberra0:i386
+apt-get install libgconf2-4:i386  (数字2和4 有这种对应关系？ )
+其他以此类推
+
+ –program “${project_loc:blink_led}/../../bin/gcc/blink_led.elf”
+
+uniflash 3.4 里的固件要求是2.2.5.1 (Emulation package 6.0.83.1 里的固件是这个版本)
+而新的uscif/xds110 里的最新固件是2.3.0.8
+
+
+uniflash 3.4 搭配的版本（固件不对的时候，自动提示）：
+ A firmware update is required for the debug probe. Click the "Update" button to update the firmware and connect to the debug target. DO NOT UNPLUG THE DEBUG PROBE DURING THE UPDATE. (Emulation package 6.0.83.1) 
+
+
+OK一次： 但不是每次都能成功 (用的最新 2.3.0.8)
+target remote localhost:55000
+hb main  (b的话，提示内存不能访问)
+load
+c
+
+多数时候，c后没反应，停止后发现停在这里：
+FaultISRHandler () at ../../../../cc26xxware/startup_files/startup_gcc.c:288
+
+CPUdelay
+
+This function provides means for generating a constant length delay. It is written in assembly to keep the delay consistent across tool chains, avoiding the need to tune the delay based on the tool chain in use.
+
+The loop takes 3 cycles/loop.
+
+CPUdelay(1000000);  示波器测出 延时104ms  设置gpio还需要时间，这样看，就是100ms
+
+
+奇怪现象：
+直接执行命令，能烧写
+./uniflash.sh -ccxml  cc2650f128.ccxml  –program blink_led.elf
+写到 flash.sh脚本里面，就不能烧写:
+> Configuring the Flash Programmer with the given configuration ...
+> Flash Manager is configured for the following part: CC2650F128
+> Connecting to the target for Flash operations ... 
+> Connected.
+> Disconnecting from target. 
+
+没有download .elf 就直接退出
+这跟eclipse里面没有下载成功对上了
+
+----
+勉强能调试了，可是 n，s都是step，不能跳过函数,?
+
+SetupTrimDevice  199
+
+有时候 ./uniflash.sh 不好用，不下载
+这时候，重建一个cc2650f128.ccxml  擦出板子，重新来，就可能ok
+
+automatically using hardware breakpoints for read-only addresses  //如何做到   gdb版本问题？
+
+单步不能是因为：
+gdb server端：
+FAILED! GTI_SETBP_EX(hpid=0x9b8f748,addr=0x15190,type=0,count=1,access=0)=ffffffff
+(Error -1066 @ 0x15190)
+Unable to set/clear requested breakpoint. Verify that the breakpoint address is in valid memory.
+(Emulation package 6.0.83.1)
+
+ERROR: set_breakpoint() backend call returned 64
+
+每当遇到函数调用的时候：
+Warning:
+Cannot insert breakpoint 0.
+Cannot access memory at address 0x15c8c
+
+sensortag:
+注释掉几行代码的版本，烧写 cc26xx-demo.elf  会有打印，(devpack 的ttyACM0)
+后面，拔电池，按2个按键，都不行，执行 xds110reset 可重新看到打印
+
+setup.c 199行
+contiki-main.c  lpm_init();
+
+sensortag 也许不用注释掉
+
+ttyACM0 看到打印：
+Starting Contiki-3.x-3328-ga08fc6a
+With DriverLib v0.47020
+TI CC2650 SensorTag
+IEEE 802.15.4: Yes, Sub-GHz: No, BLE: Yes, Prop: Yes
+RDC: ContikiMAC, Channel Check Interval: 16 ticks
+这些打印是不全的！
+
+V-G的板子，还没有成功运行
+
+经常停在：
+    at ../../cpu/cc26xx-cc13xx/lib/cc26xxware/driverlib/ddi.h:175
+175	    while (!HWREG(AUX_SMPH_BASE + AUX_SMPH_O_SMPH0));
+
+
+oscillators_select_lf_xosc(); 句没执行过去，注掉 有打印了
+
+
+
+target remote localhost:55000
+

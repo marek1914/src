@@ -1,15 +1,16 @@
 design:
-4块板子，6月完成，动起来
-1 电池板就是纯粹的电池板， 采样电阻单独一个板子，因为多数时候不用
-2 led板，2个4线，并且txd，rxd 不同，这样能保证：
+5块板子，6月完成
+1 电池板
+2 采样电阻板
+3 led板，2个4线，并且txd，rxd 不同，这样能保证：
   led板可以直接连pc，cc2530可以直接连pc，cc2530可以直接连led板，并且可以通过另一个口供电
-3 采样电阻板子
+4 cc2530
+5 cp2102
+
 ---------
 
 
 DA14580
-Contiki os
-Cooja Simulator (need java-1.7)
 6LoWPAN 基于IPv6的低速无线个域网标准，即IPv6 over IEEE 802.15.4
 
 线序有如函数参数序列
@@ -244,40 +245,6 @@ mp1484
 Medium power Transistor中等功率晶体管
 B1182 功率三极管  PNP silicon transistor
 maxim 各232，485芯片型号，各种应用？
-
---gnuradio--
-
-https://myriadrf.org/
-
-https://github.com/gnuradio/pybombs
-
-apt-get install gnuradio (或者从源码安装)
-gr-iqbal  用于iq平衡
-gr-osmosdr 
-
-gr代表gnuradio，是gnuradio的模块
-
- The bladeRF is supported via gr-osmosdr
-
-GQRX is a software defined radio receiver powered by GNU Radio and Qt
-
-编译gr-osmosdr：
-
-git clone git://git.osmocom.org/gr-osmosdr
-cd gr-osmosdr/
-
-apt-get install libboost-all-dev
-
-https://github.com/Nuand/bladeRF  //bladeRF库 比如fpga的image
-
-rtl-sdr, gr-osmosdr, gr-iqbal, hackrf, bladeRF and airspy
-
-bladeRF-cli -i
-
-bladeRF-cli -l <path/to/fpga/file>
-或者
-bladeRF> load fpga <path/to/fpga/file> 
----
 
 ----
 Pspice电路仿真软件
@@ -526,56 +493,6 @@ www.bluetooth.com  #Bluetooth Special Interest Group (SIG) (802.15.1不再维护
 Bluetooth Basic Rate(BR) 2.0
 Enhanced Data Rate (EDR) 2.1
 Bluetooth with low energy (LE for IoT) 4.0/4.1/4.2
-
---TI--
-账户：13**67@qq.com : -2y50wpy-
-
-cc2531 sniffer   Ubiqua
-
-sensortag
-TI 收购 Chipcon(cc-xx)
-
-Z-Stack support BBB
-OSAL: OS抽象层
-
-CC1101 sub-1GHz 射频收发器
-CC2520: 2.4 GHz ZigBee RF transceiver phy
-CC2592: Range Extender
-CC2540/1: bluetooth 4.0
-CC2640: bluetooth
-
-zigbee(4):
-cc2530/1(usb): 8051
-cc2538: m3
-cc2630: m3 (60+ expensive)
-cc2650: m3 (zigbee&ble 60+ expensive)
-
-cc26xx: lower power than cc25xx 
-4×4 RSM QFN32 0.4
-5×5 RHB QFN32 0.5 use this!
-7×7 RGZ QFN48 0.5
-
-SMA天线
-
-CC Debuger : CC2511-F32(8051/usb)
-
-IAR EW8051/EWARM
-
-下载了:
-EW8051 830/930(mac os 可用)
-
-SmartRF Flash Programmer  (winxp ok)
-SmartRF Flash Programmer2 (run on 32/64-bit Win7/8, winxp fail)
-SmartRF Studio
-
-Debugger Devpack:
-P1 是TM4C芯片本身的JTAG 
-J1/J4 是正反对着的2个接口
-P2 是20个孔
-J2 10孔 1.27间距 是jtag输出
-
-飞线成功 可以发现源地红色2650板子
-
 
 ---
 二极管矩阵：

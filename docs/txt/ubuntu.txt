@@ -14,6 +14,19 @@ apt-get source gnome-system-monitor 获取system monitor源码到/usr/src (需dp
 
 纯字符模式，显示中文
 
+sudo pip install shadowsocks
+sslocal -c ~/tt.txt
+plugin: autoproxy-ng
+Proxy Rule->Add Rule Subscription :gfwlist
+preference：port 1080 socks5
+
+shell: 下载 proxychains V4 源码编译
+/etc/proxychains.conf : socks5  127.0.0.1 1080
+usage: proxychains4 <prog> [args]
+
+sudo proxychain apt-get update //ok
+proxychain sudo apt-get update //no!
+
 AdobeIllustrator
 kolourpaint 类似画图板工具
 ImageMagick 
@@ -40,12 +53,25 @@ apt-get -f install  可卸载依赖错误的软件包
 apt-get -d install foo // only download
 apt-get clean/autoclean // clean cache [/var/cache/apt/archives]
 apt-get remove //remove pkg
-apt-get autoremove 自动删除没用的依赖包。--purge
+apt-get autoremove 自动删除没用的依赖包 --purge
 apt-get update //错误时需删除 apt/lists/partial/ apt/mirrors/partial/
-apt-get upgrade 更新所有已安装软件，不接受指定某个软件 
+apt-get upgrade 更新所有已安装软件
 add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ hardy multiverse"
 apt-cache
-apt-add-repository ppa:user/repository  //Launchpad PPA
+apt-add-repository ppa:user/repository  //Launchpad PPA (/etc/apt/sources.list.d)
+
+Package 包括 amd64/i386/Translation-en(?)
+Failed to fetch http://.../Packages (实际此路径存放 Packages.bz2 和 Packages.gz)
+
+Hash Sum mismatch:
+apt-get clean
+rm -rf /var/lib/apt/lists/*
+apt-get update --fix-missing 
+(装bladerf时，上述步骤仍不行，在另一台ubuntu上ok，最后vpn偶然行了)
+失败时是能单独访问http://.../Packages(.bz2)的，下载解压到/var/lib/apt/lists/应该也可
+下载失败的在/var/lib/apt/lists/partial目录
+Acquire-by-hash
+
 
 virtual Box
 1) 安装VirtualBox Extension Pack (要与Virtualbox版本一致，VirtualBox older builds处下载旧版本)
@@ -180,10 +206,11 @@ Nginx: /usr/local/nginx
 
 	8) minicom
 		Modem and dialing parameter setup 输入A B K 将后面的字符删除
-		ctrl+a +l 捕获数据到minicom.cap，ctrl+a +w 自动换行
-		minicom.log :ctrl+a O "Filenames and paths" "Logging options"关闭
-		ymodem下载内核:uboot执行 loady,minicom选择 send file 选ymodem，选择文件
-		显示hex：cOnfigure -> Screen and keyboard ->hex display (需设置w)
+		L: Capture
+        W: lineWrap
+		minicom.log : O "Filenames and paths" "Logging options"
+		ymodem下载内核:uboot执行 loady,minicom选择 send file 选ymodem
+		hex：O -> Screen and keyboard ->hex display
 
 重启服务：
 	/etc/init.d/ (shell script)
@@ -253,8 +280,9 @@ nautilus: [ˈnɔ:tɪləs]鹦鹉螺 file manager and graphical shell for GNOME
 
 apache log 查看mantis访问记录: /var/log/apache2
 
-firefox has prevented outdated plugin "Adobe Flash" 浏览器升级但插件没有更新
-按提示update，选apt，进入软件中心，32bit ok, 64bit提示找不到adobe-flashplugin:
+firefox has prevented outdated plugin "Adobe Flash" 浏览器升级插件没更新
+按提示update，选apt，32bit ok, 
+64bit提示找不到adobe-flashplugin:
 sudo apt-get install flashplugin-installer
 
 ---winxp ---

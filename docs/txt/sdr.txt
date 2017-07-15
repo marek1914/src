@@ -1,0 +1,46 @@
+gnuradio.org
+
+https://myriadrf.org/
+
+https://github.com/gnuradio/pybombs
+
+apt-get install gnuradio (或者从源码安装)
+gr-iqbal  用于iq平衡
+gr-osmosdr 
+
+gr:gnuradio，是gnuradio模块
+
+The bladeRF is supported via gr-osmosdr
+
+GQRX(gqrx.dk) is a SDR receiver powered by GNU Radio and Qt
+
+编译gr-osmosdr：
+
+git clone git://git.osmocom.org/gr-osmosdr
+cd gr-osmosdr/
+
+apt-get install libboost-all-dev
+
+
+rtl-sdr, gr-osmosdr, gr-iqbal, hackrf, bladeRF and airspy
+
+bladeRF-cli -i
+
+bladeRF-cli -l <path/to/fpga/file>
+或
+bladeRF> load fpga <path/to/fpga/file> 
+
+
+
+20170707
+bladeRF-cli 需要 sudo，但是 /dev/udev/rule.d 里面已经加了，只是0660 而不是0666
+改为0666，还是无法打开
+strace发现，并非是设备节点无法打开，而是
+/usr/share/Nuand/bladeRF/hostedx40.rbf(fpga固件) 只有root可读，修改后，可以正常启动了，那之前的660还是666 有作用吗？（这里一直没有搞明白）
+插入bladerf后多出 /dev/char/ ../bus/usb/001/009  当然，usb地址，每次会有变化
+
+20170710 安装成功
+http://gqrx.dk/download/install-ubuntu
+
+好难受，安装终于成功了，可是不知道能干啥
+

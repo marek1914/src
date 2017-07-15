@@ -110,3 +110,7 @@ c.
 再删除c=list 行
 那么，目前pycompletion.vim 足够用
 
+
+
+.c中 K 触发man
+.py中 K 触发 pydoc

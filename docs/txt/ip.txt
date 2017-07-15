@@ -1,4 +1,7 @@
-拓扑:总线/星/环/网
+iputils 包
+
+
+拓扑:总线/星/网
 以太网是星型，靠交换机连接，早期的同轴以太网是总线型
 干线路由器一个出口代表一个网络地址，而不是主机地址。
 子网掩码是用来路由，给路由表用的
@@ -63,14 +66,14 @@ This payload type allows fragmenting a NAL unit into several RTP
 packets.  Doing so on the application layer instead of relying on
 lower-layer fragmentation (e.g., by IP) has the following advantages:
 
-//因为udp包最大64k
+//udp包最大64k
  o  The payload format is capable of transporting NAL units bigger
       than 64 kbytes over an IPv4 network that may be present in pre-
       recorded video, particularly in High-Definition formats (there is
       a limit of the number of slices per picture, which results in a
       limit of NAL units per picture, which may result in big NAL
       units).
-//看，在应用层加了适当的校验机制
+//在应用层加了适当的校验机制
    o  The fragmentation mechanism allows fragmenting a single NAL unit
       and applying generic forward error correction as described in
       Section 12.5.
@@ -92,12 +95,14 @@ UDP头：8
 源端口，目的端口，包长度，校验和
 TCP头：20-60
 
-MAC头，UDP头固定长度，所以无须表示头长度字段，IP头，TCP头长度不定，所以需要4bit表示头长度。IP和UDP有字段标示包头+内容的总长度。为什么不表示内容长度而是总长度？
+MAC/UDP头长度固定，故无须头长度字段
+IP/TCP头长度不定，故需4bit头长度
+IP和UDP有字段标示包头+内容的总长度
 
-TCP是流，流没有长度，没有字段表示长度，什么时候关闭什么时候结束。像水龙头。
-UDP的包长度可以通过IP包长度-IP头算出，还要字段表示，因为当发送超出MTU的大UDP包时，会切成多个小片，第一个包有udp包头，后面的没有。见wireshark抓包。
+TCP是流，没有字段表示长度，什么时候关闭什么时候结束
+UDP的包长度可以通过IP包长度-IP头算出，还要字段表示，因为当包超出MTU时分片，仅第一个包有udp包头
 
-UDP分片后，收到的数据不一定按照原来的顺序（xuss ？）
+UDP分片后，收到的数据不一定按照原来的顺序（xuss）
 
 UDP对比TCP，就好像一个是本地媒体文件，一个是ts流，udp有大小，是一个一个的消息，tcp是个流，不关闭就一直有。
 
@@ -210,47 +215,34 @@ A->B 发 TCP ACK 60 byte
 ffmpeg请求apache播放why.mp4出现服务器发送多个(如20个)TCP PDU包，本机回一个ACK，ack字段的值是最后一个tcp包的next sequence number
 
 
-MAC-Table  交换机 一个局域网出现mac地址重复，包是同时到达2个设备，还是后来者居上，应该是后者，路由映射表一个端口可以对应多个mac，但一个mac只能对应1个端口
+MAC-Table 交换机 局域网出现mac地址重复，包同时到达2个设备，还是后来者居上？
+应该是后者，路由映射表一个端口可以对应多个mac，但一个mac只能对应1个端口
 
+TCP和UDP属不同域，可使用同一个端口
 
-TCP和UDP属于不同的域，可以使用同一个端口
-
-关于协议里面表示包的长度的字段很有讲究，分为短长度和长长度。第一bit为0，表示短包，表示0-127字节，为1标识长长度，例如标识0-32768字节。
-
+包的长度的字段分短长度和长长度：
+第一bit为0，表示短包，表示0-127字节，为1标识长长度，例如标识0-32768字节。
 
 滑动窗口factor 在3次握手阶段传输。
 如果Wireshark没发现three-way handshake，它就简单报告tcp头window size区域的值,并显示"[window size scaling factor -1 (unknown)]"
 
-一个tcp连接可以顺序传送多个http请求，如浏览器要下载100个文件，可创建4个线程各打开一个tcp连接，每个连接下载多个文件。三次握手，顺序发送接收，FIN结束。
-
+一个tcp连接可以顺序传送多个http请求，三次握手，顺序发送接收，FIN结束
 
 RTP基于UDP
 RTSP基于TCP 或UDP
 RTSP的session
 
-初步理解session和transaction的概念。transaction是不可分割的，中间一步出错就要重新作，session由多个transaction组成，某个transaction失败不必整个session重来。
+理解session和transaction概念：
+transaction不可分割，中间一步出错要重来
+session由多个transaction组成，某个transaction失败不必整个session重来。
 
-推送服务原理：长连接+心跳机制(MQTT协议) 
+推送服务原理：长连接+心跳机制(MQTT) 
+维护一个长连接（否则不能达到实时效果），普通socket连接对服务器消耗大，故用MQTT轻量级低消耗协议维护长连接
+维护长连接需要心跳，查询是否在线。超过时间阈值，服务器未收到客户端心跳，服务器断开连接。
 
-原理是维护一个长连接（否则不能达到实时效果），普通socket连接对服务器消耗大，故用MQTT轻量级低消耗协议维护长连接
-维护长连接需要心跳机制，以便知道客户端是在线的。超过时间阀值，服务器未收到客户端心跳，服务器断开连接。
+推送实现方式： poll（不可取）or TCP/IP长连接（常用）
 
-手机获取运营商内网IP，通过NAT连接互联网，为减少NAT表负荷，一个链路长时间没有通信就会删除其对应表中断链路
-原本想节省信道资源，导致应用以远高于正常频率发送心跳来维护长连接，进而产生信令风暴（微信要收费传言），
-信道资源的浪费，手机电量消耗
-
-IOS在系统级别维护客户端和苹果服务器的长链接，所有应用的推送都先将消息推送到苹果服务器，好处：
-1.手机终端只维护一个长连接
-2.无须每个应用各自维护自己的长连接，省电
-
-android长连接由应用各自维护，google也有C2DM,由于服务器不在中国，无法使用
-
-推送实现方式：
-1 poll方式，客户端不断的查询服务器（不可取）
-2 维持TCP/IP长连接，服务器向客户端push （常用）
-3 发送短信(sms)，客户端收到后从服务器中下载新内容(扯蛋)
-
-重传是tcp处理数据包丢失的基本方法。数据报丢失的原因很多，比如流量负载沉重的路由器，临时性网络中断。数据包丢失是暂时的，所以检测到包丢失并从中恢复至关重要。
+tcp重传：数据报丢失的原因很多，比如流量负载沉重的路由器，临时性断网
 
 
 ICMP (20160222)
@@ -263,32 +255,17 @@ ICMP Destination unreachable (Port unreachable)
 --
 HLS
 HTTP 渐进式下载
-
 apache放ts流，mp4，mkv都能用ffmpeg播放，并且可以seek。seek的物理位置由ffmpeg算好，再向服务器发请求(HTTP Range)，把发网络请求理解为读文件就好了。
 
 wmv asf flv mov rmvb 本身就是流化的文件
-mp4文件不是流，但可以流化
-
-由于MP4文件的音视频帧在文件中的物理位置不是顺序存放,而是以一种相对凌乱的状态存在。？？？
-为了解决这个问题,本文提出预处理的方案,即在得到文件元数据信息(metadata)的时候,
-先不和服务器通信并播放每帧数据,而是预先把每帧数据的大小和相对于媒体文件的偏移地址都计算出来。
-
-流式文件格式大概是这样的：在文件前面的先播放，而在文件后面的就后播放。
-容器文件格式和流式文件格式完全不同，要解析整个文件，然后才能组合出正确的播放顺序，然后进行播放。
-对于HTTP协议，流式文件可以使用HTTP分段下载，由于在前面的先播放，所以可以一边下载一边播放，但是对于容器格式的文件，由于客户端不知道如何对文件解析(必须拿到整个文件才能解析)，所以不能边下载边播放。
-要实现对容器格式的文件的在线播放，必须要服务器支持流式播放接口，例如RTSP协议
-
-android浏览器访问cntv，会提示下载一个插件，可以加快播放速度。firefox浏览器模拟了iphone6.0 访问baidu.com 会出现与手机safari一样的提示添加桌面标签的提示。看来这是网页里面做的，而不是浏览器的行为（之前我这样认为）
-
-android平板自带浏览器不支持网页内嵌m3u8文件播放 
- 老牛说的：video标签只支持 mp4 webm ogg 3种，网页那为什么可以是ts呢？ 
+mp4文件不是流，但可流化
 
 iphone
 <video src="xx.m3u8" controls width="100%" height="100%">
 
-
 --
 https://www.kali.org  kali linux 用于测试网络安全性
+
 设想:
 见图，一个交换机连接4电脑，分属2个网段，不同网段ping能通吗？
 
@@ -313,9 +290,7 @@ TP-Link 5端口交换机真是省成本，rg45只有1/2/3/6 4针有金属丝
 
 ifplugd 检测网口插拔
 
-
 ifconfig : configure a network interface 其实是interface configure 的缩写
-
 
 ASN.   
 
@@ -325,8 +300,6 @@ RTMP: Real Time Messaging Protocol, a multimedia streaming and remote procedure 
       Routing Table Maintenance Protocol, part of the AppleTalk network stack
 
 HTTP is stateless, RTSP has state
-
-
 
 IPV6 不需要NAT
 抓包：网管内置ap，在外面成功抓包：翟
@@ -340,7 +313,6 @@ D-Link DI-8400
 chrome web store有很多插件
 chrome jsonview插件
 
-
 2种方式：
 OUI方式：
 厂商ID 6位, 用户ID 6位，申请费用$1650，一个厂商ID号可用1600万个MAC。
@@ -352,7 +324,6 @@ IAB方式：
 一些如Wifi模块厂商都申请过OUI，如果出货量较少，可以找他们释放一些地址段。
 
 option 60
-
 
 ----
 REST:Representational State Transfer 表述性状态传递,Roy Fielding博士在2000年他的博士论文中提出来的一种软件架构风格
@@ -444,7 +415,7 @@ http头用字符串，开始理解：为了可读/灵活性牺牲了一点点空
 
 实现：curl，wget，libavformat/http.c， http-parser
 
-http头字段后的空格，wireshark有，书中也有，但用curl测试，不加或多加都行。
+http头字段后的空格，wireshark有，用curl测试，不加或多加都行。
 
 Common Gateway Interface(CGI)  服务器上的cgi程序可用任何语言：C，perl，shell，php，python
 
