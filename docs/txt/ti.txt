@@ -267,7 +267,7 @@ TX:DIO3
 
 VG板子，串电流呀，DIO接上uart tx线，都能让指示灯虚亮，并且有打印，只是工作不正常
 
-配置后，P01 与GND，用跳线连接，reset，python脚本可以连接（跳线冒可以一直插着）
+配置后，跳线连接P01与GND，reset，python脚本可以连接（跳线冒可以一直插着）
 
 cc2538-bsl.py -b 115200 //看到信息
 cc2538-bsl.py -e  -w -v -b 115200 cc1310-demo.bin 
