@@ -78,3 +78,6 @@ while(ti_lib_osc_clock_source_get(OSC_SRC_CLK_LF) != OSC_XOSC_LF); 这里过不�
 github.com/RIOT-OS/RIOT
 tinyos
 
+
+git submodule update
+
