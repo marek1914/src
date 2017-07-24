@@ -370,10 +370,10 @@ setup\Setup.exe 安装Protel DXP 2004
 Preference - Use localized rescources 变为简体中文版
 用Protel2004_sp2_Genkey.exe,将它放在Protel_DXP_2004安装目录注册
 
---建站---
-aliyun ftp: 200wguiqiyi
-上传ftp htdocs/
+--aliyun---
+bxu2713310005.my3w.com@bxu2713310005:200wguiqiyi
+htdocs/
 
 jekyll:
 编译ruby2.x 需要openssl： apt-get install libssl-dev libreadline-dev libgdbm-dev
-临时域名： bxu2713310005.my3w.com
+

@@ -5,6 +5,10 @@ jsq.re
 
 testtest007:-2y*y-
 
+
+http://www.williamlong.info/archives/4432.html  哈哈，脚本人生，好文章
+
+
 “我本不是生来适于研究学问的人，因为我用功的时间稍长就感到疲倦，我不能一连半小时集中精力于一个问题上。
 但我连续研究几个不同问题，即使是不间断，也能够轻松地一个一个地寻思下去，这一个问题可以消除另一个问题
 所带来的疲劳，用不着休息一下脑筋。于是，我在治学中充分利用我所发现的这一特点，对一些问题交替进行研究。
@@ -24,7 +28,7 @@ ID/79864406 id:410425198511202520
 abandon java, android, opengl, mysql
 abandon sourceinsight, eclipse, qcreator
 abandon !protel99/ADS
-abandon C++ (20170428) ffmpeg/kernel/minigui的设计技术足矣
+abandon C++ (20170428) ffmpeg/kernel/minigui enough!
 
 riot-os.org
 

@@ -1,28 +1,42 @@
 hexo/jekyll
 
-GitHub page:
-http://www.jianshu.com/p/e99ed60390a8
+http://www.jikexueyuan.com/
+http://ju.outofmemory.cn/entry/916
 
-github page 可以html，也可md(page负责编译)
-
-不错的例子
-http://andersonlu.github.io/ALBOG/
-
-有道云笔记
-http://note.youdao.com/iyoudao/?p=2411&vendor=unsilent14
-
-minia:
-https://github.com/jekyll/minima
-
-jekyll主题位置：
-/usr/local/lib/ruby/gems/2.4.0/gems/minima-2.1.1
-
+hexo主题:
+hexo.io/themes
 next 主题 _config:
 auto_excerpt  主页摘录
 length:字数
 
-hexo 有很多主题:
-hexo.io/themes
-next 主题不错
+有道云笔记支持的md语法
+http://note.youdao.com/iyoudao/?p=2411&vendor=unsilent14
 
-yplam.com
+minima:
+https://github.com/jekyll/minima
+/usr/local/lib/ruby/gems/2.4.0/gems/minima-2.1.1
+
+用minima！
+
+https://github.com/jekyll/minima
+https://jekyll.github.io/minima/
+
+插入图片:
+![Alt](/path/to/img.jpg "Optional title")
+![动态图](/assets/3.gif "Optional title")
+若图像无法显示，则显示Alt文字，鼠标图像上，显示Optional title
+Front Matter指的是：
+---
+layout: post
+title: Blogging Like a Hacker
+---
+
+
+![minima theme preview](/screenshot.png)  !不显示方括号内容
+
+2个小图标在 _includes目录
+
+www.mathjax.org
+mathjax js渲染库 生成数学公式
+
+wikipedia 里面的数学公式都是 svg图片

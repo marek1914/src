@@ -72,7 +72,7 @@ autostart_start(autostart_processes);
 cpu/cc26xx-cc13xx/dev/oscillators.c 
 
 lf_xosc:
-while(ti_lib_osc_clock_source_get(OSC_SRC_CLK_LF) != OSC_XOSC_LF); 这里过不去
+while(ti_lib_osc_clock_source_get(OSC_SRC_CLK_LF) != OSC_XOSC_LF); 这里过不去，因为VG板子32k晶体电路错了
 
 改用lf_rcosc, either正常工作了，可见，etimer是靠rtc驱动的，而不是系统主时钟。
 
@@ -80,12 +80,10 @@ while(ti_lib_osc_clock_source_get(OSC_SRC_CLK_LF) != OSC_XOSC_LF); 这里过不�
 
 Lpm 低功耗模块，也要依赖32k，
 
+sensortag 直接可以运行，串口是 ttyACM0
 
 github.com/RIOT-OS/RIOT
 tinyos
-
-
-
 
 Oscillator Configuration Interface (DDI) 为啥叫 DDI
 
@@ -93,11 +91,12 @@ AUX – Sensor Controller with Digital and Analog Peripherals
 
 AUX power domain (AUX_PD)
 
-
 PROCESS_THREAD(etimer_process, ev, data) 真正运行，拼出：
 process_thread_etimer_process
 
 
 #define PROCESS_WAIT_EVENT()        PROCESS_YIELD()
 #define PROCESS_WAIT_EVENT_UNTIL(c) PROCESS_YIELD_UNTIL(c)
+
+git submodule update
 

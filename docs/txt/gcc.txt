@@ -509,3 +509,7 @@ add-apt-repository ppa:ubuntu-toolchain-r/test
 apt-get update
 apt-get install gcc-4.9 g++-4.9 (自动删除了libstdc++.so.6.0.19 安装了libstdc++.so.6.0.23)
 
+
+
+gcc 4.8  
+gcc foo.c -lpthread (必须放在最后，否则提示找不到pthread函数)
