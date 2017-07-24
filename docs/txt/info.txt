@@ -67,6 +67,7 @@ linux-mtd.infradead.org/faq/ubifs.html
 redhat.com  //min_free_kbytes
 https://docs.particle.io/datasheets/photon-datasheet
 
+http://www.wolframalpha.com
 
 投入（计划10万）：
 2016: 4.4

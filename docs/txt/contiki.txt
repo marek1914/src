@@ -66,15 +66,38 @@ server: DATA recv 'Hello 1 from the client' from 210
 
 platform目录：
 autostart_start(autostart_processes);
-这句调用到具体例子的 进程里面，比如helloworld例子，  在这句前后
+这句调用到具体例子进程
 
 
 cpu/cc26xx-cc13xx/dev/oscillators.c 
 
+lf_xosc:
 while(ti_lib_osc_clock_source_get(OSC_SRC_CLK_LF) != OSC_XOSC_LF); 这里过不去
 
+改用lf_rcosc, either正常工作了，可见，etimer是靠rtc驱动的，而不是系统主时钟。
+
+32k晶体没有震起来，因为引脚接错，
+
+Lpm 低功耗模块，也要依赖32k，
 
 
 github.com/RIOT-OS/RIOT
 tinyos
+
+
+
+
+Oscillator Configuration Interface (DDI) 为啥叫 DDI
+
+AUX – Sensor Controller with Digital and Analog Peripherals
+
+AUX power domain (AUX_PD)
+
+
+PROCESS_THREAD(etimer_process, ev, data) 真正运行，拼出：
+process_thread_etimer_process
+
+
+#define PROCESS_WAIT_EVENT()        PROCESS_YIELD()
+#define PROCESS_WAIT_EVENT_UNTIL(c) PROCESS_YIELD_UNTIL(c)
 

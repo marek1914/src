@@ -410,11 +410,6 @@ HTTP1.1 rfc 2616
 
 framework/volley http封装，适合小数据频繁操作
 
-http头用字符串，开始理解：为了可读/灵活性牺牲了一点点空间，细想优势并非这么简单，他并未浪费（就算浪费，只是头，比例非常小）
-我能想到的无非就是向tcp/ip那样靠定义字段的方式，所以事务还是分了核心层，应用层，就像脚本语言和c语言
-
-实现：curl，wget，libavformat/http.c， http-parser
-
 http头字段后的空格，wireshark有，用curl测试，不加或多加都行。
 
 Common Gateway Interface(CGI)  服务器上的cgi程序可用任何语言：C，perl，shell，php，python

@@ -259,3 +259,9 @@ oscillators_select_lf_xosc(); 句没执行过去，注掉 有打印了
 
 target remote localhost:55000
 
+
+SmartRF06 EB (Evaluation Board):是个带lcd的底板，带EM连接器，连接EM模块
+
+
+
+
