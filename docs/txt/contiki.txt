@@ -71,9 +71,10 @@ autostart_start(autostart_processes);
 
 cpu/cc26xx-cc13xx/dev/oscillators.c 
 
-while(ti_lib_osc_clock_source_get(OSC_SRC_CLK_LF) != OSC_XOSC_LF); 这里过不去
+while(ti_lib_osc_clock_source_get(OSC_SRC_CLK_LF) != OSC_XOSC_LF); 这里过不去，因为VG板子32k晶体电路错了
 
 
+sensortag 直接可以运行，串口是 ttyACM0
 
 github.com/RIOT-OS/RIOT
 tinyos

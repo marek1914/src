@@ -18,3 +18,7 @@ https://github.com/jekyll/minima
 https://github.com/jekyll/minima
 https://jekyll.github.io/minima/
 
+插入图片:
+![Alt](/path/to/img.jpg "Optional title")
+![动态图](/assets/3.gif "Optional title")
+若图像无法显示，则显示Alt文字，鼠标图像上，显示Optional title
