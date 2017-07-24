@@ -380,13 +380,13 @@ sudo apt-get install gqrx-sdr
 https://www.maximintegrated.com/cn/app-notes/index.mvp/id/4338
 https://www.maximintegrated.com/cn/products/analog/amplifiers/MAX9979.html/tb_tab2
 
-google 搜 afg oscilloscope tdr
+google: oscilloscope tdr (Time-Domain Reflectometry)
+
 A network analyzer
 scalar network analyzer (SNA)—measures amplitude properties only
 vector network analyzer (VNA)—measures both amplitude and phase properties
 
 LPD433 (low power device 433.050-434.790)  bw: 1.74 MHz
-ISM
 
 ITU-T:
 gaojie@cyclecentury.com:*2xxpy-
