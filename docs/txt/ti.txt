@@ -5,7 +5,6 @@ suxiang198的博客
 
 cc2531 sniffer   Ubiqua
 
-sensortag
 TI 收购 Chipcon(cc-xx)
 
 Z-Stack support BBB
@@ -78,8 +77,7 @@ xdsdfu -f firmware.bin -r
 
 成功（方法来自同级目录 README）
 
-uart_echo例子程序使用cc2650sdk原理图，串口P28/P29，可以回显，实验成功
-波特率9600（minicom设置为不可会显，靠板子输出回显）
+uart_echo例程
 
 插入xds，多出 hidraw2 ttyACM0 ttyACM1
 
@@ -87,8 +85,6 @@ install_scripts/ 驱动安装脚本，本质是/etc/udev/rules.d/添加
 SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",ATTRS{idVendor}=="0451",ATTRS{idProduct}=="bef3",MODE:="0666"
 
 dev.ti.com
-
-
 
 tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/startup_files/startup_gcc.c
 keil的启动文件是.s gcc和ccs的都是.c
@@ -123,7 +119,6 @@ gdb_agent_console testBoard.dat 运行成功
 开始无法调试，因为没有-g参数  在例子目录的makefile中加入 CFLAGS += -g
 
 显示 0x00000000 in ?? () 貌似是对的
-
 
 看看 ccs是怎么调试的，
 
@@ -180,8 +175,6 @@ hb main  (b的话，提示内存不能访问)
 load
 c
 
-多数时候，c后没反应，停止后发现停在这里：
-FaultISRHandler () at ../../../../cc26xxware/startup_files/startup_gcc.c:288
 
 CPUdelay
 
@@ -231,36 +224,21 @@ Cannot access memory at address 0x15c8c
 
 sensortag:
 注释掉几行代码的版本，烧写 cc26xx-demo.elf  会有打印，(devpack 的ttyACM0)
-后面，拔电池，按2个按键，都不行，执行 xds110reset 可重新看到打印
-
-setup.c 199行
-contiki-main.c  lpm_init();
-
-sensortag 也许不用注释掉
-
-ttyACM0 看到打印：
-Starting Contiki-3.x-3328-ga08fc6a
-With DriverLib v0.47020
-TI CC2650 SensorTag
-IEEE 802.15.4: Yes, Sub-GHz: No, BLE: Yes, Prop: Yes
-RDC: ContikiMAC, Channel Check Interval: 16 ticks
-这些打印是不全的！
-
-V-G的板子，还没有成功运行
-
-经常停在：
-    at ../../cpu/cc26xx-cc13xx/lib/cc26xxware/driverlib/ddi.h:175
-175	    while (!HWREG(AUX_SMPH_BASE + AUX_SMPH_O_SMPH0));
-
-
-oscillators_select_lf_xosc(); 句没执行过去，注掉 有打印了
-
-
+拔电池，按2个按键，都不行，执行 xds110reset 可重新看到打印
 
 target remote localhost:55000
 
 
-SmartRF06 EB (Evaluation Board):是个带lcd的底板，带EM连接器，连接EM模块
+SmartRF06 EB (Evaluation Board 底板) + CC26xx/CC13xx EM (Evaluation Module)
+
+三个开发平台：
+srf06EB+EM
+sensortag + devpack
+launchpad
+
+
+CC2538 Development Kit：
+SmartRF06EB x2 + CC2538EM x2 + CC2531 USB dongle(CC2531 EMK:Evaluation Module Kit for packet sniffing))
 
 bootloader:(VG板jtag口：RX-DIO3，TX-DIO2)
 RX:DIO2
@@ -272,3 +250,10 @@ VG板子，串电流呀，DIO接上uart tx线，都能让指示灯虚亮，并�
 
 cc2538-bsl.py -b 115200 //看到信息
 cc2538-bsl.py -e  -w -v -b 115200 cc1310-demo.bin 
+
+
+sensortag 串口P28-RX/P29-TX
+
+插入devpack的时候，无需电池
+
+VG板子写入slip-radio 打印 ：Slip Radio started...

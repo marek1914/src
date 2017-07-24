@@ -80,7 +80,7 @@ while(ti_lib_osc_clock_source_get(OSC_SRC_CLK_LF) != OSC_XOSC_LF); 这里过不�
 
 Lpm 低功耗模块，也要依赖32k，
 
-sensortag 直接可以运行，串口是 ttyACM0
+sensortag 串口 ttyACM0
 
 github.com/RIOT-OS/RIOT
 tinyos
@@ -99,4 +99,40 @@ process_thread_etimer_process
 #define PROCESS_WAIT_EVENT_UNTIL(c) PROCESS_YIELD_UNTIL(c)
 
 git submodule update
+
+
+
+
+SLIP: Serial Line Internet Protocol 基于串口的IP（企业路由的网口转串口线，用于猫连接电脑）
+
+RPL Border Router
+
+Contiki RPL implements the IETF ROLL working group's RPL: IPv6 Routing Protocol for Low power and Lossy Networks. 
+This routing standard enables you to set up a route-over 6LowPAN network.
+
+
+CC13xx/CC26xx Border Router over UART  ??
+
+The platform code can be used as a border router (SLIP over UART) by using the example under examples/ipv6/rpl-border-router.
+
+
+The Edge Router (Gateway) is running an application called 6lbr  (这个跟上面那个有何区别？)
+
+
+安装 bridge-utils 包
+
+ntpdate 命令
+
+重要：
+http://processors.wiki.ti.com/index.php/Cc26xx_sw_examples
+http://processors.wiki.ti.com/index.php/Cc26xx_contiki_sw_apps
+
+git clone --recursive https://github.com/cetic/6lbr
+
+这个跟contiki仓库差不多内容
+
+--recursive : submodule 也下载了
+
+
+
 
