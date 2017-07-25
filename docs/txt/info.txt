@@ -5,6 +5,10 @@ jsq.re
 
 testtest007:-2y*y-
 
+adafruit 非常棒的视频
+https://youtu.be/NsHFAswLve8
+
+
 
 http://www.williamlong.info/archives/4432.html  哈哈，脚本人生，好文章
 
@@ -15,6 +19,11 @@ http://www.williamlong.info/archives/4432.html  哈哈，脚本人生，好文�
 这样，即使我整天用功也不觉得疲倦了” 卢梭
 
 TIOBE
+
+getchip.com  // C.H.I.P  Allwinner CPU
+
+android thing:
+http://www.jianshu.com/p/05c6f5b32387
 
 stackoverflow.com
 mikewootc.com //wuyuntao
