@@ -1,4 +1,4 @@
-pip 工具
+pip
 
 print ('Hello %s\n' % __name__) #3.0
 print '%s %s' %(cov, n)
@@ -43,7 +43,7 @@ tempfile  标准库
 
 用matplotlib  array(Image.open('1.jpg'))
 
-cython 将pyx编译为.c，再将.c 编译为.so 文件
+cython 将py编译为.c，再将.c 编译为.so 文件
 用于编写python的扩展模块，比如numpy就用到了
 
 cv2.circle()
@@ -115,7 +115,7 @@ class test:
   def f():
     print "Hello"
 
-if __name__ =='__init__':
+if __name__ ==‘__main__’:
   test.f()
   
   
