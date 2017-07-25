@@ -133,6 +133,19 @@ git clone --recursive https://github.com/cetic/6lbr
 
 --recursive : submodule 也下载了
 
+这个配置，在ubuntu上 http://[bbbb::100] 看到页面了
+RAW_ETH=0
+BRIDGE=1
+DEV_BRIDGE=br0
+DEV_TAP=tap0
+DEV_ETH=eth0
+RAW_ETH_FCS=0
+ifconfig 多出 br0 tap0
+
+页面是看到了，但是没有发现节点，
+
+再用BBB或者Rpi试试
+
 
 
 
