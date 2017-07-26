@@ -257,3 +257,14 @@ sensortag 串口P28-RX/P29-TX
 插入devpack的时候，无需电池
 
 VG板子写入slip-radio 打印 ：Slip Radio started...
+
+
+
+
+
+------
+问题：cc2650 不用24MHz晶体，使用内部48M RC 能工作吗？
+
+
+
+CCFG p710  FA8-FFF

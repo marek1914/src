@@ -3,6 +3,11 @@ login:  pi:raspberry
 raspistill -o keychain.jpg -t 2000
 raspi-config
 
+Pimoroni Rainbow HAT 不错
+Raspberry Pi Pimoroni Rainbow HAT For Android Things
+
+http://www.geeky-gadgets.com/raspberry-pi-pimoroni-rainbow-hat-for-android-things-19-12-2016/
+
 微雪lcd 3.5B (20170518)
 ./LCD35B-show  (驱动是一堆脚本，lcd显示后，hdmi无输出)
 
