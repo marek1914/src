@@ -240,7 +240,7 @@ launchpad
 CC2538 Development Kit：
 SmartRF06EB x2 + CC2538EM x2 + CC2531 USB dongle(CC2531 EMK:Evaluation Module Kit for packet sniffing))
 
-bootloader:(VG板jtag口：RX-DIO3，TX-DIO2)
+bootloader:(VG板jtag口 标示：RX-DIO3，TX-DIO2)
 RX:DIO2
 TX:DIO3
 
@@ -249,7 +249,7 @@ VG板子，串电流呀，DIO接上uart tx线，都能让指示灯虚亮，并�
 配置后，跳线连接P01与GND，reset，python脚本可以连接（跳线冒可以一直插着）
 
 cc2538-bsl.py -b 115200 //看到信息
-cc2538-bsl.py -e  -w -v -b 115200 cc1310-demo.bin 
+cc2538-bsl.py -e  -w -v -b 115200 cc1310-demo.bin (Mac: -p /dev/tty.wchusbserial1430)
 
 
 sensortag 串口P28-RX/P29-TX

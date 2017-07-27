@@ -333,6 +333,8 @@ sudo port clean openssl
 
 sudo pip install pyserial
 
+Minicom:
+Meta-z 代表 esc+z
 nodejs:
 /usr/local/bin/node
 /usr/local/bin/npm
