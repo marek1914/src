@@ -327,8 +327,14 @@ git clone ssh://gaojie@192.168.0.144/volume1/git_repos/lora
 ——
 Mac
 
+Ch341 whc公司官网下载Mac版驱动
+
 sudo port clean openssl
 
+sudo pip install pyserial
+
+Minicom:
+Meta-z 代表 esc+z
 nodejs:
 /usr/local/bin/node
 /usr/local/bin/npm

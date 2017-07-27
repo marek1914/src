@@ -85,13 +85,13 @@ colorscheme koehler
 需要修改terminal程序的背景色
 atom背景色： #282c34
 
-set background=dark or light
+set background=dark/light
 
 
 —- python complete —-
 Pydiction
 Pycompletion
-Jedi-vim (jedi 是一个python自动补全库，可用于各种编辑器)
+Jedi-vim
 Python-mode
 
 Pycompletion 和jedi，同样问题：
@@ -104,7 +104,7 @@ c = list()
 c. 提示
 因为 c = range(1,5) 程序不运行无法判断c的类型？
 折衷办法：
-c = range(1,50
+c = range(1,50)
 c = list()
 c.
 再删除c=list 行
@@ -112,5 +112,4 @@ c.
 
 
 
-.c中 K 触发man
-.py中 K 触发 pydoc
+K: .c触发man/ .py触发pydoc
