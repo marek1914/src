@@ -108,7 +108,7 @@ c = range(1,50
 c = list()
 c.
 再删除c=list 行
-那么，目前pycompletion.vim 足够用
+那么，pycompletion.vim 足够用
 
 
 
