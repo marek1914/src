@@ -1,37 +1,6 @@
 === s805 ===
-1 编译kernel
-  1 编译器:http://openlinux.amlogic.com:8000/deploy/gcc-linaro-arm-linux-gnueabihf.tar.gz
-	建议设置：
-	创建arm_new_gcc.sh :
 
-	#!/bin/sh
-    //shell的命令扩展还可以这样玩^^
-	SETGNUEABIHF_PATH=$(echo $PATH | grep arm-linux-gnueabihf)
-	if [  "$SETGNUEABIHF_PATH" = "" ]; then
-	ARMHF_PREFIX=/opt/gcc-linaro-arm-linux-gnueabihf
-	PATH=$PATH:${ARMHF_PREFIX}/bin
-	fi
-
-	或/deploy/下载deploy_ubuntu_12.04.sh 置于/etc/profile.d/
-	用/device/amlogic/m200/Kernel.mk or quick_build_kernel.sh?
-    编译器前缀 arm-linux-gnueabihf-，用arm-linux-androideabi亦可，区别？
-
-仓库地址：ssh://git@27.154.234.214/repository/amlogic/m8box-kitkat/kitkat/platform/manifest.git
-repo仓库：ssh://git@27.154.234.214/repository/android/git-repo.git
-天河：
-repo init -u xxx/manifest.git -b kk-timehold-0823 --repo-url=xxx/git-repo.git
-原厂：
-repo init -u xxx/manifest.git -b kk-amlogic-sync  --repo-url=xxx/git-repo.git -m openlinux_kk-amlogic_20140823.xml
-
-
-下载地址：
-原厂：
-repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kitkat/kitkat/platform/manifest.git -b kk-amlogic-sync -m openlinux_kk-amlogic_20140823.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
-天河：
-repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kitkat/kitkat/platform/manifest.git -b kk-timehold-0823 --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
-
-同仓库不同分支
-openlinux.amlogic.com/Android/Mbox/4.4_ReleaseInfo/way_to_get_4.4_code
+repo init -u ssh://.../manifest.git -b xx -m xx.xml --repo-url=ssh://.../repo.git
 
 repo sync :
 UnicodeDecodeError: can't decode byte 0xe9 in position 0: ordinal not in range(128)
@@ -41,15 +10,12 @@ UnicodeDecodeError: can't decode byte 0xe9 in position 0: ordinal not in range(1
 编译uboot，将uboot/build/下  u-boot.bin(在ota包里重命名为bootloader.img)  u-boot-comp.bin  ddr-init.bin 拷贝到../device/amlogic/m201/
 将u-boot.bin变为bootloader.img：
 1 acp m200/u-boot.bin PACKAGING/target_files_intermediates/m200-target_files-20150330/BOOTLOADER/bootloader
-2 
 
 bt565_601_in.c 1处错误
 -#elif (MESON_CPU_TYPE >= CONFIG_ARCH_MESON8)
 +#elif (MESON_CPU_TYPE >= MESON_CPU_TYPE_MESON8)
 
 编译过程中生成libwebviewchromium.so 1.2G，但最终拷贝到system/lib目录19.7M，在干什么
-
-A5是尺寸最小功耗最低的多核处理器，与A8/A9/A15兼容
 
 s805: 4核A5 1.5GHz，4核mali 450 600MHz+ : 2 GP(Geometry Processor)+2 PP(Pixel Processors) 支持Open GL|ES 1.1/2.0 和 OpenVG1.1
 8726-mx 双核A9 1.5G 双核Mali400 GPU
@@ -65,14 +31,12 @@ Amlogic   8726-M series (8726-M1, 8726-M3, 8726-M6, 8726-MX) 	Mali-400 MP/MP2
 Amlogic   8726-M8 series (M801, M802, S801, S802) 	Mali-450（4-8 core） MP6
 Amlogic   8726-M8B series (M805, S805) Mali-450 MP2
 
-MX(meson6)
-
 mali.ko 260k+ 源码 hardware/arm/gpu/mali
 
 limadriver.org  
 openlinux.amlogic.com/wiki/index.php/Arm
 
-arc是待机单片机, DesignWare ARC EM4 Processor Core - Synopsys
+arc单片机, DesignWare ARC EM4 Processor Core - Synopsys
 
 最后：
 arc-elf32/4.8.0/cc1: error while loading shared libraries: libmpc.so.2: 找不到
@@ -287,9 +251,7 @@ mali.ko：
 生成路径：
 out/target/product/m200/obj/hardware/arm/gpu/mali/mali.ko
 
-
 =====8548==========
-
 PATH=$PATH:xx/powerpc-linux-gnuspe-gcc4.1.78/bin
 uart:tp24
 
@@ -602,3 +564,5 @@ http://releases.ubuntu.com/
 3个版本：米尔的12.04 桌面版， xilinx官方12.10 ubuntu-core版， ubuntu官方12.04版
 脱离米尔，从官网下载开始整理，驱动方面，只要网口通了就行
 
+---msm---
+10.3.56.170 gjie:123456

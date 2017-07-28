@@ -397,8 +397,7 @@ tr ' ' '\n' < list | sort -u > list-uniq
 
 ip route add 172.16.0.0/24 dev eth0
 
-#fast, versatile, remote and local file-copying tool
-rsync
+rsync #remote /local file-copying
 
 readelf -A
 #迅速生成几百M
@@ -406,7 +405,6 @@ cat /dev/zero >test.bin
 
 split foo.bin -b 1024M
 
-diff
 uname -r
 cpio
 
@@ -567,3 +565,13 @@ lsof
 
 #这条命令有点意思 下载脚本并执行
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+
+
+arm_new_gcc.sh :
+#!/bin/sh
+SETGNUEABIHF_PATH=$(echo $PATH | grep arm-linux-gnueabihf)
+if [  "$SETGNUEABIHF_PATH" = "" ]; then
+ARMHF_PREFIX=/opt/gcc-linaro-arm-linux-gnueabihf
+PATH=$PATH:${ARMHF_PREFIX}/bin
+fi
+置于/etc/profile.d/

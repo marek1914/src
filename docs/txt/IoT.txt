@@ -293,7 +293,6 @@ User/mac/Library/Arduino15/packages/esp8266
 ESPlorer
 支持rn2483
 
-https://www.youtube.com/watch?v=G6CqvhXpBKM
 www.espressif.com/en/products/hardware/esp8266ex/resources
 
 http://my.oschina.net/u/2306127/blog/402931
@@ -487,7 +486,6 @@ TT02高增益纯铜弹簧天线 433Mhz 2.5dBi高增益   (再次理解增益)
 IPEX 座
 
 --bluetooth--
-https://www.youtube.com/watch?v=tclS9arLFzk   下载这个视频   来自bluez.org
 www.bluetooth.com  #Bluetooth Special Interest Group (SIG) (802.15.1不再维护)
 
 Bluetooth Basic Rate(BR) 2.0

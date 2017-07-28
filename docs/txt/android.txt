@@ -546,6 +546,7 @@ linux/drivers/input/keyboard/atakbd.c : (一款游戏机)
 
 --logcat--
 logcat *:S MountService:V
+logcat MiSys:s Dvb:s //过滤
 
 ./system/core/include/log/log.h 定义：
 ALOGD

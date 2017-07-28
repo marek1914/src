@@ -1,29 +1,11 @@
-===uc===
-sdk: vendor/mstar/mi
-git push origin V370R301-ShanXi:refs/for/V370R301-ShanXi
-
-logcat MiSysSrv:s DvbNative:s 过滤打印
-
-build/config/sapprft_mstar_common.config
-flash=4G
-DDR=1G
-
 ===hisi===
-V53R304
 
 logcat -s MediaPlayer:v BootAnimation -f /cache/log.txt
 logcat -f /cache/verbose-ok.txt *:v
 logcat -f /cache/verbose-fail.txt *:v
 logcat -vthreadtime *:v > /data/logcat.txt
 
-tools/.../google/android/updater-script-emmc  注释掉fastboot的更新
 
-更新bootlogo
-
-do_updateLogo
-
-rootfs:
-git push origin Hi3798MV200-Heilongjiang:refs/for/Hi3798MV200-Heilongjiang
 
 framework:
 git push origin Hi3798MV200:refs/for/Hi3798MV200
@@ -314,26 +296,9 @@ libMS_OMX_Core.so 调用上面3个库
 摄像头出来的yuv数据，是纯粹的，没有任何附加信息的数据，所以要知道分辨率和yuv格式
 demo 用的是  OMX_COLOR_FormatYUV420Planar
 
-===tvos===
-tvos2.0 gerrit：
-http://120.25.200.39:8081
-sunguofeng : sungf,Tvos2
-
-知识文档管理
-http://120.25.200.39:8090  sunguofeng:18511589552
-
-tvos 社区
-http://www.ngb-tvos.cn/index.action
-账户：sunfg@cyclecentury.com : 57625005
-
-
-172.16.0.31 :89780362
-zhineng:zhineng0805
 
 vendor/broadcom/refsw/nexus/platforms/97439/build/platform_modules.inc
 
-tvos2.0 push:
-git push ssh://sunguofeng@120.25.200.39:29418/TVOS/TVOS_V2.0 HEAD:refs/for/master
 
 boot命令
 macprog 50-e5-50-70-ac-32
