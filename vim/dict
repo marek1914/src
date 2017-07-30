@@ -356,6 +356,7 @@ permutation
 combination
 chip_probe
 try_next_permutation
+try next permutation
 foobar
 match_token
 __VA_ARGS__
