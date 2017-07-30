@@ -258,13 +258,11 @@ sensortag 串口P28-RX/P29-TX
 
 VG板子写入slip-radio 打印 ：Slip Radio started...
 
-
-
-
-
 ------
 问题：cc2650 不用24MHz晶体，使用内部48M RC 能工作吗？
 
-
-
 CCFG p710  FA8-FFF
+
+
+CC2650 Ref 电压输出1.666V ，电源供电1.8-3.8之间，都输出这个电压，低于1.8V停止工作，高于3.8V 没敢试
+

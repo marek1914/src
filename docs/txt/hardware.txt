@@ -1,7 +1,6 @@
 耦合：直流，交流，接地，选择交流，无法测出直流电压
 探头衰减x10的含义
 波形可以留下痕迹
-无源探头
 
 AFG1022 pwm 超过1M不可调节占空比
 
@@ -95,16 +94,14 @@ bcm7251s sd卡不好用，原因是clk信号串阻22欧错焊为2k
 
 理想二极管：0正向压降，0反向电流，其功耗为0
 
-半导体定义为介于导体和绝缘体之间 容易与电阻混淆
-
-Extrinsic semiconductor
-
-The negative electrons in the N-type silicon get attracted to the positive terminal of the battery. The positive holes in the P-type silicon get attracted to the negative terminal of the battery. No current flows across the junction because the holes and the electrons are each moving in the wrong direction.
-
 这个解释靠谱些：
-If you flip the battery around, the diode conducts electricity just fine. The free electrons in the N-type silicon are repelled by the negative terminal of the battery. The holes in the P-type silicon are repelled by the positive terminal. At the junction between the N-type and P-type silicon, holes and free electrons meet
+If you flip the battery around, the diode conducts electricity just fine. 
+The free electrons in the N-type silicon are repelled by the negative terminal of the battery. 
+The holes in the P-type silicon are repelled by the positive terminal. 
+At the junction between the N-type and P-type silicon, holes and free electrons meet
 
-The electrons fill the holes. Those holes and free electrons cease to exist, and new holes and electrons spring up to take their place. The effect is that current flows through the junction.
+The electrons fill the holes. Those holes and free electrons cease to exist, 
+and new holes and electrons spring up to take their place. The effect is that current flows through the junction.
 
 http://electronics.howstuffworks.com/diode.htm
 
@@ -204,7 +201,8 @@ s是导体的横截面积
 自由电子指不被约束在某一个原子内部的电子
 
 金属导体中的自由电荷，半导体中的自由电荷及绝缘体中的微量自由电荷都属于自由电子
-自由电子的多寡会影响物质的导电性和导热性，自由电子愈多，导电的能力愈强。大部分的金属都有相当数量的自由电子，非金属则相反。（但是亦有例外，如石墨。）因为金属原子核对其最外层电子的吸引力弱，所以在金属中有大量的自由电子（负电子）存在
+自由电子的多寡会影响物质的导电性和导热性，自由电子愈多，导电的能力愈强。大部分的金属都有相当数量的自由电子，非金属则相反。（例外，如石墨）
+因为金属原子核对其最外层电子的吸引力弱，所以在金属中有大量的自由电子（负电子）存在
 
 单位体积导体中的自由电子数量即自由电子密度。铜的自由电子密度为8.5×10^28/m^3。各种金属的自由电子密度有相同的数量级。
 
@@ -384,7 +382,9 @@ USB是half duplex
 setup的数据阶段的流程跟bulk传输一样
 控制传输的流程最复杂，分3个阶段：setup/数据/握手
 
-4 data0  data1数据包绝对不可以单独出现， 都必须包含在setup pid  in/out pid中，并且没有in/out中只能包含一个data0/data1包，因为数据包不带地址 所以数据包必须包含在带有地址的包里面，才知道这个数据包是发到什么位置的。由于数据包的长度不定（token包和握手包的长度都是固定的）所以数据包应该是靠EOP来判断包结束的
+4 data0  data1数据包绝对不可以单独出现， 都必须包含在setup pid  in/out pid中，并且没有in/out中只能包含一个data0/data1包，
+因为数据包不带地址 所以数据包必须包含在带有地址的包里面，才知道这个数据包是发到什么位置的。由于数据包的长度不定（token包和握手包的长度都是固定的）
+所以数据包应该是靠EOP来判断包结束的
 6 设置地址的命令 地址就包含在请求里，所以没有数据阶段
 7 1.1协议，8.4.1 token packets  :For IN transactions,these fields uniquely identify which endpoint should transmit a Data packet.
 8 前几天我记得说，握手包只能是设备发给主机。这个是不对的。准确的说 8.4.4:
@@ -399,7 +399,9 @@ Bulk传输终止于如下情况(USB1.1 5.8.3):
 1 已经传输了host请求的数据大小
 2 收到一个负载小于最大包长，或0长度数据包 （host请求的比设备发送的多的情况）
 
-请求长度大于实际返回长度，且返回数据包长度是端点最大包长的整数倍时，需要返回0长度数据包。例如端点最大包长为8字节，若host请求18字节，但设备只有12字节要返回，那么只返回12字节的数据即可，但如果要返回8或16字节，就要在返回这些字节后再返回0长度数据包。
+请求长度大于实际返回长度，且返回数据包长度是端点最大包长的整数倍时，需要返回0长度数据包。
+例如端点最大包长为8字节，若host请求18字节，但设备只有12字节要返回，那么只返回12字节的数据即可，
+但如果要返回8或16字节，就要在返回这些字节后再返回0长度数据包。
 
 
 MAX3420 / FT121  SPI slave 转USB Device

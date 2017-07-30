@@ -1028,26 +1028,6 @@ kernel.org arm.linux.org.uk linux-arm.org 和邮件列表之间的关系
    O2.6.29 S2.6.29 A2.6.29 都没有这几行。应该增加！
    内核虽然没有编译成thumb2模式，但是应用程序是有thumb2指令的！
   2 do_signal函数的no_signal:处
-    #if defined(CONFIG_AEABI) && !defined(CONFIG_OABI_COMPAT)
-       regs->ARM_r7 = __NR_restart_syscall;
-       regs->ARM_pc -= 4;
-   #else
-        ...
-        这里有不同
-        ...
-    定义了AEABI但是没有定义OABI的情况下执行的代码一样。如果没有定义EABI或者要兼容OABI就走#else
-    而一般情况下是定义OABI兼容的（beagleboard定义了兼容） #else处的代码：
-    S2.6.28.10 S2.6.29 A2.6.29 Omap2.6.29 都一样，N2.6.28.10给改了，arm-linux2.6.33也改了
-    
-    N2.6.28.10 在signal.h里面多定义了一个宏 KERN_RESTART_CODE 配合signal.c里面的修改
-
-    ++是否OABI兼容++
-    在make menuconfig中得到的信息：
-    Allow old ABI binaries to run with this kernel
-    If you know you'll be using only pure EABI user space then you can say N here
-    If this option is not selected and you attempt to execute a legacy ABI binary 
-    then the result will be UNPREDICTABLE（不可预测的）
-    而android程序绝对是 pure EABI，所以不要兼容，那么下面讨论的内容，改与不改没有区别了
 
     [知识] signal.h里面原来有：
      #define KERN_SIGRETURN_CODE	(CONFIG_VECTORS_BASE + 0x00000500)
