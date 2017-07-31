@@ -1,0 +1,12 @@
+模拟开关，它是开关，所以是双向的
+
+ADG804
+
+74hc4052  dual 4-channel analog multiplexer
+cd4052
+
+cd4066:4 SPST
+
+负电压怎么处理
+
+音频是 以0V为中心，上下对称，还是大于0V呢？

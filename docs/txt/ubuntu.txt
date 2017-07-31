@@ -381,3 +381,9 @@ htdocs/
 jekyll:
 编译ruby2.x 需要openssl： apt-get install libssl-dev libreadline-dev libgdbm-dev
 
+
+---
+virtualbox 安装 debian，下载对应版本 guest additions.iso
+根据提示需要安装
+# apt-get install linux-headers-$(uname -r)  #编译时需要
+打开光盘，运行里面的脚本
