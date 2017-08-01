@@ -5,14 +5,13 @@ Mark Shuttlewort ubuntu创始人
 
 lubuntu = lxde+ubuntu
 fonts-wqy-zenhei
-ia32-libs
 
-//
-awesomewm.org
+ia32-libs u14.04无
+lib32xx 32bit版库
+
+awesomewm.org  window管理器
 
 apt-get source gnome-system-monitor 获取system monitor源码到/usr/src (需dpkg-dev)
-
-纯字符模式，显示中文
 
 sudo pip install shadowsocks
 sslocal -c ~/tt.txt
@@ -71,7 +70,6 @@ apt-get update --fix-missing
 失败时是能单独访问http://.../Packages(.bz2)的，下载解压到/var/lib/apt/lists/应该也可
 下载失败的在/var/lib/apt/lists/partial目录
 Acquire-by-hash
-
 
 virtual Box
 1) 安装VirtualBox Extension Pack (要与Virtualbox版本一致，VirtualBox older builds处下载旧版本)
@@ -380,10 +378,3 @@ htdocs/
 
 jekyll:
 编译ruby2.x 需要openssl： apt-get install libssl-dev libreadline-dev libgdbm-dev
-
-
----
-virtualbox 安装 debian，下载对应版本 guest additions.iso
-根据提示需要安装
-# apt-get install linux-headers-$(uname -r)  #编译时需要
-打开光盘，运行里面的脚本

@@ -3,7 +3,7 @@ elelab.cn  2017.6-2020.6
 
 jsq.re  testtest007:-2y*y-
 
-http://www.williamlong.info/archives/4432.html  哈哈，脚本人生
+http://www.williamlong.info/archives/4432.html  脚本人生
 
 
 “我本不是生来适于研究学问的人，因为我用功的时间稍长就感到疲倦，我不能一连半小时集中精力于一个问题上。
@@ -21,6 +21,9 @@ http://www.jianshu.com/p/05c6f5b32387
 stackoverflow.com
 mikewootc.com //wuyuntao
 jmcglone.com/about //github page jekyll
+
+electroschematics.com  //优质电路图
+
 
 youtube:
 en.savefrom.net //download
@@ -88,7 +91,7 @@ macbook pro				11788
 电脑+Dell显示器X2       7600
 HKC显示器               600
 DS216J+2T				1800
-罗技键鼠					100
+罗技键鼠				100
 microSD x7				250
 HDMI to VGA				64
 3.5音频线               13
@@ -147,7 +150,7 @@ Lora X16 SI4432 X4		421
 泰克AFG					3700
 固维电源					1000
 Fluke万用表				450
-日本三丰卡尺				233
+三丰卡尺				233
 bladerf+外壳				4150
 Anolog Discovery2 X2	2400
 TH2822E					1588

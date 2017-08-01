@@ -1032,22 +1032,15 @@ undefined reference to 'android::ITvosAudioSettingService::asInterface   //服�
 out/target/product/xx/obj/lib/crtbegin_dynamic.o, needed by 
 out/target/product/xx/obj/EXECUTABLES/screencap_intermediates/LINKED/screencap
 
-注意理解依赖，找不到types.h找不到问题，表面是安装了g++-multilib解决，实际是依赖安装了gcc-multilib
-multilib 用于生成多平台的代码  32bit/64bit
-
----
-电脑能装ia32-libs因为是12.04，不装adb(32bit的)运行不了
-14.04没有此包，提示替代包:
-lib32z1 lib32ncurses5 lib32bz2-1.0 (这是zlib库，与32bit程序无关)
+types.h找不到: gcc-multilib , multilib 用于生成多平台的代码 32bit/64bit
 
 找不到libstdc++.so因未安装g++-multilib
 
 1 编译android环境：
-	u14.04编4.2.x：bison flex libxml2-utils xsltproc g++-multilib gperf(makeprop.pl) libswitch-perl(Switch.pm >u14.04)
-	bison flex类似yacc的语法解释器，用于aidl；
-	build-essential  是gcc g++ 以及相应库。
+	libxml2-utils xsltproc g++-multilib/gcc-multilib(代替ia32-libs) gperf(makeprop.pl)
+	bison flex用于aidl
+	build-essential  gcc/g++ 以及相应库。
 	lib32z1-dev  32位版zlib开发库，32位版主机工具(gcc -m32)
-	ia32-libs(u14.04无此包，安装gcc-multilib/g++-multilib即可)
 	lib32ncurses-dev (32位new curses) 编译 ./system/core/adb时使用此库32位版(gcc -m32，1.0.31版(android4.2.2)adb不需)
 	libncurses-dev (u10.04可能自带，u14.04被摒弃) 编译kernel menuconfig使用
 	gawk 4.0.x (好像不需要)
