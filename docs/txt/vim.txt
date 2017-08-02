@@ -45,10 +45,22 @@ ft-c-omni (ft:filetypes)
 
 ---
 Omnicomplete(category) 是一类使用 Vim's omnicompletion feature 的插件
-Omnicppcompleter: C/C++ omni-completion with ctags database
+Omnicppcompleter: C/C++ omni-completion with ctags 
 AutoComplPop : Automatically opens popup menu for completions
 
+ctags - Generate tag files for source code
 ctags -R -f ~/.vim/systags /usr/include /usr/local/include
+ctags -R
+
+cscope - interactively examine a C program
+cscope -bkq -i cscope.files
+-b Build the cross-reference only
+-k Kernel Mode, turns off the use of the default include dir (/usr/include)
+-q Enable  fast symbol lookup via an inverted index. 
+   This option causes cscope to create 2 more files (cscope.in.out and cscope.po.out )
+   This allows a faster symbol search algorithm that provides
+   noticeably faster lookup performance for large projects.
+-i all files listed in namefile
 
 :helptags {dir} 
 
@@ -65,8 +77,6 @@ formatoptions 默认tcq 不能自动添加 // 和 *
 但我的vi值是 croql  (不知道谁改的)，
 vimrc中并未配置  (help formatoptions 貌似与compitable有关)
 
-cscope -bkq -i cscope.files
-ctags -R
 
 :help <leader>
 

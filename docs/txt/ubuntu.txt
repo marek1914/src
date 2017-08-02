@@ -5,14 +5,15 @@ Mark Shuttlewort ubuntu创始人
 
 lubuntu = lxde+ubuntu
 fonts-wqy-zenhei
-ia32-libs
 
-//
-awesomewm.org
+ia32-libs u14.04无
+lib32xx 32bit版库,如
+lib32ncurses-dev (new curses)
+lib32readline5-dev
+
+awesomewm.org  window管理器
 
 apt-get source gnome-system-monitor 获取system monitor源码到/usr/src (需dpkg-dev)
-
-纯字符模式，显示中文
 
 sudo pip install shadowsocks
 sslocal -c ~/tt.txt
@@ -72,9 +73,8 @@ apt-get update --fix-missing
 下载失败的在/var/lib/apt/lists/partial目录
 Acquire-by-hash
 
-
 virtual Box
-1) 安装VirtualBox Extension Pack (要与Virtualbox版本一致，VirtualBox older builds处下载旧版本)
+1) Extension Pack 要与Virtualbox版本一致
    USB设备:adduser gao vboxusers(注销生效)，重启，Devices->USB Devices看到U盘
 2) 共享文件夹设置后需重启
 3) File->Preference->General->Default Machine Folder 可选择非home/user
@@ -89,14 +89,13 @@ virtual Box
 7) 个别程序需将文件拷至虚拟机目录，在共享ubuntu目录执行异常。已知的：winrar直接提示错误，Phoenixcard，uboot部分烧不进入。
 8) Unsupported version 14 of data unit 'vga' 解决：右击虚拟机列表选：Discard saved state...
 9) virtualbox 4.3.10升级到4.3.34，xp无法启动，addition也升级4.3.34即可
-10) Guest Additions 包
+10) Guest Additions
 
 1) dpkg
-
-	-l List packages matching given pattern
-	-i Install the package //可能警告降级
-	-r Remove the package
-	#不同大版本可共存，小版本不能共存
+	-l List packages
+	-i Install //可能警告降级
+	-r Remove
+	#不同大版本可共存，小版本不能
 	
 2) 包管理
 	http://pkgs.org
@@ -380,10 +379,3 @@ htdocs/
 
 jekyll:
 编译ruby2.x 需要openssl： apt-get install libssl-dev libreadline-dev libgdbm-dev
-
-
----
-virtualbox 安装 debian，下载对应版本 guest additions.iso
-根据提示需要安装
-# apt-get install linux-headers-$(uname -r)  #编译时需要
-打开光盘，运行里面的脚本

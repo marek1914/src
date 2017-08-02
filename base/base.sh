@@ -575,3 +575,7 @@ ARMHF_PREFIX=/opt/gcc-linaro-arm-linux-gnueabihf
 PATH=$PATH:${ARMHF_PREFIX}/bin
 fi
 置于/etc/profile.d/
+
+
+# adduser,addgroup 是底层工具useradd, groupadd的友好的包装
+adduser  user group # 将已存在用户user加入到已存在组group中

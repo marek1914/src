@@ -174,11 +174,6 @@ errno == 90
 
 浏览器上传参考GoodReader
 
-pppoe拨号，路由器不断电的情况下，wan口ip会变化。
-m3盒子用电话线adsl拨号获得ip，在工位可ping通 106.120.10.49，可以adb connect
-在家用路由器获取ip，同在联通宽带里面应该可以访问，用3G访问不了，说明外网出口可能不是ap的wan口ip
-
-
 RFC3984  - RTP Payload Format for H.264 Video
 
 Real-time Transport Protocol (RTP) 
@@ -1128,12 +1123,8 @@ Hypertext Transfer Protocol
 
 wireshark可以识别UDP中的TS包
 
-4 小米盒子epg 的json数据，在wireshark中看，并且Copy - Bytes -Printable text only 这样汉字信息取不到，应该先拷贝出：
-	http://media.cntv.duokanbox.com/tvservice/getmediadetail2?mediaid=976146&pageno=0&pagesize=0&orderby=0&fee=1&deviceid=1353a94f1f7d634a62de36fd29a42729&apiver=1.8&ver=4.2.2.946&codever=13&ptf=205&ts=-1481390516&nonce=796510208&opaque=509ac7914d6e20336be684b5aa8b22b25f42b537
-	在浏览器中执行，得到那个json文件
-
 groupadd wireshark
-adduser  gaojie wireshark
+adduser username wireshark
 
 在xp安装完1.11.3 后出现 Qt版和Gtk+版，样式不同。
 ubuntu12.04 软件中心提供gtk+版本。

@@ -5,8 +5,6 @@ logcat -f /cache/verbose-ok.txt *:v
 logcat -f /cache/verbose-fail.txt *:v
 logcat -vthreadtime *:v > /data/logcat.txt
 
-
-
 framework:
 git push origin Hi3798MV200:refs/for/Hi3798MV200
 
@@ -17,16 +15,14 @@ mmm frameworks/base/policy
 
 persist.sys.bootanim.enable”来决定是否播放开机动画
 
+---
 zhangh:1
-
-阿里升级包要点：
+阿里升级包：
 1 改main.c 里面的地址，分别放开 熊猫，九州，九联的宏
 2 编译完boot，重命名mboot.bin 为 mboot-upgrade.bin (1.7M)
 
-支持的蓝牙芯片型号: CSR8510/BCM20705
 
-wm size 1920x1080   //1280x720
-wm density 240      //160
+蓝牙: CSR8510/BCM20705
 
 OK方法：
 config/panel/DACOUT_1080P_50.ini
@@ -52,16 +48,6 @@ framework.jar
 framework2.jar 
 services.jar 
 
-http://bug.cyclecentury.com/mantisbt
-dns : 172.16.0.50
-
-u盘里有 update.zip 如何检测到并提示升级？ 王凯
-
-tvconfig/config/PM.bin (cpu集成51单片机)电源管理
-
-按键问题：
-按下，先收到down，然后是up，然后一系列down，最后是up
-
 增加resource分区
 RESOURCEIMAGE_SIZE
 scripts/build_image.sh
@@ -70,19 +56,13 @@ scripts/release.sh
 BoardConfig.mk-8G-HLJ
 init.rc里 mkdir /resource
 
+device/mstar/oringe/BoardConfig.mk  设置分区大小，要与rootfs里面的set_partition 匹配
 
-fs_mgr: Cannot mount filesystem on /dev/block/platform/mstar_mci.0/by-name/resource at /resource
 
-device/mstar/mso9280/BoardConfig.mk  设置分区大小，要与rootfs里面的set_partition 匹配
-
-/etc 下面有白名单列表，可以修改launcher包名
-
+/etc 白名单可修改launcher包名
 build/target/product/security
 
 资源修改后，单独编译framework/base/res/res 资源ID号发生变化，会起不来，
-
-Vendor_0001_Product_0001_Version_0100.kl 这个删除遥控器就不能用了
-
 USB 2.4G遥控器可以用 getevent 获取码值（ir不行）
 
 mmc rmgpt 删除除MBOOT MPOOL 分区之外的分区
@@ -111,8 +91,6 @@ mmc write.boot 1 0x20200000 0 $(filesize)
 device/mstar/common/libraries/tv2/java/com/mstar/android/tv/TvPictureManager.java   
 com.mstar.android.jar的源码
 
-分辨率保存不住的问题
-
 getprop persist.sys.setting.SDoffsetx
 getprop mstar.resolutionState
 
@@ -121,30 +99,6 @@ getprop mstar.resolutionState
 I/PictureManager_JNI( 1820): native_init                                                                                                       
 I/PictureManager_JNI( 1820): native_setup
 I/PictureManager_JNI( 1820): native_getResolution
-
-// hwcomposer 什么进程？？？？
-D/hwcomposer( 1100): the mstar.fakevsync.freq is 60      //这个属性                                                    
-D/hwcomposer( 1100): model:m_pModuleName=/config/module/Customer_Module.ini     
-D/hwcomposer( 1100): ursaVsersion=0                                                           
-E/hwcomposer( 1100): initResolution resolution = DACOUT_1080I_50
-E/hwcomposer( 1100): curTimingWidth =1920,curTimingHeight =1080, panelHStart=19
-
-
-关于一个目录一个.mk的问题，  如果没有，那源码文件就要加目录，故一个目录一个最好。
-
-libJniNative.so 定义 native_get_tune_info 函数
-
-logcat >/cache/log.txt
-
-刷新版本首次进入，先进recovery，屏幕出现进度条，而1.5G起不来的版本恰好停在这儿
-
-中间有孔的板子：THGBMBG6D1KBAIL  /8GB
-
-THGBMBG5D1KBAIL  /4GB
-
-
-中间有孔的板子：THGBMBG6D1KBAIL  /8GB
-
 
 base/core/java/android/content/res/Resources.java
 "that varies with configuration!!"
@@ -343,24 +297,7 @@ Sample_otp_getxxxxlock
 
 ===a20 & m3 ===
 
-adb 7896
-
-A20华数U盘升级，建upgrade目录，xx.zip放在该目录中，名字任意。(银河版好像不灵)
-升级方法 根目录下建立upgrade文件夹放入升级包
-
-银河+华数适用
-adb push xx.zip /cache/update.zip
-
-adb shell 
-cd /cache
-mkdir recovery 
-cd recovery
-echo "--update_package=/cache/update.zip" >> command
-
-reboot  recovery
-
-替换apk需特别注意：apk都是拷贝过去的，在mobile目录替换完后，要在out/.../system/apk中删除原来的，这些文件脱离了make的依赖关系的管理，已经多次犯错了！
-解决办法：使用android的拷贝方式，并且每次替换要改为同名。
+A20华数U盘升级，建upgrade目录，xx.zip放在该目录中
 
 ro.serialno=
 galaxy：
@@ -429,9 +366,6 @@ mmm -B  libstagefright&&mmm -B  CedarX-Projects&&mmm -B  libmediaplayerservice
 A20华数2.0，待机时前面板灯不灭
 A20银河，待机时灯灭。
 
-
-银河版本直接adb push 无法升级cmcc2.0
-
 uboot
 a20银河版  lichee/u-boot 与 a20 cmcc2.0 版本  lichee/boot-v1.0/u-boot 内容以及目录结构类似
 当然后者较之前者有优化和改动
@@ -474,14 +408,6 @@ mobile/galaxy/apk/galaxyITVxxx.apk 等 从孙科处拷贝回来的是 ITV3.5.15 
 这个信息也可以在setting中看到。
 
 贺超编译的A20银河，没写mac，也没读序列号，但仍可看点播
-
-20140704 银河版本程序，adb打印出里面某个视频的m3u8 地址 粘贴在浏览器中，可以下载到m3u8列表文件
-打开他，复制ts文件地址如：
-http://diaodu.zjcmcc.cnbn.cn/videos/fashion/20120817/0bb343bdab79bccb9bf8be816eed361c.ts?start=0&end=1270344&hsize=41079&tag=0&v=&contentlength=861980
-就可以下载到ts文件。 说明银河现在没有加任何限制。
-如果只粘贴 http://diaodu.zjcmcc.cnbn.cn/videos/fashion/20120817/0bb343bdab79bccb9bf8be816eed361c.ts
-
-A20直播时狂打印
 
 银河HomepageActivity1.5.0.0_ZJCMCC.apk 在银河版盒子上要认证，在其他盒子上安装就没有认证过程，什么情况。
 
@@ -667,10 +593,6 @@ writeSysfs("/sys/class/gpio/mcu_standby_ctrl","2");
 
 开机按电源按键，打印 Run recovery！
 在./board/amlogic/m3_mbox/m3_mbox.c 文件里
-
-更新 bootable/recovery/.../image里的图片，开机按着电源键，进入
-的还是改图片之前的recovery， adb reboot recovery 或者恢复出厂设置，进入我改过的recovery
-系统中有2个recovery，分别在spi flash和 nand flash里
 
 执行update_reboot还是 charging_reboot，现在竟然进不去recovery了。
 

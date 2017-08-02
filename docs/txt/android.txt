@@ -1,3 +1,4 @@
+dumpsys meminfo com.xx.test  //查看内存使用
 mstar，bootanim在init.rc里改为system uid， bootanimation从8s延长到15s
 改为graphics uid ok（new时不返回）
 
@@ -89,14 +90,6 @@ android.intent.category.HOME //launcher
 ===
 data目录是system权限 system 会挂载成 ro 形式。
 
-$ adb root
-adbd cannot run as root in production builds
-
-$ adb remount
-remount failed: Permission denied
-
-$ adb push 到/cache  /data 都没有权限
-
 关于android shell的权限问题
 
 用户名@机器名
@@ -107,19 +100,11 @@ ps看，一个
 我的盒子：
 root@orange:/ #
 
-adbd是shell，所以adb pull 对于不符合权限的，无法拷贝
-shell     3435  1     3572   192   ffffffff 00017e64 S /sbin/adbd
-===
-
-==adb==
 aapt :Android Asset Packaging Tool
 frameworks/base/tools/aapt
 
 aapt dump badging xx.apk
 
-
-~/.android/adb_usb.ini (must!)
-0x1234 //(vid)
 
 vi /etc/udev/rules.d/51-android.rules(udev config):
 SUBSYSTEM=="usb", ATTR{idVendor}=="17ef", ATTR{idProduct}=="7435", MODE="0666" OWNER="gaojie"
@@ -128,130 +113,40 @@ $ sudo udevadm control --reload
 或重启udev：
 $service udev restart
 
-
+~/.android/adb_usb.ini (must!)
+persist.service.adb.enable=1 //开启调试模式
+ro.adb.secure = 1// offline，弹出提示框
+adb root
+adb remount
 adb devices //List of devices attached
 adb kill-server 
 adb devices
-adb root //root
 adb remount //system wr
-adb shell
-adb tcpip 5555 #让adbd重新启动，并监听端口5555
+adb tcpip 5555 #adbd重新启动，监听5555
 adb connect 192.168.0.101:5555
+adb get-state 检查是否成功
 
+adb -s devicename //多设备连接时选择
 adb logcat <=>  adb shell; logcat 其他命令同理
+
+Viewing stdout and stderr:
+setprop log.redirect-stdio true
+
+service.adb.tcp.port=5555
+====
+sbin/adbd
+system/bin/adb  # device-as-host
+out/host/linux-x86/bin/adb
+
+
 bugreport，打印更多调试信息
-adb shell 进入的 sh 进程是 adbd的子进程。
-
-pppoe得独立ip可远程adb
 
 
-adb install 错误：
+错误：
 [INSTALL_PARSE_FAILED_INCONSISTENT_CERTIFICATES] 之前安装了不同人编译的包名相同的apk
 在/data/app下删除再安装：
 [INSTALL_FAILED_UPDATE_INCOMPATIBLE] 因为apk删除不彻底,可恢复出厂
 
-adb -s devicename //多设备连接时选择
-
-dumpsys meminfo com.xx.test  //查看内存使用
-
-2 adb connect ip:port ：
-unable to connect to 192.168.0.113:7896:7896  端口号出现2次（1.0.31）
-
-网络adb: service.adb.tcp.port=5555
-
-1.手机：让adbd监听指定端口
-setprop service.adb.tcp.port 5555
-stop adbd #停止adbd
-start adbd #启动adbd
-
-2.手机：连接网络（3G或者WLAN）
-假定你获得的IP地址为192.168.1.102
-3.计算机：连接手机
-adb connect 192.168.1.102:5555
-4.计算机：检查是否成功
-adb get-state
-应当输出device或者emulator-5555，这取决于你的设置。
-
-通过adb发出的命令是用户级的（实际在手机上的用户为shell），而切换监听方式所需的权限需要root才行。
-
-4.2.1在Build Number上点7次显示adb开关
-
-4.4 adb 1.0.31 connect成功，显示offline
-
-nexus7 
-1 unlock 方法
-  fastboot工具可以在源码里面编译出来。先要安装ubuntu版本usb驱动:
-
-out/host/linux-x86/bin/fastboot oem unlock   平板屏幕出现提示 Yes or No，选择Yes fastboot显示
-...
-(bootloader) erasing userdata...   //擦除了所有用户数据？
-(bootloader) erasing userdata done
-(bootloader) erasing cache...
-(bootloader) erasing cache done
-(bootloader) unlocking...
-(bootloader) Bootloader is unlocked now.
-OKAY [386.053s]
-finished. total time: 386.053s
-
-fastboot显示unlock状态，开机google logo下显示开锁图标
-
-gaojie@gaojie:~/Work/Android/android-4.2.1_r1/out/host/linux-x86/bin$ ./fastboot  
-flash recovery /home/gaojie/twrp-2.2.1-nexus7.img 
-sending 'recovery' (6616 KB)...
-OKAY [  0.785s]
-writing 'recovery'...
-OKAY [  1.665s]
-finished. total time: 2.450s
-
-* 在原生系统里重启后 TWRP或CWM 将被原生recovery替换。
-在boot状态下可以 adb shell
-
-fastboot oem unlock
-fastboot flash recovery clockwork.img
-fastboot reboot-bootloader
-fastboot boot clockwork.img
-
-chenyh:CIKAA手机，不能进recovery模式，就真的死活不能root，不能清除密码！
-adb shell rm /data/system/gesture.key
-
-模拟器上传/system/lib目录文件：
-adb push 提示 out of memory 需要执行 
-$emulator –avd youravdname –partition-size 256(实测4.0)
-
-adb root 
-adb remount
-
-在已root的联想手机执行adb root:
-adbd cannot run as root in production builds(root不彻底)
-adb shell后$，su后#，exit先回到$，再exit退出shell
-
-root原理：
-若系统是eng版：
-adb push su /system/bin  
-adb push SuperSU.apk /system/app    
-adb shell chmod 4755 /system/bin/su  使任意用户可调用（即set uid和set gid权限）
-即完成，而实际user版不允许这样做，因system只读，chmod需要root（死循环）需要利用各种漏洞间接完成
-
-用fastboot模式从sd卡烧一个eng版的**.img 
-clockworkmod
-
-过程：
-进程调用su，su创建一个socket监听，向Superuser发送一个广播，说有程序请求root，su等待socket数据接收（有timeout） 
-Superuser收到广播弹出对话框，根据用户选择回应socket，su根据socket结果处理是否可root执行（shell执行su弹出supersu提示）
-
-superuser.apk 用于root后，管理root权限（白名单）防止被恶意程序滥用。
-
-源码地址 http://superuser.googlecode.com/svn/trunk
-这里的su是supersu提供的，而不是busybox的版本，因为后者不会发socket广播
-su --help
-SuperSU - Copyright (C) 2012-2013 - Chainfire (Chainfire的大神)
-
-supersu若发现su文件不对，会把自带su写入system/bin/，写前supersu所需root权限可以用其他（如busybox/android）su获取（呵呵）
-android版su： system/extras/su，获取supersu源码替换su.c和Android.mk文件编译即可
-
-supersu如何知道有进程要调用su：
-猜测：用busybox的su也行，只是任何程序都可以获取root权限了
-adb install 安装在data/app 显示的不是文件名而是包名(如com.xxx.tv-1.apk  -1/-2 并非versionCode，何意？)
 
 -----------
 命令行启动apk
@@ -284,25 +179,7 @@ int property_set(const char *key, const char *value);
 /data/local.prop
 最后加载的属性保持在/data/property中（？）
 
-System.getProperty()
-System.setProperty()
 
-默认属性加在 system/build.prop
-
-ro.sf.lcd_density=200 //字体大小
-persist.sys.strictmode.visual=off (严苛模式) //红色边框
-persist.sys.strictmode.disable=1 (针对4.0)   //红色边框
-ro.build.type=usr
-ro.build.type=eng
-ro.sf.lcd_density=250 //默认dpi 160
-ro.build.characteristics=tablet
-ro.build.characteristics=default
-persist.service.adb.enable=1 //开启调试模式
-
-ro.product.locale.language=zh //默认语言
-ro.product.locale.region=CN
-persist.sys.timezone=Asia/Shanghai //默认时区
-ro.adb.secure = 1//adb offline，改为0即可 弹出提示框
 net.dns1 = 202.106.0.20 //设置dns
 
 system/core/init/property_service.c 里错误打印:
@@ -548,13 +425,9 @@ linux/drivers/input/keyboard/atakbd.c : (一款游戏机)
 logcat *:S MountService:V
 logcat MiSys:s Dvb:s //过滤
 
-./system/core/include/log/log.h 定义：
-ALOGD
-ALOGE
+./system/core/include/log/log.h
 
 http://elinux.org/Android_Logging_System
-
-logcat时候，串口和adb shell 输出同样的东西。串口不停的输出，也是要占用部分cpu资源的吧
 
 logcat 系统，将fd 0，1，2 重定向到 /dev/null
 logcat 设备节点：
@@ -566,15 +439,7 @@ system
 
 -b 切换buffer，默认是main，可切换到events或radio
 
-Viewing Alternative Log Buffers:
-
 logcat中 好像也能打印 stdio
-
-Viewing stdout and stderr:
-
-$ adb shell stop
-$ adb shell setprop log.redirect-stdio true
-$ adb shell start
 
 init 中 open_devnull_stdio 函数重映射
 
@@ -782,10 +647,6 @@ default.xml <remote  name="vc" //仓库remote名
 
 不同项目个别仓库不同，可以通过manifest仓库，只把特定仓库建立项目分支。不必所有仓库建分支。实验证明：
 
-lib32readline5-dev
- The GNU readline library aids in the consistency of user interface across discrete programs that need to provide a command line interface.
-The GNU history library provides a consistent user interface for recalling lines of previously typed input. 
-
 开机logo:RLE(run-length encoding游程编码)
 convert命令将11.jpg转化为11.raw： convert -depth 8 11.jpg rgb:11.raw
 将11.raw文件转换为initlogo.rle。在raw图片文件所在目录下执行：/out/host/linux-x86/bin/rgb2565 -rle <11.raw> initlogo.rle
@@ -847,9 +708,6 @@ Windows->Preferences->Android 选择SDK位置 下面可以看到 Android2.1 Andr
 Windows->Android SDK and AVD Manager 可以看到android 虚拟设备 
 eclipse 可以使用自己喜欢的版本 建议3.4 以上
 
-./adb install ApiDemos.apk 可以安装一个apk
-虚拟机目录 ~/.android/avd 
-
 To start the SDK Manager, please execute the program "tools/android".  （无法直接执行）
 
 3. 将下载的压缩包放入temp文件夹下
@@ -895,15 +753,6 @@ out/target/product/f16ref/obj/PACKAGING/target_files_intermediates/
 
 ota_from_target_files -v --amlogic -n -p out/host/linux-x86 -k build/target/product/security/testkey xx.zip xxx.zip
 
-
-./docs/source.android.com/src/source/initializing.md:      zip curl zlib1g-dev libc6-dev lib32ncurses5-dev
-
-mmm -B system/core/adb/ 编译出2个东西：
-/root/sbin/adbd 运行在盒子上
-system/bin/adb  # adb host tool for device-as-host (设备作为主机，有意思)
-out/host/linux-x86/bin/adb 运行在主机
-
-adb uninstall com.joysee.stb.tv 成功删除
 
 HOST_OS_EXTRA=Linux-3.13.0-35-generic-x86_64-with-Ubuntu-14.04-trusty 这个是怎么读出来的？
 
@@ -1017,13 +866,6 @@ target Generated: libwebcore <= external/webkit/Source/WebCore/css/tokenizer.fle
 
 edify脚本 用于升级
 
-prebuilts/gcc/linux-x86/host/
-i686-linux-glibc2.7-4.4.3 (老版本不用了)
-i686-linux-glibc2.7-4.6 (编译32bit版工具  -m32)
-x86_64-linux-glibc2.7-4.6 （编译64bit版工具 -m64）
-三套带glibc的gcc编译器，s805没有用系统编译器
-
-
 找不到 : export_includes
 undefined reference to 'android::ITvosAudioSettingService::asInterface   //服务没有实现接口
 互相依赖　export_include 找不到
@@ -1032,23 +874,14 @@ undefined reference to 'android::ITvosAudioSettingService::asInterface   //服�
 out/target/product/xx/obj/lib/crtbegin_dynamic.o, needed by 
 out/target/product/xx/obj/EXECUTABLES/screencap_intermediates/LINKED/screencap
 
-注意理解依赖，找不到types.h找不到问题，表面是安装了g++-multilib解决，实际是依赖安装了gcc-multilib
-multilib 用于生成多平台的代码  32bit/64bit
-
----
-电脑能装ia32-libs因为是12.04，不装adb(32bit的)运行不了
-14.04没有此包，提示替代包:
-lib32z1 lib32ncurses5 lib32bz2-1.0 (这是zlib库，与32bit程序无关)
+types.h找不到: gcc-multilib , multilib 用于生成多平台的代码 32bit/64bit
 
 找不到libstdc++.so因未安装g++-multilib
 
 1 编译android环境：
-	u14.04编4.2.x：bison flex libxml2-utils xsltproc g++-multilib gperf(makeprop.pl) libswitch-perl(Switch.pm >u14.04)
-	bison flex类似yacc的语法解释器，用于aidl；
-	build-essential  是gcc g++ 以及相应库。
-	lib32z1-dev  32位版zlib开发库，32位版主机工具(gcc -m32)
-	ia32-libs(u14.04无此包，安装gcc-multilib/g++-multilib即可)
-	lib32ncurses-dev (32位new curses) 编译 ./system/core/adb时使用此库32位版(gcc -m32，1.0.31版(android4.2.2)adb不需)
+	libxml2-utils xsltproc g++-multilib/gcc-multilib(代替ia32-libs) gperf(makeprop.pl)
+	bison flex用于aidl
+	build-essential  gcc/g++ 以及相应库。
 	libncurses-dev (u10.04可能自带，u14.04被摒弃) 编译kernel menuconfig使用
 	gawk 4.0.x (好像不需要)
 
@@ -1098,13 +931,4 @@ prebuilts/gcc/linux-x86/host/  目录删除
 
 BUILD_HOST_64bit := 1 不行，无论系统cc还是prebuild gcc，在生成package-export.apk时一堆错误
 猜测：64bit的 aapt 资源打包工具有问题:
-
-说明系统gcc 是64bit程序，可加-m32/-m64参数，那prebuild分2个版本，分别是32bit/64bit程序（？兼容32bit ubuntu系统？）
-
-删除x86_64-linux-glibc2.7-4.6还不行，因为工具一般-m32，个别的还是-m64
-情况1：
-提示找不到 x86_64-linux-glibc2.7-4.6/bin/x86_64-linux-ar
-gcc-sdk/gcc 脚本：
-# Choose 64-bit if -m64 only, -m64 appears after -m32, or neither exist (-eq)
--m32 -m64 都没有，默认-m64 
 

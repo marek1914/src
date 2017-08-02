@@ -92,8 +92,6 @@ device/amlogic/m200/aml_upgrade_package_enc.conf
 sd卡烧录配置脚本
 aml_sdc_burn.ini 
 
-4个核是一个cluter， -fpic elf   由操作系统控制，  生成1张表，核对应表。kernel工作时有kill cpu x的打印
-
 pmu指类似a20用的axp209，s805选择
 
 ppmgr: POST_PROCESS_MANAGER
@@ -101,12 +99,9 @@ ppmgr: POST_PROCESS_MANAGER
 
 设置4:3 16:9 操作:/sys/class/video/screen_mode
 
-驱动警告指针类型不兼容，是因为int与long搞混了
-
 驱动在drivers/amlogic和hardware/amlogic两处
 
-疑问：
-同时支持多个phy芯片，怎么选择呢？
+疑问： 同时支持多个phy芯片，怎么选择呢？
 
 编译问题：
 1 bt656_601_in.c :reinit_camera_dec() CONFIG_ARCH_MESON8未定义，warnings being treated as errors
@@ -276,16 +271,7 @@ rootfs-8548-ltib.jffs2	根文件体统镜像	        fc000000-ffbfffff
 默认root用户密码：root
 波特率 115200
 
-Tftpd32.exe不支持中文路径。
-
 如果开发板web服务器起不来，可能是因为hostname没有设置，在/etc/rc.sh里添加 hostname bnc8548 重启。
-
-编译工具来自http://www.freescale.com的MPC8548CDS LTIB BSP开发包MPC8548CDS_20071214-ltib.iso。也可下载ELDK的POWEPC软件开发包ppc-2008-04-01_freescale.iso(http://mira.sunsite.utk.edu/eldk/4.2/ppc-linux-x86/iso/)
-这两个开发包里面包含很多编译好的基于MPC8548的应用程序和库；这两个编译器的区别的，freescale的编译器支持浮点数仿真，eldk的不支持，有浮点数的程序用eldk的gcc编译后，运行结果是错的。
-
-85xx/bnc8548pci_defconfig  (源码原始.config与这个最接近)
-85xx/sbc8548_defconfig
-85xx/tqm8548_defconfig
 
 bootepld_cpu1_21.vpd
 epld:Erasable Programmable Logic Device
@@ -303,7 +289,6 @@ erase 0xfc000000 0xfc07ffff
 cp.b 0x1000000 0xfc000000 0x80000
 uboot最后4字节0x4bfff004是reset向量入口
 现在觉得这样写能起来，实在是万幸，起不来才对阿
-
 
 nor flash 可以用md命令显示
 
