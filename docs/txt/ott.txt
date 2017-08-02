@@ -297,24 +297,7 @@ Sample_otp_getxxxxlock
 
 ===a20 & m3 ===
 
-adb 7896
-
-A20华数U盘升级，建upgrade目录，xx.zip放在该目录中，名字任意。(银河版好像不灵)
-升级方法 根目录下建立upgrade文件夹放入升级包
-
-银河+华数适用
-adb push xx.zip /cache/update.zip
-
-adb shell 
-cd /cache
-mkdir recovery 
-cd recovery
-echo "--update_package=/cache/update.zip" >> command
-
-reboot  recovery
-
-替换apk需特别注意：apk都是拷贝过去的，在mobile目录替换完后，要在out/.../system/apk中删除原来的，这些文件脱离了make的依赖关系的管理，已经多次犯错了！
-解决办法：使用android的拷贝方式，并且每次替换要改为同名。
+A20华数U盘升级，建upgrade目录，xx.zip放在该目录中
 
 ro.serialno=
 galaxy：
@@ -383,9 +366,6 @@ mmm -B  libstagefright&&mmm -B  CedarX-Projects&&mmm -B  libmediaplayerservice
 A20华数2.0，待机时前面板灯不灭
 A20银河，待机时灯灭。
 
-
-银河版本直接adb push 无法升级cmcc2.0
-
 uboot
 a20银河版  lichee/u-boot 与 a20 cmcc2.0 版本  lichee/boot-v1.0/u-boot 内容以及目录结构类似
 当然后者较之前者有优化和改动
@@ -428,14 +408,6 @@ mobile/galaxy/apk/galaxyITVxxx.apk 等 从孙科处拷贝回来的是 ITV3.5.15 
 这个信息也可以在setting中看到。
 
 贺超编译的A20银河，没写mac，也没读序列号，但仍可看点播
-
-20140704 银河版本程序，adb打印出里面某个视频的m3u8 地址 粘贴在浏览器中，可以下载到m3u8列表文件
-打开他，复制ts文件地址如：
-http://diaodu.zjcmcc.cnbn.cn/videos/fashion/20120817/0bb343bdab79bccb9bf8be816eed361c.ts?start=0&end=1270344&hsize=41079&tag=0&v=&contentlength=861980
-就可以下载到ts文件。 说明银河现在没有加任何限制。
-如果只粘贴 http://diaodu.zjcmcc.cnbn.cn/videos/fashion/20120817/0bb343bdab79bccb9bf8be816eed361c.ts
-
-A20直播时狂打印
 
 银河HomepageActivity1.5.0.0_ZJCMCC.apk 在银河版盒子上要认证，在其他盒子上安装就没有认证过程，什么情况。
 
@@ -621,10 +593,6 @@ writeSysfs("/sys/class/gpio/mcu_standby_ctrl","2");
 
 开机按电源按键，打印 Run recovery！
 在./board/amlogic/m3_mbox/m3_mbox.c 文件里
-
-更新 bootable/recovery/.../image里的图片，开机按着电源键，进入
-的还是改图片之前的recovery， adb reboot recovery 或者恢复出厂设置，进入我改过的recovery
-系统中有2个recovery，分别在spi flash和 nand flash里
 
 执行update_reboot还是 charging_reboot，现在竟然进不去recovery了。
 
