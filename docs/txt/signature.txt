@@ -165,8 +165,6 @@ Public-key crypto is not for encrypting arbitrarily long files. One uses a symme
 
 The private key is never shared, only the public key is used to encrypt the random symmetric cipher.
 
-public key fingerprint :
-ssh-keygen -lf /path/to/key.pub
 
 Fingerprints are created by applying a cryptographic hash function to a public key. Since fingerprints are shorter than the keys they refer to, they can be used to simplify certain key management tasks
 
@@ -195,6 +193,9 @@ openssl dgst -binary -sha1 123  >sha1.bin  生成bin格式
 
 
 ------ssh-----
+public key fingerprint :  
+ssh-keygen -lf /path/to/key.pub
+
 ssh-keygen -t rsa -C "xx@xxx.com"
 
 ssh-keygen -f "/home/username/.ssh/known_hosts" -R [192.168.1.52]:29418  删除
@@ -204,7 +205,8 @@ ssh-keygen -t rsa -C "username@cyclecentury.com" 同一机器2次运行内容不
 ssh-keygen协助管理hash了的known_hosts
 ssh-keygen -F 计算机名称"找出相关的公钥：
 ssh-keygen -F www.example.net
-若要更新计算机公钥，可"ssh-keygen -R 计算机名称"删除该计算机公钥，
+
+ssh-keygen -R 计算机名称 //删除该计算机公钥，
 再"ssh 计算机名称"再进入该计算机，ssh重新下载新公钥。
 ssh-keygen -H
 

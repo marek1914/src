@@ -233,8 +233,6 @@ struct tag {
 	} u;
 };
 
-8 Hisi fastboot由u-boot修改而来，不是android的fastboot（支持usb操作）
-
 等待按键进入命令行的时间：
 可任意键进入或设定，a20是s
 
