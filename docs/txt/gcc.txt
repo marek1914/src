@@ -513,3 +513,6 @@ apt-get install gcc-4.9 g++-4.9 (自动删除了libstdc++.so.6.0.19 安装了lib
 
 gcc 4.8  
 gcc foo.c -lpthread (必须放在最后，否则提示找不到pthread函数)
+
+gcc 是64bit程序，可加-m32/-m64参数
+

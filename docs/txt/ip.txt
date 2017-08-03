@@ -174,11 +174,6 @@ errno == 90
 
 浏览器上传参考GoodReader
 
-pppoe拨号，路由器不断电的情况下，wan口ip会变化。
-m3盒子用电话线adsl拨号获得ip，在工位可ping通 106.120.10.49，可以adb connect
-在家用路由器获取ip，同在联通宽带里面应该可以访问，用3G访问不了，说明外网出口可能不是ap的wan口ip
-
-
 RFC3984  - RTP Payload Format for H.264 Video
 
 Real-time Transport Protocol (RTP) 

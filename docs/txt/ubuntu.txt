@@ -7,7 +7,9 @@ lubuntu = lxde+ubuntu
 fonts-wqy-zenhei
 
 ia32-libs u14.04无
-lib32xx 32bit版库
+lib32xx 32bit版库,如
+lib32ncurses-dev (new curses)
+lib32readline5-dev
 
 awesomewm.org  window管理器
 
