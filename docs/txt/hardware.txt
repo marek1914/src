@@ -356,9 +356,8 @@ RS485 half-duplex：RX+/TX+并联为Data+，RX-/TX-并联为Data-，MAX485是半
 ------------
 
 CDC: Communication Device Class
-Vendor ID 查询
-http://www.linux-usb.org/usb.ids
-关于ID的几点：
+Vendor ID： http://www.linux-usb.org/usb.ids
+
 1d6b  Linux Foundation (貌似是模拟设备)
 	0001  1.1 root hub
 	0002  2.0 root hub
@@ -371,7 +370,7 @@ http://www.linux-usb.org/usb.ids
 	0105  FunctionFS Gadget
 	0200  Qemu Audio Device
 
-8086  Intel Corp.  (大公司2个号，8086/8087 :-))
+8086  Intel Corp.  (大公司2个，8086/8087)
 8087  Intel Corp.
 	0020  Integrated Rate Matching Hub
 	0024  Integrated Rate Matching Hub

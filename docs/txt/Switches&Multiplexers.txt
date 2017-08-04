@@ -36,18 +36,13 @@ cd4066:4 SPST
 
 真8通道，需要128个开关，伪8通道需要 32+16 = 48个开关
 
-<<<<<<< HEAD
-
-
 
 新需求：
 smsc USB2412 1拖2 usb hub 高速 4x4mm 或 5x5mm 配合
 
 TI TUSB2136 1拖2 自带8052单片机 64pin 12x12mm
 
-
 http://www.chinafix.com/thread-1023822-1-1.html usb typeC 转换头拆机 没有芯片
-
 
 Usb2412 5元
 F321    5元
@@ -56,7 +51,6 @@ F321    5元
 所以2422 没有任何意义
 
 序列号芯片 ds2411  1元钱
-=======
 
 
 MTT HUB和STT HUB
@@ -73,4 +67,11 @@ ti hub 多数是9x9 只有 TUSB2046B  4-port 12Mbps  32qfn 5x5mm
 silicon lab 没有hub产品
 st 没有hub
 
->>>>>>> 655c036b46d2c5a2203b24af3fc3124f2b7b9499
+
+虚拟机中无法看到usb hub，只能看到具体设备
+
+
+./development/host/windows/prebuilt/usb/AdbWinUsbApi.dll
+./development/host/windows/prebuilt/usb/AdbWinApi.dll
+
+development/host/windows/usb  这里好像是源码

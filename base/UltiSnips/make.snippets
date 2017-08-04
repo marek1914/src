@@ -23,32 +23,32 @@ ${1:out}: $1.o
 	$(CC) $(CFLAGS) -o $@ $+
 endsnippet
 
-snippet if 
+snippet if "ifeq   " 
 ifeq (${1:cond0}, ${2:cond1})
 ${0}
 endif
 endsnippet
 
-snippet ifeq 
-ifeq (${1:cond0}, ${2:cond1})
-${0}
-endif
-endsnippet
-
-snippet ife
-ifeq (${1:cond0}, ${2:cond1})
-${3}
-else
-${0}
-endif
-endsnippet
-
-snippet ifdef
+snippet if "ifdef  "
 ifdef ${1:var}
 ${2}
 endif
 ${0}
 endsnippet
+
+snippet if "ifneq  " 
+ifneq (${1:cond0}, ${2:cond1})
+${0}
+endif
+endsnippet
+
+snippet if "ifndef "
+ifndef ${1:var}
+${2}
+endif
+${0}
+endsnippet
+
 
 #Function
 snippet strip
@@ -95,7 +95,7 @@ snippet addprefix
 $(addprefix ${1:prefix},${2:names...})
 endsnippet
 
-snippet if-func
+snippet if "if func"
 $(if condition,then-part[,else-part])
 endsnippet
 
