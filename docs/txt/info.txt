@@ -83,7 +83,7 @@ alphawolf 中关村智能硬件孵化器
 
 投入（计划10万）：
 2016: 4.4
-2017: 19044 (5.6)
+2017: 19254 (5.6)
 
 电脑相关： 22328 元
 macbook pro				11788
@@ -132,7 +132,11 @@ ST STM32F429I-DISC		150
 源地STM32/蓝牙/调试器	264
 源地zigbee cc2530x2		50
 源地 cc2650  x4                  130
-SensorTag CC2650		240
+SensorTag CC2650 x2		240
+DevPack XDS1100			100
+LaunchPad EK-TM4C123G	40
+LaunchPad cc2650		40
+LaunchPad MSP-EXP432P401R	30
 
 
 partical IoT x2			288
