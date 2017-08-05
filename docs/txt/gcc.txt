@@ -237,7 +237,7 @@ The executables in this directory are for internal use by the compiler and may n
 This directory should not be placed on your PATH. you should use ../../bin/ and place that directory on your PATH.
   
   
-ndk里无pthread库，pthread函数在libc.so里，故无须包含-lpthread
+ndk里无pthread库，pthread函数在libc.so里，无须包含-lpthread
 
 ndk 编译 ffmpeg ok
 ndk 编译 jpeg-turbo ok (guwb)
@@ -510,9 +510,7 @@ apt-get update
 apt-get install gcc-4.9 g++-4.9 (自动删除了libstdc++.so.6.0.19 安装了libstdc++.so.6.0.23)
 
 
+gcc foo.c -lpthread (需放在最后)
 
-gcc 4.8  
-gcc foo.c -lpthread (必须放在最后，否则提示找不到pthread函数)
-
-gcc 是64bit程序，可加-m32/-m64参数
+-m32/-m64 生成32/64bit程序
 

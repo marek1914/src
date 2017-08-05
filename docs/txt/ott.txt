@@ -227,10 +227,6 @@ o),20M(logobak),40M(fastplay),40M(fastplaybak),40M(kernel),20M(misc),500M(system
 
 编译 ./build.sh eng
 
-system/lib/
-libmstaradec.so
-libmstarvdec.so
-
 hardware/mstar/omx/ms_codecs/video/mm_asic/enc
 libmstarvenc  生成.a 所有system/lib下没有
 
@@ -242,17 +238,12 @@ hardware/mstar/libstagefrighthw/MS_OMX_Plugin.cpp  引用了这个库
 
 system/lib/ 有：
 
-libOMX.MS.Adec.so   libOMX.MS.Vdec.so   libOMX.MS.Venc.so
-libMS_OMX_Core.so 调用上面3个库
-
 ./omx/ms_omx_core/MS_OMX_Core.c:#define MS_OMX_COMPOMENT_H264_ENC "OMX.MS.AVC.Encoder"
 
 摄像头出来的yuv数据，是纯粹的，没有任何附加信息的数据，所以要知道分辨率和yuv格式
 demo 用的是  OMX_COLOR_FormatYUV420Planar
 
-
 vendor/broadcom/refsw/nexus/platforms/97439/build/platform_modules.inc
-
 
 boot命令
 macprog 50-e5-50-70-ac-32
@@ -582,13 +573,6 @@ mount -o remount /system
 修改 device/amlogic/build_id.mk
 make otapackage
 
-M3百视通版本：
-问题1：（华数，百视通都存在，同时解决）
-描述1：视频循环播放
-描述2：直播循环重复播放。点开直播的时候，开始播放很短的一段时间，然后开始重复播放这一段视频
-修改了 ./amlogic/LibPlayer/amffmpeg/libavformat 目录
-file_list.h 和 file_list2.c  文件
-
 writeSysfs("/sys/class/gpio/mcu_standby_ctrl","2");
 
 开机按电源按键，打印 Run recovery！
@@ -625,4 +609,3 @@ ImageMagick 带的 convert
 sudo apt-get install imagemagick
 
 dd.rel logo文件
-

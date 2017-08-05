@@ -51,3 +51,80 @@ CTIA耳机是兼容OMTP设备的,CTIA耳机插入OMTP设备会造成声音小且
 示波器检测，前2段是左右声道，并且都有信号，且信号一摸一样
 
 mic上一直有个2V左右的电压，但没测出信号，奇怪！
+Uv胶 封芯片
+
+1. 清洁待封装电子部件。
+2. 用点胶机将胶水点在待封装电子部件的表面，让其自然流平，确定无气泡。
+3. 紫外灯照射，直至胶水充分固化（照射时间取决于紫外灯的类型、功率、照射距离）
+
+
+模拟开关，它是开关，所以是双向的
+
+ADG804
+
+74hc4052  dual 4-channel analog multiplexer
+cd4052
+
+cd4066:4 SPST
+
+负电压怎么处理
+
+--
+手机定位方案经历3阶段：
+首先想到的是 电子标签方案， 指示灯+RF组网+按钮
+然后改为USB供电，通过1拖2 hub芯片，MCU监测数据（实现复杂）
+第二天又改为电子标签方案， c8051F321 + 电子开关切换（ch442 2单刀双掷） + 序列号芯片
+序列号芯片兼具程序保护，同时提供独一无二的序列号，
+部署的时候，随意放置，放置完成后 统计一次 序列号与位置的对应关系，然后每个手机插入后，能读到机架位置信息
+--
+
+不用 ch440 支持usb切换  4 SPDT
+
+用ch444  2 单刀4掷开关
+
+总体说，8个手机，8个U盾， 一共需要 64种组合 测试路径，如果做成 真8通道， 
+同时可以测试8个路径， 8个测试周期 全部64个组合测试完毕，  而伪8通道，
+其实同时只能测试4个路径，需要16个测试周期才能测完全部组合， 但是伪8通道，电路规模，
+所需开关数量大幅降低。
+
+真8通道，需要128个开关，伪8通道需要 32+16 = 48个开关
+
+
+新需求：
+smsc USB2412 1拖2 usb hub 高速 4x4mm 或 5x5mm 配合
+
+TI TUSB2136 1拖2 自带8052单片机 64pin 12x12mm
+
+http://www.chinafix.com/thread-1023822-1-1.html usb typeC 转换头拆机 没有芯片
+
+Usb2412 5元
+F321    5元
+
+而usb2422 最少应该10元  2422的i2c 管理接口，是device，需要连mcu 不能直接读i2c芯片
+所以2422 没有任何意义
+
+序列号芯片 ds2411  1元钱
+
+
+MTT HUB和STT HUB
+
+
+microchip 
+USB2512B/2513B/2514B 1-2/3/4 hub 6x6mm
+USB2412  5x5mm
+USB2422  4x4mm
+
+
+ti hub 多数是9x9 只有 TUSB2046B  4-port 12Mbps  32qfn 5x5mm
+
+silicon lab 没有hub产品
+st 没有hub
+
+
+虚拟机中无法看到usb hub，只能看到具体设备
+
+
+./development/host/windows/prebuilt/usb/AdbWinUsbApi.dll
+./development/host/windows/prebuilt/usb/AdbWinApi.dll
+
+development/host/windows/usb  这里好像是源码
