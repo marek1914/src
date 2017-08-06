@@ -1517,12 +1517,6 @@ Note that device numbers 204 and 205 are used for "low density serial devices"
 Show timing information on printks
 Debugging Options -> Abort compilation on any warning
 
-man udev:
-udev - Linux dynamic device management
-是linux kernel的设备管理器，管理/dev 目录的设备节点。同时处理设备添加删除时用户空间的事件。
-
-mdev
-
 ttyAMA0: Embedded ARM AMBA PL011 ports(e.g. emulated by QEMU)
 
 Linux/drivers/tty/serial/amba-pl011.c
@@ -1544,14 +1538,11 @@ mdiobus_register()
 
 mii_bus类型 bus->read 在哪里定义？
 
-platform_driver 结构体里的 probe 什么时候调用，搞清楚！
+platform_driver 结构体的 probe 什么时候调用
 
-为了更进一步理解驱动，需要搞定kernel调试技术！
+需要搞定kernel调试技术
 
 cpu_relax() 
-
-设备节点可用mknod手动创建，也可用mdev(udev)自动创建
-
 
 ==devicetree==
 http://www.arm.linux.org.uk/developer/machines/

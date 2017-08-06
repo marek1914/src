@@ -5,7 +5,7 @@ suxiang198的博客
 
 cc2531 sniffer   Ubiqua
 
-TI 收购 Chipcon(cc-xx)
+TI 收购 chipcon(cc-xx)
 
 Z-Stack support BBB
 OSAL: OS抽象层
@@ -36,6 +36,7 @@ EW8051 830/930(mac os 可用)
 cc2650 需要EWARM
 
 CC26xxWare与EmuPack:
+
 CC26xxWare is no longer released as a standalone software package
 is included in TI-RTOS
 
@@ -49,18 +50,17 @@ J1/J4 是正反对着的2个接口
 P2 是20个孔
 J2 10孔 1.27间距 是jtag输出
 
-飞线成功 可以发现源地红色2650板子
 
 TIMAC:
 
 安装CCS:
-linux版下载仅8M+，安装过程选择相应组件，再网络下载
-集成度很高，在Resource Explorer 中在线下载UART例子到～/TI目录（暂时别动）
-下载后，import的时候出错，重启，会提示有内容需要安装
-windows->preferences->ccs->products->可以看到
-再回到Resource Explorer，可以import了
+linux版下载8M+，安装过程选择相应组件网络下载
+Resource Explorer 中下载UART例子到～/TI目录
+import时出错，重启，提示有内容需要安装
+windows->preferences->ccs->products->可看到
+回到Resource Explorer，import ok
 
-XDS110 连不上，是因为权限问题：
+XDS110 连不上，是权限问题：
 
 /ccsv7/ccs_base/common/uscif/xds110$ ./xdsdfu -e
 VID: 0x0451    PID: 0xbef3
@@ -69,13 +69,10 @@ Version:       2.3.0.1
 Manufacturer:  Texas Instruments
 Serial Num:    L3003317
 
-sudo ti/ccsv7/eclipse/ccstudio    xds可以工作了，但提示需要更新固件
-直接更新失败(没看清楚，可能因为cc2650板子没上电)
+ccstudio
 
 xdsdfu -m
-xdsdfu -f firmware.bin -r
-
-成功（方法来自同级目录 README）
+xdsdfu -f firmware.bin -r （看同级目录 README）
 
 uart_echo例程
 
@@ -91,10 +88,7 @@ keil的启动文件是.s gcc和ccs的都是.c
 
 这个文件与contiki中 cc26xxware目录中的同名文件一致
 
-
 IOCPinTypeUart 是cc26xxware里面的函数， contiki里直接封装
-
-
 
 -----
 http://processors.wiki.ti.com/index.php/CC13xx_CC26xx_Tools_Overview

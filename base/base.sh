@@ -579,3 +579,22 @@ fi
 
 # adduser,addgroup 是底层工具useradd, groupadd的友好的包装
 adduser  user group # 将已存在用户user加入到已存在组group中
+
+# man udev:
+# udev - Linux dynamic *device management*
+# 管理/dev，处理设备添加删除时用户空间的事件
+# mdev
+#节点用mknod手动创建，或mdev(udev)自动创建
+
+udevadm control --reload #reload udev rule
+#or
+service udev restart #restart udev
+#等价于
+/etc/init.d/udev restart
+
+service用了start stop exec 这些命令
+
+udev脚本里的start字段的打印，在service udev start中不显示
+
+
+#install beep 用于发声

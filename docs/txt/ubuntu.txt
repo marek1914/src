@@ -349,9 +349,6 @@ killall Finder
 Alcatraz only supports Xcode 7.
 
 windows7 "MRB不行 EFI 只能 GPT"
-service udev restart 与 /etc/init.d/udev restart 本质一样
-service用了start stop exec 这些命令
-udev脚本里的start字段的打印，在service udev start中不显示（？）
 
 防火墙 ufw基于iptable
 ufw enable|disable

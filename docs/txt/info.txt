@@ -77,13 +77,16 @@ linux-mtd.infradead.org/faq/ubifs.html
 redhat.com  //min_free_kbytes
 https://docs.particle.io/datasheets/photon-datasheet
 
+wikihow.com/Measure-Inductance  测量电感
+wikihow.com/Test-a-Capacitor    测量电容
+
 http://www.wolframalpha.com
 
 alphawolf 中关村智能硬件孵化器
 
 投入（计划10万）：
 2016: 4.4
-2017: 19254 (5.6)
+2017: 19344 (5.6)
 
 电脑相关： 22328 元
 macbook pro				11788
@@ -190,6 +193,7 @@ Qfn20/28 转接板			26
 锡浆	                    15
 南孚纽扣电池等			50
 AAA电池扣               40
+ch444 cd4066 usb2412	90
 
 资料费用
 2016年VPN				158
