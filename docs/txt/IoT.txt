@@ -3,6 +3,9 @@
 
 可以VI控制的小风扇，小灯：通过USB  F321
 
+用f321做usb转串口，不用cp2102，因为我们常用的串口也很简单，只需要收发，而cp2102 是7线全功能串口，然后再配合一个 多通道切换器，这样一个minicom可以监测多个串口
+还可以模拟iic，spi等（这是我最开始想做的东西）
+
 adi: 1349@qq.com *2017J*Hun*
 
 U盾切换器 ADG804
@@ -137,76 +140,6 @@ Broadcom BCM43362 Wi-Fi chip
 STM32F205RGY6 120MHz ARM Cortex M3
 
 Pogo pin
-
-
---- silicon (cygnal) ---
-account: 134*@qq.com : 银行卡后5位*elelab
-
-F321 C2连接成功 5V加在P7 而非 P8VBUS
-7-8 脚连一起 就是USB供电模式
-
-reset后，内部时钟源 1.5MHz 
-多数时候不需要外部时钟
-
-
-
-"usb no external crystal required for full speed"  全速12MHz 对晶体精度要求比较低
-
-2排插小板：
-C2CK: 左边倒数第二针（黄线）
-C2D:  左边倒数第一针（绿线）
-
-
-
-keil/Silicon IDE
-
-SimplicityStudio-v4(win/linux/macos)   添加udev rule(我加在了xds文件里面)
-这个工具跟ti的ccs一样，非常的集成化，简化开发过程
-
-选择一个USB demo，转到一个eclips开发环境，编译时，提示keil编译器（用这个编译器编译）是评估版license
-按照提示进入 armkeil网站，填写信息，
-收到邮件（注册时的邮件）免费得到全功能license:
- We have sent your product registration information including the License ID Code (LIC) 
-via e-mail to 13xx467@qq.com.
-When you receive this e-mail, copy the License ID Code (LIC) and paste it into the New License ID 
-Code input field in the µVision License Manager Dialog — Single-User License Tab (available from the File Menu).
-邮件得到：
-PK51 Professional Developer's Kit
-For Silicon Labs Devices Only
-Support Ends 31 Mar 2019
-PC Description       : GAOJIE'S PC
-Computer ID     (CID): C86HJ-1XJUT
-
-License ID Code (LIC): TI413-ANA7N-EA7AH-9VT3M-YXSRG-4NU7E
-这应该是silicon付钱的
-
-idVendor 10c4  程序里写的是C410   lsusb 根据这个显示厂商名字，厂商名字并非在程序里面的字符串(lsusb没有搜到字符串，那么是从哪里来的呢？)
-
-实验成功，lsusb -v 显示了我修改的字符串
-
-io口直接驱动2极管，8段全亮，18mA，每段2.25mA
-
-F330 不带负载万用表测 9mA(资料25MHz 6.4mA)
-
-7段单段1.7V，用共阴级，电流由IO提供
-
-IO电压 = 电源电压
-
-C8051F321 5x5 QFN28 usb
-C8051F330 4x4 QFN20
-
-USB Debug Adapter f321实现JTAG/C2，UEC5/6 U-EC3 HID兼容免驱
-JTAG接口VCC 5V
-
-输出端口 SN74LVC125(74HC125) Buffer保护
-
-8-bit MCU(8051): bee
-
-CP2102 : USB to UART Bridge 5x5mm QFN28
-
-Si4010/Si4355 发/收
-
-
 
 ----
 DS1803 数字电位器
@@ -532,11 +465,12 @@ Enhanced Data Rate (EDR) 2.1
 Bluetooth with low energy (LE for IoT) 4.0/4.1/4.2
 
 ---
-二极管矩阵：
+发光二极管：
 普通发光二极管1.8V导通
 高亮二极管3.1V导通，2.5V也可，电流小，不亮
 蓝色高亮 2.4v 才开始亮
 
+买的绿色二极管，2.4V已经很亮，万用表测电流还不到1mA
 ------------
 Japan Solderless Terminal
 http://www.jst.com/home23.html
@@ -626,5 +560,9 @@ u8glib/sys/arduino/Chess/Chess.cpp  //这个文件是自动生成的
 
 5-3.3 V 小板  红色5V 白色3.3V输出
 
+
+
+==sgmicro 圣邦 ==
+13**@qq.com : sgmicro
 
 
