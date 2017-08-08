@@ -4,7 +4,6 @@ canonical.com
 Mark Shuttlewort ubuntu创始人
 
 lubuntu = lxde+ubuntu
-fonts-wqy-zenhei
 
 ia32-libs u14.04无
 lib32xx 32bit版库,如
@@ -12,6 +11,10 @@ lib32ncurses-dev (new curses)
 lib32readline5-dev
 
 awesomewm.org  window管理器
+
+bc - An arbitrary precision calculator language
+ntpdate - set the date and time via NTP
+tzselect - view timezones
 
 apt-get source gnome-system-monitor 获取system monitor源码到/usr/src (需dpkg-dev)
 
@@ -270,9 +273,6 @@ tnef winmail.dat
 转文件名编码：
 convmv -f gbk -t utf8 –notest *
 
-vlc中文字幕：
-subtitle/osd字体渲染选择中文，字幕编码选择gb18030
-
 nautilus: [ˈnɔ:tɪləs]鹦鹉螺 file manager and graphical shell for GNOME
 
 apache log : /var/log/apache2
@@ -293,20 +293,21 @@ gpedit.msc
 虚拟机安装win7需要20G(xp 1.5G) 太不轻量了
 
 ---
-www.debian.org [ˈdebiən]  37500+ package
+debian.org [ˈdebiən]  37500+ package
 
-Debian Alternatives System
+Debian Alternatives System // alternate 功能
 
-jessie ['dʒesɪ] debian 8
 wheezy [ˈwi:zi] debian 7
+jessie ['dʒesɪ] debian 8
 
 5分支：oldstable、stable、testing、unstable、experimental
 
 官网debian-7.6.0-armhf-netinst.iso  158M 好像不包含kernel
 debootstrap --foreign --arch armhf wheezy .
 把armv7 版基础版本的跟目录down下来了，就是linux系统的根目录结构 144M，
-这与debian-7.6.0-armhf-netinst.iso解压候的不同（这个是一个一个的包的形式）
+这与debian-7.6.0-armhf-netinst.iso解压候的不同（一个一个包形式）
 
+汉字库 fonts-wqy-zenhei
 ---
 升腾690：
 CPU: AMD G-T48N 1.4G , 1G DDR
@@ -367,7 +368,7 @@ Altium Designer 6.9
 解压Protel_DXP_2004.iso
 setup\Setup.exe 安装Protel DXP 2004
 运行DXP2004SP2补丁.exe 和 DXP2004SP2_IntegratedLibraries.exe文件
-Preference - Use localized rescources 变为简体中文版
+Preference - Use localized rescources 变简体中文
 用Protel2004_sp2_Genkey.exe,将它放在Protel_DXP_2004安装目录注册
 
 --aliyun---
@@ -376,3 +377,7 @@ htdocs/
 
 jekyll:
 编译ruby2.x 需要openssl： apt-get install libssl-dev libreadline-dev libgdbm-dev
+
+
+
+gparted (parted 图形版)

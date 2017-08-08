@@ -3,28 +3,23 @@ login:  pi:raspberry
 raspistill -o keychain.jpg -t 2000
 raspi-config
 
-Pimoroni Rainbow HAT 不错
-Raspberry Pi Pimoroni Rainbow HAT For Android Things
+Pimoroni Rainbow HAT For Android Things
 
 http://www.geeky-gadgets.com/raspberry-pi-pimoroni-rainbow-hat-for-android-things-19-12-2016/
 
 微雪lcd 3.5B (20170518)
 ./LCD35B-show  (驱动是一堆脚本，lcd显示后，hdmi无输出)
 
-gparted (parted 图形版)
-
 NOOBS : New Out Of the Box Software
 CSI :COMS Sensor Interface
 
-pi3 Wi-Fi and Bluetooth 4.1/Low Energy (LE), BCM43438
+pi3 Wi-Fi and Bluetooth 4.1 (LE), BCM43438
 
 Pi 1 :BCM2835/BCM2708  ARMv6 arm11
 Pi 2 :BCM2836/BCM2709  ARMv7 4core Cortex-A7 900MHz  1G Ram
 Pi 3 :BCM2837/BCM2710  ARMv8 4core 64bit Cortex A53 1.2GHz
 CPU家族/具体型号 内核开发者称BCM2708，树莓派称BCM2835
 
-https://publiclab.org/
-http://www.infragram.org/红外摄像
 https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget?view=all //Pi zero
 
 使用hdmi转vga连接pi，启动时必须插电源，启动后就不用电源了，why？ 与edid有关
@@ -45,18 +40,15 @@ In /boot/config.txt, add the line core_freq=250. Save and reboot!
 The GPIO UART now operates at the correct baud rate, 
 and is available at /dev/ttyS0, and NOT /dev/ttyAMA0 like before.
 
-但是自己编译的kernel加这句话，串口也不灵
-实验：自己编译的内核，echo Hello > /dev/ttyAMA0 //示波器能检测到，并且波特率确实是115200，说明用的是ttyAMA0 但设置的是ttyS0
+自己编译的kernel加这句，串口不灵
+实验：自己编译内核，echo Hello > /dev/ttyAMA0 //示波器能检测到，并且波特率确实是115200，说明用的是ttyAMA0 但设置的是ttyS0
 
 https://www.raspberrypi.org/documentation/linux/kernel/building.md  //写的好
-这篇文章中 git clone --depth=1 https://github.com/raspberrypi/linux  //这是下载master分支，一直有个顾虑，他能保证master分支一直是好的？而不用下载3.x 4.x等发布版本？
+git clone --depth=1 https://github.com/raspberrypi/linux  //如何保证master分支一直好的？而不用下载3.x 4.x等发布版本？
 
-有2个方法重编pi内核：
+重编内核：
 1 pi上编译 (慢) pi3 + class 10 SD -j4 94min
-bc:not found //（apt-get install bc）
-
-2 交叉编译
-https://github.com/raspberrypi/linux
+2 交叉编译 https://github.com/raspberrypi/linux
 
 编译器：
 Get the latest Raspberry Pi compiler
@@ -70,9 +62,8 @@ mkknlimg //perl
 
 .ko在ext4分区 4300+
 
-编译源码遇到超怪异现象：
-从github下载的.zip压缩包，include/linux/i2c-gpio.h 变为软链接，链接目标是这个文件的内容
-文件损坏的这么怪异。。。
+源码怪现象：从github下载的.zip压缩包，include/linux/i2c-gpio.h 变为软链接，链接目标是这个文件的内容
+
 ARCH=arm CROSS_COMPILE=${CCPREFIX} make bcm2835_defconfig  
 
 pi1    KERNEL=kernel
@@ -80,18 +71,13 @@ pi2/3  KERNEL=kernel7 (armv7?)
 编译kernel：github/raspberrypi 
 RPi_Upstream_Kernel_Compilation //upstream 指kernel.org
 
-键盘符号错乱需Re-mapping the keyboard ：
-sudo dpkg-reconfigure keyboard-configuration，主要是English UK 改为US ，因为系统是英国造
-
-4台 pi 组成4x4 处理器集群，网口用4线，
-使用MPI接口（搜 pi+集群）
-
-wii 手柄是蓝牙设备，可以通过 https://github.com/abstrakraft/cwiid  库，控制pi
+键盘符号错乱
+dpkg-reconfigure keyboard-configuration //Re-mapping the keyboard UK改为US(系统英国造)
 
 /dev/spidev0.0 and spidev0.1
 echo -ne "hello" > /dev/spidev0.0
 
-pin 27/28  I2C ID EEPROM  ??什么东西？
+pin 27/28  I2C ID EEPROM  // ?
 
 https://www.flashrom.org/RaspberryPi
 
@@ -114,10 +100,8 @@ wiringPi和bcm2835 C library都提供I2C API函数(靠bcm2835_init函数，用/d
 
 dd bs=4M if=xx.img of=/dev/sdx
 
-raspbian-jessie.zip(1.4G) 
-解压 raspbian-jessie.img (4G)
+raspbian-jessie.img (4G)
 dd后为： boot(60M fat) +ext4(4G)，首次开机扩展到8G
-一个版本兼容3个pi
 
 boot分区包含kernel.img 和
 bcm2708-rpi-b.dtb
@@ -126,11 +110,8 @@ bcm2708-rpi-cm.dtb
 bcm2709-rpi-2-b.dtb
 bcm2710-rpi-3-b.dtb
 
-https://www.pinterest.com/stein20070193/arduino-raspberrypi-electronics/
-
-arstechnica.com/information-technology/2012/12/10-raspberry-pi-creations-that-show-how-amazing-the-tiny-pc-can-be/
-文档 git@github.com:raspberrypi/documentation.git
-资源 https://github.com/raspberrypilearning
+文档 github.com/raspberrypi/documentation.git
+资源 github.com/raspberrypilearning
 
 i2c:
 https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
@@ -138,25 +119,13 @@ https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configurin
 i2cdetect -l 查看pi上的I2C总线
 i2ctools 使I2C设备调试更加方便
 
-apt-get install vim
-apt-get update:
-
-Hit http://mirrordirector.raspbian.org wheezy/contrib armhf Packages
-Hit http://mirrordirector.raspbian.org wheezy/rpi armhf Packages
-
 评测class 10 sd卡性能。
 DS1307 i2c接口 rtc
 
-第一次在arm平台上编译arm程序
-http://www.airspayce.com/mikem/bcm2835/group__i2c.html
-bcm2835 i2c
-http://www.airspayce.com/  为啥有bcm2835的资料呢?
-C library for Broadcom BCM 2835 as used in Raspberry Pi
-
 Rasp B+(LAN9514): lan9514 25Mhz 由soc发出
 
-D3(排线)/D4(AV输出):A7W-3d 3pin，不是三极管而是2个快速开关二极管bav99封装  
-Dual  Series  Switching  Diode 双列开关二极管
+D3(排线)/D4(AV输出):A7W-3d 3pin: 快速开关二极管bav99封装  
+Dual Series Switching Diode
 
 AV处 U10 GS4vd 5pin  不用DAC和放大器，而用pwm发声
 U4 APX803-46SAG : 3-PIN MICROPROCESSOR RESET CIRCUIT 上电或电压低于阀值时发出低电平复位。
@@ -171,16 +140,10 @@ B+声音输出：
 HDMI
 用EMI4182:common mode filter with ESD protection for HDMI(不能用于USB)
 
-USB电源，2个口用1组滤波电容(100n+47u)无fuse。805参考2个fuse+2套滤波
+USB电源，2个口用1组滤波电容(100n+47u)无fuse
 
-树莓派广告牌
-http://www.raspberrypi.org/accelerating-fourier-transforms-using-the-gpu/
-
-raspbian-wheezy无法生成turbojpeg的configure，需先在pc上生成它，在pi上运行生成makefile（有个时间错误，需要touch configure）
-pc生成configure后要tar.gz 压缩， zip不行。
-
-apt-get install ntpdate //时区
-tzselect
+raspbian-wheezy 无法生成 turbojpeg 的 configure，需先在pc上生成，pi上运行生成makefile（时间错误需touch configure）
+pc生成configure后要tar.gz 压缩，zip不行
 
 Camera Board v2.1 (8MP, 1080p)
 Camera Board v1.3 (5MP)
@@ -229,7 +192,7 @@ Please specify which chip definition to use with the -c <chipname> option.
 需要选择芯片：
 #flashrom -p linux_spi:dev=/dev/spidev0.0 -c "MX25L1605A/MX25L1606E/MX25L1608E" -r out.rom //读出2M数据
 
-==================
+===
 Beaglebone Black/Green
 
 http://192.168.7.2:3000
@@ -238,49 +201,4 @@ AM3359
 Debian (lxde桌面)
 Ubuntu
 Cloud9 IDE on Node.js BoneScript library
-
-===arduino===
-Arduino / Genuino
-avr-gcc
-ICSP烧写器
-ATmega328P 8k flash+768ram
-32k(ide显示32256而非32768) isp flash 10000次
-1k eeprom 100000次
-2k SRAM
-Uno 8-bit 16MHz
-
-增强板：
-Arduino MEGA2560 8-bit AVR 16MHz
-Arduino Zero 32-bit ARM Cortex-M0 48MHz
-Arduino Due  32-bit ARM Cortex-M3 84MHz
-
-apt-get install arduino arduino-core
-UNO: ATmega328P(main)+atmega16u2（cpu实现usb转uart）
-
-Arduino Bootloader
-
-呼吸灯：0-255-0-255 到0后再到1亮度是突变的，视觉的均匀不等于pwm均匀
-
-IED 设置工程目录到其他位置： File->preference
-运行 ./arduino 启动程序
-
-/install.sh 
-Installed Arduino IDE icons on menu and desktop
-menu里就会出现，原理详见 install.sh的实现
-
-模拟usb HID设备:
-Atmega16u2的bootloader下载：进入DFU模式,烧写bootloader
-
-Atmega16u2固件：
-keyboard :Arduino-keyboard-0.3.hex
-usb转串口:Arduino-usbserial-uno.hex
-
-classic SPI library for Arduino
-
------
-typedef bool boolean;
-typedef uint8_t byte;
-
-
-Arduino Yun: Atheros AR9331 + AVR microcontroller
 

@@ -15,6 +15,11 @@ TIOBE
 
 getchip.com  // C.H.I.P  Allwinner CPU
 
+github.com/abstrakraft/cwiid  //wii 蓝牙手柄  
+airspayce.com/mikem   //个人blog 包含bcm2583 arduino 很好的资料
+
+raspberrypi.org/accelerating-fourier-transforms-using-the-gpu //树莓派广告牌
+
 android thing:
 http://www.jianshu.com/p/05c6f5b32387
 
@@ -22,8 +27,10 @@ stackoverflow.com
 mikewootc.com //wuyuntao
 jmcglone.com/about //github page jekyll
 
-electroschematics.com  //优质电路图
+electroschematics.com  优质电路图
+infragram.org          红外摄像
 
+publiclab.org          监测环境
 
 youtube:
 en.savefrom.net //download

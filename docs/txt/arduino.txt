@@ -1,0 +1,45 @@
+===arduino===
+Arduino / Genuino
+avr-gcc
+ICSP烧写器
+ATmega328P 8k flash+768ram
+32k(ide显示32256而非32768) isp flash 10000次
+1k eeprom 100000次
+2k SRAM
+Uno 8-bit 16MHz
+
+增强板：
+Arduino MEGA2560 8-bit AVR 16MHz
+Arduino Zero 32-bit ARM Cortex-M0 48MHz
+Arduino Due  32-bit ARM Cortex-M3 84MHz
+
+apt-get install arduino arduino-core
+UNO: ATmega328P(main)+atmega16u2（cpu实现usb转uart）
+
+Arduino Bootloader
+
+呼吸灯：0-255-0-255 到0后再到1亮度是突变的，视觉均匀不等于pwm均匀
+
+IED 设置工程目录到其他位置： File->preference
+运行 ./arduino 启动程序
+
+/install.sh 
+Installed Arduino IDE icons on menu and desktop
+menu里就会出现，原理详见 install.sh的实现
+
+模拟usb HID设备:
+Atmega16u2的bootloader下载：进入DFU模式,烧写bootloader
+
+Atmega16u2固件：
+keyboard :Arduino-keyboard-0.3.hex
+usb转串口:Arduino-usbserial-uno.hex
+
+classic SPI library for Arduino
+
+-----
+typedef bool boolean;
+typedef uint8_t byte;
+
+
+Arduino Yun: Atheros AR9331 + AVR microcontroller
+
