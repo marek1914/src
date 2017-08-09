@@ -1,3 +1,8 @@
+tty显示中文方法：
+1 内核汉化补丁，比较麻烦
+2 虚拟终端 fbterm(ok)  //zhcon不好用
+
+
 libxx-dev(.h/.a)
 pkg-config
 canonical.com

@@ -61,6 +61,29 @@ cscope -bkq -i cscope.files
    noticeably faster lookup performance for large projects.
 -i all files listed in namefile
 
+
+
+默认对 c++ 支持不好  :h cs 可见：
+Also you can download cscope 13.x and mlcscope 14.x (multi-lingual cscope
+which supports C, C++, Java, lex, yacc, breakpoint listing, Ingres, and SDL)
+from World-Wide Exptools Open Source packages page:
+
+V15.8，已扫描 .cpp，但不识别 namespace 关键字包裹部分，去掉namespace 就好了
+导致 调用谁 和 被谁调用 命令不能用，但 s命令即 搜索字符串可用
+实际上当时用 source insight 确定谁调用这个函数，也是全局搜索的
+
+我修改了cscope(fscan.l 和 scan.l 仿照class 增加 namespace)，能识别 
+namespace android {
+}
+
+但匿名namespace 和 嵌套namespace 仍然无法识别
+
+
+ctags -R --c++-kinds=+px --fields=+iaS --extra=+q   // C++ 支持
+
+
+
+
 :helptags {dir} 
 
 默认插件：
