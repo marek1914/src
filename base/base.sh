@@ -577,7 +577,7 @@ fi
 置于/etc/profile.d/
 
 
-# adduser,addgroup 是底层工具useradd, groupadd的友好的包装
+# adduser,addgroup 是底层工具useradd, groupadd的包装
 adduser  user group # 将已存在用户user加入到已存在组group中
 
 # man udev:
@@ -598,3 +598,10 @@ udev脚本里的start字段的打印，在service udev start中不显示
 
 
 #install beep 用于发声
+
+
+bc - An arbitrary precision calculator language
+ntpdate - set the date and time via NTP
+tzselect - view timezones
+
+parted / gparted

@@ -1,3 +1,5 @@
+/data/local/tmp shell权限可访问
+
 dumpsys meminfo com.xx.test  //查看内存使用
 mstar，bootanim在init.rc里改为system uid， bootanimation从8s延长到15s
 改为graphics uid ok（new时不返回）
@@ -174,7 +176,6 @@ int property_set(const char *key, const char *value);
 /system/default.prop
 /data/local.prop
 最后加载的属性保持在/data/property中（？）
-
 
 net.dns1 = 202.106.0.20 //设置dns
 
@@ -768,26 +769,15 @@ EthernetManager.class
 修改了framework目录下的某个文件的编译过程(技巧：故意将java源码改错助于露出端倪)：
 以下路径前缀默认： out/target/common/obj/JAVA_LIBRARIES
 
-java-source-list这个文件是如何生成的？
-framework_intermediates/classes 这个目录的内容会变化，我修改了framework下的某个文件，然后编译make systemimage
+java-source-list 文件如何生成？
+framework_intermediates/classes 目录内容会变化，修改framework下某文件，然后编译make systemimage
 然后盯着framework_intermediates这个目录，classes一出现就立即复制，捕捉到了java-source-list这个文件
-这个文件包含了framework目录下2100多个java文件，怎么生成的？
-仅仅解压class.jar 并没有这个文件，后面的部分是靠：
+文件包含framework下2100多java文件
+仅解压class.jar 并没有这个文件，后面的部分是靠：
 find ./framework_intermediates/src -name '*.java' >> ./framework_intermediates/classes/java-source-list; 
-追加的，那么前面的呢？
-在./core/definitions.mk 这里处理
-找到根源了：# Common definition to invoke javac on the host and target.
-看定义：
-
-靠dump-words-to-file 生成 java-source-list
-
-显示配备了这些device 最后的sdk/bash 是什么？
-
-prebuilt 和 prebuilts 两个目录都需要，删除prebuilt 系统编译不过去
-在这2个目录中删除了一些不用的编译器，比如过时的arm版本，x86编译器等。
 
 c++的server都是由init启动
-关于权限问题，xml可以制定 shared uid
+关于权限问题，xml可以指定 shared uid
 
 system权限 1000 有权访问 apk目录吗？
 
@@ -833,7 +823,7 @@ include $(CLEAR_VARS)
 LOCAL_FORCE_STATIC_EXECUTABLE := true /*init工程加了这个*/
 
 include $(BUILD_EXECUTABLE)
-/* BUILD_EXECUTABLE:= $(BUILD_SYSTEM)/executable.mk 此文件判断 LOCAL_FORCE_STATIC_EXECUTABLE 决定静态链接还是动态链接（那么能否既静态又动态呢？）*/
+/* BUILD_EXECUTABLE:= $(BUILD_SYSTEM)/executable.mk 此文件判断 LOCAL_FORCE_STATIC_EXECUTABLE 决定静态链接还是动态链
 /* 用-l 加库跟 变成.o 加在文件列表中是不同的，-l只链接用到的函数，那么.o呢？ */
 
 LOCAL_MODULE_CLASS := ETC  //安装到system/etc目录
@@ -883,7 +873,6 @@ types.h找不到: gcc-multilib , multilib 用于生成多平台的代码 32bit/6
 
 2 jdk
 	open:openjdk-6/7-jdk  : /usr/lib/jvm/java-6-openjdk-amd64
-
 	sun: oracal官网注册下载:
     jdk-6u35-linux-x64.bin(jdk1.6第35个版本)，执行并拷贝到/usr/lib/jvm(与openjdk并列)
     PATH=$PATH:/usr/lib/jdk1.6.0_35/bin 或：
@@ -893,8 +882,6 @@ types.h找不到: gcc-multilib , multilib 用于生成多平台的代码 32bit/6
 
 4 android 4.4.2 编译主机工具用prebuilts/gcc/linux-x86/host自带gcc，而4.0.4用系统gcc
 用prebuilts/tools/gcc-sdk/gcc  脚本引导到源码自带编译器
-
-4.0.4 
 
 PRIVATE_CC := $(LOCAL_CC)
 HOST_CC 在 select.mk:

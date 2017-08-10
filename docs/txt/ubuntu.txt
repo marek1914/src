@@ -1,19 +1,18 @@
-libxx-dev(.h/.a)
-pkg-config
-canonical.com
-Mark Shuttlewort ubuntu创始人
+tty显示中文方法：
+1 内核汉化补丁，比较麻烦
+2 虚拟终端 fbterm
 
 lubuntu = lxde+ubuntu
-fonts-wqy-zenhei
+
+pkg-config
+canonical
 
 ia32-libs u14.04无
 lib32xx 32bit版库,如
 lib32ncurses-dev (new curses)
 lib32readline5-dev
 
-awesomewm.org  window管理器
-
-apt-get source gnome-system-monitor 获取system monitor源码到/usr/src (需dpkg-dev)
+awesomewm 窗口管理器
 
 sudo pip install shadowsocks
 sslocal -c ~/tt.txt
@@ -41,7 +40,6 @@ libncurses5 libncurses5-dev libncursesw(wide character support)
 ncurses-devel(linux make menuconfig时提示,实际在ubuntu上应该装libncurses5-dev)
 http://askubuntu.com/questions
 
-dpkg:package manager for Debian
 apt:Advanced Package Tool
 
 Suggested packages:
@@ -58,8 +56,10 @@ apt-get autoremove 自动删除没用的依赖包 --purge
 apt-get update //错误时需删除 apt/lists/partial/ apt/mirrors/partial/
 apt-get upgrade 更新所有已安装软件
 add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ hardy multiverse"
-apt-cache
 apt-add-repository ppa:user/repository  //Launchpad PPA (/etc/apt/sources.list.d)
+
+apt-get source xxx //下载源码 不用sudo
+apt-cache showsrc xxx 
 
 Package 包括 amd64/i386/Translation-en(?)
 Failed to fetch http://.../Packages (实际此路径存放 Packages.bz2 和 Packages.gz)
@@ -80,22 +80,28 @@ virtual Box
 3) File->Preference->General->Default Machine Folder 可选择非home/user
 5) 4.1.12版有错误，命令行运行，提示需安装virtualbox-ose-dkms和linux-headers-generic
    	/dev/vboxdrv does not exist，按提示：/etc/init.d/vboxdrv setup 找不到vboxdrv。
-	官网下载64位deb包安装，vboxdrv命令有了，但setup失败，查dmesg有 vboxdrv: Unknown symbol mcount
-	通过grub选择老版本kernel仍不行，需要gcc4.6(之前被切到4.4）
+	下载64位deb包安装，vboxdrv命令有了，但setup失败，dmesg: vboxdrv: Unknown symbol mcount(need gcc4.6)
 6) 设置共享文件夹自动mount，fs类型vboxsf，默认不支持symbolic link
 	ln: creating symbolic link `xx': Read-only file system,（拷贝带链接目录时）执行：
 	VBoxManage setextradata VM_NAME VBoxInternal2/SharedFoldersEnableSymlinksCreate/SHARE_NAME 1
 	VM_NAME是虚拟机名，SHARE_NAME是共享文件夹名，重启
-7) 个别程序需将文件拷至虚拟机目录，在共享ubuntu目录执行异常。已知的：winrar直接提示错误，Phoenixcard，uboot部分烧不进入。
+7) 个别程序需将文件拷至虚拟机目录，如 winrar
 8) Unsupported version 14 of data unit 'vga' 解决：右击虚拟机列表选：Discard saved state...
 9) virtualbox 4.3.10升级到4.3.34，xp无法启动，addition也升级4.3.34即可
 10) Guest Additions
 
-1) dpkg
+1) dpkg : package manager for Debian
 	-l List packages
 	-i Install //可能警告降级
 	-r Remove
 	#不同大版本可共存，小版本不能
+	
+	某应用不更新：
+	dpkg --set-selections  输入iptux hold
+	dpkg --get-selections  见iptux变hold状态
+	
+	dpkg-dev
+	dpkg-source: Debian source package (.dsc) manipulation tool
 	
 2) 包管理
 	http://pkgs.org
@@ -240,10 +246,6 @@ fi
 
 U14.04 System program problem detected 提示：/etc/default/apport enabled=0
 
-某应用不更新：
-sudo dpkg --set-selections  输入iptux hold
-sudo dpkg --get-selections  可见iptux变hold状态
-
 pci转串口卡
 lspci -v
 apt-get install setserial
@@ -270,9 +272,6 @@ tnef winmail.dat
 转文件名编码：
 convmv -f gbk -t utf8 –notest *
 
-vlc中文字幕：
-subtitle/osd字体渲染选择中文，字幕编码选择gb18030
-
 nautilus: [ˈnɔ:tɪləs]鹦鹉螺 file manager and graphical shell for GNOME
 
 apache log : /var/log/apache2
@@ -293,20 +292,21 @@ gpedit.msc
 虚拟机安装win7需要20G(xp 1.5G) 太不轻量了
 
 ---
-www.debian.org [ˈdebiən]  37500+ package
+debian.org [ˈdebiən]  37500+ package
 
-Debian Alternatives System
+Debian Alternatives System // alternate 功能
 
-jessie ['dʒesɪ] debian 8
 wheezy [ˈwi:zi] debian 7
+jessie ['dʒesɪ] debian 8
 
 5分支：oldstable、stable、testing、unstable、experimental
 
 官网debian-7.6.0-armhf-netinst.iso  158M 好像不包含kernel
 debootstrap --foreign --arch armhf wheezy .
 把armv7 版基础版本的跟目录down下来了，就是linux系统的根目录结构 144M，
-这与debian-7.6.0-armhf-netinst.iso解压候的不同（这个是一个一个的包的形式）
+这与debian-7.6.0-armhf-netinst.iso解压候的不同（一个一个包形式）
 
+汉字库 fonts-wqy-zenhei
 ---
 升腾690：
 CPU: AMD G-T48N 1.4G , 1G DDR
@@ -333,7 +333,7 @@ sudo port clean openssl
 sudo pip install pyserial
 
 Minicom:
-Meta-z 代表 esc+z
+Meta-z :esc-z
 nodejs:
 /usr/local/bin/node
 /usr/local/bin/npm
@@ -367,7 +367,7 @@ Altium Designer 6.9
 解压Protel_DXP_2004.iso
 setup\Setup.exe 安装Protel DXP 2004
 运行DXP2004SP2补丁.exe 和 DXP2004SP2_IntegratedLibraries.exe文件
-Preference - Use localized rescources 变为简体中文版
+Preference - Use localized rescources 变简体中文
 用Protel2004_sp2_Genkey.exe,将它放在Protel_DXP_2004安装目录注册
 
 --aliyun---
@@ -376,3 +376,4 @@ htdocs/
 
 jekyll:
 编译ruby2.x 需要openssl： apt-get install libssl-dev libreadline-dev libgdbm-dev
+
