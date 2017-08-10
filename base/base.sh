@@ -598,3 +598,10 @@ udev脚本里的start字段的打印，在service udev start中不显示
 
 
 #install beep 用于发声
+
+
+bc - An arbitrary precision calculator language
+ntpdate - set the date and time via NTP
+tzselect - view timezones
+
+parted / gparted
