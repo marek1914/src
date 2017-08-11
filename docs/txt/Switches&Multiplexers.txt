@@ -122,3 +122,46 @@ st 没有hub
 ./development/host/windows/prebuilt/usb/AdbWinApi.dll
 
 development/host/windows/usb  这里好像是源码
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Issue with USB2514
+Hi, I have designed a board with USB2514 and now i see that though all configurations are correct and making sure device is not in reset, there is no clock signal on the pin. I see that PLLFILT line doesnt have any voltage on the pin. I checked on either sides of the crystal and i dont see any signal. Can anyone tell me if there needs to be a 1.2V or something on the PLLFILT line. I have made sure that teh device has power supply of 3.3V even on PLL3V3 pin. Still no clock signal when probed on a scope. Its a 24MHz crystal I have connected.
+
+
+Normal Operation!
+When the USB2514B first powers up, it will start enumeration but if there is no host processor, nor host processor software running, it will wait 100mS then go back to sleep.  This is done automatically to save power.
+With USB2514B PLLFILT is at 1.2V when running.  It will be at 0V when the PLL shuts down.
+USB2514 (older device) PLLFILT is 1.8V. 
+
+
+
+另外一个引脚 量到了1.2V
+PLLFILT 应该量到1.8V
+
+
+Yes, the internal 1.8V regulator is not turning on.
+
+
+最后 24MHz 勉强出来了， 但是只有0.5V左右，  PLLFILT 也只量到0.5V  这2个值应该是一致的
+
+
+必须插上USB才出来。
