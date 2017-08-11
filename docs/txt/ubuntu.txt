@@ -28,7 +28,6 @@ sudo proxychain apt-get update //ok
 proxychain sudo apt-get update //no!
 
 AdobeIllustrator
-kolourpaint 类似画图板工具
 ImageMagick 
 SpeedCrunch 高精度计算器
 nautilus-open-terminal
@@ -377,3 +376,19 @@ htdocs/
 jekyll:
 编译ruby2.x 需要openssl： apt-get install libssl-dev libreadline-dev libgdbm-dev
 
+
+修改语言：
+/etc/default/locale 
+#LANG="zh_CN.UTF-8"
+#LANGUAGE="zh_CN:zh"
+
+LANG="en_US.UTF-8"
+LANGUAGE="en_US:en"
+
+local-gen
+
+针对单独用户修改，在.profile中单独设置这2个变量
+
+
+
+ 

@@ -12,6 +12,7 @@ set dict+=~/Work/src/vim/dict
 set dict+=~/Work/src/vim/zh
 set dict+=~/Work/src/vim/makefile_dict
 
+set rtp+=~/.vim/other
 set rtp+=~/.vim/tagbar
 set rtp+=~/.vim/ultisnips
 set rtp+=~/.vim/vim-snippets
@@ -19,6 +20,8 @@ set rtp+=~/.vim/lilypond
 set rtp+=~/.vim/omnicppcomplete
 set rtp+=~/.vim/nerdtree
 set rtp+=~/.vim/pydiction/after
+
+set tags+=~/.vim/other/sysinc
 
 set complete=.,w,b,u,k,t "help cpt
 set hls
@@ -28,7 +31,6 @@ let g:netrw_banner=0
 "let g:netrw_browse_split=4
 "let g:netrw_winsize=25
 "let g:netrw_liststyle=3
-set tags+=~/Work/src/base/sysinc/tags
 nmap <F8> :Tagbar<CR>
 nmap <F10> :NERDTree<CR>
 "imap /* /*   */<ESC>hhhi

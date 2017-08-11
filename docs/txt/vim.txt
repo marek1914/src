@@ -6,6 +6,12 @@ ignorecase/noic 忽略大小写
 .c文件用2个空格替换tab:
 // vim:set ts=2 sw=2 expandtab:
 
+
+:e foo.c   #此时e是 edit
+:e dir     #此时e是 explore
+
+set tags+=~/foo/bar/tags
+
 v characterwise-visual
 V linewise-visual
 CTRL-V blockwise-visual
@@ -85,6 +91,7 @@ ctags -R --c++-kinds=+px --fields=+iaS --extra=+q   // C++ 支持
 
 
 :helptags {dir} 
+:helptags $VIMRUNTIME/doc #生成所有 (系统目录的doc无写权限)
 
 默认插件：
 /usr/share/vim/vim74/ 

@@ -1,5 +1,10 @@
 /data/local/tmp shell权限可访问
 
+system/core/libutils/FileMap.cpp
+system/core/libutils/Threads.cpp
+
+frameword/base/libs/androidfw/ZipFileRO.cpp
+
 dumpsys meminfo com.xx.test  //查看内存使用
 mstar，bootanim在init.rc里改为system uid， bootanimation从8s延长到15s
 改为graphics uid ok（new时不返回）
@@ -114,7 +119,7 @@ SUBSYSTEM=="usb", ATTR{idVendor}=="17ef", ATTR{idProduct}=="7435", MODE="0666" O
 ~/.android/adb_usb.ini (must!)
 persist.service.adb.enable=1 //开启调试模式
 ro.adb.secure = 1// offline，弹出提示框
-adb root
+adb root  -- restarts the adbd daemon with root permissions
 adb remount
 adb devices //List of devices attached
 adb kill-server 
@@ -126,6 +131,10 @@ adb get-state 检查是否成功
 
 adb -s devicename //多设备连接时选择
 adb logcat <=>  adb shell; logcat 其他命令同理
+
+
+adb reboot bootloader|recovery //可在非root用户下执行
+
 
 Viewing stdout and stderr:
 setprop log.redirect-stdio true
@@ -268,11 +277,6 @@ public interface Runnable {
 
 dalvik没有使用java字节码而是自己又定义了一套指令集
 java指令集从0，1，2排到0xC9如： x4c astore_1
-
-1 /dalvik/vm/Thread.c
-2 dalvik/vm/mterp/ 各平台的汇编实现
-
-java线程对应linux线程，从Thread.start 最终调用到 java_lang_VMThread.c 然后dvmCreateInterpThread
 
 ---
 libcore

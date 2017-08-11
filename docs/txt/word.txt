@@ -81,7 +81,6 @@ PPB: persistent protection bit
 LWP: light weight process
 NUMA: Non-Uniform Memory Access(or Architecture)
 RDFT: Real Discrete Fourier Transform
-TLS :Thread-local storage
 
 short/fair/good/strong  密码
 silicon valley

@@ -1,0 +1,73 @@
+*c.txt*
+
+                                              *c-base* *cb*
+char * const s;
+const char * s;
+char const * s;
+
+Reserved words                                *c-reserve* *c-res*
+C89(32):
+unsigned  return  while  auto  int
+register  signed  union  case  for
+continue  sizeof  break  enum  if
+volatile  double  short  long  do
+          switch  const  goto
+default   struct         else
+typedef   extern         char
+          static         void
+
+C99(+5):
+_Bool _Complex  _Imaginary inline restrict
+
+Operator precedence            Associativity
+-----------------------------------------------
+() [] -> .
+! ~ ++ -- - (type) * & sizeof	right to left
+* / %
++ -
+<< >>
+< <= > >=
+== !=
+&
+^
+|
+&&
+||
+?:                              right to left
+= += -= etc.                    right to left
+,
+
+classification:
+arithmetic: +, -, *, /, %
+assignment: = += -= etc.
+bitwise logic: ~, &, |, ^
+bitwise shifts: <<, >>
+boolean logic: !, &&, ||
+conditional evaluation: ? :
+equality testing: ==, !=
+increment and decrement: ++, --
+order relations: <, <=, >, >=
+
+c99 std lib <24>                                       *c-lib*
+C:   /usr/include/
+C++: /usr/include/c++ <cassert>
+<assert.h>  <complex.h>  <ctype.h>     <errno.h>
+<fenv.h>    <float.h>    <inttypes.h>  <iso646.h>
+<limits.h>  <locale.h>   <math.h>      <setjmp.h>
+<signal.h>  <stdarg.h>   <stdbool.h>   <stddef.h>
+<stdint.h>  <stdio.h>    <stdlib.h>    <string.h>
+<tgmath.h>  <time.h>     <wchar.h>     <wctype.h>
+
+Postfix Increment Operator                            *c-increment* *c-inc*
+*s++; // *(s++);
+*++s;
+(*s)++;
+++*s;
+
+C99 P67
+i = ++i + 1; a[i++] = i; //the behavior is undefined
+i+++i; i+i++;
+
+
+
+vim: tw=80

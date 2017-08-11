@@ -627,10 +627,12 @@ p    =0x7ffdd9489758  //argument vector arra
 	test(&bar);
 
 //get file size 
-
+//这是比较正统的方法，android里也这样用
 fd = open("foo", O_RDONLY);
 len = lseek(fd, 0, SEEK_END);
-  	
+
+// 也可 stat, fstat, lstat
+
 uint16_t crc; (uint8_t)crc>>8; // 变为0
 
 //无符号有符号的变换  单字节 +- 0x80  双字节 +- 0x8000

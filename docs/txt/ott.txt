@@ -155,9 +155,6 @@ mstar.videoadvert.finished
 init.svc.bootanim  //服务执行完，退出了这个值就会变为stopped，可以出现service.bootanim.exit为0但此值stopped的情况
 ctl.start bootanim
 
-CheckMbootLogoThread 函数在
-mi/clippers/bionic/UHD/bin/MiSysSrv 没源码
-
 bootanimation检测退出：service.bootanim.exit
 
 -------------------------
@@ -577,8 +574,6 @@ writeSysfs("/sys/class/gpio/mcu_standby_ctrl","2");
 
 开机按电源按键，打印 Run recovery！
 在./board/amlogic/m3_mbox/m3_mbox.c 文件里
-
-执行update_reboot还是 charging_reboot，现在竟然进不去recovery了。
 
 uboot修改mac地址 setenv ethaddr= 新mac
 
