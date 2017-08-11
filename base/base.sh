@@ -527,6 +527,9 @@ cp命令默认是覆盖同名文件的，除非加上 -n (--no-clobber) 选项
 CC="ccache arm-linux-androideabi-gcc"  or
 ln -s /usr/bin/ccache /usr/local/bin/gcc
 
+ln -sf /foo/bar/  ~/foo/foobar #目标是目录时要以/结束，否则出现目标目录循环嵌套链接，why？
+
+
 busybox devmem 读写 /dev/mem(1-4byte)
 cat /dev/mem
 dd if=/dev/mem skip

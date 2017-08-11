@@ -69,5 +69,4 @@ i = ++i + 1; a[i++] = i; //the behavior is undefined
 i+++i; i+i++;
 
 
-
-vim: tw=80
+vim: tw=78 ts=8 sw=4 sts=4 et ft=help

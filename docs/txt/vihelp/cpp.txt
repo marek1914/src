@@ -30,3 +30,5 @@ Thread(bool canCallJava = true);
 否则编译提示：
 error: constructor for 'android::AudioPlayer' must explicitly initialize the base 
 class 'android::Thread' which does not have a default constructor
+
+vim: tw=78 ts=8 sw=4 sts=4 et ft=help
