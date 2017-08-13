@@ -102,16 +102,11 @@ data目录是system权限 system 会挂载成 ro 形式。
 用户名@机器名
 shell@orange:/ $
 但是有su程序，可以su
-ps看，一个
-/system/bin/sh  最前面显示root，另一个显示shell
-我的盒子：
-root@orange:/ #
 
 aapt :Android Asset Packaging Tool
 frameworks/base/tools/aapt
 
 aapt dump badging xx.apk
-
 
 /etc/udev/rules.d/51-android.rules
 SUBSYSTEM=="usb", ATTR{idVendor}=="17ef", ATTR{idProduct}=="7435", MODE="0666" OWNER="gaojie"
@@ -165,8 +160,6 @@ am bmgr bu ime input monkey pm svc 是shell脚本
 INSTALL_PARSE_FAILED_NO_CERTIFICATES  //没有签名？？ 用platform.pk8 签名就好了
 dumpsys package  可以打印很多信息
 
-====
-
 ==property==
 
 ro.build.version.incremental=1.0.19 版本
@@ -210,9 +203,6 @@ ACTION_BOOT_COMPLETED = "android.intent.action.BOOT_COMPLETED"
 需要RECEIVE_BOOT_COMPLETED权限
 sys.boot_completed  属性
 frameworks/搜索BOOT_FINISHED  找到流程
-
-3 测试 TestSurfaceview的时候 must voerride a superclass method 网上说 是java1.5不支持@Override 改为1.6即可 但是Apidemo 也有@Override 为什么就可以呢？
-在Preference->Java->compiler 中改为1.6 果然编译通过并且也可以在2.2 AVD中运行
 
 1 setting默认设置在framework里面修改，比如默认ip地址，画面尺寸等。
 core/java/android/setdisplayattr/SetDisplayAttrService.java
@@ -333,21 +323,16 @@ frameworks/base/preloaded-classes 指定zygote预加载的类，所有apk子进�
 模拟按键
 KeyEvent mKeyEvent= new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK);//new 按键
      onKeyDown(mKeyEvent.getKeyCode(),mKeyEvent);//派发给handler
-删除了qemu里面的arm和x86的kernel结果：
-No rule to make target `prebuilts/qemu-kernel/arm/LINUX_KERNEL_COPYING', needed by `out/target/product/generic_mips/obj/NOTICE_FILES/src/kernel.txt'
-/generic_mips/obj/NOTICE_FILES/src/ 这个目录存放各个重要开发包的NOTICE，比如NOTICE_FILES/src/system/lib/libgif.a.txt
+
 截屏
 frameworks/base/cmds/ 
 screencap > /cache/1.bin (fb内容)
 screencap   /cache/1.png
-可以抓视频层
+可抓视频层
 screenshot                                                   
 -s: play a sound effect to signal success
 -i: autoincrement to avoid overwriting filename.png
 screenshot -i x.png (x-1.png x-2.png x-3.png...)
-
-M3执行screencap 得正确截图，用screenshot得到1920x1080图，只有1280x720部分有效其余空白。
-
 
 I = Interface defines an object that will be accessible over binder
 B = Base class implementation 
@@ -510,14 +495,6 @@ systemimage: ext4
 
 生成system.img在build/core/Makefile中
 
-# $(1): output file
-define build-systemimage-target
-  @echo "Target system fs image: $(1)"
-  @mkdir -p $(dir $(1)) $(systemimage_intermediates) && rm -rf $(systemimage_intermediates)/system_image_info.txt
-  $(call generate-userimage-prop-dictionary, $(systemimage_intermediates)/system_image_info.txt)
-  $(hide) PATH=$(foreach p,$(INTERNAL_USERIMAGES_BINARY_PATHS),$(p):)$$PATH build_image.py \
-      $(TARGET_OUT) $(systemimage_intermediates)/system_image_info.txt $(1)
-endef
 
 Yaffs2：
 M3 external/yaffs2 生成HOST程序mkyaffs2image
@@ -738,12 +715,6 @@ latinime.apk是手机自带的文字输入法,如果你安装有其他输入法,
 build/core/java.mk:37: *** cts/apps/CtsVerifier: Invalid LOCAL_SDK_VERSION 'current' Choices are: . Stop.
 原因是 prebuilt目录没有建立
 
-telephony-common
-mms-common 
-这些模块应该不要编译
-
-ffmpeg目录packages/amlogic/LibPlayer/amffmpeg/
-
 python文件ota_from_target_files :
 制作升级包或增量包(-i)
 
@@ -884,7 +855,7 @@ types.h找不到: gcc-multilib , multilib 用于生成多平台的代码 32bit/6
 	update-alternatives --install "/usr/bin/javac" "java" "/usr/lib/jvm/jdk1.6.0_35/bin/javac" 1
 	java/javac 切换到sun，其他仍用open可编ics
 
-4 android 4.4.2 编译主机工具用prebuilts/gcc/linux-x86/host自带gcc，而4.0.4用系统gcc
+
 用prebuilts/tools/gcc-sdk/gcc  脚本引导到源码自带编译器
 
 PRIVATE_CC := $(LOCAL_CC)
