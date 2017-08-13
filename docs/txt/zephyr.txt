@@ -1,1 +1,6 @@
 zephyrproject.org
+
+freertos  Tickless (无滴答模式)
+
+zephyr 在1.8 也加入tickless模式
+
