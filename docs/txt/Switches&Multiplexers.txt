@@ -165,3 +165,11 @@ Yes, the internal 1.8V regulator is not turning on.
 
 
 必须插上USB才出来。
+
+==== 0812 ===
+1 飞线成功  p26 12k必须焊接
+2 不插usb，只要供电，也会有24MHz 晶振
+3 识别出 0424:2412 Standard Microsystems Corp. 
+4 没有焊接12k的时候，示波器可以看到12MHz的full speed波形
+5 焊接12k后，480M，示波器看不到了
+
