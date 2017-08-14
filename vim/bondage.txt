@@ -1,7 +1,5 @@
 abdomen
 ability
-able
-about
 above
 absolute
 absolutely
@@ -27,7 +25,6 @@ activities
 actually
 adamant
 adapted
-addison
 addition
 additional
 address
@@ -1346,7 +1343,6 @@ major
 make
 makes
 making
-man
 manage
 managed
 manager
@@ -2567,16 +2563,11 @@ within
 without
 wobbles
 woke
-woman
 wondered
 wonderful
 wooden
-word
-work
 workstation
-world
 worldview
-worry
 worst
 worth
 would
@@ -2589,6 +2580,3 @@ written
 wrong
 xaltatun
 yawning
-year
-yesterday
-young
