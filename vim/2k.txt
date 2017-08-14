@@ -1,5 +1,6 @@
+consolidation 巩固
 zephyr
-
+frame
 abandon
 above
 according
