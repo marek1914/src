@@ -8,9 +8,10 @@ syntax on "for macos
 set cot=menuone,preview
 filetype plugin indent on
 set pvh=1
-set dict+=~/Work/src/vim/dict
-set dict+=~/Work/src/vim/zh
-set dict+=~/Work/src/vim/makefile_dict
+" 如何做到 写comment 的时候才加载这个字典
+set dict+=~/.vim/other/most3k
+set dict+=~/.vim/other/zh
+set dict+=~/.vim/other/makefile_dict
 
 set rtp+=~/.vim/other
 set rtp+=~/.vim/tagbar
