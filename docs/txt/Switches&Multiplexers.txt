@@ -40,7 +40,6 @@ cd4066:4 SPST
 好像最后一段不是地，因为以它为地，量出的其他引脚电压为负值
 
 
-
 耳机分为两种标准：OMTP标准通常被叫做国家标准，CTIA被称为国际标准。两者的区别在于插头最后两节GND和MIC顺序相反
 CTIA耳机是兼容OMTP设备的,CTIA耳机插入OMTP设备会造成声音小且失真，按下MIC键后声音恢复，由此可鉴定出设备是OMTP标准的。
 
@@ -55,11 +54,10 @@ CTIA耳机是兼容OMTP设备的,CTIA耳机插入OMTP设备会造成声音小且
 示波器检测，前2段是左右声道，并且都有信号，且信号一摸一样
 
 mic上一直有个2V左右的电压，但没测出信号，奇怪！
-Uv胶 封芯片
 
-1. 清洁待封装电子部件。
-2. 用点胶机将胶水点在待封装电子部件的表面，让其自然流平，确定无气泡。
-3. 紫外灯照射，直至胶水充分固化（照射时间取决于紫外灯的类型、功率、照射距离）
+Uv胶
+2. 用点胶机将胶水点在待封装电子部件的表面
+3. 紫外灯照射至胶水固化
 
 ADG804
 
@@ -68,12 +66,10 @@ cd4052
 
 cd4066:4 SPST
 
-负电压怎么处理
+负电压处理
 
 --
-手机定位方案经历3阶段：
-首先想到的是 电子标签方案， 指示灯+RF组网+按钮
-然后改为USB供电，通过1拖2 hub芯片，MCU监测数据（实现复杂）
+手机定位方案：
 第二天又改为电子标签方案， c8051F321 + 电子开关切换（ch442 2单刀双掷） + 序列号芯片
 序列号芯片兼具程序保护，同时提供独一无二的序列号，
 部署的时候，随意放置，放置完成后 统计一次 序列号与位置的对应关系，然后每个手机插入后，能读到机架位置信息
@@ -95,9 +91,7 @@ http://www.chinafix.com/thread-1023822-1-1.html usb typeC 转换头拆机 没有
 
 序列号芯片 ds2411  1元
 
-
 MTT HUB和STT HUB
-
 
 microchip 2-port hub 
 USB2512B 6x6mm
@@ -123,48 +117,6 @@ st 没有hub
 
 development/host/windows/usb  这里好像是源码
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Issue with USB2514
-Hi, I have designed a board with USB2514 and now i see that though all configurations are correct and making sure device is not in reset, there is no clock signal on the pin. I see that PLLFILT line doesnt have any voltage on the pin. I checked on either sides of the crystal and i dont see any signal. Can anyone tell me if there needs to be a 1.2V or something on the PLLFILT line. I have made sure that teh device has power supply of 3.3V even on PLL3V3 pin. Still no clock signal when probed on a scope. Its a 24MHz crystal I have connected.
-
-
-Normal Operation!
-When the USB2514B first powers up, it will start enumeration but if there is no host processor, nor host processor software running, it will wait 100mS then go back to sleep.  This is done automatically to save power.
-With USB2514B PLLFILT is at 1.2V when running.  It will be at 0V when the PLL shuts down.
-USB2514 (older device) PLLFILT is 1.8V. 
-
-
-
-另外一个引脚 量到了1.2V
-PLLFILT 应该量到1.8V
-
-
-Yes, the internal 1.8V regulator is not turning on.
-
-
-最后 24MHz 勉强出来了， 但是只有0.5V左右，  PLLFILT 也只量到0.5V  这2个值应该是一致的
-
-
-必须插上USB才出来。
 
 ==== 0812 ===
 1 飞线成功  p26 12k必须焊接

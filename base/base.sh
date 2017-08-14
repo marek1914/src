@@ -608,3 +608,5 @@ ntpdate - set the date and time via NTP
 tzselect - view timezones
 
 parted / gparted
+
+ascii #命令

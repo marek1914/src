@@ -627,7 +627,7 @@ p    =0x7ffdd9489758  //argument vector arra
 	test(&bar);
 
 //get file size 
-//这是比较正统的方法，android里也这样用
+//这是比较正统的方法，android也这样用
 fd = open("foo", O_RDONLY);
 len = lseek(fd, 0, SEEK_END);
 
