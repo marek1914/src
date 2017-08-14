@@ -3,14 +3,6 @@ typedef struct
     int volatile value;
 } pthread_mutex_t;
 
-#define  __PTHREAD_MUTEX_INIT_VALUE            0
-#define  __PTHREAD_RECURSIVE_MUTEX_INIT_VALUE  0x4000
-#define  __PTHREAD_ERRORCHECK_MUTEX_INIT_VALUE 0x8000
-
-#define  PTHREAD_MUTEX_INITIALIZER             {__PTHREAD_MUTEX_INIT_VALUE}
-#define  PTHREAD_RECURSIVE_MUTEX_INITIALIZER   {__PTHREAD_RECURSIVE_MUTEX_INIT_VALUE}
-#define  PTHREAD_ERRORCHECK_MUTEX_INITIALIZER  {__PTHREAD_ERRORCHECK_MUTEX_INIT_VALUE}
-
 enum {
     PTHREAD_MUTEX_NORMAL = 0,
     PTHREAD_MUTEX_RECURSIVE = 1,
@@ -44,15 +36,15 @@ typedef long pthread_t;
 typedef volatile int  pthread_once_t;
 
 
-#define PTHREAD_COND_INITIALIZER  {0}
-#define PTHREAD_STACK_MIN (2 * PAGE_SIZE)
-#define PTHREAD_CREATE_DETACHED  0x00000001
-#define PTHREAD_CREATE_JOINABLE  0x00000000
-#define PTHREAD_ONCE_INIT    0
-#define PTHREAD_PROCESS_PRIVATE  0
-#define PTHREAD_PROCESS_SHARED   1
-#define PTHREAD_SCOPE_SYSTEM     0
-#define PTHREAD_SCOPE_PROCESS    1
+#define PTHREAD_COND_INITIALIZER
+#define PTHREAD_STACK_MIN
+#define PTHREAD_CREATE_DETACHED
+#define PTHREAD_CREATE_JOINABLE
+#define PTHREAD_ONCE_INIT
+#define PTHREAD_PROCESS_PRIVATE
+#define PTHREAD_PROCESS_SHARED
+#define PTHREAD_SCOPE_SYSTEM
+#define PTHREAD_SCOPE_PROCESS
 
 int pthread_attr_init(pthread_attr_t * attr);
 int pthread_attr_destroy(pthread_attr_t * attr);
@@ -113,13 +105,9 @@ int pthread_cond_timedwait_monotonic_np(pthread_cond_t *cond, pthread_mutex_t *m
 int pthread_cond_timedwait_monotonic(pthread_cond_t *cond, pthread_mutex_t *mutex,
                                      const struct timespec  *abstime);
 
-#define HAVE_PTHREAD_COND_TIMEDWAIT_MONOTONIC 1
-
 int pthread_cond_timedwait_relative_np(pthread_cond_t         *cond,
                                      pthread_mutex_t        *mutex,
                                      const struct timespec  *reltime);
-
-#define HAVE_PTHREAD_COND_TIMEDWAIT_RELATIVE 1
 
 int pthread_cond_timeout_np(pthread_cond_t *cond, pthread_mutex_t * mutex, unsigned msecs);
 int pthread_mutex_lock_timeout_np(pthread_mutex_t *mutex, unsigned msecs);
@@ -135,8 +123,6 @@ typedef struct {
     int              pendingWriters;
     void*            reserved[4];
 } pthread_rwlock_t;
-
-#define PTHREAD_RWLOCK_INITIALIZER  { PTHREAD_MUTEX_INITIALIZER, PTHREAD_COND_INITIALIZER, 0, 0, 0, 0, { NULL, NULL, NULL, NULL } }
 
 int pthread_rwlockattr_init(pthread_rwlockattr_t *attr);
 int pthread_rwlockattr_destroy(pthread_rwlockattr_t *attr);
@@ -156,12 +142,10 @@ int pthread_rwlock_timedwrlock(pthread_rwlock_t *rwlock, const struct timespec *
 
 int pthread_rwlock_unlock(pthread_rwlock_t *rwlock);
 
-
 int pthread_key_create(pthread_key_t *key, void (*destructor_function)(void *));
 int pthread_key_delete (pthread_key_t);
 int pthread_setspecific(pthread_key_t key, const void *value);
 void *pthread_getspecific(pthread_key_t key);
-
 int pthread_kill(pthread_t tid, int sig);
 int pthread_sigmask(int how, const sigset_t *set, sigset_t *oset);
 
@@ -169,28 +153,4 @@ int pthread_getcpuclockid(pthread_t  tid, clockid_t  *clockid);
 int pthread_once(pthread_once_t  *once_control, void (*init_routine)(void));
 int pthread_setname_np(pthread_t thid, const char *thname);
 int pthread_atfork(void (*prepare)(void), void (*parent)(void), void(*child)(void));
-
-typedef void  (*__pthread_cleanup_func_t)(void*);
-
-typedef struct __pthread_cleanup_t {
-    struct __pthread_cleanup_t*   __cleanup_prev;
-    __pthread_cleanup_func_t      __cleanup_routine;
-    void*                         __cleanup_arg;
-} __pthread_cleanup_t;
-
-extern void  __pthread_cleanup_push(__pthread_cleanup_t*      c,
-                                    __pthread_cleanup_func_t  routine,
-                                    void*                     arg);
-
-extern void  __pthread_cleanup_pop(__pthread_cleanup_t*  c,
-                                   int                   execute);
-
-#define  pthread_cleanup_push(routine, arg)                      \
-    do {                                                         \
-        __pthread_cleanup_t  __cleanup;                          \
-        __pthread_cleanup_push( &__cleanup, (routine), (arg) );  \
-
-#define  pthread_cleanup_pop(execute)                  \
-        __pthread_cleanup_pop( &__cleanup, (execute)); \
-    } while (0);
 

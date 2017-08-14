@@ -3,23 +3,23 @@
 #define SEEK_END 2
 
 struct stat {
-   dev_t     st_dev;     /* ID of device containing file */
-   ino_t     st_ino;     /* inode number */
-   mode_t    st_mode;    /* protection */
-   nlink_t   st_nlink;   /* number of hard links */
-   uid_t     st_uid;     /* user ID of owner */
-   gid_t     st_gid;     /* group ID of owner */
-   dev_t     st_rdev;    /* device ID (if special file) */
-   off_t     st_size;    /* total size, in bytes */
-   blksize_t st_blksize; /* blocksize for filesystem I/O */
-   blkcnt_t  st_blocks;  /* number of 512B blocks allocated */
-   time_t    st_atime;   /* time of last access */
-   time_t    st_mtime;   /* time of last modification */
-   time_t    st_ctime;   /* time of last status change */
+   dev_t     st_dev;
+   ino_t     st_ino;
+   mode_t    st_mode;
+   nlink_t   st_nlink;
+   uid_t     st_uid;
+   gid_t     st_gid;
+   dev_t     st_rdev;
+   off_t     st_size;
+   blksize_t st_blksize;
+   blkcnt_t  st_blocks;
+   time_t    st_atime;
+   time_t    st_mtime;
+   time_t    st_ctime;
 };
            
 char **environ;
-__noreturn void _exit(int);
+void _exit(int);
 
 pid_t  fork(void);
 pid_t  vfork(void);
@@ -42,7 +42,6 @@ int capget(cap_user_header_t hdrp, cap_user_data_t datap);
 int capset(cap_user_header_t hdrp, const cap_user_data_t datap);
 
 int prctl(int  option, ...);
-
 int nice(int);
 
 int setuid(uid_t);
@@ -67,13 +66,10 @@ char* getusershell(void);
 void setusershell(void);
 void endusershell(void);
 
-
-
-/* Macros for access() */
-#define R_OK  4  /* Read */
-#define W_OK  2  /* Write */
-#define X_OK  1  /* Execute */
-#define F_OK  0  /* Existence */
+#define R_OK
+#define W_OK
+#define X_OK
+#define F_OK
 
 int access(const char *, int);
 int link(const char *, const char *);
@@ -82,9 +78,6 @@ int chdir(const char *);
 int fchdir(int);
 int rmdir(const char *);
 int pipe(int *);
-#ifdef _GNU_SOURCE  /* GLibc compatibility */
-int pipe2(int *, int);
-#endif
 int chroot(const char *);
 int symlink(const char *, const char *);
 int readlink(const char *, char *, size_t);
@@ -120,7 +113,6 @@ unsigned int sleep(unsigned int);
 int usleep(unsigned long);
 
 int gethostname(char *, size_t);
-
 int getdtablesize(void);
 
 void *__brk(void *);
@@ -140,7 +132,7 @@ int sysconf(int  name);
 int daemon(int, int);
 int cacheflush(long start, long end, long flags);
 pid_t tcgetpgrp(int fd);
-int   tcsetpgrp(int fd, pid_t _pid);
+int tcsetpgrp(int fd, pid_t _pid);
 
 int stat(const char *path, struct stat *buf);
 int fstat(int fd, struct stat *buf);
