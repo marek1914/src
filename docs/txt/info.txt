@@ -13,6 +13,19 @@ williamlong.info/archives/4432.html  脚本人生
 
 TIOBE
 
+MCU厂商排行：
+Renesas，MCU领域王者，车机第一份额
+NXP+Freescale
+Microchip+Atmel
+ST
+Infineon 英飞凌
+TI
+Cypress 独特性:MCU+analog+FPGA
+Silicon Lab
+
+
+
+
 getchip.com  // C.H.I.P  Allwinner CPU
 
 github.com/abstrakraft/cwiid  //wii 蓝牙手柄  

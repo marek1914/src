@@ -97,7 +97,8 @@ They do this through illegal instruction faults which are rather inefficient.
 Emulating floating point instructions using softfloat (-msoftfloat) can be 4 to 10 times faster than kernel emulation. 
 Prior to the introduction of EABI, the only way to use softfloat was to recompile the entire root file system with softfloat enabled. 
 With EABI, softfloat instructions will be used by default and the root file system can have a mixture of softfloat and hardfloat. 
-Now, if you have a system with floating point hardware -- it doesn't have to be FPA, it can be something else -- you can recompile critical software with the appropriate hardfloat instructions and run it on a system along with software that uses softfloat.
+Now, if you have a system with floating point hardware -- it doesn't have to be FPA, it can be something else -- 
+you can recompile critical software with the appropriate hardfloat instructions and run it on a system along with software that uses softfloat.
 
 We have systems that use VFP (Vector Floating Points)
 
@@ -111,12 +112,15 @@ EABI is supported in the ARM Linux kernel from version 2.6.16 and there is an op
 
 4. Drop Thumb interworking
 
-A final option would be simply to compile the standard Debian repo --with-arch=armv4 --with-no-thumb-interwork. This would work on all processors without the dangers inherent in modifying GCC and, according to the GCC manual page, saves a slight size and speed overhead caused by being thumb-interworkable.
+A final option would be simply to compile the standard Debian repo --with-arch=armv4 --with-no-thumb-interwork. 
+This would work on all processors without the dangers inherent in modifying GCC and, according to the GCC manual page, 
+saves a slight size and speed overhead caused by being thumb-interworkable.
 
 
 Why a new port
 
-In Debian, we want to assure complete binary compatibility. Since the old ABI is not compatible with the new one, we can't allow packages built with old ABI to link against new-abi libs, or the other direction. So the options are:
+In Debian, we want to assure complete binary compatibility. Since the old ABI is not compatible with the new one, 
+we can't allow packages built with old ABI to link against new-abi libs, or the other direction. So the options are:
 
 For the last point, a statically compiled [ArchTakeover] tool could be created. This would also allow i386->amd64 style migrations.
 

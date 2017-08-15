@@ -5,6 +5,8 @@ system/core/libutils/Threads.cpp
 
 frameword/base/libs/androidfw/ZipFileRO.cpp
 
+RefBase子类对象第一次创建时，对象构造完成时会调用onFirstRef()   bootanimation在这里调run，为啥？构造里run不行吗
+
 dumpsys meminfo com.xx.test  //查看内存使用
 mstar，bootanim在init.rc里改为system uid， bootanimation从8s延长到15s
 改为graphics uid ok（new时不返回）
@@ -45,7 +47,6 @@ surfaceFlinger.transact(IBinder.FIRST_CALL_TRANSACTION, // BOOT_FINISHED    靠�
 服务的启动结果放入“ init.svc.<服务名>“属性中
 init.svc.<服务名> 的值可能是  stopped
 
-RefBase子类对象第一次创建时，对象构造完成时会调用onFirstRef()   bootanimation在这里调run，为啥？构造里直接run不行吗
 
 1280 720 1  // 1代表 帧/s
 p 0 0 part0 // 分别指循环次数（0代表无限次）和阶段间隔时间
