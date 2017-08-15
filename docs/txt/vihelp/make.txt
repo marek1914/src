@@ -159,8 +159,13 @@ System types:
 
 1) If you meant to cross compile, use `--host'.
 
-
-
 一个目录一个.mk，如果没有，源码文件要加目录
+
+
+These variables are used specially by make:
+MAKEFILES
+MAKECMDGOALS
+
+
 
 vim: tw=78 ts=8 sw=4 sts=4 et ft=help

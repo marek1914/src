@@ -30,7 +30,7 @@ http://www.cnblogs.com/songfy/p/5635757.html
 vim.base Huge version
 vim.tiny Small version
 
-vim-nor // support python
+vim-nox // support python
 
 gcc -fpreprocessed -dD -E foo.c 删除注释
 
@@ -45,7 +45,14 @@ foldlevelstart
 
 rtp :runtimepath
 
-ultisnips 与 vim-snippets 配套使用
+ultisnips (配合vim-snippets) 默认：
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+需要vim支持python（安装vim-nox），否则：
+UltiSnips requires py >= 2.7 or py3
+
+
 ftplugin : filetype plugin
 
 completeopt
@@ -114,11 +121,6 @@ vimrc中并未配置  (help formatoptions 貌似与compitable有关)
 :help <leader>
 
 cindent模式
-
-ultisnips 默认：
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 /usr/share/vim/vim74/colors  README
 :colorscheme

@@ -1,6 +1,30 @@
+Adafruit NeoPixel Ring  WS2812 5050 RGB LED
+
+
 zephyrproject.org
 
 freertos  Tickless (无滴答模式)
 
 zephyr 在1.8 也加入tickless模式
 
+
+需要dfu-util 包  关注一下
+device-tree-compiler
+
+
+$ export ZEPHYR_GCC_VARIANT=zephyr
+$ export ZEPHYR_SDK_INSTALL_DIR=<sdk installation directory>
+
+或者 写到  $HOME/.zephyrrc里面  会自动找这个文件？
+
+
+Nordic nRF51  nRF52  nRF24
+
+
+  make BOARD=arduino_101_ble          - Build for arduino_101_ble（nRF51822）
+  make BOARD=arduino_101              - Build for arduino_101    （x86）
+  make BOARD=arduino_101_mcuboot      - Build for arduino_101_mcuboot
+  make BOARD=arduino_101_sss          - Build for arduino_101_sss (Sensor Subsystem ，ARC)
+
+
+The Intel Curie module includes a Nordic nRF51822 that is interfaced to the SoC via UART0
