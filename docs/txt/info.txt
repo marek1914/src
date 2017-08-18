@@ -40,6 +40,7 @@ stackoverflow.com
 mikewootc.com //wuyuntao
 jmcglone.com/about //github page jekyll
 
+ibm.com/developerworks
 electroschematics.com  优质电路图
 infragram.org          红外摄像
 

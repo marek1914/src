@@ -3,8 +3,12 @@ VI之漫路即为禅修，皈依gnu
 
 字典带空格，解决不了
 
+:h registers  # = .ect
+:h expression
 web2 (Webster's Second International) 字典23万条太多，只需6级的5000+ 单词
 
+
+i_CTRL-R :Insert the contents of a register
 ignorecase/noic 忽略大小写
 
 .c文件用2个空格替换tab:

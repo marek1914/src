@@ -571,8 +571,6 @@ mount -o remount /system
 make otapackage
 
 writeSysfs("/sys/class/gpio/mcu_standby_ctrl","2");
-
-开机按电源按键，打印 Run recovery！
 在./board/amlogic/m3_mbox/m3_mbox.c 文件里
 
 uboot修改mac地址 setenv ethaddr= 新mac
