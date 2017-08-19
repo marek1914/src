@@ -1,4 +1,3 @@
-===arduino===
 Arduino / Genuino
 avr-gcc
 ICSP烧写器
@@ -8,10 +7,10 @@ ATmega328P 8k flash+768ram
 2k SRAM
 Uno 8-bit 16MHz
 
-增强板：
-Arduino MEGA2560 8-bit AVR 16MHz
-Arduino Zero 32-bit ARM Cortex-M0 48MHz
-Arduino Due  32-bit ARM Cortex-M3 84MHz
+增强：
+MEGA2560 8-bit AVR 16MHz
+Zero ARM M0 48MHz
+Due  ARM M3 84MHz
 
 apt-get install arduino arduino-core
 UNO: ATmega328P(main)+atmega16u2（cpu实现usb转uart）
@@ -40,6 +39,4 @@ classic SPI library for Arduino
 typedef bool boolean;
 typedef uint8_t byte;
 
-
 Arduino Yun: Atheros AR9331 + AVR microcontroller
-

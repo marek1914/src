@@ -1,0 +1,13 @@
+c-base	c.txt	/*c-base*
+c-inc	c.txt	/*c-inc*
+c-increment	c.txt	/*c-increment*
+c-lib	c.txt	/*c-lib*
+c-res	c.txt	/*c-res*
+c-reserve	c.txt	/*c-reserve*
+c.txt	c.txt	/*c.txt*
+cb	c.txt	/*cb*
+cpp-b	cpp.txt	/*cpp-b*
+cpp-base	cpp.txt	/*cpp-base*
+m-f	make.txt	/*m-f*
+m-function	make.txt	/*m-function*
+mb	make.txt	/*mb*

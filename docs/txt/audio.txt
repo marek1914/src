@@ -485,7 +485,7 @@ WAV文件头：
 16H~17H	 通道数，单声道为1，双声道为2
 可见wav是个container，通常保存非压缩pcm，也可保存aac，g723等
 
-libg729 (googlecode, doubango 使用)
+libg729 (googlecode,doubango)
 
 ---
 编译可执行程序：
