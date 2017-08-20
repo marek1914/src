@@ -901,6 +901,14 @@
 
 
 
+
+
+
+
+
+
+
+
 abandon 放弃
 ability
 able
@@ -2130,7 +2138,6 @@ God
 gold
 golden
 golf
-good
 government
 governor
 grab
@@ -2200,8 +2207,6 @@ heel
 height
 helicopter
 hell
-hello
-help
 helper
 helpful
 heritage
@@ -2704,7 +2709,6 @@ net
 network
 never
 nevertheless
-new
 newly
 news
 newspaper
@@ -2767,12 +2771,8 @@ officer
 official
 offset
 often
-oh
 oil
-ok
 okay
-old
-old_val
 Olympic
 once
 ongoing
