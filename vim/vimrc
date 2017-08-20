@@ -8,8 +8,8 @@ syntax on "for macos
 set cot=menuone,preview
 filetype plugin indent on
 set pvh=1
-" 如何做到 写comment 的时候才加载这个字典
-set dict+=~/.vim/other/most3k
+
+set dict+=~/.vim/other/4k5.w
 set dict+=~/.vim/other/zh
 set dict+=~/.vim/other/makefile_dict
 
@@ -24,7 +24,7 @@ set rtp+=~/.vim/pydiction/after
 
 set tags+=~/.vim/other/sysinc
 
-set complete=.,w,b,u,k,t "help cpt
+set cpt=.,w,b,u,k,t,k~/.vim/other/*
 set hls
 "set fdm=syntax
 
@@ -34,6 +34,7 @@ let g:netrw_banner=0
 "let g:netrw_liststyle=3
 nmap <F8> :Tagbar<CR>
 nmap <F10> :NERDTree<CR>
+map <F3> :Trans<CR>
 "imap /* /*   */<ESC>hhhi
 
 " highlight Pmenu    guibg=darkgrey  guifg=black 

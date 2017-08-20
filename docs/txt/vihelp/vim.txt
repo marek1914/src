@@ -1,11 +1,30 @@
 vim: tw=80
 VI之漫路即为禅修，皈依gnu
 
+github.com/vim-scripts
+
+:set setting options (internal variables for switches special effects)
+:let assigning a value to a variable.
+
 字典带空格，解决不了
 
 :h registers  # = .ect
 :h expression
+:h quickref
+:h usr_01.txt # 02 03 04 41...
 web2 (Webster's Second International) 字典23万条太多，只需6级的5000+ 单词
+
+
+:h i_CTRL-X_CTRL-L  整行完成
+
+ctrl-x s  #拼写检查
+:h spell 拼写检查
+
+
+文档说c-l 会检查cpt定义的buffer，可实测不检测字典
+
+ctrl-x ctrl-f 插入文件名如
+/etc/c-x_c-f
 
 
 i_CTRL-R :Insert the contents of a register

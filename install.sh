@@ -5,7 +5,7 @@ rm ~/.vim/doc
 ln -sf $PWD/base/snippet/ ~/.vim/vim-snippets/UltiSnips
 ln -sf $PWD/vim/vimrc ~/.vimrc
 ln -sf $PWD/docs/txt/vihelp/ ~/.vim/doc
-ln -sf $PWD/vim/most3k ~/.vim/other/most3k
+ln -sf $PWD/vim/most3k ~/.vim/other/4k5.w
 ln -sf $PWD/vim/zh ~/.vim/other/zh
 cd base/sysinc
 ./ctags.sh
