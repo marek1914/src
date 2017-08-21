@@ -181,4 +181,5 @@ c. 提示后再删除c=list 行
 K: .c触发man/ .py触发pydoc
 
 
-Pydiction 利用 iskeyword 可以在c-n中识别 . 和( ,可以我增加 32(空格)，确还是不行
+Pydiction 利用 iskeyword 在c-n中识别 . 和( , 可增加 32(空格)不行
+
