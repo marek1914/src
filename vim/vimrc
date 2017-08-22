@@ -10,8 +10,11 @@ filetype plugin indent on
 set pvh=1
 
 set dict+=~/.vim/other/4k.w
-set dict+=~/.vim/other/zh
 set dict+=~/.vim/other/makefile_dict
+set dict+=~/.vim/other/zh
+
+bad ~/.vim/other/zh
+bad ~/.vim/other/expression
 
 set rtp+=~/.vim/other
 set rtp+=~/.vim/tagbar
@@ -24,7 +27,7 @@ set rtp+=~/.vim/pydict/after
 
 set tags+=~/.vim/other/sysinc
 
-set cpt=.,w,b,u,k,t,k~/.vim/other/*
+set cpt=.,w,b,u,k,t,U
 set hls
 "set fdm=syntax
 
@@ -34,7 +37,7 @@ let g:netrw_banner=0
 "let g:netrw_liststyle=3
 nmap <F8> :Tagbar<CR>
 nmap <F10> :NERDTree<CR>
-map <F3> :Trans<CR>
+map  <F3> :Trans<CR>
 "imap /* /*   */<ESC>hhhi
 
 " highlight Pmenu    guibg=darkgrey  guifg=black 

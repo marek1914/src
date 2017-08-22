@@ -7,5 +7,6 @@ ln -sf $PWD/vim/vimrc ~/.vimrc
 ln -sf $PWD/docs/txt/vihelp/ ~/.vim/doc
 ln -sf $PWD/vim/4k.w ~/.vim/other/4k.w
 ln -sf $PWD/vim/zh ~/.vim/other/zh
+ln -sf $PWD/vim/expression ~/.vim/other/expression
 cd base/sysinc
 ./ctags.sh

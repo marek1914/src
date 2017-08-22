@@ -14,14 +14,17 @@ github.com/vim-scripts
 :h usr_01.txt # 02 03 04 41...
 web2 (Webster's Second International) 字典23万条太多，只需6级的5000+ 单词
 
-
-:h i_CTRL-X_CTRL-L  整行完成
-
 ctrl-x s  #拼写检查
 :h spell 拼写检查
 
-
+:h i_CTRL-X_CTRL-L  整行完成
 文档说c-l 会检查cpt定义的buffer，可实测不检测字典
+sp 然后open 那个文件，或 :badd file （Add file name to buffer list, without loading it）
+明白了：cpt 的u 是：
+ scan the unloaded buffers that are in the buffer list
+ 如果没有u，那么badd的文件，也是无法c-x c-l的！！！
+还是有问题，当我写注释的时候，前面有 * 此时 c-l就不灵了，必须前面是空格或tab的时候才灵！
+ 
 
 ctrl-x ctrl-f 插入文件名如
 /etc/c-x_c-f
