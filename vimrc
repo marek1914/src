@@ -9,9 +9,12 @@ set cot=menuone,preview
 filetype plugin indent on
 set pvh=1
 
-set dict+=~/.vim/other/4k.w
-set dict+=~/.vim/other/zh
-set dict+=~/.vim/other/makefile_dict
+set dict+=~/.vim/other/dict/*
+set dict+=~/.vim/other/dict/zh/*
+
+"set dict+=~/.vim/other/dict/zh/*
+
+"bad ~/.vim/other/dict/zh/*
 
 set rtp+=~/.vim/other
 set rtp+=~/.vim/tagbar
@@ -20,11 +23,11 @@ set rtp+=~/.vim/vim-snippets
 set rtp+=~/.vim/lilypond
 set rtp+=~/.vim/omnicppcomplete
 set rtp+=~/.vim/nerdtree
-set rtp+=~/.vim/pydiction/after
+set rtp+=~/.vim/pydict/after
 
 set tags+=~/.vim/other/sysinc
 
-set cpt=.,w,b,u,k,t,k~/.vim/other/*
+set cpt=.,w,b,u,k,t,U
 set hls
 "set fdm=syntax
 
@@ -34,11 +37,11 @@ let g:netrw_banner=0
 "let g:netrw_liststyle=3
 nmap <F8> :Tagbar<CR>
 nmap <F10> :NERDTree<CR>
-map <F3> :Trans<CR>
+map  <F3> :Trans<CR>
 "imap /* /*   */<ESC>hhhi
 
 " highlight Pmenu    guibg=darkgrey  guifg=black 
 " highlight PmenuSel guibg=lightgrey guifg=black
 
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-let g:pydict = '~/.vim/pydiction/dict'
+let g:pydict = '~/.vim/pydict/dict'

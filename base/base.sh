@@ -342,7 +342,7 @@ ${array[@]} 是取全部，意思是：
 #echo ${test[@]}
 1 2 3 4 5 6 7 8 9
 
-env命令
+env
 
 3.5.3 Shell Parameter Expansion
 匹配(android gcc-sdk/gcc里用到了 ^^)：
@@ -417,6 +417,8 @@ declare
 arp-scan –I eth0 -l
 service mysql restart
 
+
+who #命令 登录后，su切换了用户， who还是现实最开始登录的用户名
 #查看运行时间：
 who -b
 who -r
@@ -582,6 +584,17 @@ fi
 
 # adduser,addgroup 是底层工具useradd, groupadd的包装
 adduser  user group # 将已存在用户user加入到已存在组group中
+
+deluser foo # pi上提示返回8，man发现是perl什么模块
+#并且提示systemd 进程占用，kill这个进程，在deluser ok
+
+usermod #  modify a user account
+usermod -l # 修改用户名
+usermod -d # 修改home目录
+groupmod -n #修改组名
+
+#修改hostname
+hostname foobar
 
 # man udev:
 # udev - Linux dynamic *device management*

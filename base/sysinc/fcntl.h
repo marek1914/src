@@ -1,3 +1,8 @@
+#define O_RDONLY
+#define O_WRONLY
+#define O_RDWR
+#define O_CREAT
+
 int open(const char *pathname, int flags);
 int open(const char *pathname, int flags, mode_t mode);
 int creat(const char *pathname, mode_t mode);

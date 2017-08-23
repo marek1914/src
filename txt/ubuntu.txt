@@ -1,6 +1,6 @@
-tty显示中文方法：
-1 内核汉化补丁，比较麻烦
-2 虚拟终端 fbterm
+tty显示中文：
+1 内核汉化-麻烦
+2 虚拟终端 fbterm （汉字间距很大，怎么解决）
 
 lubuntu = lxde+ubuntu
 
@@ -142,7 +142,12 @@ i386/i686 是32位  x86_64是64位
 系统安装
 
 sudo passwd -l root //取消root用户
-apt-get remove fonts-arphic-ukai fonts-arphic-uming(删除楷体)
+
+字体包：
+fonts-arphic-ukai
+fonts-arphic-uming(楷体)
+fonts-wqy-zenhei
+fonts-wqy-microhei (黑体)
 
 Server版
 
@@ -305,7 +310,6 @@ debootstrap --foreign --arch armhf wheezy .
 把armv7 版基础版本的跟目录down下来了，就是linux系统的根目录结构 144M，
 这与debian-7.6.0-armhf-netinst.iso解压候的不同（一个一个包形式）
 
-汉字库 fonts-wqy-zenhei
 ---
 升腾690：
 CPU: AMD G-T48N 1.4G , 1G DDR
@@ -324,6 +328,9 @@ git clone ssh://gaojie@192.168.0.144/volume1/git_repos/lora
 
 ——
 Mac
+
+OmniGraffle  绘图软件
+
 
 Ch341 whc公司官网下载Mac版驱动
 
