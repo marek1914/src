@@ -9,8 +9,8 @@ set cot=menuone,preview
 filetype plugin indent on
 set pvh=1
 
-set dict+=~/.vim/other/dict/*
-set dict+=~/.vim/other/dict/zh/*
+"set dict+=~/.vim/other/dict/*
+set dict+=~/.vim/other/dict/zh/zh
 
 "set dict+=~/.vim/other/dict/zh/*
 
