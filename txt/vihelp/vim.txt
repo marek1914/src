@@ -1,6 +1,11 @@
 vim: tw=80
 VI之漫路即为禅修，皈依gnu
 
+vi 完成一个 词组的功能。。
+
+
+ga 可以查看某字符的 ascii值，哎，真他妈牛逼呀
+
 github.com/vim-scripts
 
 :set setting options (internal variables for switches special effects)
@@ -25,6 +30,10 @@ sp 然后open 那个文件，或 :badd file （Add file name to buffer list, wit
  如果没有u，那么badd的文件，也是无法c-x c-l的！！！
 还是有问题，当我写注释的时候，前面有 * 此时 c-l就不灵了，必须前面是空格或tab的时候才灵！
  
+因C-X C-L 无法解决开头不是空格或Tab的情况，可以这样用于C语言注释
+* a good example.
+或者在空白处写，编辑后再拷贝到注释里
+
 
 ctrl-x ctrl-f 插入文件名如
 /etc/c-x_c-f
@@ -184,5 +193,128 @@ c. 提示后再删除c=list 行
 K: .c触发man/ .py触发pydoc
 
 
-Pydiction 利用 iskeyword 在c-n中识别 . 和( , 可增加 32(空格)不行
+Pydiction 利用 iskeyword 在c-n中识别 . 和( , 
+可增加 32(空格)不行  set isk+=\ ,   已经把空格加入了，但还是不行
+也无法增加 中文逗号
 
+iskeyword 增加了. 后， 比如 dw命令，删除一个word， 遇到. 就不会终止了
+
+dict的帮助里说，一行多词时，可以用 no-keyword 分隔，首选空格，说明空格是非关键词，那将空格变成关键词，逻辑应该对呀
+
+
+
+:h complete
+
+inoremap <F5> <C-R>=ListMonths()<CR>
+
+func! ListMonths()
+  call complete(col('.'), ['January', 'February', 'March',
+		\ 'April', 'May', 'June', 'July', 'August', 'September',
+		\ 'October', 'November', 'December'])
+  return ''
+endfunc
+		
+		
+		
+		
+		
+		
+		
+		
+		
+Cursor movement
+
+h - move left
+j - move down
+k - move up
+l - move right
+w - jump by start of words (punctuation considered words)
+W - jump by words (spaces separate words)
+e - jump to end of words (punctuation considered words)
+E - jump to end of words (no punctuation)
+b - jump backward by words (punctuation considered words)
+B - jump backward by words (no punctuation)
+0 - (zero) start of line
+^ - first non-blank character of line
+$ - end of line
+G - Go To command (prefix with number - 5G goes to line 5)
+Note: Prefix a cursor movement command with a number to repeat it. For example, 4j moves down 4 lines.
+
+Insert Mode - Inserting/Appending text
+
+i - start insert mode at cursor
+I - insert at the beginning of the line
+a - append after the cursor
+A - append at the end of the line
+o - open (append) blank line below current line (no need to press return)
+O - open blank line above current line
+ea - append at end of word
+Esc - exit insert mode
+Editing
+
+r - replace a single character (does not use insert mode)
+J - join line below to the current one
+cc - change (replace) an entire line
+cw - change (replace) to the end of word
+c$ - change (replace) to the end of line
+s - delete character at cursor and subsitute text
+S - delete line at cursor and substitute text (same as cc)
+xp - transpose two letters (delete and paste, technically)
+u - undo
+. - repeat last command
+Marking text (visual mode)
+
+v - start visual mode, mark lines, then do command (such as y-yank)
+V - start Linewise visual mode
+o - move to other end of marked area
+Ctrl+v - start visual block mode
+O - move to Other corner of block
+aw - mark a word
+ab - a () block (with braces)
+aB - a {} block (with brackets)
+ib - inner () block
+iB - inner {} block
+Esc - exit visual mode
+Visual commands
+
+> - shift right
+< - shift left
+y - yank (copy) marked text
+d - delete marked text
+~ - switch case
+Cut and Paste
+
+yy - yank (copy) a line
+2yy - yank 2 lines
+yw - yank word
+y$ - yank to end of line
+p - put (paste) the clipboard after cursor
+P - put (paste) before cursor
+dd - delete (cut) a line
+dw - delete (cut) the current word
+x - delete (cut) current character
+Exiting
+
+:w - write (save) the file, but don't exit
+:wq - write (save) and quit
+:q - quit (fails if anything has changed)
+:q! - quit and throw away changes
+Search/Replace
+
+/pattern - search for pattern
+?pattern - search backward for pattern
+n - repeat search in same direction
+N - repeat search in opposite direction
+:%s/old/new/g - replace all old with new throughout file
+:%s/old/new/gc - replace all old with new throughout file with confirmations
+Working with multiple files
+
+:e filename - Edit a file in a new buffer
+:bnext (or :bn) - go to next buffer
+:bprev (of :bp) - go to previous buffer
+:bd - delete a buffer (close a file)
+:sp filename - Open a file in a new buffer and split window
+ctrl+ws - Split windows
+ctrl+ww - switch between windows
+ctrl+wq - Quit a window
+ctrl+wv - Split windows vertically

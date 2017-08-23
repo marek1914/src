@@ -1,7 +1,0 @@
-*开头，专门用于C语言注释，因为C-X C-L 无法解决开头不是空格或Tab的情况
-* Useful? Maybe not, but a good example.
-* This plugin is tested against Python 2.7. All other versions are unsupported, but might work.
-* The master branch is always stable
-* Running Homebrew as root is extremely dangerous and no longer supported
-* There are two main uses for a Handler:(1)..;and (2)..
-

@@ -9,12 +9,12 @@ set cot=menuone,preview
 filetype plugin indent on
 set pvh=1
 
-set dict+=~/.vim/other/4k.w
-set dict+=~/.vim/other/makefile_dict
-set dict+=~/.vim/other/zh
+set dict+=~/.vim/other/dict/*
+set dict+=~/.vim/other/dict/zh/*
 
-bad ~/.vim/other/zh
-bad ~/.vim/other/expression
+"set dict+=~/.vim/other/dict/zh/*
+
+"bad ~/.vim/other/dict/zh/*
 
 set rtp+=~/.vim/other
 set rtp+=~/.vim/tagbar
