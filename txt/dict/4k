@@ -2327,6 +2327,7 @@ info
 inform
 information
 ingredient
+inhabit 居住
 initial
 initialize
 initially
@@ -2927,7 +2928,7 @@ pitch
 place
 plan
 plane
-planet
+planet 行星
 planning
 plant
 plastic
