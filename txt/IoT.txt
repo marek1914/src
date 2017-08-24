@@ -569,3 +569,9 @@ u8glib/sys/arduino/Chess/Chess.cpp  //这个文件是自动生成的
 qiyi   轨迹跟踪板： N52832   nordic公司   能无线充电
 
 
+
+NeoPixel  环形LED条
+https://github.com/adafruit/Adafruit_NeoPixel
+
+https://www.tweaking4all.com/hardware/arduino/arduino-ws2812-led/
+https://www.adafruit.com/category/168
