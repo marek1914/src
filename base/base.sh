@@ -623,3 +623,5 @@ tzselect - view timezones
 parted / gparted
 
 ascii #命令
+
+链接目录，  cd命令 可以处理 ../..   但 ls vi 等不行，会退到文件夹的真实位置

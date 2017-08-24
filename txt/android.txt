@@ -1,3 +1,4 @@
+CLEAR_VARS:= $(BUILD_SYSTEM)/clear_vars.mk 把各种变量赋为空
 /data/local/tmp shell权限可访问
 
 system/core/libutils/FileMap.cpp
@@ -630,14 +631,11 @@ default.xml <remote  name="vc" //仓库remote名
 convert命令将11.jpg转化为11.raw： convert -depth 8 11.jpg rgb:11.raw
 将11.raw文件转换为initlogo.rle。在raw图片文件所在目录下执行：/out/host/linux-x86/bin/rgb2565 -rle <11.raw> initlogo.rle
 
-意思是把 initlogo-robot-1280x720.rle 拷贝到 root/initlogo.720p.rle 中
+把 initlogo-robot-1280x720.rle 拷贝到 root/initlogo.720p.rle 中
 phostshop 可以打开，但是gimp打不开。 ubuntu上可以用 golly程序打开（软件中心下载），不行，打不开。
 
 LOCAL_MODULE_TAGS := optional  控制是否编译
 LOCAL_PROGUARD_ENABLED := disabled
-
-make: *** No rule to make target `out/target/common/obj/JAVA_LIBRARIES/com.android.phone.common_intermediates/javalib.jar',
- needed by `out/target/common/obj/APPS/Contacts_intermediates/classes-full-debug.jar'. Stop.
 
 3 Android性能测试软件 nbench、benchmark、smartphone bench
 
@@ -739,13 +737,12 @@ frameworks/base/core/java/android/os/display/DisplayManager.java:58: warning: un
 编译 framework/base/ethernet
 
 out/target/common/obj/JAVA_LIBRARIES/framework_intermediates
-framework目录编译的中间目录。把这里的 class.jar 解压缩可以查到
-EthernetManager.class
+framework目录编译的中间目录。 解压class.jar可见 EthernetManager.class
+framework_ 不是由文件夹名决定，而是LOCAL_MODULE 决定
 
 修改了framework目录下的某个文件的编译过程(技巧：故意将java源码改错助于露出端倪)：
-以下路径前缀默认： out/target/common/obj/JAVA_LIBRARIES
 
-java-source-list 文件如何生成？
+java-source-list 文件生成:
 framework_intermediates/classes 目录内容会变化，修改framework下某文件，然后编译make systemimage
 然后盯着framework_intermediates这个目录，classes一出现就立即复制，捕捉到了java-source-list这个文件
 文件包含framework下2100多java文件
@@ -782,8 +779,7 @@ ndk : prebuiltLib/libutils.so: undefined reference to `__aeabi_f2ulz'  这个函
   make TARGET_ARCH_VARIANT=armv7-a 也行。
   找到了 ./htc/passion-common/BoardConfigCommon.mk:TARGET_ARCH_VARIANT := armv7-a-neon
 
-一个HOST静态库的预编译，十分简单：
-include $(CLEAR_VARS) 
+HOST静态库预编译：
 LOCAL_PREBUILT_LIBS := ../prebuilt/libunz.a 
 include $(BUILD_HOST_PREBUILT) 
 这里还不能用 $(LOCAL_PATH) 用了会出现 external/webkit/external/webkit/../prebuilt 奇怪。
@@ -793,8 +789,6 @@ prebuilt.mk和multi_prebuilt.mk，对应的方法宏是BUILD_PREBUILT和 BUILD_M
 android中 .so里面是不包含 /system/bin/linker字符串
 
 android 编译可执行文件
-include $(CLEAR_VARS) 
-/*CLEAR_VARS:= $(BUILD_SYSTEM)/clear_vars.mk 把各种变量赋为空*/
 
 LOCAL_FORCE_STATIC_EXECUTABLE := true /*init工程加了这个*/
 
