@@ -392,8 +392,10 @@ ARCH=arm64 ;echo $ARCH  #能打出来 ^_^
 make ARCH=arm   #ARCH被定义在全局区域，make里面再起make还能检测到此变量
 ARCH=arm make   #make里能检测到， 相当于3，跟例2不同
 
+# tr只能删除单字符，要删除utf-8 比如 tr -d “\022\034\270”  不能作为一个组合整体来删除
 tr '[A-Z]' '[a-z]'
 tr ' ' '\n' < list | sort -u > list-uniq
+
 
 ip route add 172.16.0.0/24 dev eth0
 
@@ -625,3 +627,6 @@ parted / gparted
 ascii #命令
 
 链接目录，  cd命令 可以处理 ../..   但 ls vi 等不行，会退到文件夹的真实位置
+
+
+整理一个 查找替换 的命令
