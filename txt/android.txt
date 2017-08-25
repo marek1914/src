@@ -1,5 +1,9 @@
+善用 croot/godir
 CLEAR_VARS:= $(BUILD_SYSTEM)/clear_vars.mk 把各种变量赋为空
 /data/local/tmp shell权限可访问
+
+make update-api
+frameworks 定义了新公有变量、方法要提交 frameworks/base/api/current.txt
 
 system/core/libutils/FileMap.cpp
 system/core/libutils/Threads.cpp
@@ -444,27 +448,16 @@ include $(BUILD_PACKAGE)
 
 import_includes
 export_includes
-编译过程中生成，大小0，仅做标识作用
-设置java环境变量时，最后 xx/bin/:$PATH 不行，bin后不能有/，否则编译java时出错
+大小0，仅做标识用
+设置java环境变量:xx/bin:$PATH ，bin后不能有/，否则编译java时出错
 
 s805:
-make modules  生成了一堆东西，好像有cts，WiFiDirectDemo什么的，研究下！(20160424 这个好像不同于kernel的make modules)
-androd目录编译内核
-make V=1 out/target/product/m200/obj/KERNEL_OBJ/arch/arm/boot/uImage
-//因为uImage作成了android 大make系统的目标了
+make modules  生成了一堆东西，有cts，WiFiDirectDemo等(不同于kernel的make modules)
 
-1 envsetup.sh
-	1 envsetup.sh help
-		croot:   到android根目录
-		m:       Makes from the top of the tree.
-		mm:      编译当前目录
-		mmm:     编译指定目录
-		cgrep:   grep C/C++文件
-		jgrep:   grep java文件
-		resgrep: grep res/*.xml 文件
-		godir:   到包含某个文件的目录
-	3 lunch  
-		envsetup.sh : add_lunch_combo()
+androd目录编译内核, uImage 是 android 大make的目标
+make V=1 out/target/product/m200/obj/KERNEL_OBJ/arch/arm/boot/uImage
+
+lunch : add_lunch_combo()
 
 device目录下的各平台目录，直接影响lunch显示数量		
 
@@ -492,72 +485,49 @@ function setpaths(){
 	#这里根据TARGET_linux-arm.mk提取编译器路径并export
 }
 
-android编译时用的是全路径而非直接用arm-linux-androideabi-，那么setpaths的路径设置没用，除非用于直接指定编译器编译自己的库
 systemimage: ext4
 
 生成system.img在build/core/Makefile中
 
 
-Yaffs2：
+Yaffs2：-------------------------------------
 M3 external/yaffs2 生成HOST程序mkyaffs2image
-mmm external/yaffs2
-编译：
-LOCAL_SRC_FILES := \
-	yaffs2/utils/mkyaffs2image.c \
-	yaffs2/yaffs_packedtags2.c \
-	yaffs2/yaffs_ecc.c \
-	yaffs2/yaffs_tagsvalidity.c
-成mkyaffs2image安装到out/host/linux-x86/bin
-但amlogic m3并没有用这个，而是
-M3预置程序: device/amlogic/common/tools/mkyaffsimage4k.dat & mkyaffsimage2K.dat （可能与ecc，nand类型有关导致原版不能用）
+mmm external/yaffs2 成mkyaffs2image安装到out/host/linux-x86/bin
+ m3没有用这个，而是预置: device/amlogic/common/tools/mkyaffsimage4k.dat & mkyaffsimage2K.dat（与ecc，nand类型导致原版不能用）
 BoardConfig.mk：
 TARGET_AMLOGIC_MKYAFFSIMG_TOOL := mkyaffsimage4K.dat
 解开yaffs2 image用unyaffs2(不在android源码里需另找)
+--------------------------------------------
 
-ext4：
-MX/A20  BoardConfig.mk:  TARGET_USERIMAGES_USE_EXT4 := true
-用make_ext4fs生成img  
+BoardConfig.mk:  TARGET_USERIMAGES_USE_EXT4 := true
 
-mkuserimg.sh -s system.img ext4 system 536870912 (大小512M)  (-s 代表sparse)
+system/extras/ext4_utils :
+host/linux-x86/bin/make_ext4fs 
+system/bin/make_ext4fs //可在平台上制作img
 
-./system/extras/ext4_utils/mkuserimg.sh
-./out/host/linux-x86/bin/mkuserimg.sh
+system/extras/ext4_utils/mkuserimg.sh  安装到 out/host/linux-x86/bin/
 
-ubuntu支持ext4：mount -o loop (用simg2img还原到512M再mount)
+mkuserimg.sh -s system.img ext4 system 536870912 (size:512M)
 
-a20:
-make_ext4fs -s -l 536870912 -a system system.img out/.../system
-simg2img system.img unsparse_system.img //sparse 稀疏的，最后这个文件被自动删除了
+make_ext4fs -s -l 536870912 -a system system.img out/.../system  // -s sparse
+simg2img system.img unsparse_system.img 
 e2fsck -f -n unsparse_system.img  //检查fs
 
-ext4 的 system.img 2种格式：raw和sparse (开头有3a ff 26 ed)
-raw 包含零填充区，可mount，较大
-sparse 即simg 将raw进行稀疏描述，去除零填充区，变小
+img 2种：raw和sparse 前者包含零填充，后者稀疏去除零填充
 
-#file system.img (不关心扩展名，靠内部数据就能识别)
-system.img: data //识别为普通文件
-#file unsparse_system.img //识别为ext4分区
-unsparse_system.img: Linux rev 1.0 ext4 filesystem data, UUID=57f8f4bc-abf4-655f-bf67-946fc0f9f25b (extents) (large files)
+#file system.img  // data 普通文件
+#file unsparse_system.img   //可 mount
+ext4 filesystem data, UUID=57f8f4bc-abf4-655f-bf67-946fc0f9f25b
 
-userdata.img 也是ext4  a20 128M（unsparse后），mount后有几个文件夹，部署时候应该是没有用到。
-
-mount unsparse_system.img /mnt  //可挂载
 e2fsck :check a Linux ext2/ext3/ext4 file system
-simg2img: android-tools-fsutils deb包
 
-dd if=unsparse_system.img of=/dev/sdb  //可挂载
-
-file ramdisk.img：
-ramdisk.img: gzip compressed data (cpio打包gzip压缩)
-rename ramdisk.img to ramdisk.img.gz
-gunzip ramdisk.img.gz
-cpio -i -F ../ramdisk.img 看ramdisk内容
+dd if=unsparse_system.img of=/dev/sdb  //ok
 
 system/core/mkbootimg/
 
 recovery.img
 
-工具在out/host/linux-x86/bin/
+工具out/host/linux-x86/bin/
 
 boot.img :
 A20: mkbootimg --kernel kernel --ramdisk ramdisk.img --base  0x40000000 --output boot.img
@@ -567,9 +537,12 @@ A20: mkbootimg --kernel kernel --ramdisk ramdisk.img --base  0x40000000 --output
 ramdisk.img (cpio + gzip) :
 mkbootfs root | minigzip > ramdisk.img
 
+gunzip ramdisk.img
+cpio -i -F ../ramdisk.img
+
 img开头"ANDROID!"
 
-make out/target/product/sugar-ref001/boot.img  showcommands
+make out/target/product/xxx/boot.img  showcommands
 
 make out/target/... /ramdisk.img
 

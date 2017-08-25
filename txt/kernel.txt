@@ -530,21 +530,14 @@ image制作工具：
 mkfs.jffs2
 mkfs.ubifs
 
-//android主机端工具 （源码system/extras/ext4_utils）
-host/linux-x86/bin/make_ext4fs 
-//android盒子端工具
-system/bin/make_ext4fs (9.6k)
 
 ubuntu系统也有一套，mkfs (tab)显示：
 mkfs          mkfs.cramfs   mkfs.ext3     mkfs.ext4dev  mkfs.minix    mkfs.ntfs     
 mkfs.bfs      mkfs.ext2     mkfs.ext4     mkfs.fat      mkfs.msdos    mkfs.vfat
-有一些是连接
 
 问题，3个工具有区别吗？
 mkfs -t ext4
 mkfs.ext4
-make_ext4fs
-
 
 /drivers/staging/android/lowmemorykiller.c  用到了global_page_state(NR_FILE_PAGES)
 debugfs

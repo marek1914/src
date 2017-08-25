@@ -24,8 +24,6 @@ Cypress 独特性:MCU+analog+FPGA
 Silicon Lab
 
 
-
-
 getchip.com  // C.H.I.P  Allwinner CPU
 
 github.com/abstrakraft/cwiid  //wii 蓝牙手柄  

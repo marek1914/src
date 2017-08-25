@@ -28,3 +28,7 @@ Nordic nRF51  nRF52  nRF24
 
 
 The Intel Curie module includes a Nordic nRF51822 that is interfaced to the SoC via UART0
+
+
+代码包含了130M的 stm32cube ：stm32f1xx stm32f3xx stm32f4xx stm32l4xx
+这个不需要，因为已经有了cube仓库

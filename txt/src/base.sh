@@ -1,6 +1,5 @@
-#!/bin/bash
+#!/bin/bash (Bourne Again Shell)
 # Shebang(#!) line
-#有些命令是shell/perl脚本
 # rc :run command
 # ctrl+d #terminal
 
@@ -12,15 +11,13 @@ EOF
 #等价于
 echo foo
 echo bar
-#或等价于
+#或
 echo -e "foo\nbar"
-
-Bash:Bourne Again Shell
 
 more	less	clear	reset	fdisk	wc	basename
 lsblk	lsusb	lspci	lscpu
 
-# GNU parallel is a shell tool for executing jobs concurrently locally or using remote computers 多台计算机并行工作
+# A shell tool for executing jobs concurrently locally or using remote computers
 parallel 
 
 pkg-config #返回库路径版本号
@@ -437,6 +434,8 @@ lsmod
 modprobe
 
 mount -o nolock 192.168.0.150:/home/nfsroot /mnt
+mount -o loop # 加强一下。。。。
+mount system.img /mnt  # ext4 镜像，什么参数都不用加？
 
 iptables
 netfilter

@@ -54,7 +54,7 @@ scripts/build_image.sh
 scripts/mkimage.sh
 scripts/release.sh
 BoardConfig.mk-8G-HLJ
-init.rc里 mkdir /resource
+init.rc: mkdir /resource
 
 device/mstar/oringe/BoardConfig.mk  设置分区大小，要与rootfs里面的set_partition 匹配
 
