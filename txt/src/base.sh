@@ -1,5 +1,4 @@
-#!/bin/bash (Bourne Again Shell)
-# Shebang(#!) line
+#!/bin/bash #(Bourne Again Shell) Shebang line
 # rc :run command
 # ctrl+d #terminal
 
@@ -14,7 +13,7 @@ echo bar
 #或
 echo -e "foo\nbar"
 
-more	less	clear	reset	fdisk	wc	basename
+more	less	clear	reset	fdisk	basename
 lsblk	lsusb	lspci	lscpu
 
 # A shell tool for executing jobs concurrently locally or using remote computers
@@ -111,8 +110,8 @@ if [ -n "$1" ] # 必须是 "$1" 而不是 $1
 if [ -n "$force_color_prompt" ]
 
 3.2.3 Lists of Commands
-A list is a sequence of one or more pipelines separated by one of the operators ‘;’, ‘&’, ‘&&’, or ‘||’, 
-and optionally terminated by one of ‘;’, ‘&’, or a newline. 
+A list is a sequence of one or more pipelines separated by one of the operators ‘;’, ‘&’, ‘&&’, ‘||’, 
+and terminated by one of ‘;’, ‘&’, or a newline. 
 
 configure 是shell脚本
 ./configure --enable-shared=yes CFLAGS=-g
@@ -143,9 +142,6 @@ export A
 all:
 	@A=123;./test.sh
 
-第2种情况，make进程export变量A，没有值，它fork的shell进程环境变量里已经有了A，执行A=123就不是新建变量，而是对已有变量复制
-第1个shell fork 第2个shell执行test.sh时就有了A变量。
-
 export 全局变量会被复制到子进程
 注意:
  1 不限定子shell，任何类型进程均可，即main(int argc, char *argv[ ], char **env)的第三个参数
@@ -158,10 +154,7 @@ Makefile 目标调用.sh，make后，这个shell可以读到TEST全局变量。
 
 9 makefile在target中运行shell:
 
-# 2种执行方法:
-./foo.sh
 . foo.sh #foo.sh是参数而非命令，无需x权限和./
-
 
 3.5.3 Shell Parameter Expansion
 
@@ -323,21 +316,14 @@ ls -l 2>&1 >&3 3>&- | grep bad 3>&-    # Close fd 3 for 'grep' (but not 'ls').
 #
 exec 3>&-                              # Now close it for the remainder of the script.
 
-数组及遍历:
-数组的申明:array=(element1 element2 element3 .... elementN) 
-数据的读取: echo ${array[0]}  echo ${array[index]} 
-数组的遍历用到一个取全部：
-for data in ${array[@]}  
+
+数组:array=(1 2 3 ....N) 
+读取: echo ${array[index]} 
+遍历：
+for data in ${array[@]}  # @取全部
 do  
     echo ${data}  
-done  
-
-${array[@]} 是取全部，意思是：
-#test=(1 2 3 4 5 6 7 8 9)
-#echo echo ${test[2]}
-3
-#echo ${test[@]}
-1 2 3 4 5 6 7 8 9
+done
 
 env
 
@@ -626,6 +612,8 @@ parted / gparted
 ascii #命令
 
 链接目录，  cd命令 可以处理 ../..   但 ls vi 等不行，会退到文件夹的真实位置
+
+printf "PERM LINKS OWNER GROUP SIZE MONTH DAY HH:MM/YEAR NAME\n" ;ls -l | sed 1d | column -t
 
 
 整理一个 查找替换 的命令
