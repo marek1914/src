@@ -583,15 +583,14 @@ groupmod -n #修改组名
 #修改hostname
 hostname foobar
 
-# man udev:
-# udev - Linux dynamic *device management*
-# 管理/dev，处理设备添加删除时用户空间的事件
+# man udev: Linux dynamic device management
+# 管理/dev，处理设备添加删除事件
 # mdev
 #节点用mknod手动创建，或mdev(udev)自动创建
 
 udevadm control --reload #reload udev rule
 #or
-service udev restart #restart udev
+service udev restart
 #等价于
 /etc/init.d/udev restart
 
@@ -617,3 +616,10 @@ printf "PERM LINKS OWNER GROUP SIZE MONTH DAY HH:MM/YEAR NAME\n" ;ls -l | sed 1d
 
 
 整理一个 查找替换 的命令
+
+
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root"
+   exit
+fi
+

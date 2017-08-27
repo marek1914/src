@@ -1,8 +1,9 @@
 GNU Miscfiles
 
-RC: Release　Candidate
+rc: release　candidate /run command
+through-hole 排针
 
-Through-Hole 排针
+Dining philosophers problem 哲学家进餐问题
 
 FTDI: Future Technology Devices International
 
