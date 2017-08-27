@@ -35,3 +35,7 @@ The Intel Curie module includes a Nordic nRF51822 that is interfaced to the SoC 
 
 dfu-util 可以在intel网站下载，ubuntu也有，版本低，经测能用
 
+
+dfu-util -a x86_app -D outdir/arduino_101/zephyr.bin
+dfu-util -a sensor_core -D outdir/arduino_101_sss/zephyr.bin
+
