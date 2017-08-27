@@ -1,6 +1,5 @@
 #!/bin/bash (Bourne Again Shell)
 # Shebang(#!) line
-# rc :run command
 # ctrl+d #terminal
 
 # here document  EOF 是分隔符，可以任意字符串
@@ -332,7 +331,7 @@ do
     echo ${data}  
 done  
 
-${array[@]} 是取全部，意思是：
+${array[@]} 取全部：
 #test=(1 2 3 4 5 6 7 8 9)
 #echo echo ${test[2]}
 3
@@ -597,15 +596,14 @@ groupmod -n #修改组名
 #修改hostname
 hostname foobar
 
-# man udev:
-# udev - Linux dynamic *device management*
-# 管理/dev，处理设备添加删除时用户空间的事件
+# man udev: Linux dynamic device management
+# 管理/dev，处理设备添加删除事件
 # mdev
 #节点用mknod手动创建，或mdev(udev)自动创建
 
 udevadm control --reload #reload udev rule
 #or
-service udev restart #restart udev
+service udev restart
 #等价于
 /etc/init.d/udev restart
 
@@ -629,3 +627,10 @@ ascii #命令
 
 
 整理一个 查找替换 的命令
+
+
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root"
+   exit
+fi
+
