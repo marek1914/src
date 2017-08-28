@@ -1,10 +1,12 @@
 #!/bin/bash #(Bourne Again Shell) Shebang line
-# rc :run command
 # ctrl+d #terminal
+info # 看到所有支持的命令
 
 ls |xargs -n1 du -sk |sort -n
+env
 
-# here document  EOF 是分隔符，可以任意字符串
+ls * #与ls 显示不同,*先展开再执行 
+# here document  EOF 分隔符可任意字符串
 << EOF
 foo
 bar
@@ -15,13 +17,12 @@ echo bar
 #或
 echo -e "foo\nbar"
 
-more	less	clear	reset	fdisk	basename
-lsblk	lsusb	lspci	lscpu
-
-# A shell tool for executing jobs concurrently locally or using remote computers
+less	
+clear	
+reset	
+fdisk
 parallel 
-
-pkg-config #返回库路径版本号
+pkg-config
 
 zip/unzip
 gzip/gunzip (gnu zip)
@@ -32,14 +33,10 @@ zip -Z store bootanimation.zip part*/* desc.txt  #store 不压缩 or -0
 
 # {} 任何不易出现字符, -I 包含 -L 1
 ls |xargs -I{} java -jar signapk.jar xx.x509.pem xx.pk8 {} sign/{}
-ls ori_apk | xargs -I{} java -jar .... ori_apk/{} sing_apk/{} #yuantb
+ls ori_apk | xargs -I{} java -jar .... ori_apk/{} sing_apk/{}
 ls *.apk|xargs -n 1 aapt dump badging  //apk依次执行aapt
-#注意
-ls 和 ls * 显示内容是不同的 根据实际情况切换
 
-#拷贝所有png到某目录
-find -name "*.png" | xargs cp ./png  #fail 参数顺序不对
-find -name "*.png" | xargs cp -t ./png #ok
+find -name "*.png" | xargs cp -t ./png
 
 # 3337 -> 0x37
 # 以每行每2字节为基本单位，遇到不可转换字符(0-9a-z)跳到下一行
@@ -319,15 +316,12 @@ ls -l 2>&1 >&3 3>&- | grep bad 3>&-    # Close fd 3 for 'grep' (but not 'ls').
 exec 3>&-                              # Now close it for the remainder of the script.
 
 
-数组:array=(1 2 3 ....N) 
-读取: echo ${array[index]} 
-遍历：
+array=(1 2 3 ....N) 
+echo ${array[index]} 
 for data in ${array[@]}  # @取全部
 do  
     echo ${data}  
 done
-
-env
 
 3.5.3 Shell Parameter Expansion
 匹配(android gcc-sdk/gcc里用到了 ^^)：

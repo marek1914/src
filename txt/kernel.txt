@@ -1,3 +1,6 @@
+/dev/block/platform/... /by-name   by-num
+
+
 major.h
 #define MMC_BLOCK_MAJOR	179
 #define LOOP_MAJOR		7

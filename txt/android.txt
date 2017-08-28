@@ -116,8 +116,12 @@ aapt dump badging xx.apk
 
 /etc/udev/rules.d/51-android.rules
 SUBSYSTEM=="usb", ATTR{idVendor}=="17ef", ATTR{idProduct}=="7435", MODE="0666" OWNER="gaojie"
+~/.android/adb_usb.ini (must! 新版adb好像也不需要)
 
-~/.android/adb_usb.ini (must!)
+debian(pi/virtual box)实测，没有.rules .init 也能连adb, 好像是debian自带的adb 而不是apt-get install的，那也应该无权才对
+这是权限控制，root用户不需要添加任何文件，可我没用root权限执行adb呀, 还是说跟特定设备有关？设备可以决定它的访问权限？ 奇怪！
+
+
 persist.service.adb.enable=1 //开启调试模式
 ro.adb.secure = 1// offline，弹出提示框
 adb root  -- restarts the adbd daemon with root permissions
