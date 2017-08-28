@@ -32,3 +32,4 @@ The Intel Curie module includes a Nordic nRF51822 that is interfaced to the SoC 
 
 代码包含了130M的 stm32cube ：stm32f1xx stm32f3xx stm32f4xx stm32l4xx
 这个不需要，因为已经有了cube仓库
+里面的README 详细说明 目录的重组过程，暂时删除，因为我先玩 arduino101 而非ST

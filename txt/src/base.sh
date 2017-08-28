@@ -3,6 +3,8 @@
 # rc :run command
 # ctrl+d #terminal
 
+ls |xargs -n1 du -sk |sort -n
+
 # here document  EOF 是分隔符，可以任意字符串
 << EOF
 foo
