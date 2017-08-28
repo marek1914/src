@@ -1,3 +1,12 @@
+SDR: Software-Defined Radio
+Nuand bladeRF x40 USB 3.0 (300M-3.8G)
+
+http://www.freebuf.com/articles/wireless/35354.html
+http://whiteboard.ping.se/SDR/IQ
+http://wiki.spench.net/wiki/RTL2832U
+
+sudo apt-get install gqrx-sdr
+
 gnuradio.org
 
 https://myriadrf.org/
@@ -44,3 +53,15 @@ http://gqrx.dk/download/install-ubuntu
 
 好难受，安装终于成功了，可是不知道能干啥
 
+
+-----
+gps:
+bladeRF-cli -l /usr/share/Nuand/bladeRF/hostedx40.rbf
+
+http://www.gpsspg.com/maps.htm
+39.9821173579,116.3143099804  //纬度，经度
+google地图地址栏显示：  
+39.9816983，116.3156582 有些偏东向，手工调整经度 为116.3133789
+ftp://cddis.gsfc.nasa.gov/gnss/data/daily/2017/    下载brdc*.17n 文件
+
+时间也变了！ 时间是靠gps同步的？
