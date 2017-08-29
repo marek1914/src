@@ -344,9 +344,6 @@ I-PEX (天线扣子连接器)
 天线效率41%
 计算微带线的阻抗
 
---rf--
-sudo apt-get install gqrx-sdr
-
 电缆损耗：
 https://www.maximintegrated.com/cn/app-notes/index.mvp/id/4338
 https://www.maximintegrated.com/cn/products/analog/amplifiers/MAX9979.html/tb_tab2
@@ -359,19 +356,10 @@ vector network analyzer (VNA)—measures both amplitude and phase properties
 
 LPD433 (low power device 433.050-434.790)  bw: 1.74 MHz
 
-ITU-T:
-gaojie@cyclecentury.com:*2xxpy-
-
-http://www.freebuf.com/articles/wireless/35354.html
-http://whiteboard.ping.se/SDR/IQ
+ITU-T: gaojie@cyclecentury.com:*2xxpy-
 
 I : In-Phase(同相 同步) signal component
 Q : Quadrature signal component 
-
-http://wiki.spench.net/wiki/RTL2832U
-
-SDR: Software-Defined Radio
-Nuand bladeRF x40 USB 3.0 (300M-3.8G)
 
 传输线阻抗是从电报方程推导出来(查微波理论)
 传输线特性阻抗 (Characteristic impedance   wiki)
