@@ -2,9 +2,6 @@ tty显示中文：
 1 内核汉化-麻烦
 2 虚拟终端 fbterm （汉字间距很大，怎么解决）
 
-lubuntu = lxde+ubuntu
-
-pkg-config
 canonical
 
 ia32-libs u14.04无
@@ -22,7 +19,7 @@ plugin: autoproxy-ng
 Proxy Rule->Add Rule Subscription :gfwlist
 preference：port 1080 socks5
 
-shell: 下载 proxychains V4 源码编译
+shell: 下载 proxychains V4 编译
 /etc/proxychains.conf : socks5  127.0.0.1 1080
 usage: proxychains4 <prog> [args]
 
@@ -323,11 +320,6 @@ https://wiki.debian.org/ATIProprietary
 # Debian 8 "Jessie"
 deb http://httpredir.debian.org/debian/ jessie main contrib non-free
 
-
-synology  ssh
-ssh admin@192.168.0.144
-git clone ssh://gaojie@192.168.0.144/volume1/git_repos/lora
-
 ——
 Mac
 
@@ -398,6 +390,21 @@ local-gen
 
 针对单独用户修改，在.profile中单独设置这2个变量
 
+-----
+ssh reverse tunnels
+sshr@182.92.176.232
+mt@191.101.11.22
+a-d14
 
+ssh -fNR port:localhost:22 serveruser@138.47.99.99  //主要是-R
+登录跳板机：
+ssh username@localhost -p port  //or
+ssh username@serverip -p port
 
- 
+群晖 ssh admin@192.168.0.107
+反向port 20001
+
+ssh自动输入密码，各种重定向都不好用，需 sshpass 工具
+或免输密码：
+ssh-keygen -t rsa # ENTER to every field
+ssh-copy-id myname@somehost

@@ -1,3 +1,35 @@
+minigzip
+aapt
+mkbootfs
+mkbootimg
+fs_config
+zipalign
+bsdiff
+imgdiff
+dumpkey.jar
+signapk.jar
+BootSignature.jar
+mkuserimg.sh
+make_ext4fs
+mksquashfsimage.sh
+mksquashfs
+mkf2fsuserimg.sh
+make_f2fs
+simg2img
+e2fsck
+build_verity_tree
+verity_signer
+append2simg
+img2simg
+boot_signer
+fec
+brillo_update_payload
+lib/shflags/shflags
+delta_generator
+
+
+
+
 善用 croot/godir
 CLEAR_VARS:= $(BUILD_SYSTEM)/clear_vars.mk 把各种变量赋为空
 /data/local/tmp shell权限可访问
