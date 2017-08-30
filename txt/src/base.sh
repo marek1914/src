@@ -119,27 +119,6 @@ ${1} = --enable-shared=yes ${2} =  CFLAGS=-g
 
 shell/uboot:
 $foo / ${foo}
-Command Substitution(3.5.4): $(foo) / `foo`
-
-make：
-变量 $(foo) ${foo}
-单字母：$f  $foo -> $f+oo
-
-# export
-# makefile的export是make关键词，都是操作环境变量区
-如:
-test.sh:
-echo $A
-
-makefile：
-export A=123
-all:
-	@./test.sh
-或：
-makefile:
-export A
-all:
-	@A=123;./test.sh
 
 export 全局变量会被复制到子进程
 注意:
@@ -151,22 +130,17 @@ set 显示全局+局部变量
 export TEST=1
 Makefile 目标调用.sh，make后，这个shell可以读到TEST全局变量。
 
-9 makefile在target中运行shell:
-
 . foo.sh #foo.sh是参数而非命令，无需x权限和./
-
-3.5.3 Shell Parameter Expansion
-
-parameter and variable expansion
 
 # 3.5 Shell Expansions (7 types)
 #brace expansion
 #tilde expansion
-#parameter and variable expansion
-#command substitution
+#parameter and variable expansion 3.5.3(参数和变量本质相同)
+#command substitution 3.5.4 $(foo) / `foo`
 #arithmetic expansion
 #word splitting
-#filename expansion 
+#filename expansion * ? [ab]
+ 
 
 -s file True if file exists and has a size greater than zero. 
 
@@ -178,7 +152,7 @@ arg1 OP arg2
 -gt >
 -ge >=
 
-----------------
+#----------------
 I/O Redirection
 
 stdin (keyboard), 
@@ -323,14 +297,6 @@ do
     echo ${data}  
 done
 
-3.5.3 Shell Parameter Expansion
-匹配(android gcc-sdk/gcc里用到了 ^^)：
-options=" ${@} " 
-suffix_m32=${options##* -m32 }    # suffix after the last -m32
-suffix_m64=${options##* -m64 }    # suffix after the last -m64
-len_m32=${#suffix_m32}            # length of suffix after the last -m32
-len_m64=${#suffix_m64}            # length of suffix after the last -m64
-
 while true
 do
 	input keyevent KEYCODE_DPAD_UP
@@ -338,43 +304,22 @@ do
 	PLAY=$(($PLAY+1))
 done
 
-gitdir=$(git rev-parse --git-dir); scp -p -P 29418 user@ip:hooks/commit-msg ${gitdir}/hooks/
-foo= bar # =后面有空格，提示bar不是命令
-foo=1 bar=2 #当前进程定义2个变量
-foo=1 bar=2 sleep 1 #变量传递到sleep进程，当前进程看不到
-sleep 2 3 # 等价于sleep 5
-sleep 2h  # sleep 2小时
+foo=1 bar=2 #当前进程定义2变量
+foo=1 bar=2 sleep 1 #传递到子进程，当前进程看不到
+ARCH=arm64 echo $ARCH   #打不出来 ^_^
+ARCH=arm64 ;echo $ARCH  #能打出来 ^_^
+make ARCH=arm   #ARCH被定义在全局区域，make里面再起make还能检测到此变量
+ARCH=arm make   #make里能检测到， 相当于3，跟例2不同
 
-#命令替换嵌套变量扩展
-foo=pwd
-bar=`$foo`
-echo $b
-
-a="pwd|sed 's/a/b/'"  # 后面如此怪异时，要加""
 echo $(echo 00.00.00.03 |sed s/\\.//g)
 echo `echo 00.00.00.03 |sed s/\\\.//g`
 #用` 就需要三个反斜才能转义，为何？
 b=`pwd|sed 's/Note/gao/'`
-echo $b 
-#b是被替换了字符串的目录
-
-a=pwd|sed 's/Note/gao/'
-b=`$a`
-echo $b 
-#命令仅执行了pwd，结果跟测试1同，后面的sed没有执行， 变量展开后，|管道不灵了
-
-PATH=arm-linux-xx/bin:$PATH
-make  #PATH本来就在全局变量区
-ARCH=arm64 echo $ARCH   #打不出来 ^_^
-ARCH=arm64 ;echo $ARCH  #能打出来 ^_^
-
-make ARCH=arm   #ARCH被定义在全局区域，make里面再起make还能检测到此变量
-ARCH=arm make   #make里能检测到， 相当于3，跟例2不同
+a=pwd|sed 's/Note/gao/' #适当使用“”，否则a=pwd为一条指令
 
 # tr只能删除单字符，要删除utf-8 比如 tr -d “\022\034\270”  不能作为一个组合整体来删除
 tr '[A-Z]' '[a-z]'
 tr ' ' '\n' < list | sort -u > list-uniq
-
 
 ip route add 172.16.0.0/24 dev eth0
 
