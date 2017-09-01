@@ -1,6 +1,6 @@
 #!/bin/bash #(Bourne Again Shell) Shebang line
 # ctrl+d #terminal
-info # 看到所有支持的命令
+info # 所有命令
 
 ls |xargs -n1 du -sk |sort -n
 env
@@ -62,30 +62,14 @@ cat /proc/kmsg
 cut -f1 -d ' '
 cut -f1 -d- #arm-elf-gun -> arm
 
-# bs == ibs + obs
-dd if=/dev/zero count=10 of=dd.bin
-dd if=/dev/zero bs=1 count=1M of=dd.bin #slow
-dd if=/dev/zero of=/dev/fb0 bs=1024 count=768 #1024*768
-
-dd if=/dev/zero of=/dev/fb  #clear fb
-dd if=/dev/fb of=fbfile     #save fb
-dd if=xx of=/dev/fb       #write to fb
-dd if=/dev/zero count=1 of=/dev/sdb
+# bs == ibs + obs  bs配合count 方便计算
+dd if=/dev/fb of=fbfile   #save fb
+dd if=/dev/zero of=/dev/sdb count=1
 dd if=xx of=xx -skip n  #cut file head
 cat uldr.bin /dev/zero | dd bs=1 count=64k > uldr_padded_64k.bin
 dd if=x.iso of=/dev/sdb bs=8M conv=fsync
 
-#测试WR速度：
-write:
-time dd if=/dev/zero of=/mnt/sda/4Gb.file bs=4096 count=1024m
-28293437 bytes/sec = 28 M/s
-
-read:
-time dd if=/mnt/sda/sda3/4Gb.file of=/dev/null bs=4096
-30553023 bytes/src = 31 M/s
-
 # 后定义的变量先引用值为null
-# help xx 内建命令帮助，help本身是个内建命令，help help 可以看到help的帮助
 # 撤销环境变量： unset VAR_NAME
 # "!"执行 history 列表中的命令(history expansion)
 
@@ -96,7 +80,6 @@ time dd if=/mnt/sda/sda3/4Gb.file of=/dev/null bs=4096
 # make V=1 B  #定义变量V=1，编译目标B
 # 函数内部$1接收函数参数，函数外部$1接收命令行参数（.sh文件可理解为最外层函数）
 
-# 为子进程定义环境变量 ARCH=arm make (当前进程看不见，不同于ARCH=arm; make)
 # [] [[]] 不完全等价
 # 区分内建命令和关键词 (4 Shell Builtin Commands)
 # 命令行编辑 ctl+left 跳一个词
@@ -363,13 +346,12 @@ b=`$a`
 echo $b 
 #命令仅执行了pwd，结果跟测试1同，后面的sed没有执行， 变量展开后，|管道不灵了
 
-PATH=arm-linux-xx/bin:$PATH
-make  #PATH本来就在全局变量区
-ARCH=arm64 echo $ARCH   #打不出来 ^_^
-ARCH=arm64 ;echo $ARCH  #能打出来 ^_^
+PATH=arm-linux-xx/bin:$PATH #PATH本就是全局无需export
 
-make ARCH=arm   #ARCH被定义在全局区域，make里面再起make还能检测到此变量
-ARCH=arm make   #make里能检测到， 相当于3，跟例2不同
+ARCH=arm64 echo $ARCH   #打不出
+ARCH=arm64 ;echo $ARCH  #打出
+make ARCH=arm   #全局，相当于make内部export
+ARCH=arm make   #为子进程定义全局环境变量
 
 # tr只能删除单字符，要删除utf-8 比如 tr -d “\022\034\270”  不能作为一个组合整体来删除
 tr '[A-Z]' '[a-z]'
@@ -400,12 +382,12 @@ service mysql restart
 
 
 who #命令 登录后，su切换了用户， who还是现实最开始登录的用户名
+w
 #查看运行时间：
 who -b
 who -r
 last reboot
 top
-w
 uptime
 
 dos2unix

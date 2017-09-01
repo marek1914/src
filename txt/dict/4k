@@ -1,3 +1,5 @@
+affine 仿射
+swipe 重击猛打
 abandon 放弃
 abdomen 腹部
 ability
@@ -1011,6 +1013,7 @@ exit_status
 expand
 expansion
 expect
+unexpectedly 竟然居然
 expectation
 expense
 expensive
@@ -1797,14 +1800,12 @@ neighborhood
 neither
 nerve
 nervous
-net
 network
 never
 nevertheless
 newly
 news
 newspaper
-next
 nice
 night
 nine
@@ -1872,7 +1873,6 @@ onion
 online
 onto
 opaque 不透明
-open
 opening
 operate
 operating
@@ -1902,7 +1902,6 @@ otherwise
 ought
 our
 ourselves
-out
 outcome
 outlier 异常值
 outline
@@ -3052,12 +3051,12 @@ wine
 wing
 winner
 winter
-wipe
+unexpected 意外的想不到的
+wipe 擦除(swipe)
 wire
 wisdom
 wise
 wish
-with
 withdraw
 within
 without

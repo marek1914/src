@@ -44,8 +44,9 @@ i_CTRL-R :Insert the contents of a register
 ignorecase/noic 忽略大小写
 
 .c文件用2个空格替换tab:
-// vim:set ts=2 sw=2 expandtab:
+// vim:set ts=2 sw=2 et:  （expandtab）
 
+针对python文件，我加了 ts=2 sw=2 et  有效，但为啥tab按键还是4个空格？
 
 :e foo.c   #此时e是 edit
 :e dir     #此时e是 explore

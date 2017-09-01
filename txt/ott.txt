@@ -471,8 +471,6 @@ A20:
 编译器：brandy/gcc-linaro
 HELLO! BOOT0 is starting!
 
-配置：./buildroot/configs/sun7i_defconfig
-
 写mbr
 image开头：IMAGEWTY
 
@@ -542,10 +540,6 @@ chunk 1285(1286)
 
 —m3—
 galaxy/best/huashu 代码区分靠shell拷贝以及宏
-
-recovery kernel：meson_reff16_recovery_defconfig
-oir kernel: meson_reff16_defconfig
-
 
 ./f16ref/BoardConfig.mk
 TARGET_AMLOGIC_RECOVERY_KERNEL := $(PRODUCT_OUT)/uImage_recovery

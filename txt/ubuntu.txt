@@ -172,7 +172,7 @@ Nginx: /usr/local/nginx
 
     /etc/fstab:
     //ip/dir /mount_point cifs username=xx,password=xx,uid=1000,gid=1000,file_mode=0777 0 0
-    dir是相对于samba的路径，不是绝对路径
+    dir是相对于samba的路径，不是绝对路径, 密码是samba密码，不是服务器登录密码
 
 5) tftp(trivial ftp RFC783)
 	tftp-hpa (client)
