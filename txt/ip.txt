@@ -721,19 +721,8 @@ Age:1815750
 下面是188字节的ts包罗列，空间不足1个ts包，截断，下一个1460继续后半个ts包
 
 20140310 协议分析
-用vplayer 分享 why.mp4 到盒子，不能成功，黑屏一下就收到了stop，停止分享。手机点分享后立刻用ffplay 播放这个视频地址（地址之前用airplay程序抓到的），可以播出，过一会，盒子也能播出。貌似用ffplay勾引了一下就可以了。
-
-考察 amlogic 提供的 airplay apk 完全java实现
-
-图片可以分享成功，但需要尝试多次
-
-通过wifi可以连接，想通过有线连接，抓包分析，可是有线就是发现不了iphone
-
-D/AirReceiverService
-D/AirReceiver( 4084): ==>Create AirTunes RTSP server
-
-从“设置” 中看 此应用显示 ： 1个进程和1个服务
-“此服务由其应用启动”
+用vplayer 分享 why.mp4 到盒子，不能成功，黑屏一下就收到了stop，停止分享。手机点分享后立刻用ffplay 播放这个视频地址（地址之前用airplay程序抓到的），
+可以播出，过一会，盒子也能播出。貌似用ffplay勾引了一下就可以了。
 
 自己的itvision 广告和视频是2个url，结果在 我们的和小米的上面，第二个url不能播放
 但同等条件，在appletv上是好的

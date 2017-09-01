@@ -398,8 +398,8 @@ a-d14
 
 ssh -fNR port:localhost:22 serveruser@138.47.99.99  //主要是-R
 登录跳板机：
-ssh username@localhost -p port  //or
-ssh username@serverip -p port
+ssh username@localhost -p port  //or 不登录：
+ssh username@serverip  -p port
 
 群晖 ssh admin@192.168.0.107
 反向port 20001
@@ -408,3 +408,6 @@ ssh自动输入密码，各种重定向都不好用，需 sshpass 工具
 或免输密码：
 ssh-keygen -t rsa # ENTER to every field
 ssh-copy-id myname@somehost
+
+断开自动重连：
+autossh -M 20000 -NR 20001:localhost:22 sshr@182.92.176.232

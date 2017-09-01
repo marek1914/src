@@ -403,7 +403,6 @@ ans =
 人眼对高频变化感觉不大，因此JPEG压缩，主要是略去大部份高频数值。至于如何略去高频数据是量化问题
 
 --fft--
-github.com/FFTW :
 Unlike most other programs, most of the FFTW source code (in C) is generated automatically. 
 This repository contains the generator and it does not contain the generated code. 
 You cannot compile code from this repository unless you have special tools and know what you are doing.

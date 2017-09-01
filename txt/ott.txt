@@ -5,9 +5,6 @@ logcat -f /cache/verbose-ok.txt *:v
 logcat -f /cache/verbose-fail.txt *:v
 logcat -vthreadtime *:v > /data/logcat.txt
 
-framework:
-git push origin Hi3798MV200:refs/for/Hi3798MV200
-
 mmm frameworks/base/core/res/
 mmm frameworks/base/
 mmm frameworks/base/services/java/

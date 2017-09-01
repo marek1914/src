@@ -1,3 +1,5 @@
+kernel.org
+
 /dev/block/platform/... /by-name   by-num
 
 
@@ -545,12 +547,10 @@ mkfs.ext4
 /drivers/staging/android/lowmemorykiller.c  用到了global_page_state(NR_FILE_PAGES)
 debugfs
 
-http://git.kernel.org
-http://www.kernel.org
 
-有git时 2.6.37-2.8-g1069bbf-dirty
-若kernel有修改并没有git commit,就会生成-dirty
-./scripts/setlocalversion 有解释如下：出现 version 2.6.37-2.8+
+
+有git时 2.6.37-2.8-g1069bbf-dirty //修改未 commit
+./scripts/setlocalversion 有解释
 
 
 .ko不能strip: module has no symbols(stripped?)
@@ -864,7 +864,6 @@ kernel.org arm.linux.org.uk linux-arm.org 和邮件列表之间的关系
   而非使用linux-kernel邮件列表·  Mailing Lists
   lists.arm.linux.org.uk Mailing Lists administrated by Russell King
    arm.linux.org.uk 的邮件列表由Russell King维护
-2 http://www.linux-arm.org 站点运行在基于Marvell MV78100 SOC的ARM服务器
 3 http://www.linux-arm.org/git - GIT trees for the Linux kernel and U-Boot
   maintained by ARM Ltd. 来自Wiki，原来这个网站由ARM公司来维护。
   http://www.arm.com/linux, and http://www.arm.com/products/os/linux_download.html
@@ -910,13 +909,10 @@ kernel.org arm.linux.org.uk linux-arm.org 和邮件列表之间的关系
   分别比较 N2.6.28.10  S2.6.33  linux-arm2.6.33(打过arm补丁的2.6.33)
   N对S2.6.28.10的修改，有的已经收到 S2.6.33 有的收到 linux-arm.org 对2.6.33 打的补丁中
  
-
 2.6.28.10 在2.6.29 后发布
 2.6.28.10：2009.05.02
 2.6.29：2009.03.23
 2.6.28：2008.12.24
-
----
 
 3 关于arm/include/asm/cache.h 
   A2.6.29 对 S2.6.29 

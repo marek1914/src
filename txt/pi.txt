@@ -202,3 +202,19 @@ Debian (lxde桌面)
 Ubuntu
 Cloud9 IDE on Node.js BoneScript library
 
+
+wifi：
+iwlist scan # 扫描wifi
+
+/etc/wpa_supplicant/wpa_supplicant.conf
+network={
+  ssid="WIFINAME"
+  psk="password"
+}
+或：
+/etc/network/interface
+auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+wpa-ssid xxx
+wpa－psk xxx
