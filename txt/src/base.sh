@@ -352,4 +352,6 @@ tzselect - view timezones
 
 printf "PERM LINKS OWNER GROUP SIZE MONTH DAY HH:MM/YEAR NAME\n" ;ls -l | sed 1d | column -t
 
+column -t
+
 整理一个 查找替换 的命令

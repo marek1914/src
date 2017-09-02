@@ -1,3 +1,21 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <stdlib.h>
+
+
+typedef float F32;
+typedef unsigned char U8;
+
+//用户自定义宏//
+#define ERROR		0.0001			//小数
+#define PI			3.1415926		//PI
+#define DEGTORAD	0.01745329		//角度转换到弧度
+#define RADTODEG	57.2957805		//弧度转换到角度
+#define RADMIN		0.00017			//弧度最小值 0.01°对应的弧度值(PI / 180 /100)
+
+
+
 //星位计算所用参数
 typedef	struct _PARAMETER_SatGeoAng_STRU
 {
@@ -38,10 +56,17 @@ typedef struct _CMD_WAVEDIR
 	F32 stf32_pi;					//pi角
 }CMD_WAVEDIR;
 
+void MDL_SatGeoAngCal(PPARAMETER_SatGeoAng pstp_SatGeoAng);
+void MDL_TranCoor_GeoToDeck_AEP(PPARAMETER_TranCoor pstp_TRANCOOR);
+void MDL_DeckToBall(PPARAMETER_TranCoor pstp_TRANCOOR, CMD_WAVEDIR * st_WaveDir);
+F32 POLOffset_AEP(PPARAMETER_TranCoor pstp_TRANCOOR);					//AE坐标变化极化角偏移计算(过程函数)
 
 
-int main(void)
+int main(int argc, char** argv)
 {
+	if (argc < 7) {
+		return;
+	}
 	PARAMETER_SatGeoAng lst_SatGeoAng;
 	PARAMETER_TranCoor lst_TranCoor;
 	CMD_WAVEDIR wavedir;
@@ -49,19 +74,10 @@ int main(void)
 	memset(&lst_SatGeoAng, 0, sizeof(lst_SatGeoAng));
 	memset(&lst_TranCoor, 0, sizeof(lst_TranCoor));
 
-	lst_SatGeoAng.stf32_SatLong = 134;
+	lst_SatGeoAng.stf32_SatLong = atof(argv[1]);
 	lst_SatGeoAng.stu8_POLMode = 0;
-	lst_SatGeoAng.stf32_LocLong = 134;
-	lst_SatGeoAng.stf32_LocLat = 0;
-
-	MDL_SatGeoAngCal(&lst_SatGeoAng);
-
-	lst_TranCoor.stf32_AZGeoAng = lst_SatGeoAng.stf32_AZAng;
-	lst_TranCoor.stf32_ELGeoAng = lst_SatGeoAng.stf32_ELAng;
-	lst_TranCoor.stf32_POLGeoAng = lst_SatGeoAng.stf32_POLAng;
-	lst_TranCoor.stf32_Heading = 0;
-	lst_TranCoor.stf32_Roll = 0;
-	lst_TranCoor.stf32_Pitch = 0;
+	lst_SatGeoAng.stf32_LocLong = atof(argv[2]);
+	lst_SatGeoAng.stf32_LocLat = atof(argv[3]);
 
 	//计算卫星方位、俯仰和极化理论角
 	MDL_SatGeoAngCal(&lst_SatGeoAng);
@@ -69,14 +85,15 @@ int main(void)
 	lst_TranCoor.stf32_AZGeoAng = lst_SatGeoAng.stf32_AZAng;		//方位角
 	lst_TranCoor.stf32_ELGeoAng = lst_SatGeoAng.stf32_ELAng;		//俯仰角 
 	lst_TranCoor.stf32_POLGeoAng = lst_SatGeoAng.stf32_POLAng;		//极化角
-	lst_TranCoor.stf32_Heading = pstp_SETDATA->stf32_Heading;		//航向
-	lst_TranCoor.stf32_Roll = pstp_SETDATA->stf32_Roll;				//横摇
-	lst_TranCoor.stf32_Pitch = pstp_SETDATA->stf32_Pitch;			//纵摇
+	lst_TranCoor.stf32_Heading = atof(argv[4]);						//航向
+	lst_TranCoor.stf32_Roll = atof(argv[5]);						//横摇
+	lst_TranCoor.stf32_Pitch = atof(argv[6]);						//纵摇
 
 	MDL_TranCoor_GeoToDeck_AEP(&lst_TranCoor);						//AE座架地理角转变为甲板角
 
 	MDL_DeckToBall(&lst_TranCoor, &wavedir);
 
+	printf("%f  %f \n", wavedir.stf32_pi, wavedir.stf32_thita);
 	return 0;
 }
 
