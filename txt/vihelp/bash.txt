@@ -5,4 +5,73 @@
 @ ($@) Expands to the positional parameters, starting from one.
 
 
+# 3.5 Shell Expansions (7 types)
+#brace expansion
+#tilde expansion
+#parameter and variable expansion 3.5.3(参数和变量本质相同)
+#command substitution 3.5.4 $(foo) / `foo`
+#arithmetic expansion
+#word splitting
+#filename expansion * ? [ab]
+
+#3.5.5 Arithmetic Expansion:
+$((expression))
+v1=11 ; v2=11
+v3=$(($v1*$v2))
+v3=$((v1*v2))
+$((v3=$v1*$v2))
+
+
+if [ -f "$APKLIBPATH/*.*" ] #不识别通配符，真有*.*文件
+if [ "$color" = yes ]
+if [ -n "$1" ] # 必须是 "$1" 而不是 $1
+if [ -n "$force_color_prompt" ]
+
+
+-s file True if file exists and has a size greater than zero. 
+
+arg1 OP arg2
+-eq ==
+-ne !=
+-lt <
+-le <=
+-gt >
+-ge >=
+
+
+3.2.3 Lists of Commands
+A list is a sequence of one or more pipelines separated by one of the 
+operators ‘;’, ‘&’, ‘&&’, ‘||’, and terminated by one of ‘;’, ‘&’, or newline. 
+
+file=`ls` #得到的空格分隔 并非数组
+array=(1 2 3 ....N) 
+echo ${array[index]} 
+for data in ${array[@]}  # @取全部
+do  
+    echo ${data}  
+done
+
+while true
+do
+	input keyevent KEYCODE_DPAD_UP
+	sleep 3
+	PLAY=$(($PLAY+1))
+done
+
+
+# rename
+i=1
+for f in *.jpg; do
+    mv $f ${i}.jpg  #$i.jpg也可,因为.不出现在变量名里
+    ((i++))
+done
+
+#pad 4k 0xff, 应该用dd ^_^
+while ((i<4096)); do printf "\377" >>pad.bin; ((i++)); done
+
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root"
+   exit
+fi
+
 vim: tw=78 ts=8 sw=4 sts=4 et ft=help
