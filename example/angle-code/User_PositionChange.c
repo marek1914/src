@@ -1,21 +1,21 @@
 /********************************************************
-Œƒº˛√˚≥∆£∫User_ComFun.c
-◊˜’ﬂ£∫Õıæ©≥«
-∞Ê±æ£∫20131105
-Àµ√˜£∫±æŒƒº˛Œ™User_ComFunµƒ.cŒƒº˛
-–ﬁ∏ƒº«¬º£∫
-–ﬁ∏ƒ ±º‰		–ﬁ∏ƒ»À	–ﬁ∏ƒƒ⁄»›
+Êñá‰ª∂ÂêçÁß∞ÔºöUser_ComFun.c
+‰ΩúËÄÖÔºöÁéã‰∫¨Âüé
+ÁâàÊú¨Ôºö20131105
+ËØ¥ÊòéÔºöÊú¨Êñá‰ª∂‰∏∫User_ComFunÁöÑ.cÊñá‰ª∂
+‰øÆÊîπËÆ∞ÂΩïÔºö
+‰øÆÊîπÊó∂Èó¥		‰øÆÊîπ‰∫∫	‰øÆÊîπÂÜÖÂÆπ
 
 *********************************************************/
 
 #include "User_PositionChange.h"
 
 ///////////////////////////////////////////////////////////////////
-//∫Ø ˝√˚≥∆£∫CalSatInf
-//∫Ø ˝π¶ƒ‹£∫º∆À„µ±«∞÷∏œÚŒ¿–«÷∏œÚΩ«∂»
-//»Îø⁄≤Œ ˝£∫pstp_REVDATA
-//≥ˆø⁄≤Œ ˝£∫pstp_SEDDATA
-//±∏ 	◊¢£∫Œﬁ
+//ÂáΩÊï∞ÂêçÁß∞ÔºöCalSatInf
+//ÂáΩÊï∞ÂäüËÉΩÔºöËÆ°ÁÆóÂΩìÂâçÊåáÂêëÂç´ÊòüÊåáÂêëËßíÂ∫¶
+//ÂÖ•Âè£ÂèÇÊï∞Ôºöpstp_REVDATA
+//Âá∫Âè£ÂèÇÊï∞Ôºöpstp_SEDDATA
+//Â§á 	Ê≥®ÔºöÊó†
 ///////////////////////////////////////////////////////////////////
 void CalSatInf(SETDATA * pstp_SETDATA)
 {
@@ -27,76 +27,76 @@ void CalSatInf(SETDATA * pstp_SETDATA)
 	//pstp_SETDATA->stf32_SatLong = 110.5;
     //pstp_SETDATA->stf32_Long = 114.43;
 	//pstp_SETDATA->stf32_Latitude = 38.04;
-	//º∆À„¿Ì¬€÷µ
+	//ËÆ°ÁÆóÁêÜËÆ∫ÂÄº
 	memset(&lst_SatGeoAng, 0, sizeof(lst_SatGeoAng));
 	memset(&lst_TranCoor, 0, sizeof(lst_TranCoor));
-	lst_SatGeoAng.stf32_SatLong = pstp_SETDATA->stf32_SatLong;							//Œ¿–«æ≠∂»
-	lst_SatGeoAng.stu8_POLMode = 0;														//º´ªØ∑Ω Ω:‘≤º´ªØ
-	lst_SatGeoAng.stf32_LocLong = pstp_SETDATA->stf32_Long;								//æ≠∂»
-	lst_SatGeoAng.stf32_LocLat = pstp_SETDATA->stf32_Latitude;							//Œ≥∂»
+	lst_SatGeoAng.stf32_SatLong = pstp_SETDATA->stf32_SatLong;							//Âç´ÊòüÁªèÂ∫¶
+	lst_SatGeoAng.stu8_POLMode = 0;														//ÊûÅÂåñÊñπÂºè:ÂúÜÊûÅÂåñ
+	lst_SatGeoAng.stf32_LocLong = pstp_SETDATA->stf32_Long;								//ÁªèÂ∫¶
+	lst_SatGeoAng.stf32_LocLat = pstp_SETDATA->stf32_Latitude;							//Á∫¨Â∫¶
 	
-	//º∆À„Œ¿–«∑ΩŒª°¢∏©—ˆ∫Õº´ªØ¿Ì¬€Ω«
+	//ËÆ°ÁÆóÂç´ÊòüÊñπ‰Ωç„ÄÅ‰øØ‰ª∞ÂíåÊûÅÂåñÁêÜËÆ∫Ëßí
 	MDL_SatGeoAngCal(&lst_SatGeoAng);
 
-	lst_TranCoor.stf32_AZGeoAng = lst_SatGeoAng.stf32_AZAng;							//∑ΩŒªΩ«
-	lst_TranCoor.stf32_ELGeoAng = lst_SatGeoAng.stf32_ELAng;							//∏©—ˆΩ« 
-	lst_TranCoor.stf32_POLGeoAng = lst_SatGeoAng.stf32_POLAng;							//º´ªØΩ«
-	lst_TranCoor.stf32_Heading = pstp_SETDATA->stf32_Heading;							//∫ΩœÚ
-	lst_TranCoor.stf32_Roll = pstp_SETDATA->stf32_Roll;									//∫·“°
-	lst_TranCoor.stf32_Pitch = pstp_SETDATA->stf32_Pitch;								//◊›“°
+	lst_TranCoor.stf32_AZGeoAng = lst_SatGeoAng.stf32_AZAng;							//Êñπ‰ΩçËßí
+	lst_TranCoor.stf32_ELGeoAng = lst_SatGeoAng.stf32_ELAng;							//‰øØ‰ª∞Ëßí 
+	lst_TranCoor.stf32_POLGeoAng = lst_SatGeoAng.stf32_POLAng;							//ÊûÅÂåñËßí
+	lst_TranCoor.stf32_Heading = pstp_SETDATA->stf32_Heading;							//Ëà™Âêë
+	lst_TranCoor.stf32_Roll = pstp_SETDATA->stf32_Roll;									//Ê®™Êëá
+	lst_TranCoor.stf32_Pitch = pstp_SETDATA->stf32_Pitch;								//Á∫µÊëá
 
-	MDL_TranCoor_GeoToDeck_AEP(&lst_TranCoor);											//AE◊˘º‹µÿ¿ÌΩ«◊™±‰Œ™º◊∞ÂΩ«
+	MDL_TranCoor_GeoToDeck_AEP(&lst_TranCoor);											//AEÂ∫ßÊû∂Âú∞ÁêÜËßíËΩ¨Âèò‰∏∫Áî≤ÊùøËßí
 
 	MDL_DeckToBall(&lst_TranCoor,pstp_SETDATA);
 	
 }
 
 /********************************************************
-∫Ø ˝√˚≥∆£∫MDL_SatGeoAngCal
-∫Ø ˝π¶ƒ‹£∫∏˘æ›Œ¿–«æ≠∂»°¢’ææ≠Œ≥∂»º∆À„ƒø±Íµÿ¿ÌΩ«∂»
-»Îø⁄≤Œ ˝£∫
-stf32_SatLong;				//Œ¿–«æ≠∂»(-360.000~360.000)
-stf32_LocLong;				//µ±«∞æ≠∂»(-180.000~179.999)
-stf32_LocLat;				//µ±«∞Œ≥∂»(-90.000~90.000)
-stu8_POLMode;				//º´ªØ∑Ω Ω(0-ÀÆ∆Ωº´ªØ£ª1-¥π÷±º´ªØ)
-≥ˆø⁄≤Œ ˝£∫
-stf32_AZAng;				//∑ΩŒªΩ«∂»(0~359.999)
-stf32_ELAng;				//∏©—ˆΩ«∂»(0~90.000)
-stf32_POLAng;				//º´ªØΩ«∂»(-90.0~90.000)
-±∏    ◊¢£∫
+ÂáΩÊï∞ÂêçÁß∞ÔºöMDL_SatGeoAngCal
+ÂáΩÊï∞ÂäüËÉΩÔºöÊ†πÊçÆÂç´ÊòüÁªèÂ∫¶„ÄÅÁ´ôÁªèÁ∫¨Â∫¶ËÆ°ÁÆóÁõÆÊ†áÂú∞ÁêÜËßíÂ∫¶
+ÂÖ•Âè£ÂèÇÊï∞Ôºö
+stf32_SatLong;				//Âç´ÊòüÁªèÂ∫¶(-360.000~360.000)
+stf32_LocLong;				//ÂΩìÂâçÁªèÂ∫¶(-180.000~179.999)
+stf32_LocLat;				//ÂΩìÂâçÁ∫¨Â∫¶(-90.000~90.000)
+stu8_POLMode;				//ÊûÅÂåñÊñπÂºè(0-Ê∞¥Âπ≥ÊûÅÂåñÔºõ1-ÂûÇÁõ¥ÊûÅÂåñ)
+Âá∫Âè£ÂèÇÊï∞Ôºö
+stf32_AZAng;				//Êñπ‰ΩçËßíÂ∫¶(0~359.999)
+stf32_ELAng;				//‰øØ‰ª∞ËßíÂ∫¶(0~90.000)
+stf32_POLAng;				//ÊûÅÂåñËßíÂ∫¶(-90.0~90.000)
+Â§á    Ê≥®Ôºö
 ********************************************************/
 void MDL_SatGeoAngCal(PPARAMETER_SatGeoAng pstp_SatGeoAng)
 {
 	F32 lf32_satlong, lf32_localong, lf32_localat;
 	F32 lf32_temp;
 	
-	lf32_satlong = (F32)(pstp_SatGeoAng->stf32_SatLong * DEGTORAD);		//Œ¿–«æ≠∂» Ω«∂»◊™ª°∂»
-	lf32_localong = (F32)(pstp_SatGeoAng->stf32_LocLong * DEGTORAD);		//±æµÿæ≠∂» Ω«∂»◊™ª°∂»
+	lf32_satlong = (F32)(pstp_SatGeoAng->stf32_SatLong * DEGTORAD);		//Âç´ÊòüÁªèÂ∫¶ ËßíÂ∫¶ËΩ¨ÂºßÂ∫¶
+	lf32_localong = (F32)(pstp_SatGeoAng->stf32_LocLong * DEGTORAD);		//Êú¨Âú∞ÁªèÂ∫¶ ËßíÂ∫¶ËΩ¨ÂºßÂ∫¶
 	
-	//±æµÿŒ≥∂»
-	//“ÚŒ™Œ≥∂»“™◊˜Œ™∑÷ƒ∏≤Œ”Î‘ÀÀ„£¨À˘“‘¥À¥¶±ÿ–Î∂‘µÕŒ≥∂»Ω¯––≈–∂œ∫Õ±£ª§£¨“‘√‚≥ˆœ÷°∞≥˝“‘0°±µƒ¥ÌŒÛ
-	//≥Ã–Ú÷–…Ë÷√µƒŒ≥∂»æ´∂»Œ™0.01°„£¨À˘“‘¥À¥¶œﬁ÷∆µƒ◊Ó–°Ω«∂»Œ™0.01
+	//Êú¨Âú∞Á∫¨Â∫¶
+	//Âõ†‰∏∫Á∫¨Â∫¶Ë¶Å‰Ωú‰∏∫ÂàÜÊØçÂèÇ‰∏éËøêÁÆóÔºåÊâÄ‰ª•Ê≠§Â§ÑÂøÖÈ°ªÂØπ‰ΩéÁ∫¨Â∫¶ËøõË°åÂà§Êñ≠Âíå‰øùÊä§Ôºå‰ª•ÂÖçÂá∫Áé∞‚ÄúÈô§‰ª•0‚ÄùÁöÑÈîôËØØ
+	//Á®ãÂ∫è‰∏≠ËÆæÁΩÆÁöÑÁ∫¨Â∫¶Á≤æÂ∫¶‰∏∫0.01¬∞ÔºåÊâÄ‰ª•Ê≠§Â§ÑÈôêÂà∂ÁöÑÊúÄÂ∞èËßíÂ∫¶‰∏∫0.01
 	if ((pstp_SatGeoAng->stf32_LocLat <= -0.01)||(pstp_SatGeoAng->stf32_LocLat  >= 0.01))
 	{
-		lf32_localat = (F32)(pstp_SatGeoAng->stf32_LocLat * DEGTORAD); 	//Œ≥∂»÷µ≤ªŒ™0£¨º¥≤ª‘⁄≥‡µ¿…œ
+		lf32_localat = (F32)(pstp_SatGeoAng->stf32_LocLat * DEGTORAD); 	//Á∫¨Â∫¶ÂÄº‰∏ç‰∏∫0ÔºåÂç≥‰∏çÂú®Ëµ§ÈÅì‰∏ä
 	}
 	else if (pstp_SatGeoAng->stf32_LocLat  < 0.00)
 	{
-		lf32_localat = (F32)(-RADMIN);  								//ƒœ∞Î«ÚµÕŒ≥∂»
+		lf32_localat = (F32)(-RADMIN);  								//ÂçóÂçäÁêÉ‰ΩéÁ∫¨Â∫¶
 	}
 	else 
 	{
-		lf32_localat = (F32)(RADMIN);									//±±∞Î«ÚµÕŒ≥∂»
+		lf32_localat = (F32)(RADMIN);									//ÂåóÂçäÁêÉ‰ΩéÁ∫¨Â∫¶
 	}
 	
-	//∑ΩŒªƒø±Íµÿ¿ÌΩ«∂»º∆À„
-	lf32_temp = (F32)(atan(tan(lf32_satlong - lf32_localong) / sin(lf32_localat)) * RADTODEG);  //(-90.0 90.0) “ªªÚÀƒœÛœﬁ
+	//Êñπ‰ΩçÁõÆÊ†áÂú∞ÁêÜËßíÂ∫¶ËÆ°ÁÆó
+	lf32_temp = (F32)(atan(tan(lf32_satlong - lf32_localong) / sin(lf32_localat)) * RADTODEG);  //(-90.0 90.0) ‰∏ÄÊàñÂõõË±°Èôê
 	lf32_temp = (F32)(180.0 - lf32_temp);
 	if(lf32_temp < 0) 
 	{
 		lf32_temp += 360.0;
 	}
-	if(lf32_localat < 0)												//ÃÏœﬂ¥¶”⁄ƒœ∞Î«Úµƒº∆À„
+	if(lf32_localat < 0)												//Â§©Á∫øÂ§Ñ‰∫éÂçóÂçäÁêÉÁöÑËÆ°ÁÆó
 	{
 		lf32_temp += 180.0;
 		if(lf32_temp >= 360.0)
@@ -106,22 +106,22 @@ void MDL_SatGeoAngCal(PPARAMETER_SatGeoAng pstp_SatGeoAng)
 	}
 	pstp_SatGeoAng->stf32_AZAng = lf32_temp;	
 	
-	//∏©—ˆƒø±Íµÿ¿ÌΩ«∂»º∆À„
-	//µÿ«Ú≥‡µ¿∞Îæ∂ r = 6378.140km
-	//Õ¨≤ΩπÏµ¿Œ¿–«∏ﬂ∂»£®æ‡µÿ√Ê£© h = 35785.965km
-	//Õ¨≤ΩπÏµ¿Œ¿–«∞Îæ∂£®æ‡µÿ–ƒ£© H = h + r = 42164.105km
-	//‘Ú r/R = r/(r+h) = 6378.140/42164.105 = 0.15126859683135690891577089090353
+	//‰øØ‰ª∞ÁõÆÊ†áÂú∞ÁêÜËßíÂ∫¶ËÆ°ÁÆó
+	//Âú∞ÁêÉËµ§ÈÅìÂçäÂæÑ r = 6378.140km
+	//ÂêåÊ≠•ËΩ®ÈÅìÂç´ÊòüÈ´òÂ∫¶ÔºàË∑ùÂú∞Èù¢Ôºâ h = 35785.965km
+	//ÂêåÊ≠•ËΩ®ÈÅìÂç´ÊòüÂçäÂæÑÔºàË∑ùÂú∞ÂøÉÔºâ H = h + r = 42164.105km
+	//Âàô r/R = r/(r+h) = 6378.140/42164.105 = 0.15126859683135690891577089090353
 	lf32_temp = (F32)(atan((cos(lf32_satlong - lf32_localong) * cos(lf32_localat) - 0.1512686)
 		/ sqrt(1.0 - cos(lf32_localat) * cos(lf32_satlong-lf32_localong) * cos(lf32_localat) * cos(lf32_satlong - lf32_localong))));
 	pstp_SatGeoAng->stf32_ELAng = (F32)(lf32_temp * RADTODEG);
 	
-	//º´ªØƒø±Íµÿ¿ÌΩ«∂»º∆À„£®Ω«∂»“‘ÀÆ∆Ωº´ªØŒ™0º∆À„µ√≥ˆ£©
-	lf32_temp = (F32)(atan(sin(lf32_satlong - lf32_localong) / tan(lf32_localat)));  //(-90.0 90.0) “ªªÚÀƒœÛœﬁ
+	//ÊûÅÂåñÁõÆÊ†áÂú∞ÁêÜËßíÂ∫¶ËÆ°ÁÆóÔºàËßíÂ∫¶‰ª•Ê∞¥Âπ≥ÊûÅÂåñ‰∏∫0ËÆ°ÁÆóÂæóÂá∫Ôºâ
+	lf32_temp = (F32)(atan(sin(lf32_satlong - lf32_localong) / tan(lf32_localat)));  //(-90.0 90.0) ‰∏ÄÊàñÂõõË±°Èôê
 	lf32_temp *= (F32)(RADTODEG);
-	//¥π÷±º´ªØ
+	//ÂûÇÁõ¥ÊûÅÂåñ
 	if (1 == pstp_SatGeoAng->stu8_POLMode) 
 	{
-		lf32_temp += 90.0;	//¥π÷±º´ªØ£¨º´ªØΩ«∂»œ‡≤Ó90°„
+		lf32_temp += 90.0;	//ÂûÇÁõ¥ÊûÅÂåñÔºåÊûÅÂåñËßíÂ∫¶Áõ∏Â∑Æ90¬∞
 	}
 	if (lf32_temp > 90.0)
 	{
@@ -134,19 +134,19 @@ void MDL_SatGeoAngCal(PPARAMETER_SatGeoAng pstp_SatGeoAng)
 
 
 /********************************************************
-∫Ø ˝√˚≥∆£∫MDL_TranCoor_GeoToDeck_AEP
-∫Ø ˝π¶ƒ‹£∫AE◊˘º‹µÿ¿ÌΩ«◊™±‰Œ™º◊∞ÂΩ«
-»Îø⁄≤Œ ˝£∫
-stf32_Heading;				//∫ΩœÚ(0~359.999)
-stf32_Roll;					//∫·«„(-90.00~90.00)
-stf32_Pitch;					//◊›«„(-90.00~90.00)
-stf32_AZGeoAng;				//∑ΩŒªµÿ¿ÌΩ«∂»(0~359.999)
-stf32_ELGeoAng;				//∏©—ˆµÿ¿ÌΩ«∂»(-180.000~179.999)
-≥ˆø⁄≤Œ ˝£∫
-stf32_AZDeckAng;			//∑ΩŒªº◊∞ÂΩ«∂»
-stf32_ELDeckAng;			//∏©—ˆº◊∞ÂΩ«∂»
-stf32_POLDeckAng;			//º´ªØº◊∞ÂΩ«∂»
-±∏    ◊¢£∫”√”⁄AE◊˘º‹◊¯±Í±‰ªØ£¨µÿ¿ÌΩ«±‰ªªŒ™º◊∞ÂΩ«
+ÂáΩÊï∞ÂêçÁß∞ÔºöMDL_TranCoor_GeoToDeck_AEP
+ÂáΩÊï∞ÂäüËÉΩÔºöAEÂ∫ßÊû∂Âú∞ÁêÜËßíËΩ¨Âèò‰∏∫Áî≤ÊùøËßí
+ÂÖ•Âè£ÂèÇÊï∞Ôºö
+stf32_Heading;				//Ëà™Âêë(0~359.999)
+stf32_Roll;					//Ê®™ÂÄæ(-90.00~90.00)
+stf32_Pitch;					//Á∫µÂÄæ(-90.00~90.00)
+stf32_AZGeoAng;				//Êñπ‰ΩçÂú∞ÁêÜËßíÂ∫¶(0~359.999)
+stf32_ELGeoAng;				//‰øØ‰ª∞Âú∞ÁêÜËßíÂ∫¶(-180.000~179.999)
+Âá∫Âè£ÂèÇÊï∞Ôºö
+stf32_AZDeckAng;			//Êñπ‰ΩçÁî≤ÊùøËßíÂ∫¶
+stf32_ELDeckAng;			//‰øØ‰ª∞Áî≤ÊùøËßíÂ∫¶
+stf32_POLDeckAng;			//ÊûÅÂåñÁî≤ÊùøËßíÂ∫¶
+Â§á    Ê≥®ÔºöÁî®‰∫éAEÂ∫ßÊû∂ÂùêÊ†áÂèòÂåñÔºåÂú∞ÁêÜËßíÂèòÊç¢‰∏∫Áî≤ÊùøËßí
 ********************************************************/
 void MDL_TranCoor_GeoToDeck_AEP(PPARAMETER_TranCoor pstp_TRANCOOR)
 {
@@ -155,7 +155,7 @@ void MDL_TranCoor_GeoToDeck_AEP(PPARAMETER_TranCoor pstp_TRANCOOR)
 	F32 lf32_lf32_sineLAng,lf32_SinAZAng,lf32_SinPitch,lf32_lf32_sinroll;
 	F32 lf32_temp;
 
-	//º∆À„≥ˆ≤Œ ˝µƒsin()”Îcos()÷µ£¨±‹√‚≥Ã–Ú÷–÷ÿ∏¥º∆À„£¨Ã·∏ﬂ–ß¬ 
+	//ËÆ°ÁÆóÂá∫ÂèÇÊï∞ÁöÑsin()‰∏écos()ÂÄºÔºåÈÅøÂÖçÁ®ãÂ∫è‰∏≠ÈáçÂ§çËÆ°ÁÆóÔºåÊèêÈ´òÊïàÁéá
 	lf32_temp = (F32)(pstp_TRANCOOR->stf32_ELGeoAng * DEGTORAD);
 	lf32_lf32_coseLAng = (F32)cos(lf32_temp);
 	lf32_lf32_sineLAng = (F32)sin(lf32_temp);
@@ -169,7 +169,7 @@ void MDL_TranCoor_GeoToDeck_AEP(PPARAMETER_TranCoor pstp_TRANCOOR)
 	lf32_lf32_cosroll = (F32)cos(lf32_temp);
 	lf32_lf32_sinroll = (F32)sin(lf32_temp);
 	
-	//∑ΩŒªº◊∞ÂΩ« 
+	//Êñπ‰ΩçÁî≤ÊùøËßí 
 	lf32_x = (F32)(lf32_lf32_cosroll * lf32_lf32_coseLAng * lf32_CosAZAng + lf32_lf32_sinroll * lf32_lf32_sineLAng);	
 	lf32_y = (F32)(lf32_lf32_coseLAng * (lf32_CosPitch * lf32_SinAZAng + lf32_SinPitch * lf32_lf32_sinroll * lf32_CosAZAng)
 			- lf32_SinPitch * lf32_lf32_cosroll * lf32_lf32_sineLAng);	
@@ -177,27 +177,27 @@ void MDL_TranCoor_GeoToDeck_AEP(PPARAMETER_TranCoor pstp_TRANCOOR)
     {
 		if (lf32_x < RADMIN)
 		{
-			lf32_x = (F32)RADMIN;							 //0.0  0.01°„÷Æº‰£¨÷√Œ™0.01°„
+			lf32_x = (F32)RADMIN;							 //0.0  0.01¬∞‰πãÈó¥ÔºåÁΩÆ‰∏∫0.01¬∞
 		}
     }
 	else
     {
 		if (lf32_x > -RADMIN) 
 		{
-			lf32_x = (F32)-RADMIN;							 //0.0  -0.01°„÷Æº‰£¨÷√Œ™-0.01°„
+			lf32_x = (F32)-RADMIN;							 //0.0  -0.01¬∞‰πãÈó¥ÔºåÁΩÆ‰∏∫-0.01¬∞
 		}
     }	
-	lf32_temp = (F32)(atan(lf32_y / lf32_x) * RADTODEG);	 //(-90.0 90.0) “ªªÚÀƒœÛœﬁ
-	if (lf32_x >= 0.0)										 //“ªÀƒœÛœﬁ
+	lf32_temp = (F32)(atan(lf32_y / lf32_x) * RADTODEG);	 //(-90.0 90.0) ‰∏ÄÊàñÂõõË±°Èôê
+	if (lf32_x >= 0.0)										 //‰∏ÄÂõõË±°Èôê
     {
 		if (lf32_y < 0.0) 
 		{
-			lf32_temp += 360.0;								 //ÀƒœÛœﬁ
+			lf32_temp += 360.0;								 //ÂõõË±°Èôê
 		}
     }
 	else
     {
-		lf32_temp += 180.0;									 //∂˛»˝œÛœﬁ
+		lf32_temp += 180.0;									 //‰∫å‰∏âË±°Èôê
     }
 	
 	if (lf32_temp >= 360.0)
@@ -210,7 +210,7 @@ void MDL_TranCoor_GeoToDeck_AEP(PPARAMETER_TranCoor pstp_TRANCOOR)
 	}		
 	pstp_TRANCOOR->stf32_AZDeckAng = (F32)lf32_temp;	
 	
-	//∏©—ˆº◊∞ÂΩ« 
+	//‰øØ‰ª∞Áî≤ÊùøËßí 
 	lf32_x = (F32)(lf32_SinPitch * lf32_lf32_coseLAng * lf32_SinAZAng 
 			- lf32_CosPitch * lf32_lf32_sinroll * lf32_lf32_coseLAng * lf32_CosAZAng
 			+ lf32_CosPitch * lf32_lf32_cosroll * lf32_lf32_sineLAng);
@@ -218,7 +218,7 @@ void MDL_TranCoor_GeoToDeck_AEP(PPARAMETER_TranCoor pstp_TRANCOOR)
 	lf32_temp = (F32)(asin(lf32_x) * RADTODEG);  
 	pstp_TRANCOOR->stf32_ELDeckAng= (F32)lf32_temp;
 
-	//º´ªØº◊∞ÂΩ«
+	//ÊûÅÂåñÁî≤ÊùøËßí
 	lf32_temp = POLOffset_AEP(pstp_TRANCOOR);
 
 	lf32_temp = pstp_TRANCOOR->stf32_POLGeoAng - lf32_temp;		//-90 - +90
@@ -239,7 +239,7 @@ void MDL_DeckToBall(PPARAMETER_TranCoor pstp_TRANCOOR,SETDATA * pstp_SETDATA)
 {
 	F32 lf_Aa,lf_Ea;
 
-	lf_Aa = pstp_TRANCOOR->stf32_AZDeckAng;   //pstp_SETDATA->stf32_XiuZheng œ»±£¡Ù
+	lf_Aa = pstp_TRANCOOR->stf32_AZDeckAng;   //pstp_SETDATA->stf32_XiuZheng ÂÖà‰øùÁïô
 	lf_Ea = pstp_TRANCOOR->stf32_ELDeckAng;
 	if (lf_Aa <= 90)
 	{
@@ -263,19 +263,19 @@ void MDL_DeckToBall(PPARAMETER_TranCoor pstp_TRANCOOR,SETDATA * pstp_SETDATA)
 
 
 /********************************************************
-∫Ø ˝√˚≥∆£∫POLOffset_AEP
-∫Ø ˝π¶ƒ‹£∫AE÷·◊¯±Í±‰ªØº´ªØΩ«∆´“∆º∆À„
-»Îø⁄≤Œ ˝£∫
-stf32_Heading;				//∫ΩœÚ(0~359.999)
-stf32_Roll;					//∫·«„(-90.00~90.00)
-stf32_Pitch;					//◊›«„(-90.00~90.00)
-stf32_AZGeoAng;				//∑ΩŒªµÿ¿ÌΩ«∂»(0~359.999)
-stf32_ELGeoAng;				//∏©—ˆµÿ¿ÌΩ«∂»(-180.000~179.999)
-stf32_AZDeckAng;			//∑ΩŒªº◊∞ÂΩ«∂»(0~359.999)
-stf32_ELDeckAng;			//∏©—ˆº◊∞ÂΩ«∂»(-180.000~179.999)
-≥ˆø⁄≤Œ ˝£∫
-lf32_temp;					//º´ªØ∆´“∆÷µ
-±∏    ◊¢£∫
+ÂáΩÊï∞ÂêçÁß∞ÔºöPOLOffset_AEP
+ÂáΩÊï∞ÂäüËÉΩÔºöAEËΩ¥ÂùêÊ†áÂèòÂåñÊûÅÂåñËßíÂÅèÁßªËÆ°ÁÆó
+ÂÖ•Âè£ÂèÇÊï∞Ôºö
+stf32_Heading;				//Ëà™Âêë(0~359.999)
+stf32_Roll;					//Ê®™ÂÄæ(-90.00~90.00)
+stf32_Pitch;					//Á∫µÂÄæ(-90.00~90.00)
+stf32_AZGeoAng;				//Êñπ‰ΩçÂú∞ÁêÜËßíÂ∫¶(0~359.999)
+stf32_ELGeoAng;				//‰øØ‰ª∞Âú∞ÁêÜËßíÂ∫¶(-180.000~179.999)
+stf32_AZDeckAng;			//Êñπ‰ΩçÁî≤ÊùøËßíÂ∫¶(0~359.999)
+stf32_ELDeckAng;			//‰øØ‰ª∞Áî≤ÊùøËßíÂ∫¶(-180.000~179.999)
+Âá∫Âè£ÂèÇÊï∞Ôºö
+lf32_temp;					//ÊûÅÂåñÂÅèÁßªÂÄº
+Â§á    Ê≥®Ôºö
 ********************************************************/
 F32 POLOffset_AEP(PPARAMETER_TranCoor pstp_TRANCOOR)
 {
@@ -283,7 +283,7 @@ F32 POLOffset_AEP(PPARAMETER_TranCoor pstp_TRANCOOR)
 	F32 lf32_ELAng, lf32_AZAng, lf32_Pitch, lf32_AZAng2;
 	F32 lf32_temp;
 	
-	//∂»±‰ªªŒ™ª°∂»
+	//Â∫¶ÂèòÊç¢‰∏∫ÂºßÂ∫¶
 	lf32_ELAng = (F32)(pstp_TRANCOOR->stf32_ELGeoAng * DEGTORAD);
 	lf32_AZAng = (F32)((pstp_TRANCOOR->stf32_AZGeoAng - pstp_TRANCOOR->stf32_Heading) * DEGTORAD);
 	lf32_Pitch = (F32)(pstp_TRANCOOR->stf32_Roll * DEGTORAD);
@@ -309,14 +309,14 @@ F32 POLOffset_AEP(PPARAMETER_TranCoor pstp_TRANCOOR)
     {
 		if (lf32_x < RADMIN) 
 		{
-			lf32_x = (F32)(RADMIN);							//0.0  0.01°„÷Æº‰£¨÷√Œ™0.01°„
+			lf32_x = (F32)(RADMIN);							//0.0  0.01¬∞‰πãÈó¥ÔºåÁΩÆ‰∏∫0.01¬∞
 		}
     }
 	else
     {
 		if (lf32_x > -RADMIN)
 		{
-			lf32_x = (F32)(-RADMIN);						//0.0  -0.01°„÷Æº‰£¨÷√Œ™-0.01°„
+			lf32_x = (F32)(-RADMIN);						//0.0  -0.01¬∞‰πãÈó¥ÔºåÁΩÆ‰∏∫-0.01¬∞
 		}
     }	
 	lf32_temp = (F32)(atan2(lf32_y,lf32_x) * RADTODEG);		//-90.0 - 90.0

@@ -1,10 +1,10 @@
 /********************************************************
-ÎÄ¼şÃû³Æ£ºUser_GlobalVar.h
-×÷Õß£ºÍõ¾©³Ç
-°æ±¾£º20131106
-ËµÃ÷£º±¾ÎÄ¼şÎª³ÌĞòµÄºêÅäÖÃÍ·ÎÄ¼ş
-ĞŞ¸Ä¼ÇÂ¼£º
-ĞŞ¸ÄÊ±¼ä		ĞŞ¸ÄÈË	ĞŞ¸ÄÄÚÈİ
+æ–‡ä»¶åç§°ï¼šUser_GlobalVar.h
+ä½œè€…ï¼šç‹äº¬åŸ
+ç‰ˆæœ¬ï¼š20131106
+è¯´æ˜ï¼šæœ¬æ–‡ä»¶ä¸ºç¨‹åºçš„å®é…ç½®å¤´æ–‡ä»¶
+ä¿®æ”¹è®°å½•ï¼š
+ä¿®æ”¹æ—¶é—´		ä¿®æ”¹äºº	ä¿®æ”¹å†…å®¹
 
 *********************************************************/
 
@@ -15,13 +15,13 @@
 extern "C" {
 #endif
 
-//¶¨ÒåÈí¼şÔËĞĞµÄÏµÍ³ÀàĞÍ
-#define SYSTEM_32	0				//32Î»ÏµÍ³£¨Windows¡¢LinuxµÈ£©
-#define SYSTEM_16	1				//16Î»ÏµÍ³£¨DSPµÈ£©
-#define SYSTEM_8	0				//8Î»ÏµÍ³£¨µ¥Æ¬»úµÈ£©
+//å®šä¹‰è½¯ä»¶è¿è¡Œçš„ç³»ç»Ÿç±»å‹
+#define SYSTEM_32	0				//32ä½ç³»ç»Ÿï¼ˆWindowsã€Linuxç­‰ï¼‰
+#define SYSTEM_16	1				//16ä½ç³»ç»Ÿï¼ˆDSPç­‰ï¼‰
+#define SYSTEM_8	0				//8ä½ç³»ç»Ÿï¼ˆå•ç‰‡æœºç­‰ï¼‰
 
-//ÓÃ»§Ìí¼ÓÊı¾İÀàĞÍ¶¨Òå
-//32Î»ÏµÍ³
+//ç”¨æˆ·æ·»åŠ æ•°æ®ç±»å‹å®šä¹‰
+//32ä½ç³»ç»Ÿ
 #if SYSTEM_32
 typedef char				I8;
 typedef unsigned char		U8;
@@ -34,7 +34,7 @@ typedef unsigned long		U64;
 typedef float				F32;
 typedef double				F64;
 #endif
-//16Î»ÏµÍ³
+//16ä½ç³»ç»Ÿ
 #if SYSTEM_16
 typedef char				I8;
 typedef unsigned char		U8;
@@ -45,7 +45,7 @@ typedef unsigned long		U32;
 typedef float				F32;
 typedef double				F64;
 #endif
-//8Î»ÏµÍ³
+//8ä½ç³»ç»Ÿ
 #if SYSTEM_8
 typedef char				I8;
 typedef unsigned char		U8;
@@ -63,20 +63,20 @@ typedef float				F32;
 //------------------------------------------------------------------
 
 
-//»ù±¾¶¨Ê±½á¹¹Ìå
+//åŸºæœ¬å®šæ—¶ç»“æ„ä½“
 typedef struct _TIMERPAR
 {	
-	U16 stu16_tmr1mscnt;			//1ms¶¨Ê±¼ÆÊı
-	U16 stu16_tmr2mscnt;			//2ms¶¨Ê±¼ÆÊı
-	U16 stu16_tmr5mscnt;			//5ms¶¨Ê±¼ÆÊı
-	U16 stu16_tmr10mscnt;			//10ms¶¨Ê±¼ÆÊı
-	U16 stu16_tmr20mscnt;			//20ms¶¨Ê±¼ÆÊı
-	U16 stu16_tmr50mscnt;			//50ms¶¨Ê±¼ÆÊı
+	U16 stu16_tmr1mscnt;			//1mså®šæ—¶è®¡æ•°
+	U16 stu16_tmr2mscnt;			//2mså®šæ—¶è®¡æ•°
+	U16 stu16_tmr5mscnt;			//5mså®šæ—¶è®¡æ•°
+	U16 stu16_tmr10mscnt;			//10mså®šæ—¶è®¡æ•°
+	U16 stu16_tmr20mscnt;			//20mså®šæ—¶è®¡æ•°
+	U16 stu16_tmr50mscnt;			//50mså®šæ—¶è®¡æ•°
 
-	U16 stu16_tmr100mscnt;			//100ms¶¨Ê±¼ÆÊı
-	U16 stu16_tmr200mscnt;			//200ms¶¨Ê±¼ÆÊı
+	U16 stu16_tmr100mscnt;			//100mså®šæ—¶è®¡æ•°
+	U16 stu16_tmr200mscnt;			//200mså®šæ—¶è®¡æ•°
 
-	U16 stu16_tmr1scnt;				//1s¶¨Ê±¼ÆÊı	
+	U16 stu16_tmr1scnt;				//1så®šæ—¶è®¡æ•°	
 
 }TIMERPAR,*pTIMERPAR;
 
@@ -102,139 +102,139 @@ typedef struct _TIMERPAR
 
 typedef struct _UART_STRU
 {
-	U8	stu8_ComCnt1;					//Í¨ĞÅ¼ÆÊı1
-	U8	stu8_ComCnt2;					//Í¨ĞÅ¼ÆÊı2
-	U8	stu8_IsrCnt;					//ÖĞ¶Ï¼ÆÊı
+	U8	stu8_ComCnt1;					//é€šä¿¡è®¡æ•°1
+	U8	stu8_ComCnt2;					//é€šä¿¡è®¡æ•°2
+	U8	stu8_IsrCnt;					//ä¸­æ–­è®¡æ•°
 	
-	U8	stu8_RcvIndex;					//½ÓÊÕ¼ÆÊı
-	U8	stu8_TransIndex;				//·¢ËÍ¼Æ
-	U8  stu8_RcvFlag;					//½ÓÊÕ±êÖ¾
-	U8  stu8_CheckFlag;                 //Ğ£Ñé±êÖ¾
-	U8	stu8a_RcvBuf[100];				//½ÓÊÕ»º³åÇø
-	U8	stu8a_TransBuf[200];			//·¢ËÍ»º³åÇø
-	U8	stu8a_TransLength;				//·¢ËÍ±êÖ¾
-	U8	stu8a_RcvDealBuf1[100];			//UARTA½ÓÊÕ´¦ÀíÇø
-	U8	stu8a_RcvDealBuf2[100];			//UARTB½ÓÊÕ´¦ÀíÇø
-	U8	stu8a_RcvDealBuf3[100];			//UARTC½ÓÊÕ´¦ÀíÇø
+	U8	stu8_RcvIndex;					//æ¥æ”¶è®¡æ•°
+	U8	stu8_TransIndex;				//å‘é€è®¡
+	U8  stu8_RcvFlag;					//æ¥æ”¶æ ‡å¿—
+	U8  stu8_CheckFlag;                 //æ ¡éªŒæ ‡å¿—
+	U8	stu8a_RcvBuf[100];				//æ¥æ”¶ç¼“å†²åŒº
+	U8	stu8a_TransBuf[200];			//å‘é€ç¼“å†²åŒº
+	U8	stu8a_TransLength;				//å‘é€æ ‡å¿—
+	U8	stu8a_RcvDealBuf1[100];			//UARTAæ¥æ”¶å¤„ç†åŒº
+	U8	stu8a_RcvDealBuf2[100];			//UARTBæ¥æ”¶å¤„ç†åŒº
+	U8	stu8a_RcvDealBuf3[100];			//UARTCæ¥æ”¶å¤„ç†åŒº
 	U8 stu8_Time;
 	U8 stu8_Count;
 	U8 stu8_Count1;
 	U8 stu8_Count2;
 	U8 stu8_Count3;
-	U8	stu8a_TransData[200];			//·¢ËÍÊı¾İ
+	U8	stu8a_TransData[200];			//å‘é€æ•°æ®
 }UART;
 extern UART gst_UARTA;
 extern UART gst_UARTB;
 extern UART gst_UARTC;
 
-//ĞÇºÅ¼«»¯·½Ê½
+//æ˜Ÿå·æåŒ–æ–¹å¼
 typedef struct _CMD_SATPOL
 {
-	U8 stu8_SatNum;					//ĞÇºÅ		0:ÌìÍ¨£¬1:ÌìÁ´
-	U8 stu8_PolMod;					//¼«»¯·½Ê½	0:×óĞı£¬1:ÓÒĞı
+	U8 stu8_SatNum;					//æ˜Ÿå·		0:å¤©é€šï¼Œ1:å¤©é“¾
+	U8 stu8_PolMod;					//æåŒ–æ–¹å¼	0:å·¦æ—‹ï¼Œ1:å³æ—‹
 }CMD_SATPOL;
 
-//²¨ÊøÖ¸Ïò
+//æ³¢æŸæŒ‡å‘
 typedef struct _CMD_WAVEDIR
 {
-	F32 stf32_thita;				//thita½Ç
-	F32 stf32_pi;					//pi½Ç
+	F32 stf32_thita;				//thitaè§’
+	F32 stf32_pi;					//piè§’
 }CMD_WAVEDIR;
 
-//ÏàÎ»Ğ£×¼
+//ç›¸ä½æ ¡å‡†
 typedef struct _CMD_PHASEADJ
 {
-	U8 stu8_Index;					//Ë÷Òı
-	U8 stu8a_Phase[819];			//ÏàÎ»
+	U8 stu8_Index;					//ç´¢å¼•
+	U8 stu8a_Phase[819];			//ç›¸ä½
 }CMD_PHASEADJ;
 
-//ÕñÔªÉèÖÃ
+//æŒ¯å…ƒè®¾ç½®
 typedef struct _CMD_UNITSET
 {
-	U8 stu8_Line;					//ĞĞ
-	U8 stu8_Row;					//ÁĞ
-	U8 stu8a_Dim[4][4];				//Ë¥¼õ
-	U8 stu8a_Phase[4][4];			//ÏàÎ»
-	U8 stu8a_Power[4][4];			//µçÔ´
+	U8 stu8_Line;					//è¡Œ
+	U8 stu8_Row;					//åˆ—
+	U8 stu8a_Dim[4][4];				//è¡°å‡
+	U8 stu8a_Phase[4][4];			//ç›¸ä½
+	U8 stu8a_Power[4][4];			//ç”µæº
 }CMD_UNITSET;
 
-//ÃüÁî½âÎö½á¹¹Ìå
+//å‘½ä»¤è§£æç»“æ„ä½“
 typedef struct _RCVDATA_CMDDEAL
 {
-	U8 stu8_FramHead;				//Ö¡Í·
-	U8 stu8_CmdType1;				//Ö¡ÃüÁî1
-	U8 stu8_CmdType2;				//Ö¡ÃüÁî2
-	U8 stu8a_CmdData[8];			//Ö¡ÄÚÈİ
-	U8 stu8_checkOut;				//Ğ£Ñé
-	U8 stu8_FramTail;				//Ö¡Î²
+	U8 stu8_FramHead;				//å¸§å¤´
+	U8 stu8_CmdType1;				//å¸§å‘½ä»¤1
+	U8 stu8_CmdType2;				//å¸§å‘½ä»¤2
+	U8 stu8a_CmdData[8];			//å¸§å†…å®¹
+	U8 stu8_checkOut;				//æ ¡éªŒ
+	U8 stu8_FramTail;				//å¸§å°¾
 }RCVDATA_CMDDEAL;
 
 
-//²éÑ¯ÃüÁî½á¹¹Ìå
+//æŸ¥è¯¢å‘½ä»¤ç»“æ„ä½“
 typedef struct _CMD_INQ
 {
-	I8 sti8_CmdType;				//ÃüÁîÀàĞÍ, ¸ºÖµÎŞĞ§µÄ²éÑ¯ÃüÁî
-	U8 stu8_Line;					//ĞĞ
-	U8 stu8_Row;					//ÁĞ
-	U8 stu8_Index;					//ÏàÎ»Ğ£×¼Ë÷Òı
+	I8 sti8_CmdType;				//å‘½ä»¤ç±»å‹, è´Ÿå€¼æ— æ•ˆçš„æŸ¥è¯¢å‘½ä»¤
+	U8 stu8_Line;					//è¡Œ
+	U8 stu8_Row;					//åˆ—
+	U8 stu8_Index;					//ç›¸ä½æ ¡å‡†ç´¢å¼•
 }CMD_INQ;
 
-//×é¼şµçÑ¹¡¢µçÁ÷¡¢¹¦ÂÊ
+//ç»„ä»¶ç”µå‹ã€ç”µæµã€åŠŸç‡
 typedef struct _CMD_VCW
 {
-	U8 stu8_Line;					//ĞĞ
-	U8 stu8_Row;					//ÁĞ
+	U8 stu8_Line;					//è¡Œ
+	U8 stu8_Row;					//åˆ—
 	
-	F32 stf32a_Vol[4][4];			//µçÑ¹
-	F32 stf32a_Cur[4][4];			//µçÁ÷
-	F32 stf32a_Power[4][4];			//¹¦ÂÊ
+	F32 stf32a_Vol[4][4];			//ç”µå‹
+	F32 stf32a_Cur[4][4];			//ç”µæµ
+	F32 stf32a_Power[4][4];			//åŠŸç‡
 }CMD_VCW;
 
-//×é¼şÎÂ¶È
+//ç»„ä»¶æ¸©åº¦
 typedef struct _CMD_TEMP
 {
-	U8 stu8_Line;					//ĞĞ
-	U8 stu8_Row;					//ÁĞ
+	U8 stu8_Line;					//è¡Œ
+	U8 stu8_Row;					//åˆ—
 	
-	F32 stf32a_T[4][4];				//ÎÂ¶È
+	F32 stf32a_T[4][4];				//æ¸©åº¦
 }CMD_TEMP;
 
-//ÉèÖÃ½á¹¹Ìå
+//è®¾ç½®ç»“æ„ä½“
 typedef struct _SETDATA_STRU
 {
-	U8					stu8_SetFlag;	//ÉèÖÃÃüÁî±êÖ¾£¬FALSE:²»¶ÔÏÂÎ»»ú½øĞĞÉèÖÃ£¬TRUE:¶ÔÏÂÎ»»ú½øĞĞÉèÖÃ
-	U8					stu8_SendFlag;	//·¢ËÍ±êÖ¾£¬TRUE:·¢ËÍÊı¾İÖ¡,FALSE:²»·¢ËÍÊı¾İÖ¡
-	I32					sti32_TimerCnt;	//Ê±¼ä¼ÆÊıÆ÷£¬ÓÃÓÚ³¬Ê±ÖØ·¢,50msÎ´ÊÕµ½»Ø¸´Ôò½øĞĞÖØ·¢
+	U8					stu8_SetFlag;	//è®¾ç½®å‘½ä»¤æ ‡å¿—ï¼ŒFALSE:ä¸å¯¹ä¸‹ä½æœºè¿›è¡Œè®¾ç½®ï¼ŒTRUE:å¯¹ä¸‹ä½æœºè¿›è¡Œè®¾ç½®
+	U8					stu8_SendFlag;	//å‘é€æ ‡å¿—ï¼ŒTRUE:å‘é€æ•°æ®å¸§,FALSE:ä¸å‘é€æ•°æ®å¸§
+	I32					sti32_TimerCnt;	//æ—¶é—´è®¡æ•°å™¨ï¼Œç”¨äºè¶…æ—¶é‡å‘,50msæœªæ”¶åˆ°å›å¤åˆ™è¿›è¡Œé‡å‘
 
-	RCVDATA_CMDDEAL		st_CmdDeal;		//ÃüÁî½âÎö
-	RCVDATA_CMDDEAL		st_SetCmd;		//ÉèÖÃÃüÁî
-	RCVDATA_CMDDEAL		st_InqCmd;		//²éÑ¯ÃüÁî
+	RCVDATA_CMDDEAL		st_CmdDeal;		//å‘½ä»¤è§£æ
+	RCVDATA_CMDDEAL		st_SetCmd;		//è®¾ç½®å‘½ä»¤
+	RCVDATA_CMDDEAL		st_InqCmd;		//æŸ¥è¯¢å‘½ä»¤
 
-	U8					stu8_WrkMod;	//¹¤×÷Ä£Ê½
-	F32					stf32_RcvFrq;	//½ÓÊÕÆµÂÊ
-	F32					stf32_SendFrq;	//·¢ÉäÆµÂÊ
-	CMD_SATPOL			st_SatPol;		//ĞÇÎ»¡¢¼«»¯
-	CMD_WAVEDIR			st_WaveDir;		//²¨ÊøÖ¸Ïò
-	CMD_PHASEADJ		st_PhaseAdj;	//ÏàÎ»Ğ£×¼
-	CMD_UNITSET			st_SendUnit;	//·¢ÉäÕñÔª
-	CMD_UNITSET			st_RcvUnit;		//½ÓÊÕÕñÔª
-	CMD_VCW				st_UCW;			//µçÑ¹¡¢µçÁ÷¡¢¹¦ÂÊ
-	CMD_TEMP			st_Temp;		//×é¼şÎÂ¶È
+	U8					stu8_WrkMod;	//å·¥ä½œæ¨¡å¼
+	F32					stf32_RcvFrq;	//æ¥æ”¶é¢‘ç‡
+	F32					stf32_SendFrq;	//å‘å°„é¢‘ç‡
+	CMD_SATPOL			st_SatPol;		//æ˜Ÿä½ã€æåŒ–
+	CMD_WAVEDIR			st_WaveDir;		//æ³¢æŸæŒ‡å‘
+	CMD_PHASEADJ		st_PhaseAdj;	//ç›¸ä½æ ¡å‡†
+	CMD_UNITSET			st_SendUnit;	//å‘å°„æŒ¯å…ƒ
+	CMD_UNITSET			st_RcvUnit;		//æ¥æ”¶æŒ¯å…ƒ
+	CMD_VCW				st_UCW;			//ç”µå‹ã€ç”µæµã€åŠŸç‡
+	CMD_TEMP			st_Temp;		//ç»„ä»¶æ¸©åº¦
 	U32                 stu32_Count;
 	U32                 stu32_Count1;
-	//ÎÀÍ¨Ö¸Áî
-	F32					stf32_SatLong;	//ÎÀĞÇ¾­¶È
-	F32					stf32_PowerDim;	//¹¦ÂÊË¥¼õ
+	//å«é€šæŒ‡ä»¤
+	F32					stf32_SatLong;	//å«æ˜Ÿç»åº¦
+	F32					stf32_PowerDim;	//åŠŸç‡è¡°å‡
 
-	//ÎÀÍ¨×ª·¢Ö¡
-	F32					stf32_Heading;	//º½Ïò
-	F32					stf32_Pitch;	//¸©Ñö½Ç
-	F32					stf32_Roll;		//ºáÒ¡
-	F32					stf32_Long;		//¾­¶È
-	F32					stf32_Latitude;	//Î³¶È
+	//å«é€šè½¬å‘å¸§
+	F32					stf32_Heading;	//èˆªå‘
+	F32					stf32_Pitch;	//ä¿¯ä»°è§’
+	F32					stf32_Roll;		//æ¨ªæ‘‡
+	F32					stf32_Long;		//ç»åº¦
+	F32					stf32_Latitude;	//çº¬åº¦
 } SETDATA;
 
-//°æ±¾ÈÕÆÚ
+//ç‰ˆæœ¬æ—¥æœŸ
 typedef struct _CMD_VERSION
 {
 	U16					stu16_Year;
@@ -242,29 +242,29 @@ typedef struct _CMD_VERSION
 	U8					stu8_Day;
 }CMD_VERSION;
 
-//×´Ì¬½á¹¹Ìå
+//çŠ¶æ€ç»“æ„ä½“
 typedef struct _STADATA_STRU
 {
-	U8					stu8_WrkMod;	//¹¤×÷Ä£Ê½
-	U8					stu8_Boot;		//FPGAÆô¶¯×´Ì¬ 1:Æô¶¯ 2:Î´Æô¶¯
+	U8					stu8_WrkMod;	//å·¥ä½œæ¨¡å¼
+	U8					stu8_Boot;		//FPGAå¯åŠ¨çŠ¶æ€ 1:å¯åŠ¨ 2:æœªå¯åŠ¨
 	U32                 stu32_Count;
 	U32                 stu32_Count1;
-	F32					stf32_RcvFrq;	//½ÓÊÕÆµÂÊ
-	F32					stf32_SendFrq;	//·¢ÉäÆµÂÊ
-	CMD_SATPOL			st_SatPol;		//ĞÇÎ»¡¢¼«»¯
-	CMD_WAVEDIR			st_WaveDir;		//²¨ÊøÖ¸Ïò
-	CMD_PHASEADJ		st_PhaseAdj;	//ÏàÎ»Ğ£×¼
-	CMD_UNITSET			st_SendUnit;	//·¢ÉäÕñÔª
-	CMD_UNITSET			st_RcvUnit;		//½ÓÊÕÕñÔª
-	CMD_VCW				st_UCW;			//µçÑ¹¡¢µçÁ÷¡¢¹¦ÂÊ
-	CMD_TEMP			st_Temp;		//×é¼şÎÂ¶È
-	CMD_VERSION			st_FPGA;		//FPGA°æ±¾ºÅ
-	CMD_VERSION			st_DSP;			//DSP°æ±¾ºÅ
+	F32					stf32_RcvFrq;	//æ¥æ”¶é¢‘ç‡
+	F32					stf32_SendFrq;	//å‘å°„é¢‘ç‡
+	CMD_SATPOL			st_SatPol;		//æ˜Ÿä½ã€æåŒ–
+	CMD_WAVEDIR			st_WaveDir;		//æ³¢æŸæŒ‡å‘
+	CMD_PHASEADJ		st_PhaseAdj;	//ç›¸ä½æ ¡å‡†
+	CMD_UNITSET			st_SendUnit;	//å‘å°„æŒ¯å…ƒ
+	CMD_UNITSET			st_RcvUnit;		//æ¥æ”¶æŒ¯å…ƒ
+	CMD_VCW				st_UCW;			//ç”µå‹ã€ç”µæµã€åŠŸç‡
+	CMD_TEMP			st_Temp;		//ç»„ä»¶æ¸©åº¦
+	CMD_VERSION			st_FPGA;		//FPGAç‰ˆæœ¬å·
+	CMD_VERSION			st_DSP;			//DSPç‰ˆæœ¬å·
 } STADATA;
 
 //--------------------------------------------------------------------------
 
-#define RADMIN			0.00017				//»¡¶È×îĞ¡Öµ 0.01¡ã¶ÔÓ¦µÄ»¡¶ÈÖµ(PI / 180 /100)
+#define RADMIN			0.00017				//å¼§åº¦æœ€å°å€¼ 0.01Â°å¯¹åº”çš„å¼§åº¦å€¼(PI / 180 /100)
 #define ChLiW
 #ifdef __cplusplus
 }

@@ -1,10 +1,10 @@
 /********************************************************
-ÎÄ¼şÃû³Æ£ºUser_ComFun.h
-×÷Õß£ºÍõ¾©³Ç
-°æ±¾£º20131105
-ËµÃ÷£º±¾ÎÄ¼şÎªUser_ComFunµÄÍ·ÎÄ¼ş
-ĞŞ¸Ä¼ÇÂ¼£º
-ĞŞ¸ÄÊ±¼ä		ĞŞ¸ÄÈË	ĞŞ¸ÄÄÚÈİ
+æ–‡ä»¶åç§°ï¼šUser_ComFun.h
+ä½œè€…ï¼šç‹äº¬åŸ
+ç‰ˆæœ¬ï¼š20131105
+è¯´æ˜ï¼šæœ¬æ–‡ä»¶ä¸ºUser_ComFunçš„å¤´æ–‡ä»¶
+ä¿®æ”¹è®°å½•ï¼š
+ä¿®æ”¹æ—¶é—´		ä¿®æ”¹äºº	ä¿®æ”¹å†…å®¹
 
 *********************************************************/
 
@@ -14,9 +14,9 @@
 
 #include <string.h>
 
-#include "User_GlobalVar.h"			//ÓÃ»§¶¨ÒåµÄÈ«¾Ö±äÁ¿
-#include "User_MacroCfg.h"			//ÓÃ»§¶¨ÒåµÄºê¶¨Òå
-//#include "User_Module.h"			//¹«¹²Ä£¿é
+#include "User_GlobalVar.h"			//ç”¨æˆ·å®šä¹‰çš„å…¨å±€å˜é‡
+#include "User_MacroCfg.h"			//ç”¨æˆ·å®šä¹‰çš„å®å®šä¹‰
+//#include "User_Module.h"			//å…¬å…±æ¨¡å—
 #include <math.h>
 #include "User_InitSys.h"
 #include "User_ComFun.h"
@@ -33,7 +33,7 @@ extern "C" {
 //										|  '  | | | |
 //										'-----'-'-'-'
 //
-//------------------------------------×ÔÓÃºê¶¨Òå--------------------------------------
+//------------------------------------è‡ªç”¨å®å®šä¹‰--------------------------------------
 
 
 //----------------------------------------------------------------------------------
@@ -43,20 +43,20 @@ extern "C" {
 //										|  '  | | | |
 //										'-----'-'-'-'
 //
-//-----------------------------------º¯Êı¶¨Òå----------------------------------------
-void UartADataDeal(UART*pstp_Uart, SETDATA* pstp_WrkModSet);//2015Äê12ÔÂ10ÈÕ17:31:58
-void UartBDataDeal(UART*pstp_Uart);//2015Äê12ÔÂ10ÈÕ17:31:58
-void UartC_RcvDataDeal(UART*pstp_Uart, SETDATA* pstp_WrkModSet, STADATA *pstp_STUS);//2015Äê12ÔÂ10ÈÕ17:31:58
+//-----------------------------------å‡½æ•°å®šä¹‰----------------------------------------
+void UartADataDeal(UART*pstp_Uart, SETDATA* pstp_WrkModSet);//2015å¹´12æœˆ10æ—¥17:31:58
+void UartBDataDeal(UART*pstp_Uart);//2015å¹´12æœˆ10æ—¥17:31:58
+void UartC_RcvDataDeal(UART*pstp_Uart, SETDATA* pstp_WrkModSet, STADATA *pstp_STUS);//2015å¹´12æœˆ10æ—¥17:31:58
 
 I32 MonPtrl_OutTransferMean(I8 *pi8p_Buf,U8 pu32_Len, I8 *pi8p_Buf1);
 I32 MonPtrl_InTransferMean(I8 *pi8p_Buf,U8 pu32_Len, I8 *pi8p_Buf1);
 
-I32 UartC_SendDataDeal(RCVDATA_CMDDEAL* pstp_CmdFrame, I8* pi8a_Buf);				//´®¿Ú·¢ËÍÊı¾İ´¦Àí£¬ÓÉ½á¹¹Ìå±ä³ÉÊı×é
+I32 UartC_SendDataDeal(RCVDATA_CMDDEAL* pstp_CmdFrame, I8* pi8a_Buf);				//ä¸²å£å‘é€æ•°æ®å¤„ç†ï¼Œç”±ç»“æ„ä½“å˜æˆæ•°ç»„
 
-extern void UartC_SendData(UART *pstp_UARTC, I8* pi8a_Buf, U16 lu16_Ret);			//´®¿ÚC·¢ËÍº¯Êı
+extern void UartC_SendData(UART *pstp_UARTC, I8* pi8a_Buf, U16 lu16_Ret);			//ä¸²å£Cå‘é€å‡½æ•°
 extern U16 ComFun_U8ToU16(U8 pu8_Data1, U8 pu8_Data2);								
-void UartC_SetInqCmdSend(UART*pstp_Uart, SETDATA* pstp_WrkModSet, STADATA *pstp_STUS);//²éÑ¯¡¢ÉèÖÃÃüÁî
-void Uart_SetWaveDir(UART*pstp_Uart, SETDATA* pstp_WrkModSet);							//²¨ÊøÖ¸Ïò½ÇÉèÖÃ
+void UartC_SetInqCmdSend(UART*pstp_Uart, SETDATA* pstp_WrkModSet, STADATA *pstp_STUS);//æŸ¥è¯¢ã€è®¾ç½®å‘½ä»¤
+void Uart_SetWaveDir(UART*pstp_Uart, SETDATA* pstp_WrkModSet);							//æ³¢æŸæŒ‡å‘è§’è®¾ç½®
 #ifdef __cplusplus
 }
 #endif /* extern "C" */

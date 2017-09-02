@@ -1,10 +1,10 @@
 /********************************************************
-ÎÄ¼şÃû³Æ£ºUser_InitSys.h
-×÷Õß£ºÍõ¾©³Ç
-°æ±¾£º20131104
-ËµÃ÷£º±¾ÎÄ¼şÎªUser_InitSysµÄÍ·ÎÄ¼ş
-ĞŞ¸Ä¼ÇÂ¼£º
-ĞŞ¸ÄÊ±¼ä		ĞŞ¸ÄÈË	ĞŞ¸ÄÄÚÈİ
+æ–‡ä»¶åç§°ï¼šUser_InitSys.h
+ä½œè€…ï¼šç‹äº¬åŸ
+ç‰ˆæœ¬ï¼š20131104
+è¯´æ˜ï¼šæœ¬æ–‡ä»¶ä¸ºUser_InitSysçš„å¤´æ–‡ä»¶
+ä¿®æ”¹è®°å½•ï¼š
+ä¿®æ”¹æ—¶é—´		ä¿®æ”¹äºº	ä¿®æ”¹å†…å®¹
 
 *********************************************************/
 
@@ -13,7 +13,7 @@
 
 #include <string.h>
 
-#include "User_GlobalVar.h"			//ÓÃ»§¶¨ÒåµÄÈ«¾Ö±äÁ¿
+#include "User_GlobalVar.h"			//ç”¨æˆ·å®šä¹‰çš„å…¨å±€å˜é‡
 #include "DSP28x_Project.h"			// Device Headerfile and Examples Include File
 #include "User_MacroCfg.h"
 #include "User_Flash.h"
@@ -22,104 +22,104 @@
 extern "C" {
 #endif
 
-//-----------------------------ĞèÒªĞŞ¸Ä²¿·Ö----------------------------------------------
+//-----------------------------éœ€è¦ä¿®æ”¹éƒ¨åˆ†----------------------------------------------
 
-//½ÚµãÊıÁ¿(1~32)
-#define CANMSGTOTLALCNT 32 								//ÓÊÏä×ÜÊıÁ¿
+//èŠ‚ç‚¹æ•°é‡(1~32)
+#define CANMSGTOTLALCNT 32 								//é‚®ç®±æ€»æ•°é‡
 
-//½ÓÊÕIDÊıÁ¿
-#define CANARXMSGCNT 	1								//±¾½ÚµãÊ¹ÓÃµÄCANAÏûÏ¢¶ÔÏó¸öÊı(½ÓÊÕ)
-#define CANBRXMSGCNT 	1 								//±¾½ÚµãÊ¹ÓÃµÄCANBÏûÏ¢¶ÔÏó¸öÊı(½ÓÊÕ)
+//æ¥æ”¶IDæ•°é‡
+#define CANARXMSGCNT 	1								//æœ¬èŠ‚ç‚¹ä½¿ç”¨çš„CANAæ¶ˆæ¯å¯¹è±¡ä¸ªæ•°(æ¥æ”¶)
+#define CANBRXMSGCNT 	1 								//æœ¬èŠ‚ç‚¹ä½¿ç”¨çš„CANBæ¶ˆæ¯å¯¹è±¡ä¸ªæ•°(æ¥æ”¶)
 
-//·¢ËÍÓÊÏäÊı
-#define CANARXMAILBOX	4								//CANA½ÓÊÕÊ¹ÓÃÓÊÏäÊıÁ¿(Ê£ÓàÈ«²¿Îª·¢ËÍÊ¹ÓÃ)
-#define CANBRXMAILBOX	4								//CANB½ÓÊÕÊ¹ÓÃÓÊÏäÊıÁ¿(Ê£ÓàÈ«²¿Îª·¢ËÍÊ¹ÓÃ)
+//å‘é€é‚®ç®±æ•°
+#define CANARXMAILBOX	4								//CANAæ¥æ”¶ä½¿ç”¨é‚®ç®±æ•°é‡(å‰©ä½™å…¨éƒ¨ä¸ºå‘é€ä½¿ç”¨)
+#define CANBRXMAILBOX	4								//CANBæ¥æ”¶ä½¿ç”¨é‚®ç®±æ•°é‡(å‰©ä½™å…¨éƒ¨ä¸ºå‘é€ä½¿ç”¨)
 
-//²¨ÌØÂÊ
-#define CANABAUDRATE	B_250K 							//CANA²¨ÌØÂÊ 
-#define CANBBAUDRATE	B_250K 							//CANB²¨ÌØÂÊ     
+//æ³¢ç‰¹ç‡
+#define CANABAUDRATE	B_250K 							//CANAæ³¢ç‰¹ç‡ 
+#define CANBBAUDRATE	B_250K 							//CANBæ³¢ç‰¹ç‡     
 
 //------UART--------
-	//´®¿Ú
-#define COMA	0 			//´®¿ÚA  
-#define COMB	1 			//´®¿ÚB
-#define COMC	2 			//´®¿ÚC 
+	//ä¸²å£
+#define COMA	0 			//ä¸²å£A  
+#define COMB	1 			//ä¸²å£B
+#define COMC	2 			//ä¸²å£C 
 	
-	//²¨ÌØÂÊÉèÖÃ
-#define B2400			2400		//²¨ÌØÂÊ2400
-#define B4800			4800		//²¨ÌØÂÊ4800
-#define B7200			7200		//²¨ÌØÂÊ7200
-#define B9600			9600		//²¨ÌØÂÊ9600
-#define B19200			19200		//²¨ÌØÂÊ19200
-#define B38400			38400		//²¨ÌØÂÊ38400
-#define B57600			57600		//²¨ÌØÂÊ57600
-#define B115200			115200		//²¨ÌØÂÊ115200
-#define B230400			230400		//²¨ÌØÂÊ230400
-#define B460800			460800		//²¨ÌØÂÊ460800
-#define B921600			921600		//²¨ÌØÂÊ921600
+	//æ³¢ç‰¹ç‡è®¾ç½®
+#define B2400			2400		//æ³¢ç‰¹ç‡2400
+#define B4800			4800		//æ³¢ç‰¹ç‡4800
+#define B7200			7200		//æ³¢ç‰¹ç‡7200
+#define B9600			9600		//æ³¢ç‰¹ç‡9600
+#define B19200			19200		//æ³¢ç‰¹ç‡19200
+#define B38400			38400		//æ³¢ç‰¹ç‡38400
+#define B57600			57600		//æ³¢ç‰¹ç‡57600
+#define B115200			115200		//æ³¢ç‰¹ç‡115200
+#define B230400			230400		//æ³¢ç‰¹ç‡230400
+#define B460800			460800		//æ³¢ç‰¹ç‡460800
+#define B921600			921600		//æ³¢ç‰¹ç‡921600
 	
-	//Êı¾İÎ»³¤¶È
-#define BIT_1			0			//Êı¾İÎ»1	
-#define BIT_2			1			//Êı¾İÎ»2
-#define BIT_3			2			//Êı¾İÎ»3
-#define BIT_4			3			//Êı¾İÎ»4
-#define BIT_5			4			//Êı¾İÎ»5		
-#define BIT_6			5			//Êı¾İÎ»6
-#define BIT_7			6			//Êı¾İÎ»7
-#define BIT_8			7			//Êı¾İÎ»8
+	//æ•°æ®ä½é•¿åº¦
+#define BIT_1			0			//æ•°æ®ä½1	
+#define BIT_2			1			//æ•°æ®ä½2
+#define BIT_3			2			//æ•°æ®ä½3
+#define BIT_4			3			//æ•°æ®ä½4
+#define BIT_5			4			//æ•°æ®ä½5		
+#define BIT_6			5			//æ•°æ®ä½6
+#define BIT_7			6			//æ•°æ®ä½7
+#define BIT_8			7			//æ•°æ®ä½8
 	
-	//Í£Ö¹Î»³¤¶È
-#define STOP_1			0			//1Î»Í£Ö¹Î»
-#define STOP_2			1			//2Î»Í£Ö¹Î»
+	//åœæ­¢ä½é•¿åº¦
+#define STOP_1			0			//1ä½åœæ­¢ä½
+#define STOP_2			1			//2ä½åœæ­¢ä½
 	
-	//Ğ£ÑéĞÎÊ½
-#define P_NONE			0			//ÎŞĞ£Ñé
-#define P_ODD			1			//ÆæĞ£Ñé
-#define P_EVEN			2			//Å¼Ğ£Ñé
+	//æ ¡éªŒå½¢å¼
+#define P_NONE			0			//æ— æ ¡éªŒ
+#define P_ODD			1			//å¥‡æ ¡éªŒ
+#define P_EVEN			2			//å¶æ ¡éªŒ
 
 
 
-//--------------------------------²»ĞèÒªĞŞ¸Ä-------------------------------------------
-//Êı¾İ¶¨Òå
+//--------------------------------ä¸éœ€è¦ä¿®æ”¹-------------------------------------------
+//æ•°æ®å®šä¹‰
 
-// ÏûÏ¢¶ÔÏó³õÊ¼»¯½á¹¹Ìå
+// æ¶ˆæ¯å¯¹è±¡åˆå§‹åŒ–ç»“æ„ä½“
 typedef struct _CANMSG_INIT_STRU 
 {
-	U8	stu8_MsgNum;									//ÏûÏ¢ºÅ(·¶Î§£º1~32)
-	U8	stu8_RdTxFlg;									//ÊÕ·¢ÀàĞÍ(·¶Î§£º't' »ò 'r')
-	U16	stu16_MsgID;									//ÏûÏ¢¶ÔÏóID(·¶Î§£º0x0001¡«0x07fe)
-	U8	stu8_DataLen;									//Êı¾İ³¤¶È(·¶Î§£º0~8)
+	U8	stu8_MsgNum;									//æ¶ˆæ¯å·(èŒƒå›´ï¼š1~32)
+	U8	stu8_RdTxFlg;									//æ”¶å‘ç±»å‹(èŒƒå›´ï¼š't' æˆ– 'r')
+	U16	stu16_MsgID;									//æ¶ˆæ¯å¯¹è±¡ID(èŒƒå›´ï¼š0x0001ï½0x07fe)
+	U8	stu8_DataLen;									//æ•°æ®é•¿åº¦(èŒƒå›´ï¼š0~8)
 }CANMSG_INIT_STRU,*PCANMSG_INIT_STRU;
 
-//Íâ²¿µ÷ÓÃµÄ²ÎÊı
+//å¤–éƒ¨è°ƒç”¨çš„å‚æ•°
 //CANA
-extern U16 gu16a_CANABuf[CANARXMSGCNT * 4];				//CAN»º³åÇø£¬Ã¿¸öIDÕ¼4¸öI16
-extern I8 gi8a_CANART[CANARXMSGCNT];					//CAN½ÓÊÕ¡¢·¢ËÍ±êÖ¾£¬'r'½ÓÊÕµ½ĞÂÊı¾İ£¬'t'ĞÂÊı¾İ´ı·¢ËÍ
-extern U16 gu16a_CANACount[CANARXMSGCNT];				//CAN×ÜÏß½ÓÊÕ¼ÆÊı
-extern U16 gu16a_CANACntCache[CANARXMSGCNT];			//CAN×ÜÏß½ÓÊÕ¼ÆÊı»º´æ
+extern U16 gu16a_CANABuf[CANARXMSGCNT * 4];				//CANç¼“å†²åŒºï¼Œæ¯ä¸ªIDå 4ä¸ªI16
+extern I8 gi8a_CANART[CANARXMSGCNT];					//CANæ¥æ”¶ã€å‘é€æ ‡å¿—ï¼Œ'r'æ¥æ”¶åˆ°æ–°æ•°æ®ï¼Œ't'æ–°æ•°æ®å¾…å‘é€
+extern U16 gu16a_CANACount[CANARXMSGCNT];				//CANæ€»çº¿æ¥æ”¶è®¡æ•°
+extern U16 gu16a_CANACntCache[CANARXMSGCNT];			//CANæ€»çº¿æ¥æ”¶è®¡æ•°ç¼“å­˜
 
-extern U16	gu16_CANAImptIndex;							//CANÖØÒªÊı¾İË÷Òı
-extern U16 gu16a_CANAImptBuf[100];						//CANÖØÒªÊı¾İ»º´æÇø
+extern U16	gu16_CANAImptIndex;							//CANé‡è¦æ•°æ®ç´¢å¼•
+extern U16 gu16a_CANAImptBuf[100];						//CANé‡è¦æ•°æ®ç¼“å­˜åŒº
 
-extern U32 gu32_CANARevF;								//CAN½ÓÊÕ±êÖ¾
-extern U8 gu8_CANARevIndex;								//CAN½ÓÊÕË÷Òı
-extern U16 gu16a_CANADataBuf[160];						//CANËùÓĞ½ÓÊÕÊı¾İ»º´æÇø
+extern U32 gu32_CANARevF;								//CANæ¥æ”¶æ ‡å¿—
+extern U8 gu8_CANARevIndex;								//CANæ¥æ”¶ç´¢å¼•
+extern U16 gu16a_CANADataBuf[160];						//CANæ‰€æœ‰æ¥æ”¶æ•°æ®ç¼“å­˜åŒº
 
-extern const U16 gia_CANARXCfg[];						//CAN½ÓÊÕID
-extern const U16 gia_CANATXCfg[];						//CAN·¢ËÍID
+extern const U16 gia_CANARXCfg[];						//CANæ¥æ”¶ID
+extern const U16 gia_CANATXCfg[];						//CANå‘é€ID
 
 //CANB
-extern U16 gu16a_CANBBuf[CANBRXMSGCNT * 4];				//CAN»º³åÇø£¬Ã¿¸öIDÕ¼4¸öI16
-extern I8 gi8a_CANBRT[CANBRXMSGCNT];					//CAN½ÓÊÕ¡¢·¢ËÍ±êÖ¾£¬'r'½ÓÊÕµ½ĞÂÊı¾İ£¬'t'ĞÂÊı¾İ´ı·¢ËÍ
-extern U16 gu16a_CANBCount[CANBRXMSGCNT];				//CAN×ÜÏß½ÓÊÕ¼ÆÊı
-extern U16 gu16a_CANBCntCache[CANBRXMSGCNT];			//CAN×ÜÏß½ÓÊÕ¼ÆÊı»º´æ
+extern U16 gu16a_CANBBuf[CANBRXMSGCNT * 4];				//CANç¼“å†²åŒºï¼Œæ¯ä¸ªIDå 4ä¸ªI16
+extern I8 gi8a_CANBRT[CANBRXMSGCNT];					//CANæ¥æ”¶ã€å‘é€æ ‡å¿—ï¼Œ'r'æ¥æ”¶åˆ°æ–°æ•°æ®ï¼Œ't'æ–°æ•°æ®å¾…å‘é€
+extern U16 gu16a_CANBCount[CANBRXMSGCNT];				//CANæ€»çº¿æ¥æ”¶è®¡æ•°
+extern U16 gu16a_CANBCntCache[CANBRXMSGCNT];			//CANæ€»çº¿æ¥æ”¶è®¡æ•°ç¼“å­˜
 
-extern U32 gu32_CANBRevF;								//CAN½ÓÊÕ±êÖ¾
-extern U8 gu8_CANBRevIndex;								//CAN½ÓÊÕË÷Òı
-extern U16 gu16a_CANBDataBuf[160];						//CANËùÓĞ½ÓÊÕÊı¾İ»º´æÇø
+extern U32 gu32_CANBRevF;								//CANæ¥æ”¶æ ‡å¿—
+extern U8 gu8_CANBRevIndex;								//CANæ¥æ”¶ç´¢å¼•
+extern U16 gu16a_CANBDataBuf[160];						//CANæ‰€æœ‰æ¥æ”¶æ•°æ®ç¼“å­˜åŒº
 
-extern const U16 gia_CANBRXCfg[];						//CAN½ÓÊÕID
-extern const U16 gia_CANBTXCfg[];						//CAN·¢ËÍID
+extern const U16 gia_CANBRXCfg[];						//CANæ¥æ”¶ID
+extern const U16 gia_CANBTXCfg[];						//CANå‘é€ID
 
 //----------------------------------------------------------------------------------
 //										o o        
@@ -128,13 +128,13 @@ extern const U16 gia_CANBTXCfg[];						//CAN·¢ËÍID
 //										|  '  | | | |
 //										'-----'-'-'-'
 //
-//-----------------------------------º¯Êı¶¨Òå----------------------------------------
-void User_InitSysCtrl(void);			//ÏµÍ³³õÊ¼»¯
-void User_InitCan(void);				//CAN³õÊ¼»¯
-void User_InitTimer(void);				//¶¨Ê±Æ÷³õÊ¼»¯
-void User_InitWatchdog(void);			//¿´ÃÅ¹·³õÊ¼»¯
-void User_InitUart(U8 pu8_Com, U32 pu32_BBaudRate,U8 Parity, U8 pu8_DataBits, U8 pu8_StopBits);//´®¿Ú³õÊ¼»¯
-void User_InitGpio(void);				//GPIOÅäÖÃ
+//-----------------------------------å‡½æ•°å®šä¹‰----------------------------------------
+void User_InitSysCtrl(void);			//ç³»ç»Ÿåˆå§‹åŒ–
+void User_InitCan(void);				//CANåˆå§‹åŒ–
+void User_InitTimer(void);				//å®šæ—¶å™¨åˆå§‹åŒ–
+void User_InitWatchdog(void);			//çœ‹é—¨ç‹—åˆå§‹åŒ–
+void User_InitUart(U8 pu8_Com, U32 pu32_BBaudRate,U8 Parity, U8 pu8_DataBits, U8 pu8_StopBits);//ä¸²å£åˆå§‹åŒ–
+void User_InitGpio(void);				//GPIOé…ç½®
 #ifdef __cplusplus
 }
 #endif /* extern "C" */

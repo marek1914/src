@@ -1,10 +1,10 @@
 /********************************************************
-ÎÄ¼şÃû³Æ£ºUser_Main.h
-×÷Õß£ºÍõ¾©³Ç
-°æ±¾£º20131104
-ËµÃ÷£º±¾ÎÄ¼şÎªÖ÷³ÌĞòµÄÍ·ÎÄ¼ş
-ĞŞ¸Ä¼ÇÂ¼£º
-ĞŞ¸ÄÊ±¼ä		ĞŞ¸ÄÈË	ĞŞ¸ÄÄÚÈİ
+æ–‡ä»¶åç§°ï¼šUser_Main.h
+ä½œè€…ï¼šç‹äº¬åŸ
+ç‰ˆæœ¬ï¼š20131104
+è¯´æ˜ï¼šæœ¬æ–‡ä»¶ä¸ºä¸»ç¨‹åºçš„å¤´æ–‡ä»¶
+ä¿®æ”¹è®°å½•ï¼š
+ä¿®æ”¹æ—¶é—´		ä¿®æ”¹äºº	ä¿®æ”¹å†…å®¹
 
 *********************************************************/
 
@@ -15,24 +15,24 @@
 #include <math.h>
 #include <stdio.h>
 
-#include "User_GlobalVar.h"			//ÓÃ»§¶¨ÒåµÄÈ«¾Ö±äÁ¿
-#include "User_MacroCfg.h"			//ÓÃ»§¶¨ÒåµÄºê¶¨Òå
+#include "User_GlobalVar.h"			//ç”¨æˆ·å®šä¹‰çš„å…¨å±€å˜é‡
+#include "User_MacroCfg.h"			//ç”¨æˆ·å®šä¹‰çš„å®å®šä¹‰
 
 #include "DSP28x_Project.h"			// Device Headerfile and Examples Include File
-#include "User_InitSys.h"			//ÓÃ»§¶¨ÒåµÄÉè±¸³õÊ¼»¯
-#include "User_Flash.h"				//ÓÃ»§¶¨ÒåµÄÈ«¾Ö±äÁ¿
-#include "User_ComFun.h"			//ÓÃ»§¶¨ÒåµÄ¹«¹²º¯Êı
-#include "User_ComFunction.h"		//ÓÃ»§¶¨ÒåµÄ¹«¹²º¯Êı
-#include "User_PositionChange.h"	//ÓÃ»§¶¨Òå
+#include "User_InitSys.h"			//ç”¨æˆ·å®šä¹‰çš„è®¾å¤‡åˆå§‹åŒ–
+#include "User_Flash.h"				//ç”¨æˆ·å®šä¹‰çš„å…¨å±€å˜é‡
+#include "User_ComFun.h"			//ç”¨æˆ·å®šä¹‰çš„å…¬å…±å‡½æ•°
+#include "User_ComFunction.h"		//ç”¨æˆ·å®šä¹‰çš„å…¬å…±å‡½æ•°
+#include "User_PositionChange.h"	//ç”¨æˆ·å®šä¹‰
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-//-----------------------------------Êı¾İ¶¨Òå----------------------------------------
-TIMERPAR gst_TimerPar;							//»ù±¾¶¨Ê±
-SETDATA gst_CMD;								//ÃüÁî½á¹¹Ìå
-STADATA gst_STUS;								//×´Ì¬½á¹¹Ìå
+//-----------------------------------æ•°æ®å®šä¹‰----------------------------------------
+TIMERPAR gst_TimerPar;							//åŸºæœ¬å®šæ—¶
+SETDATA gst_CMD;								//å‘½ä»¤ç»“æ„ä½“
+STADATA gst_STUS;								//çŠ¶æ€ç»“æ„ä½“
 //-----------------------------------------------------------------------------------
 //										o o        
 //										.-----.-----.
@@ -40,11 +40,11 @@ STADATA gst_STUS;								//×´Ì¬½á¹¹Ìå
 //										|  '  | | | |
 //										'-----'-'-'-'
 //
-//-----------------------------------º¯Êı¶¨Òå----------------------------------------
-void InitGlobalVar(void);																//³õÊ¼»¯È«¾Ö±äÁ¿
-void UartA_SendData(UART *pstp_UARTA,STADATA *pstp_StaData, SETDATA * pstp_SETDATA);	//´®¿ÚA·¢ËÍº¯Êı																		//Ë«ÌìÏßÊ±£¬º½Ïò´¦Àí:¸ú×Ù×´Ì¬£¬×ÔÖ÷Ä£Ê½£¬·¢ËÍ¹ßµ¼º½ÏòÖµ£¬ÇÒº½ÏòÖµÓĞĞ§£¬ÆäËû×´Ì¬·¢ËÍÂŞ¾­º½ÏòÖµ£¬º½ÏòÖµÎŞĞ§
-void UartB_SendData(UART *pstp_UARTB);													//´®¿ÚB·¢ËÍº¯Êı
-void UartC_SendData(UART *pstp_UARTC, I8* pi8a_Buf, U16 lu16_Ret);						//´®¿ÚC·¢ËÍº¯Êı
+//-----------------------------------å‡½æ•°å®šä¹‰----------------------------------------
+void InitGlobalVar(void);																//åˆå§‹åŒ–å…¨å±€å˜é‡
+void UartA_SendData(UART *pstp_UARTA,STADATA *pstp_StaData, SETDATA * pstp_SETDATA);	//ä¸²å£Aå‘é€å‡½æ•°																		//åŒå¤©çº¿æ—¶ï¼Œèˆªå‘å¤„ç†:è·Ÿè¸ªçŠ¶æ€ï¼Œè‡ªä¸»æ¨¡å¼ï¼Œå‘é€æƒ¯å¯¼èˆªå‘å€¼ï¼Œä¸”èˆªå‘å€¼æœ‰æ•ˆï¼Œå…¶ä»–çŠ¶æ€å‘é€ç½—ç»èˆªå‘å€¼ï¼Œèˆªå‘å€¼æ— æ•ˆ
+void UartB_SendData(UART *pstp_UARTB);													//ä¸²å£Bå‘é€å‡½æ•°
+void UartC_SendData(UART *pstp_UARTC, I8* pi8a_Buf, U16 lu16_Ret);						//ä¸²å£Cå‘é€å‡½æ•°
 
 extern void CalSatInf(SETDATA * pstp_SETDATA);
 //-----------------------------------------------------------------------------------

@@ -111,7 +111,7 @@ SYN: Synchronize sequence numbers, to indicate where the sequence numbering will
 FIN: No more data from sender
 
 分片：
-1 有时看到几百字节的东西也分为2次tcp传输，实际上是http包头发送了一次，主体部分发送了一部分。并不是按照MTU的大小分的
+1 有时看到几百字节的分为2次tcp，实际是http头发送一次，主体部分发送一次，并非按照MTU大小分
 2 向apache请求一个超过MTU大小的文件，出现的多个TCP的PDU，不是IP层的分片，因为IP头的分片标志位和offset都是0，而是应用层根据MTU主动分多个TCP包。
   好处是IP层分片，如果出错会整个重传，在IP曾，TCP，UDP是一视同仁的。
 
@@ -1146,7 +1146,8 @@ continuation or non-http traffic （显示为http是因为80端口，碰巧，wi
 SSL  continuation （这是一个长连接）
 
 continuation or non-http traffic：
-That means ethereal sees packets on tcp port 80 which don't contain an http header. This is quite common, since many http-objects are larger than 1 tcp packet. Hence the comment "Continuation"
+That means ethereal sees packets on tcp port 80 which don't contain an http header. 
+This is quite common, since many http-objects are larger than 1 tcp packet. Hence the comment "Continuation"
 
 ip.addr==192.168.7.32  不要ip.src== || ip.dst==
 

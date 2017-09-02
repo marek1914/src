@@ -1,10 +1,10 @@
 /********************************************************
-ÎÄ¼şÃû³Æ£ºUser_ComFun.h
-×÷Õß£ºÍõ¾©³Ç
-°æ±¾£º20131105
-ËµÃ÷£º±¾ÎÄ¼şÎªUser_ComFunµÄÍ·ÎÄ¼ş
-ĞŞ¸Ä¼ÇÂ¼£º
-ĞŞ¸ÄÊ±¼ä		ĞŞ¸ÄÈË	ĞŞ¸ÄÄÚÈİ
+æ–‡ä»¶åç§°ï¼šUser_ComFun.h
+ä½œè€…ï¼šç‹äº¬åŸ
+ç‰ˆæœ¬ï¼š20131105
+è¯´æ˜ï¼šæœ¬æ–‡ä»¶ä¸ºUser_ComFunçš„å¤´æ–‡ä»¶
+ä¿®æ”¹è®°å½•ï¼š
+ä¿®æ”¹æ—¶é—´		ä¿®æ”¹äºº	ä¿®æ”¹å†…å®¹
 
 *********************************************************/
 
@@ -14,8 +14,8 @@
 
 #include <string.h>
 
-#include "User_GlobalVar.h"			//ÓÃ»§¶¨ÒåµÄÈ«¾Ö±äÁ¿
-#include "User_MacroCfg.h"			//ÓÃ»§¶¨ÒåµÄºê¶¨Òå
+#include "User_GlobalVar.h"			//ç”¨æˆ·å®šä¹‰çš„å…¨å±€å˜é‡
+#include "User_MacroCfg.h"			//ç”¨æˆ·å®šä¹‰çš„å®å®šä¹‰
 #include <math.h>
 
 #include "DSP28x_Project.h"			// Device Headerfile and Examples Include File
@@ -31,7 +31,7 @@ extern "C" {
 //										|  '  | | | |
 //										'-----'-'-'-'
 //
-//------------------------------------×ÔÓÃºê¶¨Òå--------------------------------------
+//------------------------------------è‡ªç”¨å®å®šä¹‰--------------------------------------
 
 
 //----------------------------------------------------------------------------------
@@ -41,20 +41,20 @@ extern "C" {
 //										|  '  | | | |
 //										'-----'-'-'-'
 //
-//-----------------------------------º¯Êı¶¨Òå----------------------------------------
-//CANÏà¹Ø
-void ComFun_CANASend(U8 pu8_MsgNum, U16 *pu16p_Buf);						//CANA·¢ËÍº¯Êı(ÏûÏ¢·¢ËÍ)
-void ComFun_CANBSend(U8 pu8_MsgNum, U16 *pu16p_Buf);						//CANB·¢ËÍº¯Êı(ÏûÏ¢·¢ËÍ)
+//-----------------------------------å‡½æ•°å®šä¹‰----------------------------------------
+//CANç›¸å…³
+void ComFun_CANASend(U8 pu8_MsgNum, U16 *pu16p_Buf);						//CANAå‘é€å‡½æ•°(æ¶ˆæ¯å‘é€)
+void ComFun_CANBSend(U8 pu8_MsgNum, U16 *pu16p_Buf);						//CANBå‘é€å‡½æ•°(æ¶ˆæ¯å‘é€)
 
-void ComFun_CANAIDSend(U16 pu16_MsgID, U16 *pu16p_Buf);						//CANA·¢ËÍº¯Êı(ID·¢ËÍ)
-void ComFun_CANBIDSend(U16 pu16_MsgID, U16 *pu16p_Buf);						//CANB·¢ËÍº¯Êı(ID·¢ËÍ)
+void ComFun_CANAIDSend(U16 pu16_MsgID, U16 *pu16p_Buf);						//CANAå‘é€å‡½æ•°(IDå‘é€)
+void ComFun_CANBIDSend(U16 pu16_MsgID, U16 *pu16p_Buf);						//CANBå‘é€å‡½æ•°(IDå‘é€)
 
-//Ğ¡º¯Êı
-U16 ComFun_U16HToL(U16 pu16_Data);											//U16Êı¾İ¸ßµÍ°ËÎ»»¥»»
-U16 ComFun_U8ToU16(U8 pu8_Data1, U8 pu8_Data2);								//Á½¸öU8×ª»»ÎªU16
+//å°å‡½æ•°
+U16 ComFun_U16HToL(U16 pu16_Data);											//U16æ•°æ®é«˜ä½å…«ä½äº’æ¢
+U16 ComFun_U8ToU16(U8 pu8_Data1, U8 pu8_Data2);								//ä¸¤ä¸ªU8è½¬æ¢ä¸ºU16
 
 U8 *User_strchr(I8 *pi8p_stringToSearch, 
-				I32 pi32_StringMaxLen, I8 pi8_charToFind);					//²éÕÒÊı×éÖĞpi8_charToFindµÚÒ»´Î³öÏÖµÄÎ»ÖÃ
+				I32 pi32_StringMaxLen, I8 pi8_charToFind);					//æŸ¥æ‰¾æ•°ç»„ä¸­pi8_charToFindç¬¬ä¸€æ¬¡å‡ºç°çš„ä½ç½®
 #ifdef __cplusplus
 }
 #endif /* extern "C" */

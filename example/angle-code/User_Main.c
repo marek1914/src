@@ -1,30 +1,30 @@
 /********************************************************
-ÎÄ¼şÃû³Æ£ºUser_Main.c
-×÷Õß£ºÍõ¾©³Ç
-°æ±¾£ºV1.00(20131104)
-ËµÃ÷£ºDSP±ê×¼³ÌĞòÄ£°æ
+æ–‡ä»¶åç§°ï¼šUser_Main.c
+ä½œè€…ï¼šç‹äº¬åŸ
+ç‰ˆæœ¬ï¼šV1.00(20131104)
+è¯´æ˜ï¼šDSPæ ‡å‡†ç¨‹åºæ¨¡ç‰ˆ
 
-ĞŞ¸Ä¼ÇÂ¼£º
-°æ±¾	ĞŞ¸ÄÊ±¼ä		ĞŞ¸ÄÈË	ĞŞ¸ÄÄÚÈİ
-0.0.0.2	2016-10-12		³ÂÑï	²ÎÕÕ½Ó¿ÚĞ­ÒéF°æ±¾ĞŞ¸Ä
+ä¿®æ”¹è®°å½•ï¼š
+ç‰ˆæœ¬	ä¿®æ”¹æ—¶é—´		ä¿®æ”¹äºº	ä¿®æ”¹å†…å®¹
+0.0.0.2	2016-10-12		é™ˆæ‰¬	å‚ç…§æ¥å£åè®®Fç‰ˆæœ¬ä¿®æ”¹
 
 *********************************************************/
-#include "User_Main.h"					// User_MainÍ·ÎÄ¼ş
+#include "User_Main.h"					// User_Mainå¤´æ–‡ä»¶
 
 void main()
 {
-	User_InitSysCtrl();																	//ÏµÍ³³õÊ¼»¯
-	InitGlobalVar();																	//³õÊ¼»¯È«¾Ö±äÁ¿
+	User_InitSysCtrl();																	//ç³»ç»Ÿåˆå§‹åŒ–
+	InitGlobalVar();																	//åˆå§‹åŒ–å…¨å±€å˜é‡
 
 	for (;;)
 	{
-		ServiceDog();//Î¹¹·
-		//UartADataDeal(&gst_UARTA, &gst_CMD);//´®¿ÚA½ÓÊÕÊı¾İ½âÎö
+		ServiceDog();//å–‚ç‹—
+		//UartADataDeal(&gst_UARTA, &gst_CMD);//ä¸²å£Aæ¥æ”¶æ•°æ®è§£æ
 
 		if(TRUE == gst_UARTA.stu8_RcvFlag)
 		{
 			gst_CMD.stu32_Count++;
-			UartADataDeal(&gst_UARTA, &gst_CMD);//´®¿ÚA½ÓÊÕÊı¾İ½âÎö
+			UartADataDeal(&gst_UARTA, &gst_CMD);//ä¸²å£Aæ¥æ”¶æ•°æ®è§£æ
 			//gst_CMD.stu32_Count++;
 			//if(TRUE == gst_UARTA.stu8_CheckFlag)
 			//{
@@ -35,7 +35,7 @@ void main()
 
 
 	      }
-       //1ms¶¨Ê±¼ÆÊı
+       //1mså®šæ—¶è®¡æ•°
 		/*if (gst_TimerPar.stu16_tmr1mscnt)
 		{			
 			gst_TimerPar.stu16_tmr1mscnt = 0;
@@ -43,7 +43,7 @@ void main()
 			//UartA_SendData(&gst_UARTA, &gst_STUS, &gst_CMD);
 		}
 
-	    // 2ms¶¨Ê±¼ÆÊı
+	    // 2mså®šæ—¶è®¡æ•°
 		if (gst_TimerPar.stu16_tmr2mscnt)
 		{			
 			gst_TimerPar.stu16_tmr2mscnt = 0;
@@ -53,7 +53,7 @@ void main()
 						//UartA_SendData(&gst_UARTA, &gst_STUS, &gst_CMD);
 		}
 
-		//5ms¶¨Ê±¼ÆÊı
+		//5mså®šæ—¶è®¡æ•°
 		if (gst_TimerPar.stu16_tmr5mscnt)
 		{			
 			gst_TimerPar.stu16_tmr5mscnt = 0;
@@ -62,49 +62,49 @@ void main()
 			//UartA_SendData(&gst_UARTA, &gst_STUS, &gst_CMD);
 		}
 
-		//10ms¶¨Ê±¼ÆÊı
+		//10mså®šæ—¶è®¡æ•°
 		if (gst_TimerPar.stu16_tmr10mscnt)
 		{
 			gst_TimerPar.stu16_tmr10mscnt = 0;
 			CalSatInf(&gst_CMD);
-			gst_CMD.sti32_TimerCnt++;			//³¬Ê±¼ÆÊıÆ÷
-			//UartA_SendData(&gst_UARTA, &gst_STUS, &gst_CMD);//´®¿ÚA¶¨Ê±ÉÏ±¨×´Ì¬
+			gst_CMD.sti32_TimerCnt++;			//è¶…æ—¶è®¡æ•°å™¨
+			//UartA_SendData(&gst_UARTA, &gst_STUS, &gst_CMD);//ä¸²å£Aå®šæ—¶ä¸ŠæŠ¥çŠ¶æ€
 		}
 	
-		//20ms¶¨Ê±¼ÆÊı
+		//20mså®šæ—¶è®¡æ•°
 		if (gst_TimerPar.stu16_tmr20mscnt)
 		{
 			gst_TimerPar.stu16_tmr20mscnt = 0;
 		}
 
-		//50ms¶¨Ê±¼ÆÊı
+		//50mså®šæ—¶è®¡æ•°
 		if (gst_TimerPar.stu16_tmr50mscnt)
 		{
 			gst_TimerPar.stu16_tmr50mscnt = 0;	
 			//UartA_SendData(&gst_UARTA, &gst_STUS, &gst_CMD);
-			//×´Ì¬²éÑ¯
+			//çŠ¶æ€æŸ¥è¯¢
 		}
-		//100ms¶¨Ê±¼ÆÊı
+		//100mså®šæ—¶è®¡æ•°
 		if (gst_TimerPar.stu16_tmr100mscnt)
 		{
 			gst_TimerPar.stu16_tmr100mscnt = 0;	
 
 
-			UartA_SendData(&gst_UARTA, &gst_STUS, &gst_CMD);//´®¿ÚA¶¨Ê±ÉÏ±¨×´Ì¬
+			UartA_SendData(&gst_UARTA, &gst_STUS, &gst_CMD);//ä¸²å£Aå®šæ—¶ä¸ŠæŠ¥çŠ¶æ€
 		}
 
-		//200ms¶¨Ê±¼ÆÊı
+		//200mså®šæ—¶è®¡æ•°
 		if (gst_TimerPar.stu16_tmr200mscnt)
 		{
 			gst_TimerPar.stu16_tmr200mscnt = 0;
-			//UartA_SendData(&gst_UARTA, &gst_STUS, &gst_CMD);//´®¿ÚA¶¨Ê±ÉÏ±¨×´Ì¬
+			//UartA_SendData(&gst_UARTA, &gst_STUS, &gst_CMD);//ä¸²å£Aå®šæ—¶ä¸ŠæŠ¥çŠ¶æ€
 		}
 
-		//1s¶¨Ê±¼ÆÊı
+		//1så®šæ—¶è®¡æ•°
 		if (gst_TimerPar.stu16_tmr1scnt)
 		{
 			gst_TimerPar.stu16_tmr1scnt = 0;
-			//UartA_SendData(&gst_UARTA, &gst_STUS, &gst_CMD);//´®¿ÚA¶¨Ê±ÉÏ±¨×´Ì¬
+			//UartA_SendData(&gst_UARTA, &gst_STUS, &gst_CMD);//ä¸²å£Aå®šæ—¶ä¸ŠæŠ¥çŠ¶æ€
 		}*/
 
 	}
@@ -112,79 +112,79 @@ void main()
 
 
 ///////////////////////////////////////////////////////////////////
-//º¯ÊıÃû³Æ£ºInitGlobalVar
-//º¯Êı¹¦ÄÜ£º³õÊ¼»¯È«¾Ö±äÁ¿
-//Èë¿Ú²ÎÊı£ºÎŞ
-//³ö¿Ú²ÎÊı£ºÎŞ
-//±¸ 	×¢£ºÎŞ
+//å‡½æ•°åç§°ï¼šInitGlobalVar
+//å‡½æ•°åŠŸèƒ½ï¼šåˆå§‹åŒ–å…¨å±€å˜é‡
+//å…¥å£å‚æ•°ï¼šæ— 
+//å‡ºå£å‚æ•°ï¼šæ— 
+//å¤‡ 	æ³¨ï¼šæ— 
 ///////////////////////////////////////////////////////////////////
 void InitGlobalVar(void)
 {	
 
-	memset(&gst_TimerPar, 0, sizeof(gst_TimerPar));			//»ù±¾¶¨Ê±
+	memset(&gst_TimerPar, 0, sizeof(gst_TimerPar));			//åŸºæœ¬å®šæ—¶
 
-	memset(&gst_UARTA, 0, sizeof(gst_UARTA));				//´®¿ÚA½á¹¹Ìå
-	memset(&gst_UARTB, 0, sizeof(gst_UARTB));				//´®¿ÚB½á¹¹Ìå
-	memset(&gst_UARTC, 0, sizeof(gst_UARTC));				//´®¿ÚC½á¹¹Ìå
+	memset(&gst_UARTA, 0, sizeof(gst_UARTA));				//ä¸²å£Aç»“æ„ä½“
+	memset(&gst_UARTB, 0, sizeof(gst_UARTB));				//ä¸²å£Bç»“æ„ä½“
+	memset(&gst_UARTC, 0, sizeof(gst_UARTC));				//ä¸²å£Cç»“æ„ä½“
 
-	memset(&gst_CMD, 0, sizeof(gst_CMD));					//ÃüÁî½á¹¹Ìå
+	memset(&gst_CMD, 0, sizeof(gst_CMD));					//å‘½ä»¤ç»“æ„ä½“
 
-	gst_CMD.stu8_SendFlag = TRUE;							//ÖÃ·¢ËÍ±êÖ¾Î»TRUE
+	gst_CMD.stu8_SendFlag = TRUE;							//ç½®å‘é€æ ‡å¿—ä½TRUE
 
 }
 
-//´®¿ÚA·¢ËÍÊı¾İ
+//ä¸²å£Aå‘é€æ•°æ®
 void UartA_SendData(UART *pstp_UARTA, STADATA *pstp_STUS, SETDATA * pstp_SETDATA)
 { 	
 	U8 lu8_Index = 0;
 	U8 lu8_CheckOut = 0;
 	I16 li16_i;
 
-	//Çå¿Õ½á¹¹Ìå
+	//æ¸…ç©ºç»“æ„ä½“
 	memset((void *)pstp_UARTA->stu8a_TransData, 0, sizeof(pstp_UARTA->stu8a_TransData));
 
-	//Ö¡Í·
-	pstp_UARTA->stu8a_TransData[lu8_Index++] = 0x7E; //Ö¡Í·EB¸ÄÎª7E
+	//å¸§å¤´
+	pstp_UARTA->stu8a_TransData[lu8_Index++] = 0x7E; //å¸§å¤´EBæ”¹ä¸º7E
 	// pstp_UARTA->stu8a_TransData[lu8_Index++] = 0x90; 
 	
-	//Ö¡ÀàĞÍ
-	pstp_UARTA->stu8a_TransData[lu8_Index++] = 0x00;  //Ö¡ÀàĞÍBB¸ÄÎª00
-	pstp_UARTA->stu8a_TransData[lu8_Index++] = 0x04;   //Ìí¼Ó04
+	//å¸§ç±»å‹
+	pstp_UARTA->stu8a_TransData[lu8_Index++] = 0x00;  //å¸§ç±»å‹BBæ”¹ä¸º00
+	pstp_UARTA->stu8a_TransData[lu8_Index++] = 0x04;   //æ·»åŠ 04
 
-	//²¨ÊøÖ¸Ïò½Çthita
+	//æ³¢æŸæŒ‡å‘è§’thita
 	pstp_UARTA->stu8a_TransData[lu8_Index++] = (U8)((U32)(pstp_SETDATA->st_WaveDir.stf32_thita * 10000) & 0x000000ff);
 	pstp_UARTA->stu8a_TransData[lu8_Index++] = (U8)(((U32)(pstp_SETDATA->st_WaveDir.stf32_thita * 10000) >> 8) & 0x000000ff);
 	pstp_UARTA->stu8a_TransData[lu8_Index++] = (U8)(((U32)(pstp_SETDATA->st_WaveDir.stf32_thita * 10000) >> 16) & 0x000000ff);
 	pstp_UARTA->stu8a_TransData[lu8_Index++] = (U8)(((U32)(pstp_SETDATA->st_WaveDir.stf32_thita * 10000) >> 24) & 0x000000ff);
 
-	//²¨ÊøÖ¸Ïò½Çpi
+	//æ³¢æŸæŒ‡å‘è§’pi
 	pstp_UARTA->stu8a_TransData[lu8_Index++] = (U8)((U32)(pstp_SETDATA->st_WaveDir.stf32_pi * 10000) & 0x000000ff);
 	pstp_UARTA->stu8a_TransData[lu8_Index++] = (U8)(((U32)(pstp_SETDATA->st_WaveDir.stf32_pi * 10000) >> 8) & 0x000000ff);
 	pstp_UARTA->stu8a_TransData[lu8_Index++] = (U8)(((U32)(pstp_SETDATA->st_WaveDir.stf32_pi * 10000) >> 16) & 0x000000ff);
 	pstp_UARTA->stu8a_TransData[lu8_Index++] = (U8)(((U32)(pstp_SETDATA->st_WaveDir.stf32_pi * 10000) >> 24) & 0x000000ff);
 
-	//±¸ÓÃ 1×Ö½Ú
+	//å¤‡ç”¨ 1å­—èŠ‚
 	//lu8_Index++;
 
-	//Ğ£ÑéºÍ
+	//æ ¡éªŒå’Œ
 	for (li16_i = 1; li16_i < (UARTA_TRANSLEN - 2); li16_i++)
 	{
-		lu8_CheckOut ^= pstp_UARTA->stu8a_TransData[li16_i];   //Ğ£ÑéºÍĞ£Ñé
+		lu8_CheckOut ^= pstp_UARTA->stu8a_TransData[li16_i];   //æ ¡éªŒå’Œæ ¡éªŒ
 		//
 	}
 	pstp_UARTA->stu8a_TransData[lu8_Index++] = lu8_CheckOut;
 	
-	//Ö¡Î²
-	pstp_UARTA->stu8a_TransData[lu8_Index] = 0x7A;      //Ö¡Î²5E¸ÄÎª7A
+	//å¸§å°¾
+	pstp_UARTA->stu8a_TransData[lu8_Index] = 0x7A;      //å¸§å°¾5Eæ”¹ä¸º7A
 
-	pstp_UARTA->stu8_TransIndex = 1;//UARTµÄÊı¾İ·¢ËÍĞòºÅ
+	pstp_UARTA->stu8_TransIndex = 1;//UARTçš„æ•°æ®å‘é€åºå·
 	//gst_CMD.stu32_Count1++;
-	//Êı¾İ·¢ËÍ
-	SciaRegs.SCITXBUF = pstp_UARTA->stu8a_TransData[0];				//UARTµÄÊı¾İ·¢ËÍ»º³åÇø
+	//æ•°æ®å‘é€
+	SciaRegs.SCITXBUF = pstp_UARTA->stu8a_TransData[0];				//UARTçš„æ•°æ®å‘é€ç¼“å†²åŒº
 
 }
 
-//´®¿ÚB·¢ËÍÊı¾İ
+//ä¸²å£Bå‘é€æ•°æ®
 void UartBSendData(UART *pstp_UARTB)
 { 	
 	pstp_UARTB->stu8a_TransData[0] = 0xEB;
@@ -192,12 +192,12 @@ void UartBSendData(UART *pstp_UARTB)
 	pstp_UARTB->stu8a_TransData[2] = 0x21;
 	pstp_UARTB->stu8a_TransData[3] = 0x11;
 	
-	//Êı¾İ·¢ËÍ
-	ScibRegs.SCITXBUF = pstp_UARTB->stu8a_TransData[0];				//UARTµÄÊı¾İ·¢ËÍ»º³åÇø
-	pstp_UARTB->stu8_TransIndex = 1;								//UARTµÄÊı¾İ·¢ËÍĞòºÅ
+	//æ•°æ®å‘é€
+	ScibRegs.SCITXBUF = pstp_UARTB->stu8a_TransData[0];				//UARTçš„æ•°æ®å‘é€ç¼“å†²åŒº
+	pstp_UARTB->stu8_TransIndex = 1;								//UARTçš„æ•°æ®å‘é€åºå·
 }
 
-//´®¿ÚC·¢ËÍÊı¾İ
+//ä¸²å£Cå‘é€æ•°æ®
 void UartC_SendData(UART *pstp_UARTC, I8* pi8a_Buf, U16 lu16_Ret)
 {
 	U8 lu8_Index;
@@ -208,9 +208,9 @@ void UartC_SendData(UART *pstp_UARTC, I8* pi8a_Buf, U16 lu16_Ret)
 	{
 		pstp_UARTC->stu8a_TransData[lu8_Index] = *(pi8a_Buf + lu8_Index);
 	}
-	//Êı¾İ·¢ËÍ
-	ScicRegs.SCITXBUF = pstp_UARTC->stu8a_TransData[0];				//UARTµÄÊı¾İ·¢ËÍ»º³åÇø
-	pstp_UARTC->stu8_TransIndex = 1;								//UARTµÄÊı¾İ·¢ËÍĞòºÅ
+	//æ•°æ®å‘é€
+	ScicRegs.SCITXBUF = pstp_UARTC->stu8a_TransData[0];				//UARTçš„æ•°æ®å‘é€ç¼“å†²åŒº
+	pstp_UARTC->stu8_TransIndex = 1;								//UARTçš„æ•°æ®å‘é€åºå·
 }
 
 //===========================================================================

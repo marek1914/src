@@ -32,10 +32,10 @@
 /*---------------------------------------------------------------------------
    Functions used by this example
 *---------------------------------------------------------------------------*/
-void User_InitFlash(void);		//Flash≥ı ºªØ
+void User_InitFlash(void);		//FlashÂàùÂßãÂåñ
 void Example_MemCopy(Uint16 *SourceAddr, Uint16* SourceEndAddr, Uint16* DestAddr);
-void User_FlashWrite(Uint16 *lpu16_buf, Uint16 lu16_Len);		//Flash–¥
-Uint16 User_FlashRead(Uint16 *lpu16_buf, Uint16 lu16_Len);		//Flash∂¡
+void User_FlashWrite(Uint16 *lpu16_buf, Uint16 lu16_Len);		//FlashÂÜô
+Uint16 User_FlashRead(Uint16 *lpu16_buf, Uint16 lu16_Len);		//FlashËØª
 
 /*---------------------------------------------------------------------------
   Symbols used to copy support functions from Flash to RAM 

@@ -1,60 +1,60 @@
 /********************************************************
-ÎÄ¼þÃû³Æ£ºUser_ComFun.c
-×÷Õß£ºÍõ¾©³Ç
-°æ±¾£º20131105
-ËµÃ÷£º±¾ÎÄ¼þÎªUser_ComFunµÄ.cÎÄ¼þ
-ÐÞ¸Ä¼ÇÂ¼£º
-ÐÞ¸ÄÊ±¼ä		ÐÞ¸ÄÈË	ÐÞ¸ÄÄÚÈÝ
+æ–‡ä»¶åç§°ï¼šUser_ComFun.c
+ä½œè€…ï¼šçŽ‹äº¬åŸŽ
+ç‰ˆæœ¬ï¼š20131105
+è¯´æ˜Žï¼šæœ¬æ–‡ä»¶ä¸ºUser_ComFunçš„.cæ–‡ä»¶
+ä¿®æ”¹è®°å½•ï¼š
+ä¿®æ”¹æ—¶é—´		ä¿®æ”¹äºº	ä¿®æ”¹å†…å®¹
 
 *********************************************************/
 
 #include "User_ComFun.h"
-#include "User_InitSys.h"			//ÓÃ»§¶¨ÒåµÄÉè±¸³õÊ¼»¯
+#include "User_InitSys.h"			//ç”¨æˆ·å®šä¹‰çš„è®¾å¤‡åˆå§‹åŒ–
 
 
-//CANA·¢ËÍº¯Êý(ÏûÏ¢·¢ËÍ)
+//CANAå‘é€å‡½æ•°(æ¶ˆæ¯å‘é€)
 void ComFun_CANASend(U8 pu8_MsgNum, U16 *pu16p_Buf)
 {	
-	ComFun_CANAIDSend((U16)gia_CANATXCfg[(pu8_MsgNum - 1) * 4 + 2], pu16p_Buf);					//CANA·¢ËÍº¯Êý(ID·¢ËÍ)
+	ComFun_CANAIDSend((U16)gia_CANATXCfg[(pu8_MsgNum - 1) * 4 + 2], pu16p_Buf);					//CANAå‘é€å‡½æ•°(IDå‘é€)
 }
 
-//CANB·¢ËÍº¯Êý(ÏûÏ¢·¢ËÍ)
+//CANBå‘é€å‡½æ•°(æ¶ˆæ¯å‘é€)
 void ComFun_CANBSend(U8 pu8_MsgNum, U16 *pu16p_Buf)
 {
-	ComFun_CANBIDSend((U16)gia_CANBTXCfg[(pu8_MsgNum - 1) * 4 + 2], pu16p_Buf);					//CANB·¢ËÍº¯Êý(ID·¢ËÍ)
+	ComFun_CANBIDSend((U16)gia_CANBTXCfg[(pu8_MsgNum - 1) * 4 + 2], pu16p_Buf);					//CANBå‘é€å‡½æ•°(IDå‘é€)
 }
 
-//CANA·¢ËÍº¯Êý(ID·¢ËÍ)
+//CANAå‘é€å‡½æ•°(IDå‘é€)
 void ComFun_CANAIDSend(U16 pu16_MsgID, U16 *pu16p_Buf)
 {
 	static U16 lu16s_MailBoxIndex = 0;
 	struct ECAN_REGS ECanaShadow;
 	struct MBOX *lp_MBOX = (struct MBOX *)&ECanaMboxes.MBOX0;
 	
-	//Ê×ÏÈ½ûÖ¹ÓÊÏäÊ¹ÄÜ£¬²ÅÄÜÐÞ¸ÄID£¬È»ºóÐÞ¸ÄÍê±ÏºóÔÙ´ò¿ªÓÊÏä)
+	//é¦–å…ˆç¦æ­¢é‚®ç®±ä½¿èƒ½ï¼Œæ‰èƒ½ä¿®æ”¹IDï¼Œç„¶åŽä¿®æ”¹å®Œæ¯•åŽå†æ‰“å¼€é‚®ç®±)
 	ECanaShadow.CANME.all = ECanaRegs.CANME.all;
 	ECanaShadow.CANME.all &= (~((U32)0x00000001 << (CANARXMAILBOX + lu16s_MailBoxIndex)));
 	ECanaRegs.CANME.all = ECanaShadow.CANME.all;
-	//ÅäÖÃIDºÍ³¤¶È
+	//é…ç½®IDå’Œé•¿åº¦
 	(lp_MBOX + lu16s_MailBoxIndex + CANARXMAILBOX)->MSGID.all = 0x00000000;
 	(lp_MBOX + lu16s_MailBoxIndex + CANARXMAILBOX)->MSGID.bit.STDMSGID = pu16_MsgID;
-	(lp_MBOX + lu16s_MailBoxIndex + CANARXMAILBOX)->MSGCTRL.bit.DLC = 8;						//¹Ì¶¨³¤¶È8
-	//Ê¹ÄÜÓÊÏä
+	(lp_MBOX + lu16s_MailBoxIndex + CANARXMAILBOX)->MSGCTRL.bit.DLC = 8;						//å›ºå®šé•¿åº¦8
+	//ä½¿èƒ½é‚®ç®±
 	ECanaShadow.CANME.all |= ((U32)0x00000001 << (CANARXMAILBOX + lu16s_MailBoxIndex));
 	ECanaRegs.CANME.all = ECanaShadow.CANME.all;
 	
-	//CAN»º³åÇø£¬Ã¿¸öIDÕ¼4¸öI16
+	//CANç¼“å†²åŒºï¼Œæ¯ä¸ªIDå 4ä¸ªI16
 	(lp_MBOX + lu16s_MailBoxIndex + CANARXMAILBOX)->MDL.word.HI_WORD = *(pu16p_Buf++);
 	(lp_MBOX + lu16s_MailBoxIndex + CANARXMAILBOX)->MDL.word.LOW_WORD = *(pu16p_Buf++);
 	(lp_MBOX + lu16s_MailBoxIndex + CANARXMAILBOX)->MDH.word.HI_WORD = *(pu16p_Buf++);
 	(lp_MBOX + lu16s_MailBoxIndex + CANARXMAILBOX)->MDH.word.LOW_WORD = *(pu16p_Buf++);
 	
-	//·¢ËÍÊ¹ÄÜ	
+	//å‘é€ä½¿èƒ½	
 	ECanaShadow.CANTRS.all = ECanaRegs.CANTRS.all;
 	ECanaShadow.CANTRS.all |= ((U32)0x00000001 << (CANARXMAILBOX + lu16s_MailBoxIndex));
 	ECanaRegs.CANTRS.all = ECanaShadow.CANTRS.all;	
 	
-	//Ö¸ÏòÏÂÒ»¸öÓÊÏä
+	//æŒ‡å‘ä¸‹ä¸€ä¸ªé‚®ç®±
 	lu16s_MailBoxIndex++;
 	if (lu16s_MailBoxIndex >= (CANMSGTOTLALCNT - CANARXMAILBOX))
 	{
@@ -62,37 +62,37 @@ void ComFun_CANAIDSend(U16 pu16_MsgID, U16 *pu16p_Buf)
 	}
 }
 
-//CANB·¢ËÍº¯Êý(ID·¢ËÍ)
+//CANBå‘é€å‡½æ•°(IDå‘é€)
 void ComFun_CANBIDSend(U16 pu16_MsgID, U16 *pu16p_Buf)
 {
 	static U16 lu16s_MailBoxIndex = 0;
 	struct ECAN_REGS ECanbShadow;
 	struct MBOX *lp_MBOX = (struct MBOX *)&ECanbMboxes.MBOX0;
 
-	//Ê×ÏÈ½ûÖ¹ÓÊÏäÊ¹ÄÜ£¬²ÅÄÜÐÞ¸ÄID£¬È»ºóÐÞ¸ÄÍê±ÏºóÔÙ´ò¿ªÓÊÏä)
+	//é¦–å…ˆç¦æ­¢é‚®ç®±ä½¿èƒ½ï¼Œæ‰èƒ½ä¿®æ”¹IDï¼Œç„¶åŽä¿®æ”¹å®Œæ¯•åŽå†æ‰“å¼€é‚®ç®±)
 	ECanbShadow.CANME.all = ECanbRegs.CANME.all;
 	ECanbShadow.CANME.all &= (~((U32)0x00000001 << (CANBRXMAILBOX + lu16s_MailBoxIndex)));
 	ECanbRegs.CANME.all = ECanbShadow.CANME.all;
-	//ÅäÖÃIDºÍ³¤¶È
+	//é…ç½®IDå’Œé•¿åº¦
 	(lp_MBOX + lu16s_MailBoxIndex + CANBRXMAILBOX)->MSGID.all = 0x00000000;
 	(lp_MBOX + lu16s_MailBoxIndex + CANBRXMAILBOX)->MSGID.bit.STDMSGID = pu16_MsgID;
-	(lp_MBOX + lu16s_MailBoxIndex + CANBRXMAILBOX)->MSGCTRL.bit.DLC = 8;						//¹Ì¶¨³¤¶È8
-	//Ê¹ÄÜÓÊÏä
+	(lp_MBOX + lu16s_MailBoxIndex + CANBRXMAILBOX)->MSGCTRL.bit.DLC = 8;						//å›ºå®šé•¿åº¦8
+	//ä½¿èƒ½é‚®ç®±
 	ECanbShadow.CANME.all |= ((U32)0x00000001 << (CANBRXMAILBOX + lu16s_MailBoxIndex));
 	ECanbRegs.CANME.all = ECanbShadow.CANME.all;
 		
-	//CAN»º³åÇø£¬Ã¿¸öIDÕ¼4¸öI16
+	//CANç¼“å†²åŒºï¼Œæ¯ä¸ªIDå 4ä¸ªI16
 	(lp_MBOX + lu16s_MailBoxIndex + CANBRXMAILBOX)->MDL.word.HI_WORD = *(pu16p_Buf++);
 	(lp_MBOX + lu16s_MailBoxIndex + CANBRXMAILBOX)->MDL.word.LOW_WORD = *(pu16p_Buf++);
 	(lp_MBOX + lu16s_MailBoxIndex + CANBRXMAILBOX)->MDH.word.HI_WORD = *(pu16p_Buf++);
 	(lp_MBOX + lu16s_MailBoxIndex + CANBRXMAILBOX)->MDH.word.LOW_WORD = *(pu16p_Buf++);
 		
-	//·¢ËÍÊ¹ÄÜ	
+	//å‘é€ä½¿èƒ½	
 	ECanbShadow.CANTRS.all = ECanbRegs.CANTRS.all;
 	ECanbShadow.CANTRS.all |= ((U32)0x00000001 << (CANBRXMAILBOX + lu16s_MailBoxIndex));
 	ECanbRegs.CANTRS.all = ECanbShadow.CANTRS.all;	
 
-	//Ö¸ÏòÏÂÒ»¸öÓÊÏä
+	//æŒ‡å‘ä¸‹ä¸€ä¸ªé‚®ç®±
 	lu16s_MailBoxIndex++;
 	if (lu16s_MailBoxIndex >= (CANMSGTOTLALCNT - CANBRXMAILBOX))
 	{
@@ -101,11 +101,11 @@ void ComFun_CANBIDSend(U16 pu16_MsgID, U16 *pu16p_Buf)
 }
 
 ///////////////////////////////////////////////////////////////////
-//º¯ÊýÃû³Æ£ºComFun_U16HToL
-//º¯Êý¹¦ÄÜ£ºU16Êý¾Ý¸ßµÍ°ËÎ»»¥»»
-//Èë¿Ú²ÎÊý£ºpu16_Data = Êý¾Ý
-//³ö¿Ú²ÎÊý£ºÎÞ
-//±¸ 	×¢£ºÎÞ
+//å‡½æ•°åç§°ï¼šComFun_U16HToL
+//å‡½æ•°åŠŸèƒ½ï¼šU16æ•°æ®é«˜ä½Žå…«ä½äº’æ¢
+//å…¥å£å‚æ•°ï¼špu16_Data = æ•°æ®
+//å‡ºå£å‚æ•°ï¼šæ— 
+//å¤‡ 	æ³¨ï¼šæ— 
 ///////////////////////////////////////////////////////////////////
 U16 ComFun_U16HToL(U16 pu16_Data)
 {
@@ -118,11 +118,11 @@ U16 ComFun_U16HToL(U16 pu16_Data)
 }
 
 ///////////////////////////////////////////////////////////////////
-//º¯ÊýÃû³Æ£ºComFun_U8ToU16
-//º¯Êý¹¦ÄÜ£ºÁ½¸öU8×ª»»ÎªU16
-//Èë¿Ú²ÎÊý£ºpu8_Data1 = Êý¾Ý1£¬pu8_Data2 = Êý¾Ý2
-//³ö¿Ú²ÎÊý£ºÎÞ
-//±¸ 	×¢£ºÎÞ
+//å‡½æ•°åç§°ï¼šComFun_U8ToU16
+//å‡½æ•°åŠŸèƒ½ï¼šä¸¤ä¸ªU8è½¬æ¢ä¸ºU16
+//å…¥å£å‚æ•°ï¼špu8_Data1 = æ•°æ®1ï¼Œpu8_Data2 = æ•°æ®2
+//å‡ºå£å‚æ•°ï¼šæ— 
+//å¤‡ 	æ³¨ï¼šæ— 
 ///////////////////////////////////////////////////////////////////
 U16 ComFun_U8ToU16(U8 pu8_Data1, U8 pu8_Data2)
 {
@@ -135,11 +135,11 @@ U16 ComFun_U8ToU16(U8 pu8_Data1, U8 pu8_Data2)
 }
 
 ///////////////////////////////////////////////////////////////////
-//º¯ÊýÃû³Æ£ºUser_strchr
-//º¯Êý¹¦ÄÜ£ºÕÒµ½Êý×éÖÐpi8_charToFindµÚÒ»´Î³öÏÖµÄÎ»ÖÃ£¬²¢·µ»ØÖ¸Ïò¸ÃÎ»ÖÃµÄÖ¸Õë
-//Èë¿Ú²ÎÊý£ºpi8p_stringToSearch = ´ýËÑË÷Êý×é£¬pi32_StringMaxLen = Êý×é×î´ó³¤¶È£¬pi8_charToFind = ÒªÑ°ÕÒµÄ×Ö·û
-//³ö¿Ú²ÎÊý£ºÎÞ
-//±¸ 	×¢£ºÎÞ
+//å‡½æ•°åç§°ï¼šUser_strchr
+//å‡½æ•°åŠŸèƒ½ï¼šæ‰¾åˆ°æ•°ç»„ä¸­pi8_charToFindç¬¬ä¸€æ¬¡å‡ºçŽ°çš„ä½ç½®ï¼Œå¹¶è¿”å›žæŒ‡å‘è¯¥ä½ç½®çš„æŒ‡é’ˆ
+//å…¥å£å‚æ•°ï¼špi8p_stringToSearch = å¾…æœç´¢æ•°ç»„ï¼Œpi32_StringMaxLen = æ•°ç»„æœ€å¤§é•¿åº¦ï¼Œpi8_charToFind = è¦å¯»æ‰¾çš„å­—ç¬¦
+//å‡ºå£å‚æ•°ï¼šæ— 
+//å¤‡ 	æ³¨ï¼šæ— 
 ///////////////////////////////////////////////////////////////////
 U8 *User_strchr(I8 * pi8p_stringToSearch, I32 pi32_StringMaxLen, I8 pi8_charToFind)
 {
