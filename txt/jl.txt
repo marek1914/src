@@ -26,7 +26,7 @@
 5. 精通USB，UART，I2C，SPI，I2S，IR等接口协议：
    1) 精读USB2.0协议，尤其第九章 “USB Device Framework”，对设备/配置/接口/端点描述符，枚举，
       请求等概念理解深刻。早年调试过多款host/device接口芯片，熟悉ohci/uhci，ehci硬件标准，
-      基于libusb库做过二次开发。用过silicon lab的c8051f321，TI stm32fxx系列的 USB device
+      基于libusb库二次开发。用过silicon lab的c8051f321，TI stm32fxx系列的 USB device
 
    2) 熟悉8250(intel)，16450/16550（national semiconductor）2类标准的串口接口芯片的驱动，
       理解波特率，硬件流控，软件流控，RS232电平/TTL电平等概念，熟悉y-modem协议。

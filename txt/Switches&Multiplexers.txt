@@ -114,5 +114,26 @@ development/host/windows/usb 是源码
 4 没有焊接12k的时候，示波器可以看到12MHz的full speed波形
 5 焊接12k后，480M，示波器看不到了
 
-==== 0814 ===
-下行端口直接插，不能识别，必须插着下行端口，再插上行端口，才能将hub和设备一起识别出来，why？
+
+--------------------
+Set Configuration can also be used, with wValue set to 0, to deconfigure the device.
+
+libusb_set_configuration
+
+A configuration value of -1 will put the device in unconfigured state
+
+
+SET_CONFIGURATION
+GET_CONFIGURATION
+
+
+libusb: A cross-platform user library to access USB devices
+
+
+--enable-debug-log
+
+
+加了configu   sudo可运行，不sudo 会segmentation fault
+
+但是没效果，右侧第三脚 没有变高，
+并在电平好像在跳动！
