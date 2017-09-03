@@ -1,5 +1,9 @@
 pip
 
+os.path.abspath('.')   //获取当前的绝对路径
+
+os.path.expanduser('~')
+
 print ('Hello %s\n' % __name__) #3.0
 print '%s %s' %(cov, n)
 print "Hello World \n" *4
