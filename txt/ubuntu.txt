@@ -410,4 +410,4 @@ ssh-keygen -t rsa # ENTER to every field
 ssh-copy-id myname@somehost
 
 断开自动重连：
-autossh -M 20000 -NR 20001:localhost:22 sshr@182.92.176.232
+autossh -M 20000 -NR 20001:localhost:22 sshr@182.92.176.232  //注意，前后2个端口号不同

@@ -68,11 +68,9 @@ cut -f1 -d ' '
 cut -f1 -d- #arm-elf-gun -> arm
 
 # bs == ibs + obs  bs配合count 方便计算
-dd if=/dev/fb of=fbfile   #save fb
-dd if=/dev/zero of=/dev/sdb count=1
 dd if=xx of=xx -skip n  #cut file head
 cat uldr.bin /dev/zero | dd bs=1 count=64k > uldr_padded_64k.bin
-dd if=x.iso of=/dev/sdb bs=8M conv=fsync
+
 
 # 后定义的变量先引用值为null
 # 撤销环境变量： unset VAR_NAME
@@ -100,23 +98,16 @@ if [ -n "$force_color_prompt" ]
 A list is a sequence of one or more pipelines separated by one of the operators ‘;’, ‘&’, ‘&&’, ‘||’, 
 and terminated by one of ‘;’, ‘&’, or a newline. 
 
-configure 是shell脚本
-./configure --enable-shared=yes CFLAGS=-g
-${1} = --enable-shared=yes ${2} =  CFLAGS=-g
-内部解释成变量CFLAGS = -g --enable-shared=yes的含义是脚本实现
+./configure --enable-shared=yes 
+${1} = --enable-shared=yes 内部解释含义
 
-shell/uboot:
-$foo / ${foo}
 
-export 全局变量会被复制到子进程
 注意:
  1 不限定子shell，任何类型进程均可，即main(int argc, char *argv[ ], char **env)的第三个参数
  2 是复制，子进程修改同名变量不影响父进程
 
 set 显示全局+局部变量
 
-export TEST=1
-Makefile 目标调用.sh，make后，这个shell可以读到TEST全局变量。
 
 . foo.sh #foo.sh是参数而非命令，无需x权限和./
 
