@@ -1,0 +1,25 @@
+#regular expression:
+
+# . * ^ $ x|y [xyz] [^xyz] [a-z] [^a-z]
+# rename is perl
+# grep -v '^$' foo.txt > bar.txt //去除空行
+
+-n 用于测试
+
+#android 取函数名
+# /^function / 定位到以此开头的行
+# \1 匹配第一个()里的内容
+sed -n "/^function /s/function \([a-z_]*\).*/\1/p"
+
+tac file|sed 1,3d|tac #delete last 3 lines
+sed '1d'
+sed '1,3d'
+sed '$d'
+sed -i '$d' # delete last line
+sed -i '/bar/d'  # delete line contain "bar"
+sed -i '/bar/,+2d'
+
+
+rename 's/arm-linux/arm-eabi/' *
+rename 's/$/.zip/' *  #尾部追加.zip
+rename 's/^/foo/' *   #首部追加foo
