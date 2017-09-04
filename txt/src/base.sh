@@ -96,19 +96,6 @@ cut -f1 -d- #arm-elf-gun -> arm
 dd if=xx of=xx -skip n  #cut file head
 cat uldr.bin /dev/zero | dd bs=1 count=64k > uldr_padded_64k.bin
 
-
-rename 's/arm-linux/arm-eabi/' *
-rename 's/$/.zip/' *  #尾部追加.zip
-rename 's/^/foo/' *   #首部追加foo
- 
-tac file|sed 1,3d|tac #delete last 3 lines
-sed '1d'
-sed '1,3d'
-sed '$d'
-sed -i '$d' # delete last line
-sed -i '/bar/d'  # delete line contain "bar"
-sed -i '/bar/,+2d'
-
 # here document  EOF 分隔符可任意字符串
 << EOF
 foo
@@ -213,7 +200,7 @@ echo `echo 00.00.00.03 |sed s/\\\.//g`
 b=`pwd|sed 's/Note/gao/'`
 a="pwd|sed 's/Note/gao/'" #适当使用“”，否则a=pwd为一条指令
 
-# tr只能删除单字符，要删除utf-8 比如 tr -d “\022\034\270”  不能作为一个组合整体来删除
+# tr 不支持utf-8 multibyte char
 tr '[A-Z]' '[a-z]'
 tr ' ' '\n' < list | sort -u > list-uniq
 
@@ -221,20 +208,6 @@ tr ' ' '\n' < list | sort -u > list-uniq
 mount -o nolock 192.168.0.150:/home/nfsroot /mnt
 mount -o loop # 加强一下。。。。
 mount system.img /mnt  # ext4 镜像，什么参数都不用加？
-
-
-#regular expression:
-
-# . * ^ $ x|y [xyz] [^xyz] [a-z] [^a-z]
-# rename is perl
-# grep -v '^$' foo.txt > bar.txt //去除空行
-
--n 用于测试
-
-#android 取函数名
-# /^function / 定位到以此开头的行
-# \1 匹配第一个()里的内容
-sed -n "/^function /s/function \([a-z_]*\).*/\1/p"
 
 echo `echo 00.00.00.03 |sed 's/\\.//g'` #.需要转义,\本身还有特殊含义，又需要转义，所以需要\\
 
