@@ -71,15 +71,15 @@ netstat -a 查看开启的网络服务
 zip -Z store bootanimation.zip part*/* desc.txt  #store 不压缩 or -0
 /lib/modules/`uname -r`/build  #得到kernel版本号
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -  #下载脚本并执行
-# {} 任何不易出现字符, -I 包含 -L 1
-ls |xargs -I{} java -jar signapk.jar xx.x509.pem xx.pk8 {} sign/{}
+
+ls |xargs -I{} signapk.jar ... {} sign/{}
 ls ori_apk | xargs -I{} java -jar .... ori_apk/{} sing_apk/{}
-ls *.apk|xargs -n 1 aapt dump badging  //apk依次执行aapt
+ls *.apk|xargs -n 1 aapt dump badging
 ls |xargs -n1 du -sk |sort -n
 
 find -name "*.png" | xargs cp -t ./png
-find -name config.h|xargs git add  -f //添加被.gitignore忽略的文件
-find -type d -empty|grep -v .git|xargs -i touch {}/.tmp //除.git外的空目录添加.tmp文件 -i等价于-I{}
+find -name config.h|xargs git add  -f
+find -type d -empty|grep -v .git|xargs -I{} touch {}/.tmp //除.git空目录添加.tmp
 
 ip route add 172.16.0.0/24 dev eth0
 arp-scan –I eth0 -l

@@ -14,10 +14,9 @@ sed -n "/^function /s/function \([a-z_]*\).*/\1/p"
 tac file|sed 1,3d|tac #delete last 3 lines
 sed '1d'
 sed '1,3d'
-sed '$d'
-sed -i '$d' # delete last line
-sed -i '/bar/d'  # delete line contain "bar"
-sed -i '/bar/,+2d'
+sed '$d' # delete last line
+sed '/bar/d'  # delete line contain "bar"
+sed '/bar/,+2d'
 
 
 rename 's/arm-linux/arm-eabi/' *
