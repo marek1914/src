@@ -137,3 +137,6 @@ libusb: A cross-platform user library to access USB devices
 
 但是没效果，右侧第三脚 没有变高，
 并在电平好像在跳动！
+
+插上一个设备，此引脚变高，    执行程序无效，返回-6    LIBUSB_ERROR_BUSY = -6,
+
