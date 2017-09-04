@@ -1,3 +1,7 @@
+Bash Reference Manual                                  *bash*
+
+6.4 Bash Conditional Expressions
+
 3.4.2 Special Parameters
 
 * ($*) Expands to the positional parameters, starting from one.
@@ -80,5 +84,70 @@ for line in `cat data`  # 行中有空格不行，可设置 $IFS(默认空格 ta
 cat data | while read line; do echo $line; done
 while read line; do echo $line; done <data
 
+6.4 Bash Conditional Expressions
+
+-b file   block file
+-c file   character file
+-d file   directory
+-e file   file exists
+-f file   regular fle
+-g file   set-group-id bit is set
+-h file   symbolic link
+-k file   sticky bit is set
+-p file   named pipe (FIFO)
+-r file   readable
+-s file   file has a size greater than zero
+-t fd     fd is open and refers to a terminal
+-u file   set-user-id bit is set
+-w file   writable
+-x file   executable
+-G file   file is owned by the effective group id
+-L file   is symbolic link
+-N file   file has been modifed since it was last read
+-O file   file is owned by the effective user id
+-S file   socket
+
+file1 -ef file2
+True if fle1 and fle2 refer to the same device and inode numbers.
+
+file1 -nt file2
+True if fle1 is newer (according to modifcation date) than fle2, 
+or if fle1 exists and fle2 does not.
+
+file1 -ot file2
+True if fle1 is older than fle2, or if fle2 exists and fle1 does not.
+
+-o optname
+True if the shell option optname is enabled. The list of options appears in
+the description of the -o option to the set builtin (see Section 4.3.1 [The Set
+Builtin], page 60).
+
+-v varname
+True if the shell variable varname is set (has been assigned a value).
+
+-R varname
+True if the shell variable varname is set and is a name reference.Chapter 6: Bash Features 89
+
+-z string   True if the length of string is zero.
+-n string
+string      True if the length of string is non-zero.
+
+string1 == string2
+string1 = string2
+True if the strings are equal. When used with the [[ command, this performs 
+pattern matching as described above.
+
+‘=’ should be used with the test command for posix conformance.
+string1 != string2
+True if the strings are not equal.
+string1 < string2
+True if string1 sorts before string2 lexicographically.
+string1 > string2
+True if string1 sorts after string2 lexicographically.
+arg1 OP arg2
+OP is one of ‘-eq’, ‘-ne’, ‘-lt’, ‘-le’, ‘-gt’, or ‘-ge’. These arithmetic binary
+operators return true if arg1 is equal to, not equal to, less than, less than or
+equal to, greater than, or greater than or equal to arg2, respectively. Arg1 and
+arg2 may be positive or negative integers.
 
 vim: tw=78 ts=8 sw=4 sts=4 et ft=help

@@ -763,14 +763,6 @@ eXtensible Markup Language
 xbmc到bubbleupnp
 
 
----goahead---
-webserver方案：goaheand/appweb/apache
-cgi
-http://embedthis.com/goahead/ 公司维护产品
-https://github.com/embedthis 维护 goahead/appweb 等项目
-GoAhead is the world's most popular embedded web server.
-
-
 —stun—
 rfc5389 Session Traveral Utilities for NAT
 rfc3489 Simple Traversal of UDP Through NAT (被5389替代)

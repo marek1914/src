@@ -250,8 +250,7 @@ uboot 固定生成512k
 
 rootfs-8548-ltib.tar.bz2
 基于ltib制作，跟附带的工具链匹配。
-预置支持telnetd、ftpd、sshd、httpd服务。
-其中httpd没有使用goahead，而是busybox自带的。
+预置支持telnetd、ftpd、sshd、httpd(busybox自带)
 
 名称						说明				flash位置(0xfc000000-0xffffffff  64M空间)
 u-boot.bin				uboot镜像				fff80000-ffffffff
@@ -490,8 +489,6 @@ u-boot mm
 ----------------------------
 
 === microsemi ===
-ZYNQ XC7Z010/20 账户 gxxjxx:200w(six 0)
-
 Flash Pro4/5
 softConsole 目录选：~/.Microsemixx
 ./softconsole.sh //看log需安装 libgtk2.0-0:i386，libxtst6:i386
@@ -514,18 +511,17 @@ Libero不能导出4.0能导出3.4工程
 
 -----------
 ZYNQ:
+XC7Z010/20 账户 gxxjxx:200w(six 0)
 跳线：JP1 决定SD卡还是SPI启动
 
 官方仅支持ubuntu12.10，ubuntu，带有各种库，带有gcc编译器
 官方解压300M+
 
-You need a SD card with two partitions
-Partition one will be the boot partition and partition two will hold the root file system
+You need a SD card with two partitions (boot and root file system)
 
-我用ubuntu12.10系统，会不会遇到编译问题？ 这与原来的交叉编译的开发形式是完全不同的（就像树莓派文档中，代码必须在树莓派上编译而不能PC交叉编译）
-安装一个apache，这样连goahead和webserver都不用编译了，apt-get install 搞定
+ubuntu12.10，会不会遇到编译问题？ 这与交叉编译开发形式完全不同
 
-ubuntu-core (官网 有pi2 pi3 版本)
+ubuntu-core (有pi2 pi3 版本)
 
 zc702 是xilinx官方板子
 
@@ -539,5 +535,9 @@ http://releases.ubuntu.com/
 3个版本：米尔的12.04 桌面版， xilinx官方12.10 ubuntu-core版， ubuntu官方12.04版
 脱离米尔，从官网下载开始整理，驱动方面，只要网口通了就行
 
----msm---
-10.3.56.170 gjie:123456
+webserver方案：goahead/appweb
+cgi
+http://embedthis.com/goahead/ 公司维护
+https://github.com/embedthis 维护 goahead/appweb
+
+goahead -v /web ip：9000  #ip是服务器ip，端口前要有空格

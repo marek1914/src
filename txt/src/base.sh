@@ -108,22 +108,8 @@ cut -f1 -d ' '
 cut -f1 -d- #arm-elf-gun -> arm
 
 # bs == ibs + obs  bs配合count 方便计算
-dd if=/dev/fb of=fbfile   #save fb
-dd if=/dev/zero of=/dev/sdb count=1
 dd if=xx of=xx -skip n  #cut file head
 cat uldr.bin /dev/zero | dd bs=1 count=64k > uldr_padded_64k.bin
-dd if=x.iso of=/dev/sdb bs=8M conv=fsync
-
-rename 's/arm-linux/arm-eabi/' *   # arm-linux-gcc -> arm-eabi-gcc
-rename 's/$/.zip/' *  #尾部追加.zip
-rename 's/^/foo/' *   #首部追加foo
- 
-tac file|sed 1,3d|tac #delete last 3 lines
-sed '1d'
-sed '1,3d'
-sed '$d' # delete last line 
-sed '/bar/d'  # delete line contain "bar"
-sed '/bar/,+2d'
 
 # here document  EOF 分隔符可任意字符串
 << EOF
@@ -145,24 +131,15 @@ echo -e "foo\nbar"
 # [] [[]] 不完全等价
 # 区分内建命令和关键词 (4 Shell Builtin Commands)
 # 命令行编辑 ctl+left 跳一个词
-# 不限定子shell，任何类型进程均可，即main(int argc, char *argv[ ], char **env)的第三个参数
+# main(int argc, char *argv[ ], char **env) env即为全局环境变量
 # 子进程修改同名变量不影响父进程，是复制
 # . foo.sh ,foo.sh是参数而非命令，无需x权限和./
 # PATH=arm-linux-xx/bin:$PATH #PATH本就是全局无需export
 
-configure 是shell脚本
-./configure --enable-shared=yes CFLAGS=-g
-${1} = --enable-shared=yes ${2} =  CFLAGS=-g
-内部解释成变量CFLAGS = -g --enable-shared=yes的含义是脚本实现
+./configure --enable-shared=yes 
+${1} = --enable-shared=yes 内部解释含义
 
-shell/uboot:
-$foo / ${foo}
-
-export 全局变量会被复制到子进程
 set 显示全局+局部变量
-
-export TEST=1
-Makefile 目标调用.sh，make后，这个shell可以读到TEST全局变量。
 
 
 #----------------
@@ -238,7 +215,7 @@ echo `echo 00.00.00.03 |sed s/\\\.//g`
 b=`pwd|sed 's/Note/gao/'`
 a="pwd|sed 's/Note/gao/'" #适当使用“”，否则a=pwd为一条指令
 
-# tr只能删除单字符，要删除utf-8 比如 tr -d “\022\034\270”  不能作为一个组合整体来删除
+# tr 不支持utf-8 multibyte char
 tr '[A-Z]' '[a-z]'
 tr ' ' '\n' < list | sort -u > list-uniq
 
@@ -246,20 +223,6 @@ tr ' ' '\n' < list | sort -u > list-uniq
 mount -o nolock 192.168.0.150:/home/nfsroot /mnt
 mount -o loop # 加强
 mount system.img /mnt  # ext4 镜像，什么参数都不用加？
-
-
-#regular expression:
-
-# . * ^ $ x|y [xyz] [^xyz] [a-z] [^a-z]
-# rename is perl
-# grep -v '^$' foo.txt > bar.txt //去除空行
-
--n 用于测试
-
-#android 取函数名
-# /^function / 定位到以此开头的行
-# \1 匹配第一个()里的内容
-sed -n "/^function /s/function \([a-z_]*\).*/\1/p"
 
 echo `echo 00.00.00.03 |sed 's/\\.//g'` #.需要转义,\本身还有特殊含义，又需要转义，所以需要\\
 

@@ -48,7 +48,7 @@ x86/x86-64汇编/反汇编器yasm重写自NASM，(为啥不用gcc的as？)
 
 make -j8
 make V=1 (显示详情) 
-configure/Makefile手写未使用autoconf
+configure/Makefile手写的
 
 libray.mak/common.mak/config.mak(./configure)
 Makefile 开头包含 common.mak config.mak 靠：
