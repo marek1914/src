@@ -9,7 +9,7 @@ set cot=menuone,preview
 filetype plugin indent on
 set pvh=1
 
-set dict+=~/.vim/other/dict/*
+set dict+=~/.vim/other/dict/4k
 set dict+=~/.vim/other/dict/zh/zh
 
 "set dict+=~/.vim/other/dict/zh/*
@@ -38,6 +38,7 @@ let g:netrw_banner=0
 nmap <F8> :Tagbar<CR>
 nmap <F10> :NERDTree<CR>
 map  <F3> :Trans<CR>
+imap jk <Esc>
 "imap /* /*   */<ESC>hhhi
 
 " highlight Pmenu    guibg=darkgrey  guifg=black 

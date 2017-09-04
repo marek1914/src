@@ -27,8 +27,10 @@ brillo_update_payload
 lib/shflags/shflags
 delta_generator
 
-
-
+make bootimage   
+make out/target/product/xxx/boot.img  showcommands
+疑问：showcommands 是 modifier pseudo-target， 并非make特性， 是android的特殊写法，不管在前在后，能切换@开关
+可以用在make，也可用在 mm mmm
 
 善用 croot/godir
 CLEAR_VARS:= $(BUILD_SYSTEM)/clear_vars.mk 把各种变量赋为空
@@ -578,7 +580,7 @@ cpio -i -F ../ramdisk.img
 
 img开头"ANDROID!"
 
-make out/target/product/xxx/boot.img  showcommands
+
 
 make out/target/... /ramdisk.img
 

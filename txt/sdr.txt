@@ -58,10 +58,10 @@ http://gqrx.dk/download/install-ubuntu
 gps:
 bladeRF-cli -l /usr/share/Nuand/bladeRF/hostedx40.rbf
 
-http://www.gpsspg.com/maps.htm
-39.9821173579,116.3143099804  //纬度，经度
-google地图地址栏显示：  
-39.9816983，116.3156582 有些偏东向，手工调整经度 为116.3133789
+google地图：  
+39.9816983，116.3156582 实际效果有些偏
+手工调整:
+39.981,116.308
 ftp://cddis.gsfc.nasa.gov/gnss/data/daily/2017/    下载brdc*.17n 文件
 
 时间也变了！ 时间是靠gps同步的？

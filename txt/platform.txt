@@ -197,14 +197,7 @@ make[3]: hardware/amlogic/touch/gsl_point_id_z.z', needed by hardware/amlogic/to
 make 是 make all，有些模块可能编译不过去
 
 疑问：
-那么多加速度传感器都以obj-y的形式编译进内核，（全进入内核了吗？如果是，接入某个传感器后怎么选择驱动呢？）
-原始s805，加速度传感器全选了（meson8b_defconfig）：
-CONFIG_GRAVITY_BMA250=y
-CONFIG_GRAVITY_BMA222=y
-...
-CONFIG_GRAVITY_MXC622X=y
-CONFIG_GRAVITY_MXC6255XC=y
-
+那么多加速度传感器都以obj-y的形式编译进内核，
 删除一项驱动，需要同时修改Kconfig 和 Makefile
 
 编译device tree
@@ -434,19 +427,16 @@ cs2 访问死机问题，最后将基地址改为f7000000 就好了  用60000000
 u-boot mm
 
 1 编译
-	0) 设置编译器
-	解压编译器 powerpc-linux-gnuspe-gcc4.1.78.zip
-	设置路径 PATH=$PATH:/home/你的路径/powerpc-linux-gnuspe-gcc4.1.78/bin
+	0) 编译器
+	powerpc-linux-gnuspe-gcc4.1.78.zip
 
 	1) u-boot	
 	make bnc8548_config
-	make
-	u-boot目录生成 u-boot.bin
+	make   # u-boot.bin
 	
 	2) kernel
 	make bnc8548pci_defconfig
-	make
-	在kernel/arch/powerpc/boot 下生成 cuImage.bnc8548
+	make   #  cuImage.bnc8548
 
 2 烧写
 	板子配置32MByte(0x2000000)Flash，128k/sector，地址范围：0xFC00 0000 - 0xFDFF FFFF 其中：

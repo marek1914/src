@@ -1,3 +1,4 @@
+整个android可以取 mirror到本地，然后从本地 repo
 git help -a
 git submodule
 

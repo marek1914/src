@@ -7,8 +7,6 @@ vi 完成一个 词组的功能。。
 ga 查看字符 ascii值
 g8 打印utf-8 的16进制， 一个汉字3个字节
 
-github.com/vim-scripts
-
 :set setting options (internal variables for switches special effects)
 :let assigning a value to a variable.
 
@@ -44,8 +42,9 @@ i_CTRL-R :Insert the contents of a register
 ignorecase/noic 忽略大小写
 
 .c文件用2个空格替换tab:
-// vim:set ts=2 sw=2 expandtab:
+// vim:set ts=2 sw=2 et:  （expandtab）
 
+针对python文件，我加了 ts=2 sw=2 et  有效，但为啥tab按键还是4个空格？
 
 :e foo.c   #此时e是 edit
 :e dir     #此时e是 explore

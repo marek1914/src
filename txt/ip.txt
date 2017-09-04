@@ -111,7 +111,7 @@ SYN: Synchronize sequence numbers, to indicate where the sequence numbering will
 FIN: No more data from sender
 
 分片：
-1 有时看到几百字节的东西也分为2次tcp传输，实际上是http包头发送了一次，主体部分发送了一部分。并不是按照MTU的大小分的
+1 有时看到几百字节的分为2次tcp，实际是http头发送一次，主体部分发送一次，并非按照MTU大小分
 2 向apache请求一个超过MTU大小的文件，出现的多个TCP的PDU，不是IP层的分片，因为IP头的分片标志位和offset都是0，而是应用层根据MTU主动分多个TCP包。
   好处是IP层分片，如果出错会整个重传，在IP曾，TCP，UDP是一视同仁的。
 
@@ -721,19 +721,8 @@ Age:1815750
 下面是188字节的ts包罗列，空间不足1个ts包，截断，下一个1460继续后半个ts包
 
 20140310 协议分析
-用vplayer 分享 why.mp4 到盒子，不能成功，黑屏一下就收到了stop，停止分享。手机点分享后立刻用ffplay 播放这个视频地址（地址之前用airplay程序抓到的），可以播出，过一会，盒子也能播出。貌似用ffplay勾引了一下就可以了。
-
-考察 amlogic 提供的 airplay apk 完全java实现
-
-图片可以分享成功，但需要尝试多次
-
-通过wifi可以连接，想通过有线连接，抓包分析，可是有线就是发现不了iphone
-
-D/AirReceiverService
-D/AirReceiver( 4084): ==>Create AirTunes RTSP server
-
-从“设置” 中看 此应用显示 ： 1个进程和1个服务
-“此服务由其应用启动”
+用vplayer 分享 why.mp4 到盒子，不能成功，黑屏一下就收到了stop，停止分享。手机点分享后立刻用ffplay 播放这个视频地址（地址之前用airplay程序抓到的），
+可以播出，过一会，盒子也能播出。貌似用ffplay勾引了一下就可以了。
 
 自己的itvision 广告和视频是2个url，结果在 我们的和小米的上面，第二个url不能播放
 但同等条件，在appletv上是好的
@@ -1157,7 +1146,8 @@ continuation or non-http traffic （显示为http是因为80端口，碰巧，wi
 SSL  continuation （这是一个长连接）
 
 continuation or non-http traffic：
-That means ethereal sees packets on tcp port 80 which don't contain an http header. This is quite common, since many http-objects are larger than 1 tcp packet. Hence the comment "Continuation"
+That means ethereal sees packets on tcp port 80 which don't contain an http header. 
+This is quite common, since many http-objects are larger than 1 tcp packet. Hence the comment "Continuation"
 
 ip.addr==192.168.7.32  不要ip.src== || ip.dst==
 

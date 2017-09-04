@@ -5,9 +5,6 @@ logcat -f /cache/verbose-ok.txt *:v
 logcat -f /cache/verbose-fail.txt *:v
 logcat -vthreadtime *:v > /data/logcat.txt
 
-framework:
-git push origin Hi3798MV200:refs/for/Hi3798MV200
-
 mmm frameworks/base/core/res/
 mmm frameworks/base/
 mmm frameworks/base/services/java/
@@ -471,8 +468,6 @@ A20:
 编译器：brandy/gcc-linaro
 HELLO! BOOT0 is starting!
 
-配置：./buildroot/configs/sun7i_defconfig
-
 写mbr
 image开头：IMAGEWTY
 
@@ -542,10 +537,6 @@ chunk 1285(1286)
 
 —m3—
 galaxy/best/huashu 代码区分靠shell拷贝以及宏
-
-recovery kernel：meson_reff16_recovery_defconfig
-oir kernel: meson_reff16_defconfig
-
 
 ./f16ref/BoardConfig.mk
 TARGET_AMLOGIC_RECOVERY_KERNEL := $(PRODUCT_OUT)/uImage_recovery
