@@ -4,3 +4,4 @@ sandbox
 cscope.out
 *.a
 *.o
+tags

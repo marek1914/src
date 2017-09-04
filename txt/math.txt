@@ -411,10 +411,7 @@ Most users should ignore this repository, and should instead download official t
 which contain the generated code, do not require any special tools or knowledge, 
 and can be compiled on any system with a C compiler.
 
-
 .mathworks.com
-github同步代码，需：
-autoconf automake libtool 执行 bootstrap.sh
 
 ocaml 正常不需要
 

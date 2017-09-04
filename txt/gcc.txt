@@ -15,7 +15,7 @@ __GNUC__  值表示gcc版本
 -MMD //no system header
 
 
- .a可直接加到后面，不用-l
+.a可直接加到后面，不用-l
 -L  -l
 
 error: field 'timestamp' has incomplete type
@@ -69,9 +69,6 @@ x/16bx address  查看内存
 watch   监控某变量的变化
 
 ctrl+c 终止当前执行，不论执行到哪。终止后可以打断点。
-
-
-
 
 (gdb) p  *data@20
 $32 = "\000\000\001\243e\210\200\200\027\343\205\034\331\377\341\033\001\373F\215"   \xxx八进制格式
@@ -150,8 +147,14 @@ vmov.i8	q5, #255    一下向q5 赋16个 0xff
 -llibrary
 
 链接器以指定顺序搜索和处理库和.o文件，如 foo.o -lz bar.o 搜索库 z在foo.o之后bar.o之前，如果bar.o引用z中函数会找不到
-The linker searches a standard list of directories for the library, which is actually a file named liblibrary.a.  The linker then uses this file as if it had been specified precisely by name. The directories searched include several standard system directories plus any that you specify with -L.
-Normally the files found this way are library files---archive files whose members are object files.  The linker handles an archive file by scanning through it for members which define symbols that have so far been referenced but not defined.  But if the file that is found is an ordinary object file, it is linked in the usual fashion.  The only difference between using an -l option and specifying a file name is that -l surrounds library with lib and .a and searches several directories.  
+The linker searches a standard list of directories for the library, which is actually a file named liblibrary.a.  
+The linker then uses this file as if it had been specified precisely by name. 
+The directories searched include several standard system directories plus any that you specify with -L.
+Normally the files found this way are library files---archive files whose members are object files.  
+The linker handles an archive file by scanning through it for members which define symbols that have so 
+far been referenced but not defined.  But if the file that is found is an ordinary object file, 
+it is linked in the usual fashion.  The only difference between using an -l option and specifying a file 
+name is that -l surrounds library with lib and .a and searches several directories.  
 
 在子目录下生成.a 然后在主目录中去链接各个子目录下面的.a
 原来Sigma的工程是:子目录下面的都是单独的工程，可以编译成 各个.a 然后剩余的所有.c文件都放到主工程下
@@ -297,7 +300,8 @@ hard-float 和 soft-float ABIs 是不兼容的
 -mabi=apcs-gnu 是OABI参数，将OABI的参数传给符合EABI标准的编译器，编译阶段没有报错
 
 GCC floating-point options
-For historical reasons and to match the ARM RVCT kit, the GCC FPU and ABI selection options are not entirely orthogonal. The -mfloat-abi= option controls both the ABI, and whether floating point instructions may be used. The available options are:
+For historical reasons and to match the ARM RVCT kit, the GCC FPU and ABI selection options are not entirely orthogonal. 
+The -mfloat-abi= option controls both the ABI, and whether floating point instructions may be used. The available options are:
     soft: Full software floating point.
     softfp: Use the FPU, but remain compatible with soft-float code.
     hard: Full hardware floating point. 
@@ -436,7 +440,8 @@ envcrc.c:52:39: error: operator '>=' has no right operand
 
 -Wl,-dynamic-linker,/system/bin/linker  代表
 --dynamic-linker=file
-    Set the name of the dynamic linker.  This is only meaningful when generating dynamically linked ELF executables.  The default dynamic linker is normally correct;
+    Set the name of the dynamic linker.  This is only meaningful when generating dynamically linked ELF executables.  
+	The default dynamic linker is normally correct;
     don't use this unless you know what you are doing.
 
 -Wl,-rpath-link=$(HOST_OUT_INTERMEDIATE_LIBRARIES)
@@ -458,10 +463,17 @@ envcrc.c:52:39: error: operator '>=' has no right operand
 
 
 --whole-archive 只在生成动态库时用
-For each archive mentioned on the command line after the --whole-archive option, include every object file in the archive in the link, rather than searching the archive for the required object files.  This is normally used to turn an archive file into a shared library, forcing every object to be included in the resulting shared library.  This option may be used more than once.
+For each archive mentioned on the command line after the --whole-archive option, 
+include every object file in the archive in the link, rather than searching the 
+archive for the required object files.  This is normally used to turn an archive 
+file into a shared library, forcing every object to be included in the resulting shared library.  
+This option may be used more than once.
 
-Two notes when using this option from gcc: First, gcc doesn't know about this option, so you have to use -Wl,-whole-archive.
-Second, don't forget to use -Wl,-no-whole-archive after your list of archives, because gcc will add its own list of archives to your link and you may not want this flag to affect those as well.
+Two notes when using this option from gcc: First, gcc doesn't know about this option, 
+so you have to use -Wl,-whole-archive.
+Second, don't forget to use -Wl,-no-whole-archive after your list of archives, 
+because gcc will add its own list of archives to your link and you may not want 
+this flag to affect those as well.
 
 --no-whole-archive
 Turn off the effect of the --whole-archive option for subsequent archive files.

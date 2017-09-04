@@ -55,7 +55,11 @@ admittance 导纳
 adolescent
 adopt
 adult
+wax 蜡
+whip 鞭打
 advance
+wagon
+woke 唤醒(wake过去式)
 advanced
 advantage
 adventure
@@ -66,7 +70,7 @@ advise
 adviser
 advocate
 affair 事情私事
-affect
+affect 影响
 afford
 afraid
 African
@@ -239,8 +243,8 @@ bank
 bar
 barely
 barely 仅仅-赤裸裸
-barrel
-barrier
+barrel 桶
+barrier 栅栏
 base
 baseball
 basic
@@ -266,6 +270,7 @@ beer
 beetle 甲壳虫
 before
 beforeThis
+beg 乞讨
 begin
 beginning
 behavior
@@ -332,7 +337,7 @@ boundary
 bowl
 brain
 branch
-brand
+brand 商标
 bread
 break
 breakfast
@@ -962,6 +967,7 @@ error
 escape
 especially
 essay
+essence 本质
 essential
 essentially
 establish
@@ -1283,6 +1289,7 @@ happy
 hard
 hardly
 harmonic
+harmful 有害的
 hat
 hate
 have
@@ -1355,7 +1362,7 @@ hundred
 hungry
 hunter
 hunting
-hurt
+hurt 伤害
 husband
 hypothesis
 ice
@@ -1900,7 +1907,6 @@ other
 others
 otherwise
 ought
-our
 ourselves
 outcome
 outlier 异常值
@@ -1957,7 +1963,6 @@ patch
 patient
 pattern
 pause
-pay
 payment
 peace
 peak
@@ -2071,14 +2076,13 @@ pound
 pour
 poverty
 powder
-power
 powerful
 practical
 practice
 pragma
 pray
 prayer
-precisely
+precisely 精确地严格地
 predict
 prefer
 preference
@@ -2168,15 +2172,12 @@ publication
 publicly
 publish
 publisher
-pull
 punishment
 purchase
 pure
 purge
 purpose
 pursue
-push
-put
 qualify
 quality
 quantization
@@ -2189,7 +2190,7 @@ quiet
 quietly
 quit
 quite
-quote
+quote 引用
 race
 racial
 radical
@@ -2216,7 +2217,6 @@ read
 reader
 reading
 ready
-readyToRun
 real
 reality
 realize
@@ -2364,7 +2364,6 @@ rtable
 rub
 rudimentary
 rule
-run
 running
 rural
 rush
@@ -2387,9 +2386,7 @@ satellite
 satisfaction
 satisfy
 sauce
-save
 saving
-say
 scalability 可扩展性
 scale
 scandal
@@ -2426,7 +2423,6 @@ segment
 seize
 select
 selection
-self
 sell
 semicolon
 Senate
@@ -2444,7 +2440,6 @@ seriously
 serve
 service
 session
-set
 setsockopt
 setting
 settle
@@ -2452,7 +2447,6 @@ settlement
 seven
 several
 severe
-sex
 sexual
 shade
 shadow
@@ -2461,7 +2455,6 @@ shall
 shape
 share
 sharp
-she
 sheet
 shelf
 shell
@@ -2564,7 +2557,6 @@ sometimes
 somewhat
 somewhere
 son
-song
 soon
 sophisticated
 sort
@@ -2691,6 +2683,7 @@ Supreme
 sure
 surely
 surface
+symmetry 对称匀称
 surgery
 surprise
 surprised
@@ -2702,8 +2695,8 @@ survey 调查
 survival
 survive
 survivor
-suspect
-sustain
+suspect 怀疑
+sustain 维持供养
 swear
 sweep
 sweet
@@ -2774,7 +2767,6 @@ their
 them
 theme
 themselves
-then
 theory
 therapy
 there
@@ -3020,24 +3012,18 @@ welfare
 well
 west
 western
-wet
-what
+wet 湿
 whatever
 wheel
-when
 whenever
-where
 whereas
 whether
-which
 while
 whisper
 white
-who
 whole
 whom
 whose
-why
 wide
 widely
 widespread
@@ -3051,13 +3037,14 @@ wine
 wing
 winner
 winter
+suck 吸
 unexpected 意外的想不到的
 wipe 擦除(swipe)
 wire
-wisdom
-wise
+wisdom 智慧学问
+wise 聪明的
 wish
-withdraw
+withdraw 撤退
 within
 without
 witness

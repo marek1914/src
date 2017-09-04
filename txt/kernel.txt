@@ -1358,10 +1358,7 @@ mtdparts=<mtddef>[;<mtddef]
 raspberry pi 如何使用spi flash 运行jffs2
 
 —boot—
-nfs
-kernel配置：
-打开 Networking support -> Networking options -> TCP/IP networking -> IP: kernel level autoconfiguration 然后
-File systems -> Network File Systems -> Root file system on NFS 选项才会出现。逻辑是：支持nfs，但不一定作为root
+nfs rootfs： File systems -> Network File Systems -> Root file system on NFS
 
 General setup -> Initial RAM filesystem and RAM disk (initramfs/initrd) support
 配置选项 CONFIG_BLK_DEV_INITRD （字面意思没有包含ramfs呀，只有ram disk） 疑问：那用ramdisk 还是ramfs/tmpfs呢？！
