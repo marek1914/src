@@ -57,6 +57,7 @@ cp  -n (--no-clobber) #不覆盖同名文件
 locate
 uudecode/uuencode (sharutils)
 taskset
+service foo restart (等价 /etc/init.d/foo restart)
 
 hdparm/sdparm
 hdparm -tT /dev/sdb1  测试硬盘性能
@@ -74,8 +75,7 @@ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -  #下载脚本并
 
 ls |xargs -I{} signapk.jar ... {} sign/{}
 ls ori_apk | xargs -I{} java -jar .... ori_apk/{} sing_apk/{}
-ls *.apk|xargs -n 1 aapt dump badging
-ls |xargs -n1 du -sk |sort -n
+ls *.apk|xargs -n1 aapt dump badging
 
 find -name "*.png" | xargs cp -t ./png
 find -name config.h|xargs git add  -f
@@ -83,7 +83,6 @@ find -type d -empty|grep -v .git|xargs -I{} touch {}/.tmp //除.git空目录添�
 
 ip route add 172.16.0.0/24 dev eth0
 arp-scan –I eth0 -l
-service xxx restart
 
 # 3337 -> 0x37
 # 以每行每2字节为基本单位，遇到不可转换字符(0-9a-z)跳到下一行
@@ -283,17 +282,14 @@ fi
 # mdev
 #节点用mknod手动创建，或mdev(udev)自动创建
 
-udevadm control --reload #reload udev rule
-#or
+udevadm control --reload #reload rule, or
 service udev restart
-#等价于
-/etc/init.d/udev restart
 
-service用了start stop exec 这些命令
 
-udev脚本里的start字段的打印，在service udev start中不显示
 
 链接目录，  cd命令 可以处理 ../..   但 ls vi 等不行，会退到文件夹的真实位置
 
 printf "PERM LINKS OWNER GROUP SIZE MONTH DAY HH:MM/YEAR NAME\n" ;ls -l | sed 1d | column -t
 
+while read line; do echo ${#line} ${line}; done <4k
+while read line; do tmp=`echo $line | cut -f1 -d' '`; echo ${#tmp}  $line; done < 3k |sort -n >3k-sort

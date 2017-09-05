@@ -140,3 +140,4 @@ libusb: A cross-platform user library to access USB devices
 
 插上一个设备，此引脚变高，    执行程序无效，返回-6    LIBUSB_ERROR_BUSY = -6,
 
+先 libusb_release_interface ?
