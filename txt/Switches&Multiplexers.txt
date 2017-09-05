@@ -140,4 +140,9 @@ libusb: A cross-platform user library to access USB devices
 
 插上一个设备，此引脚变高，    执行程序无效，返回-6    LIBUSB_ERROR_BUSY = -6,
 
-先 libusb_release_interface ?
+先 libusb_release_interface ?  
+
+libusb_detach_kernel_driver  这个必须，要kernel放弃驱动控制权？
+
+libusb_detach_kernel_driver
+libusb_set_configuration    这2个函数好像就行了！
