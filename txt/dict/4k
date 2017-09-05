@@ -215,7 +215,7 @@ attribute
 audience
 authenticate
 author
-authority
+authority 权威
 auto
 availability
 available
@@ -1014,6 +1014,7 @@ exhibition
 exist
 existence
 existing
+normalize
 exists
 exit_status
 expand

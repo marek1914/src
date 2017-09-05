@@ -67,7 +67,7 @@ find -name "*.png" | xargs cp -t ./png
 
 ip route add 172.16.0.0/24 dev eth0
 arp-scan –I eth0 -l
-service mysql restart
+service xxx restart
 
 # 3337 -> 0x37
 # 以每行每2字节为基本单位，遇到不可转换字符(0-9a-z)跳到下一行
@@ -75,7 +75,6 @@ xxd -r -p a.txt
 hexdump
 
 locate #find files by name
-/sbin/service WowzaMediaServer start
 
 #get file size
 stat -f "%z" foo.bin
