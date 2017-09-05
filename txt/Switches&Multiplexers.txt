@@ -1,3 +1,5 @@
+贱人张！
+
 模拟开关，它是开关，所以是双向的
 
 ADG804
@@ -153,4 +155,11 @@ libusb: A cross-platform user library to access USB devices
 libusb_detach_kernel_driver  这个必须，要kernel放弃驱动控制权？
 
 libusb_detach_kernel_driver
-libusb_set_configuration    这2个函数好像就行了！
+libusb_set_configuration    实验成功
+
+
+WS2812    环形，做个 时钟
+Arduino Pro micro 
+
+
+
