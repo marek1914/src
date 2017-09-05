@@ -141,7 +141,6 @@ libusb: A cross-platform user library to access USB devices
 插上一个设备，此引脚变高，    执行程序无效，返回-6    LIBUSB_ERROR_BUSY = -6,
 
 
-
 ---
 下行端口直接插，不能识别，必须插着下行端口，再插上行端口，才能将hub和设备一起识别出来,拔掉再插，就又识别不出来了
 或者，有时候，能识别一次
@@ -149,3 +148,9 @@ libusb: A cross-platform user library to access USB devices
 可是，有一天是识别出来的，以至于我把上面那句话已经删除了，当时不是用u盘测试的，而是用苹果手机，手机自己带电
 
 
+先 libusb_release_interface ?  
+
+libusb_detach_kernel_driver  这个必须，要kernel放弃驱动控制权？
+
+libusb_detach_kernel_driver
+libusb_set_configuration    这2个函数好像就行了！
