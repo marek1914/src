@@ -33,14 +33,12 @@ uname -r
 cpio
 tail
 head
-#显示分区的 UUID
-blkid
+blkid #显示分区 UUID
 declare
-who #命令 登录后，su切换了用户， who还是现实最开始登录的用户名
+who # su 也显示最开始登录的用户名
 w
 #查看运行时间：
 who -b
-who -r
 last reboot
 top
 uptime
@@ -50,6 +48,21 @@ lsmod
 modprobe
 iptables
 netfilter
+column -t
+ntpdate  # set the date and time via NTP
+tzselect # view timezones
+su - #(切换到root，并切换环境变量）
+sgdisk/gdisk #GPT manipulator
+cp  -n (--no-clobber) #不覆盖同名文件
+locate
+uudecode/uuencode (sharutils)
+taskset
+
+hdparm/sdparm
+hdparm -tT /dev/sdb1  测试硬盘性能
+netperf - a network performance benchmark
+iperf - perform network throughput tests
+
 cat /etc/issue
 time cp test1 test2  测试拷贝速度
 fuser -m -v 查看谁在用某个文件描述符
@@ -58,12 +71,15 @@ netstat -a 查看开启的网络服务
 zip -Z store bootanimation.zip part*/* desc.txt  #store 不压缩 or -0
 /lib/modules/`uname -r`/build  #得到kernel版本号
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -  #下载脚本并执行
-# {} 任何不易出现字符, -I 包含 -L 1
-ls |xargs -I{} java -jar signapk.jar xx.x509.pem xx.pk8 {} sign/{}
+
+ls |xargs -I{} signapk.jar ... {} sign/{}
 ls ori_apk | xargs -I{} java -jar .... ori_apk/{} sing_apk/{}
-ls *.apk|xargs -n 1 aapt dump badging  //apk依次执行aapt
+ls *.apk|xargs -n 1 aapt dump badging
 ls |xargs -n1 du -sk |sort -n
+
 find -name "*.png" | xargs cp -t ./png
+find -name config.h|xargs git add  -f
+find -type d -empty|grep -v .git|xargs -I{} touch {}/.tmp //除.git空目录添加.tmp
 
 ip route add 172.16.0.0/24 dev eth0
 arp-scan –I eth0 -l
@@ -73,8 +89,6 @@ service xxx restart
 # 以每行每2字节为基本单位，遇到不可转换字符(0-9a-z)跳到下一行
 xxd -r -p a.txt 
 hexdump
-
-locate #find files by name
 
 #get file size
 stat -f "%z" foo.bin
@@ -205,43 +219,28 @@ tr ' ' '\n' < list | sort -u > list-uniq
 
 
 mount -o nolock 192.168.0.150:/home/nfsroot /mnt
-mount -o loop # 加强一下。。。。
+mount -o loop # 加强
 mount system.img /mnt  # ext4 镜像，什么参数都不用加？
 
 echo `echo 00.00.00.03 |sed 's/\\.//g'` #.需要转义,\本身还有特殊含义，又需要转义，所以需要\\
 
-find -name *.c -print0 | xargs -0 sed -i 's/x_a/x_b/g'
+find -name "*.c" -print0 | xargs -0 
 
 vim -b 以二进制形式打开 :%!xxd -g 1  切换到十六进制模式显示
-uudecode/uuencode (sharutils包)
-usleep/sleep
-taskset
-xargs - build and execute command lines from standard input
-组建命令1条或多条  -n 1 就会每个前级输出组建一条
-不指定也有最大值限制，所以find结果很多时cp命令会自动分次数
+xargs # build and execute command lines from standard input
 
 
 -n 1  一个
 -L 1  一行  一行里可能有多个
 
-find -name "*.c"
-find -name *.c //paths must precede expression, shell展开的第二个.c 被认为是 path
 
-find -name config.h|xargs git add  -f //添加被.gitignore忽略的文件
-find -type d -empty|grep -v .git|xargs -i touch {}/.tmp //除.git外的空目录添加.tmp文件 -i等价于-I{}
-find -name .svn|xargs rm -r //不用双引号，.不会被shell解析
 
 cat  A20-galaxy.tar.bz2.a*  | tar xj 
 cat xx*  > xx
 
 tar --exclude=.git   
- -f, --file ARCHIVE 所以以前总是写 czvf,没明白意思，不明白为啥f必须在最后，因为f指定文件，否则输出到stdout
-cp -T //没明白这个参数
-tar 遇到链接文件会保留链接，不会把指向的文件拷贝过来
+-f, --file ARCHIVE (czvf,f在最后的原因)
 vim -bd base.ko base2.ko 二进制文件比较
-sgdisk - Command-line GUID partition table (GPT) manipulator Boardcom支持emmc使用这个。
-gdisk - Interactive GUID partition table (GPT) manipulator
-cp命令默认是覆盖同名文件的，除非加上 -n (--no-clobber) 选项
 
 
 CC="ccache arm-linux-androideabi-gcc"  or
@@ -251,28 +250,16 @@ ln -sf /foo/bar/ ~/foo/foobar # 连接目录目标已存在，出现嵌套，好
 
 busybox devmem 读写 /dev/mem(1-4byte)
 cat /dev/mem
-dd if=/dev/mem skip
 
 id #显示real和effective的用户和组IDs，如：
 uid=1000(user1) gid=1000(user1) groups=1000(user1),27(sudo),1001(wireshark)
 表示当前用户是user1，当前组是user1，user1用户在组user1，sudo，wireshark中
 
-#su - (su切换到root，没有切换root的环境变量，"su -"一同切换环境变量）
-
-hdparm/sdparm
-hdparm -tT /dev/sdb1  测试硬盘性能
-
-netperf - a network performance benchmark
-iperf - perform network throughput tests
-
 logcat -v threadtime log &
 pid=$!
-size=`busybox du -k logfile | busybox awk '{print $1}'`
 
 #把5060端口加入 iptables
 iptables -A OUTPUT -p tcp --sport 5060 -j ACCEPT
-iptables -A INPUT -p  tcp --dport 5060 -j ACCEPT
-iptables -A OUTPUT -p udp --sport 5060 -j ACCEPT
 iptables -A INPUT -p  udp --dport 5060 -j ACCEPT
 
 sudo netstat -lnp | grep 5060
@@ -306,13 +293,7 @@ service用了start stop exec 这些命令
 
 udev脚本里的start字段的打印，在service udev start中不显示
 
-ntpdate - set the date and time via NTP
-tzselect - view timezones
-
 链接目录，  cd命令 可以处理 ../..   但 ls vi 等不行，会退到文件夹的真实位置
 
 printf "PERM LINKS OWNER GROUP SIZE MONTH DAY HH:MM/YEAR NAME\n" ;ls -l | sed 1d | column -t
 
-column -t
-
-整理一个 查找替换 的命令
