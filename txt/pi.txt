@@ -1,4 +1,6 @@
-[ˈrɑ:zbəri]
+SAMSUNG 16 EVO: Pi3 字符模式，工作环境
+
+
 login:  pi:raspberry
 raspistill -o keychain.jpg -t 2000
 raspi-config

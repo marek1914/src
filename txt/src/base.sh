@@ -293,3 +293,7 @@ printf "PERM LINKS OWNER GROUP SIZE MONTH DAY HH:MM/YEAR NAME\n" ;ls -l | sed 1d
 
 while read line; do echo ${#line} ${line}; done <4k
 while read line; do tmp=`echo $line | cut -f1 -d' '`; echo ${#tmp}  $line; done < 3k |sort -n >3k-sort
+
+find -type d -perm o=r
+
+printf "%*s" $COLUMNS | tr " " "="   # *的用法 打印一行==
