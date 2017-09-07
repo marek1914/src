@@ -12,6 +12,10 @@ Full Stack:掌握多种技能，并能利用多种技能独立完成产品
 
 TIOBE
 
+电路模拟！
+https://ashwith.wordpress.com/2010/09/10/circuit-simulation-in-gnulinux-lets-begin/
+nvidia 黄仁勋
+
 MCU厂商排行：
 Renesas，MCU领域王者，车机第一份额
 NXP+Freescale
@@ -23,7 +27,11 @@ Cypress 独特性:MCU+analog+FPGA
 Silicon Lab
 
 
+usbgeek.com
+
 getchip.com  // C.H.I.P  Allwinner CPU
+
+spice-space.org
 
 github.com/abstrakraft/cwiid  //wii 蓝牙手柄  
 airspayce.com/mikem   //个人blog 包含bcm2583 arduino 很好的资料
