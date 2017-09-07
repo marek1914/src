@@ -1,0 +1,93 @@
+ZYNQ:
+XC7Z010/20 账户 gxxjxx:200w(six 0)
+跳线：JP1 决定SD卡还是SPI启动
+
+官方仅支持ubuntu12.10，ubuntu，带有各种库，带有gcc编译器
+官方解压300M+
+
+You need a SD card with two partitions (boot and root file system)
+
+ubuntu12.10，会不会遇到编译问题？ 这与交叉编译开发形式完全不同
+
+ubuntu-core (有pi2 pi3 版本)
+
+zc702 是xilinx官方板子
+
+ubuntu core 跟 kernel版本的关系，应该不是特别紧密吧
+
+ubuntu core 最新的只维护16，找就的：
+http://old-releases.ubuntu.com/releases/ubuntu-core/releases/
+
+http://releases.ubuntu.com/
+
+3个版本：米尔的12.04 桌面版， xilinx官方12.10 ubuntu-core版， ubuntu官方12.04版
+脱离米尔，从官网下载开始整理，驱动方面，只要网口通了就行
+
+webserver方案：goahead/appweb
+cgi
+http://embedthis.com/goahead/ 公司维护
+https://github.com/embedthis 维护 goahead/appweb
+
+goahead -v /web ip：9000  #ip是服务器ip，端口前要有空格
+
+
+
+
+
+-----
+我的开机打印（用米尔 boot.bin）
+
+U-Boot 2013.10-svn7 (Apr 20 2015 - 20:49:24)
+
+Memory: ECC disabled
+DRAM:  1 GiB
+myir_board_init
+MMC:   zynq_sdhci: 0
+SF: Detected W25Q128BV with page size 256 Bytes, erase size 4 KiB, total 16 MiB
+*** Warning - bad CRC, using default environment
+
+In:    serial
+Out:   serial
+Err:   serial
+Net:   Gem.e000b000
+Hit any key to stop autoboot:  0 
+Device: zynq_sdhci
+Manufacturer ID: 9c
+OEM: 534f
+Name: USD00 
+Tran Speed: 50000000
+Rd Block Len: 512
+SD version 3.0
+High Capacity: Yes
+Capacity: 14.7 GiB
+Bus Width: 4-bit
+reading uEnv.txt
+** Unable to read file uEnv.txt **
+- load to PL...
+** No boot file defined **
+zynq-uboot> version
+
+U-Boot 2013.10-svn7 (Apr 20 2015 - 20:49:24)
+arm-xilinx-linux-gnueabi-gcc (Sourcery CodeBench Lite 2011.09-50) 4.6.1
+GNU ld (Sourcery CodeBench Lite 2011.09-50) 2.21.53.20110905
+zynq-uboot> 
+
+创建BOOT.bin需要文件
+1 u-boot.elf：在Linux下编译后生成u-boot文件，再强制改名为u-boot.elf文件，得到之。
+2 zynq_fsbl_0.elf：在EDk下创建得到之。
+3 system.bit:：在PlanAhead中生成的bit文件；该文件不是必须的，没有该文件时，相当于把Zynq只当ARM来用。
+
+Setting up the SD card to boot on a Zynq board is very straightforward and doesn't require putting the bootloader in the MBR or other fancy filesystem tricks. The ISE software is not required once you have the boot.bin file.
+
+    As other answers have said, you need to put the SD card into an SD card reader, and connect it to your computer.
+    You need the SD card formatted as a FAT partition (Windows would do this by default).
+    Simply copy the boot.bin to the card, as a normal file.
+    See http://www.wiki.xilinx.com/Prepare+Boot+Medium for detailed steps to do this in Linux.
+
+If you're booting up an OS like Linux, you'll need extra files there too. See http://www.wiki.xilinx.com/Prepare+boot+image (the FSBL and u-boot are included in the boot.bin that you have).
+
+
+
+7z020:  vivado projects of device xc7z020
+ip:     xylon's display ip and evaluation license
+

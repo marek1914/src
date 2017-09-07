@@ -422,7 +422,7 @@ TEXT_BASE = 0xfff80000
 配置完rapidio （dts文件和menuconfig ，该bnc8548 直接修改.config无效，需要添加 select HAS_RAPIDIO ）
 最后rapidio出现在/sys 目录，没有设备节点，这与普通的char设备不同。
 
-cs2 访问死机问题，最后将基地址改为f7000000 就好了  用60000000 或 70000000 就不行
+cs2 访问死机，将基地址改为f7000000, 用60000000 或 70000000 不行
 u-boot mm
 
 1 编译
@@ -486,7 +486,6 @@ u-boot mm
 	映射物理地址 0xF700 0000 - 0xF700 8000，可用/dev/mem 映射到用户空间使用
 	2) rapidio
 	可在/sys目录下看到相关总线信息，底层驱动已工作，需要开发上层软件
-----------------------------
 
 === microsemi ===
 Flash Pro4/5
@@ -509,35 +508,3 @@ Libero不能导出4.0能导出3.4工程
 导出的3.4工程合并到4.0工程中，使用Pro5可调试
 导出的3.4工程直接Pro4 可调试
 
------------
-ZYNQ:
-XC7Z010/20 账户 gxxjxx:200w(six 0)
-跳线：JP1 决定SD卡还是SPI启动
-
-官方仅支持ubuntu12.10，ubuntu，带有各种库，带有gcc编译器
-官方解压300M+
-
-You need a SD card with two partitions (boot and root file system)
-
-ubuntu12.10，会不会遇到编译问题？ 这与交叉编译开发形式完全不同
-
-ubuntu-core (有pi2 pi3 版本)
-
-zc702 是xilinx官方板子
-
-ubuntu core 跟 kernel版本的关系，应该不是特别紧密吧
-
-ubuntu core 最新的只维护16，找就的：
-http://old-releases.ubuntu.com/releases/ubuntu-core/releases/
-
-http://releases.ubuntu.com/
-
-3个版本：米尔的12.04 桌面版， xilinx官方12.10 ubuntu-core版， ubuntu官方12.04版
-脱离米尔，从官网下载开始整理，驱动方面，只要网口通了就行
-
-webserver方案：goahead/appweb
-cgi
-http://embedthis.com/goahead/ 公司维护
-https://github.com/embedthis 维护 goahead/appweb
-
-goahead -v /web ip：9000  #ip是服务器ip，端口前要有空格
