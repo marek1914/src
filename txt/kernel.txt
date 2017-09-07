@@ -1322,7 +1322,7 @@ struct mtd_partition
  * mask_flags: contains flags that have to be masked (removed) from the
  *  master MTD flag set for the corresponding MTD partition.
  *  For example, to force a read-only partition, simply adding
- *  MTD_WRITEABLE to the mask_flags will do the trick.
+ *  MTD_WRITEABLE to the mask_flags.
  *
  * Note: writeable partitions require their size and offset be
  * erasesize aligned (e.g. use MTDPART_OFS_NEXTBLK).

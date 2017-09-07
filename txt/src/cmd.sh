@@ -1,6 +1,8 @@
 #!/bin/bash #(Bourne Again Shell) Shebang line
 # ctrl+d #terminal
+# 生活在终端里，重复的事情自动化 NARKOZ/hacker-scripts
 info # 所有命令
+locale #当前语言
 less	
 clear
 lsof
@@ -10,6 +12,7 @@ parallel
 pkg-config
 beep
 parted / gparted
+hexdump
 ascii #命令
 zip/unzip
 gzip/gunzip (gnu zip)
@@ -80,14 +83,10 @@ ls *.apk|xargs -n1 aapt dump badging
 find -name "*.png" | xargs cp -t ./png
 find -name config.h|xargs git add  -f
 find -type d -empty|grep -v .git|xargs -I{} touch {}/.tmp //除.git空目录添加.tmp
+find -type d -perm o=r
+find -name "*.c" -print0 | xargs -0 
 
-ip route add 172.16.0.0/24 dev eth0
-arp-scan –I eth0 -l
-
-# 3337 -> 0x37
-# 以每行每2字节为基本单位，遇到不可转换字符(0-9a-z)跳到下一行
-xxd -r -p a.txt 
-hexdump
+xxd -r -p a.txt # 3337->0x37 遇到非(0-9a-f)跳到下一行
 
 #get file size
 stat -f "%z" foo.bin
@@ -223,32 +222,23 @@ mount system.img /mnt  # ext4 镜像，什么参数都不用加？
 
 echo `echo 00.00.00.03 |sed 's/\\.//g'` #.需要转义,\本身还有特殊含义，又需要转义，所以需要\\
 
-find -name "*.c" -print0 | xargs -0 
-
 vim -b 以二进制形式打开 :%!xxd -g 1  切换到十六进制模式显示
 xargs # build and execute command lines from standard input
-
 
 -n 1  一个
 -L 1  一行  一行里可能有多个
 
+cat foo.tar.bz2.* | tar xj
 
-
-cat  A20-galaxy.tar.bz2.a*  | tar xj 
-cat xx*  > xx
-
-tar --exclude=.git   
--f, --file ARCHIVE (czvf,f在最后的原因)
-vim -bd base.ko base2.ko 二进制文件比较
-
+tar # --exclude=.git -f, --file ARCHIVE (czvf,f在最后的原因)
+vim -bd base.ko base2.ko #二进制比较
 
 CC="ccache arm-linux-androideabi-gcc"  or
 ln -s /usr/bin/ccache /usr/local/bin/gcc
 
-ln -sf /foo/bar/ ~/foo/foobar # 连接目录目标已存在，出现嵌套，好像不是backup，并未指定参数，可以先删除
+ln -sf /foo/bar/ ~/foo/foobar # 目标目录已存在，出现嵌套，好像不是backup，并未指定参数，可先删除
 
 busybox devmem 读写 /dev/mem(1-4byte)
-cat /dev/mem
 
 id #显示real和effective的用户和组IDs，如：
 uid=1000(user1) gid=1000(user1) groups=1000(user1),27(sudo),1001(wireshark)
@@ -257,25 +247,16 @@ uid=1000(user1) gid=1000(user1) groups=1000(user1),27(sudo),1001(wireshark)
 logcat -v threadtime log &
 pid=$!
 
-#把5060端口加入 iptables
-iptables -A OUTPUT -p tcp --sport 5060 -j ACCEPT
-iptables -A INPUT -p  udp --dport 5060 -j ACCEPT
-
-sudo netstat -lnp | grep 5060
-
 modprobe usbmon
 /proc/cpuinfo
 /dev/random
 /dev/urandom
 
-arm_new_gcc.sh :
-#!/bin/sh
-SETGNUEABIHF_PATH=$(echo $PATH | grep arm-linux-gnueabihf)
-if [  "$SETGNUEABIHF_PATH" = "" ]; then
-ARMHF_PREFIX=/opt/gcc-linaro-arm-linux-gnueabihf
-PATH=$PATH:${ARMHF_PREFIX}/bin
+
+GNU_PATH=$(echo $PATH | grep arm-linux-gnueabihf)
+if [  "$GNUE_PATH" = "" ]; then
+PATH=$PATH:foo-gnueabihf/bin
 fi
-置于/etc/profile.d/
 
 # man udev: Linux dynamic device management
 # 管理/dev，处理设备添加删除事件
@@ -285,15 +266,17 @@ fi
 udevadm control --reload #reload rule, or
 service udev restart
 
-
-
-链接目录，  cd命令 可以处理 ../..   但 ls vi 等不行，会退到文件夹的真实位置
+链接目录，cd 可以处理 ../..  但 ls vi 不行，会退到文件夹真实位置
 
 printf "PERM LINKS OWNER GROUP SIZE MONTH DAY HH:MM/YEAR NAME\n" ;ls -l | sed 1d | column -t
 
 while read line; do echo ${#line} ${line}; done <4k
 while read line; do tmp=`echo $line | cut -f1 -d' '`; echo ${#tmp}  $line; done < 3k |sort -n >3k-sort
 
-find -type d -perm o=r
-
 printf "%*s" $COLUMNS | tr " " "="   # *的用法 打印一行==
+
+ip route add 172.16.0.0/24 dev eth0
+arp-scan –I eth0 -l
+iptables -A OUTPUT -p tcp --sport 5060 -j ACCEPT
+iptables -A INPUT -p  udp --dport 5060 -j ACCEPT
+netstat -lnp

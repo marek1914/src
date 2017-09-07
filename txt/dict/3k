@@ -106,25 +106,20 @@ bird
 bite
 blow
 boat
-body
 bomb
 bond
 bone
-book
 bool
 boom
-boot
 born
 bowl
 buck
 burn
 bury
-busy
 cake
 camp
 card
 care
-case
 cash
 cast
 cell
@@ -137,7 +132,6 @@ coal
 coat
 code
 cold
-come
 cook
 cool
 cope
@@ -193,7 +187,6 @@ flag
 flat
 flee
 folk
-food
 foot
 from
 fuel
@@ -235,7 +228,6 @@ hire
 hold
 hole
 holy
-hope
 host
 hour
 huge
@@ -246,7 +238,6 @@ jail
 join
 joke
 jury
-just
 keep
 kick
 kind
@@ -256,7 +247,6 @@ lack
 lake
 land
 larg
-last
 late
 lawn
 lead
@@ -264,9 +254,7 @@ leaf
 lean
 left
 less
-life
 lift
-like
 link
 live
 loan
@@ -275,7 +263,6 @@ loss
 lost
 lots
 loud
-luck
 lung
 male
 mall
@@ -298,11 +285,7 @@ mood
 moon
 more
 most
-move
-much
-must
 myth
-name
 near
 neck
 need
@@ -328,7 +311,6 @@ peer
 pick
 pile
 pine
-ping
 pink
 pipe
 plan
@@ -336,6 +318,7 @@ play
 plot
 plus
 poem
+boost 增加促进
 poet
 pole
 poll
@@ -527,7 +510,6 @@ begin
 being
 below
 bench
-Bible
 birth
 black
 blade
@@ -919,8 +901,8 @@ treat
 trend
 trial
 tribe
-trick
-trick 戏法骗局
+trick 戏法骗局把戏
+tricky 狡猾的棘手的
 troop
 truck
 truly
@@ -1024,6 +1006,8 @@ before
 behind
 belief
 belong
+acceptably
+acceptance
 beside
 better
 beyond
@@ -1055,7 +1039,9 @@ chance
 change
 charge
 cheese
+chose
 choice
+feedback
 choose
 church
 circle
@@ -1063,6 +1049,7 @@ client
 clinic
 closer
 coffee
+biology 生物学
 column
 comedy
 commit
@@ -1203,7 +1190,6 @@ impact
 impose
 income
 indeed
-Indian
 infant
 inform
 injury
@@ -1252,7 +1238,6 @@ method
 middle
 minute
 mirror
-mm-hmm
 modern
 modest
 moment
@@ -1663,7 +1648,7 @@ founder
 freedom
 funding
 funeral
-gallery
+gallery 画廊
 garbage
 general
 genetic
@@ -1895,7 +1880,7 @@ surgery
 survive
 suspect 怀疑
 sustain 维持供养
-symptom
+symptom 症状征兆
 synonym 同义词
 tension
 testify
@@ -2305,6 +2290,7 @@ apartment
 architect
 assistant
 associate
+associativity 结合性
 attention
 attribute
 authority 权威
