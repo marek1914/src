@@ -239,9 +239,9 @@ Elecard StreamEye
 H264Visa
 
 FourCC:Four-Character Codes
-95个可打印字符 总共  95^4 = 81450625个可用组合
+95个可打印字符共  95^4 = 81450625个可用组合
 
-文档 iso14496-12  -14   apple的qtff
+文档 iso14496-12 -14 apple的qtff
 
 分析工具 Elecard video Format Analyzer。 elecard公司有很多专业的视频分析工具，但只有这个是免费的。
 其他的经典工具还有 Elecard Stream Analyzer  Elecard StreamEye

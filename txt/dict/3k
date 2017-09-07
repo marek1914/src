@@ -10,25 +10,19 @@ art
 bad
 bag
 ban
-bar
-bed
 bet
 cap
 cat
 cop
 cow
 cry
-cup
-dad
 dig
 dry
 due
 ear
 era
 etc
-far
 fee
-few
 fit
 fun
 gap
@@ -37,28 +31,19 @@ gun
 guy
 hat
 hey
-him
 hip
-his
 hit
 hot
 ice
-ill
-jet
 joy
 kid
 lap
-law
 lay
-leg
 lie
 lip
 lot
 low
 mad
-mix
-mom
-msg
 nod
 nor
 nut
@@ -70,10 +55,8 @@ own
 pan
 pet
 pie
-pop
 pot
 raw
-red
 rid
 row
 rub
@@ -81,7 +64,6 @@ sad
 sin
 sit
 ski
-son
 sue
 tap
 tax 税
@@ -124,27 +106,20 @@ bird
 bite
 blow
 boat
-body
 bomb
 bond
 bone
-book
 bool
 boom
-boot
 born
-boss
-both
 bowl
 buck
 burn
 bury
-busy
 cake
 camp
 card
 care
-case
 cash
 cast
 cell
@@ -157,7 +132,6 @@ coal
 coat
 code
 cold
-come
 cook
 cool
 cope
@@ -213,7 +187,6 @@ flag
 flat
 flee
 folk
-food
 foot
 from
 fuel
@@ -255,7 +228,6 @@ hire
 hold
 hole
 holy
-hope
 host
 hour
 huge
@@ -266,7 +238,6 @@ jail
 join
 joke
 jury
-just
 keep
 kick
 kind
@@ -276,7 +247,6 @@ lack
 lake
 land
 larg
-last
 late
 lawn
 lead
@@ -284,19 +254,15 @@ leaf
 lean
 left
 less
-life
 lift
-like
 link
 live
 loan
-lock
 lose
 loss
 lost
 lots
 loud
-luck
 lung
 male
 mall
@@ -319,16 +285,11 @@ mood
 moon
 more
 most
-move
-much
-must
 myth
-name
 near
 neck
 need
 news
-nice
 none
 nose
 note
@@ -345,15 +306,11 @@ pale
 palm
 pant
 park
-part
-pass
 past
-peak
 peer
 pick
 pile
 pine
-ping
 pink
 pipe
 plan
@@ -361,6 +318,7 @@ play
 plot
 plus
 poem
+boost 增加促进
 poet
 pole
 poll
@@ -398,7 +356,6 @@ rope
 rose
 rule
 rush
-safe
 sake
 sale
 salt
@@ -460,7 +417,6 @@ them
 they
 thin
 thus
-tiny
 tire
 tone
 toss
@@ -554,7 +510,6 @@ begin
 being
 below
 bench
-Bible
 birth
 black
 blade
@@ -946,8 +901,8 @@ treat
 trend
 trial
 tribe
-trick
-trick 戏法骗局
+trick 戏法骗局把戏
+tricky 狡猾的棘手的
 troop
 truck
 truly
@@ -1051,6 +1006,8 @@ before
 behind
 belief
 belong
+acceptably
+acceptance
 beside
 better
 beyond
@@ -1082,7 +1039,9 @@ chance
 change
 charge
 cheese
+chose
 choice
+feedback
 choose
 church
 circle
@@ -1090,6 +1049,7 @@ client
 clinic
 closer
 coffee
+biology 生物学
 column
 comedy
 commit
@@ -1108,6 +1068,7 @@ critic
 custom
 damage
 danger
+dangle 悬挂
 dealer
 debate
 decade
@@ -1229,7 +1190,6 @@ impact
 impose
 income
 indeed
-Indian
 infant
 inform
 injury
@@ -1278,7 +1238,6 @@ method
 middle
 minute
 mirror
-mm-hmm
 modern
 modest
 moment
@@ -1378,7 +1337,6 @@ resort
 result
 retain
 retire
-return
 reveal
 review
 rhythm
@@ -1396,12 +1354,10 @@ screen
 script
 search
 season
-second
 secret
 sector
 secure
 select
-Senate
 senior
 series
 settle
@@ -1409,7 +1365,6 @@ severe
 sexual
 shadow
 shield
-should
 shower
 signal
 silent
@@ -1519,7 +1474,6 @@ actress
 address
 advance
 adviser 导师顾问
-African
 against
 airline
 airport
@@ -1694,7 +1648,7 @@ founder
 freedom
 funding
 funeral
-gallery
+gallery 画廊
 garbage
 general
 genetic
@@ -1926,7 +1880,7 @@ surgery
 survive
 suspect 怀疑
 sustain 维持供养
-symptom
+symptom 症状征兆
 synonym 同义词
 tension
 testify
@@ -2336,6 +2290,7 @@ apartment
 architect
 assistant
 associate
+associativity 结合性
 attention
 attribute
 authority 权威
@@ -2925,6 +2880,7 @@ concatenation
 concentration
 configuration
 congressional
+cumbersome 笨重的麻烦的
 consciousness
 consideration
 consolidation 巩固

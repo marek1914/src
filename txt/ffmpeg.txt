@@ -2039,7 +2039,7 @@ concealing 750 DC, 750 AC, 750 MV errors in I frame  (错误隐藏框架分析)
 上文750，正好是半屏的宏块个数，每个slice（半屏）是一个单独NALU，需要一块送入解码器，前面追加PPS+SPS，即：PPS+SPS+NALU(slice1)+NALU(slice2) 
 一起送入rockchip解码器，正常
 
-用elecard stream analyzer看一目了然，2个I帧slice编号都是0
+elecard stream analyzer看，2个I帧slice编号都是0
 第一次在elecard analyzer看到多slice时，当时根本没意识到他们在单独nal里，潜意识里还认为多slice在一个nal中，
 甚至elecard streaming eye看到2个I帧的时候还没反应过来 
 
