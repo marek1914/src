@@ -3,6 +3,79 @@ http://bwrcs.eecs.berkeley.edu/Classes/IcBook/SPICE/
 Hspice
 Pspice
 
+Colpitts oscillator
+http://www.iue.tuwien.ac.at/phd/rottinger/node56.html
+http://www.electronics-tutorials.ws/oscillator/colpitts.html
+
+驻波系数
+能量全发射出去，效率最高，如果50%反射回来，效率不高。
+WIreless-FIdelity  无线保真， 无线宽带
+
+内置PCB板载天线/陶瓷天线/I-PEX接头连接天线延长线外置
+
+I-PEX (天线扣子连接器)
+
+陶瓷天线也要金属作为辐射单元
+倒F型 PCB天线是常用2.4G天线，优点：节省成本。阻抗50欧姆。
+天线的馈点。倒F是单极天线
+
+50欧姆传输线
+天线效率41%
+计算微带线的阻抗
+
+电缆损耗：
+https://www.maximintegrated.com/cn/app-notes/index.mvp/id/4338
+https://www.maximintegrated.com/cn/products/analog/amplifiers/MAX9979.html/tb_tab2
+
+google: oscilloscope tdr (Time-Domain Reflectometry)
+
+A network analyzer
+scalar network analyzer (SNA)—measures amplitude properties only
+vector network analyzer (VNA)—measures both amplitude and phase properties
+
+LPD433 (low power device 433.050-434.790)  bw: 1.74 MHz
+
+ITU-T: gaojie@cyclecentury.com:*2xxpy-
+
+I : In-Phase(同相 同步) signal component
+Q : Quadrature signal component 
+
+传输线阻抗是从电报方程推导出来(查微波理论)
+传输线特性阻抗 (Characteristic impedance   wiki)
+
+电磁波:TE，TM，TEM,
+
+天线：
+陶瓷天线
+外接柱状天线
+PCB板载天线
+
+www.reseau.org/arduinorc/
+http://www.reseau.org/arduinorc/index.php?n=Main.Gallery
+多少V 能产生电火花？ 5V的拉弧距离太短！你增大电压可以增大拉弧距离
+
+Distributed antenna system (wikipedia)
+
+Use in WiFi networks
+
+Using a distributed antenna system to create an area of wireless coverage, 
+it is possible to use this technique to propagate indoor WiFi for commercial uses. 
+It is estimated that only about 5% of commercial WiFi use a distributed antenna system.
+
+Dipole antenna  偶极电线  赫兹发明的
+A common example of a dipole is the "rabbit ears" television antenna found on broadcast television sets.  
+电视的V型天线是偶极天线
+
+The most common form is the half-wave dipole
+即2段加一起等于一半波长
+Monopole antenna 单极天线
+
+wikipedia 搜索 Dipole antenna
+搜索：Transmission line
+
+串联电路电流处处相等，是近似，忽略场传播所需时间
+
+
 
 信号叠加，使用电阻网络
 用大电阻隔离，连接在一起，就算叠加
