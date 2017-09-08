@@ -1035,7 +1035,7 @@ kernel.org arm.linux.org.uk linux-arm.org 和邮件列表之间的关系
 
     N2.6.28.10的修改能在网上的git中找到，并不是nxp自己改的。比如http://android.git.kernel.org/中就有
     [git.kernel.org]
-    关于这个的修改记录，跟nxp的修改一模一样。是Russell King 在2009-10-25日提交的，提交注释为：
+    关于这个的修改记录，跟nxp的修改一样。是Russell King 2009-10-25提交，注释：
     ARM: Fix signal restart issues with NX and OABI compat
 
     The signal restarting code was placed on the user stack when OABI

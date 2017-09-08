@@ -1,5 +1,6 @@
 SAMSUNG 16 EVO: Pi3 字符模式，工作环境
 
+github RPi-Distro/python-sense-hat
 
 login:  pi:raspberry
 raspistill -o keychain.jpg -t 2000

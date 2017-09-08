@@ -2,7 +2,6 @@ tty显示中文：
 1 内核汉化-麻烦
 2 虚拟终端 fbterm （汉字间距很大，怎么解决）
 
-canonical
 
 ia32-libs u14.04无
 lib32xx 32bit版库,如
@@ -10,6 +9,7 @@ lib32ncurses-dev (new curses)
 lib32readline5-dev
 
 awesomewm 窗口管理器
+ngspice  //基于 spice3f5
 
 android-tools-fsutils // contain :simg2img
 
@@ -36,7 +36,6 @@ openssh-server
 netgen
 libncurses5 libncurses5-dev libncursesw(wide character support)
 ncurses-devel(linux make menuconfig时提示,实际在ubuntu上应该装libncurses5-dev)
-http://askubuntu.com/questions
 
 apt:Advanced Package Tool
 
@@ -92,11 +91,10 @@ virtual Box
 	-l List packages
 	-i Install //可能警告降级
 	-r Remove
-	#不同大版本可共存，小版本不能
-	
+
 	某应用不更新：
 	dpkg --set-selections  输入iptux hold
-	dpkg --get-selections  见iptux变hold状态
+	dpkg --get-selections  //iptux变hold状态
 	
 	dpkg-dev
 	dpkg-source: Debian source package (.dsc) manipulation tool
@@ -113,14 +111,11 @@ sudo chmod 777 /usr/bin/dumpcap (750 fail)
 sudo setcap cap_net_raw,cap_net_admin=eip /usr/bin/dumpcap
 sudo getcap /usr/bin/dumpcap
 
-
 /etc/default/grub:
 GRUB_HIDDEN_TIMEOUT=0 注释掉 or shift
 update-grub 可选择旧版本kernel
 grub rescue后 ls 罗列磁盘信息
 grub-install /dev/sda
-
-32/64位库
 
 i386/i686 是32位  x86_64是64位
 /lib  64位
@@ -138,9 +133,6 @@ i386/i686 是32位  x86_64是64位
 /lib32/libncurses.so.5
 /lib32/libtic.so.5
 
-系统安装
-
-sudo passwd -l root //取消root用户
 
 字体包：
 fonts-arphic-ukai
@@ -290,12 +282,15 @@ zh-hans_windows_xp: MRX3F-47B9T-2487J-KWKMF-RPWBY
 
 gpedit.msc 
 管理模板/Windows组件/Windows资源管理器/从我的电脑删除共享文档 选已启用
-
-
-虚拟机安装win7需要20G(xp 1.5G) 太不轻量了
+虚拟机安装win7需要20G(xp 1.5G)
 
 ---
 debian.org [ˈdebiən]  37500+ package
+分3类：main contrib non-free，后2者不是debian项目的一部分
+
+如安装后 /etc/apt/source.list 只有：
+deb http://mirrors.tuna.tsinghua.edu.cn/debian/ stretch main 再增加
+deb http://mirrors.tuna.tsinghua.edu.cn/debian/ stretch non-free (有ngspice了)
 
 Debian Alternatives System // alternate 功能
 
@@ -307,8 +302,9 @@ jessie ['dʒesɪ] debian 8
 官网debian-7.6.0-armhf-netinst.iso  158M 好像不包含kernel
 debootstrap --foreign --arch armhf wheezy .
 把armv7 版基础版本的跟目录down下来了，就是linux系统的根目录结构 144M，
-这与debian-7.6.0-armhf-netinst.iso解压候的不同（一个一个包形式）
+这与debian-7.6.0-armhf-netinst.iso 不同（一个一个包形式）
 
+Debian Free Software Guideline, DFSG
 ---
 升腾690：
 CPU: AMD G-T48N 1.4G , 1G DDR

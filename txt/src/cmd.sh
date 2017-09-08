@@ -18,19 +18,10 @@ zip/unzip
 gzip/gunzip (gnu zip)
 bc/dc # calculator 
 gzip # -9 --fast -9 --best
-# adduser,addgroup 是底层工具useradd, groupadd的包装
-adduser  user group # 将已存在用户user加入到已存在组group中
-deluser foo # pi上提示返回8，man发现是perl什么模块
-#并且提示systemd 进程占用，kill这个进程，在deluser ok
-usermod #  modify a user account
-usermod -l # 修改用户名
-usermod -d # 修改home目录
-groupmod -n #修改组名
+
 hostname foobar #修改hostname
 rsync #remote /local file-copying
 readelf -A
-#迅速生成几百M
-cat /dev/zero >test.bin
 split foo.bin -b 1024M
 uname -r
 cpio
@@ -67,7 +58,6 @@ hdparm -tT /dev/sdb1  测试硬盘性能
 netperf - a network performance benchmark
 iperf - perform network throughput tests
 
-cat /etc/issue
 time cp test1 test2  测试拷贝速度
 fuser -m -v 查看谁在用某个文件描述符
 shutdown -h 10:42
@@ -93,12 +83,12 @@ stat -f "%z" foo.bin
 file # /usr/share/misc/magic.mgc
 
 #version
-cat /proc/version 
-cat /etc/issue 
+/proc/version 
+/etc/issue 
 lsb_release -a
 
 dmesg # print or control the kernel ring buffer
-cat /proc/kmsg
+/proc/kmsg
 
 cut -f1 -d ' '
 cut -f1 -d- #arm-elf-gun -> arm
@@ -280,3 +270,14 @@ arp-scan –I eth0 -l
 iptables -A OUTPUT -p tcp --sport 5060 -j ACCEPT
 iptables -A INPUT -p  udp --dport 5060 -j ACCEPT
 netstat -lnp
+
+# account
+passwd -l root #lock root
+# adduser,addgroup 是useradd, groupadd的包装
+adduser  user group # 将已存在用户user加入到已存在组group中
+deluser foo # pi上提示返回8，man：perl什么模块 提示systemd占用,kill它
+usermod #  modify a user account
+usermod --expiredate 1 #无效某账户
+usermod -l # 修改用户名
+usermod -d # 修改home目录
+groupmod -n #修改组名

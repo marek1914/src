@@ -271,10 +271,9 @@ http://my.oschina.net/u/2306127/blog/402931
 
 ESP8266 32bit Xtensa MCU
 
-资料：
 http://nodemcu.readthedocs.io/en/master/
 
-Installing libtool-bin solves this issue.
+安装 libtool-bin 
 
 2种烧写方式：
 esptool.py，nodemcu flasher(过时)

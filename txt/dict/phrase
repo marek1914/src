@@ -3,7 +3,10 @@ this isn not very useful but it shows how it works
 all other versions are unsupported but might work
 is always stable
 is extremely dangerous and no longer supported
-there are two main uses for a Handler:1 and 2
+there are two main uses for a Handler1 and 2
 not allowed for
 if and only if
-would be impossible without the aid of xxx
+would be impossible without the aid of foo
+more information about foo can be found bar
+solves this issue
+fix signal restart issues
