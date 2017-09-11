@@ -35,7 +35,8 @@ rtl-sdr, gr-osmosdr, gr-iqbal, hackrf, bladeRF and airspy
 
 bladeRF-cli -i
 
-bladeRF-cli -l <path/to/fpga/file>
+#<path/to/fpga/file>
+bladeRF-cli -l /usr/share/Nuand/bladeRF/hostedx40.rbf 
 或
 bladeRF> load fpga <path/to/fpga/file> 
 

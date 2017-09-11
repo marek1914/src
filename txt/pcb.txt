@@ -1,0 +1,8 @@
+protel99 太老了，是时候放弃了
+跟yj学习，掌握AD10！ 20170909  软硬 50wpy
+
+Altium 公司
+
+
+20170909:安装ad10 (altium designer)
+选 PCB Design (不要Soft Design)  

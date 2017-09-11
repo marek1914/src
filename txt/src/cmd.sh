@@ -1,6 +1,7 @@
 #!/bin/bash #(Bourne Again Shell) Shebang line
 # ctrl+d #terminal
 # 生活在终端里，重复的事情自动化 NARKOZ/hacker-scripts
+# man.linuxde.net
 info # 所有命令
 locale #当前语言
 less	
@@ -16,7 +17,6 @@ hexdump
 ascii #命令
 zip/unzip
 gzip/gunzip (gnu zip)
-bc/dc # calculator 
 gzip # -9 --fast -9 --best
 
 hostname foobar #修改hostname
@@ -281,3 +281,10 @@ usermod --expiredate 1 #无效某账户
 usermod -l # 修改用户名
 usermod -d # 修改home目录
 groupmod -n #修改组名
+
+
+# bc/dc calculator
+sqrt(100) # 平方根  3次方跟呢？  
+scale=10 #设置精度
+
+# 4 variables: scale ibase obase last

@@ -355,17 +355,6 @@ waveforms 2015
 安装依赖Adept 2，digilent官方: Communicate with Digilent system boards
 https://reference.digilentinc.com/reference/instrumentation/analog-discovery-2/reference-manual
 
-1 PCB右键可拖动，原理图默认不可以：工具栏上带光的红笔 可以移动
-Altium 公司
-在 protel99se 基础上
-protel DXP 2004
-Altium Designer 6.9
-解压Protel_DXP_2004.iso
-setup\Setup.exe 安装Protel DXP 2004
-运行DXP2004SP2补丁.exe 和 DXP2004SP2_IntegratedLibraries.exe文件
-Preference - Use localized rescources 变简体中文
-用Protel2004_sp2_Genkey.exe,将它放在Protel_DXP_2004安装目录注册
-
 --aliyun---
 bxu2713310005.my3w.com@bxu2713310005:200wguiqiyi
 htdocs/

@@ -7,8 +7,8 @@ Colpitts oscillator
 http://www.iue.tuwien.ac.at/phd/rottinger/node56.html
 http://www.electronics-tutorials.ws/oscillator/colpitts.html
 
-驻波系数
-能量全发射出去，效率最高，如果50%反射回来，效率不高。
+
+驻波系数： 能量全发射出去，效率最高，如果50%反射回来，效率不高。
 WIreless-FIdelity  无线保真， 无线宽带
 
 内置PCB板载天线/陶瓷天线/I-PEX接头连接天线延长线外置
@@ -74,8 +74,6 @@ wikipedia 搜索 Dipole antenna
 搜索：Transmission line
 
 串联电路电流处处相等，是近似，忽略场传播所需时间
-
-
 
 信号叠加，使用电阻网络
 用大电阻隔离，连接在一起，就算叠加
