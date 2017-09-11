@@ -25,8 +25,7 @@ backquotes ``
 Duff's Deviec
 
 debian  [ˈdɛ.bi.ən]
-intra ['ɪntrə] 同一事物内部各部分之间
-page [peɪdʒ] dʒ吱
+intra ['ɪntrə] 各部分之间
 
 Taylor series
 regression analysis 回归分析
@@ -354,3 +353,5 @@ SDCC: Small Device C Compiler
 SNR: signal noise ratio 信噪比
 
 Mark Shuttleworth   Canonical
+
+drag and drop interface 拖放接口

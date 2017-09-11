@@ -497,4 +497,7 @@ https://www.adafruit.com/category/168
 
 
 ---
-BBC Micro:bit    用的电源插头 S2B-PH-SM4-TB(LF)(SN) -  Wire-To-Board Connector, Right Angle
+BBC Micro:bit    电源插头 S2B-PH-SM4-TB(LF)(SN) -  Wire-To-Board Connector, Right Angle
+官网放出的sch和pcb，不是发售的，而是另一个版本
+
+nxp 那款单片机，起到了下载器作用，有创意
