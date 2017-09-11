@@ -5,6 +5,7 @@
 info # 所有命令
 locale #当前语言
 less	
+time
 clear
 lsof
 reset	
@@ -20,16 +21,15 @@ gzip/gunzip (gnu zip)
 gzip # -9 --fast -9 --best
 
 hostname foobar #修改hostname
-rsync #remote /local file-copying
 readelf -A
-split foo.bin -b 1024M
+split
 uname -r
 cpio
 tail
 head
-blkid #显示分区 UUID
+blkid #分区 UUID
 declare
-who # su 也显示最开始登录的用户名
+who # su 显示最开始登录的用户名
 w
 #查看运行时间：
 who -b
@@ -58,10 +58,8 @@ hdparm -tT /dev/sdb1  测试硬盘性能
 netperf - a network performance benchmark
 iperf - perform network throughput tests
 
-time cp test1 test2  测试拷贝速度
 fuser -m -v 查看谁在用某个文件描述符
 shutdown -h 10:42
-netstat -a 查看开启的网络服务
 zip -Z store bootanimation.zip part*/* desc.txt  #store 不压缩 or -0
 /lib/modules/`uname -r`/build  #得到kernel版本号
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -  #下载脚本并执行
@@ -265,11 +263,12 @@ while read line; do tmp=`echo $line | cut -f1 -d' '`; echo ${#tmp}  $line; done 
 
 printf "%*s" $COLUMNS | tr " " "="   # *的用法 打印一行==
 
+#network
 ip route add 172.16.0.0/24 dev eth0
 arp-scan –I eth0 -l
 iptables -A OUTPUT -p tcp --sport 5060 -j ACCEPT
 iptables -A INPUT -p  udp --dport 5060 -j ACCEPT
-netstat -lnp
+netstat -lnp #-a 查看开启的网络服务
 
 # account
 passwd -l root #lock root
@@ -288,3 +287,6 @@ sqrt(100) # 平方根  3次方跟呢？
 scale=10 #设置精度
 
 # 4 variables: scale ibase obase last
+ 
+# big command
+rsync

@@ -82,7 +82,6 @@ fi
 
 #逐行读取文件
 for line in `cat data`  # 行中有空格不行，可设置 $IFS(默认空格 tab \n)为\n
-
 cat data | while read line; do echo $line; done
 while read line; do echo $line; done <data
 

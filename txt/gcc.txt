@@ -351,13 +351,6 @@ Options starting with -g, -f, -m, -O, -W, or --param are automatically passed on
 那么以这些前缀开头的含义又是什么呢？
 In order to pass other options on to these processes the -W<letter> options must be used. [-W<letter>不同于上面的-W吗？]
 
-ESDS.o
-MediaBuffer.o
-MediaBufferGroup.o  [ 若干.o文件 ]
-
-libstagefright_aacdec.a
-libstagefright_amrnbdec.a
-libstagefright_amrnbenc.a [若干.a]
 若是 -lstagefright_aacdec 那么是把调用到的函数静态链接进去，因为.a是.o的集合，所以这种写法跟直接罗列.o是一样的效果，
 不论是否调用，所有函数都会收入进去。
 对应 LOCAL_STATIC_LIBRARIES :=

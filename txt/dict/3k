@@ -1,11 +1,9 @@
 act
-age
 aid
 aim
 air
-aka (also known as亦称)
+aka also known as亦称
 any
-arm
 art
 bad
 bag
@@ -21,10 +19,8 @@ dry
 due
 ear
 era
-fee
 fit
 fun
-gap
 gas
 gun
 guy
@@ -68,7 +64,6 @@ tip
 toe
 toy
 via
-yet
 acid
 aide
 ally
@@ -76,12 +71,9 @@ also
 Arab
 area
 army
-auto
 away
 baby
-back
 bake
-ball
 band
 bank
 base
@@ -176,7 +168,6 @@ film
 fine
 fire
 firm
-fish
 flag
 flat
 flee
@@ -197,7 +188,6 @@ give
 glad
 goal
 gold
-compact 压紧-简洁
 golf
 grab
 gray
@@ -284,7 +274,6 @@ myth
 near
 neck
 need
-news
 none
 nose
 note
@@ -313,7 +302,6 @@ play
 plot
 plus
 poem
-boost 增加促进
 poet
 pole
 poll
@@ -370,7 +358,6 @@ shot
 show
 shut
 sick
-side
 sigh
 sign
 sing
@@ -513,6 +500,7 @@ blind
 block
 blood
 board
+boost 增加促进
 brain
 brand 商标
 bread
@@ -540,6 +528,7 @@ cheek
 chest
 chief
 child
+chose
 civil
 claim
 class
@@ -617,10 +606,10 @@ first
 flags
 flame
 flesh
-float
 floor
 focus
 force
+forge 锻造-熔炉
 forth
 found
 fresh
@@ -685,7 +674,6 @@ lenth
 level
 light
 limit
-local
 loose
 lover
 lower
@@ -868,8 +856,6 @@ taste
 terms
 their
 theme
-there
-these
 thick
 think
 third
@@ -895,7 +881,6 @@ trend
 trial
 tribe
 trick 戏法骗局把戏
-tricky 狡猾的棘手的
 troop
 truck
 truly
@@ -999,8 +984,6 @@ before
 behind
 belief
 belong
-acceptably
-acceptance
 beside
 better
 beyond
@@ -1032,9 +1015,7 @@ chance
 change
 charge
 cheese
-chose
 choice
-feedback
 choose
 church
 circle
@@ -1042,7 +1023,6 @@ client
 clinic
 closer
 coffee
-biology 生物学
 column
 comedy
 commit
@@ -1090,7 +1070,6 @@ dinner 晚餐
 direct
 divide
 doctor
-double
 driver
 during
 easily
@@ -1138,12 +1117,10 @@ finish
 flavor
 flight
 flower
-venerable 令人尊敬的
 follow
 foobar
 forest
 forget
-forge 锻造-熔炉
 formal
 former
 fourth
@@ -1418,6 +1395,7 @@ tongue
 toward
 travel
 treaty
+tricky 狡猾的棘手的
 triode
 tunnel
 twelve
@@ -1501,6 +1479,7 @@ benefit
 besides
 between
 billion
+biology 生物学
 bitwise 按位
 blanket
 bombing
@@ -1537,6 +1516,7 @@ combine
 comfort
 command
 comment
+compact 压紧-简洁
 company
 compare
 compete
@@ -1729,7 +1709,6 @@ mystery
 natural
 neither
 nervous
-network
 nothing
 nowhere
 nuclear
@@ -1739,7 +1718,6 @@ obvious
 oddbyte
 offense
 officer
-Olympic
 ongoing
 opening
 operate
@@ -2073,6 +2051,7 @@ facility
 familiar
 favorite
 features
+feedback
 fighting
 football
 frequent
@@ -2235,6 +2214,7 @@ strongly
 struggle
 suddenly
 supposed
+suppress 抑制
 surprise
 surround
 survival
@@ -2283,7 +2263,6 @@ apartment
 architect
 assistant
 associate
-associativity 结合性
 attention
 attribute
 authority 权威
@@ -2443,6 +2422,7 @@ passenger
 perfectly
 permanent
 personnel
+pertinent 有关的
 physician
 political
 pollution
@@ -2515,6 +2495,7 @@ typically
 universal
 variation
 vegetable
+venerable 令人尊敬的
 versatile
 violation
 virtually
@@ -2522,6 +2503,8 @@ volunteer
 wonderful
 yesterday
 absolutely
+acceptably
+acceptance
 accomplish
 additional
 adjustment
@@ -2564,6 +2547,7 @@ consultant
 contribute
 convention
 conviction
+cumbersome 笨重的麻烦的
 curriculum
 definitely
 definition
@@ -2580,6 +2564,7 @@ disability
 discipline
 disconnect
 discussion
+distortion 扭曲变形
 distribute
 efficiency
 electronic
@@ -2587,6 +2572,7 @@ elementary
 employment
 endianness 字节存储序
 enterprise
+equivalent
 especially
 evaluation
 eventually
@@ -2865,6 +2851,7 @@ surveillance 监视盯梢
 unexpectedly 竟然居然
 administrator
 approximately
+associativity 结合性
 communication
 compatibility
 comprehension 理解力
@@ -2873,7 +2860,6 @@ concatenation
 concentration
 configuration
 congressional
-cumbersome 笨重的麻烦的
 consciousness
 consideration
 consolidation 巩固
@@ -2884,7 +2870,6 @@ demonstration
 documentation
 entertainment
 environmental
-equivalent
 establishment
 extraordinary
 institutional
@@ -2909,10 +2894,6 @@ representation
 representative
 responsibility
 transformation
-transportation
 acknowledgement
-dispatchMessage
 straightforward
 synchronization 同步
-unauthenticated
-caveat 警告附加说明
