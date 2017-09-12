@@ -49,3 +49,5 @@ apt-get install python3-yaml
 apt-get install python-yaml
 
 如何运行？
+
+ pyocd-flashtool
