@@ -41,3 +41,11 @@ dfu-util -a x86_app -D outdir/arduino_101/zephyr.bin
 dfu-util -a sensor_core -D outdir/arduino_101_sss/zephyr.bin
 
 blink 例子，led插在digital 引脚3上
+
+
+microbit 例子：
+//针对不同python版本的 yaml库
+apt-get install python3-yaml
+apt-get install python-yaml
+
+如何运行？
