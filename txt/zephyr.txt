@@ -18,7 +18,7 @@ $ export ZEPHYR_SDK_INSTALL_DIR=<sdk installation directory>
 或者 写到  $HOME/.zephyrrc里面  会自动找这个文件？
 
 
-Nordic nRF51  nRF52  nRF24
+Nordic nRF51/52  nRF24
 
 
   make BOARD=arduino_101_ble          - Build for arduino_101_ble（nRF51822）
@@ -31,8 +31,8 @@ The Intel Curie module includes a Nordic nRF51822 that is interfaced to the SoC 
 
 
 代码包含了130M的 stm32cube ：stm32f1xx stm32f3xx stm32f4xx stm32l4xx
-这个不需要，因为已经有了cube仓库
-里面的README 详细说明 目录的重组过程，暂时删除，因为我先玩 arduino101 而非ST
+不需要，因为已经有了cube仓库
+里面的README 详细说明 目录的重组过程，因为我先玩 arduino101 而非ST
 
 dfu-util 可以在intel网站下载，ubuntu也有，版本低，经测能用
 
@@ -50,4 +50,11 @@ apt-get install python-yaml
 
 如何运行？
 
- pyocd-flashtool
+pyocd-flashtool
+
+The micro:bit uses the same USB VID/PID as the NXP LPC1768 - 0d28:0204  (我记得，LPC1768 显示应该是靠0204 对应的，不是直接的字符串)
+
+
+github  makerdiary/nrf52832-mdk  
+
+wiki.makerdiary.co

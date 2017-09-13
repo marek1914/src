@@ -11,7 +11,7 @@ Bash Reference Manual                                                 *bash*
 														    *BuiltinCommands*
 (41) !help 显示
 
-
+The ‘=’ operator is identical to ‘==’
 
 * ($*) Expands to the positional parameters, starting from one.
 

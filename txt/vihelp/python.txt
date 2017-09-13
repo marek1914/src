@@ -1,4 +1,4 @@
-pip
+apt-get install python-pip
 
 os.path.abspath('.')   //获取当前的绝对路径
 
