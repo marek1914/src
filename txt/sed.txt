@@ -22,3 +22,10 @@ sed '/bar/,+2d'
 rename 's/arm-linux/arm-eabi/' *
 rename 's/$/.zip/' *  #尾部追加.zip
 rename 's/^/foo/' *   #首部追加foo
+
+
+sed 's/^\(.*\)-\([^-]*-[^-]*\)$/\2/'
+
+sed 's/^(.*)-([^-]*-[^-]*)$/\2/'
+
+grep 'abc\|123'   # |要转义，否则是真的 |字符
