@@ -8,5 +8,6 @@ ln -sf $PWD/txt/vihelp/ ~/.vim/doc
 ln -sf $PWD/txt/dict/ ~/.vim/other/dict
 ln -sf $PWD/vimrc ~/.vimrc
 
+tr ' ' '_' < txt/dict/phrase > txt/dict/.phrase
 cd base/sysinc
 ./ctags.sh
