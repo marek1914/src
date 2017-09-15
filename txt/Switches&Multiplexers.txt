@@ -1,95 +1,27 @@
-贱人张！
-
-模拟开关，它是开关，所以是双向的
-
 ADG804
 
-74hc4052  dual 4-channel analog multiplexer
-cd4052
+cd4052: dual 4-channel analog multiplexer
+cd4066: 4SPST
+ch440: 4SPDT
+ch444: 2c 1:4
+SGM4782: 2c 1:4 
+ch446: 8x16 开关矩阵(解决了开关数量问题: 真8通道，需128个开关，伪8通道需 32+16 = 48个开关)
+ADG804
 
-cd4066:4 SPST
-
-负电压怎么处理
-
---
-手机定位方案经历3阶段：
-首先想到的是 电子标签方案， 指示灯+RF组网+按钮
-然后改为USB供电，通过1拖2 hub芯片，MCU监测数据（实现复杂）
-第二天又改为电子标签方案， c8051F321 + 电子开关切换（ch442 2单刀双掷） + 序列号芯片
-序列号芯片兼具程序保护，同时提供独一无二的序列号，
-部署的时候，随意放置，放置完成后 统计一次 序列号与位置的对应关系，然后每个手机插入后，能读到机架位置信息
---
-音频是 以0V为中心，上下对称，还是大于0V呢？
-
-不用 ch440 支持usb切换  4 SPDT
-
-用ch444  2 单刀4掷开关
-
-总体说，8个手机，8个U盾， 一共需要 64种组合 测试路径，如果做成 真8通道， 
-同时可以测试8个路径， 8个测试周期 全部64个组合测试完毕，  而伪8通道，
-其实同时只能测试4个路径，需要16个测试周期才能测完全部组合， 但是伪8通道，电路规模，
-所需开关数量大幅降低。
-
-真8通道，需要128个开关，伪8通道需要 32+16 = 48个开关
-
-
-用圣邦 SGM4782 0.5Ω  2通道 1:4 
-
-0806  设计方案：用SGM4782 x4片 + F321 直接作成USB接口的 完美。。
+(2c 1:4) x4片 + F321 直接USB-com
 
 ===
-四段接头，倒数第二段断掉了，竟然也能读取序列号，
-好像最后一段不是地，因为以它为地，量出的其他引脚电压为负值
+实测：左右通道都有信号且一样
 
+OMTP:国标/欧标 左右麦地
+CTIA:国际/美标 左右地麦
 
-耳机分为两种标准：OMTP标准通常被叫做国家标准，CTIA被称为国际标准。两者的区别在于插头最后两节GND和MIC顺序相反
-CTIA耳机是兼容OMTP设备的,CTIA耳机插入OMTP设备会造成声音小且失真，按下MIC键后声音恢复，由此可鉴定出设备是OMTP标准的。
+倒数第二段断掉了，竟也读到序列号
+mic上一直有个2V左右电压，但没测出信号，奇怪！
 
-目前市场上手机耳机，多使用苹果四极接法（美标），即：左/右声道/地线/麦克风，而有部分品牌手机采用的是诺基亚接法（国标或欧标），
-即：左/右声道/麦克风/地线，不同点就是地线和麦系统两个接触点进行了互换。使用标准不匹配的耳机，表现出来的状况主要是：
-声音明显轻、飘，麦克风无效，只听到伴奏没有歌词，按住耳机接听键声音正常等。
-
-为啥只能听到伴奏？
-
-按照最后一段是mic，倒数第二是gnd，电压倒是正常，但是mic上测试不到信号呢？
-
-示波器检测，前2段是左右声道，并且都有信号，且信号一摸一样
-
-mic上一直有个2V左右的电压，但没测出信号，奇怪！
-
-Uv胶
-2. 用点胶机将胶水点在待封装电子部件的表面
-3. 紫外灯照射至胶水固化
-
-ADG804
-
-74hc4052  dual 4-channel analog multiplexer
-cd4052
-
-cd4066:4 SPST
-
-负电压处理
-
---
-手机定位方案：
-第二天又改为电子标签方案， c8051F321 + 电子开关切换（ch442 2单刀双掷） + 序列号芯片
-序列号芯片兼具程序保护，同时提供独一无二的序列号，
-部署的时候，随意放置，放置完成后 统计一次 序列号与位置的对应关系，然后每个手机插入后，能读到机架位置信息
---
-
-不用 ch440 支持usb切换  4 SPDT
-
-用ch444  2 单刀4掷开关
-
-总体说，8个手机，8个U盾， 一共需要 64种组合 测试路径，如果做成 真8通道， 
-同时可以测试8个路径， 8个测试周期 全部64个组合测试完毕，  而伪8通道，
-其实同时只能测试4个路径，需要16个测试周期才能测完全部组合， 但是伪8通道，电路规模，
-所需开关数量大幅降低。
-
-真8通道，需要128个开关，伪8通道需要 32+16 = 48个开关
+Uv胶 紫外灯照射至胶水固化
 
 http://www.chinafix.com/thread-1023822-1-1.html usb typeC 转换头拆机 没有芯片
-
 
 序列号芯片 ds2411  1元
 
@@ -99,67 +31,34 @@ microchip 2-port hub
 USB2412  5x5mm 5元
 F321    5元
 
-silicon lab/st 没有hub
-
-virtualBox无法看到usb hub，只能看到具体设备
-
-./development/host/windows/prebuilt/usb/AdbWinUsbApi.dll
-./development/host/windows/prebuilt/usb/AdbWinApi.dll
-
-development/host/windows/usb 是源码
-
-
 ==== 0812 ===
-1 飞线成功  p26 12k必须焊接
-2 不插usb，只要供电，也会有24MHz 晶振
-3 识别出 0424:2412 Standard Microsystems Corp. 
-4 没有焊接12k的时候，示波器可以看到12MHz的full speed波形
-5 焊接12k后，480M，示波器看不到了
-
+1 p26 12k必须焊
+2 不插usb，只供电，有晶振
+4 没焊12k时，可看到12MHz的full speed波形，焊后480M，示波器看不到了
 
 --------------------
-Set Configuration can also be used, with wValue set to 0, to deconfigure the device.
-
 libusb_set_configuration
-
 A configuration value of -1 will put the device in unconfigured state
-
 
 SET_CONFIGURATION
 GET_CONFIGURATION
 
-
 libusb: A cross-platform user library to access USB devices
-
-
 --enable-debug-log
 
+sudo可运行，否则会segmentation fault
 
-加了configu   sudo可运行，不sudo 会segmentation fault
-
-但是没效果，右侧第三脚 没有变高，
-并在电平好像在跳动！
-
-插上一个设备，此引脚变高，    执行程序无效，返回-6    LIBUSB_ERROR_BUSY = -6,
-
-
----
+返回-6    LIBUSB_ERROR_BUSY = -6,
 下行端口直接插，不能识别，必须插着下行端口，再插上行端口，才能将hub和设备一起识别出来,拔掉再插，就又识别不出来了
 或者，有时候，能识别一次
 
-可是，有一天是识别出来的，以至于我把上面那句话已经删除了，当时不是用u盘测试的，而是用苹果手机，手机自己带电
+苹果手机，usb读卡器 后插可以识别，钥匙上的U盘，后插入不识别
 
+先 libusb_release_interface ? 
 
-先 libusb_release_interface ?  
-
-libusb_detach_kernel_driver  这个必须，要kernel放弃驱动控制权？
+libusb_detach_kernel_driver  这个必须，要kernel放弃驱动控制权
 
 libusb_detach_kernel_driver
 libusb_set_configuration    实验成功
 
-
 WS2812    环形，做个 时钟
-Arduino Pro micro 
-
-
-
