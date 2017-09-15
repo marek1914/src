@@ -21,6 +21,13 @@ mic上一直有个2V左右电压，但没测出信号，奇怪！
 
 Uv胶 紫外灯照射至胶水固化
 
+
+microbit 插入win7 ：mbed Serial Port 驱动不识别
+
+为什么linux不需要usb 串口驱动，windows却不行
+
+
+----
 http://www.chinafix.com/thread-1023822-1-1.html usb typeC 转换头拆机 没有芯片
 
 序列号芯片 ds2411  1元

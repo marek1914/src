@@ -435,7 +435,7 @@ DTE: 数据终端设备
 RS232 full-duplex
 RS485 half-duplex：RX+/TX+并联为Data+，RX-/TX-并联为Data-，MAX485是半双工模式的485收发器
 
-------------
+---
 
 CDC: Communication Device Class
 Vendor ID： http://www.linux-usb.org/usb.ids
