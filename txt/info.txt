@@ -12,9 +12,10 @@ Full Stack:掌握多种技能，并能利用多种技能独立完成产品
 所带来的疲劳，用不着休息一下脑筋。于是，我在治学中充分利用我所发现的这一特点，对一些问题交替进行研究。
 这样，即使我整天用功也不觉得疲倦了” 卢梭
 
+JST的本质，类似于Lego
 TIOBE
 
-电路模拟！
+电路模！
 https://ashwith.wordpress.com/2010/09/10/circuit-simulation-in-gnulinux-lets-begin/
 nvidia 黄仁勋
 
@@ -110,11 +111,11 @@ http://www.wolframalpha.com
 
 alphawolf 中关村智能硬件孵化器
 
-投入（计划10万）：
+预算10万：
 2016: 4.4
-2017: 19344 (5.6)
+2017: 20089 (5.6)
 
-电脑相关： 22328 元
+电脑相关：
 macbook pro				11788
 电脑包					98
 电脑+Dell显示器X2       7600
@@ -127,22 +128,23 @@ HDMI to VGA				64
 USB-C转接				15
 
 
-玩具：  2300元
 RC+遥控器               1400
 lego 21050				900
 
 
-开发板： 6697+190元
+开发板：
 Pi Zero					161
 PiFace+HAT				445
 Pi camera X4				531
 Pi3 X2					516
 Pi1 B+					200
 Pi2 B+					220
+Pi 外壳x3				58
 Arduino Yun				478
 Arduino UNO				148
-Arduino 101				200
-Genuine UNO X2 				132
+Arduino 101	X3			400
+Genuino UNO X2 			132
+Genuino micro			69
 BBB					304
 BBG					390
 Wio link ESP8266			199
@@ -166,7 +168,7 @@ DevPack XDS1100			100
 LaunchPad EK-TM4C123G	40
 LaunchPad cc2650		40
 LaunchPad MSP-EXP432P401R	30
-
+microbit x2				230
 
 partical IoT x2			288
 XBee X36				720
@@ -188,7 +190,7 @@ bladerf+外壳				4150
 Anolog Discovery2 X2	2400
 TH2822E					1588
 
-基础工具： 2747+2650元
+基础工具：
 proxxon 台锯				2650
 博士电钻					399
 琢美胶枪+雕刻笔			300
@@ -202,13 +204,15 @@ alpha焊锡/锡条			290
 偏口钳+尖嘴钳			200
 压线钳					100
 
-基础元件：803元
+基础元件：
 电容电阻电感包			150
 INA210/211 LED0603		93
 STM32F103 x10			60
 F330+F321 x10 x10		115
 F330      x20			73
-JST接插件				121
+USB2412   x10			60
+晶体24M+32.768k			28
+JST接插件				221
 高压包  x2				35
 数码管单排针/母74hc14    210
 面包板2.54/2.0          40

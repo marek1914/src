@@ -1,0 +1,81 @@
+openstm32.org gaojie:200w200w
+
+
+20170601 F429i-dis: u-boot 运行成功
+st-flash write u-boot.bin 0x8000000
+debian下，st-link模拟串口是ttyACM0,mac下不认此串口
+
+sw4stm32的编译器(plugin/.../xx.tar.bz2)：
+arm-none-eabi-gcc --version
+5.4.1 20160919 (release) [ARM/embedded-5-branch revision 240496]
+arm官网下载：
+arm-none-eabi-gcc --version
+6.3.1 20170215 (release) [ARM/embedded-6-branch revision 245512]
+
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0
+github.com/texane/stlink
+
+cmsis/DSP_Lib/Source/下的文件生成lib/gcc下的2个.a
+
+board：
+nucleo F401RE(512+96)
+discovery F407VG
+STM32F3Discovery (F303 带DSP 陀螺仪)
+STM32F429I-Discovery (F429ZIT6  u-boot support)
+
+STM32F3: mixed-signal MCUs with DSP and FPU instructions
+
+
+j-link /segger
+http://gnuarmeclipse.github.io/debug/jlink/install/#gnulinux
+
+ST-Link
+
+
+
+GPIOA/B/C/D/E/F/G 时钟单独开启 16-GPIO/组 上电为GPIO模式
+
+F103 内存
+0x00000000 - 0x0007ffff 512K
+0x08000000 - 0x0807ffff 512K Flash
+0x1ffff000 - 0x1ffff7ff 2k   System Memory
+
+源地F103
+R-A9
+T-A10(A9左下)
+
+HSE 外部晶振
+HSI 内部RC晶振
+
+f103rct6 256+48
+f103rbt6 128+20
+f103vet6 512+64
+f103c8t6 64+20  (Switcher)
+
+RBT6 : 64pin/128K/LQFP/工业
+
+C=48 / R=64 / V=100 / Z=144
+
+6-32K
+8-64K
+B-128K
+C-256K
+D-384K
+E-512K
+
+Ld/Md/Hd
+
+HAL_CRC_Calculate. 硬crc
+
+j-link: 左到右：白灰黑
+J-Link-OB
+
+写不进flash，用segger: j-link stm32 unlock 工具解锁
+安装最新驱动，mdk不能用了，把keil/arm/segger目录替换回老版本
+
+
+
+-------------
+Switcher
+f103c8t6 64+20
+
