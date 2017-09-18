@@ -218,12 +218,7 @@ arecord -Dhw:0,0  -d 10 -c 2 -t wav -r 44100 -f "Signed 16 bit Little Endian" xx
 
 耳机插孔有 开关型 无开关型
 
-三芯耳机插头 ，左声道，右声道，地  没啥说的
-
-二芯插头一般用于mic，已经很少见，现在mic也用三芯：
-mic输入，mic偏置（bias == pwr?），地 or
-mic输入，mic输入，地 or
-mic输入，地，地
+mic三芯：Vbias/信号输入/地 
 
 AC97
 
