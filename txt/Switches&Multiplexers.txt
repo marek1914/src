@@ -19,6 +19,7 @@ TI和AD暂不考虑
 专用模式切换芯片：
 FSA8049/TS3A26746E GND 0.1Ω，手机专用封装极小
 
+http://www.2cm.com.tw/technologyshow_content.asp?sn=1309040008  
 ===
 
 Uv胶 紫外灯照射至胶水固化
