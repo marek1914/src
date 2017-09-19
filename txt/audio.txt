@@ -209,7 +209,6 @@ arecord -Dhw:0,0  -d 10 -c 2 -t wav -r 44100 -f "Signed 16 bit Little Endian" xx
 动圈话筒
 驻极体话筒 (电脑 用这种)
 
-电脑话筒 3线
 
 声卡  
 浅蓝 line in  用于内录
@@ -218,11 +217,11 @@ arecord -Dhw:0,0  -d 10 -c 2 -t wav -r 44100 -f "Signed 16 bit Little Endian" xx
 
 耳机插孔有 开关型 无开关型
 
-mic三芯：Vbias/信号输入/地 
+mic三线：Vbias/信号输入/地 
 
 AC97
 
-mic接口应该是电源，地和信号，3线
+
 
 
 我那次电子琴直接输入电脑，用的是line in 还是mic呢？
