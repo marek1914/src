@@ -1,7 +1,16 @@
-http://bwrcs.eecs.berkeley.edu/Classes/IcBook/SPICE/
-基于spice3f5
-Hspice
-Pspice
+ngspice  //基于 spice3f5
+Cadence收购OrCAD,PSpice
+
+OrCAD PSpice Designer 包括: Capture/CIS, PSpice A/D&AA
+官网Lite版有设计大小和复杂度限制
+ 
+OrCAD PSpice Designer Lite 17.2 仅支持 64-bit windows
+OrCAD PSpice Designer Lite 16.6 支持 32-bit
+
+http://cadencecom.vo.llnwd.net/v1/orcad/16.6_OrCAD_Lite_Capture&PSpice_Products_2014.zip
+http://cadencecom.vo.llnwd.net/v1/orcad/17.2-2016_S017_OrCAD_Lite_Capture_PSpice.zip
+
+altium designer 10 
 
 Colpitts oscillator
 http://www.iue.tuwien.ac.at/phd/rottinger/node56.html

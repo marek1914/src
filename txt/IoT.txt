@@ -140,7 +140,6 @@ B1182 功率三极管  PNP silicon transistor
 maxim 各232，485芯片型号，各种应用？
 
 ----
-Pspice 电路仿真软件
 
 耳机的阻抗由电阻和感抗组成，感抗在1KHz测得
 

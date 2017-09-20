@@ -9,7 +9,6 @@ lib32ncurses-dev (new curses)
 lib32readline5-dev
 
 awesomewm 窗口管理器
-ngspice  //基于 spice3f5
 
 android-tools-fsutils // contain :simg2img
 
@@ -289,8 +288,9 @@ debian.org [ˈdebiən]  37500+ package
 分3类：main contrib non-free，后2者不是debian项目的一部分
 
 如安装后 /etc/apt/source.list 只有：
-deb http://mirrors.tuna.tsinghua.edu.cn/debian/ stretch main 再增加
-deb http://mirrors.tuna.tsinghua.edu.cn/debian/ stretch non-free (有ngspice了)
+deb http://mirrors.tuna.tsinghua.edu.cn/debian/ stretch main 
+增加:
+deb http://mirrors.tuna.tsinghua.edu.cn/debian/ stretch non-free (非开源软件)
 
 Debian Alternatives System // alternate 功能
 

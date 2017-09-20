@@ -17,11 +17,12 @@ Full Stack:掌握多种技能，并能利用多种技能独立完成产品
 所带来的疲劳，用不着休息一下脑筋。于是，我在治学中充分利用我所发现的这一特点，对一些问题交替进行研究。
 这样，即使我整天用功也不觉得疲倦了” 卢梭
 
+高度自律：为了高度自由
+
 JST的本质，类似于Lego
+
 TIOBE
 
-电路模！
-https://ashwith.wordpress.com/2010/09/10/circuit-simulation-in-gnulinux-lets-begin/
 nvidia 黄仁勋
 
 MCU厂商排行：
@@ -34,7 +35,8 @@ TI
 Cypress 独特性:MCU+analog+FPGA
 Silicon Lab
 
-
+mr-wu.cn 吴传斌博客
+papilio.cc //arduino fpga
 usbgeek.com
 
 getchip.com  // C.H.I.P  Allwinner CPU
@@ -118,7 +120,7 @@ alphawolf 中关村智能硬件孵化器
 
 预算10万：
 2016: 4.4
-2017: 20165 (5.6)
+2017: 20239 (5.6)
 
 电脑相关：
 macbook pro				11788
@@ -229,6 +231,7 @@ Qfn20/28 转接板			26
 南孚纽扣电池等			50
 AAA电池扣               40
 ch444 cd4066 usb2412	90
+sgm3005/4782		    74
 外壳                    76
 
 资料费用
