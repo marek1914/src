@@ -52,9 +52,6 @@ strace发现，并非是设备节点无法打开，而是
 20170710 安装成功
 http://gqrx.dk/download/install-ubuntu
 
-好难受，安装终于成功了，可是不知道能干啥
-
-
 -----
 gps:
 bladeRF-cli -l /usr/share/Nuand/bladeRF/hostedx40.rbf
@@ -64,5 +61,13 @@ google地图：
 手工调整:
 39.981,116.308
 ftp://cddis.gsfc.nasa.gov/gnss/data/daily/2017/    下载brdc*.17n 文件
+时间也变了,时间是靠gps同步？
 
-时间也变了！ 时间是靠gps同步的？
+轨迹：
+gps-sdr-sim -e xx.14n -l 39.9816983,116.308
+
+国惠 40.2123611,116.293566
+八高 40.2123611,116.224999
+6公里 12000 步
+
+

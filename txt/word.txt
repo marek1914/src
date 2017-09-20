@@ -4,6 +4,7 @@ rc: release　candidate /run command
 through-hole 排针
 
 Dining philosophers problem 哲学家进餐问题
+csv: Comma-Separated Values
 
 FTDI: Future Technology Devices International
 
