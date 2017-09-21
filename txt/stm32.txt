@@ -1,5 +1,5 @@
 openstm32.org gaojie:200w200w
-
+st.com   13xx@q.com:89..2*G
 
 20170601 F429i-dis: u-boot 运行成功
 st-flash write u-boot.bin 0x8000000
