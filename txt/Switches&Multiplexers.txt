@@ -31,9 +31,8 @@ microbit 插入win7 ：mbed Serial Port 驱动不识别
 --------------
 
 4段式母座：
-pj-313d/e  fail!
-pj-320d    ok!
-pj-3062   raspberry pi 用 ok
+pj-313 太深
+pj-322 ok
 
 按键需200g*9.8N/Kg=2N
 滑台(丝杆)+固定卡子+舵机+弹簧+小球
