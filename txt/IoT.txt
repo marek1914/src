@@ -73,8 +73,6 @@ sparkfun : Teensy 3.2
 usb转网口线
 usb接口上用的共模电感：acm2012-2p ：Common Mode Filters(共模滤波器) for high-speed 差分信号或普通信号。
 
-usb电源滤波电容，参考rasp用47u+100n 
-
 USB电源MOS管关闭 AO4803A：Dual P-Channel Enhancement Mode Field Effect Transistor
 
 usb hub：GL852G 12M贴片晶体
