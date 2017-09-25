@@ -25,6 +25,7 @@ usage: proxychains4 <prog> [args]
 sudo proxychain apt-get update //ok
 proxychain sudo apt-get update //no!
 
+freecad  跨平台
 AdobeIllustrator
 ImageMagick 
 SpeedCrunch 高精度计算器
