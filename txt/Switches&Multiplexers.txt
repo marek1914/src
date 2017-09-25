@@ -1,5 +1,6 @@
 yj：
 C 电阻 R 电容 X 尽量小
+1:1 打印： 打印预览/page setup/ scaled print:scale = 1/x=1 y=1 
 
 放弃:
 cd4066:   4SPST(低压时260Ω+ 用于追求零缺陷高可靠性汽车电子应用)
