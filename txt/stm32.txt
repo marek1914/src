@@ -19,7 +19,7 @@ cmsis/DSP_Lib/Source/下的文件生成lib/gcc下的2个.a
 
 board：
 nucleo F401RE(512+96)
-F407-Discovery (3段耳机孔)
+F407-Discovery (vgt6 3段耳机孔)
 F303-Discovery (DSP 陀螺仪)
 F429-Discovery (F429ZIT6 u-boot)
 

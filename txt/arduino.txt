@@ -1,19 +1,17 @@
 Arduino / Genuino
 avr-gcc
 ICSP烧写器
-ATmega328P 8k flash+768ram
-32k(ide显示32256而非32768) isp flash 10000次
+ATmega328P 8k flash+768 ram
+32k(ide显示32256) isp flash 10000次
 1k eeprom 100000次
 2k SRAM
 Uno 8-bit 16MHz
 
-增强：
 MEGA2560 8-bit AVR 16MHz
-Zero ARM M0 48MHz
 Due  ARM M3 84MHz
 
 apt-get install arduino arduino-core
-UNO: ATmega328P(main)+atmega16u2（cpu实现usb转uart）
+UNO: ATmega328P(main)+atmega16u2（cpu usb转uart）
 
 Arduino Bootloader
 
@@ -40,7 +38,6 @@ typedef bool boolean;
 typedef uint8_t byte;
 
 Arduino Yun: Atheros AR9331 + AVR microcontroller
-
 
 ----
 带 ~符号的 3/5/6/9 带pwm功能， 3是pwm0

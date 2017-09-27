@@ -1,6 +1,7 @@
-yj vs gwb
+goal:50wpy
+原则：不纠结，just do it
 
-UML:
+
 PlantUML
 https://github.com/scrooloose/vim-slumlord
   
@@ -18,31 +19,22 @@ Full Stack:掌握多种技能，并能利用多种技能独立完成产品
 所带来的疲劳，用不着休息一下脑筋。于是，我在治学中充分利用我所发现的这一特点，对一些问题交替进行研究。
 这样，即使我整天用功也不觉得疲倦了” 卢梭
 
+我的时间并不多，没有时间纠结，就干一件事，所有的努力都为这件事而服务
+
 高度自律：为了高度自由
 
 JST的本质，类似于Lego
 
-TIOBE
-
-nvidia 黄仁勋
-
-MCU厂商排行：
-Renesas，MCU领域王者，车机第一份额
-NXP+Freescale
-Microchip+Atmel
-ST
-Infineon 英飞凌
-TI
-Cypress 独特性:MCU+analog+FPGA
-Silicon Lab
+MCU排行：
+Renesas/NXP+Freescale/Microchip+Atmel
+ST/Infineon/TI/Cypress(MCU+analog+FPGA)/Silicon
 
 mr-wu.cn 吴传斌博客
 papilio.cc //arduino fpga
+
 usbgeek.com
 
 getchip.com  // C.H.I.P  Allwinner CPU
-
-spice-space.org
 
 github.com/abstrakraft/cwiid  //wii 蓝牙手柄  
 airspayce.com/mikem   //个人blog 包含bcm2583 arduino 很好的资料
@@ -60,8 +52,6 @@ ibm.com/developerworks
 electroschematics.com  优质电路图
 infragram.org          红外摄像
 
-publiclab.org          监测环境
-
 youtube:
 en.savefrom.net //download
 downsub.com   //subtitle
@@ -70,8 +60,6 @@ ID/79864406 id:410425198511202520
 
 abandon java, android, opengl 
 abandon C++ (20170428) ffmpeg/kernel/minigui enough!
-
-riot-os.org
 
 mdpi.com
 iot-lab.info
@@ -116,5 +104,4 @@ wikihow.com/Measure-Inductance  测量电感
 wikihow.com/Test-a-Capacitor    测量电容
 
 http://www.wolframalpha.com
-
 alphawolf 中关村智能硬件孵化器

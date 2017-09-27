@@ -1,20 +1,17 @@
 kernel.org
 
-/dev/block/platform/... /by-name   by-num
+v1.0  1994
+v1.1  1994-1995
+v2.6.0-.39   2003-2011
+v3.00.1 :2011  
+v3.10.1 :2013
 
+/dev/block/platform/... /by-name   by-num
 
 major.h
 #define MMC_BLOCK_MAJOR	179
 #define LOOP_MAJOR		7
 
-vm :Virtual Memory
-
-发布时间：
-v1.0  1994
-v1.1  1994-1995
-v2.6  .0-.39   2003-2011
-v3.00.1 :2011  
-v3.10.1 :2013
 
 /dev/ttyS0 ttyS1 ?
 /dev/root  什么设备？ 
@@ -146,10 +143,10 @@ Note: Some architectures assign CROSS_COMPILE in their arch/*/Makefile (eg. uboo
 
 
 ARCH(默认是编译它的机器)设置：
-1 直接修改Makefile中 ARCH= （非官方，但常用）
+1 直接修改Makefile中 ARCH= （不好）
 2 命令行 make ARCH=xx
 3 设置环境变量ARCH=
-4 没法在.config中指定！(因为这是第一级入口，也无法在xx_defconfig中指定，因为这个文件在arch/*/下，不知道进入哪个* ^_^)
+4 没法在.config中指定！(因为这是第一级入口，也无法在xx_defconfig中指定，因为这个文件在arch/*/下，不知道进入哪个*)
 
 make xx_defconfig :
 
