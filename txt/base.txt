@@ -87,7 +87,6 @@ c99: 7.15  Variable arguments va_list(e.g void*)
 libncurses
 http://clang.llvm.org/docs/ClangFormat.html
 
-Doug Lea malloc(dlmalloc) linux默认malloc内存分配器
 
 ANSI escape codes (escape sequences)
 

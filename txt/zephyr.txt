@@ -1,5 +1,7 @@
 Adafruit NeoPixel Ring  WS2812 5050 RGB LED
 
+pip install pyelftools
+pt-get install python3-pyelftools
 
 zephyrproject.org
 
