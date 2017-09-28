@@ -1,3 +1,7 @@
+http://www.sztcpcb.com/submitRegister.html
+手机：1310301
+客户编号14720A
+
 yj：
 C 电阻 R 电容 X 尽量小
 1:1 打印： 打印预览/page setup/ scaled print:scale = 1/x=1 y=1 

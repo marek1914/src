@@ -1,6 +1,7 @@
 goal:50wpy
 原则：不纠结，just do it
 
+要在stm32上 有所收获
 
 PlantUML
 https://github.com/scrooloose/vim-slumlord

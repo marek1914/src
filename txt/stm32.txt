@@ -1,34 +1,36 @@
 openstm32.org gaojie:200w200w
 st.com   13xx@q.com:89..2*G
 
-20170601 F429i-dis: u-boot 运行成功
+F429I-DIS: u-boot 运行成功
 st-flash write u-boot.bin 0x8000000
-debian下，st-link模拟串口是ttyACM0,mac下不认此串口
+debian下，st-link模拟串口是ttyACM0, mac下不认此串口
 
 sw4stm32的编译器(plugin/.../xx.tar.bz2)：
 arm-none-eabi-gcc --version
 5.4.1 20160919 (release) [ARM/embedded-5-branch revision 240496]
+
 arm官网下载：
 arm-none-eabi-gcc --version
 6.3.1 20170215 (release) [ARM/embedded-6-branch revision 245512]
 
 arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0
+
 github.com/texane/stlink
 
 cmsis/DSP_Lib/Source/下的文件生成lib/gcc下的2个.a
 
 board：
 nucleo F401RE(512+96)
-F407-Discovery (vgt6 3段耳机孔)
-F303-Discovery (DSP 陀螺仪)
-F429-Discovery (F429ZIT6 u-boot)
+STM32F407G-DISC1 (f407VGT6 168MHz 1M+192k)
+F303-Discovery
+F429-Discovery (F429ZIT6 lcd u-boot)
 
-STM32F3: mixed-signal MCUs with DSP and FPU instructions
+STM32F3/F4: with DSP and FPU instructions
 
 j-link /segger
 http://gnuarmeclipse.github.io/debug/jlink/install/#gnulinux
 
-ST-Link
+STSW-LINK009 : ST-LinkV2 驱动
 
 
 
