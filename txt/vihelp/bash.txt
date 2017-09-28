@@ -8,7 +8,7 @@ Bash Reference Manual                                                 *bash*
 !man bash
 0 (true) or 1 (false)
 
-														    *BuiltinCommands*
+                                                            *BuiltinCommands*
 (41) !help 显示
 
 The ‘=’ operator is identical to ‘==’
@@ -84,6 +84,10 @@ fi
 for line in `cat data`  # 行中有空格不行，可设置 $IFS(默认空格 tab \n)为\n
 cat data | while read line; do echo $line; done
 while read line; do echo $line; done <data
+
+
+3.5.3 Shell Parameter Expansion
+man bash 搜 Parameter Expansion 或 :+
 
 6.4 Bash Conditional Expressions
 !help test
