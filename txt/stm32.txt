@@ -1,9 +1,18 @@
 openstm32.org gaojie:200w200w
 st.com   13xx@q.com:89..2*G
 
+看一下，有些信息
+http://www.wolinlabs.com/blog/linux.stm32.discovery.gcc.html
+http://regalis.com.pl/en/arm-cortex-stm32-gnulinux/
+
 F429I-DIS: u-boot 运行成功
 st-flash write u-boot.bin 0x8000000
 debian下，st-link模拟串口是ttyACM0, mac下不认此串口
+
+下载器：
+1 OpenOCD : open on chip debugger
+2 github.com/texane/stlink
+
 
 sw4stm32的编译器(plugin/.../xx.tar.bz2)：
 arm-none-eabi-gcc --version
@@ -15,13 +24,11 @@ arm-none-eabi-gcc --version
 
 arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0
 
-github.com/texane/stlink
-
 cmsis/DSP_Lib/Source/下的文件生成lib/gcc下的2个.a
 
 board：
-nucleo F401RE(512+96)
-STM32F407G-DISC1 (f407VGT6 168MHz 1M+192k)
+NUCLEO-F401RE(F401RET6 84MHz 512+96)
+STM32F407G-DISC1 (F407VGT6 168MHz 1M+192k)
 F303-Discovery
 F429-Discovery (F429ZIT6 lcd u-boot)
 
@@ -48,21 +55,14 @@ T-A10(A9左下)
 HSE 外部晶振
 HSI 内部RC晶振
 
-f103rct6 256+48
-f103rbt6 128+20
-f103vet6 512+64
-f103c8t6 64+20  (Switcher)
+f103c8 64+20  (Switcher)
+f103rb 128+20
+f103rc 256+48
+f103ve 512+64
 
-RBT6 : 64pin/128K/LQFP/工业
-
-C=48 / R=64 / V=100 / Z=144
-
-6-32K
-8-64K
-B-128K
-C-256K
-D-384K
-E-512K
+C-48/R-64/V-100/Z-144
+6-32K/8-64K/B-128K/C-256K/D-384K/E-512K
+T6:LQFP-工业
 
 Ld/Md/Hd
 

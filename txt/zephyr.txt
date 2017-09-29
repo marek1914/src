@@ -1,13 +1,15 @@
 Adafruit NeoPixel Ring  WS2812 5050 RGB LED
 
-pip install pyelftools
-pt-get install python3-pyelftools
+pip install pyelftools (ubuntu 14)
+apt-get install python3-pyelftools(debian 8)
 
 zephyrproject.org
 
 freertos  Tickless (无滴答模式)
 
 zephyr 在1.8 也加入tickless模式
+
+scripts/support/openocd.sh
 
 
 需要dfu-util 包  关注一下
