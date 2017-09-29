@@ -76,3 +76,19 @@ mbed HDK: Hardware Development Kit
 github.com/ARMmbed
 
 http://tech.microbit.org/software/daplink-interface/
+
+
+
+
+zephyr 里面
+stm32f4_disc  就是 stm32f407_disc1
+
+
+CONFIG_XX 开头的，去掉CONFIG_ 再搜索
+
+
+
+=====
+F407G_DISC1
+
+4个 LED 分别是 PD12/13/14/15

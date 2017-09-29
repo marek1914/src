@@ -20,6 +20,11 @@ http://www.iue.tuwien.ac.at/phd/rottinger/node56.html
 http://www.electronics-tutorials.ws/oscillator/colpitts.html
 
 
+pcb 板制作
+http://www.sz-jlc.com/home/index.html  //质量好，较贵
+http://www.sztcpcb.com  // 便宜 样板可以
+
+
 基尔霍夫定理: KCL  KVL 
 
 驻波系数： 能量全发射出去，效率最高，如果50%反射回来，效率不高。
