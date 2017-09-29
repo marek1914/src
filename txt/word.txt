@@ -1,7 +1,9 @@
 GNU Miscfiles
 TIOBE
-rc: release　candidate /run command
+rc: release candidate/run command
 through-hole 排针
+
+Kirchhoff's circuit laws
 
 vm :Virtual Memory
 
@@ -78,7 +80,7 @@ Inertial loads(惯性载荷)
 low-dropout (LDO) linear voltage regulator 低压差
 
 discharge stray capacitance  放电电容
-linus"this whole ARM thing is a fucking pain in the ass"
+
 I have no particular talent. I am merely inquisitive : Albert Einstein
 conformance test
 This actually makes sense

@@ -1,6 +1,10 @@
 ngspice  //基于 spice3f5
 Cadence收购OrCAD,PSpice
 
+http://www.accelerated-designs.com
+Ultra Librarian FREE Reader 
+Convert BXL files into your preferred CAD format
+
 OrCAD PSpice Designer 包括: Capture/CIS, PSpice A/D&AA
 官网Lite版有设计大小和复杂度限制
  
@@ -10,12 +14,13 @@ OrCAD PSpice Designer Lite 16.6 支持 32-bit
 http://cadencecom.vo.llnwd.net/v1/orcad/16.6_OrCAD_Lite_Capture&PSpice_Products_2014.zip
 http://cadencecom.vo.llnwd.net/v1/orcad/17.2-2016_S017_OrCAD_Lite_Capture_PSpice.zip
 
-altium designer 10 
 
 Colpitts oscillator
 http://www.iue.tuwien.ac.at/phd/rottinger/node56.html
 http://www.electronics-tutorials.ws/oscillator/colpitts.html
 
+
+基尔霍夫定理: KCL  KVL 
 
 驻波系数： 能量全发射出去，效率最高，如果50%反射回来，效率不高。
 WIreless-FIdelity  无线保真， 无线宽带
