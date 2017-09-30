@@ -1,4 +1,11 @@
+pyOCD: 是mbed官方提供的调试工具，使用Python开发  python open cmsis-dap
+OpenOCD: 除了支持 cmsis-dap 还支持jlink stlink
+
+
+CMSIS-DAP (Debug Access Port)
+
 Adafruit NeoPixel Ring  WS2812 5050 RGB LED
+
 
 pip install pyelftools (ubuntu 14)
 apt-get install python3-pyelftools(debian 8)
@@ -25,10 +32,10 @@ $ export ZEPHYR_SDK_INSTALL_DIR=<sdk installation directory>
 Nordic nRF51/52  nRF24
 
 
-  make BOARD=arduino_101_ble          - Build for arduino_101_ble（nRF51822）
-  make BOARD=arduino_101              - Build for arduino_101    （x86）
-  make BOARD=arduino_101_mcuboot      - Build for arduino_101_mcuboot
-  make BOARD=arduino_101_sss          - Build for arduino_101_sss (Sensor Subsystem ，ARC)
+make BOARD=arduino_101_ble          - Build for arduino_101_ble（nRF51822）
+make BOARD=arduino_101              - Build for arduino_101    （x86）
+make BOARD=arduino_101_mcuboot      - Build for arduino_101_mcuboot
+make BOARD=arduino_101_sss          - Build for arduino_101_sss (Sensor Subsystem ，ARC)
 
 
 The Intel Curie module includes a Nordic nRF51822 that is interfaced to the SoC via UART0
@@ -65,7 +72,6 @@ github makerdiary/nrf52832-mdk
 github mbedmicro/DAPLink
 wiki.makerdiary.co
 
-DAP: Debug Access Port
 
 更新microbit dap
 https://www.mbed.com/en/platform/hardware/prototyping-production/daplink/daplink-on-kl26z/

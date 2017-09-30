@@ -1,0 +1,23 @@
+802.15 working group
+802.15.1 WPAN/bluetooth
+802.15.3 High Rate WPAN
+802.15.4 Low Rate WPAN(zigbee)
+
+www.bluetooth.com  #Bluetooth Special Interest Group (SIG) (802.15.1不再维护)
+
+Bluetooth Basic Rate(BR) 2.0
+Enhanced Data Rate (EDR) 2.1
+Bluetooth with low energy (LE for IoT) 4.0/4.1/4.2
+
+Mesh标准在SmartMesh工作组中,蓝牙Mesh标准是独立于核心规格版本外，因此不在蓝牙5核心规格内
+
+
+芯科科技 silicon lab：
+EFR32BG12P
+
+ti:
+
+
+yj给的nordic 开发板
+[艾克娒科技]IK-52832DK开发板A盘(资料盘):链接： http://pan.baidu.com/s/1bo3M6AV  密码：weho
+[艾克娒科技]IK-52832DK开发板B盘(视频教程盘):链接： http://pan.baidu.com/s/1eS9ojcA  密码：jltf
