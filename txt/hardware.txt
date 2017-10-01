@@ -12,13 +12,24 @@ http://cadencecom.vo.llnwd.net/v1/orcad/17.2-2016_S017_OrCAD_Lite_Capture_PSpice
 
 altium designer 10 
 
+
+shift+e 捕捉焊盘焦点
+
+
 Colpitts oscillator
 http://www.iue.tuwien.ac.at/phd/rottinger/node56.html
 http://www.electronics-tutorials.ws/oscillator/colpitts.html
 
 
+yj：
+C 电阻 R 电容 X 尽量小
+1:1 打印： 打印预览/page setup/ scaled print:scale = 1/x=1 y=1 
+
+
+Vbias Microphone Bias(偏置) Voltage  是给mic提供电力的(about 2V)
+
+
 驻波系数： 能量全发射出去，效率最高，如果50%反射回来，效率不高。
-WIreless-FIdelity  无线保真， 无线宽带
 
 内置PCB板载天线/陶瓷天线/I-PEX接头连接天线延长线外置
 
@@ -70,6 +81,8 @@ Use in WiFi networks
 Using a distributed antenna system to create an area of wireless coverage, 
 it is possible to use this technique to propagate indoor WiFi for commercial uses. 
 It is estimated that only about 5% of commercial WiFi use a distributed antenna system.
+
+Uv胶 紫外灯照射至胶水固化
 
 Dipole antenna  偶极电线  赫兹发明的
 A common example of a dipole is the "rabbit ears" television antenna found on broadcast television sets.  

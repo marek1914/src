@@ -1,5 +1,7 @@
+stm32 100w!
+
 openstm32.org gaojie:200w200w
-st.com   13xx@q.com:89..2*G
+st.com 13xx@q.com:89..2*G
 
 看一下，有些信息
 http://www.wolinlabs.com/blog/linux.stm32.discovery.gcc.html
@@ -55,7 +57,7 @@ T-A10(A9左下)
 HSE 外部晶振
 HSI 内部RC晶振
 
-f103c8 64+20  (Switcher)
+f103c8 64+20
 f103rb 128+20
 f103rc 256+48
 f103ve 512+64
@@ -73,7 +75,6 @@ J-Link-OB
 
 写不进flash，用segger: j-link stm32 unlock 工具解锁
 安装最新驱动，mdk不能用了，把keil/arm/segger目录替换回老版本
-
 
 
 -------------
