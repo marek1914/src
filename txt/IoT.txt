@@ -8,24 +8,10 @@ VI控制的小风扇小灯：F321
 
 adi: 1349@qq.com *2017J*Hun*
 
-U盾切换器 ADG804
-
-
 机智：13@qq  jizhi88
 论坛：club.gizwits.com
  
-design:
-5块板子，6月完成
-1 电池板
-2 采样电阻板
-3 led板，2个4线，并且txd，rxd 不同，这样能保证：
-  led板可以直接连pc，cc2530可以直接连pc，cc2530可以直接连led板，并且可以通过另一个口供电
-4 cc2530
-5 cp2102
-
 ---------
-
-
 DA14580
 6LoWPAN 基于IPv6的低速无线个域网标准，即IPv6 over IEEE 802.15.4
 
@@ -291,13 +277,6 @@ LoRa use unlicensed frequencies:
 TT02高增益纯铜弹簧天线 433Mhz 2.5dBi高增益   (再次理解增益)
 IPEX 座
 
---bluetooth--
-www.bluetooth.com  #Bluetooth Special Interest Group (SIG) (802.15.1不再维护)
-
-Bluetooth Basic Rate(BR) 2.0
-Enhanced Data Rate (EDR) 2.1
-Bluetooth with low energy (LE for IoT) 4.0/4.1/4.2
-
 ---
 发光二极管：
 普通发光二极管1.8V导通
@@ -420,10 +399,5 @@ nxp 那款单片机，起到了下载器作用，有创意
 
 ---
 openthread
-
-
-
-CMSIS-DAP
-
 
 nRF52832-MDK
