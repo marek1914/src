@@ -1,7 +1,8 @@
 goal:50wpy
 原则：不纠结，just do it
 
-要在stm32上 有所收获
+所以，要有冲突，比死气沉沉强
+存在即合理，事情就是发展到了这个地步，看似听我的，实际被T左右
 
 PlantUML
 https://github.com/scrooloose/vim-slumlord

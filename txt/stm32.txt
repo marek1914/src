@@ -1,4 +1,4 @@
-stm32 100w!
+STM32F100W
 
 openstm32.org gaojie:200w200w
 st.com 13xx@q.com:89..2*G
@@ -41,8 +41,6 @@ http://gnuarmeclipse.github.io/debug/jlink/install/#gnulinux
 
 STSW-LINK009 : ST-LinkV2 驱动
 
-
-
 GPIOA/B/C/D/E/F/G 时钟单独开启 16-GPIO/组 上电为GPIO模式
 
 F103 内存
@@ -76,8 +74,93 @@ J-Link-OB
 写不进flash，用segger: j-link stm32 unlock 工具解锁
 安装最新驱动，mdk不能用了，把keil/arm/segger目录替换回老版本
 
-
 -------------
 Switcher
 f103c8t6 64+20
+
+------
+VCP: Virtual COM Port
+
+好资料
+https://www.keil.com/pack/doc/mw/USB/html/dev_cdc_tutorial.html
+
+基于 usb CDC 设备类驱动
+CDC: Communication Device Class
+
+串口： CDC(ACM) Abstract Control Model 
+
+cubeF1 中的cdc驱动，注释实现了 CDC1.2 / PSTN1.2 (Public Switched Telephone Network)
+也实现了 Abstract Control Model （在PSTN1.2中描述）
+
+Emulation of a Virtual COM-port using the ACM (Abstract Control Model) subclass of CDC.
+
+USBD_VCP  USB Device VCP example
+
+-----
+cubemx中设置外部时钟：
+RCC: Reset and clock control
+ 
+bypass clock source (指的是 使用有源晶体)
+crystal/ceramic resonator (无源晶体)
+
+识别出来是：
+Bus 001 Device 016: ID 0483:5740 STMicroelectronics STM32F407
+重申：后面的字符串没有写在程序里，2个字符串与网站登记信息完全匹配
+
+驱动虽然只有win7/win8 2个目录，但是在xp上安装win7目录下的32bit驱动成功了，
+在设备管理器中，成功看到了 STMicro Virtual COM Port(COM5) 设备
+现在就是继续看看，如何 通过这个com5 发送数据过去，stm32怎么接收数据
+
+-----
+typedef struct _USBD_CDC_Itf {
+  int8_t (* Init)          (void);
+  int8_t (* DeInit)        (void);
+  int8_t (* Control)       (uint8_t, uint8_t * , uint16_t);   
+  int8_t (* Receive)       (uint8_t *, uint32_t *);  
+} USBD_CDC_ItfTypeDef;
+
+只有 USBD_CDC_DataOut 调用了 Receive 方法
+
+static USBD_CDC_DataIn()  (啥也没干)
+static USBD_CDC_DataOut()
+
+USBD_CDC_SetTxBuffer()
+USBD_CDC_SetRxBuffer()
+
+20171002 20:47
+CDC_Transmit_FS("Hello World CDC\r\n", 16); //成功
+为啥发送是个独立函数，而
+CDC_Receive_FS 附着在一个结构体中？
+
+STM32 using callbacks to retrive data from USB CDC VCP
+
+HAL_PCD_DataOutStageCallback()
+HAL_PCD_DataInStageCallback()
+
+在HAL_PCD_IRQHandler 中被调用
+
+__weak 这个说明是可以重载的函数
+总感觉稳定性还是不及ch340或 cp2102呢？这样想也没啥道理吧，先测试着吧，遇到问题再说
+
+MX_USB_DEVICE_Init() 调用了：
+
+USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS);
+USBD_RegisterClass(&hUsbDeviceFS, &USBD_CDC);
+USBD_CDC_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS);
+USBD_Start(&hUsbDeviceFS);
+
+中断 CDC_Receive_FS() 按下按键的时候确实进了，但收到的数据不对
+收到就打印，能成功但是有问题
+
+ttyUSB0 ttyACM0 怎么区分的？为啥这个程序linux就认 ACM0？
+
+接收参考：
+Cube_FW_F4_V1.15.0/Projects/STM324xG_EVAL/Applications/USB_Device/CDC_Standalone
+
+-----
+github: vcp 例子
+mfauzi/STM32F4
+
+
+有三种复位的方法：系统复位、电源复位、RTC domain复位
 
