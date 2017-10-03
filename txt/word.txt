@@ -7,6 +7,8 @@ Kirchhoff's circuit laws
 
 vm :Virtual Memory
 
+It's up to you 由你做主
+
 Dining philosophers problem 哲学家进餐问题
 csv: Comma-Separated Values
 

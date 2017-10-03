@@ -124,7 +124,7 @@ V15.8，已扫描 .cpp，但不识别 namespace 关键字包裹部分，去掉na
 导致 调用谁 和 被谁调用 命令不能用，但 s命令即 搜索字符串可用
 实际上当时用 source insight 确定谁调用这个函数，也是全局搜索的
 
-我修改了cscope(fscan.l 和 scan.l 仿照class 增加 namespace)，能识别 
+修改cscope(fscan.l 和 scan.l 仿照class 增加 namespace)，能识别 
 namespace android {
 }
 

@@ -1,4 +1,4 @@
-STM32F100W
+STM32F100W   不要懒惰
 
 openstm32.org gaojie:200w200w
 st.com 13xx@q.com:89..2*G
@@ -124,13 +124,18 @@ typedef struct _USBD_CDC_Itf {
 static USBD_CDC_DataIn()  (啥也没干)
 static USBD_CDC_DataOut()
 
-USBD_CDC_SetTxBuffer()
-USBD_CDC_SetRxBuffer()
+----------------------
+USBD_CDC_SetTxBuffer()  //参数有 Len
+USBD_CDC_SetRxBuffer()  //参数无 Len why? 
 
-20171002 20:47
-CDC_Transmit_FS("Hello World CDC\r\n", 16); //成功
-为啥发送是个独立函数，而
-CDC_Receive_FS 附着在一个结构体中？
+APP_RX_DATA_SIZE  要根据实际情况确定大小，暂时确定为32字节吧，一个AT命令够用了
+现在看，超出可能会导致死机，此时可以控制包大小，现在是64字节，如果设置包大小为16字节，则发送32字节需要2次，
+中间有超时时间控制，
+echo hello world > /dev/ttyACM0  会发现没有收完的话，会卡住，ok 到此，都通了
+把环境迁移到 mac电脑，剩下的回家去调试
+
+CDC_Transmit_FS("Hello World CDC\r\n", 16);
+
 
 STM32 using callbacks to retrive data from USB CDC VCP
 
@@ -139,8 +144,7 @@ HAL_PCD_DataInStageCallback()
 
 在HAL_PCD_IRQHandler 中被调用
 
-__weak 这个说明是可以重载的函数
-总感觉稳定性还是不及ch340或 cp2102呢？这样想也没啥道理吧，先测试着吧，遇到问题再说
+__weak: 以重载函数
 
 MX_USB_DEVICE_Init() 调用了：
 
@@ -148,9 +152,6 @@ USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS);
 USBD_RegisterClass(&hUsbDeviceFS, &USBD_CDC);
 USBD_CDC_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS);
 USBD_Start(&hUsbDeviceFS);
-
-中断 CDC_Receive_FS() 按下按键的时候确实进了，但收到的数据不对
-收到就打印，能成功但是有问题
 
 ttyUSB0 ttyACM0 怎么区分的？为啥这个程序linux就认 ACM0？
 
@@ -164,3 +165,47 @@ mfauzi/STM32F4
 
 有三种复位的方法：系统复位、电源复位、RTC domain复位
 
+
+
+调用栈：
+HAL_GetTick
+HAL_PCD_IRQHandler
+PCD_EP_ISR_Handler
+USBD_LL_DataOutStage
+USBD_CDC_DataOut
+CDC_Receive_FS //Buf参数就是 UserRxBufferFS[4]
+USBD_CDC_ReceivePacket (merely called)
+USBD_LL_PrepareReceive() //prepare OUT Endpoint for reception
+
+
+CDC_Receive_FS()
+{
+  //如果不调用这2函数，回调进入一次，就不再进入（可是那个F4的demo，这里就只是调用了UART的发送。。。）
+  USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
+  USBD_CDC_ReceivePacket(&hUsbDeviceFS);
+}
+
+每次执行完
+CDC_Transmit_FS("Start...\n\r", 10);
+会进入：
+HAL_GetTick
+HAL_PCD_IRQHandler
+PCD_EP_ISR_Handler
+USBD_LL_DataInStage
+USBD_CDC_DataIn (这个函数基本啥也没干)
+
+
+每次中断只接收到1个字符？还是说我按键测试速度太慢了
+现在：怎么获取收到的数据呢?
+
+
+keil4.7 编译器对局部变量做了优化，debug看不到局部变量的值，调试的时候，把O2改为O0
+
+
+使用了外部晶体，SOC_IN/OUT 是PD0/1， 代码中 __HAL_RCC_GPIOD_CLK_ENABLE(); （不加这个晶体会不工作吗？需验证）
+
+
+
+
+Nucleo-F401 ST-Link使用：
+拔掉晶体旁边的2个跳线，CN4 3:GND，2:SWCLK, 4:SWDIO

@@ -24,6 +24,14 @@ yj：
 C 电阻 R 电容 X 尽量小
 1:1 打印： 打印预览/page setup/ scaled print:scale = 1/x=1 y=1 
 
+封装:
+0201 0.6mm x 0.3mm
+0402 1.0mm x 0.5mm
+0603 1.6mm x 0.8mm  ok
+0805 2.0mm x 1.2mm
+1206 3.2mm x 1.6mm
+1210 3.2mm x 2.5mm
+
 Vbias Microphone Bias(偏置) Voltage  是给mic提供电力的(about 2V)
 
 pcb 板制作
