@@ -284,6 +284,11 @@ gpedit.msc
 管理模板/Windows组件/Windows资源管理器/从我的电脑删除共享文档 选已启用
 虚拟机安装win7需要20G(xp 1.5G)
 
+网络盘运行可执行程序：用作为当前目录的以上路径启动了CMD.EXE，UNC路径不受支持
+注册表添加: HKEY_CURRENT_USER/Software/Microsoft/Command Processor                
+DisableUNCCheck REG_DWORD 1
+
+
 ---
 debian.org [ˈdebiən]  37500+ package
 分3类：main contrib non-free，后2者不是debian项目的一部分
