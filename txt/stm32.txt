@@ -136,6 +136,8 @@ echo hello world > /dev/ttyACM0  会发现没有收完的话，会卡住，ok �
 
 CDC_Transmit_FS("Hello World CDC\r\n", 16);
 
+在回调里面，调用printf 会卡死，调用CDC_Transmit_FS，第二次调用没有打印，奇怪
+
 
 STM32 using callbacks to retrive data from USB CDC VCP
 
@@ -180,7 +182,7 @@ USBD_LL_PrepareReceive() //prepare OUT Endpoint for reception
 
 CDC_Receive_FS()
 {
-  //如果不调用这2函数，回调进入一次，就不再进入（可是那个F4的demo，这里就只是调用了UART的发送。。。）
+  //如果不调用这2函数，回调进入一次，就不再进入（F4 demo，在uart dma回调里调用这个函数）
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
 }
@@ -204,15 +206,15 @@ keil4.7 编译器对局部变量做了优化，debug看不到局部变量的值�
 
 使用了外部晶体，SOC_IN/OUT 是PD0/1， 代码中 __HAL_RCC_GPIOD_CLK_ENABLE(); （不加这个晶体会不工作吗？需验证）
 
-
-
-
 Nucleo-F401 ST-Link使用：
 拔掉晶体旁边的2个跳线，CN4 3:GND，2:SWCLK, 4:SWDIO
-
-
 
 
 调试发现 PB3 PB4 设置io无效，因为复位后，PB3/4默认配置为JTAG，需要释放IO
 __HAL_AFIO_REMAP_SWJ_NOJTAG();  // HAL_MspInit 里面
 都是cube生成的，现在体现到cube的强大了
+
+———————
+printf 重定向fputc
+MDK，Target -> Code Generation 勾选 Use MicroLIB
+———————
