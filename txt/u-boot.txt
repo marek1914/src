@@ -92,8 +92,6 @@ SPL: Secondary Program Loader
 4 目录
   原各cpu在跟目录以lib_xx形式存在，2010/4/13 g8fe77a 移到arch/$ARCH，随后发布v2010.06
 
-用go启动kernel不标准
-
 设置ATAGS以及传递正确的machine ID
 
 u-boot调试可变为内存运行版
@@ -437,3 +435,5 @@ int raise (int signum)
     return 0;
 }
 
+
+common/cli_readline.c  命令行编辑
