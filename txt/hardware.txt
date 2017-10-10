@@ -38,6 +38,9 @@ pcb 板制作
 http://www.sz-jlc.com/home/index.html  //质量好，较贵
 http://www.sztcpcb.com  // 便宜 样板可以
 
+常规参数：
+板厚1.6mm
+最小线宽6mil，最小孔径0.3mm
 
 基尔霍夫定理: KCL  KVL 
 
@@ -614,3 +617,6 @@ i2c-tools 里面的 i2cdetect工具
 
 IP101GA 10/100 phy
 BAT54C：肖特基 三脚双二极管，IR一分为2到cpu 和MCU
+
+asm1117 ，输入输出都要加电容，实测，f330调试器输出5V有很强抖动，
+输入加电容后，1117输出稳定，但是加了负载后输出开始抖动，输出也加电容后，f330正常工作

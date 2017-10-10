@@ -3,16 +3,11 @@ VI控制的小风扇小灯：F321
 用f321做usb转串口，不用cp2102，因为我们常用的串口也很简单，只需要收发，而cp2102 是7线全功能串口，然后再配合一个 多通道切换器，这样一个minicom可以监测多个串口
 还可以模拟iic，spi等（这是我最开始想做的东西）
 
-adi: 1349@qq.com *2017J*Hun*
-
-机智：13@qq  jizhi88
-论坛：club.gizwits.com
- 
 ---------
 DA14580
 6LoWPAN 基于IPv6的低速无线个域网标准，即IPv6 over IEEE 802.15.4
 
-线序有如函数参数序列
+线序(如函数参数序列)
 BBG 4pin 2.0mm：
 RXD/TXD/3V3/GND
 SCL/SDA/3V3/GND
@@ -20,8 +15,7 @@ SCL/SDA/3V3/GND
 可: 
 SCL/VCC/SDA/GND
 差:
-VCC/SCL/SDA/GND
-SCL/VCC/GND/SDA
+VCC/SCL/SDA/GND  or SCL/VCC/GND/SDA
 
 3pin 
 好: GND/VCC/IO
@@ -32,7 +26,8 @@ SCL/VCC/GND/SDA
 
 AA 5  1600mAh
 AAA 7 1000mAh
-CR2032: 3V-Li 20x3.2mm 210mAh(放电到2V) 	BK-912电池座
+CR2032: 3V-Li 20x3.2mm 210mAh(放电到2V) 	
+BK-912电池座
 
 ------
 Particle Photon
@@ -103,7 +98,7 @@ Very Low 1.5µVp-p Noise (0.1Hz to 10Hz)
 sy8113b dc-dc
 
 DC-DC  662K  5V-3.3V  串口小板用
-串口小板  电源地之间 加了T7二极管（3.3/5V各一个）（什么是T7二极管） 何用？
+串口小板电源地之间 加了T7二极管（3.3/5V各一个）（什么是T7二极管） 何用？
 
 低压MOS场效应管AO3401
 mp1484
@@ -333,43 +328,12 @@ MDK Plus/Professional
 
 MDK5分成MDK Core(uVision5&Compiler5)和Software Packs两部分
 
---u8glib--
-m2tklib
-http://code.google.com/p/u8glib
-
-可pc编译sdl运行
-
-g++ -DHAVE_CONFIG_H -Icsrc -Icppsrc -Idogmsrc -Inonarduino `getconf LFS_CFLAGS` `getconf LFS64_CFLAGS` 
--D_GNU_SOURCE -D_FILE_OFFSET_BITS=64   -DSVN_VERSION='"469a805"' -I.  -Icsrc -Icppsrc -Inonarduino -DU8G_16BIT 
--DU8G_RASPBERRY_PI -DU8G_WITH_PINLIST   -O2 -MT sys/arduino/Chess/u8gwpi_chess-Chess.o -MD -MP -MF 
-sys/arduino/Chess/.deps/u8gwpi_chess-Chess.Tpo -c -o sys/arduino/Chess/u8gwpi_chess-Chess.o `test 
--f 'sys/arduino/Chess/Chess.cpp' || echo './'`sys/arduino/Chess/Chess.cpp
-pc编译，sys/arduino目录 .uno文件不认
-
-https://learn.adafruit.com/ssd1306-oled-displays-with-raspberry-pi-and-beaglebone-black/wiring
-u8glib/sys/arduino/Chess/Chess.cpp  //这个文件是自动生成的
-
-----
-6502 CPU  apple I/II  任天堂
-
-
-1117 稳压新片，输入输出都要加电容，实测，f330调试器输出5V有很强抖动，
-输入加电容后，1117输出稳定，但是加了负载后输出开始抖动，输出也加电容后，f330正常工作
-
 --
 自制小模块信息
 
 5-3.3 V 小板  红色5V 白色3.3V输出
 
-
-
-==sgmicro 圣邦 ==
-13**@qq.com : sgmicro
-
-----
 qiyi   轨迹跟踪板： N52832   nordic公司   能无线充电
-
-
 
 NeoPixel  环形LED条
 https://github.com/adafruit/Adafruit_NeoPixel
@@ -377,15 +341,11 @@ https://github.com/adafruit/Adafruit_NeoPixel
 https://www.tweaking4all.com/hardware/arduino/arduino-ws2812-led/
 https://www.adafruit.com/category/168
 
-
 ---
-BBC Micro:bit    电源插头 S2B-PH-SM4-TB(LF)(SN) -  Wire-To-Board Connector, Right Angle
-官网放出的sch和pcb，不是发售的，而是另一个版本
-
-nxp 那款单片机，起到了下载器作用，有创意
-
+BBC Micro:bit 电源插头 S2B-PH-SM4-TB(LF)(SN) -  Wire-To-Board Connector, Right Angle
+官网放出的sch和pcb，不是发售的，而是另一版本
+nxp 单片机
 
 ---
 openthread
-
 nRF52832-MDK

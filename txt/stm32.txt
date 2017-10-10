@@ -1,7 +1,23 @@
-STM32F100W   不要懒惰
+STM32F100W
 
 openstm32.org gaojie:200w200w
 st.com 13xx@q.com:89..2*G
+
+
+板子：
+NUCLEO-F401RE(F401RET6 84MHz 512+96)
+STM32F407G-DISC1 (F407VGT6 168MHz 1M+192k)
+F303-Discovery
+F429-Discovery (F429ZIT6 lcd u-boot)
+
+NUCLEO-F401RE:
+OFF:
+SB 4/6/8/10/11/18/20/24/29/30/32/36/39/44/46/47/48/49/52/55/59/61/62/63
+ON:
+SB 3/5/7/9/12/13/14/15
+
+F401的PA2/3连到F103的PA2/3 UART2
+
 
 看一下，有些信息
 http://www.wolinlabs.com/blog/linux.stm32.discovery.gcc.html
@@ -27,12 +43,6 @@ arm-none-eabi-gcc --version
 arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0
 
 cmsis/DSP_Lib/Source/下的文件生成lib/gcc下的2个.a
-
-board：
-NUCLEO-F401RE(F401RET6 84MHz 512+96)
-STM32F407G-DISC1 (F407VGT6 168MHz 1M+192k)
-F303-Discovery
-F429-Discovery (F429ZIT6 lcd u-boot)
 
 STM32F3/F4: with DSP and FPU instructions
 
