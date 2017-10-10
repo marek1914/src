@@ -136,7 +136,7 @@ echo hello world > /dev/ttyACM0  会发现没有收完的话，会卡住，ok �
 
 CDC_Transmit_FS("Hello World CDC\r\n", 16);
 
-在回调里面，调用printf 会卡死，调用CDC_Transmit_FS，第二次调用没有打印，奇怪
+在接收回调里，调用printf 会卡死, fputc 调用Trans 一直返回busy，调用CDC_Transmit_FS，第一次能打印，第二次调用没有打印，返回 USBD_BUSY
 
 
 STM32 using callbacks to retrive data from USB CDC VCP
@@ -218,3 +218,17 @@ __HAL_AFIO_REMAP_SWJ_NOJTAG();  // HAL_MspInit 里面
 printf 重定向fputc
 MDK，Target -> Code Generation 勾选 Use MicroLIB
 ———————
+
+USwitcher 就采用 中断+循环模式，无OS
+
+PB3/4 与JTAG冲突
+
+
+KEY_UP    \033[A
+KEY_DOWN  \033[B
+KEY_RIGHT \033[C  27(ESC) 91 67
+KEY_LEFT  \033[D  27 91 68
+
+
+
+这个地方，从shell里面提取，不要自己写了
