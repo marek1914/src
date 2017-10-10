@@ -446,10 +446,6 @@ linux/drivers/input/keyboard/atakbd.c : (一款游戏机)
  0x6a: Right    106
 
 
-在命令行里，F12等，显示~, 编辑状态显示 ^[[24~
-^[[24~   F12
-^[[21~   F10
-^[[20~   F9
 
 --logcat--
 logcat *:S MountService:V

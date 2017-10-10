@@ -223,12 +223,4 @@ USwitcher 就采用 中断+循环模式，无OS
 
 PB3/4 与JTAG冲突
 
-
-KEY_UP    \033[A
-KEY_DOWN  \033[B
-KEY_RIGHT \033[C  27(ESC) 91 67
-KEY_LEFT  \033[D  27 91 68
-
-
-
 这个地方，从shell里面提取，不要自己写了
