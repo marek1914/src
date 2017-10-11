@@ -4,10 +4,10 @@ VCC: 3.3~5V
 
 7针版本：
 GND/VCC(3.3~5V)
-CLK(D0)-arduino-A5
-DIN(D1)-arduino-A4
-RES 接高
-D/C 接地
+SCL(D0)-arduino-A5
+SDA(D1)-arduino-A4
+RES (oled 复位， rc或gpio)
+D/C 接地(i2c时选择地址 1:0x7a 0:0x78)
 CS  接地
 
 u8g2是强大的8位屏幕显示库，支持非常多的驱动芯片种类，可以选择多种字体、

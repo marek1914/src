@@ -29,7 +29,7 @@ ThumbEE:Thumb Execution Environment
 ARMv6T2 Introduces Thumb-2 technology
 Thumb-2 : Thumb的编码密度，ARM 指令集32-bit效能。
 
-ThumbEE，用于字节码语言的执行，比如java python perl，那为啥没有armee呢？A
+ThumbEE，用于字节码语言的执行，如java python perl
 
 VFP 架构也支援 SIMD（理解了）
 

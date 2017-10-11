@@ -1,7 +1,6 @@
---- silicon (cygnal) ---
-account: 134*@qq.com : 银行卡后5位*elelab
+ silicon (cygnal) 
 
-F321 C2连接成功 5V加在P7 而非 P8VBUS
+F321 C2连接成功 5V加在P7 而非 P8 VBUS
 7-8 脚连一起 就是USB供电模式
 
 reset后，内部时钟源 1.5MHz 
