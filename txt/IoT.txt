@@ -305,29 +305,6 @@ BM04B-SRSS-TB
 SM04B-SRSS-TB
 --------------
 
---keil--
-ARM收购Keil ,产品分：MDK-ARM(也称KEIL-ARM) C51
-
-C51分：
-PK51 professional developer's kit
-CA51 compiler kit
-A51  assembler kit
-
-uVision Project Manager
-
-keil/arm/下有 Segger/STLink/ULink 多个驱动支持，
-插入segger J-link，选择Segger目录x86，正常安装
-也可独立安装Segger驱动，更新版本
-
-4.74 破解(官网无法下载，不用尝试)：
-1 uVision4 -> File->License Management 找到CID
-2 打开 keillic.exe，输入CID，target选择ARM
-输入LIC后，Lite版变为 Standard版
-
-MDK Plus/Professional
-
-MDK5分成MDK Core(uVision5&Compiler5)和Software Packs两部分
-
 --
 自制小模块信息
 

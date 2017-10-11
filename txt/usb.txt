@@ -1,0 +1,92 @@
+CDC: Communication Device Class
+Vendor ID： http://www.linux-usb.org/usb.ids
+
+1d6b  Linux Foundation (貌似是模拟设备)
+	0001  1.1 root hub
+	0002  2.0 root hub
+	0003  3.0 root hub
+	0100  PTP Gadget
+	0101  Audio Gadget
+	0102  EEM Gadget
+	0103  NCM (Ethernet) Gadget
+	0104  Multifunction Composite Gadget
+	0105  FunctionFS Gadget
+	0200  Qemu Audio Device
+
+8086  Intel Corp.  (大公司2个，8086/8087)
+8087  Intel Corp.
+	0020  Integrated Rate Matching Hub
+	0024  Integrated Rate Matching Hub
+
+
+在dell笔记本中，这个是webcam，占用一个usb口
+
+0c45:6488 Microdia
+
+www.perisoft.net >Bus Hound 6.01
+
+D+/DP: Digital Positive
+D-/DM: Digital Minus
+
+USB是half duplex
+中断传输流程与bulk传输一样。
+setup的数据阶段的流程跟bulk传输一样
+控制传输的流程最复杂，分3个阶段：setup/数据/握手
+
+4 data0  data1数据包绝对不可以单独出现， 都必须包含在setup pid  in/out pid中，并且没有in/out中只能包含一个data0/data1包，
+因为数据包不带地址 所以数据包必须包含在带有地址的包里面，才知道这个数据包是发到什么位置的。由于数据包的长度不定（token包和握手包的长度都是固定的）
+所以数据包应该是靠EOP来判断包结束的
+6 设置地址的命令 地址就包含在请求里，所以没有数据阶段
+7 1.1协议，8.4.1 token packets  :For IN transactions,these fields uniquely identify which endpoint should transmit a Data packet.
+8 前几天我记得说，握手包只能是设备发给主机。这个是不对的。准确的说 8.4.4:
+9 控制传输最为特殊，他规定了数据格式。而其他3种传输方式都没有规定传输格式。这相当于在数据连路层增加了一层协议，他跟bulk only 协议是同一个级别的。
+10 u盘使用的协议有bulk only还有CBI但不常用
+
+zero-length packet()
+Bulk传输终止于如下情况(USB1.1 5.8.3):
+1 已经传输了host请求的数据大小
+2 收到一个负载小于最大包长，或0长度数据包 （host请求的比设备发送的多的情况）
+
+请求长度大于实际返回长度，且返回数据包长度是端点最大包长的整数倍时，需要返回0长度数据包。
+例如端点最大包长为8字节，若host请求18字节，但设备只有12字节要返回，那么只返回12字节的数据即可，
+但如果要返回8或16字节，就要在返回这些字节后再返回0长度数据包。
+
+class 8 为mass storage设备  0/ff 用户自定义设备
+
+
+
+--usb uart--
+FT232，CP2102
+UART是LSB
+
+1 绿色USB转232线340芯片，需232转ttl
+2 ch340/pl2303(Prolific)/cp210x，在兼容性，稳定性有区别
+3 淘宝优硕usb转TTL，lsusb：HL-340 USB-Serial adapter
+
+8250(intel)
+NS(national semiconductor)
+ns16450(character mode) 
+ns16550(fifo mode)
+
+16450仅1 byte buffer，收到一字节就产生中断，不及时处理就会被覆盖
+16550有16 byte fifo，可设1/4/8/14字节触发中断
+
+若设8字节触发中断，只发送1字节时，
+Character Timeout Indication：
+No Characters Have Been Removed From or Input to the RCVR FIFO During the Last 4 Char Times and There Is at Least 1 Char in It During This Time
+
+RTS：request to send
+CTS：clear to send(RTS的应答)
+
+RI DCD DTR DSR
+流量控制 CTS/RTS（硬） 或 Xon/Xoff（软） 或 无
+
+DCE: 数据通讯设备  
+DTE: 数据终端设备
+由于DCE DTE之间的速度差异，需进行流量控制：
+软件流控：Xoff(停止)/Xon(继续发送) ，并将控制码加入到数据流中
+
+RS232 full-duplex
+RS485 half-duplex：RX+/TX+并联为Data+，RX-/TX-并联为Data-，MAX485是半双工模式的485收发器
+
+

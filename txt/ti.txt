@@ -25,11 +25,6 @@ cc2650: m3
 
 CC Debuger : CC2511-F32(8051/usb)
 
-IAR EW8051/EWARM
-
-下载了:
-EW8051 830/930(mac os 可用)
-
 CC26xxWare与EmuPack:
 
 CC26xxWare is no longer released as a standalone software package
@@ -79,7 +74,6 @@ SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",ATTRS{idVendor}=="0451",ATTRS{idProd
 dev.ti.com
 
 tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/startup_files/startup_gcc.c
-keil的启动文件是.s gcc和ccs的都是.c
 
 这个文件与contiki中 cc26xxware目录中的同名文件一致
 

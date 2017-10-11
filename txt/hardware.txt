@@ -20,7 +20,6 @@ Colpitts oscillator
 http://www.iue.tuwien.ac.at/phd/rottinger/node56.html
 http://www.electronics-tutorials.ws/oscillator/colpitts.html
 
-yj：
 C 电阻 R 电容 X 尽量小
 1:1 打印： 打印预览/page setup/ scaled print:scale = 1/x=1 y=1 
 
@@ -70,8 +69,6 @@ vector network analyzer (VNA)—measures both amplitude and phase properties
 
 LPD433 (low power device 433.050-434.790)  bw: 1.74 MHz
 
-ITU-T: gaojie@cyclecentury.com:*2xxpy-
-
 I : In-Phase(同相 同步) signal component
 Q : Quadrature signal component 
 
@@ -80,7 +77,6 @@ Q : Quadrature signal component
 
 电磁波:TE，TM，TEM,
 
-天线：
 陶瓷天线
 外接柱状天线
 PCB板载天线
@@ -123,7 +119,6 @@ wikipedia 搜索 Dipole antenna
 
 耦合：直流，交流，接地，选择交流，无法测出直流电压
 
-20170803
 选择交流耦合，测试的1k波形，变为正负信号
 
 探头衰减x10的含义
@@ -137,9 +132,8 @@ AFG1022 pwm 超过1M不可调节占空比
 AFG输出阻抗50Ω，示波器输入阻抗50Ω时，示波器峰峰值5V，输入阻抗1MΩ时，示波器峰峰值10V
 
 Fluke 107 
-电流档精度 4A以内，分辨力1mA，精度 1.5%+3 怎么理解？
-电阻：400欧量程 分辨力0.1欧  4K欧量程，分辨率1欧姆，分辨率不高
-总感觉分辨率和精度有些冲突呢
+电流 4A以内分辨力1mA，精度 1.5%+3 怎么理解？
+电阻 400欧 分辨力0.1欧  4K欧，分辨率1欧
 
 LCR表， DCR是直流电阻，Z是阻抗，电感就是2PifL，那R是啥？
 
@@ -189,8 +183,6 @@ uart面板，手册19200无奇偶校验2停止位，按键读取错误
 一般蓝色色环电阻1/4 W，100欧，电压5V已明显发热，1K欧的 15.8V
 
 100欧电阻串联1N4007，电阻电压5V时，二极管0.75V
-
-超小型还有1/8W
 
 碳膜电阻
 金属膜电阻
@@ -246,11 +238,9 @@ The P-N junction
 
 达林顿管
 
-
 泛音晶体
 
 理想电容电感不消耗能量，没有功耗，只是储存释放
-
 
 2个大金属片中间隔一层纸，也才只有100pF
 
@@ -432,191 +422,18 @@ As frequency goes up, inductive reactance goes up and capacitive reactance goes 
 
 阻抗=电抗+电阻 即 Z=R+jX， 而X=Xl+Xc=wL-1/wC    w=2*pi*f
 
-
 hdmi的esd有必要，不贴遇到过击坏情况
 可用低成本压敏电阻替代
 usb和sd的保护二极管，白色像电阻一样的东西。
 sd不会插带电的东西，二极管保护没必要
 
---usb uart--
-FT232，CP2102
-UART是LSB
 
-1 绿色USB转232线340芯片，需232转ttl
-2 ch340/pl2303(Prolific)/cp210x，在兼容性，稳定性有区别
-3 淘宝优硕usb转TTL，lsusb：HL-340 USB-Serial adapter
-
-8250(intel)
-NS(national semiconductor)
-ns16450(character mode) 
-ns16550(fifo mode)
-
-16450仅1 byte buffer，收到一字节就产生中断，不及时处理就会被覆盖
-16550有16 byte fifo，可设1/4/8/14字节触发中断
-
-若设8字节触发中断，只发送1字节时，
-Character Timeout Indication：
-No Characters Have Been Removed From or Input to the RCVR FIFO During the Last 4 Char Times and There Is at Least 1 Char in It During This Time
-
-RTS：request to send
-CTS：clear to send(RTS的应答)
-
-RI DCD DTR DSR
-流量控制 CTS/RTS（硬） 或 Xon/Xoff（软） 或 无
-
-DCE: 数据通讯设备  
-DTE: 数据终端设备
-由于DCE DTE之间的速度差异，需进行流量控制：
-软件流控：Xoff(停止)/Xon(继续发送) ，并将控制码加入到数据流中
-
-RS232 full-duplex
-RS485 half-duplex：RX+/TX+并联为Data+，RX-/TX-并联为Data-，MAX485是半双工模式的485收发器
-
----
-
-CDC: Communication Device Class
-Vendor ID： http://www.linux-usb.org/usb.ids
-
-1d6b  Linux Foundation (貌似是模拟设备)
-	0001  1.1 root hub
-	0002  2.0 root hub
-	0003  3.0 root hub
-	0100  PTP Gadget
-	0101  Audio Gadget
-	0102  EEM Gadget
-	0103  NCM (Ethernet) Gadget
-	0104  Multifunction Composite Gadget
-	0105  FunctionFS Gadget
-	0200  Qemu Audio Device
-
-8086  Intel Corp.  (大公司2个，8086/8087)
-8087  Intel Corp.
-	0020  Integrated Rate Matching Hub
-	0024  Integrated Rate Matching Hub
-
-
-在dell笔记本中，这个是webcam，占用一个usb口
-
-0c45:6488 Microdia
-
-www.perisoft.net >Bus Hound 6.01
-
-D+/DP: Digital Positive
-D-/DM: Digital Minus
-
-USB是half duplex
-中断传输流程与bulk传输一样。
-setup的数据阶段的流程跟bulk传输一样
-控制传输的流程最复杂，分3个阶段：setup/数据/握手
-
-4 data0  data1数据包绝对不可以单独出现， 都必须包含在setup pid  in/out pid中，并且没有in/out中只能包含一个data0/data1包，
-因为数据包不带地址 所以数据包必须包含在带有地址的包里面，才知道这个数据包是发到什么位置的。由于数据包的长度不定（token包和握手包的长度都是固定的）
-所以数据包应该是靠EOP来判断包结束的
-6 设置地址的命令 地址就包含在请求里，所以没有数据阶段
-7 1.1协议，8.4.1 token packets  :For IN transactions,these fields uniquely identify which endpoint should transmit a Data packet.
-8 前几天我记得说，握手包只能是设备发给主机。这个是不对的。准确的说 8.4.4:
-9 控制传输最为特殊，他规定了数据格式。而其他3种传输方式都没有规定传输格式。这相当于在数据连路层增加了一层协议，他跟bulk only 协议是同一个级别的。
-10 u盘使用的协议有bulk only还有CBI但不常用
-
-
-Micro usb系列的独特之处是他们包含了不锈钢外壳(材质也有要求)，万次插拔没问题
-
-zero-length packet()
-Bulk传输终止于如下情况(USB1.1 5.8.3):
-1 已经传输了host请求的数据大小
-2 收到一个负载小于最大包长，或0长度数据包 （host请求的比设备发送的多的情况）
-
-请求长度大于实际返回长度，且返回数据包长度是端点最大包长的整数倍时，需要返回0长度数据包。
-例如端点最大包长为8字节，若host请求18字节，但设备只有12字节要返回，那么只返回12字节的数据即可，
-但如果要返回8或16字节，就要在返回这些字节后再返回0长度数据包。
-
-
+IP101GA: 10/100 phy
+BAT54C:  肖特基双二极管，IR一分为2到CPU和MCU
 MAX3420 / FT121  SPI slave 转USB Device
 
-gu:
-rockchip 芯片otg usb device 模拟网卡，NCM协议， 开始在freescal平台调试ok，移植到rockchip，枚举基本ok，mac地址获取不到，数据丢失几个字节
-原因：网络数据要求对齐，而otg驱动数据没有对齐（不明白）
-
-MAX3421E  SPI转USB Host/Device,guwb，我的猜想很准，有这种芯片
-
-guwb
-class 8 为mass storage设备  0/ff 用户自定义设备
+经验：
+asm1117 ，输入输出都要加电容，5V输入有抖动时，输入加电容，1117输出稳定，但加负载后输出开始抖动，输出也加电容后，OK
+接口都要加ESD
 
 
-gu:
-kernel同时支持2个usb device的问题
-
-
------sd-----
-http://www.jedec.org  gaojiexxx:gaojie123 (gaojie@cyclecentury.com)
-https://www.sdcard.org/
-
-High-Capacity (SDHC), the eXtended-Capacity (SDXC)
-
-SDXC: Secure Digital eXtended Capacity
-SD: Secure Digital
-SDIO: Secure Digital I/O 多用于Wi-Fi/Bluetooth模组，现在多用usb替代
-
-MiniSD
-TF(Trans-flash)即Micro SD，SanDisk发明，15x11mm
-SanDisk 128GB卡，打破最高64G卡的限制
-
-SD与MicroSD引脚不同：
-SD 9脚排序: 9 1 2 3 4 5 6 7 8 (2个地)
-MicroSD 8脚排序: 1 2 3 4 5 6 7 8
-SD引脚      9 D2  1 D3 2 cmd 3 vss 4 vdd   5 clk  6 vss  7 D0  8 D1
-TF卡SD模式  1 D2  2 D3 3 cmd 4 vdd 5 clk  6 vss   7 D0 8 D1 (4,6脚较长) 
-TF卡SPI模式 1 保留   2 cs    3 di  4 vdd 5 sclk 6 vss  7 do     8 保留   
-TF卡座第9脚检查插入拔出
-
-25MHz/50MHz 时钟在clk引脚上
-SDIO信号：
-
-Speed class rating
-class 4   4M/s  称为C4
-class 10  10M/s 称为C10
-
-eMMC : embedded MMC 官方写法 e.MMC 将flash memory + controller) 放入BGA IC封装，不支持 SPI-bus协议
-ScanDisk  C10 microSDHC  I(这个I标示UHS I？)
-MMC:Multimedia Card
-SD基于MMC发展而来，保留MMC的7针外，在两边加了2针作为数据线，长宽和MMC一样，兼容MMC。
----
-
-Bus Hound(猎犬) perisoft公司用于PC总线数据包监视
-
-帧:数据流里面检测一个处理单元的起止位置
-
-I2S:
-SDATA: 数据
-SCLK: 数据同步用时钟
-LRCLK: 左右声道切换时钟
-MCLK: 芯片工作的主时钟
-
----
-
-I2C(Inter-IC) I-squared-C/I-two-C/I-I-C
-Two-wire Serial Interface :I2C 子集
-SMBus(System Management Bus),Intel定义，I2C子集，定义更严格，与i2c相似，互相借鉴。
-
-www.nxp.com/documents/user_manual/UM10204.pdf
-
-dev/i2c-0  
-dev/i2c-1
-
-gpio内部上拉可驱动iic
-
-kernel:
-i2c_transfer()
-i2c_master_send()
-
-user:
-open/ioctl
-
-i2c-tools 里面的 i2cdetect工具
----
-
-IP101GA 10/100 phy
-BAT54C：肖特基 三脚双二极管，IR一分为2到cpu 和MCU
-
-asm1117 ，输入输出都要加电容，实测，f330调试器输出5V有很强抖动，
-输入加电容后，1117输出稳定，但是加了负载后输出开始抖动，输出也加电容后，f330正常工作

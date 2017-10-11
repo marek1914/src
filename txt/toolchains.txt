@@ -1,0 +1,61 @@
+https://pan.baidu.com/s/1dFnHzGl    keil5.24
+
+3个主要工具
+ARM: MDK-ARM  keil C51 v4: .uvproj  v5: .uvprojx
+IAR: IAR Workbench EW8051/EWARM 
+GCC: GCC ARM Embedded
+
+下载了:
+EW8051 830/930(mac os 可用)
+
+--keil--
+ARM收购Keil ,产品分：MDK-ARM(也称KEIL-ARM) C51
+
+C51分：
+PK51 professional developer's kit
+CA51 compiler kit
+A51  assembler kit
+
+uVision Project Manager
+
+keil/arm/下有 Segger/STLink/ULink 多个驱动支持，
+插入segger J-link，选择Segger目录x86，正常安装
+也可独立安装Segger驱动，更新版本
+
+4.74 破解(官网无法下载，不用尝试)：
+1 uVision4 -> File->License Management 找到CID
+2 打开 keillic.exe，输入CID，target选择ARM
+输入LIC后，Lite版变为 Standard版
+
+MDK Plus/Professional
+
+MDK5分成MDK Core(uVision5&Compiler5)和Software Packs两部分
+
+===============
+keil/Silicon IDE
+
+SimplicityStudio-v4(win/linux/macos)   添加udev rule(我加在了xds文件里面)
+file->switch to work space
+这个工具跟ti的ccs一样，非常的集成化，简化开发过程
+右上角可以切换launcher 和 IDE
+
+!! 这个licence 只是编译器，不是keil全套环境
+选择一个USB demo，转到一个eclips开发环境，编译时，提示keil编译器（用这个编译器编译）是评估版license
+按照提示进入 armkeil网站，填写信息，
+收到邮件（注册时的邮件）免费得到全功能license:
+ We have sent your product registration information including the License ID Code (LIC) 
+via e-mail to 13xx467@qq.com.
+When you receive this e-mail, copy the License ID Code (LIC) and paste it into the New License ID 
+Code input field in the µVision License Manager Dialog — Single-User License Tab (available from the File Menu).
+邮件得到：
+PK51 Professional Developer's Kit
+For Silicon Labs Devices Only
+Support Ends 31 Mar 2019
+PC Description       : GAOJIE'S PC
+Computer ID     (CID): C86HJ-1XJUT
+
+License ID Code (LIC): TI413-ANA7N-EA7AH-9VT3M-YXSRG-4NU7E
+这应该是silicon付钱的
+发现这个编译器竟然是windows版本，还以为开发了linux版本呢， 可是竟然能在ubuntu上编译
+
+
