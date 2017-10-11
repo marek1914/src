@@ -84,20 +84,10 @@ Perface
 4 linux/include/asm-mips/emma/emma3slp.h里面定义了 内存大小 Flash大小等信息。这个文件定义了EMMA_NAND_ROM_MODE 但是从来没有用
 
 
-ARCH=arm 问题，为何每次遇到都纠结
-纠结根源，为啥不作成靠 xx_defconfig 设置死
-问题在于：_defconfig分布在各arch目录下，如arm/configs  mips/configs
-在xx_里包含目录信息？不合理。搜索所有configs目录？这可以，但要保证所有config不重名，所以是可以做到的，只是标准kernel没做而已
+ARCH=arm 不靠 xx_defconfig 设置死，因为 _defconfig分布在各arch目录下，如arm/configs  mips/configs
+在xx_里包含目录信息不合理。搜索所有configs目录？这可以，但要保证所有config不重名，可以做到，kernel没做而已
 
-各种预设定，在“根”的位置，总有比较特殊的，需要手动指定
-
-mstar写了些脚本，可以从.config检测CONFIG_ARM=y 判断是arm，虽工作，但逻辑并不严密，仅仅解决临时问题而已
-
-当然，这是软件，想要什么样的都能实现，只是选择一个最优方式
-比如make menuconfig 出现选项，选择ARCH，就像选择板子一样也行呀？
-
-make menuconfig 已经有arm版 .config 的情况下，不加ARCH=arm 还是到了x86状态，即并未读.config
-只有加了 ARCH=arm 才会读
+mstar写了些脚本，可以从.config检测CONFIG_ARM=y 判断是arm，虽工作，但逻辑并不严密
 
 CROSS_COMPILE   ?= $(CONFIG_CROSS_COMPILE)
 $(info ======= $(CROSS_COMPILE) ====)
