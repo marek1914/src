@@ -30,6 +30,10 @@ JST的本质，类似于Lego
 
 6502 CPU apple I/II 任天堂
 
+硬件制造商
+Dynastream Innovations Inc.
+
+
 MCU排行：
 Renesas/NXP+Freescale/Microchip+Atmel
 ST/Infineon/TI/Cypress(MCU+analog+FPGA)/Silicon
