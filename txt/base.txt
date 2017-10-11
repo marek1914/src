@@ -6,6 +6,15 @@
 这部分收集一个算法。20171005
 
 
+standard linux xterm esc sequences for arrow key
+
+F12: ^[[24~
+F10: ^[[21~
+F9:  ^[[20~
+
+KEY_DOWN  \033[B
+KEY_RIGHT \033[C  27(ESC) 91 67
+KEY_LEFT  \033[D  27 91 68  ^[[D   ^[ 代表esc？
 
 ---C++----
 int a(5)；即 int a=5; 用构造函数构造初始化类，如classA a(b);

@@ -1,8 +1,5 @@
 suxiang198的博客
 
---TI--
-账户：13**67@qq.com : -2y50wpy-
-
 cc2531 sniffer   Ubiqua
 
 TI 收购 chipcon(cc-xx)
@@ -10,11 +7,11 @@ TI 收购 chipcon(cc-xx)
 Z-Stack support BBB
 OSAL: OS抽象层
 
-CC1101 sub-1GHz 射频收发器
-CC2520: 2.4 GHz ZigBee RF transceiver phy
-CC2592: Range Extender
-CC2540/1: bluetooth 4.0
-CC2640: bluetooth
+CC1101:   sub-1GHz 射频收发器
+CC2520:   2.4 GHz ZigBee RF transceiver phy
+CC2592:   Range Extender
+CC2540/1: bluetooth 4.0(8051)
+CC2640:   bluetooth(arm m0+m3)
 
 zigbee(4):
 cc2530/1(usb): 8051
@@ -23,17 +20,10 @@ cc2630: m3
 cc2650: m3
  
 4×4 RSM QFN32 0.4
-5×5 RHB QFN32 0.5 use this!
+5×5 RHB QFN32 0.5
 7×7 RGZ QFN48 0.5
 
 CC Debuger : CC2511-F32(8051/usb)
-
-IAR EW8051/EWARM
-
-下载了:
-EW8051 830/930(mac os 可用)
-
-cc2650 需要EWARM
 
 CC26xxWare与EmuPack:
 
@@ -41,7 +31,7 @@ CC26xxWare is no longer released as a standalone software package
 is included in TI-RTOS
 
 SmartRF Flash Programmer  (winxp ok)
-SmartRF Flash Programmer2 (run on 32/64-bit Win7/8, winxp fail)
+SmartRF Flash Programmer2 (run on Win7/8, winxp fail)
 SmartRF Studio
 
 Debugger Devpack:
@@ -60,7 +50,7 @@ import时出错，重启，提示有内容需要安装
 windows->preferences->ccs->products->可看到
 回到Resource Explorer，import ok
 
-XDS110 连不上，是权限问题：
+XDS110 连不上是权限问题：
 
 /ccsv7/ccs_base/common/uscif/xds110$ ./xdsdfu -e
 VID: 0x0451    PID: 0xbef3
@@ -84,7 +74,6 @@ SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",ATTRS{idVendor}=="0451",ATTRS{idProd
 dev.ti.com
 
 tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/startup_files/startup_gcc.c
-keil的启动文件是.s gcc和ccs的都是.c
 
 这个文件与contiki中 cc26xxware目录中的同名文件一致
 
@@ -260,3 +249,9 @@ CCFG p710  FA8-FFF
 
 CC2650 Ref 电压输出1.666V ，电源供电1.8-3.8之间，都输出这个电压，低于1.8V停止工作，高于3.8V 没敢试
 
+
+
+
+-----
+DAC
+在产品中选择 data converters, 多数是 2个通道

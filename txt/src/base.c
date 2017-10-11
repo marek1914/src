@@ -533,7 +533,7 @@ int main(void)
 }
 
 uint8_t path[128];
-strcpy(path, “hello”); //keil 提示类型不匹配问题
+strcpy(path, “hello”); 
 
 long unsigned int
 unsigned long int

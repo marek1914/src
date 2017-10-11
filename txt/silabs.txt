@@ -1,7 +1,6 @@
---- silicon (cygnal) ---
-account: 134*@qq.com : 银行卡后5位*elelab
+silicon (cygnal) 
 
-F321 C2连接成功 5V加在P7 而非 P8VBUS
+F321 C2连接成功 5V加在P7 而非 P8 VBUS
 7-8 脚连一起 就是USB供电模式
 
 reset后，内部时钟源 1.5MHz 
@@ -13,32 +12,6 @@ reset后，内部时钟源 1.5MHz
 C2CK: P13 (yellow)
 C2D:  P14 (green)
 USB线连接顺序：黑-P7 /橙-P8/黄-p9/红-p12
-
-keil/Silicon IDE
-
-SimplicityStudio-v4(win/linux/macos)   添加udev rule(我加在了xds文件里面)
-file->switch to work space
-这个工具跟ti的ccs一样，非常的集成化，简化开发过程
-右上角可以切换launcher 和 IDE
-
-
-选择一个USB demo，转到一个eclips开发环境，编译时，提示keil编译器（用这个编译器编译）是评估版license
-按照提示进入 armkeil网站，填写信息，
-收到邮件（注册时的邮件）免费得到全功能license:
- We have sent your product registration information including the License ID Code (LIC) 
-via e-mail to 13xx467@qq.com.
-When you receive this e-mail, copy the License ID Code (LIC) and paste it into the New License ID 
-Code input field in the µVision License Manager Dialog — Single-User License Tab (available from the File Menu).
-邮件得到：
-PK51 Professional Developer's Kit
-For Silicon Labs Devices Only
-Support Ends 31 Mar 2019
-PC Description       : GAOJIE'S PC
-Computer ID     (CID): C86HJ-1XJUT
-
-License ID Code (LIC): TI413-ANA7N-EA7AH-9VT3M-YXSRG-4NU7E
-这应该是silicon付钱的
-发现这个编译器竟然是windows版本，还以为开发了linux版本呢， 可是竟然能在ubuntu上编译
 
 idVendor 10c4  程序里写的是C410   lsusb 根据这个显示厂商名字，厂商名字并非在程序里面的字符串(lsusb没有搜到字符串，那么是从哪里来的呢？)
 

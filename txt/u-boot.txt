@@ -39,6 +39,8 @@ make env编译tools/env，生成fw_(printenv/saveenv)
 /etc/fw_env.config，根据定义的env区，和mtd分区情况修改。
 linux下更新u-boot环境变量
 
+201709 版本， -O0 后 fixup_cmdtable 找不到
+
 1 开始
 	Das U-Boot(Universal Boot Loader)德国DENX开发
 	http://www.denx.de/wiki/view/DULG/Manual

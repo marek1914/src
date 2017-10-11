@@ -84,20 +84,10 @@ Perface
 4 linux/include/asm-mips/emma/emma3slp.h里面定义了 内存大小 Flash大小等信息。这个文件定义了EMMA_NAND_ROM_MODE 但是从来没有用
 
 
-ARCH=arm 问题，为何每次遇到都纠结
-纠结根源，为啥不作成靠 xx_defconfig 设置死
-问题在于：_defconfig分布在各arch目录下，如arm/configs  mips/configs
-在xx_里包含目录信息？不合理。搜索所有configs目录？这可以，但要保证所有config不重名，所以是可以做到的，只是标准kernel没做而已
+ARCH=arm 不靠 xx_defconfig 设置死，因为 _defconfig分布在各arch目录下，如arm/configs  mips/configs
+在xx_里包含目录信息不合理。搜索所有configs目录？这可以，但要保证所有config不重名，可以做到，kernel没做而已
 
-各种预设定，在“根”的位置，总有比较特殊的，需要手动指定
-
-mstar写了些脚本，可以从.config检测CONFIG_ARM=y 判断是arm，虽工作，但逻辑并不严密，仅仅解决临时问题而已
-
-当然，这是软件，想要什么样的都能实现，只是选择一个最优方式
-比如make menuconfig 出现选项，选择ARCH，就像选择板子一样也行呀？
-
-make menuconfig 已经有arm版 .config 的情况下，不加ARCH=arm 还是到了x86状态，即并未读.config
-只有加了 ARCH=arm 才会读
+mstar写了些脚本，可以从.config检测CONFIG_ARM=y 判断是arm，虽工作，但逻辑并不严密
 
 CROSS_COMPILE   ?= $(CONFIG_CROSS_COMPILE)
 $(info ======= $(CROSS_COMPILE) ====)
@@ -577,16 +567,16 @@ gwb调通recovery fb显示console内容
 recovery使用自己的字库
 drivers/video/console 也有字库用于fb显示console
 
-console主设备5 次设备1  drivers/char/tty_io.c 文件
+console (5,1)  drivers/char/tty_io.c
 
-major.h 中定义
+major.h: 
 #define TTYAUX_MAJOR  5
 
 device_create(tty_class, NULL, MKDEV(TTYAUX_MAJOR, 1), NULL,"console");
 
-/dev/console  5 1
-/dev/tty      5 0
-/dev/ptmx     5 2
+/dev/tty       5 0
+/dev/console   5 1
+/dev/ptmx      5 2
 /dev/ttyprintk 5 3
 
 
@@ -1566,4 +1556,79 @@ CONFIG_HOSTFS 并没有配置，但clean的时候却回去检查，可见，dist
 也就是说，即使我同时配置了多个情况，比如有的编译了某fs，有的没有，distclean时一并清除。这个思想是对的！
 在driver下删除某个目录，要在Makefile中把相应条目删除
 driver 目录还有很多过时的驱动可以删除
+
+----driver---
+I2C(Inter-IC) I-squared-C/I-two-C/I-I-C
+Two-wire Serial Interface :I2C 子集
+SMBus(System Management Bus),Intel定义，I2C子集，定义更严格，与i2c相似，互相借鉴。
+
+www.nxp.com/documents/user_manual/UM10204.pdf
+
+dev/i2c-0  
+dev/i2c-1
+
+gpio内部上拉可驱动iic
+
+kernel:
+i2c_transfer()
+i2c_master_send()
+
+user:
+open/ioctl
+
+i2c-tools 里面的 i2cdetect工具
+
+
+I2S:
+SDATA: 数据
+SCLK: 数据同步用时钟
+LRCLK: 左右声道切换时钟
+MCLK: 芯片工作的主时钟
+
+
+
+Bus Hound(猎犬) perisoft公司用于PC总线数据包监视
+
+帧:数据流里面检测一个处理单元的起止位置
+
+
+-----sd-----
+http://www.jedec.org  gaojiexxx:gaojie123 (gaojie@cyclecentury.com)
+https://www.sdcard.org/
+
+High-Capacity (SDHC), the eXtended-Capacity (SDXC)
+
+SDXC: Secure Digital eXtended Capacity
+SD: Secure Digital
+SDIO: Secure Digital I/O 多用于Wi-Fi/Bluetooth模组，现在多用usb替代
+
+MiniSD
+TF(Trans-flash)即Micro SD，SanDisk发明，15x11mm
+SanDisk 128GB卡，打破最高64G卡的限制
+
+SD与MicroSD引脚不同：
+SD 9脚排序: 9 1 2 3 4 5 6 7 8 (2个地)
+MicroSD 8脚排序: 1 2 3 4 5 6 7 8
+SD引脚      9 D2  1 D3 2 cmd 3 vss 4 vdd   5 clk  6 vss  7 D0  8 D1
+TF卡SD模式  1 D2  2 D3 3 cmd 4 vdd 5 clk  6 vss   7 D0 8 D1 (4,6脚较长) 
+TF卡SPI模式 1 保留   2 cs    3 di  4 vdd 5 sclk 6 vss  7 do     8 保留   
+TF卡座第9脚检查插入拔出
+
+25MHz/50MHz 时钟在clk引脚上
+SDIO信号：
+
+Speed class rating
+class 4   4M/s  称为C4
+class 10  10M/s 称为C10
+
+eMMC : embedded MMC 官方写法 e.MMC 将flash memory + controller) 放入BGA IC封装，不支持 SPI-bus协议
+ScanDisk  C10 microSDHC  I(这个I标示UHS I？)
+MMC:Multimedia Card
+SD基于MMC发展而来，保留MMC的7针外，在两边加了2针作为数据线，长宽和MMC一样，兼容MMC。
+
+
+
+gu:
+rockchip 芯片otg usb device 模拟网卡，NCM协议， 开始在freescal平台调试ok，移植到rockchip，枚举基本ok，mac地址获取不到，数据丢失几个字节
+原因：网络数据要求对齐，而otg驱动数据没有对齐（不明白）
 
