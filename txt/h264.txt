@@ -58,9 +58,7 @@ Arbitrary slice order is not allowed (ASO)
 Flexible Macroblock Ordering (FMO, 仅BP，XP支持，用处很窄) 这个文档中没有提到呢？  wikipedia有
 但貌似跟slice_group_map_type 有关
 
-libx264生成工具 x264，实验一下
-
-libx264提供命令行和API，前者用于GUI如MeGUI，后者用于如FFmpeg
+libx264提供命令行和API
 
 x265 source code is written in C++ and assembly
 MPEG-H (ISO/IEC 23008) Part 2 and ITU-T H.265, can support 8K UHD(8192×4320)

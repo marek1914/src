@@ -567,16 +567,16 @@ gwb调通recovery fb显示console内容
 recovery使用自己的字库
 drivers/video/console 也有字库用于fb显示console
 
-console主设备5 次设备1  drivers/char/tty_io.c 文件
+console (5,1)  drivers/char/tty_io.c
 
-major.h 中定义
+major.h: 
 #define TTYAUX_MAJOR  5
 
 device_create(tty_class, NULL, MKDEV(TTYAUX_MAJOR, 1), NULL,"console");
 
-/dev/console  5 1
-/dev/tty      5 0
-/dev/ptmx     5 2
+/dev/tty       5 0
+/dev/console   5 1
+/dev/ptmx      5 2
 /dev/ttyprintk 5 3
 
 

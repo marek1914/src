@@ -28,6 +28,8 @@ Full Stack:掌握多种技能，并能利用多种技能独立完成产品
 
 JST的本质，类似于Lego
 
+6502 CPU apple I/II 任天堂
+
 MCU排行：
 Renesas/NXP+Freescale/Microchip+Atmel
 ST/Infineon/TI/Cypress(MCU+analog+FPGA)/Silicon
@@ -108,3 +110,8 @@ wikihow.com/Test-a-Capacitor    测量电容
 
 http://www.wolframalpha.com
 alphawolf 中关村智能硬件孵化器
+
+account:
+adi: 1349@qq.com *2017J*Hun*
+机智：13@qq  jizhi88 论坛：club.gizwits.com
+sgmicro 圣邦: 13**@qq.com : sgmicro
