@@ -4,7 +4,7 @@ IAR: IAR Workbench EW8051/EWARM
 GCC: GCC ARM Embedded / sdcc
 
 下载了:
-EW8051 830/930(mac os 可用)
+EW8051 830/930(macboot winxp 可用)
 
 --keil--
 ARM收购Keil ,产品分：MDK-ARM(也称KEIL-ARM) C51

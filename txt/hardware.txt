@@ -35,7 +35,7 @@ Vbias Microphone Bias(偏置) Voltage  是给mic提供电力的(about 2V)
 
 pcb 板制作
 http://www.sz-jlc.com/home/index.html  //质量好，较贵
-http://www.sztcpcb.com  // 便宜 样板可以
+http://www.sztcpcb.com  // 便宜 样板可以 186: *6278*
 
 常规参数：
 板厚1.6mm
