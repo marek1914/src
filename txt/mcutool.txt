@@ -1,9 +1,7 @@
-https://pan.baidu.com/s/1dFnHzGl    keil5.24
-
-3个主要工具
+arm/8051 3工具:
 ARM: MDK-ARM  keil C51 v4: .uvproj  v5: .uvprojx
 IAR: IAR Workbench EW8051/EWARM 
-GCC: GCC ARM Embedded
+GCC: GCC ARM Embedded / sdcc
 
 下载了:
 EW8051 830/930(mac os 可用)
