@@ -35,7 +35,7 @@ Vbias Microphone Bias(偏置) Voltage  是给mic提供电力的(about 2V)
 
 pcb 板制作
 http://www.sz-jlc.com/home/index.html  //质量好，较贵
-http://www.sztcpcb.com  // 便宜 样板可以 186: *6278*
+http://www.sztcpcb.com  // 便宜 186: *6278*
 
 常规参数：
 板厚1.6mm
@@ -433,5 +433,4 @@ MAX3420 / FT121  SPI slave 转USB Device
 经验：
 asm1117 ，输入输出都要加电容，5V输入有抖动时，输入加电容，1117输出稳定，但加负载后输出开始抖动，输出也加电容后，OK
 接口都要加ESD
-
 

@@ -1,44 +1,61 @@
-arm/8051 3工具:
-ARM: MDK-ARM  keil C51 v4: .uvproj  v5: .uvprojx
+ARM/8051 4类工具:
+ARM: Keil MDK-ARM/C51 (Lite/Essential/Plus/Professional) 米尔网站下载
 IAR: IAR Workbench EW8051/EWARM 
-GCC: GCC ARM Embedded / sdcc
+GCC: Makefile + GCC ARM Embedded/sdcc
+other: 厂商基于 eclipse+gcc+gdb 定制，支持win/linux/mac
+	   TI: CCS
+	   ST: SW4STM32
+	   Silicon: Silicon IDE(keil c51编译器，非gcc)
+       Atollic TrueSTUDIO(no-free)
 
-下载了:
-EW8051 830/930(macboot winxp 可用)
-
---keil--
-ARM收购Keil ,产品分：MDK-ARM(也称KEIL-ARM) C51
-
-C51分：
-PK51 professional developer's kit
-CA51 compiler kit
-A51  assembler kit
-
+--Keil--
 uVision Project Manager
 
-keil/arm/下有 Segger/STLink/ULink 多个驱动支持，
-插入segger J-link，选择Segger目录x86，正常安装
-也可独立安装Segger驱动，更新版本
+C51分：
+PK51: professional developer's kit
+CA51: compiler kit
+A51 : assembler kit
 
-4.74 破解(官网无法下载，不用尝试)：
-1 uVision4 -> File->License Management 找到CID
-2 打开 keillic.exe，输入CID，target选择ARM
-输入LIC后，Lite版变为 Standard版
+MDK4.74 (.uvproj obsolete)
+MDK5.24 (.uvprojx)分 Core(uVision5 & Compiler5) 和 Packs
+ARM目录(2.7G) UV4目录40M (mdk5 目录也叫UV4)
+Packs下载到 ARM/PACK
 
-MDK Plus/Professional
+MDK5.20开始, 不支持 Winxp
 
-MDK5分成MDK Core(uVision5&Compiler5)和Software Packs两部分
+mdk5 hp win7 企业版 uV显示正常，mac虚拟机win7专业版显示碘
+mac xp uv4 ok
+µ 微符 0xB5 0x00b5 在 Extended ASCII Characters中
 
-===============
-keil/Silicon IDE
+
+mdk5 Pack Installer:
+Packs/Examples:
+ARM:AMP
+ARM:CMSIS
+HuaWei:LiteOS(竟然有这个)
+
+Devices/Boards: 各厂家sdk的整合, 头文件和.a库，无源码
+
+破解：
+1 File->License Management 取Computer ID
+2 MDK5_Crack.exe，输入CID，选择ARM, Professional，生成LIC
+3 在Single-User License(非FlexLM License) 选项卡中输入lic
+
+keil/arm/下有 Segger(jlink)/STLink/ULink 多个驱动支持，
+插入J-link，选择Segger目录x86，正常安装，也可独立安装Segger驱动，更新版本
+
+--IAR--
+EW8051 930(macboot winxp 可用)
+
+Silicon Lab 8051:
+Keil/Silicon IDE
 
 SimplicityStudio-v4(win/linux/macos)   添加udev rule(我加在了xds文件里面)
 file->switch to work space
 这个工具跟ti的ccs一样，非常的集成化，简化开发过程
 右上角可以切换launcher 和 IDE
 
-!! 这个licence 只是编译器，不是keil全套环境
-选择一个USB demo，转到一个eclips开发环境，编译时，提示keil编译器（用这个编译器编译）是评估版license
+选择一个USB demo，转到一个eclips开发环境，编译时，提示keil编译器,是评估版license
 按照提示进入 armkeil网站，填写信息，
 收到邮件（注册时的邮件）免费得到全功能license:
  We have sent your product registration information including the License ID Code (LIC) 
@@ -53,7 +70,6 @@ PC Description       : GAOJIE'S PC
 Computer ID     (CID): C86HJ-1XJUT
 
 License ID Code (LIC): TI413-ANA7N-EA7AH-9VT3M-YXSRG-4NU7E
-这应该是silicon付钱的
-发现这个编译器竟然是windows版本，还以为开发了linux版本呢， 可是竟然能在ubuntu上编译
+编译器是windows版，可是竟能在ubuntu上编译(wine?)
 
 

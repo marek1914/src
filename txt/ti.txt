@@ -1,11 +1,10 @@
 suxiang198的博客
 
-cc2531 sniffer   Ubiqua
+cc2531 sniffer  Ubiqua
 
 TI 收购 chipcon(cc-xx)
 
 Z-Stack support BBB
-OSAL: OS抽象层
 
 CC1101:   sub-1GHz 射频收发器
 CC2520:   2.4 GHz ZigBee RF transceiver phy
@@ -43,7 +42,7 @@ J2 10孔 1.27间距 是jtag输出
 
 TIMAC:
 
-安装CCS:
+安装CCS (ccstudio):
 linux版下载8M+，安装过程选择相应组件网络下载
 Resource Explorer 中下载UART例子到～/TI目录
 import时出错，重启，提示有内容需要安装
@@ -59,7 +58,6 @@ Version:       2.3.0.1
 Manufacturer:  Texas Instruments
 Serial Num:    L3003317
 
-ccstudio
 
 xdsdfu -m
 xdsdfu -f firmware.bin -r （看同级目录 README）
@@ -211,14 +209,12 @@ sensortag:
 
 target remote localhost:55000
 
-
 SmartRF06 EB (Evaluation Board 底板) + CC26xx/CC13xx EM (Evaluation Module)
 
 三个开发平台：
 srf06EB+EM
 sensortag + devpack
 launchpad
-
 
 CC2538 Development Kit：
 SmartRF06EB x2 + CC2538EM x2 + CC2531 USB dongle(CC2531 EMK:Evaluation Module Kit for packet sniffing))
@@ -234,7 +230,6 @@ VG板子，串电流呀，DIO接上uart tx线，都能让指示灯虚亮，并�
 cc2538-bsl.py -b 115200 //看到信息
 cc2538-bsl.py -e  -w -v -b 115200 cc1310-demo.bin (Mac: -p /dev/tty.wchusbserial1430)
 
-
 sensortag 串口P28-RX/P29-TX
 
 插入devpack的时候，无需电池
@@ -246,12 +241,5 @@ VG板子写入slip-radio 打印 ：Slip Radio started...
 
 CCFG p710  FA8-FFF
 
-
 CC2650 Ref 电压输出1.666V ，电源供电1.8-3.8之间，都输出这个电压，低于1.8V停止工作，高于3.8V 没敢试
 
-
-
-
------
-DAC
-在产品中选择 data converters, 多数是 2个通道

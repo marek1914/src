@@ -14,6 +14,18 @@ major.h
 #define MMC_BLOCK_MAJOR	179
 #define LOOP_MAJOR		7
 
+kernel 头文件:
+
+debian: linux-headers-generic
+
+android:
+un.h等 根据external/kernel-headers/original自动生成
+bionic/libc/kernel/tools/update_all.py 生成头文件 
+
+make headers_install  生成经过净化的内核头文件
+
+
+Documentation/devices.txt  内核能识别的设备
 
 /dev/ttyS0 ttyS1 ?
 /dev/root  什么设备？ 
@@ -21,10 +33,6 @@ SD卡锁开关，开关与否，usb读卡器自动mount后显示(rw,...) (ro,...
 有时U盘或usb sd卡边的不可写，是因为挂载点除root外不可写，如：
 drwxr-xr-x  3 root root 4096 Mar 23 16:40 8b389afc-9ffa-4d80-aae9-5803d2b34a91
 可以增加写权限，可为啥会这样呢？
-
-DMA: 	  (0 - 16 MB) 
-LowMem:   (16 - 896 MB) 880MB 
-HighMem:  0x038000000 - <硬件特定> 
 
 zImage  gxxxxxxx-dirty可分辨版本
 insmod 用 init_module 系统调用

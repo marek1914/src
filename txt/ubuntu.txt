@@ -75,17 +75,13 @@ virtual Box
    USB设备:adduser gao vboxusers(注销生效)，重启，Devices->USB Devices看到U盘
 2) 共享文件夹设置后需重启
 3) File->Preference->General->Default Machine Folder 可选择非home/user
-5) 4.1.12版有错误，命令行运行，提示需安装virtualbox-ose-dkms和linux-headers-generic
-   	/dev/vboxdrv does not exist，按提示：/etc/init.d/vboxdrv setup 找不到vboxdrv。
-	下载64位deb包安装，vboxdrv命令有了，但setup失败，dmesg: vboxdrv: Unknown symbol mcount(need gcc4.6)
-6) 设置共享文件夹自动mount，fs类型vboxsf，默认不支持symbolic link
+4) 设置共享文件夹自动mount，fs类型vboxsf，默认不支持symbolic link
 	ln: creating symbolic link `xx': Read-only file system,（拷贝带链接目录时）执行：
 	VBoxManage setextradata VM_NAME VBoxInternal2/SharedFoldersEnableSymlinksCreate/SHARE_NAME 1
 	VM_NAME是虚拟机名，SHARE_NAME是共享文件夹名，重启
-7) 个别程序需将文件拷至虚拟机目录，如 winrar
-8) Unsupported version 14 of data unit 'vga' 解决：右击虚拟机列表选：Discard saved state...
-9) virtualbox 4.3.10升级到4.3.34，xp无法启动，addition也升级4.3.34即可
-10) Guest Additions
+5) Unsupported version 14 of data unit 'vga' 解决：右击虚拟机列表选：Discard saved state...
+6) virtualbox 4.3.10升级到4.3.34，xp无法启动，addition也升级4.3.34即可
+7) Guest Additions
 
 1) dpkg : package manager for Debian
 	-l List packages
@@ -402,3 +398,13 @@ ssh-copy-id myname@somehost
 
 自动重连：
 autossh -M 20000 -fNR 20001:localhost:22 sshr@182.92.176.232  //前后2个端口号不同
+
+
+
+
+
+---raid---
+dmraid: fake raid (主板 廉价控制器) 有3T盘识别746G bug  停止开发
+mdadm:  software raid，也可以管理fake raid   不断完善中
+
+

@@ -134,7 +134,6 @@ android:versionCode="1"
 android:versionName="1.0"
 android.intent.category.HOME //launcher
 
-===
 data目录是system权限 system 会挂载成 ro 形式。
 
 关于android shell的权限问题
@@ -238,7 +237,6 @@ system/core/libcutils/ properties.c
 多个property_get 函数 情况不同 arm使用的是 HAVE_LIBC_SYSTEM_PROPERTIES
 
 ==========
-un.h等 根据external/kernel-headers/original自动生成
 
 socket 类型把AF_xx 都改成了PF_xx
 
@@ -824,8 +822,6 @@ target Generated: libwebcore <= external/webkit/Source/WebCore/css/tokenizer.fle
 
 这时mmm -B webkit 因为虽然改了权限，已经编译好的 cssparser.o 已经错误，系统不会重新编译这个.o
 
-某次编译bootable/recovery  BLKWIPEPART未定义，因为在bionic里把kernel头文件搞乱了（实验）
-运行bionic/libc/kernel/tools/update_all.py即可 (运行也不行，external/kernel-headers就没有)
 
 edify脚本 用于升级
 
