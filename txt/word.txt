@@ -228,7 +228,7 @@ T-section attenuator  T型衰减器
 Ham Radio业余无线电
 
 OFDM: Orthogonal frequency-division multiplexing  正交频分复用
-impedance matching 阻抗匹配
+impedance matching 
 low-overhead 低开销
 
 IF: Intermediate Frequency 中频

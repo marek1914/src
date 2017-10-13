@@ -23,7 +23,7 @@ Packs下载到 ARM/PACK
 
 MDK5.20开始, 不支持 Winxp
 
-mdk5 hp win7 企业版 uV显示正常，mac虚拟机win7专业版显示碘
+mdk5 hp win7 企业版 uV显示正常，mac虚拟机win7专业版显示礦(繁体 矿)
 mac xp uv4 ok
 µ 微符 0xB5 0x00b5 在 Extended ASCII Characters中
 
