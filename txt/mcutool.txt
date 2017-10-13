@@ -23,7 +23,8 @@ Packs下载到 ARM/PACK
 
 MDK5.20开始, 不支持 Winxp
 
-mdk5 hp win7 企业版 uV显示正常，mac虚拟机win7专业版显示碘
+mdk5 hp win7 企业版 uV显示正常，mac虚拟机win7专业版显示碘, 家里win7虚拟机 旗舰版正常
+（我就一个win7.iso 怎么会有专业版和旗舰版呢？我都是用这一个iso安装的呀 完全没印象了 20171012）
 mac xp uv4 ok
 µ 微符 0xB5 0x00b5 在 Extended ASCII Characters中
 

@@ -70,19 +70,6 @@ apt-get update --fix-missing
 下载失败的在/var/lib/apt/lists/partial目录
 Acquire-by-hash
 
-virtual Box
-1) Extension Pack 要与Virtualbox版本一致
-   USB设备:adduser gao vboxusers(注销生效)，重启，Devices->USB Devices看到U盘
-2) 共享文件夹设置后需重启
-3) File->Preference->General->Default Machine Folder 可选择非home/user
-4) 设置共享文件夹自动mount，fs类型vboxsf，默认不支持symbolic link
-	ln: creating symbolic link `xx': Read-only file system,（拷贝带链接目录时）执行：
-	VBoxManage setextradata VM_NAME VBoxInternal2/SharedFoldersEnableSymlinksCreate/SHARE_NAME 1
-	VM_NAME是虚拟机名，SHARE_NAME是共享文件夹名，重启
-5) Unsupported version 14 of data unit 'vga' 解决：右击虚拟机列表选：Discard saved state...
-6) virtualbox 4.3.10升级到4.3.34，xp无法启动，addition也升级4.3.34即可
-7) Guest Additions
-
 1) dpkg : package manager for Debian
 	-l List packages
 	-i Install //可能警告降级
@@ -278,7 +265,8 @@ zh-hans_windows_xp: MRX3F-47B9T-2487J-KWKMF-RPWBY
 
 gpedit.msc 
 管理模板/Windows组件/Windows资源管理器/从我的电脑删除共享文档 选已启用
-虚拟机安装win7需要20G(xp 1.5G)
+
+虚拟机安装win7 10G, winxp 1.5G
 
 网络盘运行可执行程序：用作为当前目录的以上路径启动了CMD.EXE，UNC路径不受支持
 注册表添加: HKEY_CURRENT_USER/Software/Microsoft/Command Processor                
@@ -401,6 +389,20 @@ autossh -M 20000 -fNR 20001:localhost:22 sshr@182.92.176.232  //前后2个端口
 
 
 
+==能用就行，无须多虑==
+virtual Box
+1) Extension Pack 要与Virtualbox版本一致
+   USB设备:adduser gao vboxusers(注销生效)，重启，Devices->USB Devices看到U盘
+2) 共享文件夹设置后需重启
+3) File->Preference->General->Default Machine Folder 可选择非home/user
+4) 设置共享文件夹自动mount，fs类型vboxsf，默认不支持symbolic link
+	ln: creating symbolic link `xx': Read-only file system,（拷贝带链接目录时）执行：
+	VBoxManage setextradata VM_NAME VBoxInternal2/SharedFoldersEnableSymlinksCreate/SHARE_NAME 1
+	VM_NAME是虚拟机名，SHARE_NAME是共享文件夹名，重启
+5) Unsupported version 14 of data unit 'vga' 解决：右击虚拟机列表选：Discard saved state...
+6) virtualbox 4.3.10升级到4.3.34，xp无法启动，addition也升级4.3.34即可
+7) Guest Additions
+8) win7虚拟机共享文件夹后，可以向ubuntu写，但是无法从ubunbu拷贝，提示位置不可用，映射网络驱动器 \\VBOXSVR\Downloads可以工作。
 
 
 ---raid---
