@@ -1,5 +1,7 @@
 Cadence收购OrCAD,PSpice
 
+ohm
+
 http://www.accelerated-designs.com
 Ultra Librarian FREE Reader 
 Convert BXL files into your preferred CAD format

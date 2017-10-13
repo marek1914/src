@@ -238,3 +238,8 @@ PB3/4 与JTAG冲突
 ###
 DAC
 在产品中选择 data converters, 多数是 2个通道
+
+
+---yj---
+STM32L051K8U6
+Ultra-low-power M0+ 64 Kbytes Flash 32 MHz
