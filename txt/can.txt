@@ -1,0 +1,7 @@
+RS485通讯电缆STP-120ΩCAN总线 双绞屏蔽RVSP 2*0.5mm电源线
+
+TI: SN65HVD230 
+NXP: MC34901
+
+youtube一个例子：F4-discovery
+Without transceivers, a perfect communication in a 20 meters cable
