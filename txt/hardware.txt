@@ -1,5 +1,8 @@
-ngspice  //基于 spice3f5
+http://www.oldfriend.url.tw/  好资料 有关于特性阻抗的
+
 Cadence收购OrCAD,PSpice
+
+ohm
 
 http://www.accelerated-designs.com
 Ultra Librarian FREE Reader 
@@ -72,8 +75,8 @@ LPD433 (low power device 433.050-434.790)  bw: 1.74 MHz
 I : In-Phase(同相 同步) signal component
 Q : Quadrature signal component 
 
-传输线阻抗是从电报方程推导出来(查微波理论)
-传输线特性阻抗 (Characteristic impedance   wiki)
+传输线阻抗是从电报方程推导出来(微波理论), 传输线处于行波传输状态时，同一点的电压电流比
+传输线特性阻抗 (Characteristic/surge impedance)
 
 电磁波:TE，TM，TEM,
 
@@ -85,7 +88,7 @@ www.reseau.org/arduinorc/
 http://www.reseau.org/arduinorc/index.php?n=Main.Gallery
 多少V 能产生电火花？ 5V的拉弧距离太短！你增大电压可以增大拉弧距离
 
-Distributed antenna system (wikipedia)
+Distributed antenna system
 
 Use in WiFi networks
 
@@ -103,8 +106,8 @@ The most common form is the half-wave dipole
 即2段加一起等于一半波长
 Monopole antenna 单极天线
 
-wikipedia 搜索 Dipole antenna
-搜索：Transmission line
+Dipole antenna
+Transmission line
 
 串联电路电流处处相等，是近似，忽略场传播所需时间
 
@@ -139,8 +142,7 @@ LCR表， DCR是直流电阻，Z是阻抗，电感就是2PifL，那R是啥？
 
 电容的阻抗值，按照电容值计算，没有加ESR  44nf的电容，ESR有40欧
 
-按照wikipedia的Q值计算公式，与显示相符
-但是阻抗为啥没有加 ESR
+按照wikipedia的Q值计算公式，与显示相符, 但阻抗为啥没有加 ESR
 
 strap pin setting HDMI芯片调试15天，因某上拉电阻没焊
 
@@ -177,10 +179,6 @@ uart面板，手册19200无奇偶校验2停止位，按键读取错误
 
 如果是LED照明，串俩电阻，白白消耗能量转换为热量而非光，就没有办法全部转换为光吗？
 
-某100欧色环电阻，电流达200mA时冒烟了，此时20V，达4W
-一般蓝色色环电阻1/4 W，100欧，电压5V已明显发热，1K欧的 15.8V
-
-100欧电阻串联1N4007，电阻电压5V时，二极管0.75V
 
 碳膜电阻
 金属膜电阻
@@ -243,28 +241,19 @@ The P-N junction
 2个大金属片中间隔一层纸，也才只有100pF
 
 F (farad)
-毫法(mF) -3
-微法(μF) -6
-纳法(nF) -9
-皮法(pF) -12   总感觉这么小的电容，误差就可以忽略，实际不是，F的单位太大了
+mF μF nF pF
 
-当1法拉的电容器上的电压以1伏特每秒（1 V/s）的速度变化时，就会产生1安培的电流。
-1法拉的电容上如果带有1库伦（1C）的电荷产生1伏势能差
+1法电容器上的电压以1伏每秒的速度变化时，会产生1安电流。
+1法电容上如果带有1库伦的电荷产生1伏势能差
 
 1电子带负电荷量1.6021892x10^-19 库仑
 1库仑含有6.24146 x 10^18 个电子
 
-1pF 相当于 6.24146 x 10^6，即 624万个电子产生1V电势差（有认识了） 电容面积非常小即可
+1pF 相当于 6.24146 x 10^6，即 624万个电子产生1V电势差 电容面积非常小即可
 1pF 用 1uA电流充电，电势差达到1V需 1uS，而1uS 只是1MHz的周期，是很大的值了。
 
 220V交流电是有效值，峰值220*1.414=311V
 
-单位时间通过导体横截面的电量叫电流强度，简称电流
-
-电压是什么，电压转换芯片的原理是？
-其实最简单的一个问题我没有仔细思考，电磁铁，就是一根导线
-
-电压是如何测量的
 
 电压：
 voltage 电势差/电位差
@@ -278,24 +267,20 @@ voltage 电势差/电位差
 相对原子质量：不是实际千克数，而是与碳-12（6个质子和6个中子）的碳原子（显然，质子与中子质量相同）
 还有8个中子+6个质子的碳-14
 
-wikipedia 搜索 Cubic crystal system
-国际上之所以要选用碳-12而不用碳-14是因为当选用碳-12原子作标准时，其它原子的相对原子质量都接近整数，便于记忆与使用）
-（那用碳-14的1/14不就好了吗？）
+Cubic crystal system
 
-质子(proton)是一种带 1.6 × 10-19 库仑(C)正电荷的亚原子粒子，质量是电子的1836倍
-质子由两个上夸克和一个下夸克通过胶子在强相互作用下构成。原子核中质子数目决定其化学性质和它属于何种化学元素
+质子(proton)是带 1.6 × 10-19 库仑(C)正电荷的亚原子粒子，质量是电子的1836倍
+质子数目决定其化学性质和它属于何种化学元素
 
-
-相对原子质量较大的被称为重金属。
+相对原子质量(相对碳-12)较大的被称为重金属。
 绝大多数金属原子的最外层电子数均小于4
-根据原子排列方式，可将固态物质分为两类：晶体，内部原子呈规则排列的物质。如固态金属；
-非晶体——内部原子无规则排列的物质。如松香、玻璃等。
+
+根据原子排列方式，可将固态物质分为两类：
+晶体: 原子呈规则排列，如固态金属
+非晶体: 原子无规则排列，如松香
 
 金属键：金属原子间的结合键称为金属键
 带负电的自由电子与带正电的的金属正离子之间产生静电吸力，使金属原子结合在一起，这就是金属键结合的本质
-
-金属键（metallic bond）是化学键的一种
-能带理论
 
 设铜导线单位体积内的自由电子数为n，电子定向移动为v，每个电子带电量为e，导线横截面积为S。
 则时间t内通过导线横截面的自由电子数N=nVtS，其总电量Q=Ne=nVtSe。根据I=Q/t得V=I/neS，代入数字可得V=7.4×10^-5米/秒，即0.74毫米/秒。
@@ -337,8 +322,6 @@ dc-dc降压是靠pwm占空比控制电容充放电完成，就像pwm控制led亮
 电荷的基本单位e=1.602*10(-19)C.
 
 5V电源适配器短路会怎样？ 考虑电源的内阻，
-电池短接，导线2端电压为1.5V,电阻0欧，电流岂不是无穷大？电池有内阻
-电池输出的电流有限，电压1.5,电阻0，不符合欧姆定律
 
 为什么需要电阻，车还有要刹车呢 电阻不是半导体
 
@@ -379,27 +362,22 @@ rc电路电阻不接呢？
 震荡用的不能带正负极吧
 理想情况下 摆是不会停止的，同理，一个lc回路也不会停止震动，由于他有损耗，所以适时补充损失的能量 就能保持连续震动。
 
-安培定则，即右手螺旋定则，表示电流和电流激发磁场的磁感线方向关系的定则。
-安培定则一：用右手握住通电直导线，让大拇指指向电流的方向，那么四指的指向就是磁感线的环绕方向；
-安培定则二：用右手握住通电螺线管，让四指指向电流的方向，那么大拇指所指的那一端是通电螺线管的N极。
 
-左手定则，即电动机定则
 
 Flyback Transformer/单端反激式DC－DC变换器/Buck-Boost转换器，因其输出端在原边绕组断开电源时获得能量，因此得名
 
-wikipedia   ：  Joule thief
+Joule thief
 MAKE A JOULE THIEF 焦耳小偷
 
 Armstrong oscillator ， also known as the Meissner oscillator
 反激式(Flyback)变压器
 
-波长: 紫外<紫色 红<红外
 
 Aluminum electrolytic capacitors,
-Tantalum electrolytic capacitors and
+Tantalum electrolytic capacitors
 Niobium electrolytic capacitors
 
-wiki: Sine wave / Alternating current
+Sine wave / Alternating current
 电源拆下来的电感器两组线圈测量电阻2.3-2.4欧
 吹风机加热后，好像略有升高。
 电感的自身电阻是不可忽略的。
@@ -411,7 +389,7 @@ Electrical reactance
 Inductive reactance 感抗
 
 An ideal resistor has zero reactance
-ideal inductors and capacitors have zero resistance （通过上文，电感有电阻，由铜线引入，那电容的电阻怎么体现出来呢？）
+ideal inductors and capacitors have zero resistance （电感的电阻由铜线引入）
 
 As frequency goes up, inductive reactance goes up and capacitive reactance goes down. 频率增加，感抗增加，容抗降低
 
@@ -420,17 +398,29 @@ As frequency goes up, inductive reactance goes up and capacitive reactance goes 
 
 阻抗=电抗+电阻 即 Z=R+jX， 而X=Xl+Xc=wL-1/wC    w=2*pi*f
 
-hdmi的esd有必要，不贴遇到过击坏情况
-可用低成本压敏电阻替代
-usb和sd的保护二极管，白色像电阻一样的东西。
-sd不会插带电的东西，二极管保护没必要
-
-
 IP101GA: 10/100 phy
 BAT54C:  肖特基双二极管，IR一分为2到CPU和MCU
 MAX3420 / FT121  SPI slave 转USB Device
+MCP73871: Microchip Battery Management
+CE3150AM: yj 电池充电
 
 经验：
-asm1117 ，输入输出都要加电容，5V输入有抖动时，输入加电容，1117输出稳定，但加负载后输出开始抖动，输出也加电容后，OK
-接口都要加ESD
+1 asm1117 ，输入输出都要加电容，5V输入有抖动时，输入加电容，1117输出稳定，但加负载后输出开始抖动，输出也加电容后，OK
+2 接口都要加ESD
+3 hdmi的esd有必要，不贴遇到过击坏情况
+ 可用低成本压敏电阻替代
+ usb和sd的保护二极管，白色像电阻一样的东西。
+ sd不会插带电的东西，二极管保护没必要
 
+实验:
+某100欧色环电阻，电流达200mA时冒烟了，此时20V，达4W
+一般蓝色色环电阻1/4 W，100欧，电压5V已明显发热，1K欧的 15.8V
+100欧电阻串联1N4007，电阻电压5V时，二极管0.75V
+
+理论(要控制范围，不能无限外延)
+
+安培右手螺旋定则:
+右手握住直导线，大拇指指向电流的方向，则四指指向磁感线环绕方向
+右手握住螺线管，四指指向电流方向，则大拇指指向螺线管N极
+
+单位时间通过导体横截面的电量叫电流强度，简称电流

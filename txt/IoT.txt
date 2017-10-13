@@ -77,8 +77,6 @@ RT9193 300mA Ultra-low noise ultra-fast cmos ldo regulator
 
 TPS61090: 2A Switch, 96% Efficient Boost Converter
 
-MCP73871-2CCI/ML:
-Microchip's Battery Management Solutions
 
 3.2x2.5 4脚晶体 SMD4P3225
 
