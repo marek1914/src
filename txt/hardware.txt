@@ -1,3 +1,5 @@
+http://www.oldfriend.url.tw/  好资料 有关于特性阻抗的
+
 Cadence收购OrCAD,PSpice
 
 ohm
@@ -73,7 +75,7 @@ LPD433 (low power device 433.050-434.790)  bw: 1.74 MHz
 I : In-Phase(同相 同步) signal component
 Q : Quadrature signal component 
 
-传输线阻抗是从电报方程推导出来(查微波理论)
+传输线阻抗是从电报方程推导出来(微波理论), 传输线处于行波传输状态时，同一点的电压电流比
 传输线特性阻抗 (Characteristic/surge impedance)
 
 电磁波:TE，TM，TEM,
@@ -140,8 +142,7 @@ LCR表， DCR是直流电阻，Z是阻抗，电感就是2PifL，那R是啥？
 
 电容的阻抗值，按照电容值计算，没有加ESR  44nf的电容，ESR有40欧
 
-按照wikipedia的Q值计算公式，与显示相符
-但是阻抗为啥没有加 ESR
+按照wikipedia的Q值计算公式，与显示相符, 但阻抗为啥没有加 ESR
 
 strap pin setting HDMI芯片调试15天，因某上拉电阻没焊
 
@@ -321,8 +322,6 @@ dc-dc降压是靠pwm占空比控制电容充放电完成，就像pwm控制led亮
 电荷的基本单位e=1.602*10(-19)C.
 
 5V电源适配器短路会怎样？ 考虑电源的内阻，
-电池短接，导线2端电压为1.5V,电阻0欧，电流岂不是无穷大？电池有内阻
-电池输出的电流有限，电压1.5,电阻0，不符合欧姆定律
 
 为什么需要电阻，车还有要刹车呢 电阻不是半导体
 
@@ -402,6 +401,8 @@ As frequency goes up, inductive reactance goes up and capacitive reactance goes 
 IP101GA: 10/100 phy
 BAT54C:  肖特基双二极管，IR一分为2到CPU和MCU
 MAX3420 / FT121  SPI slave 转USB Device
+MCP73871: Microchip Battery Management
+CE3150AM: yj 电池充电
 
 经验：
 1 asm1117 ，输入输出都要加电容，5V输入有抖动时，输入加电容，1117输出稳定，但加负载后输出开始抖动，输出也加电容后，OK

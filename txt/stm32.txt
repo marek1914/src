@@ -1,5 +1,8 @@
 STM32F100W
 
+CANopen
+cmx.com
+
 openstm32.org gaojie:200w200w
 st.com 13xx@q.com:89..2*G
 
@@ -243,3 +246,11 @@ DAC
 ---yj---
 STM32L051K8U6
 Ultra-low-power M0+ 64 Kbytes Flash 32 MHz
+
+
+---CAN---
+TI: SN65HVD230 
+NXP: MC34901
+
+youtube一个例子：F4-discovery
+Without transceivers, a perfect communication in a 20 meters cable
