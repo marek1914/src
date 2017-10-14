@@ -1,37 +1,13 @@
-ARMv8 AArch64 Processor
+ARMv8 AArch64
 
 projectNe10
-Ne10 项目
 
-Thumb-2 Technology Delivers the peak performance of traditional ARM code while also providing up to a 30% reduction in memory required to store instructions. 
-
-Vectorizing compilers:
-
-vmov
-
-定义宏
-.macro 宏名 参数名列表
-	宏体
-.endm
-如果使用参数，宏体中使用该参数时添加前缀"\"
-
-
-aarch32
-aarch64
-
-ETM:Embedded Trace Macrocell
-ETB:Embedded Trace Buffer
-用于跟踪
+Thumb-2: 可达传统ARM峰值性能，并节省30%代码空间
+ThumbEE: Thumb Execution Environment，用于字节码语言的执行如java
 ARM GIC: Generic Interrupt Controller
 
-ThumbEE:Thumb Execution Environment
 
-ARMv6T2 Introduces Thumb-2 technology
-Thumb-2 : Thumb的编码密度，ARM 指令集32-bit效能。
-
-ThumbEE，用于字节码语言的执行，如java python perl
-
-VFP 架构也支援 SIMD（理解了）
+VFP 架构也支援 SIMD
 
 Thumb状态：执行Thumb指令的处理器状态。BX、BLX 等指令完成时，切换到ARM状态
 
@@ -153,13 +129,13 @@ Point Performance，它使用Vector Float Point(矢量浮点)，
 因此可以提高涉及到浮点运算的程序
 
 
-oabi eabi 都是针对arm的cpu来说的
-eabi 有时候也叫做gnu eabi
-eabi的好处： 1 支持软件浮点合硬件浮点 实现浮点功能的混用
-	     2 系统调用的效率更高 ？？
-             3 软件浮点的情况下，EABI的软件浮点的效率要比oabi高很多
+eabi的好处： 
+1 支持软件浮点合硬件浮点 实现浮点功能的混用
+2 系统调用的效率更高 
+3 软件浮点的情况下，EABI的软件浮点的效率要比oabi高很多
+
 eabi 和 oabi 的区别
-	 1 调用规则 包括参数传递以及如何获得返回值
-         2 应用程序如何去做系统调用
-         3 结构体中的填充和对其 （ padding packing ）
+1 调用规则 包括参数传递以及如何获得返回值
+2 应用程序如何去做系统调用
+3 结构体中的填充和对其 （ padding packing ）
 

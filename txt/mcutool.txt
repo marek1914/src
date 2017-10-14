@@ -17,18 +17,24 @@ CA51: compiler kit
 A51 : assembler kit
 
 MDK4.74 (.uvproj obsolete)
-MDK5.24 (.uvprojx)分 Core(uVision5 & Compiler5) 和 Packs
+MDK5.24 (.uvprojx)分 Core(uVision5 & Compiler5) 和 Packs(.pack zip压缩文件)
 ARM目录(2.7G) UV4目录40M (mdk5 目录也叫UV4)
 Packs下载到 ARM/PACK
 
+Error:Device not found nRF52832_xxAA 需要下载一些基础包才能工作
+提示需要 nRF_DeviceFamilyPack
+
+nRF52芯片，提示 Flash download failed cortex m4,
+Flash Download -> Programming Algorithm 是空的，需要Add
+
+.FLM文件,flash描述文件
+
+ARM:CMSIS 工程可以自带
+
+
 MDK5.20开始, 不支持 Winxp
 
-<<<<<<< HEAD
-mdk5 hp win7 企业版 uV显示正常，mac虚拟机win7专业版显示碘, 家里win7虚拟机 旗舰版正常
-（我就一个win7.iso 怎么会有专业版和旗舰版呢？我都是用这一个iso安装的呀 完全没印象了 20171012）
-=======
-mdk5 hp win7 企业版 uV显示正常，mac虚拟机win7专业版显示礦(繁体 矿)
->>>>>>> 8040e2be40e8282fb423161ae062df32c76d8eff
+mdk5 hp win7 企业版 uV显示正常，win7专业版显示礦, win7旗舰版正常
 mac xp uv4 ok
 µ 微符 0xB5 0x00b5 在 Extended ASCII Characters中
 
@@ -37,7 +43,7 @@ mdk5 Pack Installer:
 Packs/Examples:
 ARM:AMP
 ARM:CMSIS
-HuaWei:LiteOS(竟然有这个)
+HuaWei:LiteOS
 
 Devices/Boards: 各厂家sdk的整合, 头文件和.a库，无源码
 

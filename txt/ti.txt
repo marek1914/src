@@ -53,7 +53,6 @@ XDS110 连不上是权限问题：
 
 /ccsv7/ccs_base/common/uscif/xds110$ ./xdsdfu -e
 VID: 0x0451    PID: 0xbef3
-Device Name:   XDS110 with CMSIS-DAP
 Version:       2.3.0.1
 Manufacturer:  Texas Instruments
 Serial Num:    L3003317

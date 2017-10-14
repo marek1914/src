@@ -1,0 +1,11 @@
+轨迹跟踪板： nRF52832
+
+nRF52832-MDK
+
+nRF51: M0 16MHz
+nRF52: M4 64MHz
+
+nRF24
+
+
+UICR

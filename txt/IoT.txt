@@ -1,3 +1,5 @@
+mynewt.apache  嵌入平台的 apache？
+
 VI控制的小风扇小灯：F321
 
 用f321做usb转串口，不用cp2102，因为我们常用的串口也很简单，只需要收发，而cp2102 是7线全功能串口，然后再配合一个 多通道切换器，这样一个minicom可以监测多个串口
@@ -308,7 +310,6 @@ SM04B-SRSS-TB
 
 5-3.3 V 小板  红色5V 白色3.3V输出
 
-qiyi   轨迹跟踪板： N52832   nordic公司   能无线充电
 
 NeoPixel  环形LED条
 https://github.com/adafruit/Adafruit_NeoPixel
@@ -322,5 +323,5 @@ BBC Micro:bit 电源插头 S2B-PH-SM4-TB(LF)(SN) -  Wire-To-Board Connector, Rig
 nxp 单片机
 
 ---
+物联网通讯协议：
 openthread
-nRF52832-MDK

@@ -499,7 +499,7 @@ Debug/Rrelease/Makefile 自动生成
 开始提示 __smartfusion2_memory_remap 找不到，
 看4.0 releasenote文档 P14  Linker scripts ，在
 Cross ARM C Linker-> General 里(-T) 添加
-CMSIS/startup_gcc/debug-in-microsemi-smartfusion2-esram.ld  ok
+debug-in-microsemi-smartfusion2-esram.ld
 debug时 run- debug config - debug
 
 Libero不能导出4.0能导出3.4工程

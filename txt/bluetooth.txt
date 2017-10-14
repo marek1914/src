@@ -19,8 +19,8 @@ ti:
 
 
 yj给的nordic 开发板
-[艾克娒科技]IK-52832DK开发板A盘(资料盘):链接： http://pan.baidu.com/s/1bo3M6AV  密码：weho
-[艾克娒科技]IK-52832DK开发板B盘(视频教程盘):链接： http://pan.baidu.com/s/1eS9ojcA  密码：jltf
+IK-52832DK资料盘: http://pan.baidu.com/s/1bo3M6AV  ：weho
+IK-52832DK视频教程盘: http://pan.baidu.com/s/1eS9ojcA  ：jltf
 
 
 OSAL: OS抽象层

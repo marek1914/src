@@ -5,3 +5,4 @@ cscope.out
 *.a
 *.o
 tags
+build

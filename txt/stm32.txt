@@ -1,5 +1,7 @@
 STM32F100W
 
+自己接线标准：黄-clk
+
 CANopen
 cmx.com
 
@@ -21,6 +23,7 @@ SB 3/5/7/9/12/13/14/15
 
 F401的PA2/3连到F103的PA2/3 UART2
 
+独立ST-Link，拔掉CN2跳线，CN4: 2-CLK,3-GND,4-DIO
 
 看一下，有些信息
 http://www.wolinlabs.com/blog/linux.stm32.discovery.gcc.html
@@ -247,5 +250,7 @@ DAC
 STM32L051K8U6
 Ultra-low-power M0+ 64 Kbytes Flash 32 MHz
 
+红色标志为VCC，同面另一边为GND，中间CLK，对面中间DIO
 
+J-link OB(2012固件，比较老) 在MDK4上正常，在MDK5上不能用，导致IDE异常退出
 

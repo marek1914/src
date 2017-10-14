@@ -1,5 +1,5 @@
 pyOCD: 是mbed官方提供的调试工具，使用Python开发  python open cmsis-dap
-OpenOCD: 除了支持 cmsis-dap 还支持jlink stlink
+OpenOCD: 支持 cmsis-dap jlink stlink
 
 
 CMSIS-DAP (Debug Access Port)
@@ -29,7 +29,6 @@ $ export ZEPHYR_SDK_INSTALL_DIR=<sdk installation directory>
 或者 写到  $HOME/.zephyrrc里面  会自动找这个文件？
 
 
-Nordic nRF51/52  nRF24
 
 
 make BOARD=arduino_101_ble          - Build for arduino_101_ble（nRF51822）
@@ -38,7 +37,7 @@ make BOARD=arduino_101_mcuboot      - Build for arduino_101_mcuboot
 make BOARD=arduino_101_sss          - Build for arduino_101_sss (Sensor Subsystem ，ARC)
 
 
-The Intel Curie module includes a Nordic nRF51822 that is interfaced to the SoC via UART0
+Intel Curie 内部通过UART0 连接 Nordic nRF51822
 
 
 代码包含了130M的 stm32cube ：stm32f1xx stm32f3xx stm32f4xx stm32l4xx
