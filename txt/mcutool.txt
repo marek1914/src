@@ -31,13 +31,11 @@ Flash Download -> Programming Algorithm 是空的，需要Add
 
 ARM:CMSIS 工程可以自带
 
-
 MDK5.20开始, 不支持 Winxp
 
 mdk5 hp win7 企业版 uV显示正常，win7专业版显示礦, win7旗舰版正常
 mac xp uv4 ok
 µ 微符 0xB5 0x00b5 在 Extended ASCII Characters中
-
 
 mdk5 Pack Installer:
 Packs/Examples:
@@ -47,13 +45,10 @@ HuaWei:LiteOS
 
 Devices/Boards: 各厂家sdk的整合, 头文件和.a库，无源码
 
-破解：
+Crack:
 1 File->License Management 取Computer ID
 2 MDK5_Crack.exe，输入CID，选择ARM, Professional，生成LIC
 3 在Single-User License(非FlexLM License) 选项卡中输入lic
-
-keil/arm/下有 Segger(jlink)/STLink/ULink 多个驱动支持，
-插入J-link，选择Segger目录x86，正常安装，也可独立安装Segger驱动，更新版本
 
 --IAR--
 EW8051 930(macboot winxp 可用)
@@ -83,4 +78,28 @@ Computer ID     (CID): C86HJ-1XJUT
 License ID Code (LIC): TI413-ANA7N-EA7AH-9VT3M-YXSRG-4NU7E
 编译器是windows版，可是竟能在ubuntu上编译(wine?)
 
+
+---调试器---
+Keil/ARM 有st-link，j-link驱动
+ST-Link
+ARM/Stlink/ST-LinkUpgrade.exe 显示:
+Firmware Version: V2.J25.M14 STM32 Debug+Mass storage
+Upgrade the firmware to V2.J27.M15 更新成功
+
+segger j-link
+安装J-Link驱动，包含一组工具:Commander, Configurator(固件升级)等
+Hardware version(HW)分: V7 V8 V9
+Firmware(FW): xx20120822xx (mine)
+
+不同HW/FW配合不同版本 JLinkARM.dll("平铺"可见版本号)
+安装jlink驱动提醒是否替换mdk中的dll
+
+V7.00 20120822(已是V7最新固件无法更新) 配合 
+dll 4.80 :能下载，nordic无法识别可手动选择M4，debug正常，如不稳定，可降低频率
+dll 5.12 :无法下载
+dll 6.16 :能下载但IED会异常退出
+
+写不进flash，j-link stm32 unlock 工具解锁
+
+http://gnuarmeclipse.github.io/debug/jlink/install/#gnulinux
 

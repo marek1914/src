@@ -52,8 +52,6 @@ cmsis/DSP_Lib/Source/下的文件生成lib/gcc下的2个.a
 
 STM32F3/F4: with DSP and FPU instructions
 
-j-link /segger
-http://gnuarmeclipse.github.io/debug/jlink/install/#gnulinux
 
 STSW-LINK009 : ST-LinkV2 驱动
 
@@ -83,12 +81,6 @@ T6:LQFP-工业
 Ld/Md/Hd
 
 HAL_CRC_Calculate. 硬crc
-
-j-link: 左到右：白灰黑
-J-Link-OB
-
-写不进flash，用segger: j-link stm32 unlock 工具解锁
-安装最新驱动，mdk不能用了，把keil/arm/segger目录替换回老版本
 
 -------------
 Switcher
@@ -252,5 +244,4 @@ Ultra-low-power M0+ 64 Kbytes Flash 32 MHz
 
 红色标志为VCC，同面另一边为GND，中间CLK，对面中间DIO
 
-J-link OB(2012固件，比较老) 在MDK4上正常，在MDK5上不能用，导致IDE异常退出
 

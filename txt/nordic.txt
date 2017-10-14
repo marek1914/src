@@ -1,5 +1,13 @@
 轨迹跟踪板： nRF52832
 
+nRFgo Studio，SEGGER J-Link, 2012-OB V7.00版实测可用
+MCU有程序并锁定时，mdk无法下载调试，用nRFgo擦除flash
+
+Cannot Load Flash Programming Algorithm:
+RAM for Algorithm，size由 0x1000(4k) 改为 0x2000(8k)
+
+ST-Link
+
 nRF52832-MDK
 
 nRF51: M0 16MHz
