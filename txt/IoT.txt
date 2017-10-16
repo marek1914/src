@@ -1,10 +1,5 @@
 mynewt.apache  嵌入平台的 apache？
 
-VI控制的小风扇小灯：F321
-
-用f321做usb转串口，不用cp2102，因为我们常用的串口也很简单，只需要收发，而cp2102 是7线全功能串口，然后再配合一个 多通道切换器，这样一个minicom可以监测多个串口
-还可以模拟iic，spi等（这是我最开始想做的东西）
-
 ---------
 DA14580
 6LoWPAN 基于IPv6的低速无线个域网标准，即IPv6 over IEEE 802.15.4
@@ -44,16 +39,11 @@ DS1803 数字电位器
 Dallas's 1-wire(kernel support) 
 Dallas被Maxim收购
 
---chip--
-sparkfun : Teensy 3.2
-
 压敏电阻（usb，便宜）
 共模电感（usb）
 
 usb转网口线
 usb接口上用的共模电感：acm2012-2p ：Common Mode Filters(共模滤波器) for high-speed 差分信号或普通信号。
-
-USB电源MOS管关闭 AO4803A：Dual P-Channel Enhancement Mode Field Effect Transistor
 
 usb hub：GL852G 12M贴片晶体
 
@@ -65,22 +55,6 @@ gl852g
 usb切换器USB3740B
 
 R025 采样电阻/精密电阻 （2快工程机板，电池内部有）
-
-2N2222 用于低功耗放大或开关的 NPN
-2N2907 与2N2222互补的PNP，其他各参数类似
-
-asm1117  800mA Low dropout voltage regulator
-可调或固定电压：1.5V 1.8V 2.5V 2.85V 3.3V 5.0V
-最小压差1V
-
-RechTEK  台湾立锜
-RT9193 300mA Ultra-low noise ultra-fast cmos ldo regulator
-最小压差 220mV
-
-TPS61090: 2A Switch, 96% Efficient Boost Converter
-
-
-3.2x2.5 4脚晶体 SMD4P3225
 
 adafruit 充电电压：
 锂离子电池 4.2V
@@ -95,16 +69,10 @@ Very Low 1.5µVp-p Noise (0.1Hz to 10Hz)
 
 1N4007 1V/1A时本身功耗1W，转换为热量
 
-sy8113b dc-dc
-
-DC-DC  662K  5V-3.3V  串口小板用
 串口小板电源地之间 加了T7二极管（3.3/5V各一个）（什么是T7二极管） 何用？
 
-低压MOS场效应管AO3401
 mp1484
 Medium power Transistor中等功率晶体管
-B1182 功率三极管  PNP silicon transistor
-maxim 各232，485芯片型号，各种应用？
 
 ----
 
