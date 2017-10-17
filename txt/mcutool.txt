@@ -104,6 +104,15 @@ dll 6.16 :能下载但IED会异常退出
 http://gnuarmeclipse.github.io/debug/jlink/install/#gnulinux
 
 
+下载器：
+OpenOCD : open on chip debugger
+github.com/texane/stlink
+
+pyOCD: 是mbed官方提供的调试工具，Python开发  python open cmsis-dap
+OpenOCD: 支持 cmsis-dap jlink stlink
+
+使用gdb的方法
+http://openocd.org/doc/html/GDB-and-OpenOCD.html  
 
 SWD, Serial Wire Debug
 SWO, Serial Wire Output

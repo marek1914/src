@@ -1,5 +1,3 @@
-rt9193 ldo  源地小板用
-
 STM32F100W
 
 自己接线标准：黄-clk
@@ -14,7 +12,6 @@ F303-Discovery
 F429-Discovery (F429ZIT6 lcd u-boot)
 
 F030F4P6   M0 16K+4K Value-line
-
 
 NUCLEO-F401RE:
 OFF:
@@ -33,11 +30,6 @@ http://regalis.com.pl/en/arm-cortex-stm32-gnulinux/
 F429I-DIS: u-boot 运行成功
 st-flash write u-boot.bin 0x8000000
 debian下，st-link模拟串口是ttyACM0, mac下不认此串口
-
-下载器：
-1 OpenOCD : open on chip debugger
-2 github.com/texane/stlink
-
 
 sw4stm32的编译器(plugin/.../xx.tar.bz2)：
 arm-none-eabi-gcc --version
@@ -256,4 +248,9 @@ isp模式  uart
 
 http://www.vcc-gnd.com/gongjuyuruanjian/ide/
 
+
+
+
+----100W!----
+ADC测试
 

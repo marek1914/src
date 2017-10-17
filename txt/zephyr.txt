@@ -1,11 +1,6 @@
-pyOCD: 是mbed官方提供的调试工具，使用Python开发  python open cmsis-dap
-OpenOCD: 支持 cmsis-dap jlink stlink
-
-
 CMSIS-DAP (Debug Access Port)
 
 Adafruit NeoPixel Ring  WS2812 5050 RGB LED
-
 
 pip install pyelftools (ubuntu 14)
 apt-get install python3-pyelftools(debian 8)
@@ -18,18 +13,13 @@ zephyr 在1.8 也加入tickless模式
 
 scripts/support/openocd.sh
 
-
 需要dfu-util 包  关注一下
 device-tree-compiler
-
 
 $ export ZEPHYR_GCC_VARIANT=zephyr
 $ export ZEPHYR_SDK_INSTALL_DIR=<sdk installation directory>
 
 或者 写到  $HOME/.zephyrrc里面  会自动找这个文件？
-
-
-
 
 make BOARD=arduino_101_ble          - Build for arduino_101_ble（nRF51822）
 make BOARD=arduino_101              - Build for arduino_101    （x86）
@@ -95,9 +85,16 @@ CONFIG_XX 开头的，去掉CONFIG_ 再搜索
 
 =====
 F407G_DISC1
-
 4个 LED 分别是 PD12/13/14/15
 
 
 nucleo_f401:
 pwm在PA0，CN8的第一脚 A0上， blink_led的例子，要外接led，板载LD2默认不行   看board目录下的doc
+PA0 TIM5 CH1 
+
+drivers/pwm/pwm_stm32.c
+
+
+
+
+st-link/v2  gdb的方法
