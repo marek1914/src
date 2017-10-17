@@ -1,21 +1,23 @@
-原则：不纠结，just do it
+不纠结，just do it
+
+1 STM32F103 做双串口
+2 F32 VI控制的小风扇小灯
+3 F321做usb转串口(cp2102 7线全功能串口)，模拟开关，一个minicom监测多串口,模拟iic，spi
+4 做一个钢网，常见封装都做进入，比如一排电容电阻，都要做成固定间距
+
+以stm32为主，需要Cortex-A的话，有BBB，BBG，
 
 注册一个淘宝店  elelab
 
 pjrc.com 
 
-所以，要有冲突，比死气沉沉强
-存在即合理，事情就是发展到了这个地步，看似听我的，实际被T左右
-
-PlantUML
-https://github.com/scrooloose/vim-slumlord
-  
+PlantUML https://github.com/scrooloose/vim-slumlord
 <<艾利的夸张人生>> hyperbole and a half
 
 lllab.tech 2017.6-2019.6
 elelab.cn  2017.6-2020.6
 
-Full Stack:掌握多种技能，并能利用之独立完成产品
+Full Stack:掌握多种技能，能独立完成产品
 
 “我本不是生来适于研究学问的人，因为我用功的时间稍长就感到疲倦，我不能一连半小时集中精力于一个问题上。
 但我连续研究几个不同问题，即使是不间断，也能够轻松地一个一个地寻思下去，这一个问题可以消除另一个问题
@@ -23,17 +25,13 @@ Full Stack:掌握多种技能，并能利用之独立完成产品
 这样，即使我整天用功也不觉得疲倦了” 卢梭
 
 我的时间并不多，没有时间纠结，就干一件事，所有的努力都为这件事而服务
-20170930 磁环实验失败
 
 高度自律：为了高度自由
 
 JST的本质，类似于Lego
 
-6502 CPU apple I/II 任天堂
-
 硬件制造商
 Dynastream Innovations Inc.
-
 
 MCU排行：
 Renesas/NXP+Freescale/Microchip+Atmel
@@ -124,3 +122,8 @@ TI：13**67@qq.com : -2y50wpy-
 silicon: 134*@qq.com : 银行卡后5位*elelab
 ITU-T: gaojie@cyclecentury.com:*2xxpy-
 baidu:3uixx:5***5005xxx
+openstm32.org gaojie:200w200w
+st.com 13xx@q.com:89..2*G
+
+
+q盾：形：159648

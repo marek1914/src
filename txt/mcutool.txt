@@ -103,3 +103,31 @@ dll 6.16 :能下载但IED会异常退出
 
 http://gnuarmeclipse.github.io/debug/jlink/install/#gnulinux
 
+
+
+SWD, Serial Wire Debug
+SWO, Serial Wire Output
+
+
+J-Link ARM-OB STM32 compiled Aug 22 2012
+
+这种盗版的 J-Link OB 固件是不能自动升级的
+
+http://akb77.com/g/stm32/jlink-ob/
+
+JLink-OB-072  F0 cpu 带虚拟串口
+
+-----
+STM DFU utility
+STVP:ST Visual Programmer STM32
+
+-----
+固件：
+6.16.3.0 -dll: 0xb3fea0-0xb4c603
+dd if=JLinkARM.dll of=firm.bin skip=11796128 bs=1 count=51043
+
+0x8004800 开始的，从 0x8000000 开始，是 bootloader
+
+自己做的不好用， jlink firmware.hex 可以
+
+STSW-LINK004: STM32 ST-LINK utility  直接可以少些bin文件

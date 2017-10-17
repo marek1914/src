@@ -30,10 +30,6 @@ https://github.com/embedthis 维护 goahead/appweb
 
 goahead -v /web ip：9000  #ip是服务器ip，端口前要有空格
 
-
-
-
-
 -----
 我的开机打印（用米尔 boot.bin）
 
@@ -101,3 +97,11 @@ Z-7007S/7012S/7014S 766MHz
 Zynq-7000   双核 Cortex-A9
 Z-7010/7015/7020       866MHz
 Z-7030/7035/7045/7100  1GHz
+
+
+pynq 2000+ 太贵
+trenz zynqberry， 这家公司有很多型号，也比较贵
+myir 的东西还不错, Z-Tune 800+
+
+
+

@@ -404,6 +404,19 @@ BAT54C:  肖特基双二极管，IR一分为2到CPU和MCU
 MAX3420 / FT121  SPI slave 转USB Device
 MCP73871: Microchip Battery Management
 CE3150AM: yj 电池充电
+2N2222: 低功耗放大或开关 NPN
+2N2907: 与2N2222互补的PNP
+asm1117:  800mA Low dropout voltage regulator
+          可调或固定电压：1.5V 1.8V 2.5V 2.85V 3.3V 5.0V 最小压差1V
+RT9193: 300mA Ultra-low noise ultra-fast cmos ldo regulator
+          最小压差 220mV RechTEK 台湾立锜
+TPS61090: 2A Switch, 96% Efficient Boost Converter
+662K:  5V-3.3V  串口小板用
+B1182: 功率三极管  PNP silicon transistor
+SMD4P322: 53.2x2.5 4脚晶体 
+sy8113b: dc-dc
+AO4803A:  USB电源MOS管关闭, Dual P-Channel Enhancement Mode Field Effect Transistor
+pj-322: 4段音频母头
 
 经验：
 1 asm1117 ，输入输出都要加电容，5V输入有抖动时，输入加电容，1117输出稳定，但加负载后输出开始抖动，输出也加电容后，OK

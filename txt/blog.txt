@@ -46,3 +46,12 @@ wikipedia 里面的数学公式都是 svg图片
 
 
 https://upclinux.github.io/intro/03/terminal-life/   好例子
+
+
+
+
+
+
+=============
+6502 CPU  Apple I/II 任天堂
+
