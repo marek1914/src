@@ -99,7 +99,7 @@ dll 4.80 :能下载，nordic无法识别可手动选择M4，debug正常，如不
 dll 5.12 :无法下载
 dll 6.16 :能下载但IED会异常退出
 
-写不进flash，j-link stm32 unlock 工具解锁
+写不进flash，j-link stm32 unlock 工具解锁, 怎么解锁来着？   坏的那个如何恢复？
 
 http://gnuarmeclipse.github.io/debug/jlink/install/#gnulinux
 

@@ -11,9 +11,22 @@ ST-Link
 nRF52832-MDK
 
 nRF51: M0 16MHz
-nRF52: M4 64MHz
+nRF52: M4 64MHz 512k+64k
 
 nRF24
 
-
 UICR
+
+-----
+qiyi 开发板 52832_xxAA
+nRF5_SDK_14.0.0_3bcc1f7/examples/peripheral/blinky_freertos/pca10040/blank/arm5_no_packs  这个例子可以工作，灯闪烁了
+
+freeRTOS在 
+nRF5_SDK_14.0.0_3bcc1f7/external/freertos/source
+
+驱动在：
+nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf
+
+
+sdk 组织的还是比较乱的，没有stm32 的cube好
+
