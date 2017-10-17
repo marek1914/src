@@ -1,3 +1,5 @@
+rt9193 ldo  源地小板用
+
 STM32F100W
 
 自己接线标准：黄-clk
@@ -14,6 +16,9 @@ NUCLEO-F401RE(F401RET6 84MHz 512+96)
 STM32F407G-DISC1 (F407VGT6 168MHz 1M+192k)
 F303-Discovery
 F429-Discovery (F429ZIT6 lcd u-boot)
+
+F030F4P6   M0 16K+4K Value-line
+
 
 NUCLEO-F401RE:
 OFF:
@@ -243,5 +248,16 @@ STM32L051K8U6
 Ultra-low-power M0+ 64 Kbytes Flash 32 MHz
 
 红色标志为VCC，同面另一边为GND，中间CLK，对面中间DIO
+
+
+--
+USART1  怎么弄？
+
+
+SWD模式  J-link OB(on board)   st-link V2
+isp模式  uart
+
+
+http://www.vcc-gnd.com/gongjuyuruanjian/ide/
 
 
