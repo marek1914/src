@@ -24,16 +24,12 @@ SGM4782:  2 1:4 Ron=0.5Ω
 SGM3005:  2 1:2 Ron=0.5Ω
 
 频率高的阻值>4Ω，频率低<0.5Ω
-+++++++++++++
 
 专用模式切换芯片：
 FSA8049/TS3A26746E GND 0.1Ω，手机用小封装
 
 http://www.2cm.com.tw/technologyshow_content.asp?sn=1309040008
 maximintegrated.com/en/app-notes/index.mvp/id/5299
- 
-===
-pj-322
 
 按键需200g*9.8N/Kg=2N
 树莓派 耳机插孔内径 6.4mm，耳机插孔外径 6mm，留有0.4mm空隙
@@ -45,7 +41,6 @@ pj-322
 内部宽度 75-4.26*2 = 66.48，取66mm
 长度 90.7 取90mm
 定位孔 长70mm 宽56mm，定位孔直径5mm
-
 
 挡板：宽 31.4mm  长 70.8mm
 柱子高15，板厚1.6 板子上沿 距离下挡板16.6

@@ -5,10 +5,6 @@ STM32F100W
 CANopen
 cmx.com
 
-openstm32.org gaojie:200w200w
-st.com 13xx@q.com:89..2*G
-
-
 板子：
 NUCLEO-F401RE(F401RET6 84MHz 512+96)
 STM32F407G-DISC1 (F407VGT6 168MHz 1M+192k)
