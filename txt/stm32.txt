@@ -1,6 +1,8 @@
 STM32F100W
 
-自己接线标准：黄-clk
+printf 重定向 fputc
+
+接线标准：黄-clk
 
 CANopen
 cmx.com
@@ -11,6 +13,8 @@ STM32F407G-DISC1 (F407VGT6 168MHz 1M+192k)
 F303-Discovery
 F429-Discovery (F429ZIT6 lcd u-boot)
 
+F030F4P6   M0 16K+4K Value-line
+
 NUCLEO-F401RE:
 OFF:
 SB 4/6/8/10/11/18/20/24/29/30/32/36/39/44/46/47/48/49/52/55/59/61/62/63
@@ -18,6 +22,12 @@ ON:
 SB 3/5/7/9/12/13/14/15
 
 F401的PA2/3连到F103的PA2/3 UART2
+
+
+F401 PWM:
+PA0 可以是TIM2_CH1/TIM5_CH1
+PA5 只能是TIM2_CH1，即选中TIM5_CH1时，TIM2_CH1 只能在PA5
+
 
 独立ST-Link，拔掉CN2跳线，CN4: 2-CLK,3-GND,4-DIO
 
@@ -28,11 +38,6 @@ http://regalis.com.pl/en/arm-cortex-stm32-gnulinux/
 F429I-DIS: u-boot 运行成功
 st-flash write u-boot.bin 0x8000000
 debian下，st-link模拟串口是ttyACM0, mac下不认此串口
-
-下载器：
-1 OpenOCD : open on chip debugger
-2 github.com/texane/stlink
-
 
 sw4stm32的编译器(plugin/.../xx.tar.bz2)：
 arm-none-eabi-gcc --version
@@ -218,11 +223,6 @@ Nucleo-F401 ST-Link使用：
 __HAL_AFIO_REMAP_SWJ_NOJTAG();  // HAL_MspInit 里面
 都是cube生成的，现在体现到cube的强大了
 
-———————
-printf 重定向fputc
-MDK，Target -> Code Generation 勾选 Use MicroLIB
-———————
-
 USwitcher 就采用 中断+循环模式，无OS
 
 PB3/4 与JTAG冲突
@@ -240,4 +240,20 @@ Ultra-low-power M0+ 64 Kbytes Flash 32 MHz
 
 红色标志为VCC，同面另一边为GND，中间CLK，对面中间DIO
 
+
+--
+USART1  怎么弄？
+
+
+SWD模式  J-link OB(on board)   st-link V2
+isp模式  uart
+
+
+http://www.vcc-gnd.com/gongjuyuruanjian/ide/
+
+
+
+
+----100W!----
+ADC测试
 

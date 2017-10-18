@@ -1,0 +1,6 @@
+i.MX 应用处理器
+
+i.MX7: 800MHz A7+ 200MHz M4  有啥用？
+
+
+Kinetis:
