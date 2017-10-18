@@ -73,12 +73,7 @@ github.com/ARMmbed
 http://tech.microbit.org/software/daplink-interface/
 
 
-
-
-
-
 CONFIG_XX 开头的，去掉CONFIG_ 再搜索
-
 
 
 =====
@@ -97,4 +92,19 @@ drivers/pwm/pwm_stm32.c
 make BOARD=nucleo_f401re debug
 
 -----
-stm32f4_disc  就是 stm32f407_disc1
+stm32f4_disc 即 stm32f407_disc1
+st: STM32F407G-DISC1 has replaced the old reference STM32F4DISCOVERY
+On-board ST-LINK/V2 on STM32F4DISCOVERY (old) or ST-LINK/V2-1(网站V2-A,应该是笔误) on STM32F407G-DISC1(new)
+
+，openocd原始配置这块板子是 st-link-v2，实际现在已经是v2-1,导致flash失败:
+Error: open failed , in procedure 'ocd_bouncer'
+修复：
+zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/share/openocd/scripts/board/stm32f4discovery.cfg
+stlink-v2.cfg 改为 stlink-v2-1.cfg
+这块板子有毛病，改后能下载了，但是也不正常，debug 超时(有时能成功，不稳定), blinky程序led3 不闪烁
+
+zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/share/openocd/scripts/target/stm32f4x.cfg
+这里可以修改 st-link频率，改为1000k 也不行，暂时认为板子有毛病
+
+为啥每次都是重新编译？
+

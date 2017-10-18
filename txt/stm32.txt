@@ -225,9 +225,8 @@ Nucleo-F401 ST-Link使用：
 拔掉晶体旁边的2个跳线，CN4 3:GND，2:SWCLK, 4:SWDIO
 
 
-调试发现 PB3 PB4 设置io无效，因为复位后，PB3/4默认配置为JTAG，需要释放IO
-__HAL_AFIO_REMAP_SWJ_NOJTAG();  // HAL_MspInit 里面
-都是cube生成的，现在体现到cube的强大了
+PB3/4默认配置为JTAG，需要释放IO
+__HAL_AFIO_REMAP_SWJ_NOJTAG();  // HAL_MspInit 里cube生成
 
 USwitcher 就采用 中断+循环模式，无OS
 

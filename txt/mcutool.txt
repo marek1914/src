@@ -81,10 +81,13 @@ License ID Code (LIC): TI413-ANA7N-EA7AH-9VT3M-YXSRG-4NU7E
 
 ---调试器---
 Keil/ARM 有st-link，j-link驱动
+
 ST-Link
 ARM/Stlink/ST-LinkUpgrade.exe 显示:
 Firmware Version: V2.J25.M14 STM32 Debug+Mass storage
 Upgrade the firmware to V2.J27.M15 更新成功
+
+stm32f3discovery: st-link ver: V2.J27.S0 (跟Mx 有啥区别)
 
 segger j-link
 安装J-Link驱动，包含一组工具:Commander, Configurator(固件升级)等
@@ -120,8 +123,6 @@ SWO, Serial Wire Output
 
 J-Link ARM-OB STM32 compiled Aug 22 2012
 
-这种盗版的 J-Link OB 固件是不能自动升级的
-
 http://akb77.com/g/stm32/jlink-ob/
 
 JLink-OB-072  F0 cpu 带虚拟串口
@@ -129,6 +130,7 @@ JLink-OB-072  F0 cpu 带虚拟串口
 -----
 STM DFU utility
 STVP:ST Visual Programmer STM32
+STSW-LINK004: STM32 ST-LINK utility  可烧写bin文件
 
 -----
 固件：
@@ -138,7 +140,5 @@ dd if=JLinkARM.dll of=firm.bin skip=11796128 bs=1 count=51043
 0x8004800 开始的，从 0x8000000 开始，是 bootloader
 
 自己做的不好用， 
-jlink firmware.hex 可以, 但是2009年的,MDK5 提示升级，竟然升级成功了，
-奇怪，不是说盗版的不能升级吗？
+jlink firmware.hex 可以, 是2009年的,MDK5 提示升级，竟然升级成功了(不是说盗版的不能升级吗？)
 
-STSW-LINK004: STM32 ST-LINK utility  直接可以少些bin文件
