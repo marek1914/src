@@ -128,6 +128,8 @@ dd if=JLinkARM.dll of=firm.bin skip=11796128 bs=1 count=51043
 
 0x8004800 开始的，从 0x8000000 开始，是 bootloader
 
-自己做的不好用， jlink firmware.hex 可以
+自己做的不好用， 
+jlink firmware.hex 可以, 但是2009年的,MDK5 提示升级，竟然升级成功了，
+奇怪，不是说盗版的不能升级吗？
 
 STSW-LINK004: STM32 ST-LINK utility  直接可以少些bin文件
