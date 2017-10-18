@@ -1,6 +1,8 @@
 STM32F100W
 
-自己接线标准：黄-clk
+printf 重定向 fputc
+
+接线标准：黄-clk
 
 CANopen
 cmx.com
@@ -20,6 +22,12 @@ ON:
 SB 3/5/7/9/12/13/14/15
 
 F401的PA2/3连到F103的PA2/3 UART2
+
+
+F401 PWM:
+PA0 可以是TIM2_CH1/TIM5_CH1
+PA5 只能是TIM2_CH1，即选中TIM5_CH1时，TIM2_CH1 只能在PA5
+
 
 独立ST-Link，拔掉CN2跳线，CN4: 2-CLK,3-GND,4-DIO
 
@@ -214,11 +222,6 @@ Nucleo-F401 ST-Link使用：
 调试发现 PB3 PB4 设置io无效，因为复位后，PB3/4默认配置为JTAG，需要释放IO
 __HAL_AFIO_REMAP_SWJ_NOJTAG();  // HAL_MspInit 里面
 都是cube生成的，现在体现到cube的强大了
-
-———————
-printf 重定向fputc
-MDK，Target -> Code Generation 勾选 Use MicroLIB
-———————
 
 USwitcher 就采用 中断+循环模式，无OS
 
