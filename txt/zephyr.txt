@@ -75,8 +75,6 @@ http://tech.microbit.org/software/daplink-interface/
 
 
 
-zephyr 里面
-stm32f4_disc  就是 stm32f407_disc1
 
 
 CONFIG_XX 开头的，去掉CONFIG_ 再搜索
@@ -98,3 +96,5 @@ drivers/pwm/pwm_stm32.c
 
 make BOARD=nucleo_f401re debug
 
+-----
+stm32f4_disc  就是 stm32f407_disc1
