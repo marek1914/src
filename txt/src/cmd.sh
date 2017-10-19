@@ -17,16 +17,13 @@ parted / gparted
 hexdump
 ascii #命令
 zip/unzip
-gzip/gunzip (gnu zip)
-gzip # -9 --fast -9 --best
+gzip/gunzip (gnu zip) # -9 --fast -9 --best
 
 hostname foobar #修改hostname
 readelf -A
 split
 uname -r
 cpio
-tail
-head
 blkid #分区 UUID
 declare
 who # su 显示最开始登录的用户名
@@ -290,3 +287,7 @@ scale=10 #设置精度
  
 # big command
 rsync
+
+# 文件名扩展
+/dev/sd[b-e]1
+

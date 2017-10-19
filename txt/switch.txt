@@ -205,4 +205,10 @@ libusb_detach_kernel_driver  这个必须，要kernel放弃驱动控制权
 libusb_detach_kernel_driver
 libusb_set_configuration    实验成功
 
-WS2812    环形，做个 时钟
+-----
+
+at88sc0104: 当年的一个创意，必须要转化为产品
+4个插座支持8片, 但mcu需要 4*8=32个io   f103够用
+i2c引脚不能复用，因为要写ID，vcc/gnd 可以用反相器，一个io控制
+
+

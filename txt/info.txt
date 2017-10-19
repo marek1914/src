@@ -1,14 +1,21 @@
 不纠结，just do it
 
+取名：
+??  elelab  悠然科技 优雅科技 都有了
+
+旷视 Face++
+茁壮 iPanel
+
 0 板子沉金 2.54 纯铜排针
 1 STM32F103 做双串口 
 2 F32 VI控制的小风扇小灯
 3 F321做usb转串口(cp2102 7线全功能串口)，模拟开关，一个minicom监测多串口,模拟iic，spi
 4 做一个钢网，常见封装都做进入，比如一排电容电阻，都要做成固定间距
+5 WS2812    环形，做个 时钟
+6 at88sc0104烧录器, usb dangol 给纯软件公司(选一个u盘壳)
 
-以stm32为主，需要Cortex-A的话，有BBB，BBG，
 
-注册一个淘宝店  elelab
+以stm32为主，需要Cortex-A的话，有BBB，BBG，raspberryPi
 
 pjrc.com 
 

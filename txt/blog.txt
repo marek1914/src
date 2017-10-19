@@ -2,6 +2,9 @@ mkdocs.org
 
 hexo/jekyll
 
+jekyll:
+编译ruby2.x 需 libssl-dev libreadline-dev libgdbm-dev
+
 http://www.jikexueyuan.com/
 http://ju.outofmemory.cn/entry/916
 

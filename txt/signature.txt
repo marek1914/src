@@ -1,4 +1,4 @@
-android 如何更换系统apk的签名
+OpenSSL 集成众多密码算法及实用工, 具提供2个主要库: libssl libcrypto
 
 GPG
 PGP
@@ -139,10 +139,8 @@ $ openssl pkcs12 -export -in shared.x509.pem -inkey shared.priv.pem -out shared.
 
 $ keytool -importkeystore -deststorepass android -destkeypass android -destkeystore keystore -srckeystore shared.pk12 -srcstoretype PKCS12 -srcstorepass android -alias key
 
-
 openssl pkcs8 -in platform.pk8  -inform DER -outform PEM -out platform.priv.pem -nocrypt
 openssl pkcs12 -export -in platform.x509.pem -inkey platform.priv.pem -out platform.pk12 -name key
-
 
 keytool -importkeystore -deststorepass android -destkeypass android -destkeystore keystore -srckeystore platform.pk12 -srcstoretype PKCS12 -srcstorepass android -alias key
 
@@ -156,41 +154,27 @@ RSA 2种场景：
 直接对数据加密用
 openssl 写列命令
 
-
-data too large for key size
-
 http://stackoverflow.com/questions/7143514/how-to-encrypt-a-large-file-in-openssl-using-public-key
 
 Public-key crypto is not for encrypting arbitrarily long files. One uses a symmetric cipher (say AES) to do the normal encryption. Each time a new random symmetric key is generated, used, and then encrypted with the RSA cipher (public key). The ciphertext together with the encrypted symmetric key is transferred to the recipient. The recipient decrypts the symmetric key using his private key, and then uses the symmetric key to decrypt the message.
 
 The private key is never shared, only the public key is used to encrypt the random symmetric cipher.
 
-
 Fingerprints are created by applying a cryptographic hash function to a public key. Since fingerprints are shorter than the keys they refer to, they can be used to simplify certain key management tasks
 
 指纹：
 Fingerprint: 8f:61:41:b3:97:dc:db:d4:c8:46:1a:33:8c:cb:1d:a7
 
-
-libssl is part of the OpenSSL implementation of SSL. 
-
 2级bootloader启动，1级引导2级，2级校验和加载应用
 
 启动，检查签名并加载下级loader2 1级loader不可更改，2级loader支持升级、校验、恢复、加载应用软件
-
 
 问题：
 android系统的公钥或私钥 有存储吗？  存哪里？
 
 验证一个.pem文件：
 
-OpenSSL provides two primary libraries: libssl and libcrypto.
-The libcrypto library provides the fundamental cryptographic routines 
-
-openssl 集成众多密码算法及实用工具
-
 openssl dgst -binary -sha1 123  >sha1.bin  生成bin格式
-
 
 ------ssh-----
 public key fingerprint :  
@@ -214,10 +198,7 @@ bouncycastle  java加密算法包
 
 The following commands were used to generate the test key pairs:
 
-  development/tools/make_key testkey  '/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android/emailAddress=android@android.com'
-  development/tools/make_key platform '/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android/emailAddress=android@android.com'
-  development/tools/make_key shared   '/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android/emailAddress=android@android.com'
-  development/tools/make_key media    '/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android/emailAddress=android@android.com'
+development/tools/make_key testkey  '/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android/emailAddress=android@android.com'
 
 The following standard test keys are currently included:
 
@@ -230,19 +211,10 @@ These test keys are used strictly in development, and should never be assumed
 to convey any sort of validity.  When $BUILD_SECURE=true, the code should not
 honor these keys in any context.
 
-
 signing using the openssl commandline (for boot/system images)
 --------------------------------------------------------------
-
 1. convert pk8 format key to pem format
    % openssl pkcs8 -inform DER -nocrypt -in testkey.pk8 -out testkey.pem
 
 2. create a signature using the pem format key
    % openssl dgst -binary -sha1 -sign testkey.pem FILE > FILE.sig
-
-extracting public keys for embedding
-------------------------------------
-it's a Java tool
-but it generates C code
-take a look at commands/recovery/Android.mk
-you'll see it running $(HOST_OUT_JAVA_LIBRARIES)/dumpkey.jar

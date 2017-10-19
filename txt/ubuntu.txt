@@ -4,7 +4,8 @@ tty显示中文：
 
 
 ia32-libs u14.04无
-lib32xx 32bit版库,如
+
+lib32xx 32bit版库,如:
 lib32ncurses-dev (new curses)
 lib32readline5-dev
 
@@ -310,11 +311,7 @@ deb http://httpredir.debian.org/debian/ jessie main contrib non-free
 Mac
 
 OmniGraffle  绘图软件
-
-
 Ch341 whc公司官网下载Mac版驱动
-
-sudo port clean openssl
 
 sudo pip install pyserial
 
@@ -348,10 +345,6 @@ https://reference.digilentinc.com/reference/instrumentation/analog-discovery-2/r
 --aliyun---
 bxu2713310005.my3w.com@bxu2713310005:200wguiqiyi
 htdocs/
-
-jekyll:
-编译ruby2.x 需要openssl： apt-get install libssl-dev libreadline-dev libgdbm-dev
-
 
 修改语言：
 /etc/default/locale 
@@ -403,10 +396,12 @@ virtual Box
 6) virtualbox 4.3.10升级到4.3.34，xp无法启动，addition也升级4.3.34即可
 7) Guest Additions
 8) win7虚拟机共享文件夹后，可以向ubuntu写，但是无法从ubunbu拷贝，提示位置不可用，映射网络驱动器 \\VBOXSVR\Downloads可以工作。
+9) 有时需要  右击选择 “清除保存的状态”
 
 
 ---raid---
-dmraid: fake raid (主板 廉价控制器) 有3T盘识别746G bug  停止开发
-mdadm:  software raid，也可以管理fake raid   不断完善中
+dmraid: fake raid (主板 廉价控制器) 3T盘识别746G bug 
+mdadm:  software raid，也可以管理fake raid (搜redhat官方文档)
+
 
 

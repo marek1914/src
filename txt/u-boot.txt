@@ -67,7 +67,7 @@ linux下更新u-boot环境变量
 	   unconfig: 删除config.h等
 	2) ndk9不能编译u-boot  不依赖glibc
     3) sandbox:
-		install libssl-dev(evp.h) device-tree-compiler(dct command)
+		libssl-dev(evp.h) device-tree-compiler(dct command)
 		make sandbox_defconfig all
 		./u-boot
 	根makefile的结构貌似并不是很好，可以修改各个结构的东西，这是什么思想

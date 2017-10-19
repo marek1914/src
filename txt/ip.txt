@@ -770,7 +770,7 @@ rfc3489 Simple Traversal of UDP Through NAT (被5389替代)
 rfc5389规定，stun也可以用tcp协议。不过xuss理解，tcp是负责服务器认证的，nat穿透的环节还是要UDP。只用TCP就不能穿透吗？
 
 1 编译
-需要 libboost-dev库(C++扩展库)  libssl-dev(找不到openssl/md5.h)
+需 libboost-dev libssl-dev(openssl/md5.h)
 
 
 不论多少级路由器，stunclient 只显示最后出口到互联网的那一级别

@@ -11,21 +11,20 @@ Bash Reference Manual                                                 *bash*
                                                             *BuiltinCommands*
 (41) !help 显示
 
-The ‘=’ operator is identical to ‘==’
+‘=’ is identical to ‘==’
 
-* ($*) Expands to the positional parameters, starting from one.
-
+* ($*) 
 @ ($@) Expands to the positional parameters, starting from one.
 
 
 # 3.5 Shell Expansions (7 types)
 #brace expansion
 #tilde expansion
-#parameter and variable expansion 3.5.3(参数和变量本质相同)
-#command substitution 3.5.4 $(foo) / `foo`
+#parameter and variable expansion (参数和变量本质相同)
+#command substitution
 #arithmetic expansion
 #word splitting
-#filename expansion * ? [ab]
+#filename expansion [ab]
 
 #3.5.5 Arithmetic Expansion:
 $((expression))
