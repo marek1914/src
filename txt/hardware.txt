@@ -349,7 +349,7 @@ AO4803A:  USB电源MOS管关闭, Dual P-Channel Enhancement Mode Field Effect Tr
 pj-322: 4段音频母头
 rt9193: ldo 源地小板用
 MP2359: DC-DC Power Converters 
-
+OTS-16-03: 烧录座
 
 经验：
 1 asm1117 ，输入输出都要加电容，5V输入有抖动时，输入加电容，1117输出稳定，但加负载后输出开始抖动，输出也加电容后，OK
