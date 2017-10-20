@@ -1,5 +1,7 @@
 http://www.oldfriend.url.tw/  好资料 有关于特性阻抗的
 
+pads viewer: 官方免费
+
 Cadence收购OrCAD,PSpice
 
 ohm
@@ -247,12 +249,7 @@ voltage 电势差/电位差
 电压 一般只用于电路当中，电势差和电位差 普遍用于一切电现象当中
 
 铜 copper  Cu (from Latin: cuprum)
-同位素：具有相同质子数，不同中子数的同一元素的不同核素互为同位素(Isotope)
-化学元素（Chemical element）就是具有相同的核电荷数（即核内质子数）的一类原子的总称
 铜是29号元素，有29个质子，相对质量64，所以中子35个。电子排列 2-8-18-1
-铁26号，2-8-14-2 (每层最多2*n^2)
-相对原子质量：不是实际千克数，而是与碳-12（6个质子和6个中子）的碳原子（显然，质子与中子质量相同）
-还有8个中子+6个质子的碳-14
 
 Cubic crystal system
 
@@ -263,7 +260,8 @@ Cubic crystal system
 绝大多数金属原子的最外层电子数均小于4
 
 设铜导线单位体积内的自由电子数为n，电子定向移动为v，每个电子带电量为e，导线横截面积为S。
-则时间t内通过导线横截面的自由电子数N=nVtS，其总电量Q=Ne=nVtSe。根据I=Q/t得V=I/neS，代入数字可得V=7.4×10^-5米/秒，即0.74毫米/秒。
+则时间t内通过导线横截面的自由电子数N=nVtS，其总电量Q=Ne=nVtSe。
+根据I=Q/t得V=I/neS，代入数字可得V=7.4×10^-5米/秒，即0.74毫米/秒。
 自由电子在导体中定向移动速率(约10^-4米/秒)，只约为自由电子热运动的平均速率(约10^5米/秒)的1/10^9。
 
 金属导体中电流微观表达式I=nesv,n为单位体积内自由电荷数，e为电子的电荷量，s为导体横截面积，v为电荷速度。
@@ -275,20 +273,18 @@ q是每个电荷的带电量（常数）
 s是导体的横截面积
 显然，线粗流的就慢，线细流的就快
 
-漆包铜线 0.29mm，能通过电流多少呢？
+漆包铜线 0.29mm:
 面积pi*0.29^2 = 0.264 mm  铜一般6A/mm，折算下来能承受1.5A
 
-自由电子指不被约束在某一个原子内部的电子
+自由电子: 不被约束在原子内部的电子
 
-单位体积导体中的自由电子数量即自由电子密度。铜的自由电子密度为8.5×10^28/m^3。各种金属的自由电子密度有相同的数量级。
+自由电子密度:单位体积导体中的自由电子数量,铜:8.5×10^28/m^3
 
 1个电子的电量：−1.602×10−19 coulomb
 1 coulomb 需 0.073437615 mm^3铜, 即1s向前推进0.07mm就达到1A电流，即0.00007m/s
 自由电子定向移动速率是 10^(-5) m/s 的数量级
 
 dc-dc降压靠pwm占空比控制电容充放电完成， BUCK电路
-
-计算 1mm^2，1A电流，电子速度：
 
 coordination number
 
@@ -297,8 +293,7 @@ coordination number
 
 Flyback Transformer/单端反激式DC－DC变换器/Buck-Boost转换器，因其输出端在原边绕组断开电源时获得能量，因此得名
 
-Joule thief
-MAKE A JOULE THIEF 焦耳小偷
+Joule thief  MAKE A JOULE THIEF 焦耳小偷
 
 Armstrong oscillator ， also known as the Meissner oscillator
 反激式(Flyback)变压器
@@ -309,8 +304,8 @@ Tantalum electrolytic capacitors
 Niobium electrolytic capacitors
 
 Sine wave / Alternating current
+
 电源拆下来的电感器两组线圈测量电阻2.3-2.4欧
-吹风机加热后，好像略有升高。
 电感的自身电阻是不可忽略的。
 20摄氏度，铜电阻率0.0175欧姆 平方毫米/米
 电阻=电阻率x长度/截面积，直径0.2mmx1m = 0.55欧
@@ -320,14 +315,8 @@ Electrical reactance
 Inductive reactance 感抗
 
 An ideal resistor has zero reactance
-ideal inductors and capacitors have zero resistance （电感的电阻由铜线引入）
+ideal inductors and capacitors have zero resistance 
 
-As frequency goes up, inductive reactance goes up and capacitive reactance goes down. 频率增加，感抗增加，容抗降低
-
-容抗： X=1/wC
-感抗： X=wL
-
-阻抗=电抗+电阻 即 Z=R+jX， 而X=Xl+Xc=wL-1/wC    w=2*pi*f
 
 IP101GA: 10/100 phy
 BAT54C:  肖特基双二极管，IR一分为2到CPU和MCU
@@ -350,6 +339,7 @@ pj-322: 4段音频母头
 rt9193: ldo 源地小板用
 MP2359: DC-DC Power Converters 
 OTS-16-03: 烧录座
+STP120 :120欧阻抗电缆
 
 经验：
 1 asm1117 ，输入输出都要加电容，5V输入有抖动时，输入加电容，1117输出稳定，但加负载后输出开始抖动，输出也加电容后，OK

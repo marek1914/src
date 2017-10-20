@@ -22,7 +22,6 @@ verity_signer
 append2simg
 img2simg
 boot_signer
-fec
 brillo_update_payload
 lib/shflags/shflags
 delta_generator
@@ -32,21 +31,21 @@ make out/target/product/xxx/boot.img  showcommands
 疑问：showcommands 是 modifier pseudo-target， 并非make特性， 是android的特殊写法，不管在前在后，能切换@开关
 可以用在make，也可用在 mm mmm
 
-善用 croot/godir
+croot/godir
+
 CLEAR_VARS:= $(BUILD_SYSTEM)/clear_vars.mk 把各种变量赋为空
 /data/local/tmp shell权限可访问
 
-make update-api
-frameworks 定义了新公有变量、方法要提交 frameworks/base/api/current.txt
+make update-api  #frameworks 定义了新公有变量、方法要提交 frameworks/base/api/current.txt
 
 system/core/libutils/FileMap.cpp
 system/core/libutils/Threads.cpp
 
 frameword/base/libs/androidfw/ZipFileRO.cpp
 
-RefBase子类对象第一次创建时，对象构造完成时会调用onFirstRef()   bootanimation在这里调run，为啥？构造里run不行吗
+RefBase子类对象第一次创建时，对象构造完成时会调用onFirstRef()   bootanimation在这里调run，构造里run不行吗
 
-dumpsys meminfo com.xx.test  //查看内存使用
+dumpsys meminfo com.xx.test  //查看内存
 mstar，bootanim在init.rc里改为system uid， bootanimation从8s延长到15s
 改为graphics uid ok（new时不返回）
 
@@ -55,13 +54,6 @@ setprop ctl.stop bootanim
 
 bootanimation在init.rc配置为disable，
 surfaceflinger的readyToRun的startBootAnim();//通过属性值触发Init进程启动
-
-void SurfaceFlinger::startBootAnim() {  
-    // start boot animation  
-    mBootFinished = false;  
-    property_set("service.bootanim.exit", "0");//清零，bootanimation周期检测
-    property_set("ctl.start", "bootanim");//启动bootanim进程
-}  
 
 退出靠 service.bootanim.exit == 1 或线程执行完，自然退出
 没有使用 ctl.stop bootanim
@@ -101,7 +93,7 @@ bootanimation 启动但是run() 很晚，构造函数执行 SurfaceComposerClien
 const String8 path(entryName.getPathDir());
 const String8 leaf(entryName.getPathLeaf());
 
-调用这个画面才会显示到屏幕
+画面显示
 eglSwapBuffers(mDisplay, mSurface);
 
 文件排序:SortedVector 可1/2/3，a/b/c
@@ -111,7 +103,6 @@ setPreviewDisplay（null）就可以不预览了
 反汇编：
 http://blog.csdn.net/kesenhoo/article/details/6544094
 dex2jar  jd-gui
-
 
 设置保存在：./data/com.android.providers.settings/databases/settings.db-journal
 
@@ -138,22 +129,15 @@ data目录是system权限 system 会挂载成 ro 形式。
 
 关于android shell的权限问题
 
-用户名@机器名
-shell@orange:/ $
-但是有su程序，可以su
-
-aapt :Android Asset Packaging Tool
-frameworks/base/tools/aapt
-
+aapt :Android Asset Packaging Tool  ## frameworks/base/tools/aapt
 aapt dump badging xx.apk
 
 /etc/udev/rules.d/51-android.rules
 SUBSYSTEM=="usb", ATTR{idVendor}=="17ef", ATTR{idProduct}=="7435", MODE="0666" OWNER="gaojie"
-~/.android/adb_usb.ini (must! 新版adb好像也不需要)
+~/.android/adb_usb.ini (新版adb好像不需要)
 
-debian(pi/virtual box)实测，没有.rules .init 也能连adb, 好像是debian自带的adb 而不是apt-get install的，那也应该无权才对
-这是权限控制，root用户不需要添加任何文件，可我没用root权限执行adb呀, 还是说跟特定设备有关？设备可以决定它的访问权限？ 奇怪！
-
+debian(pi/virtual box)，没有.rules .init 也能连adb, 好像是debian自带的adb 而不是apt-get install的，那也应该无权才对
+这是权限控制，root用户不需要添加任何文件，可我没用root权限执行adb呀
 
 persist.service.adb.enable=1 //开启调试模式
 ro.adb.secure = 1// offline，弹出提示框
@@ -170,9 +154,7 @@ adb get-state 检查是否成功
 adb -s devicename //多设备连接时选择
 adb logcat <=>  adb shell; logcat 其他命令同理
 
-
 adb reboot bootloader|recovery //可在非root用户下执行
-
 
 Viewing stdout and stderr:
 setprop log.redirect-stdio true
@@ -183,9 +165,7 @@ sbin/adbd
 system/bin/adb  # device-as-host
 out/host/linux-x86/bin/adb
 
-
 bugreport，打印更多调试信息
-
 
 错误：
 [INSTALL_PARSE_FAILED_INCONSISTENT_CERTIFICATES] 之前安装了不同人编译的包名相同的apk
@@ -237,7 +217,6 @@ system/core/libcutils/ properties.c
 多个property_get 函数 情况不同 arm使用的是 HAVE_LIBC_SYSTEM_PROPERTIES
 
 ==========
-
 socket 类型把AF_xx 都改成了PF_xx
 
 广播：
@@ -391,20 +370,6 @@ android 换遥控器就是换.kl文件
 输入系统由event驱动组成，包括libui库中的eventhub
 eventhub 读取 *.kl文件，操作/dev/input/eventx
 
-1 标准usb键盘的scan code
-
-usb键盘驱动： driver/hid/ 
-104键键盘按键码对照
-A 65
-B 66
-C 67
-D 68
-Esc 27 / 0x1b
-
-js用这个
-
-ascii码和104键盘码表 有一部分是对应的
-
 android java代码使用的是：
 view/KeyEvent.java (跟.kl的联系？)中定义的如：
 KEYCODE_DPAD_UP  19
@@ -413,7 +378,6 @@ KeyEvent.KEYCODE_HOME
 
 view/KeyEvent.java
 interceptKeyBeforeDispatching
-按键映射文件位置：
 system/usr/keylayout/*.kl
 
 映射关系 framework/base/data/keyboards/Generic.kl :
@@ -422,12 +386,6 @@ key 108   DPAD_DOWN
 key 106   DPAD_RIGHT
 而103 108 106可以通过 getevent 得到
 
-按键处理的精髓是map：android看似好多层，其实就.kl文件一次映射，其他部分都是直连吧
-
-usr/icu/icudt48l.dat 8M 何用？
-
-struct input_dev
-
 插入usb鼠标
 getevent (system/core/toolbox/getevent.c  打开 /dev/input)                                     
 add device 1: /dev/input/event6
@@ -435,15 +393,12 @@ add device 1: /dev/input/event6
 add device 2: /dev/input/event5
   name:     "Logitech USB Keyboard"
 
-
 linux/drivers/input/keyboard/atakbd.c : (一款游戏机)
 定义：
  0x67: Up       103
  0x6c: Down     108
  0x69: Left     105
  0x6a: Right    106
-
-
 
 --logcat--
 logcat *:S MountService:V
@@ -462,8 +417,6 @@ radio
 system
 
 -b 切换buffer，默认是main，可切换到events或radio
-
-logcat中 好像也能打印 stdio
 
 init 中 open_devnull_stdio 函数重映射
 
@@ -636,30 +589,14 @@ default.xml <remote  name="vc" //仓库remote名
 convert命令将11.jpg转化为11.raw： convert -depth 8 11.jpg rgb:11.raw
 将11.raw文件转换为initlogo.rle。在raw图片文件所在目录下执行：/out/host/linux-x86/bin/rgb2565 -rle <11.raw> initlogo.rle
 
-把 initlogo-robot-1280x720.rle 拷贝到 root/initlogo.720p.rle 中
-phostshop 可以打开，但是gimp打不开。 ubuntu上可以用 golly程序打开（软件中心下载），不行，打不开。
-
 LOCAL_MODULE_TAGS := optional  控制是否编译
 LOCAL_PROGUARD_ENABLED := disabled
 
-3 Android性能测试软件 nbench、benchmark、smartphone bench
-
-如果想拿某个branch而不是主线上的代码，我们需要用-b参数制定branch名字，比如：
-repo init -u git://android.git.kernel.org/platform/manifest.git -b cupcake
-
-另一种情况是，我们只需要某一个project的代码，比如kernel/common，就不需要repo了，直接用Git即可。
-git clone git://android.git.kernel.org/kernel/common.git
-
-android提供了预制程序升级机制。可以在system/app 和 data/app 2个地方同时存在2分apk，运行后者，删除程序，提示apk会 恢复到初始版本。
-/data/data/com.android.providers.settings/database 存储的是电商ip地址信息。电商存储信息用的是 setting的provider
+3 性能测试 nbench、benchmark、smartphone bench
 
 编译android的时候  LOCAL_ARM_MODE 是没有定义的 所以
 arm_objects_mode = arm
 normal_objects_mode = thumb
-
-cat cpu  时候 显示htc手机 Hardware: bravo
-我的平台 hardware : NXP BL-STB platform
-./arch/arm/mach-apollo/apollo.c:MACHINE_START(APOLLO, "NXP BL-STB platform")
 
 make 开始打印在build/core/envsetup.mk 中$(info )
 
@@ -754,20 +691,6 @@ framework_intermediates/classes 目录内容会变化，修改framework下某文
 仅解压class.jar 并没有这个文件，后面的部分是靠：
 find ./framework_intermediates/src -name '*.java' >> ./framework_intermediates/classes/java-source-list; 
 
-c++的server都是由init启动
-关于权限问题，xml可以指定 shared uid
-
-system权限 1000 有权访问 apk目录吗？
-
-nxp:
-1 发布: source env.sh newbox retail license_free
-2 调试(带打印): source env.sh newbox retail license_free_trace
-3 编译SDK之外app，如测试程序
-    source env.sh newbox retail license_free ;export _TMTGTCOPYAPP=1
-4 编译SDK之外库，如dd，dm
-    source env.sh newbox retail license_free ;export _TMTGTCOPYLIB=1
-[export _TMECHO=1 显示编译详情]
-
 2 编译
   a. sdk全部编译： 执行 make （sdk根目录）
   b. 只编译sdk用户空间部分： 执行 make change_toolchain 或者执行 make app （sdk根目录）
@@ -809,33 +732,13 @@ include $(BUILD_PREBUILT)
 LOCAL_SRC_FILES:= 源文件
 LOCAL_MODULE:= 生成的文件
 
-3.6 libwebcore.so
-3.6.1 问题
-arm-linux-androideabi/bin/ld: libwebcore.a(CSSParser.o): 
-CSSParser.cpp:5925: error: undefined reference to 'WebCore::CSSParser::lex()'
-3.6.2 原因
-一种可能是后续的编译过程需external/webkit/Source/WebCore/css/tokenizer.flex。但生成此文件失败
-touch external/webkit/Source/WebCore/css/tokenizer.flex，再次make -j4。
-编译过程看到了：
-target Generated: libwebcore <= external/webkit/Source/WebCore/css/tokenizer.flex
-因prebuilt/linux-x86/flex/flex-2.5.4a无执行权限，没有正确生成(ntfs惹的祸)
-
 这时mmm -B webkit 因为虽然改了权限，已经编译好的 cssparser.o 已经错误，系统不会重新编译这个.o
-
-
-edify脚本 用于升级
 
 找不到 : export_includes
 undefined reference to 'android::ITvosAudioSettingService::asInterface   //服务没有实现接口
 互相依赖　export_include 找不到
 
-
-out/target/product/xx/obj/lib/crtbegin_dynamic.o, needed by 
-out/target/product/xx/obj/EXECUTABLES/screencap_intermediates/LINKED/screencap
-
 types.h找不到: gcc-multilib , multilib 用于生成多平台的代码 32bit/64bit
-
-找不到libstdc++.so因未安装g++-multilib
 
 1 编译android环境：
 	libxml2-utils xsltproc g++-multilib/gcc-multilib(代替ia32-libs) gperf(makeprop.pl)
@@ -852,7 +755,6 @@ types.h找不到: gcc-multilib , multilib 用于生成多平台的代码 32bit/6
 	update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.6.0_35/jre/bin/java" 1
 	update-alternatives --install "/usr/bin/javac" "java" "/usr/lib/jvm/jdk1.6.0_35/bin/javac" 1
 	java/javac 切换到sun，其他仍用open可编ics
-
 
 用prebuilts/tools/gcc-sdk/gcc  脚本引导到源码自带编译器
 
@@ -872,19 +774,3 @@ HOST_CXX := $(HOST_TOOLCHAIN_PREFIX)/g++
 endif
 
 endif
-
-4.2中找到原因：
-HOST_linux-x86.mk :
-对于Linux SDK: We need to use a special toolchain for Ubuntu 8.04 (Hardy) due to GLibc ABI 
-mistmatches(Lucid is 2.11, Hardy is 2.7)，Lucid 编译的代码不能在previous versions 运行
-
-4.4:
-# Previously the prebiult host toolchain is used only for the sdk build
-# that's why we have "sdk" in the path name. (指的是prebuilts/tools/gcc-sdk)
-//所有情况都使用prebiult编译器了（对于我的应用没有必要）
-prebuilts/gcc/linux-x86/host/  目录删除
-或者改成 -m64 更好，在 BoardConfig.mk 中增加：BUILD_HOST_64bit := 1
-
-BUILD_HOST_64bit := 1 不行，无论系统cc还是prebuild gcc，在生成package-export.apk时一堆错误
-猜测：64bit的 aapt 资源打包工具有问题:
-
