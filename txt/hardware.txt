@@ -99,26 +99,16 @@ Using a distributed antenna system to create an area of wireless coverage,
 it is possible to use this technique to propagate indoor WiFi for commercial uses. 
 It is estimated that only about 5% of commercial WiFi use a distributed antenna system.
 
-Uv胶 紫外灯照射至胶水固化
+UV胶紫外线照射固化
 
-Dipole antenna  偶极电线  赫兹发明的
-A common example of a dipole is the "rabbit ears" television antenna found on broadcast television sets.  
-电视的V型天线是偶极天线
-
-The most common form is the half-wave dipole
-即2段加一起等于一半波长
+Dipole antenna  偶极电线，如"rabbit ears" TV antenna
+half-wave dipole 2段加起等于半波长
 Monopole antenna 单极天线
 
-Dipole antenna
 Transmission line
 
-串联电路电流处处相等，是近似，忽略场传播所需时间
-
-信号叠加，使用电阻网络
-用大电阻隔离，连接在一起，就算叠加
-
+信号叠加，使用电阻网络，用大电阻隔离，连接在一起，就算叠加
 不用运放怎么实现两个电压信号相加：
-
 如果是两个电压源，直接串联，如果是两个电流源，直接并联。
 实际信号源不是这类极端格式，可以串联电阻后，改造成电流源性质，然后两者并联，但是信号会有一定的损失。
 
@@ -127,7 +117,6 @@ Transmission line
 选择交流耦合，测试的1k波形，变为正负信号
 
 探头衰减x10的含义
-波形可留痕迹
 
 AFG1022 pwm 超过1M不可调节占空比
 
@@ -208,41 +197,34 @@ bcm7251s sd卡不好用，原因是clk信号串阻22欧错焊为2k
 原子最外层的电子为价电子
 硅原子的外层电子壳层中有4个价电子
 
-理想二极管：0正向压降，0反向电流，其功耗为0
+理想二极管：正向压降0，反向电流0，功耗0
 
-这个解释靠谱些：
+P-N junction：
 If you flip the battery around, the diode conducts electricity just fine. 
 The free electrons in the N-type silicon are repelled by the negative terminal of the battery. 
 The holes in the P-type silicon are repelled by the positive terminal. 
 At the junction between the N-type and P-type silicon, holes and free electrons meet
-
 The electrons fill the holes. Those holes and free electrons cease to exist, 
-and new holes and electrons spring up to take their place. The effect is that current flows through the junction.
-
+and new holes and electrons spring up to take their place. 
+The effect is that current flows through the junction.
 http://electronics.howstuffworks.com/diode.htm
-
-The P-N junction
 
 达林顿管
 泛音晶体
 
-理想电容电感不消耗能量，没有功耗，只是储存释放
+理想电容电感零功耗，只是储存释放能量
+
 2个大金属片中间隔一层纸，才100pF
 
-F (farad)
+F (farad)  F=Q/V 1F电容若电压以1V/s速度变化，产生1A电流
 mF μF nF pF
 
-1法电容器上的电压以1伏每秒的速度变化时，会产生1安电流。
-1法电容上如果带有1库伦的电荷产生1伏势能差
+1电子带负电荷量 1.6021892x10^-19C，1C 含 6.24146 x 10^18 个电子
 
-1电子带负电荷量1.6021892x10^-19 库仑
-1库仑含有6.24146 x 10^18 个电子
-
-1pF 相当于 6.24146 x 10^6，即 624万个电子产生1V电势差 电容面积非常小即可
-1pF 用 1uA电流充电，电势差达到1V需 1uS，而1uS 只是1MHz的周期，是很大的值了。
+1pF 相当于 6.24146 x 10^6，即 624万个电子产生1V电势差
+1pF 用1uA电流充电1uS，电压达1V
 
 220V交流电是有效值，峰值220*1.414=311V
-
 
 电压：
 voltage 电势差/电位差
@@ -337,9 +319,27 @@ sy8113b: dc-dc
 AO4803A:  USB电源MOS管关闭, Dual P-Channel Enhancement Mode Field Effect Transistor
 pj-322: 4段音频母头
 rt9193: ldo 源地小板用
-MP2359: DC-DC Power Converters 
-OTS-16-03: 烧录座
+
+
+MP45DT02: st 全向麦克风
+MP45DT02-M: 金属外壳
+
+DC-DC: monolithicpower.com
+MP2359: 30V
+MP2565: 50V
+
+flyback:
+
+ 
+OTS-16-1.27-03: 烧录座  品牌 Enplas
 STP120 :120欧阻抗电缆
+
+MOSFET:  wikipedia.org /MOSFET
+CJQ4435: seeed Studio 模块
+
+
+NATSEN(耐特森) 输出42V+ 且不稳定，接上LED灯，稳定42V
+
 
 经验：
 1 asm1117 ，输入输出都要加电容，5V输入有抖动时，输入加电容，1117输出稳定，但加负载后输出开始抖动，输出也加电容后，OK
@@ -353,4 +353,8 @@ STP120 :120欧阻抗电缆
 某100欧色环电阻，电流达200mA时冒烟了，此时20V，达4W
 一般蓝色色环电阻1/4 W，100欧，电压5V已明显发热，1K欧的 15.8V
 100欧电阻串联1N4007，电阻电压5V时，二极管0.75V
+
+
+杂物：
+若干usb，2条DVI，2条同轴CNB，3个USB转UART，阳台
 

@@ -1,4 +1,4 @@
-STM32F100W
+STM32F300W (以g为目标，要求不高)
 
 printf 重定向 fputc
 
@@ -256,9 +256,32 @@ isp模式  uart
 
 http://www.vcc-gnd.com/gongjuyuruanjian/ide/
 
+---stm32f4discovery---
+STSW-STM32068: STM32F4DISCOVERY board firmware package, including 22 examples
+已经集成到cube中
+
+mdk下载的 STM32F4xx_DFP 1.5G 跟 STM32F4Cube，内容相似但结构调整过，不一样，基本上就是Cube
 
 
 
 ----100W!----
 ADC测试
 
+
+
+-----
+cube:
+Driver/CMSIS/Documentation  不错的文档
+
+
+
+
+STM32F4-Disc MEMS Microphone 录制PDM格式音频，用PDM Filter 转换为PCM数据。
+PDM的录音频率有PLLI2S提供，我尝试着将PLLI2S的时钟调整为48KHz需要的频率86000000，
+PDM_Filter 的低通设置为20000Hz，高通设置为20Hz，采样率设置为48000Hz
+
+PDM麦克风
+
+PDM: 脉冲密度调制
+PCM: 脉冲编码调制
+PWM: 脉冲宽度调制

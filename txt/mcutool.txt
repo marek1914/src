@@ -4,7 +4,7 @@ IAR: IAR Workbench EW8051/EWARM
 GCC: Makefile + GCC ARM Embedded/sdcc
 other: 厂商基于 eclipse+gcc+gdb 定制，支持win/linux/mac
 	   TI: CCS
-	   ST: SW4STM32
+	   ST: SW4STM32(.project描述源文件)
 	   Silicon: Silicon IDE(keil c51编译器，非gcc)
        Atollic TrueSTUDIO(no-free)
 
