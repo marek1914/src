@@ -16,6 +16,10 @@ PK51: professional developer's kit
 CA51: compiler kit
 A51 : assembler kit
 
+
+.uvoptx
+.uvprojx
+
 MDK4.74 (.uvproj obsolete)
 MDK5.24 (.uvprojx)分 Core(uVision5 & Compiler5) 和 Packs(.pack zip压缩文件)
 ARM目录(2.7G) UV4目录40M (mdk5 目录也叫UV4)
