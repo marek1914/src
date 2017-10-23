@@ -109,7 +109,6 @@ echo -e "foo\nbar"
 # single quotes(3.1.2.2)不展开变量，双引号扩展，如 echo '$PATH' #输出$PATH
 # Double Quotes(3.1.2.3)不展开，除 ‘$’, ‘`’, ‘\’, ‘!’
 # 函数内部$1接收函数参数，函数外部$1接收命令行参数（.sh文件可理解为最外层函数）
-# [] [[]] 不完全等价
 # 区分内建命令和关键词 (4 Shell Builtin Commands)
 # 命令行编辑 ctl+left 跳一个词
 # main(int argc, char *argv[ ], char **env) env即为全局环境变量

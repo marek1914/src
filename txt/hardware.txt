@@ -1,10 +1,11 @@
+stm32f100w
+删除所有无关内容，聚焦
+
 http://www.oldfriend.url.tw/  好资料 有关于特性阻抗的
 
 pads viewer: 官方免费
 
 Cadence收购OrCAD,PSpice
-
-ohm
 
 http://www.accelerated-designs.com
 Ultra Librarian FREE Reader 
@@ -49,14 +50,17 @@ http://www.sztcpcb.com  // 便宜 186: *6278*
 基尔霍夫定理: KCL  KVL 
 戴维南，诺顿定理
 
-驻波系数： 能量全发射出去，效率最高，如果50%反射回来，效率不高。
-
+驻波系数： 能量全发射出去，效率最高，如果50%反射回来，效率不高
 内置PCB板载天线/陶瓷天线/I-PEX接头连接天线延长线外置
 
 I-PEX (天线扣子连接器)
 
 陶瓷天线也要金属作为辐射单元
-倒F型 PCB天线是常用2.4G天线，优点：节省成本。阻抗50欧姆。
+陶瓷天线
+外接柱状天线
+PCB板载天线
+倒F型 PCB天线是常用2.4G天线，优点：节省成本。阻抗50欧
+
 天线的馈点。倒F是单极天线
 
 50欧姆传输线
@@ -78,26 +82,7 @@ LPD433 (low power device 433.050-434.790)  bw: 1.74 MHz
 I : In-Phase(同相 同步) signal component
 Q : Quadrature signal component 
 
-传输线阻抗是从电报方程推导出来(微波理论), 传输线处于行波传输状态时，同一点的电压电流比
 传输线特性阻抗 (Characteristic/surge impedance)
-
-电磁波:TE，TM，TEM,
-
-陶瓷天线
-外接柱状天线
-PCB板载天线
-
-www.reseau.org/arduinorc/
-http://www.reseau.org/arduinorc/index.php?n=Main.Gallery
-多少V 能产生电火花？ 5V的拉弧距离太短！你增大电压可以增大拉弧距离
-
-Distributed antenna system
-
-Use in WiFi networks
-
-Using a distributed antenna system to create an area of wireless coverage, 
-it is possible to use this technique to propagate indoor WiFi for commercial uses. 
-It is estimated that only about 5% of commercial WiFi use a distributed antenna system.
 
 UV胶紫外线照射固化
 
@@ -113,14 +98,11 @@ Transmission line
 实际信号源不是这类极端格式，可以串联电阻后，改造成电流源性质，然后两者并联，但是信号会有一定的损失。
 
 耦合：直流，交流，接地，选择交流，无法测出直流电压
-
 选择交流耦合，测试的1k波形，变为正负信号
 
 探头衰减x10的含义
 
 AFG1022 pwm 超过1M不可调节占空比
-
-万用表测示波器探头为9M欧（应该是万用表不准）
 用BNC直连信号发生器和示波器，没有10M欧电阻，会不会损坏示波器
 频率锁，用于2通道参数同步
 AFG输出阻抗50Ω，示波器输入阻抗50Ω时，示波器峰峰值5V，输入阻抗1MΩ时，示波器峰峰值10V
@@ -135,136 +117,34 @@ LCR表， DCR是直流电阻，Z是阻抗，电感就是2PifL，那R是啥？
 
 按照wikipedia的Q值计算公式，与显示相符, 但阻抗为啥没有加 ESR
 
-strap pin setting HDMI芯片调试15天，因某上拉电阻没焊
-
-发电和用电同时完成，电没有高效存储办法，不会出现剩余。抽水蓄电，压缩空气，超级电容，对整个电网来说只能少量存储
-
-电动机的反电动势 猜测：发电机带负载和不带负载（开路和带电子负载）需要的转动力不同。
-
-2个5V电源适配器可以串联为10V吗？
-
-电源内阻： 电池内阻，和电源适配器内阻概念一样吗？
-
-如何测量电源内阻：
-高中物理实验：伏安法测量电池的内阻
-
-用5V/1A电源适配器给一个内阻为2.5欧的设备充电，可能会产生什么结果？
-根据欧姆定律，5V/2.5=2A，电源过载，会烧掉吗？
-5V/1A 表明适配器内阻5欧姆？不对吧！
-
 上拉电阻从外部看，引脚处电流很小，电阻压差很小，所以引脚处仍然为高电平。
 
-uart面板，手册19200无奇偶校验2停止位，按键读取错误
-函数设置成block模式，无校验2停止位，函数不能block，中间某处返回 Frame_error
-示波器: 面板有9个数据位，第9位一直为0，1个停止位，故设置成2停止位:Frame error
-设置为奇或偶校验，1停止位，奇偶校验又会错误，因为第9个位一直是0。
-解决：uart.c中把奇偶校验错误的代码注掉，再设为奇偶校验+1停止位
-
 20160607:
-假设如果串联多个led,还剩0.5V，需要20mA，则需要算出一个电阻，
-可是这样需要特别精确，就好比我用1：100杠杆精确控制位置会很难，稍微一动谬以千里
-
-就是LED+电阻限流，和led串联问题，
+如果串联多个led,还剩0.5V，需要20mA，则需要算出一个电阻，
+可是这样需要特别精确，就好比我用1：100杠杆精确控制位置会很难，
 假设 10个LED串联一起，加7V电压，不限流可以吗？
-照明灯带是3个串联+一个限流电阻
 
-如果是LED照明，串俩电阻，白白消耗能量转换为热量而非光，就没有办法全部转换为光吗？
-
-碳膜电阻
-金属膜电阻
 1N4007，正向电压1V，但是电压比较低的时候，从0.4V 到0.5，0.7
 
-测量导体单位体积内的自由电子数：
-
-一块横截面为矩形的金属导体的宽b厚d，加有与侧面垂直的匀强磁场B，通以图示方向电流I，
-导体上下面测得电压为U：
-电流向右则自由电子运动方向向左，根据左手定则，电子上偏，上表面带负电下表面带正电
-电流微观表达式: I=nevS，n:单位体积电子数，S:横截面积 e:电子电量 v:电子移动速度
-n=I/evbd
-电子受电场力和洛伦兹力处于平衡:
-eU/d=evB
-
-空穴移动只是便于理解的说法,为了解释半导体理论引入的一个物理概念
-
-bcm7251s sd卡不好用，原因是clk信号串阻22欧错焊为2k
-小串阻用于整理信号，大电阻为何不行呢？
-如果电流足够小，比如100uA，2k电阻电压=0.2V，也还可以驱动（谬论，如果电流这么小，5V需要50k电阻，而SD卡内部可能没有这么大阻值
-换句话说，SD卡100uA不工作）
-可以测测，驱动sd卡时，clk信号线上有多少电流
-
-单晶硅： 活跃的非金属元素（金属与非金属如何区分）
-芯片5V/100mA，通电状态相当于电阻50欧姆，但断电后可不是50欧，因为电源地之间，的逻辑复杂多变，不通电，某些逻辑关断，电阻会很大
-原子最外层的电子为价电子
-硅原子的外层电子壳层中有4个价电子
-
 理想二极管：正向压降0，反向电流0，功耗0
-
-P-N junction：
-If you flip the battery around, the diode conducts electricity just fine. 
-The free electrons in the N-type silicon are repelled by the negative terminal of the battery. 
-The holes in the P-type silicon are repelled by the positive terminal. 
-At the junction between the N-type and P-type silicon, holes and free electrons meet
-The electrons fill the holes. Those holes and free electrons cease to exist, 
-and new holes and electrons spring up to take their place. 
-The effect is that current flows through the junction.
-http://electronics.howstuffworks.com/diode.htm
-
-达林顿管
-泛音晶体
-
 理想电容电感零功耗，只是储存释放能量
-
-2个大金属片中间隔一层纸，才100pF
 
 F (farad)  F=Q/V 1F电容若电压以1V/s速度变化，产生1A电流
 mF μF nF pF
-
-1电子带负电荷量 1.6021892x10^-19C，1C 含 6.24146 x 10^18 个电子
-
+2个大金属片中间隔一层纸，才100pF
 1pF 相当于 6.24146 x 10^6，即 624万个电子产生1V电势差
 1pF 用1uA电流充电1uS，电压达1V
 
+电子电量：−1.602×10−19 coulomb(1C 包含6.24146 x 10^18 电子)，移动速率10^-4m/s数量级
+
+铜：copper Cu(from Latin: cuprum)
+29质子+35中子，相对质量64，电子排列 2-8-18-1
+自由电子密度:(单位体积导体自由电子数量) 8.5×10^19/mm^3
+20摄氏度，电阻率0.0175欧姆平方毫米/米(电阻=电阻率x长度/截面积，直径0.2mmx1m=0.55欧)
+导电能力6A/mm(0.4mm/s)，漆包铜线 0.29mm，0.264 mm，能承受1.5A
+
+
 220V交流电是有效值，峰值220*1.414=311V
-
-电压：
-voltage 电势差/电位差
-电压 一般只用于电路当中，电势差和电位差 普遍用于一切电现象当中
-
-铜 copper  Cu (from Latin: cuprum)
-铜是29号元素，有29个质子，相对质量64，所以中子35个。电子排列 2-8-18-1
-
-Cubic crystal system
-
-质子(proton)是带 1.6 × 10-19 库仑(C)正电荷的亚原子粒子，质量是电子的1836倍
-质子数目决定其化学性质和它属于何种化学元素
-
-相对原子质量(相对碳-12)较大的被称为重金属。
-绝大多数金属原子的最外层电子数均小于4
-
-设铜导线单位体积内的自由电子数为n，电子定向移动为v，每个电子带电量为e，导线横截面积为S。
-则时间t内通过导线横截面的自由电子数N=nVtS，其总电量Q=Ne=nVtSe。
-根据I=Q/t得V=I/neS，代入数字可得V=7.4×10^-5米/秒，即0.74毫米/秒。
-自由电子在导体中定向移动速率(约10^-4米/秒)，只约为自由电子热运动的平均速率(约10^5米/秒)的1/10^9。
-
-金属导体中电流微观表达式I=nesv,n为单位体积内自由电荷数，e为电子的电荷量，s为导体横截面积，v为电荷速度。
-
-自由电子定向移动的速度：
-V=I/(nqs)  
-n是单位体积内所含的自由电荷数
-q是每个电荷的带电量（常数）
-s是导体的横截面积
-显然，线粗流的就慢，线细流的就快
-
-漆包铜线 0.29mm:
-面积pi*0.29^2 = 0.264 mm  铜一般6A/mm，折算下来能承受1.5A
-
-自由电子: 不被约束在原子内部的电子
-
-自由电子密度:单位体积导体中的自由电子数量,铜:8.5×10^28/m^3
-
-1个电子的电量：−1.602×10−19 coulomb
-1 coulomb 需 0.073437615 mm^3铜, 即1s向前推进0.07mm就达到1A电流，即0.00007m/s
-自由电子定向移动速率是 10^(-5) m/s 的数量级
 
 dc-dc降压靠pwm占空比控制电容充放电完成， BUCK电路
 
@@ -273,13 +153,10 @@ coordination number
 变压器不带负载左侧没有电流
 理想情况摆不会停止，同理，lc回路也不会停止震动，由于有损耗，所以适时补充能量保持连续震动
 
-Flyback Transformer/单端反激式DC－DC变换器/Buck-Boost转换器，因其输出端在原边绕组断开电源时获得能量，因此得名
-
-Joule thief  MAKE A JOULE THIEF 焦耳小偷
-
-Armstrong oscillator ， also known as the Meissner oscillator
-反激式(Flyback)变压器
-
+Flyback Transformer
+单端反激DC-DC变换器
+Buck-Boost转换器，输出端在原边绕组断开电源时获得能量
+Joule thief 焦耳小偷
 
 Aluminum electrolytic capacitors,
 Tantalum electrolytic capacitors
@@ -287,18 +164,12 @@ Niobium electrolytic capacitors
 
 Sine wave / Alternating current
 
-电源拆下来的电感器两组线圈测量电阻2.3-2.4欧
-电感的自身电阻是不可忽略的。
-20摄氏度，铜电阻率0.0175欧姆 平方毫米/米
-电阻=电阻率x长度/截面积，直径0.2mmx1m = 0.55欧
-
 crest factor
 Electrical reactance
 Inductive reactance 感抗
 
 An ideal resistor has zero reactance
 ideal inductors and capacitors have zero resistance 
-
 
 IP101GA: 10/100 phy
 BAT54C:  肖特基双二极管，IR一分为2到CPU和MCU
