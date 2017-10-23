@@ -8,7 +8,7 @@ CANopen
 cmx.com
 
 板子：
-NUCLEO-F401RE    (F401RE 84MHz 512+96)
+NUCLEO-F401RE    (F401RE 84MHz 512+96 M4 DSP+FPU)
 STM32F407G-DISC1 (F407VG 168MHz 1M+192k)
 F303-Discovery   (F303VC 72MHz 256+40 M4 DSP+FPU)
 F429-Discovery   (F429ZI lcd u-boot)
@@ -56,8 +56,6 @@ arm-none-eabi-gcc --version
 arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0
 
 cmsis/DSP_Lib/Source/下的文件生成lib/gcc下的2个.a
-
-STM32F3/F4: with DSP and FPU instructions
 
 
 STSW-LINK009 : ST-LinkV2 驱动
