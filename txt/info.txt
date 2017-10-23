@@ -1,4 +1,5 @@
 不纠结，just do it，别把时间浪费在无谓的事情上
+只用BBB/BBG/Pi，不要在其他平台上浪费1s，有病，扔A20
 
 usb线:
 A-A 公对公 1
@@ -23,6 +24,9 @@ mini OTG 1
 5 WS2812    环形，做个 时钟
 6 at88sc0104烧录器, usb dangol 给纯软件公司(选一个u盘壳)
 
+轩微科技 专做stm32编程器
+小阿门的小店  仿制Pocket NC
+
 http://www.instructables.com/id/DIY-a-Wooden-Laser-Gun-As-a-Xmas-Present-for-Your-/
 
 Seeed Studio
@@ -34,13 +38,9 @@ SeeedDocument/USB-CAN_Analyzer
 
 http://seeed.wiki/Grove_System/
 
-
-以stm32为主，需要Cortex-A的话，有BBB，BBG，raspberryPi
-
 pjrc.com 
 
 PlantUML https://github.com/scrooloose/vim-slumlord
-<<艾利的夸张人生>> hyperbole and a half
 
 lllab.tech 2017.6-2019.6
 elelab.cn  2017.6-2020.6

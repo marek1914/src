@@ -39,10 +39,9 @@ if [ "$color" = yes ]
 if [ -n "$1" ] # 必须是 "$1" 而不是 $1
 if [ -n "$force_color_prompt" ]
 
+[] and [[]] 基本相同，但有区别
 [ 2 \< 10 ] # <要转义，否则认为是重定向 因为[ 相当于test 是个命令
-
--s file True if file exists and has a size greater than zero. 
-
+[[ 2 < 10 ]] # 不用转义
 
 3.2.3 Lists of Commands
 A list is a sequence of one or more pipelines separated by one of the 

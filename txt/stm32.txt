@@ -1,5 +1,10 @@
 STM32F300W (以g为目标，要求不高)
 
+M0/M0+/M3/M4/M7
+
+DSP_Lib 全部是用C实现的，那怎么体现dsp呢？特殊编译参数？
+
+
 printf 重定向 fputc
 
 接线标准：黄-clk
@@ -285,3 +290,18 @@ PDM麦克风
 PDM: 脉冲密度调制
 PCM: 脉冲编码调制
 PWM: 脉冲宽度调制
+
+
+----
+DSP
+gcc的库 3M+ little
+mdk的库 13M+  little and big
+
+
+
+
+----
+没有卖
+cortex-m7
+stm32F722RE
+stm32F732RE (with HW crypto-Tiny AES)
