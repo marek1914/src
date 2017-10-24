@@ -5,7 +5,8 @@ if [ "null$1" == "null-h"  ] ; then
 	exit
 fi
 
-echo "gpufreq, cpufreq[0-7], cputemp[0-7], gputemp, fps, gpu_pwr_lvl, capa, gpuload, cpuload"
+echo -n "gpufreq, cpufreq0, cpufreq1,cpufreq2,cpufreq3,cpufreq4,cpufreq5,cpufreq6,cpufreq7,"
+echo    "cputemp0, cputemp1,cputemp2,cputemp3,cputemp4,cputemp5,cputemp6,cputemp7,gputemp, fps, gpu_pwr_lvl, capa, gpuload, cpuload"
 while true; do 
   
 	if [ -e "/sys/class/kgsl/kgsl-3d0/devfreq/cur_freq"  ] ; 

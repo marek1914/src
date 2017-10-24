@@ -13,6 +13,7 @@ ssl: Secure Socket Layer
 tsl: Transport Layer Security
 ssh:  Secure Shell
 
+MEMS: Micro-Electro-Mechanical System  微电子机械系统
 ESR: Equivalent Series Resistance 等效串联电阻
 signal integrity 信号完整性
 Dining philosophers problem 哲学家进餐问题

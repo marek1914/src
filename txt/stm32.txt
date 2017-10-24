@@ -301,3 +301,14 @@ cmsis/DSP_Lib/Source/下的文件生成lib/gcc下的2个.a
 cortex-m7
 stm32F722RE
 stm32F732RE (with HW crypto-Tiny AES)
+
+
+----别懒惰---
+F4 
+1 HAL 编译为.lib (greenHill就是最好的方法，每次想到这个问题都要内训纠结，没意义，有限精力放在重要事情上)
+2 gcc版本，方便调试
+
+f4 dsp 积累寻找商机
+
+
+dsp_lib 编译工程stm32cube里面没有，但keil5 cmsis Pack里有

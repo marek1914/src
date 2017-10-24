@@ -419,6 +419,8 @@ Fastest Fourier Transform in the West
 
 libfftw3.a  fftw3.h
 
+gcc ff-test.c -o ff-test -lfftw3 -lm 
+
 in[i][0] = i;
 in[i][1] = 0.0;
 

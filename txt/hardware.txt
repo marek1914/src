@@ -208,6 +208,10 @@ STP120 :120欧阻抗电缆
 MOSFET:  wikipedia.org /MOSFET
 CJQ4435: seeed Studio 模块
 
+BMX055: 9轴传感器  qiyi VR
+   github.com/BoschSensortec/BMM050_driver
+LIS302DL: 3轴加速度 accelerometer ，F407-Disco
+CJMCU-116 MPU-6500 6轴 yj给的紫色小板
 
 NATSEN(耐特森) 输出42V+ 且不稳定，接上LED灯，稳定42V
 
