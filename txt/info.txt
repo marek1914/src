@@ -25,6 +25,8 @@ mini OTG 1
 6 at88sc0104烧录器, usb dangol 给纯软件公司(选一个u盘壳)
 
 轩微科技 专做stm32编程器
+长江智动 cjmcu
+ivt蓝牙 200人月出货2kk
 小阿门的小店  仿制Pocket NC
 
 http://www.instructables.com/id/DIY-a-Wooden-Laser-Gun-As-a-Xmas-Present-for-Your-/
@@ -158,3 +160,7 @@ st.com 13xx@q.com:89..2*G
 
 
 q盾：形：159648
+
+
+《Make》
+12 p98 不用电池的遥控器

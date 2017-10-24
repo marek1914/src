@@ -1,5 +1,7 @@
 STM32F300W (以g为目标，要求不高)
 
+keil 默认小端 (芯片应该能设置大端)
+
 printf 重定向 fputc
 
 接线标准：黄-clk
@@ -312,3 +314,19 @@ f4 dsp 积累寻找商机
 
 
 dsp_lib 编译工程stm32cube里面没有，但keil5 cmsis Pack里有
+
+
+
+
+----
+2串口
+STM32F042G4
+
+
+---
+STM32F411CEU6  15+
+
+
+----
+APB bus
+AHB bus
