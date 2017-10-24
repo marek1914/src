@@ -1,23 +1,15 @@
                                                                            *mb*
 
-
 1 Functions for Transforming Text .................................|m-function|
 2 Contidith......................................................|m-condition|
 
 
-
-
 Functions                                                    *m-f* *m-function*
 
-1 Function Call Syntax
+1 Call Syntax
   $(function arguments)  or  ${function arguments}
 
-  Function name is part of make. You can create your own functions by using the 
-'call' built-in function. Args are separated from the function name by one or 
-more spaces or tabs, if there is more than one argument, then they areseparated 
-by commas.
-
-2 Functions for String Substitution and Analysis
+2 String Substitution and Analysis
 
 $(subst from,to,text)
 $(patsubst pattern,replacement,text)
@@ -32,7 +24,7 @@ $(words text)
 $(firstword names...)
 $(lastword names...)
 
-3 Functions for File Names
+3 File Names
 $(dir names...)
 $(notdir names...)
 $(suffix names...)
@@ -44,7 +36,7 @@ $(wildcard pattern)
 $(realpath names...)
 $(abspath names...)
 
-4 Functions for Conditionals
+4 Conditionals
 $(if condition,then-part[,else-part])
 $(or condition1[,condition2[,condition3...]])
 $(and condition1[,condition2[,condition3...]])
@@ -55,13 +47,14 @@ $(foreach var,list,text)
 6 The file Function
 $(file op filename[,text])
 
-7 The call Function
+7 call Function
 $(call variable,param,param,...)
 
 8 The value Function
 $(value variable)
 
-
+9 The shell Function
+$(shell cmd param)
 
 7.2 Syntax of Conditionals
 ifeq ifneq ifdef ifndef (c99 #if #ifdef #ifndef)
@@ -72,12 +65,9 @@ CXXFLAGS
 LDFLAGS
 LDLIBS
 
-$(foreach var, list, text)
-$(filter pattern...,text)
-test:=$(wordlist 3,5, 1 2 3 4 5 6 7 8 9)
-
 DATE:=$(shell date)
-DATE:=`date` # 可用但make文档中没找到官方说明
+DATE:=`date` # 可用但make中没找到官方说明
+make搜索 backquotes
 
 4.10 Multiple Targets in a Rule 
 4.11 Multiple Rules for One Target
@@ -85,14 +75,15 @@ DATE:=`date` # 可用但make文档中没找到官方说明
 = recursively expanded  
 := simply expanded
 
-$x单字母变量
-
 变量后的空格会保留
+
 Pattern Rules
+
 %.o:%.cpp
 	$(CC) $(CPPFLAGS) -c -o $@ $<
-foo.o : foo.c defs.h
-	cc -c -g foo.c
+
+foo.o:foo.c foo.h
+    cc -c -g foo.c
 	
 默认规则
 all: foo
@@ -105,10 +96,11 @@ A blank line that begins with a tab is not blank: it's an empty command
 递归3法：make -C dir / -f file /include
 -include：文件不存在时不提示错误
 
-#4.7 Rules without Commands or(and更恰当吧) Prerequisites
-#If a rule has no prerequisites or commands, and the target of the rule is a nonexistent file, 
-#then make imagines this target to have been updated whenever its rule is run. 
-#This implies that all targets depending on this one will always have their commands run. 
+4.7 Rules without Commands or(and更恰当吧) Prerequisites
+If a rule has no prerequisites or commands, and the target of the rule is a nonexistent file, 
+then make imagines this target to have been updated whenever its rule is run. 
+This implies that all targets depending on this one will always have their commands run. 
+
 #不严密 如果存在FORCE和all文件，且all新于FORCE，照样不执行
 #没有FORCE文件或旧于all,可以执行
 foo: FORCE
@@ -122,51 +114,47 @@ bar:
 #特殊逻辑，只有强记
 .PHONY: bar
 
-#android里的一个用法
 .PHONY: FORCE
 %.pem: $(DSAPARAM) FORCE
 
-ifndef SHOW
-.SILENT:
-endif
-
-define first-makefiles-under
-$(shell findleaves.py --mindepth=2 $(1) Android.mk)
+define foobar
+$(shell foo $(1))
 endef
-
-all:
-	gcc ff-test.c -o ff-test -lfftw3 -lm 
 	
-phony target
-2种方式  
+phony target 2种方式  
 1) 没有Commands和Prerequisites的Rules，习惯 FORCE:
 2) Special Built-in Target .PHONY
 
-模板目标，属于隐式规则
-在命令区域定义变量，不是make变量是shell变量
+在命令区定义变量，shell变量
 
-$(info text...) 返回null，所以可写在任何地方没影响
+$(info text...) 返回null，可写在任何地方没影响
 展开阶段执行$(info ...)，输出hello
 
-函数调用 resembles a variable reference:
-$(function arguments) 或 ${function arguments}
-cc -MM test.cpp可生成cpp的.o的依赖关系
+cc -MM test.cpp 生成cpp的.o的依赖关系
 
-8.12 控制Make的函数
-System types:
-  --build=BUILD     configure for building on BUILD [guessed]
-  --host=HOST       cross-compile to build programs to run on HOST [BUILD]
-
-1) If you meant to cross compile, use `--host'.
-
-一个目录一个.mk，如果没有，源码文件要加目录
-
-
-These variables are used specially by make:
+These variables are used specially:
 MAKEFILES
 MAKECMDGOALS
 
+export是make关键词
 
-# makefile的export是make关键词，都是操作环境变量区
+foo=hello $1 # 必须用= 不能:=  20171024
+
+#android 形式
+define foo
+$(hide) cmd1;\
+        cmd2;\
+endef
+
+#20171024 实测ok
+define foo
+ls $1
+ls $2
+endif
+
+foo:
+    @$(call foo, foo.c, bar.c)
+
+
 
 vim: tw=78 ts=8 sw=4 sts=4 et ft=help
