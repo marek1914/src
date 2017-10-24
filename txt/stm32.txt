@@ -1,10 +1,5 @@
 STM32F300W (以g为目标，要求不高)
 
-M0/M0+/M3/M4/M7
-
-DSP_Lib 全部是用C实现的，那怎么体现dsp呢？特殊编译参数？
-
-
 printf 重定向 fputc
 
 接线标准：黄-clk
@@ -18,6 +13,7 @@ STM32F407G-DISC1 (F407VG 168MHz 1M+192k)
 F303-Discovery   (F303VC 72MHz 256+40 M4 DSP+FPU)
 F429-Discovery   (F429ZI lcd u-boot)
 
+M0/M0+/M3/M4/M7
 F030F4P6   M0 16K+4K Value-line
 
 NUCLEO-F401RE:
@@ -60,7 +56,6 @@ arm-none-eabi-gcc --version
 
 arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0
 
-cmsis/DSP_Lib/Source/下的文件生成lib/gcc下的2个.a
 
 
 STSW-LINK009 : ST-LinkV2 驱动
@@ -295,7 +290,10 @@ DSP
 gcc的库 3M+ little
 mdk的库 13M+  little and big
 
+DSP_Lib 全部是用C实现的，那怎么体现dsp呢？特殊编译参数？
+cmsis/DSP_Lib/Source/下的文件生成lib/gcc下的2个.a
 
+并没有文档中说的  DSP_Lib/Source/ARM/arm_cortexM_math.uvprojx， 所以无法自己编译库
 
 
 ----

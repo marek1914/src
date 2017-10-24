@@ -39,7 +39,6 @@ lsmod
 modprobe
 iptables
 netfilter
-column -t
 ntpdate  # set the date and time via NTP
 tzselect # view timezones
 su - #(切换到root，并切换环境变量）
@@ -253,6 +252,8 @@ service udev restart
 链接目录，cd 可以处理 ../..  但 ls vi 不行，会退到文件夹真实位置
 
 printf "PERM LINKS OWNER GROUP SIZE MONTH DAY HH:MM/YEAR NAME\n" ;ls -l | sed 1d | column -t
+
+column -t -s ',' <a.c >b.c # 逗号分隔数组对齐
 
 while read line; do echo ${#line} ${line}; done <4k
 while read line; do tmp=`echo $line | cut -f1 -d' '`; echo ${#tmp}  $line; done < 3k |sort -n >3k-sort
