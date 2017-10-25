@@ -323,8 +323,13 @@ dsp_lib 编译工程stm32cube里面没有，但keil5 cmsis Pack里有
 STM32F042G4U6 QFN-28 16+6  RMB 8
 STM32F042G6 32+6 
 
-Touch,怎么利用一下
+cubemx 无法配置usb，SYS中需 Pins PA11/PA12 instead of pins PA9/10
 
+
+Touch,怎么利用一下
+Up to 14 capacitive sensing channels for
+touchkey, linear and rotary touch sensors  怎么用
+3.11 Touch sensing controller (TSC)
 ---
 STM32F411CEU6  15+
 

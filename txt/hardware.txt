@@ -22,37 +22,11 @@ OrCAD PSpice Designer Lite 16.6 支持 32-bit
 http://cadencecom.vo.llnwd.net/v1/orcad/16.6_OrCAD_Lite_Capture&PSpice_Products_2014.zip
 http://cadencecom.vo.llnwd.net/v1/orcad/17.2-2016_S017_OrCAD_Lite_Capture_PSpice.zip
 
-shift+e 捕捉焊盘焦点
-
 Colpitts oscillator
 http://www.iue.tuwien.ac.at/phd/rottinger/node56.html
 http://www.electronics-tutorials.ws/oscillator/colpitts.html
 
-C 电阻 R 电容 X 尽量小
-1:1 打印： 打印预览/page setup/ scaled print:scale = 1/x=1 y=1 
-
-封装:
-0201 0.6mm x 0.3mm
-0402 1.0mm x 0.5mm
-0603 1.6mm x 0.8mm  ok
-0805 2.0mm x 1.2mm
-1206 3.2mm x 1.6mm
-1210 3.2mm x 2.5mm
-
-封装收集:
-SOT23
-MSOP
-SSOP
-
 Vbias Microphone Bias(偏置) Voltage  是给mic提供电力的(about 2V)
-
-pcb 板制作
-http://www.sz-jlc.com/home/index.html  //质量好，较贵
-http://www.sztcpcb.com  // 便宜 186: *6278*
-
-常规参数：
-板厚1.6mm
-最小线宽6mil，最小孔径0.3mm
 
 基尔霍夫定理: KCL  KVL 
 戴维南，诺顿定理
@@ -68,7 +42,8 @@ I-PEX (天线扣子连接器)
 PCB板载天线
 倒F型 PCB天线是常用2.4G天线，优点：节省成本。阻抗50欧
 
-天线的馈点。倒F是单极天线
+天线馈点
+倒F是单极天线
 
 50欧姆传输线
 天线效率41%
