@@ -92,14 +92,14 @@ ip:     xylon's display ip and evaluation license
 
 
 ---------------
-Zynq-7000S 单核 Cortex™-A9  
+Zynq-7000S 单核A9  
 Z-7007S/7012S/7014S 766MHz
-Zynq-7000   双核 Cortex-A9
+Zynq-7000 双核A9
 Z-7010/7015/7020       866MHz
 Z-7030/7035/7045/7100  1GHz
 
 
-pynq 2000+ 太贵
+pynq-Z1  512M DDR3+ 16M Quad-SPI Flash 
 trenz zynqberry， 这家公司有很多型号，也比较贵
 myir 的东西还不错, Z-Tune 800+
 
