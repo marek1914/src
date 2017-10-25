@@ -351,8 +351,6 @@ pragma
 teardown
 probe
 to_i2c_xx
-permutation
-combination
 chip_probe
 try_next_permutation
 foobar
@@ -363,6 +361,7 @@ __LINE__
 __DATE__
 __GNUC__
 
+notify_cb_func
 
 KERN_EMERG
 KERN_ALERT
@@ -372,8 +371,6 @@ KERN_WARNING
 KERN_NOTICE
 KERN_INFO
 KERN_DEBUG
-
-
 
 CFLAGS
 CXXFLAGS

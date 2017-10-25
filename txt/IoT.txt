@@ -1,5 +1,6 @@
 mynewt.apache  嵌入平台的 apache？
 
+VNA  矢量网络分析仪
 ---------
 DA14580
 6LoWPAN 基于IPv6的低速无线个域网标准，即IPv6 over IEEE 802.15.4
@@ -56,11 +57,6 @@ usb切换器USB3740B
 
 R025 采样电阻/精密电阻 （2快工程机板，电池内部有）
 
-adafruit 充电电压：
-锂离子电池 4.2V
-锂聚合物   4.25V
-
-4线锂电池：电压检测，温度检测线
 
 IS31FL3731
 ST VL53L0X Time-of-Flight (ToF)

@@ -55,7 +55,6 @@ init.rc: mkdir /resource
 
 device/mstar/oringe/BoardConfig.mk  设置分区大小，要与rootfs里面的set_partition 匹配
 
-
 /etc 白名单可修改launcher包名
 build/target/product/security
 
@@ -75,8 +74,6 @@ tvos/main/main.cpp (生成/applications/bin/tvos) 这里检查标志，等待boo
 project/midemo/mi_demo_bootvideo.cpp  //设置bootlogo标志
 
 service tvos /system/bin/logwrapper /applications/bin/tvos
-    class main
-    oneshot
 
 rom_emmc_boot.bin / mboot.bin
 
@@ -110,12 +107,10 @@ Android-BUQ 编译
 frameworks/av/media/libmediaplayerservice/Android.mk
 DEF_CCDTPLAYER:=0
 
-
 -------
 ftp:
 124.193.144.226
 csprodftp : ccdt@2013
-
 
 原Launcher: 
 AliTvHomeshell.apk
@@ -126,7 +121,6 @@ AVRCP.kl
 Generic.kl
 Vendor_0001_Product_0001_Version_0100.kl
 qwerty.kl
-
 
 系统签名：
 将apk放到 custom/mso9280/apps/optional/system/ 目录
@@ -190,8 +184,6 @@ status_t 在 system/core/include/utils/Errors.h 中定义
 最后在property_service.c 中增加
 {"mstar.",AID_GRAPHICS,0}
 
-视频最后黑一下，是UI层黑
-
 setenv db_table 0
 
 ccdt检测启动完成位置：
@@ -199,11 +191,8 @@ android.policy.jar:  PhoneWindowManager.java
 mstar检测启动完成位置：
 services.jar:
 
-
 android/custom/mso9280/config.yml 配置各apk版本
 build.sh 调用 bmw_xxx.sh 下载apk
-
-3718CV100
 
 建立本地仓库时：
 branch 'stable' has not been signed
@@ -217,7 +206,6 @@ push an existing repository from the command line
 银河的盒子 flash为：THGBM5G5A1JBAIR  是4G Byte   EMMC
 
 mmcblk0:1M(fastboot),1M(bootargs),10M(recovery),2M(deviceinfo),8M(baseparam),8M(pqparam),20M(log
-o),20M(logobak),40M(fastplay),40M(fastplaybak),40M(kernel),20M(misc),500M(system),1024M(userdata),100M(cache),-(sdcard)
 
 编译 ./build.sh eng
 
@@ -247,8 +235,6 @@ update bolt
 flash 172.16.9.78:bolt_signed_108_800_sv_shmoo.bin flash0.bolt
 
 setenv -p STARTUP "waitusb;boot usbdisk0:vmlinuz-7439b0-android 'rootwait root=/dev/sda2 rw nolock,v3  init=/init'"
-
-setenv –p STARTUP “waitusb;boot usbdisk0:vmlinuz-7439b0-android ‘rootwait root=/dev/sda2 rw nolock,v3 init=/init vmalloc=464m bmem=480m@544m bmem=568m@2504m’”
 
 vmalloc=752m bmem=768m@256m
 
@@ -300,7 +286,6 @@ galaxy: mobile/galaxy/scripts/build_id.mk
 缓冲机制：要求低于200ms开始缓冲，5s数据开始播放。第1次更新点播好了，表情直播好了，但是
 
 汉辰黑盒卡刷后，没在build.prop中增加ro.serialno，设置ip后直接进入桌面（而之前都是要设置的）
-getprop看到ro.serialno为： 00420100020113101311000000EC0A00，在哪里设置的？ 进直播是“一周热点”不是直播，要换serialno
 
 cmcc2.0 删除out和lichee/out，全编，tools/pack/目录下的img竟然没有更新？为啥？
 11月1日又单独执行make_ota_package 才生成。
@@ -356,15 +341,7 @@ a20银河版  lichee/u-boot 与 a20 cmcc2.0 版本  lichee/boot-v1.0/u-boot 内�
 当然后者较之前者有优化和改动
 a20 cmcc2.0 最终使用的是 lichee/brandy/u-boot-2011.09
 
-A20 kernel/uboot编译器是linaro，具体：
-galaxy平台，lichee/boot/config/gcc-linaro.tar.gz 解压为gcc-linaro并执行安装，最终生成在：
-lichee/out/android/common/buildroot/external-toolchain/arm-linux-gnueabi
-安装前后目录对比有差别。
-首次执行./build.sh -p sun7i_android：
-installing external toolchain
-please wait for a few minutes ...
-
-设备型号（HS8120）和序列号前20位(00420100020113101311)+mac
+A20 kernel/uboot编译器是linaro
 
 序列号存储和读取方法：
 
@@ -527,17 +504,6 @@ linux版的fsbuild依赖windows版.dll(linux运行windows程序的方法)
 
 recovery用 burnboot(1)函数升级 uboot 用 burnboot(1) 升级boot0
 
-卡刷打印:
-chunk 0(1286)
-...
-chunk 1285(1286)
-在uboot/sprite[allwinner自加]/sparse/sparse.c: printf("chunk %d(%d)\n", chunk_count ++, total_chunks);
-
-系统和recovery共用kernle，且带root
-
-—m3—
-galaxy/best/huashu 代码区分靠shell拷贝以及宏
-
 ./f16ref/BoardConfig.mk
 TARGET_AMLOGIC_RECOVERY_KERNEL := $(PRODUCT_OUT)/uImage_recovery
 build/core/Makefile	
@@ -555,24 +521,10 @@ rootfstype=ext3 androidboot.resolution=720p rootwait init=/init nohlt a9_clk=600
 #MTC:Liuese 2013-03-08 Don't need pack uboot +++
 #TARGET_AMLOGIC_BOOTLOADER := $(PRODUCT_OUT)/u-boot-aml-ucl.bin
 
-mount -o remount /system
-
-修改百事通版本号：
-修改 device/amlogic/build_id.mk
-make otapackage
-
 writeSysfs("/sys/class/gpio/mcu_standby_ctrl","2");
 在./board/amlogic/m3_mbox/m3_mbox.c 文件里
 
 uboot修改mac地址 setenv ethaddr= 新mac
-
-百视通的设置程序是：
-amlogic/bestv/apk/SWSettings_chinamobile.apk
-
-开机logo显示：
-在device目录下面：aml_logo.bmp，替换了执行 make
-
-u盘升级，检查脚本文件是在recovery而非uboot里
 
 spi.bin 的那个生成工具：
 把uboot写到  0- 0x50000+ 
@@ -592,4 +544,3 @@ kernel读取mac的流程：
 ImageMagick 带的 convert 
 sudo apt-get install imagemagick
 
-dd.rel logo文件

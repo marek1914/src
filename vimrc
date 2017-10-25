@@ -10,6 +10,7 @@ filetype plugin indent on
 set pvh=1
 
 set dict+=~/.vim/other/dict/3k
+set dict+=~/.vim/other/dict/c
 set dict+=~/.vim/other/dict/.phrase
 set dict+=~/.vim/other/dict/zh/zh
 

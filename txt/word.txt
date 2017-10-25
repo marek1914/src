@@ -300,10 +300,6 @@ cooperation/collaboration 合作
 
 PoE:Power Over Ethernet
 
-li-ion 锂离子电池
-li-poly 锂聚合物电池
-
-3.7V
 
 DC/DC Converter:
 boost converter 升压
@@ -311,7 +307,6 @@ buck converter 降压
 
 AVR:A&V's RISC processor
 
-VNA  矢量网络分析仪
 
 wear levelling
 OOB: out of band
@@ -368,3 +363,11 @@ SNR: signal noise ratio 信噪比
 Mark Shuttleworth   Canonical
 
 drag and drop interface 拖放接口
+
+kernel-like menuconfig
+embedded linux experts
+long term support
+
+
+permutation 排列
+combination 组合

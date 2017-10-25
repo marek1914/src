@@ -320,8 +320,10 @@ dsp_lib 编译工程stm32cube里面没有，但keil5 cmsis Pack里有
 
 ----
 2串口
-STM32F042G4
+STM32F042G4U6 QFN-28 16+6  RMB 8
+STM32F042G6 32+6 
 
+Touch,怎么利用一下
 
 ---
 STM32F411CEU6  15+
@@ -330,3 +332,6 @@ STM32F411CEU6  15+
 ----
 APB bus
 AHB bus
+
+
+CEC functions  干什么用？又没有HDMI

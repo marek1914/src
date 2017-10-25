@@ -7,6 +7,8 @@ pads viewer: 官方免费
 
 Cadence收购OrCAD,PSpice
 
+MPLAB Mindi: Microchip's free software for Analog Simulator
+
 http://www.accelerated-designs.com
 Ultra Librarian FREE Reader 
 Convert BXL files into your preferred CAD format
@@ -36,6 +38,11 @@ C 电阻 R 电容 X 尽量小
 0805 2.0mm x 1.2mm
 1206 3.2mm x 1.6mm
 1210 3.2mm x 2.5mm
+
+封装收集:
+SOT23
+MSOP
+SSOP
 
 Vbias Microphone Bias(偏置) Voltage  是给mic提供电力的(about 2V)
 
@@ -174,8 +181,6 @@ ideal inductors and capacitors have zero resistance
 IP101GA: 10/100 phy
 BAT54C:  肖特基双二极管，IR一分为2到CPU和MCU
 MAX3420 / FT121  SPI slave 转USB Device
-MCP73871: Microchip Battery Management
-CE3150AM: yj 电池充电
 2N2222: 低功耗放大或开关 NPN
 2N2907: 与2N2222互补的PNP
 asm1117:  800mA Low dropout voltage regulator
@@ -190,6 +195,18 @@ sy8113b: dc-dc
 AO4803A:  USB电源MOS管关闭, Dual P-Channel Enhancement Mode Field Effect Transistor
 pj-322: 4段音频母头
 rt9193: ldo 源地小板用
+
+锂电池充电管理：
+Microchip MCP73xxx:
+MCP73871:  thermal
+
+CE3150AM: yj 电池充电
+PMI8998: qualcomm 太高端
+
+3.7V
+li-ion 锂离子充电电压 4.2V
+4线：ID,Thermal，保证充电安全，不影响放电
+------------------------
 
 
 MP45DT02: st 全向麦克风
@@ -212,6 +229,7 @@ BMX055: 9轴传感器  qiyi VR
    github.com/BoschSensortec/BMM050_driver
 LIS302DL: 3轴加速度 accelerometer ，F407-Disco
 CJMCU-116 MPU-6500 6轴 yj给的紫色小板
+LSM6DSL: ST 6轴  臂环小板
 
 NATSEN(耐特森) 输出42V+ 且不稳定，接上LED灯，稳定42V
 

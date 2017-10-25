@@ -37,7 +37,6 @@ dos2unix
 insmod
 lsmod
 modprobe
-iptables
 netfilter
 ntpdate  # set the date and time via NTP
 tzselect # view timezones

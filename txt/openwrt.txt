@@ -1,1 +1,6 @@
 qualcomm QCA9531  wifi 650MHz 
+
+qualcomm 收购 Atheros  (arduino yun Atheros AR9331)
+
+Linino
+

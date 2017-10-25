@@ -104,4 +104,4 @@ trenz zynqberry， 这家公司有很多型号，也比较贵
 myir 的东西还不错, Z-Tune 800+
 
 
-
+Zynq + PYNQ + Python：在PYNQ-Z1上搭建二值神经网络（BNN）

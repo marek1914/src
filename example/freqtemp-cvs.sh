@@ -29,7 +29,7 @@ while true; do
 	  echo -n $tmp,
     done
     
-	sensor_index=(1 2 3 4 7 8 9 10 12)
+	sensor_index=(8 9 10 11 12 13 14 15 17)
 	base=/sys/class/thermal/thermal_zone
   	index=0
 

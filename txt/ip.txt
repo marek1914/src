@@ -6,7 +6,7 @@ iputils 包
 干线路由器一个出口代表一个网络地址，而不是主机地址。
 子网掩码是用来路由，给路由表用的
 IPv4 network mask consists of 32 bits, a sequence of ones (1) followed by a block of 0s
-1不连续理论也可，但没意义，实际也不会出现, route程序设置这样的，提示bogus
+必须连续1, route程序设置这样的，提示bogus
 -------------------
 arp
 route
@@ -361,8 +361,6 @@ netd/main.cpp will setup the NetlinkManager, CommandListener
 	
 	
 --router--
-互联网结构，骨干网结构，路由的全局范围的轮廓，一直不理解
-
 主干网Router有很多wan口，家用Router只有1，其实没有“路由”.家庭和办公室Router，企业Router
 
 A router usually provides:

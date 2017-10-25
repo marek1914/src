@@ -37,7 +37,6 @@ drwxr-xr-x  3 root root 4096 Mar 23 16:40 8b389afc-9ffa-4d80-aae9-5803d2b34a91
 zImage  gxxxxxxx-dirty可分辨版本
 insmod 用 init_module 系统调用
 
-buildroot
 
 /proc/config.gz
 
@@ -1640,3 +1639,7 @@ gu:
 rockchip 芯片otg usb device 模拟网卡，NCM协议， 开始在freescal平台调试ok，移植到rockchip，枚举基本ok，mac地址获取不到，数据丢失几个字节
 原因：网络数据要求对齐，而otg驱动数据没有对齐（不明白）
 
+
+----
+buildroot.org   黄色安全帽
+Buildroot is a simple, efficient and easy-to-use tool to generate embedded Linux systems through cross-compilation
