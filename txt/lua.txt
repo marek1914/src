@@ -1,6 +1,6 @@
 --http://www.lua.org/   RIO
 --nodemcu/openwrt使用
---http://www.eluaproject.net/
+--http://www.eluaproject.net
 --Quickly prototype and develop embedded software applications with the power of Lua and 
 --run them on a wide range of microcontroller architectures
 

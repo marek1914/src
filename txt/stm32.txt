@@ -340,3 +340,30 @@ AHB bus
 
 
 CEC functions  干什么用？又没有HDMI
+
+
+
+----UART ISP---
+F401 支持 USART1/USART2/USB-DFU/I2C1,2,3/SPI1,2.3
+支持3中文件格式： .s19 .hex .bin
+
+USART2 必须是 PD5/6，而64pin的F401没有，所以只能用UART1(PA9/10 CN10左侧 倒数3/9pin)
+BOOT0=1 BOOT1=0
+
+AN3154: CAN protocol used in the STM32 bootloader 
+AN3155: USART protocol used in the STM32 bootloader
+AN3156: USB DFU protocol used in the STM32 bootloader
+AN4221: I2C protocol used in the STM32 bootloader
+AN4286: SPI protocol used in the STM32 bootloader
+
+
+---F407-disco
+dfu-util -d 0483:df11 -c 1 -i 0 -a 0 -s 0x08000000 -D elua_lua_stm32f407vg.bin
+
+
+----Flash---
+F401的512k flash 分8个扇区
+16k 16k 16k 16k 64k 128k 128k 128k
+
+
+
