@@ -371,3 +371,4 @@ long term support
 
 permutation 排列
 combination 组合
+closed-loop 闭环

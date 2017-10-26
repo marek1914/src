@@ -26,7 +26,7 @@ while true; do
 	done
 	
 	for tmp in ${cpufreq[@]}; do
-		echo -n $((tmp/1000)),
+		printf "%4d," $((tmp/1000))
     done
     
 	sensor_index=(8 9 10 11 12 13 14 15 17 1 2 3)
@@ -38,7 +38,10 @@ while true; do
 		((index++))
 	done
 
-	for tmp in ${cputemp[@]}; do	
+	for tmp in ${cputemp[@]}; do
+		if [[ $tmp -gt 1000 ]]
+		then ((tmp=tmp/100))
+		fi
 	  echo -n $tmp,
 	done
 
