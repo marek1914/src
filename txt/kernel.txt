@@ -1641,5 +1641,5 @@ rockchip 芯片otg usb device 模拟网卡，NCM协议， 开始在freescal平�
 
 
 ----
-buildroot.org   黄色安全帽
+buildroot.org   黄色安全帽, 源于uclibc项目
 Buildroot is a simple, efficient and easy-to-use tool to generate embedded Linux systems through cross-compilation

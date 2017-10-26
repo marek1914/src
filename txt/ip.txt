@@ -1,10 +1,6 @@
 iputils 包
 
-
-拓扑:总线/星/网
-以太网是星型，靠交换机连接，早期的同轴以太网是总线型
-干线路由器一个出口代表一个网络地址，而不是主机地址。
-子网掩码是用来路由，给路由表用的
+子网掩码用于路由
 IPv4 network mask consists of 32 bits, a sequence of ones (1) followed by a block of 0s
 必须连续1, route程序设置这样的，提示bogus
 -------------------
@@ -53,7 +49,7 @@ rfc1191  Table 7-1:  Common MTUs in the Internet
 与xuss讨论基于UDP的RTP大于MTU时会不会自动分包问题，结论：
 会自动分包，但与tcp不同的是，udp不会分包,(TCP会分包)，UDP大包，是在IP层分包，见：
 package/udp-65507.pcapng.gz
-2015年做过实验，向用tcp看到ip分片，但是tcp不会发出大于mtu的包，他自己会切分成多个tcp，所以死活看不到ip分片
+实验想用tcp看到ip分片，但是tcp不会发出大于mtu的包，他自己会切分成多个tcp，所以死活看不到ip分片
 
 应用层手动分包，再发udp，每个包都包含udp头，发大包，ip分包，后面的包没有udp包头，我感觉丢包率一样，可以
 李啸做手机遥控器时，发大包屏幕马赛克，改成小包，确实有改善。不明白。 可能是程序加了简单的校验机制

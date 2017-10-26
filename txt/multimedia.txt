@@ -452,8 +452,6 @@ biWidth 是bmp一行的像素数，这里分配了能够存储1行像素的buffe
 
 bmp 一行不足4字节对齐要补齐。
 
-先从最后一行原始数据开始运算。
-
 jpeg-turbo
 
 turbojpeg 1.4.2 编译：

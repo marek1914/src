@@ -1,6 +1,22 @@
-qualcomm QCA9531  wifi 650MHz 
+openwrt 版本历史
+Whiterussian 0.9
 
-qualcomm 收购 Atheros  (arduino yun Atheros AR9331)
+基于buildroot
+
+
+Qualcomm 2011年收购 Atheros  
+Qualcomm Atheros QCA9531 650MHz 
+Arduino yun: Atheros AR9331
 
 Linino
+
+
+git://git.openwrt.org/openwrt.git
+https://github.com/openwrt/openwrt
+是 OpenWrt buildsystem 并不包含 kernel源码
+
+./scripts/feeds update -a  根据 feeds.conf 和 feeds.conf.default
+从 https://github.com/openwrt/packages.git 更新最新包
+
+./scripts/feeds install -a : install symlinks of all of them into package/feeds/.
 

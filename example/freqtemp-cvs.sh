@@ -6,7 +6,7 @@ if [ "null$1" == "null-h"  ] ; then
 fi
 
 echo -n "gpufreq, cpufreq0, cpufreq1,cpufreq2,cpufreq3,cpufreq4,cpufreq5,cpufreq6,cpufreq7,"
-echo    "cputemp0, cputemp1,cputemp2,cputemp3,cputemp4,cputemp5,cputemp6,cputemp7,gputemp, fps, gpu_pwr_lvl, capa, gpuload, cpuload"
+echo    "cputemp0, cputemp1,cputemp2,cputemp3,cputemp4,cputemp5,cputemp6,cputemp7,gputemp,PM8998temp,PMI8998temp,PM8005temp, fps, gpu_pwr_lvl, capa, gpuload, cpuload"
 while true; do 
   
 	if [ -e "/sys/class/kgsl/kgsl-3d0/devfreq/cur_freq"  ] ; 
@@ -14,7 +14,7 @@ while true; do
 	else gpufreq=0; 
 	fi;
 
-	echo -n $gpufreq,
+	echo -n $((gpufreq/1000/1000)),
 
     base=/sys/devices/system/cpu	
 	file=cpufreq/scaling_cur_freq
@@ -26,10 +26,10 @@ while true; do
 	done
 	
 	for tmp in ${cpufreq[@]}; do
-	  echo -n $tmp,
+		echo -n $((tmp/1000)),
     done
     
-	sensor_index=(8 9 10 11 12 13 14 15 17)
+	sensor_index=(8 9 10 11 12 13 14 15 17 1 2 3)
 	base=/sys/class/thermal/thermal_zone
   	index=0
 

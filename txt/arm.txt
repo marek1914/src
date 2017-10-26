@@ -36,18 +36,6 @@ PrimeCell:
 General Purpose Input/Output (PL060)
 UART (PL011)
 
-
-VFP:
-ARM 浮点架构 (VFP) 为半精度、单精度和双精度浮点运算中的浮点操作提供硬件支持。符合IEEE754，并提供完全软件库支持。 
-浮点功能为汽车动力系统、车身控制应用和图像应用（如打印中的缩放、转换和字体生成以及图形中的 3D 转换、FFT 和过滤）中使用的浮点运算提供增强的性能。
-
-应用
-    汽车控制应用/动力系统/ABS、牵引控制和主动悬架
-    图像/激光打印机
-    工业控制系统/运动控制
-
-ARM VFP 提供的浮点的动态范围和准确性。与 NEON™ 多媒体处理功能结合使用可增强性能（如缩放、2D/3D转换、字体生成和数字过滤）。
-
 VFPv1 已废弃
 VFPv2 ARMv5/ARMv6
 VFPv3 ARMv7-A/R 中 ARM/Thumb/ThumbEE指令集的可选扩展
@@ -121,13 +109,6 @@ EABI: Embedded Application Binary Interface
     * A more efficient syscall convention
     * At present (with gcc-4.1.1) it works with ARMv4t, ARMv5t processors and above, 
       but supporting ARMv4 (e.g., StrongARM) requires toolchain modifications.
-
-对于浮点运行会预设硬浮点运算FPA(Float Point Architecture)，而没有FPA的CPU会用FPE
-(Float Point Emulation 软浮点)，速度上就会遇到限制，使用EABI(Embedded Application
- Binary Interface)可以对此改善，ARM EABI有许多革新之处，其中最突出的改进就是Float 
-Point Performance，它使用Vector Float Point(矢量浮点)，
-因此可以提高涉及到浮点运算的程序
-
 
 eabi的好处： 
 1 支持软件浮点合硬件浮点 实现浮点功能的混用
