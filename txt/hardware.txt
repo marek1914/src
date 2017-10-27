@@ -174,7 +174,8 @@ rt9193: ldo 源地小板用
 锂电池充电管理：
 Microchip MCP73xxx:
 MCP73871:  thermal
-
+MCP73871-3CCI/ML  4.35V
+MCP73871-2CCI/ML  4.20V
 CE3150AM: yj 电池充电
 PMI8998: qualcomm 太高端
 

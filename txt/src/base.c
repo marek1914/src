@@ -4,6 +4,15 @@
  * gcc 支持 0b00000011 但这不是c99标准，其他编译器可能不支持
  */
 
+f407zg.h: 
+#include "cpu_stm32f407vg.h"
+#undef NUM_PIO
+#define NUM_PIO    7
+#undef NUM_ADC
+#define NUM_ADC    24
+
+直接定义，会提示重复定义
+
 /* c99 6.5.2.5 Compound literals  ffmpeg fifo.c*/
 memcpy(arg, &(void *){NULL}, sizeof(val));
 

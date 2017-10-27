@@ -4,9 +4,16 @@ eluaproject.net
 luarocks install lpack  md5 luafilesystem
 
 编译elua：
-lua build_elua.lua board=MIZAR32
+lua build_elua.lua board=xxx
+
+MIZAR32: avr32 board
 
 apt-get install luarocks
 luarocks install luafilesystem
 luarocks install lpack
 luarocks install md5
+
+
+v0.9 不支持 STM32F4，master分支支持，做简单移植
+
+master 在配置上更灵活了，相当于linux加了device tree

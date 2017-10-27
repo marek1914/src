@@ -45,11 +45,10 @@ Arduino Yun: Atheros AR9331 + AVR microcontroller
 
 
 ===microbit===
-MKL26Z128VFM4 :Kinetis KL26: 48MHz M0 128K+16K 32-QFN
-淘宝30+，你妈
+MKL26Z128VFM4 :Kinetis KL26: 48MHz M0 128K+16K 32-QFN  RMB 30+
+
 ===teensy===
-teensy3.2(120+):
-MK20DX256VLH7(20+) :Kinetis K20 72MHz M4 288K+64K SRAM, 64-LQFP
+teensy3.2(120+): MK20DX256VLH7 (20+)  Kinetis K20 72MHz M4 288K+64K SRAM, 64-LQFP
 teensy3.5(250+): MK64FX512VMD12(100+) bga
 teensy3.6(300+): MK66FX1M0VMD18(100+) bga
 
