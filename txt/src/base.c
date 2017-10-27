@@ -1000,4 +1000,30 @@ this指针传到 pthread_create 的arg参数,即_threadLoop(void* user) 的user
 virtual void requestExit();
 bool exitPending() const;
 
+
+switch (c) {
+    case 0x000fac01:
+        return "WEP40 (00-0f-ac:1)";
+    case 0x000fac05:
+		        return "WEP104 (00-0f-ac:5)";
+							    case 0x000fac02:
+							        return "TKIP (00-0f-ac:2)";
+									    case 0x000fac04:
+									        return "CCMP (00-0f-ac:4)";
+											    case 0x000fac06:
+											        return "CMAC (00-0f-ac:6)";
+													    case 0x000fac08:
+													        return "GCMP (00-0f-ac:8)";
+															    case 0x00147201:
+															        return "WPI-SMS4 (00-14-72:1)";
+																	    default:
+																	        sprintf(buf, "%.2x-%.2x-%.2x:%d",
+																					            c >> 24, (c >> 16) & 0xff,
+																								            (c >> 8) & 0xff, c & 0xff);
+
+																			        return buf;
+																					    
+} 
+
+
 // vim: tw=80
