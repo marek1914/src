@@ -38,27 +38,12 @@ openlinux.amlogic.com/wiki/index.php/Arm
 
 arc单片机, DesignWare ARC EM4 Processor Core - Synopsys
 
-最后：
-arc-elf32/4.8.0/cc1: error while loading shared libraries: libmpc.so.2: 找不到
-wanghc编译成功因为他是u10.04
-u14.04：
-/usr/lib/x86_64-linux-gnu/libmpc.so.3 -> libmpc.so.3.0.0  没有so.2 版本太高了
-做软链接，可通过
-
-Gnu Mpc is a C library for the arithmetic of complex numbers with arbitrarily high precision and correct rounding of the result. 
-It extends the principles of the IEEE-754 standard for fixed precision real floating point numbers to complex numbers, providing 
-well-defined semantics for every operation. At the same time, speed of operation at high precision is a major design goal. 
-继而：
-
 cortex-a5 是vfpv4,改为vfpv4-d16/vfpv3/vfpv3-d16都这个错误
-v7.gnu.S: Assembler messages:
 v7.gnu.S:409: Error: selected processor does not support requested special purpose register -- `mrs r12,FPEXC'
-v7.gnu.S:414: Error: selected processor does not support requested special purpose register -- `mrs r2,FPSCR'
 FPEXC等，都是与浮点单元有关的寄存器
 这是 as问题，而非gcc,Binutils 2.23.1修复/2.22有/2.21无
 参考"ARM Architecture Reference Manual". Some MSR/MRS should be VMSR/VMRS.（网: mrs改为vmrs 可以）
 
-换成codesoursery的arm-none-eabi  gcc-4.4.1 binutils 2.19.51 OK（mx项目时aml给的）
 s805-android4.4/arm-eabi-4.7/bin/ Fail   (GNU Binutils) 2.22.90.20120727
 s805-android4.4/arm-eabi-4.6/bin/arm-eabi-gcc  OK  (GNU Binutils) 2.21
 mx-android/arm-eabi-4.6/bin  OK  

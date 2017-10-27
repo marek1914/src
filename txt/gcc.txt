@@ -190,10 +190,6 @@ ccache
     
 -meabi -mthumb-interwork
 
-arm默认 little-endian， big-endian需显式指定（linaro是另一套编译器）
-linaro 说明
-https://launchpad.net/gcc-arm-embedded 可下载cortex-m cortex-r gcc
-
 1 Toolchain
 	ndk可完全用C/C++开发应用，不需编写Java
 	ndk-stack 代码跟踪工具

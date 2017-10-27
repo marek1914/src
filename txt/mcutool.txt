@@ -89,6 +89,8 @@ Upgrade the firmware to V2.J27.M15 更新成功
 
 stm32f3discovery: st-link ver: V2.J27.S0 (跟Mx 有啥区别)
 
+STSW-LINK009 : ST-LinkV2 驱动
+
 segger j-link
 安装J-Link驱动，包含一组工具:Commander, Configurator(固件升级)等
 Hardware version(HW)分: V7 V8 V9
@@ -147,4 +149,23 @@ dd if=JLinkARM.dll of=firm.bin skip=11796128 bs=1 count=51043
 
 自己做的不好用， 
 jlink firmware.hex 可以, 是2009年的,MDK5 提示升级，竟然升级成功了(不是说盗版的不能升级吗？)
+
+
+
+---gcc----
+arm官网下载：arm-none-eabi-gcc
+
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0
+
+sw4stm32的编译器(plugin/.../xx.tar.bz2)：
+arm-none-eabi-gcc --version
+5.4.1 20160919 (release) [ARM/embedded-5-branch revision 240496]
+
+arm默认 little-endian， big-endian需显式指定（linaro是另一套编译器）
+linaro 引导到 https://launchpad.net/gcc-arm-embedded 引导到
+https://developer.arm.com/open-source/gnu-toolchain/gnu-rm
+下载cortex-m/r gcc:
+for bare-metal software development, support Cortex-M0/M0+/M3/M4/M7
+包括：
+gnu c/c++ compiler, binutils, gdb, Newlib
 

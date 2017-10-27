@@ -139,9 +139,7 @@ en.wikipedia.org/wiki/Hartley_oscillator
 en.wikipedia.org/wiki/LC_circuit
 electronics-tutorials.com/oscillators/hartley-oscillator.htm
 learnabout-electronics.org/Oscillators/osc21.php
-allaboutcircuits.com/projects/introduction-to-the-mqtt-protocol-on-nodemcu
 allaboutcircuits.com/projects/communicate-with-your-arduino-through-android
-allaboutcircuits.com/projects/light-bar-relative-comfort-thermometer-with-nodemcu
 linux-mtd.infradead.org/faq/ubifs.html
 redhat.com  //min_free_kbytes
 https://docs.particle.io/datasheets/photon-datasheet

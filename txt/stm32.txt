@@ -46,23 +46,6 @@ http://regalis.com.pl/en/arm-cortex-stm32-gnulinux/
 
 F429I-DIS: u-boot 运行成功
 st-flash write u-boot.bin 0x8000000
-debian下，st-link模拟串口是ttyACM0, mac下不认此串口
-
-sw4stm32的编译器(plugin/.../xx.tar.bz2)：
-arm-none-eabi-gcc --version
-5.4.1 20160919 (release) [ARM/embedded-5-branch revision 240496]
-
-arm官网下载：
-arm-none-eabi-gcc --version
-6.3.1 20170215 (release) [ARM/embedded-6-branch revision 245512]
-
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0
-
-
-
-STSW-LINK009 : ST-LinkV2 驱动
-
-GPIOA/B/C/D/E/F/G 时钟单独开启 16-GPIO/组 上电为GPIO模式
 
 F103 内存
 0x00000000 - 0x0007ffff 512K

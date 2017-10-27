@@ -104,38 +104,12 @@ A: printed inverted-F antenna, B: meandered printed inverted-F antenna
 Inverted-F antenna
 Monopole antenna 单极天线
 
-TI 天线设计参考资料
-
----nodemcu---
-arduino ide 开发esp8266 nodemedia
-乐鑫espressif   amica
-
-User/mac/Library/Arduino15/packages/esp8266
-
-ESPlorer
-支持rn2483
-
-www.espressif.com/en/products/hardware/esp8266ex/resources
-
-http://my.oschina.net/u/2306127/blog/402931
-
-ESP8266 32bit Xtensa MCU
-
-http://nodemcu.readthedocs.io/en/master/
-
-安装 libtool-bin 
-
-2种烧写方式：
-esptool.py，nodemcu flasher(过时)
-
 partical:
 13492467@qq.com:-200w200w-
 
 插入后出现/dev/serial/by-id and by-path
 partical: ttyACM0
 usb串口线:ttyUSB0
-
-node 可执行程序 30M+  直接放到/usr/local/bin 即可
 
 --zigbee--
 IEEE802.15.4

@@ -643,8 +643,8 @@ media_w979079760_DVR_578035.ts
 出错退出的时候只循环到427
 
 把一个m3u8列表中的所以文件全部下载的好方法：gedit替换方式编译列表文件为绝对路径，用wget -i file下载
-苹果http://devimages.apple.com/iphone/samples/bipbop/gear4/prog_index.m3u8 的片长就是整数，都是10s，能切这么准吗？不考虑I帧对齐？
-协议中看，可能是round的结果
+http://devimages.apple.com/iphone/samples/bipbop/gear4/prog_index.m3u8 的片长就是整数，都是10s，能切这么准吗？不考虑I帧对齐？
+协议中看，可能是 rounding 的结果
 
 #EXT-X-MEDIA-SEQUENCE 定义第一个切片的序列号，每个ts文件在m3u8中有唯一的序列号，该序列号用于在MBR时切换码率进行对齐。
 
