@@ -35,11 +35,7 @@ Flash Download -> Programming Algorithm 是空的，需要Add
 
 ARM:CMSIS 工程可以自带
 
-MDK5.20开始, 不支持 Winxp
-
-mdk5 hp win7 企业版 uV显示正常，win7专业版显示礦, win7旗舰版正常
-mac xp uv4 ok
-µ 微符 0xB5 0x00b5 在 Extended ASCII Characters中
+MDK5.20开始不支持 Winxp
 
 mdk5 Pack Installer:
 Packs/Examples:
@@ -135,6 +131,12 @@ JLink-OB-072  F0 cpu 带虚拟串口
 STM DFU utility
 STVP:ST Visual Programmer STM32
 STSW-LINK004: STM32 ST-LINK utility  可烧写bin文件
+
+UART ISP:
+官方工具: FLASHER-STM32 - STM32 Flash loader demonstrator (UM0462)
+开源工具: github.com/jsnyder/stm32ld   
+
+USB DFU
 
 -----
 固件：

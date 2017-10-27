@@ -291,7 +291,7 @@ Caps lock  capitals 大写字母
 
 Releasing your creativity
 
-ISP: In System Programmability
+ISP: In System Programe
 IAP: In App Programmability
 
 FSMC :Flexible Static Memory Controller
