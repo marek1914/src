@@ -3,6 +3,8 @@ TIOBE
 rc: release candidate/run command
 through-hole 排针
 
+xxx不是什么:
+
 Kirchhoff's circuit laws
 
 vm :Virtual Memory

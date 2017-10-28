@@ -6,21 +6,10 @@ Thumb-2: 可达传统ARM峰值性能，并节省30%代码空间
 ThumbEE: Thumb Execution Environment，用于字节码语言的执行如java
 ARM GIC: Generic Interrupt Controller
 
-
-VFP 架构也支援 SIMD
-
 Thumb状态：执行Thumb指令的处理器状态。BX、BLX 等指令完成时，切换到ARM状态
 
-
-ISETSTATE 指令集4状态：ARM Thumb Jazelle(用于jvm) ThumbEE
-
- Cortex-A5 的FPU是VFPv4-D16
- AHB用于高性能模块(如CPU、DMA和DSP等)之间的连接，作为SoC的片上系统总线
- 
- 
- bit.LITTLE 用于在 Cortex-A15 和 Cortex-A7 之间切换
-
-如三星某款8核处理器，由4核A15+4核A7组成
+bit.LITTLE 用于在 Cortex-A15 和 Cortex-A7 之间切换
+某8核处理器4核A15+4核A7
 
 身材魁梧高大的男士是big，身材娇小的女士是LITTLE
 Bit先生负责具有挑战性的重任
@@ -36,10 +25,12 @@ PrimeCell:
 General Purpose Input/Output (PL060)
 UART (PL011)
 
+VFP 也支持 SIMD
 VFPv1 已废弃
 VFPv2 ARMv5/ARMv6
 VFPv3 ARMv7-A/R 中 ARM/Thumb/ThumbEE指令集的可选扩展
       16个双精度(VFPv3-D32)或32个单精度(VFPv3-D16)寄存器
+VFPv4-D16
 
 
 GNU EABI is a new application binary interface (ABI) for Linux. 

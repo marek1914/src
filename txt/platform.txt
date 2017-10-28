@@ -53,7 +53,7 @@ m3-android/arm-eabi-4.4/bin  (GNU Binutils) 2.19   Fail 认cortex-a8 cortex-a9�
 编译完拷贝到device目录才能打到包里。
 
 u-boot生成过程：
-1 生成elf文件 u-boot
+1 u-boot.elf
 2 objcopy 为 u-boot-orig.bin
 3 uclpack压缩为u-boot-comp.bin
 4 tools/convert firmware.bin u-boot-comp.bin 生成u-boot.bin

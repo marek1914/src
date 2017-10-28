@@ -1,4 +1,29 @@
-STM32F300W (以g为目标，要求不高)
+STM32F300W (顾为目标)
+
+Memory mapping:
+8 Block x 512M : 
+
+0x00-0x1F 0x20-0x3F 0x40-0x5F 0x60-0x7F
+0x80-0x9F 0xA0-0xBF 0xC0-0xDF 0xE0-0xFF
+
+F401的512k flash 分8个扇区
+16k 16k 16k 16k 64k 128k 128k 128k
+
+F103:
+0x00000000-0x0007ffff 512K alias
+0x08000000-0x0807ffff 512K Flash
+0x1ffff000-0x1ffff7ff 2k System Memory
+
+F40x:
+0x00000000-0x000fffff 根据BOOT引脚，映射Flash或sys mem 或SRAM(用于调试)
+0x08000000-0x080fffff 1M Flash
+内存不在一起：
+0x10000000-0x1000ffff 64K(CCM:core coupled memory) 高速内存, keil默认不用但有显示
+0x20000000-0x2001ffff 128K
+
+4 Kbytes of backup SRAM
+
+
 
 keil 默认小端 (芯片应该能设置大端)
 
@@ -46,11 +71,6 @@ http://regalis.com.pl/en/arm-cortex-stm32-gnulinux/
 
 F429I-DIS: u-boot 运行成功
 st-flash write u-boot.bin 0x8000000
-
-F103 内存
-0x00000000 - 0x0007ffff 512K
-0x08000000 - 0x0807ffff 512K Flash
-0x1ffff000 - 0x1ffff7ff 2k   System Memory
 
 源地F103
 R-A9
@@ -229,14 +249,6 @@ Ultra-low-power M0+ 64 Kbytes Flash 32 MHz
 红色标志为VCC，同面另一边为GND，中间CLK，对面中间DIO
 
 
---
-USART1  怎么弄？
-
-
-SWD模式  J-link OB(on board)   st-link V2
-isp模式  uart
-
-
 http://www.vcc-gnd.com/gongjuyuruanjian/ide/
 
 ---stm32f4discovery---
@@ -316,15 +328,11 @@ touchkey, linear and rotary touch sensors  怎么用
 ---
 STM32F411CEU6  15+
 
-
 ----
-APB bus
-AHB bus
+APB: Advanced Peripheral Bus
+AHB: Advanced High performance Bus
 
-
-CEC functions  干什么用？又没有HDMI
-
-
+CEC functions  又没有HDMI
 
 ----UART ISP---
 F401 支持 USART1/USART2/USB-DFU/I2C1,2,3/SPI1,2.3
@@ -342,11 +350,4 @@ AN4286: SPI protocol used in the STM32 bootloader
 
 ---F407-disco
 dfu-util -d 0483:df11 -c 1 -i 0 -a 0 -s 0x08000000 -D elua_lua_stm32f407vg.bin
-
-
-----Flash---
-F401的512k flash 分8个扇区
-16k 16k 16k 16k 64k 128k 128k 128k
-
-
 

@@ -1,7 +1,4 @@
 Red-black Trees (rbtree) in Linux
-January 18, 2007
-Rob Landley <rob@landley.net>
-=============================
 
 What are red-black trees, and what are they for?
 ------------------------------------------------

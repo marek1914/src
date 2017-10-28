@@ -109,7 +109,7 @@ dll 6.16 :能下载但IED会异常退出
 http://gnuarmeclipse.github.io/debug/jlink/install/#gnulinux
 
 
-下载器：
+开源下载器：
 OpenOCD : open on chip debugger
 github.com/texane/stlink
 
@@ -131,7 +131,7 @@ JLink-OB-072  F0 cpu 带虚拟串口
 
 -----
 STM DFU utility
-STVP:ST Visual Programmer STM32
+STVP:ST Visual Programmer STM32 不是很好用，界面有点莫名其妙
 STSW-LINK004: STM32 ST-LINK utility  可烧写bin文件
 
 UART ISP:
