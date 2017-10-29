@@ -1,0 +1,12 @@
+20171028尽快把 6轴传感器  9轴熟悉起来， 这方面有姚军帮忙， 好多项目需要
+
+invensense.com/developers
+
+mpu6500 支持spi和i2c
+MPU-6500 集成 3-axis accelerometer, 3-axis gyroscope, 和 DMP: Digital Motion Processor
+
+mpu6050 在四轴飞行器上用的很多
+
+
+今晚 把传感器数据读出来
+

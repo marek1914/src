@@ -193,8 +193,6 @@ li-ion 锂离子充电电压 4.2V
 4.35V    恒压充电，截止电流150~200mA
 
 ------------------------
-
-
 MP45DT02: st 全向麦克风
 MP45DT02-M: 金属外壳
 
@@ -204,7 +202,6 @@ MP2565: 50V
 
 flyback:
 
- 
 OTS-16-1.27-03: 烧录座  品牌 Enplas
 STP120 :120欧阻抗电缆
 
@@ -215,7 +212,7 @@ BMX055: 9轴传感器  qiyi VR
    github.com/BoschSensortec/BMM050_driver
 LIS302DL: 3轴加速度 accelerometer ，F407-Disco
 CJMCU-116 MPU-6500 6轴 yj给的紫色小板
-LSM6DSL: ST 6轴  臂环小板
+LSM6DSL: ST 6轴臂环小板
 
 NATSEN(耐特森) 输出42V+ 且不稳定，接上LED灯，稳定42V
 

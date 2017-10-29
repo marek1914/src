@@ -64,9 +64,11 @@ cd ..
 sudo cp *.rules /etc/udev/rules.d
 
 sudo restart udev
-
-
-
-
 -----
 里面的   end  是什么鬼，  gcc 关键字？
+
+
+
+20171028
+master版本能在 F407上跑起来了，但是不知道能干嘛，先放一放，等找到合适的应用场景
+

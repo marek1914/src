@@ -1,5 +1,12 @@
 不纠结，just do it，别把时间浪费在无谓的事情上
-只用BBB/BBG/Pi，不要在其他平台上浪费1s，有病，扔A20
+唾手可得的东西不要浪费1s时间，尽最快速度进入到真正需要研究，找不到现成资源的地方，那才是真正能够创造价值的地方
+只用BBB/Pi，不要在其他平台上浪费1s，有病，扔A20
+
+
+KitSprout 很多奇思妙想
+http://kitsprout.logdown.com  是我想干的事情
+github.com/KitSprout
+
 
 道与术
 
@@ -160,7 +167,7 @@ ITU-T: gaojie@cyclecentury.com:*2xxpy-
 baidu:3uixx:5***5005xxx
 openstm32.org gaojie:200w200w
 st.com 13xx@q.com:89..2*G
-
+invensense.com: stm32f300w:89..2*G
 
 q盾：形：159648
 
