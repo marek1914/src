@@ -5,6 +5,7 @@ through-hole 排针
 
 xxx不是什么:
 
+Depletion region 耗尽区
 Kirchhoff's circuit laws
 
 vm :Virtual Memory

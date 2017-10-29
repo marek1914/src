@@ -1,6 +1,9 @@
 stm32f100w
 删除所有无关内容，聚焦
 
+BJT视频
+https://www.youtube.com/watch?v=jVyyHfsAfyA
+
 http://www.oldfriend.url.tw/  好资料 有关于特性阻抗的
 
 pads viewer: 官方免费
