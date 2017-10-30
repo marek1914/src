@@ -65,7 +65,7 @@ mkknlimg //perl
 
 .ko在ext4分区 4300+
 
-源码怪现象：从github下载的.zip压缩包，include/linux/i2c-gpio.h 变为软链接，链接目标是这个文件的内容
+github下载的.zip包，include/linux/i2c-gpio.h 变为软链接，链接目标是这个文件的内容
 
 ARCH=arm CROSS_COMPILE=${CCPREFIX} make bcm2835_defconfig  
 
@@ -116,32 +116,13 @@ bcm2710-rpi-3-b.dtb
 文档 github.com/raspberrypi/documentation.git
 资源 github.com/raspberrypilearning
 
-i2c:
-https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
-安装 i2c-tools与python-smbus
-i2cdetect -l 查看pi上的I2C总线
-i2ctools 使I2C设备调试更加方便
-
-评测class 10 sd卡性能。
-DS1307 i2c接口 rtc
-
-Rasp B+(LAN9514): lan9514 25Mhz 由soc发出
-
-D3(排线)/D4(AV输出):A7W-3d 3pin: 快速开关二极管bav99封装  
-Dual Series Switching Diode
+lan9514 25Mhz 由cpu发出
 
 AV处 U10 GS4vd 5pin  不用DAC和放大器，而用pwm发声
 U4 APX803-46SAG : 3-PIN MICROPROCESSOR RESET CIRCUIT 上电或电压低于阀值时发出低电平复位。
 U9 AP2331W
 
-音频输出电路：
-datasheet看，i2s输出，靠pin B9 D9  pwm0 pwm1 输出音频
-
-B+声音输出：
-6pin z16b(有可能是4个bav99二极管，等价于2个a7w)   6s4vd 5pin 查不到型号
-
-HDMI
-用EMI4182:common mode filter with ESD protection for HDMI(不能用于USB)
+EMI4182:common mode filter with ESD protection for HDMI
 
 USB电源，2个口用1组滤波电容(100n+47u)无fuse
 

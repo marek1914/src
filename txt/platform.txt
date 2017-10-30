@@ -384,19 +384,6 @@ telnet 可以登录  root:root
 
 RedBoot
 
-./include/linux/i2c-dev.h:#define I2C_MAJOR	89	/*Device major number*/
-
-i2c_dev_init() 打印：i2c /dev entries driver
-
-epld 8bit ?
-
-	puts ("\n\nStarting Initialize AD9516 \n");
-	BspAd9516Init();
-	puts ("\n\nFinish Initialize AD9516 \n");
-
-
-13.3.1.1  BR0-BR7
-
 uboot怎么作成固定512k的
 原始的dts配置，u-boot确实在fff80000地址，复位向量在:
 board/bnc8548/config.mk:

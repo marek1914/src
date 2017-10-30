@@ -96,8 +96,9 @@ ft-c-omni (ft:filetypes)
 
 ---
 Omnicomplete(category) 是一类使用 Vim's omnicompletion feature 的插件
-Omnicppcompleter: C/C++ omni-completion with ctags 
+Omnicppcompleter: C/C++ omni-completion with ctags (20171030 没有成功)
 AutoComplPop : Automatically opens popup menu for completions
+clang complete  or  ycm
 
 ctags - Generate tag files for source code
 ctags -R -f ~/.vim/systags /usr/include /usr/local/include
@@ -143,8 +144,6 @@ ctags -R --c++-kinds=+px --fields=+iaS --extra=+q   // C++ 支持
 /usr/share/vim/vim74/ 
 
 ccomplete.vim中的ccomplete#Complete(findstart, base)
-
-omnifunc=ccomplete#Complete
 
 g:AutoPairsCenterLine 保持编辑代码位置保持在中间位置
 

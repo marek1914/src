@@ -1567,25 +1567,22 @@ driver 目录还有很多过时的驱动可以删除
 ----driver---
 I2C(Inter-IC) I-squared-C/I-two-C/I-I-C
 Two-wire Serial Interface :I2C 子集
-SMBus(System Management Bus),Intel定义，I2C子集，定义更严格，与i2c相似，互相借鉴。
+SMBus(System Management Bus),Intel，I2C子集，定义更严格，与i2c相似
 
-www.nxp.com/documents/user_manual/UM10204.pdf
-
+i2c-dev.h:#define I2C_MAJOR	89
 dev/i2c-0  
-dev/i2c-1
 
-gpio内部上拉可驱动iic
-
-kernel:
 i2c_transfer()
 i2c_master_send()
 
-user:
-open/ioctl
+i2c-tools
+libi2c-dev
+python(3)-smbus
 
-i2c-tools 里面的 i2cdetect工具
+i2cdetect -l 查看pi上的I2C总线
+i2cdetect -y 1
 
-
+-----
 I2S:
 SDATA: 数据
 SCLK: 数据同步用时钟

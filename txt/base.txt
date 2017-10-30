@@ -73,8 +73,8 @@ static_cast<> 类型转换
 （把派生类的指针或引用转换成基类表示）是安全的；进行下行转换（把基
 类指针或引用转换成派生类表示）时，由于没有动态类型检查，所以是不安全的
 
-cout /cin 字符输出
-endl end line
+cout /cin 字符输出输入
+endl: end line
 
 static const
 static const int COUNT=5;

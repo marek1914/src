@@ -130,9 +130,6 @@ qwerty.kl
 
 MI_project/project/devices/demodulator/device_demodulator_DC2800.cpp   172行注释掉
 
-./MI_project/project/devices/demodulator/dc2800_tc2800/mt_fe_i2c.cpp  修改这个文件，生成在
-libdevice_demod.so中
-
 set dbtable 0：执行此命令应该是将jpg解成bmp写到某个位置
 
 frameworks/av/media/libmediaplayerservice Android.mk 中DEF_CCDTPLAYER:=1 改为 DEF_CCDTPLAYER:=0

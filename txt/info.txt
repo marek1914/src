@@ -2,11 +2,15 @@
 唾手可得的东西不要浪费1s时间，尽最快速度进入到真正需要研究，找不到现成资源的地方，那才是真正能够创造价值的地方
 只用BBB/Pi，不要在其他平台上浪费1s，有病，扔A20
 
+月经题。。
+
+leetcode
 
 KitSprout 很多奇思妙想
 http://kitsprout.logdown.com  是我想干的事情
 github.com/KitSprout
 
+i2ctools.com    usb 2 i2c 工具
 
 道与术
 
@@ -29,6 +33,8 @@ mini OTG 1
 1 STM32F103 做双串口 
 2 F32 VI控制的小风扇小灯
 3 F321做usb转串口(cp2102 7线全功能串口)，模拟开关，一个minicom监测多串口,模拟iic，spi
+  i2c 支持 i2c-tools
+
 4 做一个钢网，常见封装都做进入，比如一排电容电阻，都要做成固定间距
 5 WS2812    环形，做个 时钟
 6 at88sc0104烧录器, usb dangol 给纯软件公司(选一个u盘壳)

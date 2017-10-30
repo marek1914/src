@@ -45,7 +45,7 @@ get list of default gcc warnings
 4 l(list) libavformat/utils.c:0  浏览文件，需指定行号
 5 d(delete) x 删除某断点，无参删所有
 6 pt(ptype) 显示变量类型
-7 finish (调试c++时有用，因为step会进入函数参数 比如vector)
+7 finish (c++时有用，因为step会进入函数参数 比如vector)
 
 coredump  不用gdbserver，死机后把文件拷出，在pc上用arm/mips-xx-gdb 分析
 
