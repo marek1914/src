@@ -10,3 +10,10 @@ AK8975/AK8963 Compass
 
 mpu6500 i2c nucluo:
 
+github 的 MotionSensorExample 里面的 inv_mpu_lib 就是 motion_driver-5.1.3/core/driver/eMPL，版本不同，内容有很大不同
+
+
+inv_mpu.c 中 mpu_init()
+
+
+gcc -DMPU6500 *.c   pi测试程序

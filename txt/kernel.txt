@@ -1582,6 +1582,9 @@ python(3)-smbus
 i2cdetect -l 查看pi上的I2C总线
 i2cdetect -y 1
 
+
+I2C_SLAVE 包含
+<linux/i2c-dev.h>
 -----
 I2S:
 SDATA: 数据

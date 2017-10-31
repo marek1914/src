@@ -18,10 +18,10 @@ CSI :COMS Sensor Interface
 
 pi3 Wi-Fi and Bluetooth 4.1 (LE), BCM43438
 
-Pi 1 :BCM2835/BCM2708  ARMv6 arm11
-Pi 2 :BCM2836/BCM2709  ARMv7 4core Cortex-A7 900MHz  1G Ram
-Pi 3 :BCM2837/BCM2710  ARMv8 4core 64bit Cortex A53 1.2GHz
-CPU家族/具体型号 内核开发者称BCM2708，树莓派称BCM2835
+CPU家族/具体型号
+Pi1 :BCM2835/BCM2708  ARMv6 arm11
+Pi2 :BCM2836/BCM2709  ARMv7 4core A7 900MHz
+Pi3 :BCM2837/BCM2710  ARMv8 4core A53 1.2GHz
 
 https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget?view=all //Pi zero
 
@@ -96,15 +96,15 @@ https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md   s
 http://www.mtom.cz/projects/rasp-flashspi/
 http://diy.viktak.com/2014/07/how-to-recover-laptop-after-failed-bios.html
 
-http://wiringpi.com/
+wiringpi.com
+GPIO Interface lib for Pi, 接口类似 Arduino “wiring” system
 git://git.drogon.net/wiringPi
 
-wiringPi和bcm2835 C library都提供I2C API函数(靠bcm2835_init函数，用/dev/mem实现)
+wiringPi 和 bcm2835 C library都提供I2C API函数(靠bcm2835_init函数，用/dev/mem实现)
 
-dd bs=4M if=xx.img of=/dev/sdx
 
 raspbian-jessie.img (4G)
-dd后为： boot(60M fat) +ext4(4G)，首次开机扩展到8G
+dd后： boot(60M fat) +ext4(4G)
 
 boot分区包含kernel.img 和
 bcm2708-rpi-b.dtb
@@ -202,3 +202,11 @@ allow-hotplug wlan0
 iface wlan0 inet dhcp
 wpa-ssid xxx
 wpa－psk xxx
+
+
+
+
+
+-----i2c---
+i2c操作，直接用/dev/i2c节点，还是用 gpio库？
+
