@@ -76,7 +76,7 @@ brew install vim
 foldmethod   怎么用
 foldlevelstart
 
-rtp :runtimepath   有时需要加 after，有时不需要，奇怪 omnicpp 不加不工作
+rtp :runtimepath
 
 ultisnips (配合vim-snippets) 默认：
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -85,22 +85,20 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 需要vim支持python（安装vim-nox），否则：
 UltiSnips requires py >= 2.7 or py3
 
-
-ftplugin : filetype plugin
+ft: filetype
+./ftplugin
+./after/ftplugin  两个目录行为不同，after要单独加在rtp里
 
 completeopt
 preview-window
 ft-c-omni (ft:filetypes)
 
 ---
-Omnicomplete(category) 是一类使用 Vim's omnicompletion feature 的插件
-Omnicppcompleter: C/C++ omni-completion with ctags (20171030 没有成功)
+Omnicomplete(category) 一类基于 Vim's omnicompletion feature 的插件
+Omnicppcompleter: C/C++ completion base ctags 
+需要使用 Modified libstdc++ headers:vim.org/scripts/script.php?script_id=2358 版本比较老
 AutoComplPop : Automatically opens popup menu for completions
-clang complete  or  ycm
-
-ctags - Generate tag files for source code
-ctags -R -f ~/.vim/systags /usr/include /usr/local/include
-ctags -R
+clang complete
 
 cscope - interactively examine a C program
 cscope -bkq -i cscope.files
@@ -130,10 +128,20 @@ namespace android {
 但匿名namespace 和 嵌套namespace 仍然无法识别
 
 
-ctags -R --c++-kinds=+px --fields=+iaS --extra=+q   // C++ 支持
+for cpp:
+1 ctags -R --c++-kinds=+p --fields=+iaS --extra=+q  //omnicpp doc
+2 ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ //Modified libstdc++ headers
 
+libc++ 用modified 1.7M，用/usr/include/c++/4.8 2.3M(必须用命令2，否则有些成员没有)
 
+开始
+omnifunc=ccomplete#Complete
+omnicpp 插件生效后变为
+omnifunc=omni#cpp#complete#Mai， 然后原来的比如 fopen c-x c-o 不好用了, set omnifunc=ccomplete#Complete 又好用了 
 
+omnicpp/after/ftplugin/c.vim 这个删除，不要影响 .c文件
+
+必须用修改过的 libc++头，用android/external/libcxx 中的也不行，
 
 :helptags {dir} 
 :helptags $VIMRUNTIME/doc #生成所有 (系统目录的doc无写权限)
