@@ -21,7 +21,8 @@ set rtp+=~/.vim/tagbar
 set rtp+=~/.vim/ultisnips
 set rtp+=~/.vim/vim-snippets
 set rtp+=~/.vim/lilypond
-set rtp+=~/.vim/omnicppcomplete
+set rtp+=~/.vim/omnicppcmp
+set rtp+=~/.vim/omnicppcmp/after
 set rtp+=~/.vim/nerdtree
 set rtp+=~/.vim/pydict/after
 

@@ -1,8 +1,6 @@
 vim: tw=80
-VI之漫路即为禅修，皈依gnu
 
-vi 完成一个 词组的功能。。
-
+.cpp 缩进有时不灵
 
 ga 查看字符 ascii值
 g8 打印utf-8 的16进制， 一个汉字3个字节
@@ -78,7 +76,7 @@ brew install vim
 foldmethod   怎么用
 foldlevelstart
 
-rtp :runtimepath
+rtp :runtimepath   有时需要加 after，有时不需要，奇怪 omnicpp 不加不工作
 
 ultisnips (配合vim-snippets) 默认：
 let g:UltiSnipsExpandTrigger="<tab>"

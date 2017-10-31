@@ -351,3 +351,7 @@ AN4286: SPI protocol used in the STM32 bootloader
 ---F407-disco
 dfu-util -d 0483:df11 -c 1 -i 0 -a 0 -s 0x08000000 -D elua_lua_stm32f407vg.bin
 
+
+
+---
+读保护：ST-Link utility：option byte... 选项
