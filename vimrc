@@ -21,12 +21,11 @@ set rtp+=~/.vim/tagbar
 set rtp+=~/.vim/ultisnips
 set rtp+=~/.vim/vim-snippets
 set rtp+=~/.vim/lilypond
-set rtp+=~/.vim/omnicppcmp
-set rtp+=~/.vim/omnicppcmp/after
 set rtp+=~/.vim/nerdtree
 set rtp+=~/.vim/pydict/after
 
 set tags+=~/.vim/other/sysinc
+set tags+=~/Work/cpp_src/tags
 
 set cpt=.,w,b,u,k,t,U
 set hls
@@ -48,3 +47,6 @@ imap jk <Esc>
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 let g:pydict = '~/.vim/pydict/dict'
 
+let g:clang_library_path='/usr/lib/llvm-3.8/lib/libclang.so.1'
+let g:AutoPairsMapCR=0 " ?? issue
+"let g:clang_complete_loaded=0 " close clang

@@ -49,6 +49,13 @@ classes, templates, exceptions, namespaces,
 operator overloading, function name overloading, references, free store management 
 operators, and additional library facilities.
 
+STL 已经是标准C++的一部分，影响着 C++ Standard Library的很多部分，提供 algorithms, containers, iterators
+
+
+
+libstdc++  GNU 实现
+libc++     LLVM实现
+
 1 类中类，结构体中结构体
 2 含纯虚函数的类是抽象基类
 3 gcc/g++识别c++: .C/.cc(C with classes)/.cpp(C plus plus)/.CPP/.c++/.cp/.cxx

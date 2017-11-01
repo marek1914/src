@@ -375,3 +375,5 @@ long term support
 permutation 排列
 combination 组合
 closed-loop 闭环
+
+KISS 原则: Keep it Simple and Stupid
