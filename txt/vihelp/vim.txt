@@ -165,7 +165,8 @@ libc++ 用modified 1.7M，用/usr/include/c++/4.8 2.3M(必须用命令2，否则
 开始
 omnifunc=ccomplete#Complete
 omnicpp 插件生效后变为
-omnifunc=omni#cpp#complete#Mai， 然后原来的 fopen c-x c-o 不好用了, set omnifunc=ccomplete#Complete 又好用了 
+omnifunc=omni#cpp#complete#Mai， 然后原来的 fopen c-x c-o 不好用了, set omnifunc=ccomplete#Complete 又好用了
+使用 clang_complete 后 omnifunc=ClangComplete了，也支持fopen提示，用的是系统头文件，set omnifunc=ccomplete#Complete 后，又是基于tag的
 
 omnicpp/after/ftplugin/c.vim 这个删除，不要影响 .c文件
 

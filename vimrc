@@ -25,7 +25,6 @@ set rtp+=~/.vim/nerdtree
 set rtp+=~/.vim/pydict/after
 
 set tags+=~/.vim/other/sysinc
-set tags+=~/Work/cpp_src/tags
 
 set cpt=.,w,b,u,k,t,U
 set hls

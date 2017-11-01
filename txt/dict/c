@@ -189,7 +189,6 @@ msg->
 msg_flags
 mtd-utils
 mutable
-N
 native
 need_xx
 negative
@@ -197,19 +196,15 @@ net_init
 noexcept
 notice
 nullptr
-O_CREAT
 oddbyte
 offset
 old_val
 operation
 operator
 ops
-O_RDONLY
-O_RDWR
 otherwise
 outline
 overflow
-O_WRONLY
 parse_bundle_header
 persistent
 pertain
