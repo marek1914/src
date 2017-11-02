@@ -7,7 +7,7 @@ colorscheme koehler
 syntax on "for macos
 set cot=menuone,preview
 filetype plugin indent on
-set pvh=1
+" set pvh=1  " default 12
 
 set dict+=~/.vim/other/dict/3k
 set dict+=~/.vim/other/dict/c
@@ -53,3 +53,5 @@ imap <silent><CR> <CR><Plug>AutoPairsReturn
 let g:clang_complete_macros = 1 " complete preprocessor macros and constants
 "let g:clang_snippets = 1 
 "let g:clang_snippets_engine = 'clang_complete'
+let g:clang_close_preview = 1 " after 'enter' close preview
+let g:clang_jumpto_declaration_key = '<F2>'

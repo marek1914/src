@@ -1,45 +1,11 @@
-vim: tw=80
+一年之内不要再增加新功能，不要再折腾环境 20171102-20181103
+stm32f300w!!
 
-基于 eclipse 的 ide， 各种匹配补全功能也很完善，甚至比vi好用
+ctrl-O
+ctrl-I  来回跳转光标历史位置
+ctrl-]  相当于 :tag xxx 命令
 
-atom 支持 C++
-
-.cpp indent 有时不灵
-
-ga 查看字符 ascii值
-g8 打印utf-8 的16进制， 一个汉字3个字节
-
-:set setting options (internal variables for switches special effects)
-:let assigning a value to a variable.
-
-字典带空格，解决不了
-
-:h registers  # = .ect
-:h expression
-:h quickref
-:h usr_01.txt # 02 03 04 41...
-web2 (Webster's Second International) 字典23万条太多，只需6级的5000+ 单词
-
-ctrl-x s  #拼写检查
-:h spell 拼写检查
-
-:h i_CTRL-X_CTRL-L  整行完成
-文档说c-l 会检查cpt定义的buffer，可实测不检测字典
-sp 然后open 那个文件，或 :badd file （Add file name to buffer list, without loading it）
-明白了：cpt 的u 是：
- scan the unloaded buffers that are in the buffer list
- 如果没有u，那么badd的文件，也是无法c-x c-l的！！！
-还是有问题，当我写注释的时候，前面有 * 此时 c-l就不灵了，必须前面是空格或tab的时候才灵！
- 
-因C-X C-L 无法解决开头不是空格或Tab的情况，可以这样用于C语言注释
-* a good example.
-或者在空白处写，编辑后再拷贝到注释里
-
-
-ctrl-x ctrl-f 插入文件名如 /etc/c-x_c-f
-
-ctrl-x ctrl-o  omnifunc(Omni completion) 
-默认 ccomplete#Complete, omnicpp设为 omni#cpp#complete#Main, clang_complete 设为ClangComplete
+clang_complete 设为ClangComplete
  
 ctrl-x ctrl-u  completefunc(User defined completion)
 
@@ -103,13 +69,16 @@ preview-window
 ft-c-omni (ft:filetypes)
 
 ---
-Omnicomplete(category) 一类基于 Vim's omnicompletion feature 的插件
-Omnicppcompleter: C/C++ completion base ctags(放弃20171101) 需使用 Modified libstdc++ headers 版本较老
+Omnicppcompleter: 试用后有很多问题，放弃
 
 clang_complete 
 1 与omnicppcmp 不兼容
-2 安装 clang-3.8 
+2 安装 clang-3.8 or libclang-dev
 3 补全函数需要包含正确头文件
+4 .clang_complet 有时候必须在当前目录才生效
+5 ctrl+] 目前版本跳转到声明而非定义（无须tags）
+  let g:clang_jumpto_declaration_key = '<F2>' 
+  ctrl+]还是基于tags的跳转，F2查看不急于tags的声明如 I2C_SLAVE
 
 .clang_complete 文件
 -I/usr/include/c++/4.8
@@ -240,15 +209,8 @@ func! ListMonths()
 		\ 'October', 'November', 'December'])
   return ''
 endfunc
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	
+	
 Cursor movement
 
 h - move left

@@ -18,6 +18,8 @@ i2ctools.com    usb 2 i2c 工具
 
 道与术
 
+suxiang198的博客
+
 usb线:
 A-A 公对公 1
 A-A 公对母 1

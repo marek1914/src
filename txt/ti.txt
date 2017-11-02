@@ -1,28 +1,10 @@
-suxiang198的博客
-
 cc2531 sniffer  Ubiqua
 
-TI 收购 chipcon(cc-xx)
-
-Z-Stack support BBB
-
-CC1101:   sub-1GHz 射频收发器
-CC2520:   2.4 GHz ZigBee RF transceiver phy
-CC2592:   Range Extender
-CC2540/1: bluetooth 4.0(8051)
-CC2640:   bluetooth(arm m0+m3)
-
-zigbee(4):
-cc2530/1(usb): 8051
-cc2538: m3
-cc2630: m3
-cc2650: m3
+CC2540: ble(8051)  2个开发板
+cc2530: zigbee 8051 2个开发板
+cc2650: zigbee+ble m3 (2个sensortag，4个开发板，1个launchpad)
  
-4×4 RSM QFN32 0.4
-5×5 RHB QFN32 0.5
-7×7 RGZ QFN48 0.5
-
-CC Debuger : CC2511-F32(8051/usb)
+CC Debuger : CC2511(8051/usb)
 
 CC26xxWare与EmuPack:
 
@@ -38,7 +20,6 @@ P1 是TM4C芯片本身的JTAG
 J1/J4 是正反对着的2个接口
 P2 是20个孔
 J2 10孔 1.27间距 是jtag输出
-
 
 TIMAC:
 
@@ -241,12 +222,6 @@ VG板子写入slip-radio 打印 ：Slip Radio started...
 CCFG p710  FA8-FFF
 
 CC2650 Ref 电压输出1.666V ，电源供电1.8-3.8之间，都输出这个电压，低于1.8V停止工作，高于3.8V 没敢试
-
-
-
-
-
-
 
 -------------------------
 电流感应放大器 Current Sense Amplifiers(current shunt monitors)
