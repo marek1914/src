@@ -7,7 +7,7 @@ colorscheme koehler
 syntax on "for macos
 set cot=menuone,preview
 filetype plugin indent on
-" set pvh=1  " default 12
+set pvh=1  " default 12, base-ctag 6+, clang_comp only 1
 
 set dict+=~/.vim/other/dict/3k
 set dict+=~/.vim/other/dict/c

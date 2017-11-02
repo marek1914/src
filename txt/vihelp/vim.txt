@@ -79,6 +79,8 @@ clang_complete
 5 ctrl+] 目前版本跳转到声明而非定义（无须tags）
   let g:clang_jumpto_declaration_key = '<F2>' 
   ctrl+]还是基于tags的跳转，F2查看不急于tags的声明如 I2C_SLAVE
+6 区分private 和 public 
+
 
 .clang_complete 文件
 -I/usr/include/c++/4.8
