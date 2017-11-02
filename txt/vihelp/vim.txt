@@ -36,12 +36,12 @@ sp 然后open 那个文件，或 :badd file （Add file name to buffer list, wit
 或者在空白处写，编辑后再拷贝到注释里
 
 
-ctrl-x ctrl-f 插入文件名如
-/etc/c-x_c-f
+ctrl-x ctrl-f 插入文件名如 /etc/c-x_c-f
 
-ctrl-x ctrl-o      调用 omnifunc 确定的函数  Omni completion
-ctrl-x ctrl-u ??   调用 completefunc 确定的函数  User defined completion
-这2个有啥区别？
+ctrl-x ctrl-o  omnifunc(Omni completion) 
+默认 ccomplete#Complete, omnicpp设为 omni#cpp#complete#Main, clang_complete 设为ClangComplete
+ 
+ctrl-x ctrl-u  completefunc(User defined completion)
 
 vim74/autoload/ccomplete.vim 实现了 ccomplete#Complete
 
@@ -105,24 +105,20 @@ ft-c-omni (ft:filetypes)
 ---
 Omnicomplete(category) 一类基于 Vim's omnicompletion feature 的插件
 Omnicppcompleter: C/C++ completion base ctags(放弃20171101) 需使用 Modified libstdc++ headers 版本较老
-clang_complete (c++ 要想达到很好的补全效果，必须基于clang) 与omnicppcmp 插件不兼容
-先安装 llvm-3.8  clang-3.8 
+
+clang_complete 
+1 与omnicppcmp 不兼容
+2 安装 clang-3.8 
+3 补全函数需要包含正确头文件
 
 .clang_complete 文件
 -I/usr/include/c++/4.8
+-I/usr/include/linux   开发linux驱动
 
-clang_complete 与 auto pairs 冲突问题：
-let g:AutoPairsMapCR=0   //默认是1, 作用是如：{|} 出现
-{
-   |
-}
-的效果
-否则用了自动补全后，回车出现 <SNR>24_AutoPairsReturn
+clang_complete 与 auto pairs 冲突问题，<SNR>24_AutoPairsReturn:
+let g:AutoPairsMapCR=0
+imap <silent><CR> <CR><Plug>AutoPairsReturn
 
-用了clang_complete后，.c 也用了clang，fopen memcpy等就不用原来的基于tags的了，但效果差不多
-但要注意，想不全 memcpy 必须先添加 #include <string.h> 因为他是基于语义的
-
-最好不要影响 .c 
 
 vector自动提示
 必须std:vector<char> foo;
@@ -161,12 +157,6 @@ for cpp:
 2 ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ //Modified libstdc++ headers
 
 libc++ 用modified 1.7M，用/usr/include/c++/4.8 2.3M(必须用命令2，否则有些成员没有)
-
-开始
-omnifunc=ccomplete#Complete
-omnicpp 插件生效后变为
-omnifunc=omni#cpp#complete#Mai， 然后原来的 fopen c-x c-o 不好用了, set omnifunc=ccomplete#Complete 又好用了
-使用 clang_complete 后 omnifunc=ClangComplete了，也支持fopen提示，用的是系统头文件，set omnifunc=ccomplete#Complete 后，又是基于tag的
 
 omnicpp/after/ftplugin/c.vim 这个删除，不要影响 .c文件
 

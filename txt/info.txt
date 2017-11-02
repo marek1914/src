@@ -3,6 +3,8 @@
 只用BBB/Pi，不要在其他平台上浪费1s，有病，扔A20
 
 sgi.com/tech/stl
+zh.cppreference.com/w/cpp/container/vector
+
 
 月经题。。
 

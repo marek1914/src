@@ -1,12 +1,18 @@
 kernel.org
 
-v1.0  1994
-v1.1  1994-1995
-v2.6.0-.39   2003-2011
-v3.00.1 :2011  
-v3.10.1 :2013
+include 系统
+头文件在  /usr/include/linux
 
-Doug Lea malloc(dlmalloc) linux默认malloc内存分配器
+开发i2c，需要包含
+<linux/i2c-dev.h>
+
+
+v1.0   1994
+v2.6   2003
+v3.0   2011  
+v3.10  2013
+
+dlmalloc(Doug Lea): malloc内存分配器
 
 /dev/block/platform/... /by-name   by-num
 
@@ -23,7 +29,6 @@ un.h等 根据external/kernel-headers/original自动生成
 bionic/libc/kernel/tools/update_all.py 生成头文件 
 
 make headers_install  生成经过净化的内核头文件
-
 
 Documentation/devices.txt  内核能识别的设备
 
@@ -51,55 +56,15 @@ kenel/sysctl.c生成/proc/sys/kernel项
 linux/drivers/video/skeletonfb.c
 file_operation: read/write/ioctl/mmap，在fbmem.c中实现，检测fb_ops->fb_mmap(vpmfb.c中)是否定义
 
-[]只有空*两种状态  <>有空*M 3 中状态
-
 Kernel hacking  打开会增加很多打印
 
 CONFIG_PRINTK_TIME 打印时间
 
-ifeq ($(CONFIG_AEABI),y)
-CFLAGS_ABI      :=-mabi=aapcs-linux -mno-thumb-interwork
-else
-难道AEABI 跟thumb 是冲突的？
-
-Kernel Features  --->
-            [*] Use the ARM EABI to compile the kernel                  
-            [*]   Allow old ABI binaries to run with this kernel (EXPERIMENTA)
-
-Perface
-    对内核修改的记录。
-
-1 20100531 内核使用NandFlash
-	在3slp平台上设置内核支持nand flash 的操作如下：
-	(1) 修改内核配置Device Drivers->Memory Technology Device (MTD) support  
-->NAND Device Support->nand flash support for NEC EMMAXXX Soc(BROI)
-       （2）修改linux/include/asm-mips/emma/emma3slp.h中EMMA_NAND_BASE和EMMA_NAND_SIZE两个宏，
-其中EMMA_NAND_BASE为nand flash的基地址，EMMA_NAND_SIZE为nand flash的大小。
-       （3）修改linux/arch/mips/emma/nec-emma3slx/platform.c    文件，修改emma_nand_platform_data结构如下：
-	struct emma_nand_platform_data emma_nand_pdata = {
- 	.parts          = nand_parts,
-	.nr_parts       = ARRAY_SIZE(nand_parts),
-	.large_page     = 2112,//nand flash一页的大小
-	.cachprg_support    = 0,
-	.use_dma        = 1,
-	.nand_cs        = EMMA_NAND_CS0,//nand flash使用的片选
-	.dma_channel        = EMMA_DMA_MEM_CHANNEL_0,
-	};
-2 内核增加串口1支持
-   修改arch\mips\emma\nec-emma3slx\setup.c 里面的 emma3slx_sio_setup函数 把CONFIG_KGDB注释掉就可以支持 串口1了。应该不能把CONFIG_KGDB打开，打开后会打开内核调试吧。
-
-4 linux/include/asm-mips/emma/emma3slp.h里面定义了 内存大小 Flash大小等信息。这个文件定义了EMMA_NAND_ROM_MODE 但是从来没有用
-
-
 ARCH=arm 不靠 xx_defconfig 设置死，因为 _defconfig分布在各arch目录下，如arm/configs  mips/configs
 在xx_里包含目录信息不合理。搜索所有configs目录？这可以，但要保证所有config不重名，可以做到，kernel没做而已
 
-mstar写了些脚本，可以从.config检测CONFIG_ARM=y 判断是arm，虽工作，但逻辑并不严密
+mstar脚本，可从.config检测CONFIG_ARM=y 判断是arm，虽工作，但逻辑并不严密
 
-CROSS_COMPILE   ?= $(CONFIG_CROSS_COMPILE)
-$(info ======= $(CROSS_COMPILE) ====)
-$(info ======= $(CONFIG_CROSS_COMPILE) ====)
-//为什么info 不出来值？
 
 $(CONFIG_CROSS_COMPILE:"%"=%)  //去引号
 变量展开模式匹配，但实验没有成功：
@@ -107,12 +72,8 @@ aa="helloworld" //1
 b=${aa:"%"=%}  //我没法模拟一个带“”的字符串，行1赋给aa，已经没有双引号了，转义也不行
 
 
-2016/04/23 刚刚明白这句话的意思
 SUBARCH := $(shell uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ \
-				  -e s/sun4u/sparc64/ \
 				  -e s/arm.*/arm/ -e s/sa110/arm/ \
-				  -e s/s390x/s390/ -e s/parisc64/parisc/ \
-				  -e s/ppc.*/powerpc/ -e s/mips.*/mips/ \
 				  -e s/sh[234].*/sh/ -e s/aarch64.*/arm64/ )
 在pc上执行返回 x86，raspberry pi上执行返回arm
 

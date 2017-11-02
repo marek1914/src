@@ -1,3 +1,13 @@
+有时候 if 判断正逻辑和反逻辑，会得到截然不同的效果，如exercise del space
+反逻辑比较顺
+while (*s) {    
+	if (*s != ' ') {
+		*p = *s; 
+		p++;
+	}   
+	s++;
+ }
+
 不要再去修改别的项目的代码，这样的事我干了太多，没意义
 自己写自己的风格，别人写好的，不要试图改成自己的风格
 
@@ -16,7 +26,10 @@ KEY_DOWN  \033[B
 KEY_RIGHT \033[C  27(ESC) 91 67
 KEY_LEFT  \033[D  27 91 68  ^[[D   ^[ 代表esc？
 
----C++----
+---C++11----
+
+6.5.4 The range-based for statement
+
 int a(5)；即 int a=5; 用构造函数构造初始化类，如classA a(b);
 
 <<C++ Coding Standards: 101 Rules, Guidelines, and Best Practices>>

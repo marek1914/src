@@ -48,4 +48,8 @@ let g:pydict = '~/.vim/pydict/dict'
 
 let g:clang_library_path='/usr/lib/llvm-3.8/lib/libclang.so.1'
 let g:AutoPairsMapCR=0 " ?? issue
+imap <silent><CR> <CR><Plug>AutoPairsReturn
 "let g:clang_complete_loaded=0 " close clang
+let g:clang_complete_macros = 1 " complete preprocessor macros and constants
+"let g:clang_snippets = 1 
+"let g:clang_snippets_engine = 'clang_complete'
