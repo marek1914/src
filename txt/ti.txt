@@ -1,3 +1,5 @@
+能干嘛？不要白白浪费时间
+
 cc2531 sniffer  Ubiqua
 
 CC2540: ble(8051)  2个开发板
@@ -8,20 +10,17 @@ CC Debuger : CC2511(8051/usb)
 
 CC26xxWare与EmuPack:
 
-CC26xxWare is no longer released as a standalone software package
-is included in TI-RTOS
+CC26xxWare is no longer released as a standalone software package, included in TI-RTOS
 
 SmartRF Flash Programmer  (winxp ok)
 SmartRF Flash Programmer2 (run on Win7/8, winxp fail)
 SmartRF Studio
 
 Debugger Devpack:
-P1 是TM4C芯片本身的JTAG 
+P1 是TM4C芯片本身JTAG 
 J1/J4 是正反对着的2个接口
 P2 是20个孔
 J2 10孔 1.27间距 是jtag输出
-
-TIMAC:
 
 安装CCS (ccstudio):
 linux版下载8M+，安装过程选择相应组件网络下载

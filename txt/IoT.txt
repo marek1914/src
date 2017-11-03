@@ -1,8 +1,7 @@
-mynewt.apache  嵌入平台的 apache？
-
 VNA  矢量网络分析仪
 ---------
 DA14580
+
 6LoWPAN 基于IPv6的低速无线个域网标准，即IPv6 over IEEE 802.15.4
 
 线序(如函数参数序列)
@@ -10,10 +9,8 @@ BBG 4pin 2.0mm：
 RXD/TXD/3V3/GND
 SCL/SDA/3V3/GND
 
-可: 
-SCL/VCC/SDA/GND
-差:
-VCC/SCL/SDA/GND  or SCL/VCC/GND/SDA
+可: SCL/VCC/SDA/GND
+差: VCC/SCL/SDA/GND
 
 3pin 
 好: GND/VCC/IO
@@ -264,3 +261,11 @@ nxp 单片机
 ---
 物联网通讯协议：
 openthread
+
+
+
+
+百度手环 nRF51822 + LIS3DH
+
+内部RC振荡器的误差是2%（30分钟/天），即使校正后只能达到250ppm（22秒/天）；外部晶振，一般能达到40ppm（3秒/天），误差非常小；
+

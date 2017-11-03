@@ -1,5 +1,8 @@
 kernel.org
 
+device tree:
+
+
 include 系统
 头文件在  /usr/include/linux
 
