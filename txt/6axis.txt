@@ -17,3 +17,23 @@ inv_mpu.c 中 mpu_init()
 
 
 gcc -DMPU6500 *.c   pi测试程序
+
+CJMCU-116 网上说是 mpu6500，可芯片上写的MP92 ， 6轴 yj给的紫色小板
+
+mpu-9250 是 9轴的
+
+mpu9250 : mpu6500+ak8963  所以当成6500用，也没问题吧
+mpu9150 : mpu6050+ak8975
+
+* #define MPU9250
+ * is equivalent to..
+ * #define MPU6500
+ * #define AK8963_SECONDARY
+
+
+例程 用了 C++， 文件名却是 .c 编译9250代码：
+non-trivial designated initializers not supported
+
+并且例子程序 是 mpu6050 的 ，改为6500 有问题
+
+结构体赋值  gcc 和 g++的区别

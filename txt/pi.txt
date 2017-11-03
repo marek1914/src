@@ -210,3 +210,9 @@ wpa－psk xxx
 -----i2c---
 i2c操作，直接用/dev/i2c节点，还是用 gpio库？
 
+
+
+--
+最新版禁止了ssh：
+SSH disabled by default; can be enabled by creating a file with name "ssh" in boot partition
+
