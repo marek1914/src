@@ -30,10 +30,6 @@ mpu9150 : mpu6050+ak8975
  * #define MPU6500
  * #define AK8963_SECONDARY
 
-并且例子程序 是 mpu6050 的 ，改为6500 有问题
 
-
-
-
-
-
+mpu_read_fifo
+dmp_read_fifo

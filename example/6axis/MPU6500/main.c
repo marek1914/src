@@ -12,6 +12,19 @@
 
 // inv_mpu_dmp_motion_driver.h
 
+struct hal_s {
+    unsigned char sensors;
+    unsigned char dmp_on;
+    unsigned char wait_for_tap;
+    volatile unsigned char new_gyro;
+    unsigned short report;
+    unsigned short dmp_features;
+    unsigned char motion_int_mode;
+    struct rx_s rx;
+};
+static struct hal_s hal = {0};
+
+
 int i2c_write(uint8_t dev, uint8_t reg, uint8_t len, uint8_t* data) 
 {
 	int8_t count = 0;
@@ -54,6 +67,10 @@ int8_t i2c_read(uint8_t dev, uint8_t reg, uint8_t len, uint8_t *data) {
 
 int main(void)
 {
+	short gyro[3], accel[3], sensors;
+	unsigned char more;
+	long quat[4];
+
 	unsigned char accel_fsr;
     unsigned short gyro_rate, gyro_fsr;
     unsigned long timestamp;
@@ -83,6 +100,27 @@ int main(void)
 
 	mpu_get_power_state(&devStatus);
 	printf("devStatus: %d \n", devStatus);
+
+
+	dmp_load_motion_driver_firmware();
+
+    dmp_enable_feature(
+        DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_TAP |
+        DMP_FEATURE_ANDROID_ORIENT | DMP_FEATURE_SEND_RAW_ACCEL | 
+		DMP_FEATURE_SEND_CAL_GYRO |
+        DMP_FEATURE_GYRO_CAL;);
+    dmp_set_fifo_rate(DEFAULT_MPU_HZ);
+
+	mpu_set_dmp_state(1);
+
+
+	while (1) {
+		dmp_read_fifo(gyro, accel, quat, &sensor_timestamp, &sensors,
+                &more);
+		printf("%d %d %d, %d %d %d\n",gyro[0], gyro[1], gyro[2],
+						accel[0], accel[1], accel[2]);
+		sleep(1);
+	}
 
 	return 0;
 }
