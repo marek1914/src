@@ -286,17 +286,16 @@ deb http://mirrors.tuna.tsinghua.edu.cn/debian/ stretch non-free (非开源软�
 
 Debian Alternatives System // alternate 功能
 
-wheezy [ˈwi:zi] debian 7
 jessie ['dʒesɪ] debian 8
 
 5分支：oldstable、stable、testing、unstable、experimental
 
-官网debian-7.6.0-armhf-netinst.iso  158M 好像不包含kernel
+debian-7.6.0-armhf-netinst.iso  158M 不含kernel
 debootstrap --foreign --arch armhf wheezy .
 把armv7 版基础版本的跟目录down下来了，就是linux系统的根目录结构 144M，
 这与debian-7.6.0-armhf-netinst.iso 不同（一个一个包形式）
 
-Debian Free Software Guideline, DFSG
+DFSG: Debian Free Software Guideline
 ---
 升腾690：
 CPU: AMD G-T48N 1.4G , 1G DDR

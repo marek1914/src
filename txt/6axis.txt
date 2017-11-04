@@ -33,3 +33,26 @@ mpu9150 : mpu6050+ak8975
 
 mpu_read_fifo
 dmp_read_fifo
+
+
+pi 版本没成功，不知道是模块问题，还是pi的问题
+
+不知道是线长的缘故还是什么，有时候 i2cdetect 都检测不到0x68
+或者 复位问题?
+
+
+从示波器看，i2cdetect 就是写一个器件地址，看有没有ack 
+
+pi 有
+/sys/module/i2c_bcm2835
+/sys/module/i2c_dev 
+2套驱动？  默认用的是  i2c_dev
+
+dtparam=i2c1_baudrate=400000   能调频率
+
+好像成功了一次，感觉这个模块有毛病，好像不是pi和程序的问题，妈的
+
+
+明天试试pi上跑 u8lib + i2c oled
+
+

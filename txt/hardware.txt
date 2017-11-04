@@ -216,6 +216,9 @@ BMX055: 9轴传感器  qiyi VR
 LIS302DL: 3轴加速度 accelerometer ，F407-Disco
 LSM6DSL: ST 6轴臂环小板
 
+
+LG33: 5pin 3.3V ldo（mpu6500小板使用）
+
 NATSEN(耐特森) 输出42V+ 且不稳定，接上LED灯，稳定42V
 
 

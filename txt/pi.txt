@@ -102,10 +102,6 @@ git://git.drogon.net/wiringPi
 
 wiringPi 和 bcm2835 C library都提供I2C API函数(靠bcm2835_init函数，用/dev/mem实现)
 
-
-raspbian-jessie.img (4G)
-dd后： boot(60M fat) +ext4(4G)
-
 boot分区包含kernel.img 和
 bcm2708-rpi-b.dtb
 bcm2708-rpi-b-plus.dtb
@@ -125,9 +121,6 @@ U9 AP2331W
 EMI4182:common mode filter with ESD protection for HDMI
 
 USB电源，2个口用1组滤波电容(100n+47u)无fuse
-
-raspbian-wheezy 无法生成 turbojpeg 的 configure，需先在pc上生成，pi上运行生成makefile（时间错误需touch configure）
-pc生成configure后要tar.gz 压缩，zip不行
 
 Camera Board v2.1 (8MP, 1080p)
 Camera Board v1.3 (5MP)

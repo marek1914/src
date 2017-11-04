@@ -1547,6 +1547,12 @@ i2cdetect -l 查看pi上的I2C总线
 i2cdetect -y 1
 
 
+at88sc:
+0x58-0x5f全有
+oled:
+0x3c(而资料是0x7e)
+
+
 I2C_SLAVE 包含
 <linux/i2c-dev.h>
 -----
