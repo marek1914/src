@@ -30,10 +30,10 @@ mpu9150 : mpu6050+ak8975
  * #define MPU6500
  * #define AK8963_SECONDARY
 
-
-例程 用了 C++， 文件名却是 .c 编译9250代码：
-non-trivial designated initializers not supported
-
 并且例子程序 是 mpu6050 的 ，改为6500 有问题
 
-结构体赋值  gcc 和 g++的区别
+
+
+
+
+

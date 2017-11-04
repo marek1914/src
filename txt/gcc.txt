@@ -70,8 +70,8 @@ watch   监控某变量的变化
 
 ctrl+c 终止当前执行，不论执行到哪。终止后可以打断点。
 
-(gdb) p  *data@20
-$32 = "\000\000\001\243e\210\200\200\027\343\205\034\331\377\341\033\001\373F\215"   \xxx八进制格式
+(gdb) p  *data@10
+$32 = "\000\000\001\243e\210\200\200"   \xxx八进制格式
 
 p /d  *data@20  10进制
 p /x  *data@20  16进制
@@ -514,4 +514,9 @@ apt-get install gcc-4.9 g++-4.9 (自动删除了libstdc++.so.6.0.19 安装了lib
 gcc foo.c -lpthread (需放在最后)
 
 -m32/-m64 生成32/64bit程序
+
+
+non-trivial designated initializers not supported
+结构体赋值  gcc 和 g++的区别
+
 
