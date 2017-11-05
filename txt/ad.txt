@@ -5,6 +5,9 @@ http://www.sztcpcb.com  // 便宜 186: *6278*
 .intlib (integrated library) 包含 .pcblib .schlib 2个文件
 .libpkg 工程文件 编译输出 .intlib
 
+实际上只保存.intlib 也可以，但是每次都要解压再编辑，不如同时保存着 .libpkg，修改编译再拷贝 .intlib
+
+
 常规参数：
 板厚1.6mm
 最小线宽6mil，最小孔径0.3mm
