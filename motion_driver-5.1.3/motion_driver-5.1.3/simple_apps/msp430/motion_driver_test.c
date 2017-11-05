@@ -409,7 +409,7 @@ static void handle_input(void)
     case 'f':
         /* Toggle DMP. */
         if (hal.dmp_on) {
-            unsigned short dmp_rate;
+            unsigned s hort dmp_rate;
             hal.dmp_on = 0;
             mpu_set_dmp_state(0);
             /* Restore FIFO settings. */

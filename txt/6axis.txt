@@ -22,7 +22,7 @@ CJMCU-116 网上说是 mpu6500，可芯片上写的MP92 ， 6轴 yj给的紫色�
 
 mpu-9250 是 9轴的
 
-mpu9250 : mpu6500+ak8963  所以当成6500用，也没问题吧
+mpu9250 : mpu6500+ak8963(AKM公司的)  所以当成6500用，也没问题吧
 mpu9150 : mpu6050+ak8975
 
 * #define MPU9250
@@ -54,5 +54,13 @@ dtparam=i2c1_baudrate=400000   能调频率
 
 
 明天试试pi上跑 u8lib + i2c oled
+
+
+
+臂环小板 用的 LSM6DS3H 6轴（ST）  +  AK09918C 地磁（AKM）
+
+AKM:
+AK8968   2011年
+AK09918C 2017年
 
 

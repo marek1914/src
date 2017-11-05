@@ -2,6 +2,8 @@
 VCC: 3.3~5V
 稳压管：662K
 
+板子上标明地址0x73 or 0x7a，可是pi i2cdetect 检测出是  0x3c
+
 7针版本：
 GND/VCC(3.3~5V)
 SCL(D0)-arduino-A5

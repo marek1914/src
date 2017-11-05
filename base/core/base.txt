@@ -1,3 +1,9 @@
 Gnu Mpc (Multiple Precision Complex Library) 用于任意精度复数运算，比ieee-754精度高
 
 /usr/include/c++/4.8/ ... stl_tree.h  //rb_tree 实现
+
+
+
+命令行解析程序：
+等待回车，接收部分可连续接收，也可能单字符接收 这部分收集一个算法
+

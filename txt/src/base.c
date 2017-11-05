@@ -4,7 +4,9 @@
  * gcc 支持 0b00000011 但这不是c99标准，其他编译器可能不支持
  */
 
-f407zg.h: 
+//不要用宏在代码中控制，而是要把宏放到打印函数里
+
+//f407zg.h: 
 #include "cpu_stm32f407vg.h"
 #undef NUM_PIO
 #define NUM_PIO    7
@@ -1011,28 +1013,51 @@ bool exitPending() const;
 
 
 switch (c) {
-    case 0x000fac01:
-        return "WEP40 (00-0f-ac:1)";
-    case 0x000fac05:
-		        return "WEP104 (00-0f-ac:5)";
-							    case 0x000fac02:
-							        return "TKIP (00-0f-ac:2)";
-									    case 0x000fac04:
-									        return "CCMP (00-0f-ac:4)";
-											    case 0x000fac06:
-											        return "CMAC (00-0f-ac:6)";
-													    case 0x000fac08:
-													        return "GCMP (00-0f-ac:8)";
-															    case 0x00147201:
-															        return "WPI-SMS4 (00-14-72:1)";
-																	    default:
-																	        sprintf(buf, "%.2x-%.2x-%.2x:%d",
-																					            c >> 24, (c >> 16) & 0xff,
-																								            (c >> 8) & 0xff, c & 0xff);
-
-																			        return buf;
-																					    
+	case 0x000fac01:
+		return "WEP40 (00-0f-ac:1)";
+	case 0x000fac05:
+		return "WEP104 (00-0f-ac:5)";
+	case 0x000fac02:
+		return "TKIP (00-0f-ac:2)";
+	case 0x000fac04:
+		return "CCMP (00-0f-ac:4)";
+	case 0x000fac06:
+		return "CMAC (00-0f-ac:6)";
+	case 0x000fac08:
+		return "GCMP (00-0f-ac:8)";
+	case 0x00147201:
+		return "WPI-SMS4 (00-14-72:1)";
+	default:
+		sprintf(buf, "%.2x-%.2x-%.2x:%d",
+		c >> 24, (c >> 16) & 0xff,
+		(c >> 8) & 0xff, c & 0xff);
+return buf;
 } 
 
+printf:
+stdarg.h (man stdarg)
+c99: 7.15  Variable arguments va_list(e.g void*)
 
+ragel
+valgrind/dmalloc
+
+standard linux xterm esc sequences for arrow key
+
+F12: ^[[24~
+F10: ^[[21~
+F9:  ^[[20~
+
+KEY_DOWN  \033[B
+KEY_RIGHT \033[C  27(ESC) 91 67
+KEY_LEFT  \033[D  27 91 68  ^[[D   ^[ 代表esc？
+
+off-by-one
+
+CMockery
+
+libncurses
+
+http://clang.llvm.org/docs/ClangFormat.html
+
+ANSI escape codes (escape sequences)
 // vim: tw=80

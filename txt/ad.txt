@@ -2,6 +2,9 @@ pcb 板制作
 http://www.sz-jlc.com/home/index.html  //质量好，较贵
 http://www.sztcpcb.com  // 便宜 186: *6278*
 
+.intlib (integrated library) 包含 .pcblib .schlib 2个文件
+.libpkg 工程文件 编译输出 .intlib
+
 常规参数：
 板厚1.6mm
 最小线宽6mil，最小孔径0.3mm
@@ -17,10 +20,20 @@ shift+e 捕捉焊盘焦点
 1206 3.2mm x 1.6mm
 1210 3.2mm x 2.5mm
 
-封装收集:
+
 SOT23
-MSOP
-SSOP
+
+MSOP Mini Small Outline Package， 
+8-16pin，msop-8:pitch:0.65mm, msop10-16:pitch 0.5mm  高度也比SOP小
+
+SOP pitch:1.27mm
+SSOP pitch:0.635mm(1.27的一半 25mil)
+TSSOP pitch:0.65mm(比ssop宽0.015mm 很微小)
+
+(Thermally Enhanced 指中间带金属散热) 
+SOIC8 :Small Outline Integrated Circuit Package  即SOP8
+pitch: 50mil(1.27mm)
+
 
 C 电阻 R 电容 X 尽量小
 
