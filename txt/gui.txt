@@ -18,18 +18,10 @@ u8g2是强大的8位屏幕显示库，支持非常多的驱动芯片种类，可
 --u8glib--
 m2tklib
 2015-07 从 http://code.google.com/p/u8glib  migration 到
-github.com/olikraus/u8glib
+github.com/olikraus/u8glib  v1.18.1 最新版本
 
-可pc编译sdl运行
+https://learn.adafruit.com/ssd1306-oled-displays-with-raspberry-pi-and-beaglebone-black/wiring    基于python的显示库
 
-g++ -DHAVE_CONFIG_H -Icsrc -Icppsrc -Idogmsrc -Inonarduino `getconf LFS_CFLAGS` `getconf LFS64_CFLAGS` 
--D_GNU_SOURCE -D_FILE_OFFSET_BITS=64   -DSVN_VERSION='"469a805"' -I.  -Icsrc -Icppsrc -Inonarduino -DU8G_16BIT 
--DU8G_RASPBERRY_PI -DU8G_WITH_PINLIST   -O2 -MT sys/arduino/Chess/u8gwpi_chess-Chess.o -MD -MP -MF 
-sys/arduino/Chess/.deps/u8gwpi_chess-Chess.Tpo -c -o sys/arduino/Chess/u8gwpi_chess-Chess.o `test 
--f 'sys/arduino/Chess/Chess.cpp' || echo './'`sys/arduino/Chess/Chess.cpp
-pc编译，sys/arduino目录 .uno文件不认
-
-https://learn.adafruit.com/ssd1306-oled-displays-with-raspberry-pi-and-beaglebone-black/wiring
 u8glib/sys/arduino/Chess/Chess.cpp  //这个文件是自动生成的
 
 

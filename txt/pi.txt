@@ -74,8 +74,8 @@ pi2/3  KERNEL=kernel7 (armv7?)
 编译kernel：github/raspberrypi 
 RPi_Upstream_Kernel_Compilation //upstream 指kernel.org
 
-键盘符号错乱
-dpkg-reconfigure keyboard-configuration //Re-mapping the keyboard UK改为US(系统英国造)
+键盘错乱
+dpkg-reconfigure keyboard-configuration //Re-mapping the keyboard UK改为US
 
 /dev/spidev0.0 and spidev0.1
 echo -ne "hello" > /dev/spidev0.0
