@@ -2,7 +2,7 @@
 VCC: 3.3~5V
 稳压管：662K
 
-板子上标明地址0x73 or 0x7a，可是pi i2cdetect 检测出是  0x3c
+板子标明地址 0x78, pi i2cdetect 显示 0x3c，取了高7bit
 
 7针版本：
 GND/VCC(3.3~5V)
@@ -17,7 +17,8 @@ u8g2是强大的8位屏幕显示库，支持非常多的驱动芯片种类，可
 
 --u8glib--
 m2tklib
-http://code.google.com/p/u8glib
+2015-07 从 http://code.google.com/p/u8glib  migration 到
+github.com/olikraus/u8glib
 
 可pc编译sdl运行
 

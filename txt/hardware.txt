@@ -257,6 +257,12 @@ NATSEN(耐特森) 输出42V+ 且不稳定，接上LED灯，稳定42V
 
 
 ------
+二极管：
 
 A7W-3d 3pin: 快速开关二极管bav99封装  
 Dual Series Switching Diode
+
+肖特基
+B380-13-F 80V, 3A Diodes Inc.
+B390 90V, 3A Diodes Inc.
+

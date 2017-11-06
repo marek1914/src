@@ -6,10 +6,10 @@ Whiterussian 0.9
 
 Qualcomm 2011年收购 Atheros  
 Qualcomm Atheros QCA9531 650MHz 
+
 Arduino yun: Atheros AR9331
-
-Linino
-
+Linux distribution based on OpenWrt named Linino OS
+Arduino Yún LininoOS
 
 git://git.openwrt.org/openwrt.git
 https://github.com/openwrt/openwrt
