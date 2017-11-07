@@ -41,7 +41,7 @@ F303-Disc     (F303VC 72MHz 256+40 M4 DSP+FPU)
 F429-Disc     (F429ZI lcd u-boot)
 
 M0/M0+/M3/M4/M7
-F030F4P6   M0 16K+4K Value-line
+F030F4P6   M0 16K+4K Value-line  2块
 
 NUCLEO-F401RE:
 OFF:
