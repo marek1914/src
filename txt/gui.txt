@@ -1,6 +1,7 @@
-中景园电子 0.96inch 128x64 oled 2个i2c 1个spi 驱动芯片 SSD1306
+中景园 0.96inch 128x64 oled 2个i2c 1个spi rmb:15
 VCC: 3.3~5V
 稳压管：662K
+SSD1306 
 
 板子标明地址 0x78, pi i2cdetect 显示 0x3c，取了高7bit
 
