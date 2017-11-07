@@ -25,3 +25,7 @@ https://learn.adafruit.com/ssd1306-oled-displays-with-raspberry-pi-and-beaglebon
 u8glib/sys/arduino/Chess/Chess.cpp  //这个文件是自动生成的
 
 
+xx_sw_spi_xx  software spi
+
+
+U8glib-1/examples/U8gLogo/U8gLogo.ino    当时好像测试了这个
