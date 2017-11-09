@@ -170,6 +170,6 @@ for bare-metal software development, support Cortex-M0/M0+/M3/M4/M7
 gnu c/c++ compiler, binutils, gdb, Newlib
 
 
-Rogue Wave Standard C++ Library
+Keil Rogue Wave Standard C++ Library
 
-arm-none-eabi/include/c++/6.3.1   bare-metal 也支持 c++ ，那么里面的内存分配怎么解决？指定一个heap？ 然后运行内存分配器？
+arm-none-eabi/include/c++/6.3.1   bare-metal 也支持 c++ ，内存分配怎么解决？

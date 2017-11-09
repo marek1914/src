@@ -13,6 +13,7 @@
 #undef NUM_ADC
 #define NUM_ADC    24
 
+intptr_t
 直接定义，会提示重复定义
 
 /* c99 6.5.2.5 Compound literals  ffmpeg fifo.c*/

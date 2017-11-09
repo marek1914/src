@@ -5,7 +5,7 @@ char * const s;
 const char * s;
 char const * s;
 
-Reserved words                                *c-reserve* *c-res*
+Reserved words 
 C89(32):
 unsigned  return  while  auto  int
 register  signed  union  case  for
@@ -50,7 +50,7 @@ order relations: <, <=, >, >=
 
 c99 std lib <24>                                       *c-lib*
 C:   /usr/include/
-C++: /usr/include/c++ <cassert>
+C++: /usr/include/c++
 <assert.h>  <complex.h>  <ctype.h>     <errno.h>
 <fenv.h>    <float.h>    <inttypes.h>  <iso646.h>
 <limits.h>  <locale.h>   <math.h>      <setjmp.h>
@@ -68,5 +68,7 @@ C99 P67
 i = ++i + 1; a[i++] = i; //the behavior is undefined
 i+++i; i+i++;
 
+局部数组初始化:
+int temp[10] = {0};
 
 vim: tw=78 ts=8 sw=4 sts=4 et ft=help

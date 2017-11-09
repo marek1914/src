@@ -145,7 +145,6 @@ pfn:Page Frame Number
 
 CNY Chinese Yuan
 TRM Technical Reference Manual
-STL Standard Template Library
 DTMS Dual-tone multi-frequency signaling
 
 EMI: Electromagnetic Interference

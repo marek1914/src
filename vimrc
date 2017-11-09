@@ -55,3 +55,4 @@ let g:clang_complete_macros = 1 " complete preprocessor macros and constants
 "let g:clang_snippets_engine = 'clang_complete'
 let g:clang_close_preview = 1 " after 'enter' close preview
 let g:clang_jumpto_declaration_key = '<F2>'
+let g:clang_complete_copen = 1

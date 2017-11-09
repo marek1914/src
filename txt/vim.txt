@@ -1,6 +1,8 @@
 一年之内不要再增加新功能，不要再折腾环境 20171102-20181103
 stm32f300w!!
 
+20171109 不要希望统一到 vi ctag cscope clang_complete，没有一个工具能完成所有工作，或者能但是要花费巨大精力
+得不偿失，所以要接受多种工具并存，有的场景，source insight 反而是最好用的
 
 ctrl-O
 ctrl-I  来回跳转光标历史位置
@@ -74,7 +76,7 @@ Omnicppcompleter: 试用后有很多问题，放弃
 
 clang_complete 
 1 与omnicppcmp 不兼容
-2 安装 clang-3.8 or libclang-dev
+2 安装 libclang-dev
 3 补全函数需要包含正确头文件
 4 .clang_complet 有时候必须在当前目录才生效
 5 ctrl+] 目前版本跳转到声明而非定义（无须tags）
@@ -82,9 +84,10 @@ clang_complete
   ctrl+]还是基于tags的跳转，F2查看不基于tags的声明如 I2C_SLAVE
 6 无法区分private 和 public
 7 #include <string> 不但string无法补全，会导致vector都无法补全，发现是因为系统的 /usr/include/c++ 有问题
-  使用android/external/libcxx/include 就全部ok！  系统的是 gnu 的头文件，可能不完全兼容
-  草！！！ 也不是，也会不好用，你麻痹！！！
-
+  使用android/external/libcxx/include 就全部ok！
+8 语法有错误的时候，不提示， 
+  这就有弊端，比如随便拿来一套代码，编译不过去的情况下，就无法提示 ssd1306 adafruit 改好之前就不能提示,此时还是要依靠tags
+20171108 17:42  .clang_complete  sandbox 上一级目录， 只写 -I/home/gjie/libcxx_inc 好用！
 
 
 
