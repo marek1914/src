@@ -205,6 +205,10 @@ MP2565: 50V
 
 flyback:
 
+
+VL53L0X: ST  Time-of-Flight (ToF)  激光测距  RMB:22+
+RPR-0521: 红外 接近传感器 RMB 15+    qiyi ffc 排线 0.5mm 间距
+
 OTS-16-1.27-03: 烧录座  品牌 Enplas
 STP120 :120欧阻抗电缆
 

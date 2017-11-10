@@ -376,3 +376,7 @@ combination 组合
 closed-loop 闭环
 
 KISS 原则: Keep it Simple and Stupid
+
+
+FPC 柔性电路板
+FFC 柔性排线
