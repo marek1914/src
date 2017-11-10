@@ -40,6 +40,11 @@ F407G-DISC1   (F407VG 168MHz 1M+192k)
 F303-Disc     (F303VC 72MHz 256+40 M4 DSP+FPU)
 F429-Disc     (F429ZI lcd u-boot)
 
+
+F429用的LCD:
+深圳信创天源 SF-TC240T-9370-B-T  18bit RGB, 各6bit
+
+
 M0/M0+/M3/M4/M7
 F030F4P6   M0 16K+4K Value-line  2块
 
@@ -69,7 +74,6 @@ LD6 : PD15
 http://www.wolinlabs.com/blog/linux.stm32.discovery.gcc.html
 http://regalis.com.pl/en/arm-cortex-stm32-gnulinux/
 
-F429I-DIS: u-boot 运行成功
 st-flash write u-boot.bin 0x8000000
 
 源地F103

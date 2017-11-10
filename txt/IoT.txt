@@ -56,7 +56,6 @@ R025 采样电阻/精密电阻 （2快工程机板，电池内部有）
 
 
 IS31FL3731
-ST VL53L0X Time-of-Flight (ToF)
 
 MAX6225 低噪声高精度 +2.5V/+4.096V/+5V电压基准
 Low 1.0ppm/°C Temperature Coefficient
