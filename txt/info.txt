@@ -126,8 +126,7 @@ downsub.com   //subtitle
 
 ID/79864406 id:410425198511202520
 
-abandon java, android, opengl 
-abandon C++ (20170428) ffmpeg/kernel/minigui enough!
+abandon java, android
 
 mdpi.com
 iot-lab.info

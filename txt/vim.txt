@@ -89,7 +89,8 @@ clang_complete
   这就有弊端，比如随便拿来一套代码，编译不过去的情况下，就无法提示 ssd1306 adafruit 改好之前就不能提示,此时还是要依靠tags
 20171108 17:42  .clang_complete  sandbox 上一级目录， 只写 -I/home/gjie/libcxx_inc 好用！
 
-
+20171110  编辑c文件时，包含了 stdio.h 后，提示的puts printfs等 不是.clang_com 文件中指定的路径，而是标准路径：
+/usr/include/stdio.h    这个比基于tag的好用，所以，放弃维护系统头文件的tag
 
 .clang_complete 文件
 -I/usr/include/c++/4.8

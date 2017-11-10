@@ -6,6 +6,11 @@
 
 //不要用宏在代码中控制，而是要把宏放到打印函数里
 
+//语法糖  结构体和数组清零初始化
+struct foo foo={0};
+int foo[10] = {0};
+int foo[10] = {1}; // 第一个初始化1，后面为0
+
 //f407zg.h: 
 #include "cpu_stm32f407vg.h"
 #undef NUM_PIO
