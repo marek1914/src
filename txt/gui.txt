@@ -1,3 +1,9 @@
+任务：
+基于stm32 做出一套类似 nokia 手机的图形系统，备用
+
+
+yj-lcd: ili9341
+
 中景园 0.96inch 128x64 oled 2个i2c 1个spi rmb:15
 VCC: 3.3~5V
 稳压管：662K
@@ -32,4 +38,3 @@ xx_sw_spi_xx  software spi
 U8glib-1/examples/U8gLogo/U8gLogo.ino    当时好像测试了这个
 
 
-yj-lcd: ili9341

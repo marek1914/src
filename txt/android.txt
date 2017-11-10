@@ -1,3 +1,9 @@
+//打印调用堆栈
+RuntimeException e = new RuntimeException("run is here");
+e.fillInStackTrace();
+Log.d(TAG, "xxx", e);
+
+
 minigzip
 aapt
 mkbootfs
@@ -437,7 +443,7 @@ export_includes
 设置java环境变量:xx/bin:$PATH ，bin后不能有/，否则编译java时出错
 
 s805:
-make modules  生成了一堆东西，有cts，WiFiDirectDemo等(不同于kernel的make modules)
+make modules  生成了一堆，有cts，WiFiDirectDemo等(不同于kernel的make modules)
 
 androd目录编译内核, uImage 是 android 大make的目标
 make V=1 out/target/product/m200/obj/KERNEL_OBJ/arch/arm/boot/uImage
@@ -449,31 +455,12 @@ device目录下的各平台目录，直接影响lunch显示数量
 APK :Android Package
 resources.arsc 编译后的二进制资源文件
 
-android4.2.2 prebuilts/gcc 原始1.4G，可删除darwin(Apple),及linux mips/x86（intel灵动） arm-eabi-4.6(用于kernel，linaro替代，区别？)
-
----- 重要----
-android 4.4 有4.6，4.7 两套编译器，外部定义 TARGET_GCC_VERSION_EXP=4.6可改变版本（一般不需要）
-build/core/combo/TARGET_linux-arm.mk :
-
-endif
-
 TARGET_CC := gcc
 TARGET_CXX := g++
-
-envsetup.sh后尚找不到编译器，执行lunch等调用setpaths函数才生效(a4.0)：
-function setpaths(){
-	ANDROID_EABI_TOOLCHAIN="/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.6/bin"
-	ANDROID_TOOLCHAIN=     "/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.6/bin"
-	ARM_EABI_TOOLCHAIN=    "/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6/bin" (for kernel)
-	并最终设置到PATH变量中： export PATH=$ANDROID_BUILD_PATHS$PATH （这是以上变量总和）
-	#a4.4后很多字段用变量代替如$targetgccversion，而非写死4.6/4.7
-	#这里根据TARGET_linux-arm.mk提取编译器路径并export
-}
 
 systemimage: ext4
 
 生成system.img在build/core/Makefile中
-
 
 Yaffs2：-------------------------------------
 M3 external/yaffs2 生成HOST程序mkyaffs2image
