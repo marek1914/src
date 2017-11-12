@@ -142,7 +142,8 @@ dns-nameservers 202.106.0.20 （/etc/resolv.conf 自动添加:nameserver 202.106
 /etc/init.d/apache2 restart 
 
 Nginx: /usr/local/nginx
-2) samba
+
+2 samba
 	install samba smbfs
 	/etc/samba/smb.conf 配置每用户的读写权限
 	mount -t cifs //ip/dir  dir -o username="xxx",password="xxx"
@@ -151,7 +152,7 @@ Nginx: /usr/local/nginx
     //ip/dir /mount_point cifs username=xx,password=xx,uid=1000,gid=1000,file_mode=0777 0 0
     dir是相对于samba的路径，不是绝对路径, 密码是samba密码，不是服务器登录密码
 
-5) tftp(trivial ftp RFC783)
+3 tftp(trivial ftp RFC783)
 	tftp-hpa (client)
 	tftpd-hpa
 
@@ -179,27 +180,23 @@ Nginx: /usr/local/nginx
 		flags =IPv4
 	}
 
-	6) nfs
-		nfs-common  客户端
-		nfs-kernel-server 服务端
-		The NFS kernel server is currently the recommended NFS serer for use with Linux,
-		featuring features such as NFSv3 and NFSv4,
+4 nfs
+	nfs-common  客户端
+	nfs-kernel-server 服务端
+	The NFS kernel server is currently the recommended NFS serer for use with Linux,
+	featuring features such as NFSv3 and NFSv4,
 
-		/etc/exports
-		man exports：
-		exports - NFS server export table
-		如：
-		/home/username/NFS/fawn  *(rw,sync,no_subtree_check,no_root_squash)
+	/etc/exports
+	man exports：
+	exports - NFS server export table
+	如：
+	/home/username/NFS/fawn  *(rw,sync,no_subtree_check,no_root_squash)
 
-	8) minicom
-		Modem and dialing parameter setup 输入A B K 将后面的字符删除
-		L: Capture
-        W: lineWrap
-		minicom.log : O "Filenames and paths" "Logging options"
-		ymodem下载内核:uboot执行 loady,minicom选择 send file 选ymodem
-		hex：O -> Screen and keyboard ->hex display
-
-    g++-multilib
+5 minicom
+	Modem and dialing parameter setup 输入A B K 将后面的字符删除
+	minicom.log : O "Filenames and paths" "Logging options"
+	ymodem下载内核:uboot执行 loady,minicom选择 send file 选ymodem
+	hex：O -> Screen and keyboard ->hex display
 
 输入法
     u14.04 text entry +PinYin
