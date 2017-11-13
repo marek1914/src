@@ -2,6 +2,16 @@
 基于stm32 做出一套类似 nokia 手机的图形系统，备用
 
 
+电子墨水屏幕： 大连佳显
+waveshare ips 屏：
+电阻屏驱动芯片：XPT2046
+屏幕部分靠：74hc4094  74hc4040  74hc04  完成了spi到串行接口的转换，不知怎么实现的
+通过spi的clk mosi
+
+spi屏幕
+320x240 x16bit  要想25fps，需要至少30MHz
+那 waveshare  320x480屏幕， 得60MHz以上？！！！  测试一下！
+
 yj-lcd: ili9341
 
 中景园 0.96inch 128x64 oled 2个i2c 1个spi rmb:15
