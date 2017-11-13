@@ -4,7 +4,10 @@
  * gcc 支持 0b00000011 但这不是c99标准，其他编译器可能不支持
  */
 
-//不要用宏在代码中控制，而是要把宏放到打印函数里
+// 不要用宏在代码中控制，而是要把宏放到打印函数里
+// error: expected ‘;’ after struct definition
+// c 可以返回结构体
+//NULL 在stddef.h 中 define
 
 //语法糖  结构体和数组清零初始化
 struct foo foo={0};
@@ -409,33 +412,14 @@ memset(bdata->node_bootmem_map, 0xff, mapsize); //初始内存位图
 memset(bpb, 0, sizeof(*bpb));
 memset(dev, 0, sizeof(Dev));
 
-// return structure
-struct foo {
-	int i;
-	int j;
-};
-
-struct foo bar(void)
-{
-	struct foo test;
-	test.i=1;
-	test.j=2;
-	return test;
-}
-
-///
-void main(void)
+void foo(void)
 {
 	goto exit;
 	i+=4;
-//lable后什么语句都没有不行
 //error: label at end of compound statement
 exit:
 }
 
-//NULL 在stddef.h 中 define
-
-error: expected ‘;’ after struct definition
 
 括号后必须semicolon如：
 Thread xxx= new Thread(new Runnable(){
@@ -451,13 +435,6 @@ do {
 	...
 } while(...); //here
 
-//main(void)后面不能加semicolon，结构体定义后面必须要
-struct a {
-	char g;
-	char f;
-};
-
-shell中的 ; 用于分隔语句，如果不会造成歧义可不加
 
 strstr(s, "ll");
 strchr(s, 'l'); //等价 strstr(s, "l");
@@ -476,9 +453,6 @@ char buf[]=
 "+HTTPACTION: 0, 200, 4044, 4096\r\n"
 "+HTTPACTION: 0, 200, 4318, 4096\r\n"
 ;
-
-
-test() {  } //无警告
 
 char buf='\0';
 
@@ -1000,22 +974,6 @@ fb_mem = mmap(NULL, 1024*768, PROT_READ|PROT_WRITE,MAP_SHARED,fb,0);
 
 waiting ? 1 : 0;
 
-
-Threads.cpp
-
-Derived class implement threadLoop().
-1) loop: if threadLoop() returns true
-2) once: if threadLoop() returns false
-
-virtual bool threadLoop() = 0;
-
-创建的线程是 _threadLoop(void* user) 调threadLoop() 
-res = createThreadEtc(_threadLoop, this, name, priority, stack, &mThread);
-this指针传到 pthread_create 的arg参数,即_threadLoop(void* user) 的user
-
-//一个函数设置标志，另一个函数检查标志
-virtual void requestExit();
-bool exitPending() const;
 
 
 switch (c) {
