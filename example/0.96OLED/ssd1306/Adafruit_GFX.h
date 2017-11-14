@@ -3,17 +3,14 @@
 
 #define swap(a, b) { int16_t t = a; a = b; b = t; }
 
-class Adafruit_GFX : public Print {
-
+class Adafruit_GFX
+{
  public:
 
-  Adafruit_GFX(int16_t w, int16_t h); // Constructor
+  Adafruit_GFX(int16_t w, int16_t h);
 
-  // This MUST be defined by the subclass:
   virtual void drawPixel(int16_t x, int16_t y, uint16_t color) = 0;
 
-  // These MAY be overridden by the subclass to provide device-specific
-  // optimized code.  Otherwise 'generic' versions are used.
   virtual void
     drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color),
     drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color),
@@ -21,9 +18,8 @@ class Adafruit_GFX : public Print {
     drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color),
     fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color),
     fillScreen(uint16_t color),
-    invertDisplay(boolean i);
+    invertDisplay(bool i);
 
-  // These exist only with Adafruit_GFX (no subclass overrides)
   void
     drawCircle(int16_t x0, int16_t y0, int16_t r, uint16_t color),
     drawCircleHelper(int16_t x0, int16_t y0, int16_t r, uint8_t cornername,
@@ -47,10 +43,10 @@ class Adafruit_GFX : public Print {
     setTextColor(uint16_t c),
     setTextColor(uint16_t c, uint16_t bg),
     setTextSize(uint8_t s),
-    setTextWrap(boolean w),
+    setTextWrap(bool w),
     setRotation(uint8_t r);
 
-  virtual size_t write(uint8_t);
+  virtual size_t write1(uint8_t);
 
   int16_t
     height(void),
@@ -59,11 +55,11 @@ class Adafruit_GFX : public Print {
   uint8_t getRotation(void);
 
  protected:
-  const int16_t WIDTH, HEIGHT;   // This is the 'raw' display w/h - never changes
+  const int16_t WIDTH, HEIGHT; 
   int16_t _width, _height, cursor_x, cursor_y;
   uint16_t textcolor, textbgcolor;
   uint8_t textsize, rotation;
-  boolean wrap; // If set, 'wrap' text at right edge of display
+  bool wrap; // 'wrap' text at right edge of display
 };
 
 #endif

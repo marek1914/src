@@ -1,7 +1,11 @@
+wangliang: 已经自由了，怎么比？！
+
 1 别把时间浪费在无谓的事上
 2 BBB and Pi，不要在其他平台上浪费时间
 3 编辑器只用vi和gedit，前者写代码后者作为补充
 
+micrphone array：
+https://www.nt.tuwien.ac.at/staff-pages/gerhard-doblinger-noise-reduction-microphone-array/
 
 sgi.com/tech/stl
 zh.cppreference.com/w/cpp/container/vector
