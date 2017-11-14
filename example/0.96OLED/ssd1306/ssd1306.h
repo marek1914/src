@@ -1,11 +1,12 @@
 //  typedef volatile uint32_t PortReg;
 //  typedef uint32_t PortMask;
+#include <stdint.h>
+#include <string.h>
+#include "Adafruit_GFX.h"
 
 #define BLACK 0
 #define WHITE 1
 #define INVERSE 2
-
-#define SSD1306_I2C_ADDRESS   0x3C
 
 #define SSD1306_128_64
 
@@ -60,9 +61,9 @@
 
 class SSD1306 : public Adafruit_GFX {
  public:
-  SSD1306(int8_t RST = -1);
+  SSD1306(void);
 
-  void begin(uint8_t switchvcc = SSD1306_SWITCHCAPVCC, uint8_t i2caddr = SSD1306_I2C_ADDRESS, bool reset=true);
+  void begin(uint8_t i2caddr = 0x3c);
   void ssd1306_command(uint8_t c);
 
   void clearDisplay(void);
@@ -76,7 +77,7 @@ class SSD1306 : public Adafruit_GFX {
   void startscrolldiagleft(uint8_t start, uint8_t stop);
   void stopscroll(void);
 
-  void dim(boolean dim);
+  void dim(bool dim);
 
   void drawPixel(int16_t x, int16_t y, uint16_t color);
 
@@ -84,11 +85,10 @@ class SSD1306 : public Adafruit_GFX {
   virtual void drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t color);
 
  private:
-  int8_t _i2caddr, _vccstate, sid, sclk, dc, rst, cs;
-
-  inline void drawFastVLineInternal(int16_t x, int16_t y, int16_t h, uint16_t color) __attribute__((always_inline));
-  inline void drawFastHLineInternal(int16_t x, int16_t y, int16_t w, uint16_t color) __attribute__((always_inline));
+  int8_t _i2caddr;
+  int fd;
+  void drawFastVLineInternal(int16_t x, int16_t y, int16_t h, uint16_t color);
+  void drawFastHLineInternal(int16_t x, int16_t y, int16_t w, uint16_t color);
 
 };
 
-#endif

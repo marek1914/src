@@ -7,6 +7,10 @@ http://www.sztcpcb.com  // 便宜 186: *6278*
 
 只保存.intlib 也可，但每次都要解压再编辑，不如同时保存着 .libpkg，修改编译再拷贝 .intlib
 
+使用导入的stm32 元件原理图，在ad10上有问题，放置后 移动 “wait a moment..." 此时ad09 没有问题
+新建一个元件，拷贝元件内容（不是拷贝元件文件名称，而是图形元素）到新的，就ok了
+
+出现wait a moment 可能还有别的情况，网上有一种 删除 document and setting 目录的下的 ad10 目录下的文件
 
 常规参数：
 板厚1.6mm
