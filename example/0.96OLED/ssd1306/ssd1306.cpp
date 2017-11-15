@@ -1,6 +1,7 @@
 // #define pgm_read_byte(addr) (*(const unsigned char *)(addr))
 
 #include <stdint.h>
+#include <string.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -11,7 +12,7 @@
 
 // the memory buffer for the LCD
 
-static uint8_t buffer[SSD1306_LCDHEIGHT * SSD1306_LCDWIDTH / 8] = {0x40};
+static uint8_t buffer[SSD1306_LCDHEIGHT * SSD1306_LCDWIDTH / 8 + 1];
 
 #define ssd1306_swap(a, b) { int16_t t = a; a = b; b = t; }
 
@@ -207,8 +208,11 @@ void SSD1306::display(void) {
   ssd1306_command(0); // Page start address (0 = reset)
     ssd1306_command(7); // Page end address
 
-	write(fd, buffer, 16*64+1);
+	uint8_t tmp[16*64+1];
+	tmp[0] = 0x40;
+	memcpy(tmp+1, buffer, 16*64);
 
+	write(fd, tmp, 16*64+1);
 }
 
 // clear everything

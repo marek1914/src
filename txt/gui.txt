@@ -10,7 +10,7 @@ waveshare ips 屏：
 
 spi屏幕
 320x240 x16bit  要想25fps，需要至少30MHz
-那 waveshare  320x480屏幕， 得60MHz以上？！！！  测试一下！
+那 waveshare  320x480屏幕， 得60MHz以上？ 测试一下！
 
 yj-lcd: ili9341
 
@@ -19,7 +19,7 @@ VCC: 3.3~5V
 稳压管：662K
 SSD1306 
 
-板子标明地址 0x78, pi i2cdetect 显示 0x3c，取了高7bit
+板子标明地址 0x78, pi i2cdetect 显示 0x3c，取高7bit
 
 7针版本：
 GND/VCC(3.3~5V)
@@ -43,8 +43,4 @@ u8glib/sys/arduino/Chess/Chess.cpp  //这个文件是自动生成的
 
 
 xx_sw_spi_xx  software spi
-
-
-U8glib-1/examples/U8gLogo/U8gLogo.ino    当时好像测试了这个
-
 

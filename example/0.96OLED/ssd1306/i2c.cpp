@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <stdio.h>
 #include <fcntl.h>
 #include "ssd1306.h"
 
@@ -113,12 +114,12 @@ void testdrawline() {
   for (int16_t i=0; i<display.width(); i+=4) {
     display.drawLine(0, 0, i, display.height()-1, WHITE);
     display.display();
-    usleep(1000);
+    //usleep(1000);
   }
   for (int16_t i=0; i<display.height(); i+=4) {
     display.drawLine(0, 0, display.width()-1, i, WHITE);
     display.display();
-    usleep(1000);
+    //usleep(1000);
   }
   usleep(250*1000);
   
@@ -126,12 +127,12 @@ void testdrawline() {
   for (int16_t i=0; i<display.width(); i+=4) {
     display.drawLine(0, display.height()-1, i, 0, WHITE);
     display.display();
-    usleep(1000);
+    //usleep(1000);
   }
   for (int16_t i=display.height()-1; i>=0; i-=4) {
     display.drawLine(0, display.height()-1, display.width()-1, i, WHITE);
     display.display();
-    usleep(1000);
+    //usleep(1000);
   }
   usleep(250*1000);
   
@@ -139,12 +140,12 @@ void testdrawline() {
   for (int16_t i=display.width()-1; i>=0; i-=4) {
     display.drawLine(display.width()-1, display.height()-1, i, 0, WHITE);
     display.display();
-    usleep(1000);
+    //usleep(1000);
   }
   for (int16_t i=display.height()-1; i>=0; i-=4) {
     display.drawLine(display.width()-1, display.height()-1, 0, i, WHITE);
     display.display();
-    usleep(1000);
+    //usleep(1000);
   }
   usleep(250*1000);
 
@@ -152,12 +153,12 @@ void testdrawline() {
   for (int16_t i=0; i<display.height(); i+=4) {
     display.drawLine(display.width()-1, 0, 0, i, WHITE);
     display.display();
-    usleep(1000);
+    //usleep(1000);
   }
   for (int16_t i=0; i<display.width(); i+=4) {
     display.drawLine(display.width()-1, 0, i, display.height()-1, WHITE); 
     display.display();
-    usleep(1000);
+    //usleep(1000);
   }
   usleep(250*1000);
 }
@@ -189,15 +190,6 @@ void testscrolltext(void) {
 int main(void)   
 {                
   display.begin();
- 
-  // Show image buffer on the display hardware.
-  // Since the buffer is intialized with an Adafruit splashscreen
-  // internally, this will display the splashscreen.
-  display.display();
-  sleep(2);
-
-  // Clear the buffer.
-  display.clearDisplay();
 
   // draw a single pixel
   display.drawPixel(10, 10, WHITE);
@@ -205,64 +197,64 @@ int main(void)
   // NOTE: You _must_ call display after making any drawing commands
   // to make them visible on the display hardware!
   display.display();
-  sleep(2);
+  sleep(1);
   display.clearDisplay();
 
   // draw many lines
   testdrawline();
   display.display();
-  sleep(2);
+  sleep(1);
   display.clearDisplay();
 
   // draw rectangles
   testdrawrect();
   display.display();
-  sleep(2);
+  sleep(1);
   display.clearDisplay();
 
   // draw multiple rectangles
   testfillrect();
   display.display();
-  sleep(2);
+  sleep(1);
   display.clearDisplay();
 
   // draw mulitple circles
   testdrawcircle();
   display.display();
-  sleep(2);
+  sleep(1);
   display.clearDisplay();
 
   // draw a white circle, 10 pixel radius
   display.fillCircle(display.width()/2, display.height()/2, 10, WHITE);
   display.display();
-  sleep(2);
+  sleep(1);
   display.clearDisplay();
 
   testdrawroundrect();
-  sleep(2);
+  sleep(1);
   display.clearDisplay();
 
   testfillroundrect();
-  sleep(2);
+  sleep(1);
   display.clearDisplay();
 
   testdrawtriangle();
-  sleep(2);
+  sleep(1);
   display.clearDisplay();
    
   testfilltriangle();
-  sleep(2);
+  sleep(1);
   display.clearDisplay();
 
   // draw the first ~12 characters in the font
   testdrawchar();
   display.display();
-  sleep(2);
+  sleep(1);
   display.clearDisplay();
 
   // draw scrolling text
   testscrolltext();
-  sleep(2);
+  sleep(1);
   display.clearDisplay();
 
   // text display tests

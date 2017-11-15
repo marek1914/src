@@ -201,8 +201,15 @@ wpa－psk xxx
 
 
 -----i2c---
-i2c操作，直接用/dev/i2c节点，还是用 gpio库？
+默认100kHz，能改到400k吗？
+/boot/config.txt 修改频率
+dtparam=i2c1_baudrate=400000
 
+
+pi 有
+/sys/module/i2c_bcm2835
+/sys/module/i2c_dev 
+2套驱动？  默认用的是  i2c_dev
 
 
 --
