@@ -1,6 +1,7 @@
 任务：
 基于stm32 做出一套类似 nokia 手机的图形系统，备用
 
+320x240 16bit lcd 1.2Mbit, spi的话 20MHz clk 16fps, 刷一帧 60ms
 
 电子墨水屏幕： 大连佳显
 waveshare ips 屏：
