@@ -79,16 +79,6 @@ r = ioctl(usb->desc, USBDEVFS_CLAIMINTERFACE, &interface);
 if(r != 0) goto fail;
 
 /* ---------------- */
-int printf(const char *fmt, ...)
-{
-    int ret;
-    va_list ap; 
-
-    va_start(ap, fmt);
-    ret = vfprintf(stdout, fmt, ap);
-    va_end(ap);
-    return (ret);
-}
 
 #ifdef __cplusplus
 extern "C" {
@@ -216,6 +206,17 @@ void klog_write(int level, const char *fmt, ...)
     buf[LOG_BUF_MAX - 1] = 0;
     va_end(ap);
     write(klog_fd, buf, strlen(buf));
+}
+
+int printf(const char *fmt, ...)
+{
+    int ret;
+    va_list ap; 
+
+    va_start(ap, fmt);
+    ret = vfprintf(stdout, fmt, ap);
+    va_end(ap);
+    return (ret);
 }
 
 

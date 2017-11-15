@@ -4,15 +4,11 @@
 
 3D 打印 stl 格式
 
-http://www.sztcpcb.com/submitRegister.htmlj
-手机：1310301
-客户编号14720A
 
 放弃:
 cd4066:   4SPST(低压时260Ω+ 用于追求零缺陷高可靠性汽车电子应用)
 ch440:    4SPDT(单控制端)
 ch442:    2SPDT(淘宝没卖)
-SGM44599: 2控制 2组 2SPDT QFN 不好焊接
 ch446q:   8x16 array 4手机8U盾 
 +++++++++++
 可选:

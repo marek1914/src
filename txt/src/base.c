@@ -1000,7 +1000,7 @@ return buf;
 
 printf:
 stdarg.h (man stdarg)
-c99: 7.15  Variable arguments va_list(e.g void*)
+c99: 7.15  Variable arguments va_list( e.g void* )
 
 ragel
 valgrind/dmalloc

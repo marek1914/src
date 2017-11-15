@@ -5,7 +5,6 @@ Log.d(TAG, "xxx", e);
 
 
 minigzip
-aapt
 mkbootfs
 mkbootimg
 fs_config
@@ -288,10 +287,6 @@ public class KeyEvent implements Parcelable {
 
 网络获取时间： NetworkTimeUpdateService
 
-public interface Runnable {
-    public void run();
-}
-
 dalvik没有使用java字节码而是自己又定义了一套指令集
 java指令集从0，1，2排到0xC9如： x4c astore_1
 
@@ -545,10 +540,9 @@ s805的uboot单独处理了 "ANDROID!" 而mstar直接用uboot的image格式生�
 
 静态链接为可执行文件（无需/system/bin/linker）
 
-5 变量含义
-	LOCAL_SRC_FILES := bar.c.arm #bar.c以arm模式编译
-	LOCAL_ARM_MODE = arm  #arm模式
-	LOCAL_DEX_PREOPT := false #生成完整apk，默认true，分出.odex（Optimized DEX）加速运行
+LOCAL_SRC_FILES := bar.c.arm #bar.c以arm模式编译
+LOCAL_ARM_MODE = arm  #arm模式
+LOCAL_DEX_PREOPT := false #生成完整apk，默认true，分出.odex（Optimized DEX）加速运行
 
 repo:
 
