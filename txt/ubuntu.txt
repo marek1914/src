@@ -234,8 +234,6 @@ irq是lspci -v显示的，ttyS1地址靠蒙，定是上面列出来几个之一�
 
 20 系统recovery 模式，可在紧急情况下进入shell。某次对bash执行chmod u+s ，导致系统无法启动。进入recovery 执行 chmod u-s 即可
 
-sudoers
-
 /usr/lib/x86_64-linux-gnu/libncurses.so 打开是 INPUT(libncurses.so.5 -ltinfo)
 /lib/x86_64-linux-gnu$ 有 libncurses.so.5
 
