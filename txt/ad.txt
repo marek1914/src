@@ -2,11 +2,20 @@ pcb 板制作
 http://www.sz-jlc.com/home/index.html  //质量好，较贵
 http://www.sztcpcb.com  // 便宜 186: *6278*
 
+http://www.sztcpcb.com/submitRegister.htmlj
+手机：1310301
+客户编号14720A
+
+
 .intlib (integrated library) 包含 .pcblib .schlib 2个文件
 .libpkg 工程文件 编译输出 .intlib
 
 只保存.intlib 也可，但每次都要解压再编辑，不如同时保存着 .libpkg，修改编译再拷贝 .intlib
 
+使用导入的stm32 元件原理图，在ad10上有问题，放置后 移动 “wait a moment..." 此时ad09 没有问题
+新建一个元件，拷贝元件内容（不是拷贝元件文件名称，而是图形元素）到新的，就ok了
+
+出现wait a moment 可能还有别的情况，网上有一种 删除 document and setting 目录的下的 ad10 目录下的文件
 
 常规参数：
 板厚1.6mm
@@ -22,6 +31,12 @@ shift+e 捕捉焊盘焦点
 0805 2.0mm x 1.2mm
 1206 3.2mm x 1.6mm
 1210 3.2mm x 2.5mm
+
+QFN 封装，引脚都要比芯片大一点点，全压在下面可能造成虚焊
+
+microbit 的nrf52，引脚比芯片长处0.4mm
+
+
 
 
 SOT23

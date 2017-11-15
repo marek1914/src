@@ -1,7 +1,17 @@
+wangliang: 已经自由了，怎么比？！
+
+有时感觉自己做的事情很“单薄”，不是大事业，
+那反过来，写程序做项目，又觉得应该简单，”单薄“，反感android，binder，c++ 等一切冗长的东西，
+实事上，做复杂的事情，就需要厚重的方案，原来不是一直感慨中国建筑看着没有美国大片里面 一坨的建筑威武吗？
+
+
+
 1 别把时间浪费在无谓的事上
 2 BBB and Pi，不要在其他平台上浪费时间
 3 编辑器只用vi和gedit，前者写代码后者作为补充
 
+micrphone array：
+https://www.nt.tuwien.ac.at/staff-pages/gerhard-doblinger-noise-reduction-microphone-array/
 
 sgi.com/tech/stl
 zh.cppreference.com/w/cpp/container/vector

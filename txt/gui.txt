@@ -1,9 +1,26 @@
+任务：
+基于stm32 做出一套类似 nokia 手机的图形系统，备用
+
+320x240 16bit lcd 1.2Mbit, spi的话 20MHz clk 16fps, 刷一帧 60ms
+
+电子墨水屏幕： 大连佳显
+waveshare ips 屏：
+电阻屏驱动芯片：XPT2046
+屏幕部分靠：74hc4094  74hc4040  74hc04  完成了spi到串行接口的转换，不知怎么实现的
+通过spi的clk mosi
+
+spi屏幕
+320x240 x16bit  要想25fps，需要至少30MHz
+那 waveshare  320x480屏幕， 得60MHz以上？ 测试一下！
+
+yj-lcd: ili9341
+
 中景园 0.96inch 128x64 oled 2个i2c 1个spi rmb:15
 VCC: 3.3~5V
 稳压管：662K
 SSD1306 
 
-板子标明地址 0x78, pi i2cdetect 显示 0x3c，取了高7bit
+板子标明地址 0x78, pi i2cdetect 显示 0x3c，取高7bit
 
 7针版本：
 GND/VCC(3.3~5V)
@@ -29,7 +46,8 @@ u8glib/sys/arduino/Chess/Chess.cpp  //这个文件是自动生成的
 xx_sw_spi_xx  software spi
 
 
-U8glib-1/examples/U8gLogo/U8gLogo.ino    当时好像测试了这个
+------
+minigui 还是要放弃，对于stm32来说，还是太大，太复杂了    
 
+用320x240 屏幕，做出一套  nokia E63 的界面
 
-yj-lcd: ili9341
