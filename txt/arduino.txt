@@ -47,7 +47,7 @@ I2C 操作:
 wire 库  TwoWire.cpp :TWI/I2C library
 
 ===microbit===
-MKL26Z128VFM4 :Kinetis KL26: 48MHz M0 128K+16K 32-QFN  RMB 30+
+MKL26Z128VFM4 :Kinetis KL26: 48MHz M0 128K+16K QFN32  RMB 30+
 
 ===teensy===
 teensy3.2(120+): MK20DX256VLH7 (20+)  Kinetis K20 72MHz M4 288K+64K SRAM, 64-LQFP

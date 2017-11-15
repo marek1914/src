@@ -20,9 +20,7 @@ F330 不带负载万用表测 9mA(资料25MHz 6.4mA)
 
 7段单段1.7V，用共阴级，电流由IO提供
 
-IO电压 = 电源电压
-
-C8051F321 5x5 QFN28 usb
+C8051F321 5x5 QFN28
 C8051F330 4x4 QFN20
 
 USB Debug Adapter f321实现JTAG/C2，UEC5/6 U-EC3 HID兼容免驱
@@ -31,8 +29,6 @@ JTAG接口VCC 5V
 输出端口 SN74LVC125(74HC125) Buffer保护
 
 8-bit MCU(8051): bee
-
-CP2102 : USB to UART Bridge 5x5mm QFN28
 
 Si4010/Si4355 发/收
 

@@ -44,3 +44,9 @@ u8glib/sys/arduino/Chess/Chess.cpp  //这个文件是自动生成的
 
 xx_sw_spi_xx  software spi
 
+
+------
+minigui 还是要放弃，对于stm32来说，还是太大，太复杂了    
+
+用320x240 屏幕，做出一套  nokia E63 的界面
+

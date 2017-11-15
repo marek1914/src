@@ -73,23 +73,20 @@ zynq-uboot>
 2 zynq_fsbl_0.elf：在EDk下创建得到之。
 3 system.bit:：在PlanAhead中生成的bit文件；该文件不是必须的，没有该文件时，相当于把Zynq只当ARM来用。
 
-Setting up the SD card to boot on a Zynq board is very straightforward and doesn't require putting the bootloader in the MBR or other fancy filesystem tricks. The ISE software is not required once you have the boot.bin file.
+Setting up the SD card to boot on a Zynq board is very straightforward and doesn't require putting the bootloader in the MBR or other fancy filesystem tricks. 
+The ISE software is not required once you have the boot.bin file.
 
     As other answers have said, you need to put the SD card into an SD card reader, and connect it to your computer.
     You need the SD card formatted as a FAT partition (Windows would do this by default).
     Simply copy the boot.bin to the card, as a normal file.
     See http://www.wiki.xilinx.com/Prepare+Boot+Medium for detailed steps to do this in Linux.
 
-If you're booting up an OS like Linux, you'll need extra files there too. See http://www.wiki.xilinx.com/Prepare+boot+image (the FSBL and u-boot are included in the boot.bin that you have).
-
+If you're booting up an OS like Linux, you'll need extra files there too. 
+See http://www.wiki.xilinx.com/Prepare+boot+image (the FSBL and u-boot are included in the boot.bin that you have).
 
 
 7z020:  vivado projects of device xc7z020
 ip:     xylon's display ip and evaluation license
-
-
-
-
 
 ------
 Zynq-7000S 单核A9  
@@ -99,9 +96,12 @@ Z-7010/7015/7020       866MHz
 Z-7030/7035/7045/7100  1GHz
 
 
-pynq-Z1  512M DDR3+ 16M Quad-SPI Flash 
-trenz zynqberry， 这家公司有很多型号，也比较贵
-myir 的东西还不错, Z-Tune 800+
+pynq-Z1  512M DDR3 + 16M Quad-SPI Flash 
+IS43TR16256A-125KBL
+
+trenz zynqberry， 有很多型号，较贵
+
+myir Z-Tune 800+
 
 
 Zynq + PYNQ + Python：在PYNQ-Z1上搭建二值神经网络（BNN）

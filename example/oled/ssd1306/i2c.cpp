@@ -196,8 +196,14 @@ int main(void)
   // Show the display buffer on the hardware.
   // NOTE: You _must_ call display after making any drawing commands
   // to make them visible on the display hardware!
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  display.setCursor(0,0);
+
+  display.write1('A');
+  display.write1('B');
   display.display();
-  sleep(1);
+  sleep(5);
   display.clearDisplay();
 
   // draw many lines

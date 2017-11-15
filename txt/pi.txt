@@ -203,7 +203,7 @@ wpa－psk xxx
 -----i2c---
 默认100kHz，能改到400k吗？
 /boot/config.txt 修改频率
-dtparam=i2c1_baudrate=400000
+dtparam=i2c1_baudrate=400000  //实测到 800k 能正常工作
 
 
 pi 有

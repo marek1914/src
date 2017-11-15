@@ -2,6 +2,11 @@ pcb 板制作
 http://www.sz-jlc.com/home/index.html  //质量好，较贵
 http://www.sztcpcb.com  // 便宜 186: *6278*
 
+http://www.sztcpcb.com/submitRegister.htmlj
+手机：1310301
+客户编号14720A
+
+
 .intlib (integrated library) 包含 .pcblib .schlib 2个文件
 .libpkg 工程文件 编译输出 .intlib
 
@@ -26,6 +31,12 @@ shift+e 捕捉焊盘焦点
 0805 2.0mm x 1.2mm
 1206 3.2mm x 1.6mm
 1210 3.2mm x 2.5mm
+
+QFN 封装，引脚都要比芯片大一点点，全压在下面可能造成虚焊
+
+microbit 的nrf52，引脚比芯片长处0.4mm
+
+
 
 
 SOT23

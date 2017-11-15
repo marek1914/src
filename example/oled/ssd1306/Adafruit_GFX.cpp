@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "Adafruit_GFX.h"
@@ -351,7 +352,6 @@ size_t Adafruit_GFX::write1(uint8_t c) {
   return 1;
 }
 
-// Draw a character
 void Adafruit_GFX::drawChar(int16_t x, int16_t y, unsigned char c,
 			    uint16_t color, uint16_t bg, uint8_t size) {
 
@@ -367,6 +367,8 @@ void Adafruit_GFX::drawChar(int16_t x, int16_t y, unsigned char c,
       line = 0x0;
     else 
       line = pgm_read_byte(font+(c*5)+i);
+
+	printf("line is %d \n", line);
     for (int8_t j = 0; j<8; j++) {
       if (line & 0x1) {
         if (size == 1) // default size
