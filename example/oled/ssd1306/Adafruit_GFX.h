@@ -47,7 +47,7 @@ class Adafruit_GFX
     setRotation(uint8_t r);
 
   virtual size_t write1(uint8_t);
-
+  void print(const char *fmt, ...);
   int16_t
     height(void),
     width(void);

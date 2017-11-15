@@ -33,9 +33,9 @@ void testdrawchar(void) {
 
   for (uint8_t i=0; i < 168; i++) {
     if (i == '\n') continue;
-    ;//display.write(i);
+    	display.write1(i);
     if ((i > 0) && (i % 21 == 0))
-      ;//display.println();
+      	display.print("\n");
   }    
   display.display();
   usleep(1000);
@@ -168,7 +168,7 @@ void testscrolltext(void) {
   display.setTextColor(WHITE);
   display.setCursor(10,0);
   display.clearDisplay();
-  //display.println("scroll");
+  display.print("scroll");
   display.display();
   sleep(1);
  
@@ -200,8 +200,7 @@ int main(void)
   display.setTextColor(WHITE);
   display.setCursor(0,0);
 
-  display.write1('A');
-  display.write1('B');
+  display.print("hello world");
   display.display();
   sleep(5);
   display.clearDisplay();
@@ -264,20 +263,19 @@ int main(void)
   display.clearDisplay();
 
   // text display tests
-  /*
   display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(0,0);
-  display.println("Hello, world!");
+  display.print("Hello, world!");
   display.setTextColor(BLACK, WHITE); // 'inverted' text
-  display.println(3.141592);
+  display.print("%f", 3.141592);
   display.setTextSize(2);
   display.setTextColor(WHITE);
-  display.print("0x"); display.println(0xDEADBEEF, HEX);
+  display.print("0x"); 
+  display.print("%x", 0xDEADBEEF);
   display.display();
   sleep(2000);
   display.clearDisplay();
-  */
 
   // miniature bitmap display
   display.drawBitmap(30, 16,  logo16_glcd_bmp, 16, 16, 1);

@@ -98,6 +98,7 @@ Z-7030/7035/7045/7100  1GHz
 
 pynq-Z1  512M DDR3 + 16M Quad-SPI Flash 
 IS43TR16256A-125KBL
+S25FL128SAGMFI
 
 trenz zynqberry， 有很多型号，较贵
 
