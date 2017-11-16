@@ -156,8 +156,8 @@ typedef struct
 typedef struct
 {
    void* p;
-   UG_U16 width;
-   UG_U16 height;
+   uint16_t width;
+   uint16_t height;
    uint8_t bpp;
    uint8_t colors;
 } UG_BMP;
@@ -627,8 +627,8 @@ void UG_SetForecolor( UG_COLOR c );
 void UG_SetBackcolor( UG_COLOR c );
 int16_t UG_GetXDim( void );
 int16_t UG_GetYDim( void );
-void UG_FontSetHSpace( UG_U16 s );
-void UG_FontSetVSpace( UG_U16 s );
+void UG_FontSetHSpace( uint16_t s );
+void UG_FontSetVSpace( uint16_t s );
 
 /* Miscellaneous functions */
 void UG_WaitForUpdate( void );
