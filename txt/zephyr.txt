@@ -7,9 +7,8 @@ apt-get install python3-pyelftools(debian 8)
 
 zephyrproject.org
 
-freertos  Tickless (无滴答模式)
 
-zephyr 在1.8 也加入tickless模式
+zephyr 在1.8 加入tickless模式
 
 scripts/support/openocd.sh
 

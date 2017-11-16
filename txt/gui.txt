@@ -1,6 +1,10 @@
 任务：
 基于stm32 做出一套类似 nokia 手机的图形系统，备用
 
+目标:在 stm32上 用320x240 屏幕，做出一套  nokia E63 的界面
+
+UC/Gui 与 EmWin
+
 320x240 16bit lcd 1.2Mbit, spi的话 20MHz clk 16fps, 刷一帧 60ms
 
 电子墨水屏幕： 大连佳显
@@ -45,9 +49,6 @@ u8glib/sys/arduino/Chess/Chess.cpp  //这个文件是自动生成的
 
 xx_sw_spi_xx  software spi
 
-
-------
-minigui 还是要放弃，对于stm32来说，还是太大，太复杂了    
-
-用320x240 屏幕，做出一套  nokia E63 的界面
+-------
+个人项目 uGUI  不错的选择
 

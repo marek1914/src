@@ -1,5 +1,10 @@
 wangliang: 已经自由了，怎么比？！
 
+TODO:
+
+1 温度传感器，室内室外 同步显示
+	1.1 室外
+
 有时感觉自己做的事情很“单薄”，不是大事业，
 那反过来，写程序做项目，又觉得应该简单，”单薄“，反感android，binder，c++ 等一切冗长的东西，
 实事上，做复杂的事情，就需要厚重的方案，原来不是一直感慨中国建筑看着没有美国大片里面 一坨的建筑威武吗？
@@ -16,6 +21,8 @@ https://www.nt.tuwien.ac.at/staff-pages/gerhard-doblinger-noise-reduction-microp
 sgi.com/tech/stl
 zh.cppreference.com/w/cpp/container/vector
 
+网站风格不错
+http://embeddedlightning.com/ugui/
 
 月经题。。
 
