@@ -66,7 +66,10 @@ uint8_t buf[16*64 +1 ] = {
 
 void set_pixel(int16_t x, int16_t y, UG_COLOR c)
 {
-	buf[1 + (y/8)*SSD1306_LCDWIDTH] |=  (1 << (y&7));
+	if (c == 1)
+		buf[1 + x + (y/8)*SSD1306_LCDWIDTH] |=  (1 << (y&7));
+	else
+		buf[1 + x + (y/8)*SSD1306_LCDWIDTH] &= ~(1 << (y&7));
 }
 
 UG_GUI gui;
@@ -175,6 +178,21 @@ int main(void)
 	UG_FillScreen(1);
 
 	display();
+	
+	sleep(1);
 
+	UG_FillScreen(0);
+
+	display();
+
+	sleep(1);
+
+	UG_SetBackcolor(0);
+	UG_SetForecolor(1);
+
+	UG_PutString(0, 0, "hello World");
+
+	display();
+	sleep(1);
 	return 0;
 }
