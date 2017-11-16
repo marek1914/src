@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "ugui.h"
 #include "font.c"
 

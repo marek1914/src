@@ -1,5 +1,3 @@
-#include "system.h"
-
 #ifndef __UGUI_H
 #define __UGUI_H
 
@@ -79,8 +77,7 @@ typedef struct
 
 typedef struct S_OBJECT                               UG_OBJECT;
 typedef struct S_WINDOW                               UG_WINDOW;
-typedef int8_t                                         int8_t;
-typedef UG_U32                                        UG_COLOR;
+typedef uint32_t                                      UG_COLOR;
 
 #ifndef NULL
    #define NULL ((void*) 0)
