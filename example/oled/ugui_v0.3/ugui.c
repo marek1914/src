@@ -1,9 +1,9 @@
 #include "ugui.h"
 #include "font.c"
 
-UG_RESULT _UG_WindowDrawTitle(UG_WINDOW* wnd);
+int8_t _UG_WindowDrawTitle(UG_WINDOW* wnd);
 void _UG_WindowUpdate(UG_WINDOW* wnd);
-UG_RESULT _UG_WindowClear(UG_WINDOW* wnd);
+int8_t _UG_WindowClear(UG_WINDOW* wnd);
 void _UG_TextboxUpdate(UG_WINDOW* wnd, UG_OBJECT* obj);
 void _UG_ButtonUpdate(UG_WINDOW* wnd, UG_OBJECT* obj);
 void _UG_ImageUpdate(UG_WINDOW* wnd, UG_OBJECT* obj);
@@ -59,11 +59,11 @@ const UG_FONT FONT_24X40 = {(unsigned char*)font_24x40, 24, 40};
 const UG_FONT FONT_32X53 = {(unsigned char*)font_32x53, 32, 53};
 #endif
 
-UG_S16 UG_Init(UG_GUI* g, void (*p)(UG_S16, UG_S16, UG_COLOR), UG_S16 x, UG_S16 y)
+int16_t UG_Init(UG_GUI* g, void (*p)(int16_t, int16_t, UG_COLOR), int16_t x, int16_t y)
 {
-	UG_U8 i;
+	uint8_t i;
 
-	g->pset = (void (*)(UG_S16, UG_S16, UG_COLOR))p;
+	g->pset = (void (*)(int16_t, int16_t, UG_COLOR))p;
 	g->x_dim = x;
 	g->y_dim = y;
 	g->console.x_start = 4;
@@ -91,7 +91,7 @@ UG_S16 UG_Init(UG_GUI* g, void (*p)(UG_S16, UG_S16, UG_COLOR), UG_S16 x, UG_S16 
 	return 1;
 }
 
-UG_S16 UG_SelectGUI(UG_GUI* g)
+int16_t UG_SelectGUI(UG_GUI* g)
 {
 	gui = g;
 	return 1;
@@ -109,9 +109,9 @@ void UG_FillScreen(UG_COLOR c)
 	UG_FillFrame(0, 0, gui->x_dim - 1, gui->y_dim - 1, c);
 }
 
-void UG_FillFrame(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_COLOR c)
+void UG_FillFrame(int16_t x1, int16_t y1, int16_t x2, int16_t y2, UG_COLOR c)
 {
-	UG_S16 n, m;
+	int16_t n, m;
 
 	if (x2 < x1) {
 		n = x2;
@@ -126,9 +126,9 @@ void UG_FillFrame(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_COLOR c)
 
 	/* hardware acceleration? */
 	if (gui->driver[DRIVER_FILL_FRAME].state & DRIVER_ENABLED) {
-		if (((UG_RESULT(*)(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2,
+		if (((int8_t(*)(int16_t x1, int16_t y1, int16_t x2, int16_t y2,
 		                   UG_COLOR c))gui->driver[DRIVER_FILL_FRAME]
-		         .driver)(x1, y1, x2, y2, c) == UG_RESULT_OK)
+		         .driver)(x1, y1, x2, y2, c) == int8_t_OK)
 			return;
 	}
 
@@ -139,10 +139,10 @@ void UG_FillFrame(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_COLOR c)
 	}
 }
 
-void UG_FillRoundFrame(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_S16 r,
+void UG_FillRoundFrame(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t r,
                        UG_COLOR c)
 {
-	UG_S16 x, y, xd;
+	int16_t x, y, xd;
 
 	if (x2 < x1) {
 		x = x2;
@@ -182,9 +182,9 @@ void UG_FillRoundFrame(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_S16 r,
 	}
 }
 
-void UG_DrawMesh(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_COLOR c)
+void UG_DrawMesh(int16_t x1, int16_t y1, int16_t x2, int16_t y2, UG_COLOR c)
 {
-	UG_S16 n, m;
+	int16_t n, m;
 
 	if (x2 < x1) {
 		n = x2;
@@ -204,7 +204,7 @@ void UG_DrawMesh(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_COLOR c)
 	}
 }
 
-void UG_DrawFrame(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_COLOR c)
+void UG_DrawFrame(int16_t x1, int16_t y1, int16_t x2, int16_t y2, UG_COLOR c)
 {
 	UG_DrawLine(x1, y1, x2, y1, c);
 	UG_DrawLine(x1, y2, x2, y2, c);
@@ -212,10 +212,10 @@ void UG_DrawFrame(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_COLOR c)
 	UG_DrawLine(x2, y1, x2, y2, c);
 }
 
-void UG_DrawRoundFrame(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_S16 r,
+void UG_DrawRoundFrame(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t r,
                        UG_COLOR c)
 {
-	UG_S16 n;
+	int16_t n;
 	if (x2 < x1) {
 		n = x2;
 		x2 = x1;
@@ -240,10 +240,10 @@ void UG_DrawRoundFrame(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_S16 r,
 	UG_DrawArc(x2 - r, y2 - r, r, 0xC0, c);
 }
 
-void UG_DrawPixel(UG_S16 x0, UG_S16 y0, UG_COLOR c) { gui->pset(x0, y0, c); }
-void UG_DrawCircle(UG_S16 x0, UG_S16 y0, UG_S16 r, UG_COLOR c)
+void UG_DrawPixel(int16_t x0, int16_t y0, UG_COLOR c) { gui->pset(x0, y0, c); }
+void UG_DrawCircle(int16_t x0, int16_t y0, int16_t r, UG_COLOR c)
 {
-	UG_S16 x, y, xd, yd, e;
+	int16_t x, y, xd, yd, e;
 
 	if (x0 < 0) return;
 	if (y0 < 0) return;
@@ -276,9 +276,9 @@ void UG_DrawCircle(UG_S16 x0, UG_S16 y0, UG_S16 r, UG_COLOR c)
 	}
 }
 
-void UG_FillCircle(UG_S16 x0, UG_S16 y0, UG_S16 r, UG_COLOR c)
+void UG_FillCircle(int16_t x0, int16_t y0, int16_t r, UG_COLOR c)
 {
-	UG_S16 x, y, xd;
+	int16_t x, y, xd;
 
 	if (x0 < 0) return;
 	if (y0 < 0) return;
@@ -308,9 +308,9 @@ void UG_FillCircle(UG_S16 x0, UG_S16 y0, UG_S16 r, UG_COLOR c)
 	UG_DrawCircle(x0, y0, r, c);
 }
 
-void UG_DrawArc(UG_S16 x0, UG_S16 y0, UG_S16 r, UG_U8 s, UG_COLOR c)
+void UG_DrawArc(int16_t x0, int16_t y0, int16_t r, uint8_t s, UG_COLOR c)
 {
-	UG_S16 x, y, xd, yd, e;
+	int16_t x, y, xd, yd, e;
 
 	if (x0 < 0) return;
 	if (y0 < 0) return;
@@ -350,9 +350,9 @@ void UG_DrawArc(UG_S16 x0, UG_S16 y0, UG_S16 r, UG_U8 s, UG_COLOR c)
 	}
 }
 
-void UG_DrawLine(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_COLOR c)
+void UG_DrawLine(int16_t x1, int16_t y1, int16_t x2, int16_t y2, UG_COLOR c)
 {
-	UG_S16 n, dx, dy, sgndx, sgndy, dxabs, dyabs, x, y, drawx, drawy;
+	int16_t n, dx, dy, sgndx, sgndy, dxabs, dyabs, x, y, drawx, drawy;
 
 	if (x2 < x1) {
 		n = x2;
@@ -367,9 +367,9 @@ void UG_DrawLine(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_COLOR c)
 
 	/* Is hardware acceleration available? */
 	if (gui->driver[DRIVER_DRAW_LINE].state & DRIVER_ENABLED) {
-		if (((UG_RESULT(*)(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2,
+		if (((int8_t(*)(int16_t x1, int16_t y1, int16_t x2, int16_t y2,
 		                   UG_COLOR c))gui->driver[DRIVER_DRAW_LINE]
-		         .driver)(x1, y1, x2, y2, c) == UG_RESULT_OK)
+		         .driver)(x1, y1, x2, y2, c) == int8_t_OK)
 			return;
 	}
 
@@ -409,9 +409,9 @@ void UG_DrawLine(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_COLOR c)
 	}
 }
 
-void UG_PutString(UG_S16 x, UG_S16 y, char* str)
+void UG_PutString(int16_t x, int16_t y, char* str)
 {
-	UG_S16 xp, yp;
+	int16_t xp, yp;
 	char chr;
 
 	xp = x;
@@ -437,13 +437,13 @@ void UG_PutString(UG_S16 x, UG_S16 y, char* str)
 	}
 }
 
-void UG_PutChar(char chr, UG_S16 x, UG_S16 y, UG_COLOR fc, UG_COLOR bc)
+void UG_PutChar(char chr, int16_t x, int16_t y, UG_COLOR fc, UG_COLOR bc)
 {
-	UG_U16 i, j, k, xo, yo, c, bn;
-	UG_U8 b, bt;
+	uint16_t i, j, k, xo, yo, c, bn;
+	uint8_t b, bt;
 	unsigned char* p;
 
-	bt = (UG_U8)chr;
+	bt = (uint8_t)chr;
 
 	switch (bt) {
 		case 0xF6:
@@ -533,7 +533,7 @@ void UG_ConsolePutString(char* str)
 	}
 }
 
-void UG_ConsoleSetArea(UG_S16 xs, UG_S16 ys, UG_S16 xe, UG_S16 ye)
+void UG_ConsoleSetArea(int16_t xs, int16_t ys, int16_t xe, int16_t ye)
 {
 	gui->console.x_start = xs;
 	gui->console.y_start = ys;
@@ -545,10 +545,10 @@ void UG_ConsoleSetForecolor(UG_COLOR c) { gui->console.fore_color = c; }
 void UG_ConsoleSetBackcolor(UG_COLOR c) { gui->console.back_color = c; }
 void UG_SetForecolor(UG_COLOR c) { gui->fore_color = c; }
 void UG_SetBackcolor(UG_COLOR c) { gui->back_color = c; }
-UG_S16 UG_GetXDim(void) { return gui->x_dim; }
-UG_S16 UG_GetYDim(void) { return gui->y_dim; }
-void UG_FontSetHSpace(UG_U16 s) { gui->font.char_h_space = s; }
-void UG_FontSetVSpace(UG_U16 s) { gui->font.char_v_space = s; }
+int16_t UG_GetXDim(void) { return gui->x_dim; }
+int16_t UG_GetYDim(void) { return gui->y_dim; }
+void UG_FontSetHSpace(uint16_t s) { gui->font.char_h_space = s; }
+void UG_FontSetVSpace(uint16_t s) { gui->font.char_v_space = s; }
 
 const UG_COLOR pal_window[] = {
     /* Frame 0 */
@@ -580,19 +580,19 @@ const UG_COLOR pal_button_released[] = {
 /* INTERNAL FUNCTIONS  */
 void _UG_PutText(UG_TEXT* txt)
 {
-	UG_U16 sl, rc;
-	UG_S16 xp, yp;
-	UG_S16 xs = txt->a.xs;
-	UG_S16 ys = txt->a.ys;
-	UG_S16 xe = txt->a.xe;
-	UG_S16 ye = txt->a.ye;
-	UG_U8 align = txt->align;
-	UG_S16 char_width = txt->font->char_width;
-	UG_S16 char_height = txt->font->char_height;
-	UG_S16 char_h_space = txt->h_space;
-	UG_S16 char_v_space = txt->v_space;
-	UG_U16 i, j, k, xo, yo, cw, bn;
-	UG_U8 b, bt;
+	uint16_t sl, rc;
+	int16_t xp, yp;
+	int16_t xs = txt->a.xs;
+	int16_t ys = txt->a.ys;
+	int16_t xe = txt->a.xe;
+	int16_t ye = txt->a.ye;
+	uint8_t align = txt->align;
+	int16_t char_width = txt->font->char_width;
+	int16_t char_height = txt->font->char_height;
+	int16_t char_h_space = txt->h_space;
+	int16_t char_v_space = txt->v_space;
+	uint16_t i, j, k, xo, yo, cw, bn;
+	uint8_t b, bt;
 
 	unsigned char* p;
 
@@ -642,7 +642,7 @@ void _UG_PutText(UG_TEXT* txt)
 		while ((*str != '\n')) {
 			if (*str == 0) return;
 			/* Draw one char */
-			bt = (UG_U8)*str;
+			bt = (uint8_t)*str;
 			switch (bt) {
 				case 0xF6:
 					bt = 0x94;
@@ -703,7 +703,7 @@ void _UG_PutText(UG_TEXT* txt)
 
 UG_OBJECT* _UG_GetFreeObject(UG_WINDOW* wnd)
 {
-	UG_U8 i;
+	uint8_t i;
 	UG_OBJECT* obj = (UG_OBJECT*)wnd->objlst;
 
 	for (i = 0; i < wnd->objcnt; i++) {
@@ -716,9 +716,9 @@ UG_OBJECT* _UG_GetFreeObject(UG_WINDOW* wnd)
 	return NULL;
 }
 
-UG_OBJECT* _UG_SearchObject(UG_WINDOW* wnd, UG_U8 type, UG_U8 id)
+UG_OBJECT* _UG_SearchObject(UG_WINDOW* wnd, uint8_t type, uint8_t id)
 {
-	UG_U8 i;
+	uint8_t i;
 	UG_OBJECT* obj = (UG_OBJECT*)wnd->objlst;
 
 	for (i = 0; i < wnd->objcnt; i++) {
@@ -733,7 +733,7 @@ UG_OBJECT* _UG_SearchObject(UG_WINDOW* wnd, UG_U8 type, UG_U8 id)
 	return NULL;
 }
 
-UG_RESULT _UG_DeleteObject(UG_WINDOW* wnd, UG_U8 type, UG_U8 id)
+int8_t _UG_DeleteObject(UG_WINDOW* wnd, uint8_t type, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 
@@ -743,7 +743,7 @@ UG_RESULT _UG_DeleteObject(UG_WINDOW* wnd, UG_U8 type, UG_U8 id)
 	if (obj != NULL) {
 		/* We dont't want to delete a visible or busy object! */
 		if ((obj->state & OBJ_STATE_VISIBLE) || (obj->state & OBJ_STATE_UPDATE))
-			return UG_RESULT_FAIL;
+			return int8_t_FAIL;
 		obj->state = OBJ_STATE_INIT;
 		obj->data = NULL;
 		obj->event = 0;
@@ -751,19 +751,19 @@ UG_RESULT _UG_DeleteObject(UG_WINDOW* wnd, UG_U8 type, UG_U8 id)
 		obj->touch_state = 0;
 		obj->type = 0;
 		obj->update = NULL;
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
 void _UG_ProcessTouchData(UG_WINDOW* wnd)
 {
-	UG_S16 xp, yp;
-	UG_U16 i, objcnt;
+	int16_t xp, yp;
+	uint16_t i, objcnt;
 	UG_OBJECT* obj;
-	UG_U8 objstate;
-	UG_U8 objtouch;
-	UG_U8 tchstate;
+	uint8_t objstate;
+	uint8_t objtouch;
+	uint8_t tchstate;
 
 	xp = gui->touch.xp;
 	yp = gui->touch.yp;
@@ -825,10 +825,10 @@ void _UG_ProcessTouchData(UG_WINDOW* wnd)
 
 void _UG_UpdateObjects(UG_WINDOW* wnd)
 {
-	UG_U16 i, objcnt;
+	uint16_t i, objcnt;
 	UG_OBJECT* obj;
-	UG_U8 objstate;
-	UG_U8 objtouch;
+	uint8_t objstate;
+	uint8_t objtouch;
 
 	/* Check each object, if it needs to be updated? */
 	objcnt = wnd->objcnt;
@@ -853,9 +853,9 @@ void _UG_UpdateObjects(UG_WINDOW* wnd)
 
 void _UG_HandleEvents(UG_WINDOW* wnd)
 {
-	UG_U16 i, objcnt;
+	uint16_t i, objcnt;
 	UG_OBJECT* obj;
-	UG_U8 objstate;
+	uint8_t objstate;
 	static UG_MESSAGE msg;
 	msg.src = NULL;
 
@@ -882,7 +882,7 @@ void _UG_HandleEvents(UG_WINDOW* wnd)
 	}
 }
 
-void _UG_DrawObjectFrame(UG_S16 xs, UG_S16 ys, UG_S16 xe, UG_S16 ye,
+void _UG_DrawObjectFrame(int16_t xs, int16_t ys, int16_t xe, int16_t ye,
                          UG_COLOR* p)
 {
 	// Frame 0
@@ -903,7 +903,7 @@ void _UG_DrawObjectFrame(UG_S16 xs, UG_S16 ys, UG_S16 xe, UG_S16 ye,
 }
 
 /* -- DRIVER FUNCTIONS -- */
-void UG_DriverRegister(UG_U8 type, void* driver)
+void UG_DriverRegister(uint8_t type, void* driver)
 {
 	if (type >= NUMBER_OF_DRIVERS) return;
 
@@ -911,7 +911,7 @@ void UG_DriverRegister(UG_U8 type, void* driver)
 	gui->driver[type].state = DRIVER_REGISTERED | DRIVER_ENABLED;
 }
 
-void UG_DriverEnable(UG_U8 type)
+void UG_DriverEnable(uint8_t type)
 {
 	if (type >= NUMBER_OF_DRIVERS) return;
 	if (gui->driver[type].state & DRIVER_REGISTERED) {
@@ -919,7 +919,7 @@ void UG_DriverEnable(UG_U8 type)
 	}
 }
 
-void UG_DriverDisable(UG_U8 type)
+void UG_DriverDisable(uint8_t type)
 {
 	if (type >= NUMBER_OF_DRIVERS) return;
 	if (gui->driver[type].state & DRIVER_REGISTERED) {
@@ -981,23 +981,23 @@ void UG_Update(void)
 void UG_WaitForUpdate(void)
 {
 	gui->state |= UG_SATUS_WAIT_FOR_UPDATE;
-	while ((volatile UG_U8)gui->state & UG_SATUS_WAIT_FOR_UPDATE) {
+	while ((volatile uint8_t)gui->state & UG_SATUS_WAIT_FOR_UPDATE) {
 	};
 }
 
-void UG_DrawBMP(UG_S16 xp, UG_S16 yp, UG_BMP* bmp)
+void UG_DrawBMP(int16_t xp, int16_t yp, UG_BMP* bmp)
 {
-	UG_S16 x, y, xs;
-	UG_U8 r, g, b;
-	UG_U16* p;
-	UG_U16 tmp;
+	int16_t x, y, xs;
+	uint8_t r, g, b;
+	uint16_t* p;
+	uint16_t tmp;
 	UG_COLOR c;
 
 	if (bmp->p == NULL) return;
 
 	/* Only support 16 BPP so far */
 	if (bmp->bpp == BMP_BPP_16) {
-		p = (UG_U16*)bmp->p;
+		p = (uint16_t*)bmp->p;
 	} else {
 		return;
 	}
@@ -1021,7 +1021,7 @@ void UG_DrawBMP(UG_S16 xp, UG_S16 yp, UG_BMP* bmp)
 	}
 }
 
-void UG_TouchUpdate(UG_S16 xp, UG_S16 yp, UG_U8 state)
+void UG_TouchUpdate(int16_t xp, int16_t yp, uint8_t state)
 {
 	gui->touch.xp = xp;
 	gui->touch.yp = yp;
@@ -1029,14 +1029,14 @@ void UG_TouchUpdate(UG_S16 xp, UG_S16 yp, UG_U8 state)
 }
 
 /* -- WINDOW FUNCTIONS -- */
-UG_RESULT UG_WindowCreate(UG_WINDOW* wnd, UG_OBJECT* objlst, UG_U8 objcnt,
+int8_t UG_WindowCreate(UG_WINDOW* wnd, UG_OBJECT* objlst, uint8_t objcnt,
                           void (*cb)(UG_MESSAGE*))
 {
-	UG_U8 i;
+	uint8_t i;
 	UG_OBJECT* obj = NULL;
 
 	if ((wnd == NULL) || (objlst == NULL) || (objcnt == 0))
-		return UG_RESULT_FAIL;
+		return int8_t_FAIL;
 
 	/* Initialize all objects of the window */
 	for (i = 0; i < objcnt; i++) {
@@ -1070,12 +1070,12 @@ UG_RESULT UG_WindowCreate(UG_WINDOW* wnd, UG_OBJECT* objlst, UG_U8 objcnt,
 	wnd->title.ibc = C_GRAY;
 	wnd->title.height = 15;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_WindowDelete(UG_WINDOW* wnd)
+int8_t UG_WindowDelete(UG_WINDOW* wnd)
 {
-	if (wnd == gui->active_window) return UG_RESULT_FAIL;
+	if (wnd == gui->active_window) return int8_t_FAIL;
 
 	/* Only delete valid windows */
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
@@ -1088,24 +1088,24 @@ UG_RESULT UG_WindowDelete(UG_WINDOW* wnd)
 		wnd->xe = 0;
 		wnd->ye = 0;
 		wnd->style = 0;
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowShow(UG_WINDOW* wnd)
+int8_t UG_WindowShow(UG_WINDOW* wnd)
 {
 	if (wnd != NULL) {
 		/* Force an update, even if this is the active window! */
 		wnd->state |= WND_STATE_VISIBLE | WND_STATE_UPDATE;
 		wnd->state &= ~WND_STATE_REDRAW_TITLE;
 		gui->next_window = wnd;
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowHide(UG_WINDOW* wnd)
+int8_t UG_WindowHide(UG_WINDOW* wnd)
 {
 	if (wnd != NULL) {
 		if (wnd == gui->active_window) {
@@ -1127,28 +1127,28 @@ UG_RESULT UG_WindowHide(UG_WINDOW* wnd)
 			/* If the old window is visible, clear it! */
 			_UG_WindowClear(wnd);
 		}
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowResize(UG_WINDOW* wnd, UG_S16 xs, UG_S16 ys, UG_S16 xe,
-                          UG_S16 ye)
+int8_t UG_WindowResize(UG_WINDOW* wnd, int16_t xs, int16_t ys, int16_t xe,
+                          int16_t ye)
 {
-	UG_S16 pos;
-	UG_S16 xmax, ymax;
+	int16_t pos;
+	int16_t xmax, ymax;
 
 	xmax = UG_GetXDim() - 1;
 	ymax = UG_GetYDim() - 1;
 
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		/* Do some checks... */
-		if ((xs < 0) || (ys < 0)) return UG_RESULT_FAIL;
-		if ((xe > xmax) || (ye > ymax)) return UG_RESULT_FAIL;
+		if ((xs < 0) || (ys < 0)) return int8_t_FAIL;
+		if ((xe > xmax) || (ye > ymax)) return int8_t_FAIL;
 		pos = xe - xs;
-		if (pos < 10) return UG_RESULT_FAIL;
+		if (pos < 10) return int8_t_FAIL;
 		pos = ye - ys;
-		if (pos < 10) return UG_RESULT_FAIL;
+		if (pos < 10) return int8_t_FAIL;
 
 		/* ... and if everything is OK move the window! */
 		wnd->xs = xs;
@@ -1172,93 +1172,93 @@ UG_RESULT UG_WindowResize(UG_WINDOW* wnd, UG_S16 xs, UG_S16 ys, UG_S16 xe,
 			wnd->state &= ~WND_STATE_REDRAW_TITLE;
 			wnd->state |= WND_STATE_UPDATE;
 		}
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowAlert(UG_WINDOW* wnd)
+int8_t UG_WindowAlert(UG_WINDOW* wnd)
 {
 	UG_COLOR c;
 	c = UG_WindowGetTitleTextColor(wnd);
 	if (UG_WindowSetTitleTextColor(wnd, UG_WindowGetTitleColor(wnd)) ==
-	    UG_RESULT_FAIL)
-		return UG_RESULT_FAIL;
-	if (UG_WindowSetTitleColor(wnd, c) == UG_RESULT_FAIL) return UG_RESULT_FAIL;
-	return UG_RESULT_OK;
+	    int8_t_FAIL)
+		return int8_t_FAIL;
+	if (UG_WindowSetTitleColor(wnd, c) == int8_t_FAIL) return int8_t_FAIL;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_WindowSetForeColor(UG_WINDOW* wnd, UG_COLOR fc)
+int8_t UG_WindowSetForeColor(UG_WINDOW* wnd, UG_COLOR fc)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		wnd->fc = fc;
 		wnd->state |= WND_STATE_UPDATE;
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowSetBackColor(UG_WINDOW* wnd, UG_COLOR bc)
+int8_t UG_WindowSetBackColor(UG_WINDOW* wnd, UG_COLOR bc)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		wnd->bc = bc;
 		wnd->state |= WND_STATE_UPDATE;
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowSetTitleTextColor(UG_WINDOW* wnd, UG_COLOR c)
+int8_t UG_WindowSetTitleTextColor(UG_WINDOW* wnd, UG_COLOR c)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		wnd->title.fc = c;
 		wnd->state |= WND_STATE_UPDATE | WND_STATE_REDRAW_TITLE;
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowSetTitleColor(UG_WINDOW* wnd, UG_COLOR c)
+int8_t UG_WindowSetTitleColor(UG_WINDOW* wnd, UG_COLOR c)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		wnd->title.bc = c;
 		wnd->state |= WND_STATE_UPDATE | WND_STATE_REDRAW_TITLE;
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowSetTitleInactiveTextColor(UG_WINDOW* wnd, UG_COLOR c)
+int8_t UG_WindowSetTitleInactiveTextColor(UG_WINDOW* wnd, UG_COLOR c)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		wnd->title.ifc = c;
 		wnd->state |= WND_STATE_UPDATE | WND_STATE_REDRAW_TITLE;
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowSetTitleInactiveColor(UG_WINDOW* wnd, UG_COLOR c)
+int8_t UG_WindowSetTitleInactiveColor(UG_WINDOW* wnd, UG_COLOR c)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		wnd->title.ibc = c;
 		wnd->state |= WND_STATE_UPDATE | WND_STATE_REDRAW_TITLE;
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowSetTitleText(UG_WINDOW* wnd, char* str)
+int8_t UG_WindowSetTitleText(UG_WINDOW* wnd, char* str)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		wnd->title.str = str;
 		wnd->state |= WND_STATE_UPDATE | WND_STATE_REDRAW_TITLE;
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowSetTitleTextFont(UG_WINDOW* wnd, const UG_FONT* font)
+int8_t UG_WindowSetTitleTextFont(UG_WINDOW* wnd, const UG_FONT* font)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		wnd->state |= WND_STATE_UPDATE | WND_STATE_REDRAW_TITLE;
@@ -1267,101 +1267,101 @@ UG_RESULT UG_WindowSetTitleTextFont(UG_WINDOW* wnd, const UG_FONT* font)
 			wnd->title.height = font->char_height + 2;
 			wnd->state &= ~WND_STATE_REDRAW_TITLE;
 		}
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowSetTitleTextHSpace(UG_WINDOW* wnd, UG_S8 hs)
+int8_t UG_WindowSetTitleTextHSpace(UG_WINDOW* wnd, int8_t hs)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		wnd->title.h_space = hs;
 		wnd->state |= WND_STATE_UPDATE | WND_STATE_REDRAW_TITLE;
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowSetTitleTextVSpace(UG_WINDOW* wnd, UG_S8 vs)
+int8_t UG_WindowSetTitleTextVSpace(UG_WINDOW* wnd, int8_t vs)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		wnd->title.v_space = vs;
 		wnd->state |= WND_STATE_UPDATE | WND_STATE_REDRAW_TITLE;
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowSetTitleTextAlignment(UG_WINDOW* wnd, UG_U8 align)
+int8_t UG_WindowSetTitleTextAlignment(UG_WINDOW* wnd, uint8_t align)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		wnd->title.align = align;
 		wnd->state |= WND_STATE_UPDATE | WND_STATE_REDRAW_TITLE;
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowSetTitleHeight(UG_WINDOW* wnd, UG_U8 height)
+int8_t UG_WindowSetTitleHeight(UG_WINDOW* wnd, uint8_t height)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		wnd->title.height = height;
 		wnd->state &= ~WND_STATE_REDRAW_TITLE;
 		wnd->state |= WND_STATE_UPDATE;
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowSetXStart(UG_WINDOW* wnd, UG_S16 xs)
+int8_t UG_WindowSetXStart(UG_WINDOW* wnd, int16_t xs)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		wnd->xs = xs;
 		if (UG_WindowResize(wnd, wnd->xs, wnd->ys, wnd->xe, wnd->ye) ==
-		    UG_RESULT_FAIL)
-			return UG_RESULT_FAIL;
-		return UG_RESULT_OK;
+		    int8_t_FAIL)
+			return int8_t_FAIL;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowSetYStart(UG_WINDOW* wnd, UG_S16 ys)
+int8_t UG_WindowSetYStart(UG_WINDOW* wnd, int16_t ys)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		wnd->ys = ys;
 		if (UG_WindowResize(wnd, wnd->xs, wnd->ys, wnd->xe, wnd->ye) ==
-		    UG_RESULT_FAIL)
-			return UG_RESULT_FAIL;
-		return UG_RESULT_OK;
+		    int8_t_FAIL)
+			return int8_t_FAIL;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowSetXEnd(UG_WINDOW* wnd, UG_S16 xe)
+int8_t UG_WindowSetXEnd(UG_WINDOW* wnd, int16_t xe)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		wnd->xe = xe;
 		if (UG_WindowResize(wnd, wnd->xs, wnd->ys, wnd->xe, wnd->ye) ==
-		    UG_RESULT_FAIL)
-			return UG_RESULT_FAIL;
-		return UG_RESULT_OK;
+		    int8_t_FAIL)
+			return int8_t_FAIL;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowSetYEnd(UG_WINDOW* wnd, UG_S16 ye)
+int8_t UG_WindowSetYEnd(UG_WINDOW* wnd, int16_t ye)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		wnd->ye = ye;
 		if (UG_WindowResize(wnd, wnd->xs, wnd->ys, wnd->xe, wnd->ye) ==
-		    UG_RESULT_FAIL)
-			return UG_RESULT_FAIL;
-		return UG_RESULT_OK;
+		    int8_t_FAIL)
+			return int8_t_FAIL;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_RESULT UG_WindowSetStyle(UG_WINDOW* wnd, UG_U8 style)
+int8_t UG_WindowSetStyle(UG_WINDOW* wnd, uint8_t style)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		/* 3D or 2D? */
@@ -1377,9 +1377,9 @@ UG_RESULT UG_WindowSetStyle(UG_WINDOW* wnd, UG_U8 style)
 			wnd->style &= ~WND_STYLE_SHOW_TITLE;
 		}
 		wnd->state |= WND_STATE_UPDATE;
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
 UG_COLOR UG_WindowGetForeColor(UG_WINDOW* wnd)
@@ -1454,88 +1454,88 @@ UG_FONT* UG_WindowGetTitleTextFont(UG_WINDOW* wnd)
 	return f;
 }
 
-UG_S8 UG_WindowGetTitleTextHSpace(UG_WINDOW* wnd)
+int8_t UG_WindowGetTitleTextHSpace(UG_WINDOW* wnd)
 {
-	UG_S8 hs = 0;
+	int8_t hs = 0;
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		hs = wnd->title.h_space;
 	}
 	return hs;
 }
 
-UG_S8 UG_WindowGetTitleTextVSpace(UG_WINDOW* wnd)
+int8_t UG_WindowGetTitleTextVSpace(UG_WINDOW* wnd)
 {
-	UG_S8 vs = 0;
+	int8_t vs = 0;
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		vs = wnd->title.v_space;
 	}
 	return vs;
 }
 
-UG_U8 UG_WindowGetTitleTextAlignment(UG_WINDOW* wnd)
+uint8_t UG_WindowGetTitleTextAlignment(UG_WINDOW* wnd)
 {
-	UG_U8 align = 0;
+	uint8_t align = 0;
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		align = wnd->title.align;
 	}
 	return align;
 }
 
-UG_U8 UG_WindowGetTitleHeight(UG_WINDOW* wnd)
+uint8_t UG_WindowGetTitleHeight(UG_WINDOW* wnd)
 {
-	UG_U8 h = 0;
+	uint8_t h = 0;
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		h = wnd->title.height;
 	}
 	return h;
 }
 
-UG_S16 UG_WindowGetXStart(UG_WINDOW* wnd)
+int16_t UG_WindowGetXStart(UG_WINDOW* wnd)
 {
-	UG_S16 xs = -1;
+	int16_t xs = -1;
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		xs = wnd->xs;
 	}
 	return xs;
 }
 
-UG_S16 UG_WindowGetYStart(UG_WINDOW* wnd)
+int16_t UG_WindowGetYStart(UG_WINDOW* wnd)
 {
-	UG_S16 ys = -1;
+	int16_t ys = -1;
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		ys = wnd->ys;
 	}
 	return ys;
 }
 
-UG_S16 UG_WindowGetXEnd(UG_WINDOW* wnd)
+int16_t UG_WindowGetXEnd(UG_WINDOW* wnd)
 {
-	UG_S16 xe = -1;
+	int16_t xe = -1;
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		xe = wnd->xe;
 	}
 	return xe;
 }
 
-UG_S16 UG_WindowGetYEnd(UG_WINDOW* wnd)
+int16_t UG_WindowGetYEnd(UG_WINDOW* wnd)
 {
-	UG_S16 ye = -1;
+	int16_t ye = -1;
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		ye = wnd->ye;
 	}
 	return ye;
 }
 
-UG_U8 UG_WindowGetStyle(UG_WINDOW* wnd)
+uint8_t UG_WindowGetStyle(UG_WINDOW* wnd)
 {
-	UG_U8 style = 0;
+	uint8_t style = 0;
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		style = wnd->style;
 	}
 	return style;
 }
 
-UG_RESULT UG_WindowGetArea(UG_WINDOW* wnd, UG_AREA* a)
+int8_t UG_WindowGetArea(UG_WINDOW* wnd, UG_AREA* a)
 {
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		a->xs = wnd->xs;
@@ -1551,14 +1551,14 @@ UG_RESULT UG_WindowGetArea(UG_WINDOW* wnd, UG_AREA* a)
 		if (wnd->style & WND_STYLE_SHOW_TITLE) {
 			a->ys += wnd->title.height + 1;
 		}
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
-UG_S16 UG_WindowGetInnerWidth(UG_WINDOW* wnd)
+int16_t UG_WindowGetInnerWidth(UG_WINDOW* wnd)
 {
-	UG_S16 w = 0;
+	int16_t w = 0;
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		w = wnd->xe - wnd->xs;
 
@@ -1570,9 +1570,9 @@ UG_S16 UG_WindowGetInnerWidth(UG_WINDOW* wnd)
 	return w;
 }
 
-UG_S16 UG_WindowGetOuterWidth(UG_WINDOW* wnd)
+int16_t UG_WindowGetOuterWidth(UG_WINDOW* wnd)
 {
-	UG_S16 w = 0;
+	int16_t w = 0;
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		w = wnd->xe - wnd->xs;
 
@@ -1581,9 +1581,9 @@ UG_S16 UG_WindowGetOuterWidth(UG_WINDOW* wnd)
 	return w;
 }
 
-UG_S16 UG_WindowGetInnerHeight(UG_WINDOW* wnd)
+int16_t UG_WindowGetInnerHeight(UG_WINDOW* wnd)
 {
-	UG_S16 h = 0;
+	int16_t h = 0;
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		h = wnd->ye - wnd->ys;
 
@@ -1598,9 +1598,9 @@ UG_S16 UG_WindowGetInnerHeight(UG_WINDOW* wnd)
 	return h;
 }
 
-UG_S16 UG_WindowGetOuterHeight(UG_WINDOW* wnd)
+int16_t UG_WindowGetOuterHeight(UG_WINDOW* wnd)
 {
-	UG_S16 h = 0;
+	int16_t h = 0;
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		h = wnd->ye - wnd->ys;
 
@@ -1609,10 +1609,10 @@ UG_S16 UG_WindowGetOuterHeight(UG_WINDOW* wnd)
 	return h;
 }
 
-UG_RESULT _UG_WindowDrawTitle(UG_WINDOW* wnd)
+int8_t _UG_WindowDrawTitle(UG_WINDOW* wnd)
 {
 	UG_TEXT txt;
-	UG_S16 xs, ys, xe, ye;
+	int16_t xs, ys, xe, ye;
 
 	if ((wnd != NULL) && (wnd->state & WND_STATE_VALID)) {
 		xs = wnd->xs;
@@ -1655,16 +1655,16 @@ UG_RESULT _UG_WindowDrawTitle(UG_WINDOW* wnd)
 		/* Draw line */
 		UG_DrawLine(xs, ys + wnd->title.height, xe, ys + wnd->title.height,
 		            pal_window[11]);
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
 void _UG_WindowUpdate(UG_WINDOW* wnd)
 {
-	UG_U16 i, objcnt;
+	uint16_t i, objcnt;
 	UG_OBJECT* obj;
-	UG_S16 xs, ys, xe, ye;
+	int16_t xs, ys, xe, ye;
 
 	xs = wnd->xs;
 	ys = wnd->ys;
@@ -1709,7 +1709,7 @@ void _UG_WindowUpdate(UG_WINDOW* wnd)
 	}
 }
 
-UG_RESULT _UG_WindowClear(UG_WINDOW* wnd)
+int8_t _UG_WindowClear(UG_WINDOW* wnd)
 {
 	if (wnd != NULL) {
 		if (wnd->state & WND_STATE_VISIBLE) {
@@ -1725,19 +1725,19 @@ UG_RESULT _UG_WindowClear(UG_WINDOW* wnd)
 				}
 			}
 		}
-		return UG_RESULT_OK;
+		return int8_t_OK;
 	}
-	return UG_RESULT_FAIL;
+	return int8_t_FAIL;
 }
 
 /* -- BUTTON FUNCTIONS -- */
-UG_RESULT UG_ButtonCreate(UG_WINDOW* wnd, UG_BUTTON* btn, UG_U8 id, UG_S16 xs,
-                          UG_S16 ys, UG_S16 xe, UG_S16 ye)
+int8_t UG_ButtonCreate(UG_WINDOW* wnd, UG_BUTTON* btn, uint8_t id, int16_t xs,
+                          int16_t ys, int16_t xe, int16_t ye)
 {
 	UG_OBJECT* obj;
 
 	obj = _UG_GetFreeObject(wnd);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	/* Initialize object-specific parameters */
 	btn->state = BTN_STATE_RELEASED;
@@ -1770,34 +1770,34 @@ UG_RESULT UG_ButtonCreate(UG_WINDOW* wnd, UG_BUTTON* btn, UG_U8 id, UG_S16 xs,
 	/* Update function: Do your thing! */
 	obj->state &= ~OBJ_STATE_FREE;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_ButtonDelete(UG_WINDOW* wnd, UG_U8 id)
+int8_t UG_ButtonDelete(UG_WINDOW* wnd, uint8_t id)
 {
 	return _UG_DeleteObject(wnd, OBJ_TYPE_BUTTON, id);
 }
 
-UG_RESULT UG_ButtonShow(UG_WINDOW* wnd, UG_U8 id)
+int8_t UG_ButtonShow(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_BUTTON, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	obj->state |= OBJ_STATE_VISIBLE;
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_ButtonHide(UG_WINDOW* wnd, UG_U8 id)
+int8_t UG_ButtonHide(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 	UG_BUTTON* btn = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_BUTTON, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	btn = (UG_BUTTON*)(obj->data);
 
@@ -1807,106 +1807,106 @@ UG_RESULT UG_ButtonHide(UG_WINDOW* wnd, UG_U8 id)
 	obj->state &= ~OBJ_STATE_VISIBLE;
 	obj->state |= OBJ_STATE_UPDATE;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_ButtonSetForeColor(UG_WINDOW* wnd, UG_U8 id, UG_COLOR fc)
+int8_t UG_ButtonSetForeColor(UG_WINDOW* wnd, uint8_t id, UG_COLOR fc)
 {
 	UG_OBJECT* obj = NULL;
 	UG_BUTTON* btn = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_BUTTON, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	btn = (UG_BUTTON*)(obj->data);
 	btn->fc = fc;
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_ButtonSetBackColor(UG_WINDOW* wnd, UG_U8 id, UG_COLOR bc)
+int8_t UG_ButtonSetBackColor(UG_WINDOW* wnd, uint8_t id, UG_COLOR bc)
 {
 	UG_OBJECT* obj = NULL;
 	UG_BUTTON* btn = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_BUTTON, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	btn = (UG_BUTTON*)(obj->data);
 	btn->bc = bc;
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_ButtonSetAlternateForeColor(UG_WINDOW* wnd, UG_U8 id, UG_COLOR afc)
+int8_t UG_ButtonSetAlternateForeColor(UG_WINDOW* wnd, uint8_t id, UG_COLOR afc)
 {
 	UG_OBJECT* obj = NULL;
 	UG_BUTTON* btn = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_BUTTON, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	btn = (UG_BUTTON*)(obj->data);
 	btn->afc = afc;
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_ButtonSetAlternateBackColor(UG_WINDOW* wnd, UG_U8 id, UG_COLOR abc)
+int8_t UG_ButtonSetAlternateBackColor(UG_WINDOW* wnd, uint8_t id, UG_COLOR abc)
 {
 	UG_OBJECT* obj = NULL;
 	UG_BUTTON* btn = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_BUTTON, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	btn = (UG_BUTTON*)(obj->data);
 	btn->abc = abc;
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_ButtonSetText(UG_WINDOW* wnd, UG_U8 id, char* str)
+int8_t UG_ButtonSetText(UG_WINDOW* wnd, uint8_t id, char* str)
 {
 	UG_OBJECT* obj = NULL;
 	UG_BUTTON* btn = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_BUTTON, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	btn = (UG_BUTTON*)(obj->data);
 	btn->str = str;
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_ButtonSetFont(UG_WINDOW* wnd, UG_U8 id, const UG_FONT* font)
+int8_t UG_ButtonSetFont(UG_WINDOW* wnd, uint8_t id, const UG_FONT* font)
 {
 	UG_OBJECT* obj = NULL;
 	UG_BUTTON* btn = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_BUTTON, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	btn = (UG_BUTTON*)(obj->data);
 	btn->font = font;
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_ButtonSetStyle(UG_WINDOW* wnd, UG_U8 id, UG_U8 style)
+int8_t UG_ButtonSetStyle(UG_WINDOW* wnd, uint8_t id, uint8_t style)
 {
 	UG_OBJECT* obj = NULL;
 	UG_BUTTON* btn = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_BUTTON, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	btn = (UG_BUTTON*)(obj->data);
 
@@ -1929,10 +1929,10 @@ UG_RESULT UG_ButtonSetStyle(UG_WINDOW* wnd, UG_U8 id, UG_U8 style)
 	}
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_COLOR UG_ButtonGetForeColor(UG_WINDOW* wnd, UG_U8 id)
+UG_COLOR UG_ButtonGetForeColor(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 	UG_BUTTON* btn = NULL;
@@ -1946,7 +1946,7 @@ UG_COLOR UG_ButtonGetForeColor(UG_WINDOW* wnd, UG_U8 id)
 	return c;
 }
 
-UG_COLOR UG_ButtonGetBackColor(UG_WINDOW* wnd, UG_U8 id)
+UG_COLOR UG_ButtonGetBackColor(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 	UG_BUTTON* btn = NULL;
@@ -1960,7 +1960,7 @@ UG_COLOR UG_ButtonGetBackColor(UG_WINDOW* wnd, UG_U8 id)
 	return c;
 }
 
-UG_COLOR UG_ButtonGetAlternateForeColor(UG_WINDOW* wnd, UG_U8 id)
+UG_COLOR UG_ButtonGetAlternateForeColor(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 	UG_BUTTON* btn = NULL;
@@ -1974,7 +1974,7 @@ UG_COLOR UG_ButtonGetAlternateForeColor(UG_WINDOW* wnd, UG_U8 id)
 	return c;
 }
 
-UG_COLOR UG_ButtonGetAlternateBackColor(UG_WINDOW* wnd, UG_U8 id)
+UG_COLOR UG_ButtonGetAlternateBackColor(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 	UG_BUTTON* btn = NULL;
@@ -1988,7 +1988,7 @@ UG_COLOR UG_ButtonGetAlternateBackColor(UG_WINDOW* wnd, UG_U8 id)
 	return c;
 }
 
-char* UG_ButtonGetText(UG_WINDOW* wnd, UG_U8 id)
+char* UG_ButtonGetText(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 	UG_BUTTON* btn = NULL;
@@ -2002,7 +2002,7 @@ char* UG_ButtonGetText(UG_WINDOW* wnd, UG_U8 id)
 	return str;
 }
 
-UG_FONT* UG_ButtonGetFont(UG_WINDOW* wnd, UG_U8 id)
+UG_FONT* UG_ButtonGetFont(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 	UG_BUTTON* btn = NULL;
@@ -2016,11 +2016,11 @@ UG_FONT* UG_ButtonGetFont(UG_WINDOW* wnd, UG_U8 id)
 	return font;
 }
 
-UG_U8 UG_ButtonGetStyle(UG_WINDOW* wnd, UG_U8 id)
+uint8_t UG_ButtonGetStyle(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 	UG_BUTTON* btn = NULL;
-	UG_U8 style = 0;
+	uint8_t style = 0;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_BUTTON, id);
 	if (obj != NULL) {
@@ -2035,7 +2035,7 @@ void _UG_ButtonUpdate(UG_WINDOW* wnd, UG_OBJECT* obj)
 	UG_BUTTON* btn;
 	UG_AREA a;
 	UG_TEXT txt;
-	UG_U8 d;
+	uint8_t d;
 
 	/* Get object-specific data */
 	btn = (UG_BUTTON*)(obj->data);
@@ -2130,13 +2130,13 @@ void _UG_ButtonUpdate(UG_WINDOW* wnd, UG_OBJECT* obj)
 }
 
 /* -- TEXTBOX FUNCTIONS -- */
-UG_RESULT UG_TextboxCreate(UG_WINDOW* wnd, UG_TEXTBOX* txb, UG_U8 id, UG_S16 xs,
-                           UG_S16 ys, UG_S16 xe, UG_S16 ye)
+int8_t UG_TextboxCreate(UG_WINDOW* wnd, UG_TEXTBOX* txb, uint8_t id, int16_t xs,
+                           int16_t ys, int16_t xe, int16_t ye)
 {
 	UG_OBJECT* obj;
 
 	obj = _UG_GetFreeObject(wnd);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	/* Initialize object-specific parameters */
 	txb->str = NULL;
@@ -2168,146 +2168,146 @@ UG_RESULT UG_TextboxCreate(UG_WINDOW* wnd, UG_TEXTBOX* txb, UG_U8 id, UG_S16 xs,
 	/* Update function: Do your thing! */
 	obj->state &= ~OBJ_STATE_FREE;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_TextboxDelete(UG_WINDOW* wnd, UG_U8 id)
+int8_t UG_TextboxDelete(UG_WINDOW* wnd, uint8_t id)
 {
 	return _UG_DeleteObject(wnd, OBJ_TYPE_TEXTBOX, id);
 }
 
-UG_RESULT UG_TextboxShow(UG_WINDOW* wnd, UG_U8 id)
+int8_t UG_TextboxShow(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_TEXTBOX, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	obj->state |= OBJ_STATE_VISIBLE;
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_TextboxHide(UG_WINDOW* wnd, UG_U8 id)
+int8_t UG_TextboxHide(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_TEXTBOX, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	obj->state &= ~OBJ_STATE_VISIBLE;
 	obj->state |= OBJ_STATE_UPDATE;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_TextboxSetForeColor(UG_WINDOW* wnd, UG_U8 id, UG_COLOR fc)
+int8_t UG_TextboxSetForeColor(UG_WINDOW* wnd, uint8_t id, UG_COLOR fc)
 {
 	UG_OBJECT* obj = NULL;
 	UG_TEXTBOX* txb = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_TEXTBOX, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	txb = (UG_TEXTBOX*)(obj->data);
 	txb->fc = fc;
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_TextboxSetBackColor(UG_WINDOW* wnd, UG_U8 id, UG_COLOR bc)
+int8_t UG_TextboxSetBackColor(UG_WINDOW* wnd, uint8_t id, UG_COLOR bc)
 {
 	UG_OBJECT* obj = NULL;
 	UG_TEXTBOX* txb = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_TEXTBOX, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	txb = (UG_TEXTBOX*)(obj->data);
 	txb->bc = bc;
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_TextboxSetText(UG_WINDOW* wnd, UG_U8 id, char* str)
+int8_t UG_TextboxSetText(UG_WINDOW* wnd, uint8_t id, char* str)
 {
 	UG_OBJECT* obj = NULL;
 	UG_TEXTBOX* txb = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_TEXTBOX, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	txb = (UG_TEXTBOX*)(obj->data);
 	txb->str = str;
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_TextboxSetFont(UG_WINDOW* wnd, UG_U8 id, const UG_FONT* font)
+int8_t UG_TextboxSetFont(UG_WINDOW* wnd, uint8_t id, const UG_FONT* font)
 {
 	UG_OBJECT* obj = NULL;
 	UG_TEXTBOX* txb = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_TEXTBOX, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	txb = (UG_TEXTBOX*)(obj->data);
 	txb->font = font;
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_TextboxSetHSpace(UG_WINDOW* wnd, UG_U8 id, UG_S8 hs)
+int8_t UG_TextboxSetHSpace(UG_WINDOW* wnd, uint8_t id, int8_t hs)
 {
 	UG_OBJECT* obj = NULL;
 	UG_TEXTBOX* txb = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_TEXTBOX, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	txb = (UG_TEXTBOX*)(obj->data);
 	txb->h_space = hs;
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_TextboxSetVSpace(UG_WINDOW* wnd, UG_U8 id, UG_S8 vs)
+int8_t UG_TextboxSetVSpace(UG_WINDOW* wnd, uint8_t id, int8_t vs)
 {
 	UG_OBJECT* obj = NULL;
 	UG_TEXTBOX* txb = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_TEXTBOX, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	txb = (UG_TEXTBOX*)(obj->data);
 	txb->v_space = vs;
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_TextboxSetAlignment(UG_WINDOW* wnd, UG_U8 id, UG_U8 align)
+int8_t UG_TextboxSetAlignment(UG_WINDOW* wnd, uint8_t id, uint8_t align)
 {
 	UG_OBJECT* obj = NULL;
 	UG_TEXTBOX* txb = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_TEXTBOX, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	txb = (UG_TEXTBOX*)(obj->data);
 	txb->align = align;
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_COLOR UG_TextboxGetForeColor(UG_WINDOW* wnd, UG_U8 id)
+UG_COLOR UG_TextboxGetForeColor(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 	UG_TEXTBOX* txb = NULL;
@@ -2321,7 +2321,7 @@ UG_COLOR UG_TextboxGetForeColor(UG_WINDOW* wnd, UG_U8 id)
 	return c;
 }
 
-UG_COLOR UG_TextboxGetBackColor(UG_WINDOW* wnd, UG_U8 id)
+UG_COLOR UG_TextboxGetBackColor(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 	UG_TEXTBOX* txb = NULL;
@@ -2335,7 +2335,7 @@ UG_COLOR UG_TextboxGetBackColor(UG_WINDOW* wnd, UG_U8 id)
 	return c;
 }
 
-char* UG_TextboxGetText(UG_WINDOW* wnd, UG_U8 id)
+char* UG_TextboxGetText(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 	UG_TEXTBOX* txb = NULL;
@@ -2349,7 +2349,7 @@ char* UG_TextboxGetText(UG_WINDOW* wnd, UG_U8 id)
 	return str;
 }
 
-UG_FONT* UG_TextboxGetFont(UG_WINDOW* wnd, UG_U8 id)
+UG_FONT* UG_TextboxGetFont(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 	UG_TEXTBOX* txb = NULL;
@@ -2363,11 +2363,11 @@ UG_FONT* UG_TextboxGetFont(UG_WINDOW* wnd, UG_U8 id)
 	return font;
 }
 
-UG_S8 UG_TextboxGetHSpace(UG_WINDOW* wnd, UG_U8 id)
+int8_t UG_TextboxGetHSpace(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 	UG_TEXTBOX* txb = NULL;
-	UG_S8 hs = 0;
+	int8_t hs = 0;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_TEXTBOX, id);
 	if (obj != NULL) {
@@ -2377,11 +2377,11 @@ UG_S8 UG_TextboxGetHSpace(UG_WINDOW* wnd, UG_U8 id)
 	return hs;
 }
 
-UG_S8 UG_TextboxGetVSpace(UG_WINDOW* wnd, UG_U8 id)
+int8_t UG_TextboxGetVSpace(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 	UG_TEXTBOX* txb = NULL;
-	UG_S8 vs = 0;
+	int8_t vs = 0;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_TEXTBOX, id);
 	if (obj != NULL) {
@@ -2391,11 +2391,11 @@ UG_S8 UG_TextboxGetVSpace(UG_WINDOW* wnd, UG_U8 id)
 	return vs;
 }
 
-UG_U8 UG_TextboxGetAlignment(UG_WINDOW* wnd, UG_U8 id)
+uint8_t UG_TextboxGetAlignment(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 	UG_TEXTBOX* txb = NULL;
-	UG_U8 align = 0;
+	uint8_t align = 0;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_TEXTBOX, id);
 	if (obj != NULL) {
@@ -2459,13 +2459,13 @@ void _UG_TextboxUpdate(UG_WINDOW* wnd, UG_OBJECT* obj)
 }
 
 /* -- IMAGE FUNCTIONS -- */
-UG_RESULT UG_ImageCreate(UG_WINDOW* wnd, UG_IMAGE* img, UG_U8 id, UG_S16 xs,
-                         UG_S16 ys, UG_S16 xe, UG_S16 ye)
+int8_t UG_ImageCreate(UG_WINDOW* wnd, UG_IMAGE* img, uint8_t id, int16_t xs,
+                         int16_t ys, int16_t xe, int16_t ye)
 {
 	UG_OBJECT* obj;
 
 	obj = _UG_GetFreeObject(wnd);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	/* Initialize object-specific parameters */
 	img->img = NULL;
@@ -2491,54 +2491,54 @@ UG_RESULT UG_ImageCreate(UG_WINDOW* wnd, UG_IMAGE* img, UG_U8 id, UG_S16 xs,
 	/* Update function: Do your thing! */
 	obj->state &= ~OBJ_STATE_FREE;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_ImageDelete(UG_WINDOW* wnd, UG_U8 id)
+int8_t UG_ImageDelete(UG_WINDOW* wnd, uint8_t id)
 {
 	return _UG_DeleteObject(wnd, OBJ_TYPE_IMAGE, id);
 }
 
-UG_RESULT UG_ImageShow(UG_WINDOW* wnd, UG_U8 id)
+int8_t UG_ImageShow(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_IMAGE, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	obj->state |= OBJ_STATE_VISIBLE;
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_ImageHide(UG_WINDOW* wnd, UG_U8 id)
+int8_t UG_ImageHide(UG_WINDOW* wnd, uint8_t id)
 {
 	UG_OBJECT* obj = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_IMAGE, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	obj->state &= ~OBJ_STATE_VISIBLE;
 	obj->state |= OBJ_STATE_UPDATE;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
-UG_RESULT UG_ImageSetBMP(UG_WINDOW* wnd, UG_U8 id, const UG_BMP* bmp)
+int8_t UG_ImageSetBMP(UG_WINDOW* wnd, uint8_t id, const UG_BMP* bmp)
 {
 	UG_OBJECT* obj = NULL;
 	UG_IMAGE* img = NULL;
 
 	obj = _UG_SearchObject(wnd, OBJ_TYPE_IMAGE, id);
-	if (obj == NULL) return UG_RESULT_FAIL;
+	if (obj == NULL) return int8_t_FAIL;
 
 	img = (UG_IMAGE*)(obj->data);
 	img->img = (void*)bmp;
 	img->type = IMG_TYPE_BMP;
 	obj->state |= OBJ_STATE_UPDATE | OBJ_STATE_REDRAW;
 
-	return UG_RESULT_OK;
+	return int8_t_OK;
 }
 
 void _UG_ImageUpdate(UG_WINDOW* wnd, UG_OBJECT* obj)
@@ -2549,11 +2549,11 @@ void _UG_ImageUpdate(UG_WINDOW* wnd, UG_OBJECT* obj)
 	/* Get object-specific data */
 	img = (UG_IMAGE*)(obj->data);
 
-	/* Object touch section                               */
+	/* Object touch section */
 
 	/* Image doesn't support touch */
 
-	/* Object update section                              */
+	/* Object update section */
 	if (obj->state & OBJ_STATE_UPDATE) {
 		if (obj->state & OBJ_STATE_VISIBLE) {
 			/* Full redraw necessary? */

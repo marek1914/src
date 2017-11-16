@@ -1,3 +1,8 @@
+各种控制器
+http://embeddedlightning.com/lcd_controller/
+
+spi屏幕320x240  vcc gnd clk mosi 四线 能否工作? cs 一直选中，顶多5线
+
 任务：
 基于stm32 做出一套类似 nokia 手机的图形系统，备用
 
