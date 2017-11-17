@@ -1,6 +1,26 @@
-一个类跟另一个类没毛关系，只是想用里面的某函数，就继承另一个类，这，是不是浪费了空间
-其实，继承它，和在里面定义类变量，也就是组合，
+C++11: ISO/IEC 14882:2011 Information technology-Programming languages C++
 
+C++ 11 (73):
+alignas    continue     friend    register         true
+alignof    decltype     goto      reinterpret_cast try
+asm        default      if        return           typedef
+auto       delete       inline    short            typeid
+bool       do           int       signed           typename
+break      double       long      sizeof           union
+case       dynamic_cast mutable   static           unsigned
+catch      else         namespace static_assert    using
+char       enum         new       static_cast      virtual
+char16_t   explicit     noexcept  struct           void
+char32_t   export       nullptr   switch           volatile
+class      extern       operator  template         wchar_t
+const      false        private   this             while
+constexpr  float        protected thread_local
+const_cast for          public    throw
+
+
+In addition to the facilities provided by C, C ++ provides additional data types, 
+classes, templates, exceptions, namespaces, operator overloading, function name overloading, 
+references, free store management operators, and additional library facilities.
 
 三种继承方式：私有成员都变不可用
 公有继承，公有保护保持原样，保护继承公有保护全保护，私有继承公有保护全私有。
@@ -10,74 +30,43 @@ Java继承不分共有私有保护，简化了继承关系处理，但也能解�
 
 虚函数，继承类默认都是虚函数，virtual关键词 可写可不写，写了看着结构更清晰
 
-虚函数靠 基类指针 才能有效
-纯虚函数类，可以定义指针，并 -> 引用
+
+在继承链中，虚函数重定义，回调到最远处，普通函数重定义，调用最近即最新定义
+
 
 2个基本形式：
 1 定义虚函数基类，继承他，第三方位置定义基类指针，->引用，然后赋值为 继承类指针
-2 基类内部，通过 this 指针达到同样效果
-类内直接调用 如 foo(); 等价于 this->foo(), 实测 直接调用虚函数 foo(), 多态能生效
+2 基类内部，通过 this 指针达到同样效果 类内直接调用 如 foo(); 等价于 this->foo()
 
 第二类用法 android Threads类用了，android的aidl生成的的 Stub，java代码用到了 this.xxx
-
-20171113 : 进一步，  运行时多态 虚函数的指针，还有一种典型情况，是靠 this指针，而不是再定义的基类指针
-
-6.5.4 The range-based for statement
-
-int a(5)；即 int a=5; 用构造函数构造初始化类，如classA a(b);
-
-<<C++ Coding Standards: 101 Rules, Guidelines, and Best Practices>>
 
 增加 .*  ->*
 C++将前++/-- 和后++/-- 分为不同优先级
 C++ 前++/-- 定为第一有限级，跟. [] () 同级，C没有这种情况
 
-                                                          *cpp-base*
-#include <stdio.h>
-#include <iostream>
-using namespace std;
-
 // 16.8 Predefined macro names
 #if defined __cplusplus
 #endif
 
-
-
 boost (libboost-dev)
 
-www.open-std.org
-libcxx.llvm.org/
-libc++ is a new implementation of the C++ standard library, targeting C++11.
-
-C++11: ISO/IEC 14882:2011 Information technology-Programming languages C++
-
-In addition to the facilities provided by C, C ++ provides additional data types, 
-classes, templates, exceptions, namespaces,
-operator overloading, function name overloading, references, free store management 
-operators, and additional library facilities.
-
-STL 已经是标准C++的一部分，影响着 C++ Standard Library的很多部分，提供 algorithms, containers, iterators
-
-
-
 libstdc++  GNU 实现
-libc++     LLVM实现
+libc++     LLVM实现 libcxx.llvm.org/
 
 1 类中类，结构体中结构体
-2 含纯虚函数的类是抽象基类
-3 gcc/g++识别c++: .C/.cc(C with classes)/.cpp(C plus plus)/.CPP/.c++/.cp/.cxx
-4 non-const references can't bind temp objects.  Foo &obj = Foo(); //vs ok,gcc fail
+3 .C/.cc(C with classes)/.cpp(C plus plus)/.CPP/.c++/.cp/.cxx
+4 non-const references can't bind temp objects.  Foo &obj = Foo(); 
 
-C++11:
-7.3
-Namespaces
+ISO C++ 14882:
+7.3 Namespaces
+27.8.2  C Library files
+6.5.4 The range-based for statement
 
 标准头文件位置：
-/usr/include/c++/4.8/ostream
+/usr/include/c++/4.8
 文件头注释：
 forwarding header (转接头文件)
-GNU ISO C++ Library
-ISO C++ 14882: 27.8.2  C Library files
+
 
 const_cast<>
 reinterpret_cast<>
@@ -87,24 +76,7 @@ static_cast<> 类型转换
 （把派生类的指针或引用转换成基类表示）是安全的；进行下行转换（把基
 类指针或引用转换成派生类表示）时，由于没有动态类型检查，所以是不安全的
 
-cout /cin 字符输出输入
-endl: end line
-
-static const
-static const int COUNT=5;
-
-int main(void)
-{
-	cout << "Hello World!"<<endl;
-	printf("i=%d\n", i);
-	return 1;
-}
-
-
 Python，C++(raise) exception handling代替error code，分离错误处理代码，增加可读性
-
-
-
 
 -------
 Threads.cpp

@@ -1,6 +1,7 @@
 sms8998 平台风扇控制原理
 
 风扇控制节点: /sys/class/hwmon/hwmon2/pwm
+pwm 频率 25kHz
 可接受值 0-255
 
 系统温度监测节点

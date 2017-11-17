@@ -296,3 +296,11 @@ Dual Series Switching Diode
 B380-13-F 80V, 3A Diodes Inc.
 B390 90V, 3A Diodes Inc.
 
+
+
+
+
+
+qiyi 风扇  fan
+
+电源5V   棕色为pwm 25KHz， 黄色回馈信号， 30Hz  100Hz  不等
