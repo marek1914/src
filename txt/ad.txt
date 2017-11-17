@@ -19,7 +19,13 @@ http://www.sztcpcb.com/submitRegister.htmlj
 
 常规参数：
 板厚1.6mm
-最小线宽6mil，最小孔径0.3mm
+最小线宽6mil，最小孔径0.3mm(12mil)
+
+photon: 最小线宽 6mil，最小间距 6mil 最小孔径 12mil
+
+
+TP 测试点。 做个封装出来
+
 
 shift+e 捕捉焊盘焦点
 1:1 打印： 打印预览/page setup/ scaled print:scale = 1/x=1 y=1 

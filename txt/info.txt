@@ -204,6 +204,7 @@ baidu:3uixx:5***5005xxx
 openstm32.org gaojie:200w200w
 st.com 13xx@q.com:89..2*G
 invensense.com: stm32f300w:89..2*G
+autodesk: qq:89****62*G
 
 q盾：形：159648
 
