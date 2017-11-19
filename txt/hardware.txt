@@ -1,6 +1,8 @@
 stm32f100w
 删除所有无关内容，聚焦
 
+
+
 那种双面胶，在拆 nec pad的时候，还有 waveshare lcd时，粘玻璃
 
 
@@ -243,6 +245,7 @@ BMX055: 9轴传感器  qiyi VR
 LIS302DL: 3轴加速度 accelerometer ，F407-Disco
 LSM6DSL: ST 6轴臂环小板
 
+另外2个颜色线 可以黄绿 或者 黄白
 
 LG33: 5pin 3.3V ldo（mpu6500小板使用）
 
@@ -295,17 +298,13 @@ B380-13-F 80V, 3A Diodes Inc.
 B390 90V, 3A Diodes Inc.
 
 
-
-
-
-
 qiyi 风扇  fan
 
 电源5V   棕色为pwm 25KHz， 黄色回馈信号， 30Hz  100Hz  不等
 
-
-
-
-
-
 5mm高 2x4 2.54间距排母
+
+
+
+
+microbit  LDO 用的啥芯片？
