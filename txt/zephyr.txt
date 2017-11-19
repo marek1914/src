@@ -1,5 +1,8 @@
 https://github.com/tidyjiang8/zephyr-inside/blob/master/SUMMARY.md
 
+定义了 u16_t  s8_t  把int字样又省了，也行吧 
+
+
 CMSIS-DAP (Debug Access Port)
 
 Adafruit NeoPixel Ring  WS2812 5050 RGB LED
@@ -119,6 +122,7 @@ https://github.com/marshall/target-stm32f407-disco-gcc/blob/master/openocd/stm32
 samples/bluetooth/periphera  make BOARD=bbc_microbit  
 蓝牙名字在 prj.conf 文件里
 
+#include <bluetooth/bluetooth.h>
 
 
 
