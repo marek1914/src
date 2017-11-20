@@ -180,16 +180,8 @@ void uart_print(char *p)
 	uart_byte("\n");
 }
 
-/* 返回毫秒 */
-int64_t av_gettime_relative(void)
-{
-    struct timespec ts;
-    /* CLOCK_REALTIME */
-    clock_gettime(CLOCK_MONOTONIC, &ts);
-    return (int64_t)ts.tv_sec * 1000000 + ts.tv_nsec / 1000;
-}
+/* 返回微秒 */
 
-/* clock_t times(); */
 
 #define LOG_BUF_MAX 512
 
