@@ -1,5 +1,6 @@
 wangliang: 已经自由了，怎么比？！
 
+
 photon 资源，硬件文件  eagle pcb 软件
 https://github.com/spark/photon
 
@@ -84,12 +85,10 @@ http://www.instructables.com/id/DIY-a-Wooden-Laser-Gun-As-a-Xmas-Present-for-You
 
 Seeed Studio
 https://github.com/SeeedDocument/Grove-MOSFET/raw/master/res/Grove%20-%20MOSFET%20.pdf
-
-github.com/SeeedDocument/
-
+github.com/SeeedDocument
 SeeedDocument/USB-CAN_Analyzer
-
-http://seeed.wiki/Grove_System/
+seeed.wiki/Grove_System
+wiki.seeed.cc/mbed
 
 pjrc.com 
 
@@ -207,6 +206,7 @@ baidu:3uixx:5***5005xxx
 openstm32.org gaojie:200w200w
 st.com 13xx@q.com:89..2*G
 invensense.com: stm32f300w:89..2*G
+autodesk: qq:89****62*G
 
 q盾：形：159648
 

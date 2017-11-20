@@ -22,5 +22,7 @@ yj给的nordic 开发板
 IK-52832DK资料盘: http://pan.baidu.com/s/1bo3M6AV  ：weho
 IK-52832DK视频教程盘: http://pan.baidu.com/s/1eS9ojcA  ：jltf
 
-
 OSAL: OS抽象层
+
+CSC: Cycling Speed and Cadence Profile
+自行车速度和步调规范
