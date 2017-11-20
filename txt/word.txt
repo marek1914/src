@@ -247,6 +247,8 @@ VDSO : Virtual Dynamically-linked Shared Object
 legal disclaimer
 
 NE555 1971年 Signetics(SIGnal NETwork Integrated Circuits)公司发明，模拟与数字电路结合的典范
+NE556 封装2个NE555
+
 binomial theorem 二项式定理
 Earnshaw's theorem 恩邵定理 数学证明静态磁悬不可能
 superposition principle 叠加原理
@@ -380,3 +382,6 @@ KISS 原则: Keep it Simple and Stupid
 
 FPC 柔性电路板
 FFC 柔性排线
+
+
+burr-brown: datasheet BB 字样，公司名，被TI收购，模拟器件部门
