@@ -6,6 +6,10 @@ http://www.sztcpcb.com/submitRegister.htmlj
 手机：1310301
 客户编号14720A
 
+eagl 转换到 AD
+github.com/Altium-Designer-addons/scripts-libraries
+export-protelpcb.ulp
+
 
 .intlib (integrated library) 包含 .pcblib .schlib 2个文件
 .libpkg 工程文件 编译输出 .intlib
