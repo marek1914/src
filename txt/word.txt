@@ -383,5 +383,5 @@ KISS 原则: Keep it Simple and Stupid
 FPC 柔性电路板
 FFC 柔性排线
 
-
 burr-brown: datasheet BB 字样，公司名，被TI收购，模拟器件部门
+wall-clock

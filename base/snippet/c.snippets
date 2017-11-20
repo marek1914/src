@@ -311,4 +311,17 @@ void ${1:foo}(char* fmt, ...)
 }
 endsnippet
 
+snippet gettime
+#include <time.h>
+/* return microsecond */
+int64_t gettime(void)
+{
+	struct timespec ts;
+	${1:/* CLOCK_REALTIME: relative to 1970 year */
+	/* CLOCK_MONOTONIC: relative to power up */}
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+	return (int64_t)ts.tv_sec * 1000000 + ts.tv_nsec / 1000;
+}
+endsnippet
+
 # vim:ft=snippets:
