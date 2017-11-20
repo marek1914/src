@@ -3,6 +3,9 @@ wangliang: 已经自由了，怎么比？！
 photon 资源，硬件文件  eagle pcb 软件
 https://github.com/spark/photon
 
+embest-tech.cn  英蓓特 E络盟  提供树莓派定制服务
+下载处有很多资源
+
 arduino 硬件文件 也是 eagle，  百度可以转为 ad
 
 TODO:

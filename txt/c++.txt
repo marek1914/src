@@ -1,21 +1,8 @@
 C++11: ISO/IEC 14882:2011 Information technology-Programming languages C++
 
-C++ 11 (73):
-alignas    continue     friend    register         true
-alignof    decltype     goto      reinterpret_cast try
-asm        default      if        return           typedef
-auto       delete       inline    short            typeid
-bool       do           int       signed           typename
-break      double       long      sizeof           union
-case       dynamic_cast mutable   static           unsigned
-catch      else         namespace static_assert    using
-char       enum         new       static_cast      virtual
-char16_t   explicit     noexcept  struct           void
-char32_t   export       nullptr   switch           volatile
-class      extern       operator  template         wchar_t
-const      false        private   this             while
-constexpr  float        protected thread_local
-const_cast for          public    throw
+C++ 11 73关键词
+
+bool  true  false 是关键词，不是库定义    
 
 
 In addition to the facilities provided by C, C ++ provides additional data types, 
@@ -28,8 +15,13 @@ references, free store management operators, and additional library facilities.
 
 Java继承不分共有私有保护，简化了继承关系处理，但也能解决实际问题
 
+非虚函数，即便用类指针操作，也是编译时固定死的调用
+cb->test();  cb虽然是指针，但test不是virtual，也是编译时就定死的调用位置。
+
+
 虚函数，继承类默认都是虚函数，virtual关键词 可写可不写，写了看着结构更清晰
 
+子类要重写基类函数，也要声明一下，不能在类外直接定义。
 
 在继承链中，虚函数重定义，回调到最远处，普通函数重定义，调用最近即最新定义
 

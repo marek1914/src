@@ -1,5 +1,4 @@
 bandon
-constexpr
 above
 according_to
 add_element
@@ -56,8 +55,6 @@ compatibility
 compelling
 component
 compute_ip_checksum
-const_cast
-constexpr
 content
 continue
 contributing
@@ -372,3 +369,29 @@ CXXFLAGS
 LDFLAGS
 LDLIBS
 
+C++:
+const_cast
+dynamic_cast
+static_cast 
+reinterpret_cast
+constexpr
+char16_t
+char32_t 
+thread_local
+protected
+static_assert
+alignas
+operator
+volatile
+alignof
+virtual
+nullptr 
+wchar_t
+noexcept 
+decltype 
+catch 
+typename
+explicit 
+template 
+export 
+typeid
