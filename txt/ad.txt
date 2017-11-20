@@ -1,3 +1,7 @@
+使用：
+edit-> past special   可粘贴阵列
+任意角度: shift+space
+
 pcb 板制作
 http://www.sz-jlc.com/home/index.html  //质量好，较贵
 http://www.sztcpcb.com  // 便宜 186: *6278*
@@ -23,7 +27,7 @@ export-protelpcb.ulp
 
 常规参数：
 板厚1.6mm
-最小线宽6mil，最小孔径0.3mm(12mil)
+最小线宽6mil(0.15mm)，最小孔径0.3mm(12mil)
 
 photon: 最小线宽 6mil，最小间距 6mil 最小孔径 12mil
 
@@ -34,13 +38,13 @@ TP 测试点。 做个封装出来
 shift+e 捕捉焊盘焦点
 1:1 打印： 打印预览/page setup/ scaled print:scale = 1/x=1 y=1 
 
-封装:
-0201 0.6mm x 0.3mm
-0402 1.0mm x 0.5mm
-0603 1.6mm x 0.8mm  ok
-0805 2.0mm x 1.2mm
-1206 3.2mm x 1.6mm
-1210 3.2mm x 2.5mm
+size(mm):
+0201: 0.6x0.3  xxx
+0402: 1.0x0.5  option
+0603: 1.6x0.8  nornal
+0805: 2.0x1.2
+1206: 3.2x1.6
+1210: 3.2x2.5
 
 QFN 封装，引脚都要比芯片大一点点，全压在下面可能造成虚焊
 
@@ -67,3 +71,22 @@ C 电阻 R 电容 X 尽量小
 
 
 将一个线组成的区域填充，选中所有线，Tool -> Convert -> Create region
+
+
+焊盘外面的紫色框： Tools -> Layer -> Top Solder 阻焊层
+
+
+DRC 规则 
+
+Signal Layers:  Top, Bottom
+Mechanical Layer(无电气属性):  
+1, 
+7(放置描述信息如 加工说明，版本号，社记者) 
+13(AD默认描绘器件物理外形), 
+15(AD默认元件占位尺寸)
+
+Mask Layers:  Top Paste/Bottom Paste/Top Solder/Bottom Solder
+Other Layers: Drill Guide/ Keep-Out Layer /Drill Drawing/Multi-Layer
+Silkscreen Layers: Top Overlay/Bottom Overlay
+
+

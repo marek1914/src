@@ -1,3 +1,8 @@
+https://github.com/tidyjiang8/zephyr-inside/blob/master/SUMMARY.md
+
+定义了 u16_t  s8_t  把int字样又省了，也行吧 
+
+
 CMSIS-DAP (Debug Access Port)
 
 Adafruit NeoPixel Ring  WS2812 5050 RGB LED
@@ -110,3 +115,28 @@ https://github.com/marshall/target-stm32f407-disco-gcc/blob/master/openocd/stm32
 --###
 为啥每次都是重新编译？
 
+
+
+---- BLE4.0 切入点 ----
+
+samples/bluetooth/periphera  make BOARD=bbc_microbit  
+蓝牙名字在 prj.conf 文件里
+
+#include <bluetooth/bluetooth.h>
+
+
+
+
+
+----
+放弃 android app，可以从这里入手 iphone app 开发, 为啥不搞 android，因为放弃了java
+其实就是简单的表格，列表，我不可能搞复杂图形应用
+
+
+
+
+
+
+----
+工程加好 头文件路径后，  其他函数都可以 F2 跳转到原形，
+device_get_binding 函数确不行，但是 c-x c-o 能出来原型，奇怪，先不管，，，，死气沉沉的周末，明天她生日，实际上是愿我了！
