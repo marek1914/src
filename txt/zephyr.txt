@@ -152,3 +152,11 @@ https://github.com/Seeed-Studio/Wio_Link
 原理图 没找到
 
 
+
+
+
+---
+libc 可以用 newlib(编译器自带), 也可用minimal(默认)
+
+
+支持了 fat 文件系统

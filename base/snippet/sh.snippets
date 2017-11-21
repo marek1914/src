@@ -9,14 +9,7 @@ snippet #!
 endsnippet
 
 snippet if
-if ${2:[[ ${1} ]]}; then
-	${0}
-fi
-endsnippet
-
-
-snippet if[
-if [ ! "$${1:T}"  ]; then
+if [ ${1} ]; then
 	${0}
 fi
 endsnippet
