@@ -365,3 +365,12 @@ dfu-util -d 0483:df11 -c 1 -i 0 -a 0 -s 0x08000000 -D elua_lua_stm32f407vg.bin
 -----------------------
 IPD (Integrated Passive Device)  integrate high-quality passive elements (resistors, inductors, capacitors)
 Baluns 器件, 针对不同芯片，有不同型号
+I./ext/lib/crypto/tinycrypt/include/tinycrypt
+
+
+
+
+----Ethernet---
+1 w550
+2 f103 + ENC28J60(MAC+PHY) spi接口
+3 f407内部MAC + LAN8720(PHY) 
