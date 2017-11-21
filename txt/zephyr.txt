@@ -139,4 +139,16 @@ samples/bluetooth/periphera  make BOARD=bbc_microbit
 
 ----
 工程加好 头文件路径后，  其他函数都可以 F2 跳转到原形，
-家 device_get_binding 函数确不行，但是 c-x c-o 能出来原型，
+家 device_get_binding 函数却不行（在公司就行，先不管），但是 c-x c-o 能出来原型，
+
+
+
+--- Wio Links Everything ---
+
+http://iot.seeed.cc/
+
+https://github.com/Seeed-Studio/Wio_Link
+
+原理图 没找到
+
+
