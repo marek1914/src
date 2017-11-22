@@ -1,3 +1,5 @@
+一系列C函数和少量C++类构成
+
 Netgen: Mesh Generator
 
 GNU goptical
@@ -14,12 +16,10 @@ matplotlib的例子使用这些数据的地址不对
 
 PIL: Python Imaging Library
 
-SciPy Stack:
-python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
+SciPy Stack: numpy scipy matplotlib pandas
 
-一系列C函数和少量C++类构成
 1 安装
-参考：http://docs.opencv.org/trunk/doc/tutorials/introduction/linux_install/linux_install.html
+http://docs.opencv.org/trunk/doc/tutorials/introduction/linux_install/linux_install.html
 1.1 依赖
 cmake(>2.8.7) libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev(ffmpeg dev packages)
 python-dev python-numpy libtbb2(opt) libtbb-dev(opt) libjpeg-dev libpng-dev 
@@ -101,11 +101,9 @@ opencv_contrib是大多数实验性代码放置的地方，一些API可能会改
 http://docs.opencv.org/master/modules/imgproc/doc/filtering.html
 
 
-莱娜图:瑞典模特莱娜(Lenna)，刊于1972年11月号《花花公子》，在数字图像处理研究中颇为知名
+瑞典模特莱娜(Lenna)，刊于1972年11月号《花花公子》
 
 MATLAB (matrix laboratory) 
-
-
 
 ./modules/imgproc/src/imgwarp.cpp
 cvWarpPerspective 透视图变幻
@@ -330,7 +328,10 @@ Returns samples from a Standard Normal distribution (mean=0, stdev=1).
 
 
 "
-I am working on video stabilization topic. Now, I want to smooth motion parameter (scale, translation, rotation) by using second order Butterworth low pass filter in C++ with the same cutting frequency 66.67 Hz. My data is 1D. I am looking forward Butterworth low pass filter in C++ to smooth data.
+I am working on video stabilization topic. Now, I want to smooth motion parameter 
+(scale, translation, rotation) by using second order Butterworth low pass filter 
+in C++ with the same cutting frequency 66.67 Hz. My data is 1D. 
+I am looking forward Butterworth low pass filter in C++ to smooth data.
 "
 
 几个最基本核滤波器相关类
@@ -385,6 +386,19 @@ log_spectrum = log_spectrum*5
 
 dft频谱图，亮的地方表示幅值大，那为什么最大值在四个角落，而不是集中在左上角呢？跟DCT那样
 
----画图走
+---画图
 highgui/src/window_gtk.cpp
 
+
+
+
+--- .clang_complete
+-I./cvaux/include
+-I./cxcore/include
+-I./ml/include
+-I./cv/include
+-I./cvaux/src
+-I./cv/src
+-I./cxcore/src
+-I./ml/src
+-I./otherlibs/highgui

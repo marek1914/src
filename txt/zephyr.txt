@@ -1,5 +1,7 @@
 https://github.com/tidyjiang8/zephyr-inside/blob/master/SUMMARY.md
 
+最新的版本，使用了讨厌的 cmake
+
 定义了 u16_t  s8_t  把int字样又省了，也行吧 
 
 

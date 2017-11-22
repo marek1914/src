@@ -5,11 +5,13 @@
 
 6LoWPAN 基于IPv6的低速无线个域网标准，IPv6 over IEEE 802.15.4
 
-#Bluetooth Special Interest Group (SIG) (802.15.1不再维护)
+Special Interest Group (SIG) (802.15.1不再维护)
 www.bluetooth.com  
 
 BR 2.0/EDR 2.1
-LE 4.0/4.1/4.2
+LE 4.0/4.1/4.2 仅用3个广播通道
+广播时射频开启时间由传统22.5ms 减小到 0.6-1.2ms
+
 
 Mesh在 SmartMesh 工作组中,独立于核心规格版本外
 
@@ -28,4 +30,28 @@ CSC: Cycling Speed and Cadence Profile
 自行车速度和步调规范
 
 LE在 L2CAP之上提供2个额外协议层：SMP(Security Manager protocol), ATT(Attribute protocol) 使用一个固定的 l2cap 通道
+
+BLE分为三部分Service、Characteristic、Descriptor，这三部分都由UUID作为唯一标示符
+
+蓝牙4.0终端可包含多个Service，一个Service可包含多个Characteristic，一个Characteristic包含一个Value和多个Descriptor，一个Descriptor包含一个Value
+
+BLE 定义 GAP和 GATT 2个基本配置文件
+GAP 负责设备发现，建立连接，终止连接，初始化安全特征
+GATT 用于已连接的蓝牙设备之间的数据通信
+
+40频道中  37,38,39 为广播信道，另外37个用于数据传输
+
+------
+HCI 是主机与控制器之间的接口标准
+物理接口可能为 usb，uart，spi，pci...
+HCI UART(H4)
+Three-Wire UART (H5)
+USB (H2)
+
+
+
+ 如果我们从HCI层出发，可以将蓝牙协议堆栈分为硬件与软件2个协议块。硬件部分由射频部分(RF)、基带部分(BB)、链路管理器部分(LM)和HCI固件构成，我们也可以把硬件部分称为蓝牙子系统。软件部分由HCI主机驱动程序、逻辑链路控制适配协议(L2CAP)、串口仿真协议(RFCOMM)、服务发现协议(SDP)、电话控制协议(TCS)及其它应用协议所构成。在蓝牙协议堆栈模型中的虚线部分为对本文中HCI协议层软件的具体划分。
+
+Piconet 是指用蓝牙(Blue tooth)技术把小范围(10-100m)内装有蓝牙单元(即在支持蓝牙技术的各种电器设备中嵌入的蓝牙模块)的各种电器组成的微型网络，俗称微微网
+
 
