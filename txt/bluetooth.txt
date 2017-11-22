@@ -3,20 +3,20 @@
 802.15.3 High Rate WPAN
 802.15.4 Low Rate WPAN(zigbee)
 
-www.bluetooth.com  #Bluetooth Special Interest Group (SIG) (802.15.1不再维护)
+6LoWPAN 基于IPv6的低速无线个域网标准，IPv6 over IEEE 802.15.4
 
-Bluetooth Basic Rate(BR) 2.0
-Enhanced Data Rate (EDR) 2.1
-Bluetooth with low energy (LE for IoT) 4.0/4.1/4.2
+#Bluetooth Special Interest Group (SIG) (802.15.1不再维护)
+www.bluetooth.com  
 
-Mesh标准在SmartMesh工作组中,蓝牙Mesh标准是独立于核心规格版本外，因此不在蓝牙5核心规格内
+BR 2.0/EDR 2.1
+LE 4.0/4.1/4.2
 
+Mesh在 SmartMesh 工作组中,独立于核心规格版本外
 
 芯科科技 silicon lab：
 EFR32BG12P
 
 ti:
-
 
 yj给的nordic 开发板
 IK-52832DK资料盘: http://pan.baidu.com/s/1bo3M6AV  ：weho
@@ -26,3 +26,6 @@ OSAL: OS抽象层
 
 CSC: Cycling Speed and Cadence Profile
 自行车速度和步调规范
+
+LE在 L2CAP之上提供2个额外协议层：SMP(Security Manager protocol), ATT(Attribute protocol) 使用一个固定的 l2cap 通道
+

@@ -1,7 +1,6 @@
 GNU Miscfiles
-TIOBE
 rc: release candidate/run command
-through-hole 排针
+through-hole
 
 xxx不是什么:
 
@@ -11,6 +10,7 @@ Kirchhoff's circuit laws
 vm :Virtual Memory
 
 It's up to you 由你做主
+Let's start from scratch 从零开始
 
 ssl: Secure Socket Layer
 tsl: Transport Layer Security
@@ -40,20 +40,18 @@ NUMA: Non-Uniform Memory Access(or Architecture)
 RDFT: Real Discrete Fourier Transform
 
 short/fair/good/strong  密码
+back/double/single quotes
 silicon valley
-backquotes ``
 
 Duff's Deviec
 
 debian  [ˈdɛ.bi.ən]
 intra ['ɪntrə] 各部分之间
+inter  不同事物之间
 
 Taylor series
 regression analysis 回归分析
 
-double/single quotes
-
-OTP:	One-time programmable
 MIME:	Multipurpose Internet Mail Extensions
 DD:		Dolby digital
 PTS:	Presentation Time Stamp
@@ -61,8 +59,6 @@ LPS:	Least Probable Symbol
 MPS:	Most Probable Symbol
 RIFF:	Resource Interchange File Format
 AIFF:	Audio Interchange File Format
-SMT:	Surfade Mount Technology
-IC:	integrated circuit ˈɪntɪgreɪtɪd/ˈsɜ:kɪt
 
 5I:
 ITU:  International Telecommunication Union
@@ -70,8 +66,6 @@ ISO:  International Organization for Standardization
 IEC:  International Electrotechnical Commission
 IEEE: Institute of Electrical and Electronics Engineers
 IETF: Internet Engineering Task Force
-
-ota: over the air
 
 ISO/IEC 联合开发
 
@@ -84,9 +78,7 @@ Behind every great fortune there is a crime  --Balzac
 supply chain 供应链
 
 due time 到期时间
-Let's start from scratch 从零开始
 
-peak-peak  最高峰值
 Inertial loads(惯性载荷)
 low-dropout (LDO) linear voltage regulator 低压差
 
@@ -98,7 +90,6 @@ This actually makes sense
 Steam Locomotive
 I approve this suggestion.
 
-inter  不同事物之间
 Venture Capital,VC 风险投资
 cellular based station 蜂窝基站
 
@@ -136,8 +127,6 @@ compound
 We Bare Bears
 banana plug banana connector hi-fi sound systems
 
-《The Fabric of the Cosmos 1：What is Space.mp4》
-
 An operating system is the set of basic programs and utilities that make your computer run. (debian)
 
 Forward declaration 前置声明
@@ -160,7 +149,6 @@ ECCV : Europeon Conference on Computer Vision
 CVPR : Conference on Computer Vision and Pattern Recognition
 ICCV : International Conference on Computer Vision
 
-
 bind
 blend
 
@@ -168,7 +156,6 @@ vector scalar  矢量 标量
 scala scale
 
 /* make gcc happy */
-
 
 cast to 强制转换为
 type cast 类型转换
@@ -200,16 +187,7 @@ BOM : Bill of Materials
 PPM/PWM
 Pulse-width modulation(PWM)
 
-Pb 铅（拉丁Plumbum 英文lead）原子数82，有毒，重金属 熔点327度
-Sn 锡 熔点231
-
-Sn63Pb37 被称为共晶焊锡，熔点183
-
-无铅焊锡  锡银铜 Sn-Ag-Cu系列：Sn-3.5Ag-0.75Cu
-
 CSR: Cambridge Silicon Radio
-zigbee 802.15.4
-
 
 WLCSP Wafer Level Chip Scale Packaging
 

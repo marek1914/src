@@ -105,3 +105,7 @@ class 'android::Thread' which does not have a default constructor
 
 TwoWire Wire = TwoWire();  // 调用构造函数的一种方式
 
+shared_ptr 最初实现于Boost库中，后来被C++标准委员会收录于TR1技术报告中，成为C++11标准的一部分
+STL提供4种智能指针模板：auto_ptr、unique_ptr、shared_ptr和weak_ptr
+auto_ptr是C++98提供的解决方案，C+11已将其摒弃
+

@@ -2,6 +2,10 @@ stm32f100w
 删除所有无关内容，聚焦
 
 
+Pb 铅（拉丁Plumbum 英文lead）原子数82，有毒，重金属 熔点327度
+Sn 锡 熔点231
+Sn63Pb37 被称为共晶焊锡，熔点183
+无铅焊锡  锡银铜 Sn-Ag-Cu系列：Sn-3.5Ag-0.75Cu
 
 那种双面胶，在拆 nec pad的时候，还有 waveshare lcd时，粘玻璃
 

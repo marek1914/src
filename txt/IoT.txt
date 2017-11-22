@@ -2,7 +2,6 @@ VNA  矢量网络分析仪
 ---------
 DA14580
 
-6LoWPAN 基于IPv6的低速无线个域网标准，即IPv6 over IEEE 802.15.4
 
 线序(如函数参数序列)
 BBG 4pin 2.0mm：

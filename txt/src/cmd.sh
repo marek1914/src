@@ -8,11 +8,9 @@ less
 time
 clear
 lsof
-reset	
 fdisk
 parallel 
 pkg-config
-beep
 parted / gparted
 hexdump
 ascii #命令
@@ -234,7 +232,6 @@ modprobe usbmon
 /dev/random
 /dev/urandom
 
-
 GNU_PATH=$(echo $PATH | grep arm-linux-gnueabihf)
 if [  "$GNUE_PATH" = "" ]; then
 PATH=$PATH:foo-gnueabihf/bin
@@ -290,12 +287,9 @@ rsync
 # 文件名扩展
 /dev/sd[b-e]1
 
-
-
 alias ls='ls --color'  #based on LS_COLORS
 LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90'
 
 di = directory
 fi = file
-
 

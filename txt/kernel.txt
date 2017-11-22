@@ -3,6 +3,8 @@ kernel.org
 device tree:
 
 
+built-in.o
+
 include 系统
 头文件在  /usr/include/linux
 
@@ -365,19 +367,6 @@ lib-y := $(filter-out $(obj-y), $(sort $(lib-y) $(lib-m)))
 如果obj-y包含的lib-y也包含，则从lib-y中剔除
 
 
-Makefile.build:
-__build:  此时还是一个空 目标 没有依赖 没有命令
-真正的目标在下面 ， 在很下面的位置有一条
-__build:
-中的__built 很奇怪  
-有两处 ，第二处 有一个 @:  不知道什么意思。
-__built:
-但是什么也没有写 
-在下面有定义了
-__built:
-真正去执行那一个target   但是文件开头的__built不写是不行的。
-可见，执行的是第85行的那个 __build:
-而那一行  KBUILD_BUILTIN 为真  则需要先生成  built-in.o  而生成built-in.o
 
 Makefile.build:
 
@@ -433,9 +422,6 @@ filter函数里面必须有%  但是不能出现连个%  比如 过滤xx  用%i%
 根部的Makefile 只需要把 跟目录的几个写上就行了  所以可以做到不修改跟 Makefile 
 
 core-y  libs-y ？ lib-y 和 obj-y 有何区别
-
-考虑 Makefile 的lib-y 和 obj-y
-built-in.o 是什么东西？？？
 
 Makefile 和 script/Makefile.build  里面都包含 Kbuild.include  
 
