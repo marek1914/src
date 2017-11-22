@@ -404,8 +404,6 @@ world";
 a=2;b=1;c=3;d=4;
 a>b?c>d?1:2:3);
 
-#include <stdbool.h>
-return false;
 
 memset(fb_mem, 0, 1024*768);
 memset(bdata->node_bootmem_map, 0xff, mapsize); //初始内存位图
@@ -805,6 +803,10 @@ stdbool.h (在gcc编译器中)
 #define bool _Bool
 #define false 0
 #define true 1
+
+#include <stdbool.h>
+return false;
+
 
 //在编译器和bionic/libc/kernel/common/linux/stddef.h中定义了：
 #  if !defined(__cplusplus)
