@@ -3,6 +3,7 @@ RuntimeException e = new RuntimeException("run is here");
 e.fillInStackTrace();
 Log.d(TAG, "xxx", e);
 
+PRODUCT_COPY_FILES  src:des  不能写在 Android.mk中
 
 minigzip
 mkbootfs

@@ -4,6 +4,10 @@ gtk 开发：
 
 
 
+
+gh 进入 select 模式
+
+
 一年之内不要再增加新功能，不要再折腾环境 20171102-20181103
 stm32f300w!!
 
@@ -69,12 +73,25 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 需要vim支持python（安装vim-nox），否则：
 UltiSnips requires py >= 2.7 or py3
 
+----- vim-snippets -----
+cl ${1}
+${1/(\w+).*/$1/}(${2});
+w+匹配非标点字符，后面的 $1 指的是替换 ()里面的内容，而非代替 ${1}
+如：
+${1/(\w+)(@@@).*/$2/}   abc@@@123 被替换为@@@
+------------------------
+
+
+cot: completeopt
+默认值: menu,preview
+menu 指pop-up 下拉菜单  menuone表示即便只有一条也显示
+preview指顶端的窗口
+
+
 ft: filetype
 ./ftplugin
 ./after/ftplugin  两个目录行为不同，after要单独加在rtp里
 
-completeopt
-preview-window
 ft-c-omni (ft:filetypes)
 
 ---

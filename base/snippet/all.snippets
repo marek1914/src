@@ -8,10 +8,10 @@ from vimsnippets import foldmarker, make_box, get_comment_format
 endglobal
 
 snippet copyright
-Copyright (c) `!v strftime("%Y")` ${1:`!v g:snips_author`}. All Rights Reserved.
+Copyright(c) `!v strftime("%Y")` ${1:`!v g:snips_author`}. All Rights Reserved.
 endsnippet
 
-snippet box "A nice box with the current comment symbol" b
+snippet box "A box with the current comment symbol" b
 `!p
 box = make_box(len(t[1]))
 snip.rv = box[0]
@@ -23,7 +23,7 @@ snip += box[3]`
 $0
 endsnippet
 
-snippet bbox "A nice box over the full width" b
+snippet bbox "A box over the full width" b
 `!p
 if not snip.c:
 	width = int(vim.eval("&textwidth - (virtcol('.') == 1 ? 0 : virtcol('.'))")) or 71
@@ -37,21 +37,16 @@ snip += box[3]`
 $0
 endsnippet
 
-snippet fold "Insert a vim fold marker" b
+snippet fold "vim fold marker" b
 `!p snip.rv = get_comment_format()[0]` ${1:Fold description} `!p snip.rv = foldmarker()[0]`${2:1} `!p snip.rv = get_comment_format()[2]`
 endsnippet
 
-snippet foldc "Insert a vim fold close marker" b
+snippet foldc "vim fold close marker" b
 `!p snip.rv = get_comment_format()[0]` ${2:1}`!p snip.rv = foldmarker()[1]` `!p snip.rv = get_comment_format()[2]`
 endsnippet
 
 snippet date
 `date +%Y-%m-%d`
-endsnippet
-
-
-snippet divided "comment"
-${1} is divided into ${2} and ${3} section, with:
 endsnippet
 
 # vim:ft=snippets:

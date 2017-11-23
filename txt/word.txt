@@ -1,8 +1,19 @@
+act aid aim air art bag ban bet cap cop cow
+dig dry due ear era fit fun gas gun guy hey
+hip joy kid lap lay lie lip lot mad nod nut
+odd 奇数
+ops owe own pan pet pie pot raw rid row rub
+sad sit ski sue tap
+tax 税 tip toe
+
+
 GNU Miscfiles
 rc: release candidate/run command
 through-hole
 
 xxx不是什么:
+
+aka also known as亦称
 
 Depletion region 耗尽区
 Kirchhoff's circuit laws

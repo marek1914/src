@@ -1,8 +1,12 @@
 #regular expression:
 
-# . * ^ $ x|y [xyz] [^xyz] [a-z] [^a-z]
-# rename is perl
-# grep -v '^$' foo.txt > bar.txt //去除空行
+ntu.edu.sg/home/ehchua/programming/howto/Regexe.html
+
+w+ 匹配word即 0-9a-zA-Z_,不包含标点符号 
+
+ . * ^ $ x|y [xyz] [^xyz] [a-z] [^a-z]
+
+ grep -v '^$' foo.txt > bar.txt //去除空行
 
 -n 用于测试
 

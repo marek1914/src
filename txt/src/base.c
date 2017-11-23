@@ -1,11 +1,9 @@
 /*
- * binary
  * arduino binary.h #define B00000011 3
- * gcc 支持 0b00000011 但这不是c99标准，其他编译器可能不支持
+ * gcc 支持 0b00000011 但非c99标准，其他编译器可能不支持
  */
 
 // 不要用宏在代码中控制，而是要把宏放到打印函数里
-// error: expected ‘;’ after struct definition
 // c 可以返回结构体
 //NULL 在stddef.h 中 define
 
@@ -22,19 +20,16 @@ int foo[10] = {1}; // 第一个初始化1，后面为0
 #define NUM_ADC    24
 
 intptr_t
-直接定义，会提示重复定义
 
 /* c99 6.5.2.5 Compound literals  ffmpeg fifo.c*/
 memcpy(arg, &(void *){NULL}, sizeof(val));
 
-//ring buffer / circular buffer / fifo
+//ring(circular) buffer / fifo 用于异步传输数据
+
 //De Morgan's laws
 
-//The ring buffer's first-in first-out data structure is useful tool for 
-//transmitting data between asynchronous processes
-
 // 头文件循环包含问题：
-// vs:可以生成 包含文件关系图
+
 /*
 printk: man 2 syslog
 /proc/sys/kernel/printk
@@ -148,16 +143,12 @@ int controller_busy(void)
 
 statfs
 
-linux :0a  
-win :0d 0a
-
 /*
 //24bit数左移2bit +2 
 c->low = (*c->bytestream++)<<18;
 c->low+= (*c->bytestream++)<<10;
 c->low+= ((*c->bytestream++)<<2) + 2;
 */
-
 
 /*
 example:0x11223344
@@ -346,8 +337,8 @@ switch (foo) {
 		...
 	default: //后面没语句		
 }
-如果真不需要语句，可用空语句";" 如：
-想1下跳出2层循环：
+
+//如果真不需要语句，可用空语句";" 如：想1下跳出2层循环：
 while (loop1) {
 	while (loop2) {
 		if (want_out)
@@ -360,10 +351,7 @@ int: 4
 long long: 8
 float: 4
 double: 8
-//x86_64:
-long: 8
-//arm_32:
-long 4
+long //机器长度
 
 sizeof(3.14)=8 //default double
 sizeof(3.14f)=4 //f or F :float
@@ -406,17 +394,9 @@ a>b?c>d?1:2:3);
 
 
 memset(fb_mem, 0, 1024*768);
-memset(bdata->node_bootmem_map, 0xff, mapsize); //初始内存位图
+memset(bootmem_map, 0xff, mapsize); //初始内存位图
 memset(bpb, 0, sizeof(*bpb));
 memset(dev, 0, sizeof(Dev));
-
-void foo(void)
-{
-	goto exit;
-	i+=4;
-//error: label at end of compound statement
-exit:
-}
 
 
 括号后必须semicolon如：
@@ -426,12 +406,12 @@ Thread xxx= new Thread(new Runnable(){
 			System.out.println("Hello gaojie!");
 		}
 	}
-}); //here
+});
 
-这如同C：
+如同C：
 do {
 	...
-} while(...); //here
+} while(...);
 
 
 strstr(s, "ll");
@@ -886,9 +866,7 @@ void klog_init(void)
 
 //取参数
 if (sscanf(l, "%d %d %d", &width, &height, &fps) == 3) {
-...
 } else if (sscanf(l, " %c %d %d %s", &pathType, &count, &pause, path) == 4) {
-...
 }
 //能正常解析
 1280 720 4 5
@@ -900,6 +878,7 @@ p 0 0 part0
 
 
 /* Low level event handling module */
+
 if (is_xxx)
 else
 
