@@ -60,7 +60,7 @@ pyocd-flashtool
 pyocd: python open cmsis-dap
 
 
-The micro:bit uses the same USB VID/PID as the NXP LPC1768 - 0d28:0204  (我记得，LPC1768 显示应该是靠0204 对应的，不是直接的字符串)
+The micro:bit uses the same USB VID/PID as the NXP LPC1768 - 0d28:0204  (LPC1768 显示靠0204 对应，不是直接的字符串)
 
 
 github makerdiary/nrf52832-mdk  

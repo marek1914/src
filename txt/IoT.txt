@@ -202,6 +202,7 @@ IPEX 座
 
 买的绿色 LED ，2.4V已经很亮，万用表测电流还不到1mA
 ------------
+
 Japan Solderless Terminal
 http://www.jst.com/home23.html
 
@@ -215,12 +216,10 @@ board-to-board
 wire-to-board
 wire-to-wire
 
-top (vertical) or side (horizontal) entry, and through-hole or surface-mount.
-
 SFK connector is a wire-to-board connector for connecting power supply
 PHR-4 壳 1000个 5分
-S4B-PH-SM4-TB (side) 座子
-B4B-PH-SM4-TB (top)  1-1.5元
+S4B-PH-SM4-TB (side)
+B4B-PH-SM4-TB (top)
 SPH-002T-P0.5S / SPH-002T-P0.5L /SPH-004T-P0.5S(线更细)  整盘8000个 3分
 
 04KR-D8M-P / 04KR-D6S-P 割开绝缘层的壳
@@ -231,8 +230,6 @@ ssh-003t-p0.2  金属片
 sach-003g-p0.2  金属片 w to w
 sphd-002t-p0.5
 
-molex:
-shr-04v-s-b 0.073
 
 配套： 
 BM04B-SRSS-TB 
@@ -252,28 +249,14 @@ https://www.tweaking4all.com/hardware/arduino/arduino-ws2812-led/
 https://www.adafruit.com/category/168
 
 ---
-BBC Micro:bit 电源插头 S2B-PH-SM4-TB(LF)(SN) -  Wire-To-Board Connector, Right Angle
-官网放出的sch和pcb，不是发售的，而是另一版本
-nxp 单片机
-
----
 物联网通讯协议：
 openthread
-
 
 
 
 百度手环 nRF51822 + LIS3DH
 
 内部RC振荡器的误差是2%（30分钟/天），即使校正后只能达到250ppm（22秒/天）；外部晶振，一般能达到40ppm（3秒/天），误差非常小；
-
-
-
-
-
-
-
-
 
 
 -----

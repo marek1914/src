@@ -1,3 +1,6 @@
+nrf51822-qfax  每个型号都单独原理图？ 难道除了 flash和ram容量不同，其他还有不同？
+
+
 轨迹跟踪板： nRF52832
 
 nRFgo Studio，SEGGER J-Link, 2012-OB V7.00版实测可用
@@ -10,7 +13,10 @@ ST-Link
 
 nRF52832-MDK
 
-nRF51: M0 16MHz
+nRF51: M0 16MHz  256/128k + 32/16k  16MHz 是外部晶体， 主频多高手册竟然没说
+n51822-qfaa 256+16
+n51822-qfac 256+32
+
 nRF52: M4 64MHz 512k+64k
 
 nRF24
@@ -30,3 +36,16 @@ nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf
 
 sdk 组织的还是比较乱的，没有stm32 的cube好
 
+
+Micro:bit:  N51822-QFAA(rmb: 6.5)  256k+16k
+
+nrf51 配了16MHz 晶体
+ 电源插头 S2B-PH-SM4-TB(LF)(SN) -  Wire-To-Board Connector, Right Angle
+官网放出的sch和pcb，不是发售的，而是另一版本
+
+nxp单片机
+MKL26Z128VFM4 :Kinetis KL26: 48MHz M0 128K+16K QFN32  RMB 30+
+
+
+
+https://www.techwillsaveus.com/shop/mover-kit/
