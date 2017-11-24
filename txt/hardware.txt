@@ -10,15 +10,24 @@ Sn63Pb37 被称为共晶焊锡，熔点183
 那种双面胶，在拆 nec pad的时候，还有 waveshare lcd时，粘玻璃
 
 
-LED灯电源不带负载的时候，竟然烧毁了，绝对没有短路，
-第一次接了dc-dc板，跳闸了，第二次想用示波器量一量，直接烧毁了，奇怪，这种led电源比较特殊
+20160607:
+如果串联多个led,还剩0.5V，需要20mA，则需要算出一个电阻，
+可是这样需要特别精确，就好比我用1：100杠杆精确控制位置会很难，
+假设 10个LED串联一起，加7V电压，不限流可以吗？
 
-60颗led，12个串联x5组，40V的时候，电流达到190mA，再加电压就加不上去了，会维持在40V，拔掉led，就会到42V，怎么理解？
-电流好像也上不去了， 电压上不去可以理解，电流怎么也上不去了呢？  上去也会烧掉吧
+NATSEN(耐特森) 
+LED灯电源恒流不恒压
+
+60颗led，12个串联x5组，40V时电流190mA，再加电压就加不上去，维持在40V，拔掉led，就会到42V，怎么理解？
+电流好像也上不去了， 电压上不去可以理解，电流怎么也上不去了呢？不敢再加电压了 
+
+第一次测试，无负载 输出42V+ 但不稳定，接上LED灯，稳定42V
+隔几天后
+第一次测试，接了DC-DC板，跳闸了
+第二次测试，想用示波器看看电压，结果探头一碰，直接烧毁了，绝没有短路
 
 20171112 信号源接2200uF电容，2Hz的时候，幅值明显变小，100Hz 已经基本看不到，基本是直的了
 dc-dc 出来的信号是幅值非常大的波形，
-是恒流不恒压电源
 
 其实应该也是有正弦波的，只是频率越高越微小
 如果在2V上下正弦波，加入电容后，会固定在2V
@@ -34,6 +43,8 @@ BJT视频
 https://www.youtube.com/watch?v=jVyyHfsAfyA
 
 http://www.oldfriend.url.tw/  好资料 有关于特性阻抗的
+
+
 
 pads viewer: 官方免费
 
@@ -133,10 +144,6 @@ LCR表， DCR是直流电阻，Z是阻抗，电感就是2PifL，那R是啥？
 
 上拉电阻从外部看，引脚处电流很小，电阻压差很小，所以引脚处仍然为高电平。
 
-20160607:
-如果串联多个led,还剩0.5V，需要20mA，则需要算出一个电阻，
-可是这样需要特别精确，就好比我用1：100杠杆精确控制位置会很难，
-假设 10个LED串联一起，加7V电压，不限流可以吗？
 
 1N4007，正向电压1V，但是电压比较低的时候，从0.4V 到0.5，0.7
 
@@ -190,18 +197,12 @@ BAT54C:  肖特基双二极管，IR一分为2到CPU和MCU
 MAX3420 / FT121  SPI slave 转USB Device
 2N2222: 低功耗放大或开关 NPN
 2N2907: 与2N2222互补的PNP
-asm1117:  800mA Low dropout voltage regulator
-          可调或固定电压：1.5V 1.8V 2.5V 2.85V 3.3V 5.0V 最小压差1V
-RT9193: 300mA Ultra-low noise ultra-fast cmos ldo regulator
-          最小压差 220mV RechTEK 台湾立锜
 TPS61090: 2A Switch, 96% Efficient Boost Converter
-662K:  5V-3.3V  串口小板用
 B1182: 功率三极管  PNP silicon transistor
 SMD4P322: 53.2x2.5 4脚晶体 
 sy8113b: dc-dc
-AO4803A:  USB电源MOS管关闭, Dual P-Channel Enhancement Mode Field Effect Transistor
+AO4803A: USB电源MOS管关闭, Dual P-Channel Enhancement Mode Field Effect Transistor
 pj-322: 4段音频母头
-rt9193: ldo 源地小板用
 
 锂电池充电管理：
 Microchip MCP73xxx:
@@ -223,6 +224,14 @@ li-ion 锂离子充电电压 4.2V
 2.1V-3V，涓流充电 200~500mA
 3V-4.35V 恒流充电，最大充电电流0.7A
 4.35V    恒压充电，截止电流150~200mA
+
+-----------
+LDO(low-dropout 低压差) voltage regulator
+
+LG33: MPU6500小板用
+662K: 串口小板用
+RT9193:  300mA 最小压差 220mV 立锜 RechTEK  源地小板用
+asm1117: 800mA 最小压差 1V
 
 ------------------------
 MP45DT02: st 全向麦克风
@@ -249,11 +258,7 @@ BMX055: 9轴传感器  qiyi VR
 LIS302DL: 3轴加速度 accelerometer ，F407-Disco
 LSM6DSL: ST 6轴臂环小板
 
-另外2个颜色线 可以黄绿 或者 黄白
 
-LG33: 5pin 3.3V ldo（mpu6500小板使用）
-
-NATSEN(耐特森) 输出42V+ 且不稳定，接上LED灯，稳定42V
 
 FSR 400 压力传感器  
 

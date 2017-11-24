@@ -91,7 +91,6 @@ supply chain 供应链
 due time 到期时间
 
 Inertial loads(惯性载荷)
-low-dropout (LDO) linear voltage regulator 低压差
 
 discharge stray capacitance  放电电容
 

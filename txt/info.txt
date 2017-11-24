@@ -35,6 +35,13 @@ TODO:
 2 BBB and Pi，不要在其他平台上浪费时间
 3 编辑器只用vi和gedit，前者写代码后者作为补充
 
+
+实践位置：
+python 靠 microbit  micropython raspberry pi
+c++ 靠 gnu radio，opencv  arduino  adafruit
+
+
+
 micrphone array：
 https://www.nt.tuwien.ac.at/staff-pages/gerhard-doblinger-noise-reduction-microphone-array/
 

@@ -1,6 +1,7 @@
 i.MX 应用处理器
 
-i.MX7: 800MHz A7+ 200MHz M4  有啥用？
-
+i.MX RT: Cortex-M7
+i.MX6: Cortex-A9, Cortex-A9+Cortex-M4, Cortex-A7
+i.MX7: Cortex-A7 + Cortex-M4(800MHz + 200MHz)
 
 Kinetis:
