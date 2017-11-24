@@ -1,4 +1,4 @@
-nrf51822-qfax  每个型号都单独原理图？ 难道除了 flash和ram容量不同，其他还有不同？
+nrf51822-qfax  每个型号都单独原理图, 对比后原理图完全一致，分开真是有病 
 
 http://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF51822
 

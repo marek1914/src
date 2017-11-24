@@ -2,11 +2,12 @@
 
 ntu.edu.sg/home/ehchua/programming/howto/Regexe.html
 
+
 w+ 匹配word即 0-9a-zA-Z_,不包含标点符号 
 
  . * ^ $ x|y [xyz] [^xyz] [a-z] [^a-z]
 
- grep -v '^$' foo.txt > bar.txt //去除空行
+grep -v '^$' foo.txt > bar.txt //去除空行
 
 -n 用于测试
 
@@ -29,13 +30,12 @@ rename 's/^/foo/' *   #首部追加foo
 
 
 sed 's/^\(.*\)-\([^-]*-[^-]*\)$/\2/'
-
 sed 's/^(.*)-([^-]*-[^-]*)$/\2/'
 
 grep 'abc\|123'   #或操作 |转义 or -E
 grep "abc" |grep "123" # 与操作
 
-#替换最后一个出现的字符  贪婪匹配 ，好思路
+#替换最后一个出现的字符,贪婪匹配
 sed 's/\(.*\)1\(.*\)/\1a\2/'
 
 sed 's/^/-I/'  #开头追加 -I

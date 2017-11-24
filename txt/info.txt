@@ -9,6 +9,8 @@
 
 生物电 电极片
 
+新加坡南洋理工大学
+ntu.edu.sg/home/ehchua/programming/#Cpp
 
 photon 资源，硬件文件  eagle pcb 软件
 https://github.com/spark/photon

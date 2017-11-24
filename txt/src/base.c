@@ -358,7 +358,7 @@ sizeof(3.14f)=4 //f or F :float
 
 // uint8_t / uint16_t / uint32_t / uint64_t
 //posix标准，c99引入
-//linaro:libc/usr/include/stdint.h
+// usr/include/stdint.h
 typedef signed char    int8_t;
 typedef unsigned int   uint32_t;
 
@@ -933,20 +933,6 @@ sockfd 只能是 SOCK_STREAM 或 SOCK_SEQPACKET类型
 
 accept :accept a connection on a socket(服务端，用于SOCK_STREAM)，参数addr保存客户端的，它创建一个新的socket
 
-OMX_IndexParamVideoProfileLevelQuerySupported 检索：
-
-do{
-	eRet = OMX_GetParameter(Handle,OMX_Index,&profileLevel);
-	profileLevel.nProfileIndex++;
-}while(eRet!=OMX_ErrorNoMore);
-
-得到：
-**eLevel = 1,eLevel.eProfile = 1 
-**eLevel = 2,eLevel.eProfile = 1 
-**eLevel = 4,eLevel.eProfile = 1 
-**eLevel = 8,eLevel.eProfile = 1 
-
-
 do_gettimeofday
 
 char* fb_mem;
@@ -955,29 +941,6 @@ fb_mem = mmap(NULL, 1024*768, PROT_READ|PROT_WRITE,MAP_SHARED,fb,0);
 
 waiting ? 1 : 0;
 
-
-
-switch (c) {
-	case 0x000fac01:
-		return "WEP40 (00-0f-ac:1)";
-	case 0x000fac05:
-		return "WEP104 (00-0f-ac:5)";
-	case 0x000fac02:
-		return "TKIP (00-0f-ac:2)";
-	case 0x000fac04:
-		return "CCMP (00-0f-ac:4)";
-	case 0x000fac06:
-		return "CMAC (00-0f-ac:6)";
-	case 0x000fac08:
-		return "GCMP (00-0f-ac:8)";
-	case 0x00147201:
-		return "WPI-SMS4 (00-14-72:1)";
-	default:
-		sprintf(buf, "%.2x-%.2x-%.2x:%d",
-		c >> 24, (c >> 16) & 0xff,
-		(c >> 8) & 0xff, c & 0xff);
-return buf;
-} 
 
 printf:
 stdarg.h (man stdarg)
