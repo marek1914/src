@@ -45,6 +45,7 @@ https://www.amobbs.com/thread-4288855-1-1.html?_dsign=dac01d7b
 PT8211/TM8211
 
 
-pwm d/a有必要放44.1k 16-bit立体声wave么？
-44.1k 8-bit 偶已经实现了，音质已经非常可以了
+pwm DAC 好像只能实现到8bit
+
+从垃圾堆里 拆出了  CE2752  和  CS4354  还都是 SOP 大封装，，，， 可以实验了
 
