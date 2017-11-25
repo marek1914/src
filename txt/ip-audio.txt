@@ -1,0 +1,31 @@
+W5500 RBM:10
+
+F401+W5500+i2s音频芯片
+
+nanopi 卖59， Cortex-A7 + DDR 能这么便宜?
+
+ISSI SRAM 分同步和异步
+
+STM429开发板 IS42S16400 是同步型
+
+SPI SRAM 虽然简洁，但没合适芯片:
+Microchip 23LC1024 128K byte 容量小又贵 10+ ，有个arduino shield 用4片组成512k
+cypress CY15B104Q 4MBit 是 F-RAM(铁电随机存储器) 不是 sram
+IPS3204JSQ 4MBit 淘宝没有卖, 偏门
+
+
+F103 能软解 g723/9 或mp3吗？
+看一片网文，F103 也能解mp3，那更能解 G723了
+
+
+F103RC(11+)/F401RC(17+) + W5500 + IS62WV5128BLL
+
+音频DAC：
+pwm模拟？
+
+cirrus logic:
+
+cs4344  mclk问题
+wm8978  
+
+F407-Disc  用的 CS43L22

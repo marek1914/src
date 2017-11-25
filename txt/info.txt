@@ -41,6 +41,7 @@ python 靠 microbit  micropython raspberry pi
 c++ 靠 gnu radio，opencv  arduino  adafruit
 
 
+mouser.com  全球芯片分销商
 
 micrphone array：
 https://www.nt.tuwien.ac.at/staff-pages/gerhard-doblinger-noise-reduction-microphone-array/

@@ -320,3 +320,14 @@ microbit 的原理图不是最终板子的
 ECG/EKG shield produced by Olimex
 用 运算放大器，采集心脏，大脑 电波
 运算放大器，也需要找机会
+
+
+
+
+
+-----
+I2S(Inter—IC Sound):
+SDATA: 数据
+SCLK: 数据同步用时钟
+LRCLK: 左右声道切换时钟
+MCLK: 芯片工作的主时钟

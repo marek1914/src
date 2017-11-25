@@ -434,7 +434,7 @@ plot(x)
 hold on
 plot(z)
 
-白海涛发过来数据：
+数据：
 输入数据  0x7b06 0x8605 0x8804 0x4803 0xdd01  
 输出数据  0xc4   0xc7   0xcb   0xd1   0xdc 
 初次验证不正确，不知道是怎么打印的，xuss发现数据反过来就ok了：
@@ -442,7 +442,7 @@ octave:dec2hex(lin2mu(0x067b))
 octave:ans = C4
 
 ===g729===
-ITU-T定义
+ITU-T
 
 G.723.1 (ffmpeg能 encoder):
 30 ms frames
@@ -457,7 +457,7 @@ There are two bit rates at which G.723.1 can operate:
 
 
 G729
-frame 10ms(80个采样数据)，点到点时延25ms，8KHz(只能采4k 人声) 采样 16bit，压缩后速率8Kbps
+frame 10ms(80个采样数据)，点到点时延25ms，8KHz 16bit采样，压缩后速率8Kbps
 压缩率: 16bit*8k/8K = 16:1
 
 

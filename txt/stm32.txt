@@ -1,25 +1,50 @@
 STM32F300W (顾为目标)
 
+http://www.codeforge.com/s/0/Mp3-decoding-on-STM32f103--C
+
+Cortex-M3 包含 F1 F2 L3 ,3个系列
+F2系列都是 120MHz
+F1系列典型 72MHz
+
+
 QFN48 7x7mm:(F4系列 QFP最少64pin)
 84MHz:
-STM32F401CBu6  128+64
-STM32F401CCu6  256+64
-STM32F401CDu6  384+96
-STM32F401CEu6  512+96
+F401CBu6  128+64
+F401CCu6  256+64
+F401CDu6  384+96
+F401CEu6  512+96
 100MHz:
-STM32F410C8u6  64+32
-STM32F410CBu6  128+32
+F410C8u6  64+32
+F410CBu6  128+32
 
 QFN32 5x5mm 的cortex-M4内核 80MHz，只有L4：
 80MHz:
-STM32L431KB 128+64  noUSB
-STM32L431KC 256+64  noUSB
-STM32L432KB 128+64  USB
-STM32L432KC 256+64  USB
+L431KB 128+64  noUSB
+L431KC 256+64  noUSB
+L432KB 128+64  USB
+L432KC 256+64  USB
+
+
+F410 是 F4 成本最低的，接口只有基本的uart spi等，无can，usb   64/128+32
+F3系列 主频都是 72MHz, ram最大80k
+
+F401 QFP64  84MHz
+F401RB 128+64
+F401RC 256+64
+F401RD 384+96 
+F401RE 512+96 (F401RE-NUCLEO)  捷利源 报价 17.5
+
+F103 72MHz  F103C 系列 最高20k ram
+F103R 系列 QFP64:
+F103RB 128+20
+F103RC 256+48(QFP64,  WLCSP64封装的是64k)
+F103RD 384+64
+F103RE 512+64
+F103RF 768+96
 
 
 
-Memory mapping:
+Memory mapping
 8 Block x 512M : 
 
 0x00-0x1F 0x20-0x3F 0x40-0x5F 0x60-0x7F
@@ -172,8 +197,7 @@ USBD_CDC_SetRxBuffer()  //参数无 Len why?
 APP_RX_DATA_SIZE  要根据实际情况确定大小，暂时确定为32字节吧，一个AT命令够用了
 现在看，超出可能会导致死机，此时可以控制包大小，现在是64字节，如果设置包大小为16字节，则发送32字节需要2次，
 中间有超时时间控制，
-echo hello world > /dev/ttyACM0  会发现没有收完的话，会卡住，ok 到此，都通了
-把环境迁移到 mac电脑，剩下的回家去调试
+echo hello world > /dev/ttyACM0  会发现没有收完的话，会卡住
 
 CDC_Transmit_FS("Hello World CDC\r\n", 16);
 
@@ -393,3 +417,13 @@ I./ext/lib/crypto/tinycrypt/include/tinycrypt
 1 w550
 2 f103 + ENC28J60(MAC+PHY) spi接口
 3 f407内部MAC + LAN8720(PHY) 
+
+
+
+
+------dsp-----
+biquad filter
+
+DSP_Lib/Source/CommonTables/arm_const_structs.c:
+定义了
+const arm_cfft_instance_f32 arm_cfft_sR_f32_len1024
