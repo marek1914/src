@@ -9,6 +9,10 @@
 
 生物电 电极片
 
+干了我想干的事情
+http://wiki.friendlyarm.com/wiki/index.php/BakeBit_-_Sound_Sensor/zh
+http://wiki.friendlyarm.com/wiki/index.php/NanoPi_NEO/zh
+
 新加坡南洋理工大学
 ntu.edu.sg/home/ehchua/programming/#Cpp
 

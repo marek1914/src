@@ -427,3 +427,8 @@ biquad filter
 DSP_Lib/Source/CommonTables/arm_const_structs.c:
 定义了
 const arm_cfft_instance_f32 arm_cfft_sR_f32_len1024
+
+
+=====i2s====
+3 SPI (2 with I2S capability)
+

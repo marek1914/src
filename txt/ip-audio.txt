@@ -18,7 +18,8 @@ F103 能软解 g723/9 或mp3吗？
 看一片网文，F103 也能解mp3，那更能解 G723了
 
 
-F103RC(11+)/F401RC(17+) + W5500 + IS62WV5128BLL
+F103RC(11+)/F401RC(17+) + W5500 + IS62WV5128BLL + cs4344
+
 
 音频DAC：
 pwm模拟？
@@ -29,3 +30,21 @@ cs4344  mclk问题
 wm8978  
 
 F407-Disc  用的 CS43L22
+
+st官方文档，f103 推荐的是 AK4343 都是有I2c 配置接口的，
+用cs4344 这种简单的行吗？
+
+没明白 cs4344 和 cs43l22 有啥本质区别，为啥参考设计要用后者
+引脚那么多，没必要吧
+
+用cs4344 实现了mp3播放
+http://www.stmcu.org/module/forum/thread-599855-1-1.html
+http://www.openedv.com/posts/list/5143.htm
+https://www.amobbs.com/thread-4288855-1-1.html?_dsign=dac01d7b
+
+PT8211/TM8211
+
+
+pwm d/a有必要放44.1k 16-bit立体声wave么？
+44.1k 8-bit 偶已经实现了，音质已经非常可以了
+
