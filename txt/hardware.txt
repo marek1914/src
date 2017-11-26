@@ -38,23 +38,15 @@ dc-dc 出来的信号是幅值非常大的波形，
 
 如果是nF级别，要到10MHz的级别，才能有明显幅值减小的现象，那么如何定量分析呢？
 
-
 BJT视频
 https://www.youtube.com/watch?v=jVyyHfsAfyA
 
 http://www.oldfriend.url.tw/  好资料 有关于特性阻抗的
 
-
-
-pads viewer: 官方免费
-
-Cadence收购OrCAD,PSpice
-
+----------------------
 MPLAB Mindi: Microchip's free software for Analog Simulator
 
-http://www.accelerated-designs.com
-Ultra Librarian FREE Reader 
-Convert BXL files into your preferred CAD format
+Cadence收购OrCAD,PSpice
 
 OrCAD PSpice Designer 包括: Capture/CIS, PSpice A/D&AA
 官网Lite版有设计大小和复杂度限制
@@ -303,26 +295,16 @@ Dual Series Switching Diode
 B380-13-F 80V, 3A Diodes Inc.
 B390 90V, 3A Diodes Inc.
 
-
 qiyi 风扇  fan
 
 电源5V   棕色为pwm 25KHz， 黄色回馈信号， 30Hz  100Hz  不等
 
 5mm高 2x4 2.54间距排母
 
-
-
-microbit 的原理图不是最终板子的
-黄色灯既是电源， 串口通讯的时候也闪烁，简简单单一个灯，值得借鉴
-
-
 ----
 ECG/EKG shield produced by Olimex
 用 运算放大器，采集心脏，大脑 电波
 运算放大器，也需要找机会
-
-
-
 
 
 -----

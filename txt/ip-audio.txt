@@ -4,40 +4,54 @@ F401+W5500+i2s音频芯片
 
 nanopi 卖59， Cortex-A7 + DDR 能这么便宜?
 
-ISSI SRAM 分同步和异步
+SRAM 分同步和异步
 
-STM429开发板 IS42S16400 是同步型
+STM429开发板 ISSI IS42S16400 是同步型
 
-SPI SRAM 虽然简洁，但没合适芯片:
-Microchip 23LC1024 128K byte 容量小又贵 10+ ，有个arduino shield 用4片组成512k
-cypress CY15B104Q 4MBit 是 F-RAM(铁电随机存储器) 不是 sram
-IPS3204JSQ 4MBit 淘宝没有卖, 偏门
+SPI SRAM 最完美，但没合适芯片:
+Microchip 23LC1024 128K byte 容量小 10+，有arduino shield 用4片组成512k
+ISSI IS62WVS5128   5128前面的S 代表serial 即spi 淘宝没有买的
+cypress CY15B104Q 4MBit F-RAM(铁电随机存储器) 不是 sram
+IPS3204JSQ 4MBit 淘宝没有卖
 
 
 F103 能软解 g723/9 或mp3吗？
 看一片网文，F103 也能解mp3，那更能解 G723了
 
 
-F103RC(11+)/F401RC(17+) + W5500 + IS62WV5128BLL + cs4344
+40pin 的 IO 肯定不够！
+F103RC(256+48) 降成本可被选
 
+总硬件成本 30元 (以后进一步降低到 25 元)
+F401RC(256+64 RMB:9.0)/F401RB(128+64) 
+W5500(RMB:10) + IS62WV5128BLL-55HLI (RMB:6+) + cs4344 + SGM8904
 
-音频DAC：
-pwm模拟？
+256kByte 应该也够用， 只是用来缓冲ip包，能缓冲10s，
+192kbps 的 mp3 流 能缓冲10s   g723/9 码率更低，更够用
 
-cirrus logic:
+最后如果可能，是否 F401RE 96k内存 也够呢？ 96可能还真不够， 和300k比差3倍呢！
 
-cs4344  mclk问题
-wm8978  
+256Kx8 有啥区别
+IS62WV2568ALL/BLL
+IS62WV2568EALL/EBLL
+IS62WV2568FALL/FBLL
+
+IS62WV2568BLL  RMB:7+
+
+同样是 -2568或 -5128 官网有很多类型: High Speed, PowerSaver  还分 62/65 不知道哪个最便宜
+
+5128BLL 还分多种封装
+-55T2LI 1.27间距，20x11 mm 太大了
+-55HLI  0.5间距  13x8mm   应该要这个！！！ 
+-55TLI  0.5间距  20x8mm 
 
 F407-Disc  用的 CS43L22
 
-st官方文档，f103 推荐的是 AK4343 都是有I2c 配置接口的，
-用cs4344 这种简单的行吗？
+st官方f103 用的 AK4343 有I2c 配置接口
+cs4344 和 cs43l22 有啥区别，为啥参考设计用后者
 
-没明白 cs4344 和 cs43l22 有啥本质区别，为啥参考设计要用后者
-引脚那么多，没必要吧
 
-用cs4344 实现了mp3播放
+用cs4344 实现mp3播放
 http://www.stmcu.org/module/forum/thread-599855-1-1.html
 http://www.openedv.com/posts/list/5143.htm
 https://www.amobbs.com/thread-4288855-1-1.html?_dsign=dac01d7b
@@ -49,3 +63,19 @@ pwm DAC 好像只能实现到8bit
 
 从垃圾堆里 拆出了  CE2752  和  CS4354  还都是 SOP 大封装，，，， 可以实验了
 
+------ 20171126 ------
+其实是没啥劲的工作，只是无所事事而已
+
+
+
+
+
+----- SPI ----
+NSS 是片选
+
+
+---- I2S ----
+为啥会有 时钟误差呢？  cube -> configuration 选项卡 点击 I2S 会看到各种频率下的误差
+
+F401RC 有专门的 i2s clk 输入引脚，能产生比较精确的
+F103RC 没有这个引脚

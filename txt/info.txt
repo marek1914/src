@@ -1,4 +1,4 @@
-李登彪 陈烨 高伟
+李登彪 陈烨 高伟 ...
 葛德亮 卢大成 杨宝慧
 王亮 高志祥 李志深
 顾文彪 赵毅辉
@@ -8,6 +8,9 @@
 实际上，除了简单问题复杂化的个别情况，简单的代码不可能解决复杂问题，所以要习惯复杂代码
 
 生物电 电极片
+
+
+microbit 黄色灯既是电源， 串口通讯的时候也闪烁，简简单单一个灯，值得借鉴
 
 干了我想干的事情
 http://wiki.friendlyarm.com/wiki/index.php/BakeBit_-_Sound_Sensor/zh
@@ -34,15 +37,9 @@ TODO:
 实事上，做复杂的事情，就需要厚重的方案，原来不是一直感慨中国建筑看着没有美国大片里面 一坨的建筑威武吗？
 
 
-
 1 别把时间浪费在无谓的事上
 2 BBB and Pi，不要在其他平台上浪费时间
 3 编辑器只用vi和gedit，前者写代码后者作为补充
-
-
-实践位置：
-python 靠 microbit  micropython raspberry pi
-c++ 靠 gnu radio，opencv  arduino  adafruit
 
 
 mouser.com  全球芯片分销商

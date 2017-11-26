@@ -6,8 +6,15 @@ Cortex-M3 包含 F1 F2 L3 ,3个系列
 F2系列都是 120MHz
 F1系列典型 72MHz
 
+F4 Line:
+F401
+F405/415
+F407/417
+F410
+F427/437
+F429/439
 
-QFN48 7x7mm:(F4系列 QFP最少64pin)
+QFN48(F401 48pin的只有QFN) 7x7mm:(F4系列 QFP最少64pin)
 84MHz:
 F401CBu6  128+64
 F401CCu6  256+64
@@ -32,7 +39,11 @@ F401 QFP64  84MHz
 F401RB 128+64
 F401RC 256+64
 F401RD 384+96 
-F401RE 512+96 (F401RE-NUCLEO)  捷利源 报价 17.5
+F401RE 512+96 (NUCLEO) 17+
+
+.bxl文件 F401RB/C  F401RD/E 是不同的文件，原理图不同？  封装肯定一样的，难道 C和D 不能pin对pin兼容？好在 B 和C 可以
+F401RB/C : STM32F4xxR2
+F401RD/E : STM32F4x1R1
 
 F103 72MHz  F103C 系列 最高20k ram
 F103R 系列 QFP64:
@@ -92,6 +103,7 @@ F429用的LCD:
 M0/M0+/M3/M4/M7
 F030F4P6   M0 16K+4K Value-line  2块
 
+-------------------------------------
 NUCLEO-F401RE:
 OFF:
 SB 4/6/8/10/11/18/20/24/29/30/32/36/39/44/46/47/48/49/52/55/59/61/62/63
@@ -104,6 +116,11 @@ F401的PA2/3连到F103的PA2/3 UART2
 F401 PWM:
 PA0 可以是TIM2_CH1/TIM5_CH1
 PA5 只能是TIM2_CH1，即选中TIM5_CH1时，TIM2_CH1 只能在PA5
+
+外部晶体没有焊接，使用的内部晶振
+
+-------------------------------------
+
 
 F407G-Disc1:
 LD3 : PD13
@@ -163,10 +180,10 @@ Emulation of a Virtual COM-port using the ACM (Abstract Control Model) subclass 
 USBD_VCP  USB Device VCP example
 
 -----
-cubemx中设置外部时钟：
+cubemx 设置外部时钟：
 RCC: Reset and clock control
  
-bypass clock source (指的是 使用有源晶体)
+bypass clock source (有源晶体)
 crystal/ceramic resonator (无源晶体)
 
 识别出来是：
@@ -266,10 +283,8 @@ USBD_CDC_DataIn (这个函数基本啥也没干)
 现在：怎么获取收到的数据呢?
 
 
-keil4.7 编译器对局部变量做了优化，debug看不到局部变量的值，调试的时候，把O2改为O0
+keil debug O2改为O0 否则优化影响查看局部变量
 
-
-使用了外部晶体，SOC_IN/OUT 是PD0/1， 代码中 __HAL_RCC_GPIOD_CLK_ENABLE(); （不加这个晶体会不工作吗？需验证）
 
 Nucleo-F401 ST-Link使用：
 拔掉晶体旁边的2个跳线，CN4 3:GND，2:SWCLK, 4:SWDIO
@@ -302,7 +317,7 @@ http://www.vcc-gnd.com/gongjuyuruanjian/ide/
 STSW-STM32068: STM32F4DISCOVERY board firmware package, including 22 examples
 已经集成到cube中
 
-mdk下载的 STM32F4xx_DFP 1.5G 跟 STM32F4Cube，内容相似但结构调整过，不一样，基本上就是Cube
+mdk下载的 STM32F4xx_DFP 1.5G 跟 STM32F4Cube，内容相似但结构调整过
 
 
 
@@ -432,3 +447,22 @@ const arm_cfft_instance_f32 arm_cfft_sR_f32_len1024
 =====i2s====
 3 SPI (2 with I2S capability)
 
+
+
+
+
+==== cubemx ====
+是 java 版，所以兼容3个平台
+默认安装在 /usr/local/STMicro...，改到 ~/.STM32CubeMX, 本目录的 Uninstaller 用于卸载
+运行 java -jar STM32CubeMX
+卸载 java -jar <path>/Uninstaller/uninstaller.jar
+
+
+F401RC 有libjpeg
+F103RC 没有
+
+
+
+----- SYSCLK ----
+在做 uswitch项目的时候，cubemx 选择了usb后，默认将系统clk设置为 48MHz，那么最后
+平台应该就运行在了48MHz，其实可以配置为72M，再分频1.5倍，得到48

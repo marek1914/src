@@ -1,3 +1,10 @@
+pads viewer: 官方免费
+
+accelerated-designs.com
+提供各种封装和 STEP 3D模型
+Ultra Librarian FREE Reader 
+Convert BXL files into your preferred CAD format
+
 使用：
 edit-> past special   可粘贴阵列
 任意角度: shift+space
@@ -31,9 +38,7 @@ export-protelpcb.ulp
 
 photon: 最小线宽 6mil，最小间距 6mil 最小孔径 12mil
 
-
 TP 测试点。 做个封装出来
-
 
 shift+e 捕捉焊盘焦点
 1:1 打印： 打印预览/page setup/ scaled print:scale = 1/x=1 y=1 
@@ -47,11 +52,6 @@ size(mm):
 1210: 3.2x2.5
 
 QFN 封装，引脚都要比芯片大一点点，全压在下面可能造成虚焊
-
-microbit 的nrf52，引脚比芯片长处0.4mm
-
-
-
 
 SOT23
 
@@ -94,4 +94,6 @@ Mask Layers:  Top Paste/Bottom Paste/Top Solder/Bottom Solder
 Other Layers: Drill Guide/ Keep-Out Layer /Drill Drawing/Multi-Layer
 Silkscreen Layers: Top Overlay/Bottom Overlay
 
-
+做器件原理图库时，没法批量编辑引脚，应该是AD10的bug
+可以用 SCHLIB List 左上角选 Edit， 选中一列，可以批量修改引脚长度等
+但是 引脚属性 从 IO 修改为 passive 只能一个一个的
