@@ -94,6 +94,6 @@ Mask Layers:  Top Paste/Bottom Paste/Top Solder/Bottom Solder
 Other Layers: Drill Guide/ Keep-Out Layer /Drill Drawing/Multi-Layer
 Silkscreen Layers: Top Overlay/Bottom Overlay
 
-做器件原理图库时，没法批量编辑引脚，应该是AD10的bug
-可以用 SCHLIB List 左上角选 Edit， 选中一列，可以批量修改引脚长度等
-但是 引脚属性 从 IO 修改为 passive 只能一个一个的
+schlib 无法通过 "find similar objects" 批量编辑引脚(AD破解版的bug?)
+可以用SCHLIB List 选 Edit，选中响应列，引脚长度输入20回车，引脚属性输入Passive回车
+
