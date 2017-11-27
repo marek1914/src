@@ -1,20 +1,8 @@
-/*
-* Copyright (c) 2010 by WIZnet <support@wiznet.co.kr>
- *
- * This file is free software; you can redistribute it and/or modify
- * it under the terms of either the GNU General Public License version 2
- * or the GNU Lesser General Public License version 2.1, both as
- * published by the Free Software Foundation.
- *
- * - 10 Apr. 2015
- * Added support for Arduino Ethernet Shield 2
- * by Arduino.org team
- */
-
 #ifndef	W5500_H_INCLUDED
 #define	W5500_H_INCLUDED
 
 #define MAX_SOCK_NUM 8
+
 #include <Arduino.h>
 #include <SPI.h>
 
@@ -133,19 +121,13 @@ public:
   void init(uint8_t ss_pin = 10);
   uint8_t readVersion(void);
 
-  /**
-   * @brief	This function is being used for copy the data form Receive buffer of the chip to application buffer.
-   * 
-   * It calculate the actual physical address where one has to read
-   * the data from Receive buffer. Here also take care of the condition while it exceed
-   * the Rx memory uper-bound of socket.
-   */
+  /* Read  data form Receive buffer */
   void read_data(SOCKET s, volatile uint16_t  src, volatile uint8_t * dst, uint16_t len);
   
   /**
-   * @brief	 This function is being called by send() and sendto() function also. 
+   * is being called by send() and sendto() function also. 
    * 
-   * This function read the Tx write pointer register and after copy the data in buffer update the Tx write pointer
+   * read Tx write pointer register and after copy the data in buffer update the Tx write pointer
    * register. User should read upper byte first and lower byte later to get proper value.
    */
   void send_data_processing(SOCKET s, const uint8_t *data, uint16_t len);
@@ -159,13 +141,10 @@ public:
    *        in from TX_WR
    * @return New value for ptr, to be used in the next call
    */
-  // FIXME Update documentation
   void send_data_processing_offset(SOCKET s, uint16_t data_offset, const uint8_t *data, uint16_t len);
 
   /**
-   * @brief	This function is being called by recv() also.
-   * 
-   * This function read the Rx read pointer register
+   * read Rx read pointer register
    * and after copy the data from receive buffer update the Rx write pointer register.
    * User should read upper byte first and lower byte later to get proper value.
    */
@@ -198,7 +177,6 @@ public:
   
 
   // W5500 Registers
-  // ---------------
 private:
   static uint8_t  write(uint16_t _addr, uint8_t _cb, uint8_t _data);
   static uint16_t write(uint16_t _addr, uint8_t _cb, const uint8_t *buf, uint16_t len);
@@ -250,7 +228,6 @@ public:
 #undef __GP_REGISTER_N
 
   // W5500 Socket registers
-  // ----------------------
 private:
   static inline uint8_t readSn(SOCKET _s, uint16_t _addr);
   static inline uint8_t writeSn(SOCKET _s, uint16_t _addr, uint8_t _data);

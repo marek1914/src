@@ -91,3 +91,10 @@ F103RC 没有这个引脚
 
 github.com/adafruit/Ethernet2
 github.com/njh/EtherSia
+
+
+
+
+
+----软件----
+freertos  g723/g729  

@@ -1,16 +1,3 @@
-/*
- * Copyright (c) 2010 by WIZnet <support@wiznet.co.kr>
- *
- * This file is free software; you can redistribute it and/or modify
- * it under the terms of either the GNU General Public License version 2
- * or the GNU Lesser General Public License version 2.1, both as
- * published by the Free Software Foundation.
- *
- * - 10 Apr. 2015
- * Added support for Arduino Ethernet Shield 2
- * by Arduino.org team
- */
-
 #include <stdio.h>
 #include <string.h>
 #include "Arduino.h"
