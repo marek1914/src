@@ -80,3 +80,14 @@ NSS 是片选
 
 F401RC 有专门的 i2s clk 输入引脚，能产生比较精确的
 F103RC 没有这个引脚
+
+
+
+
+
+
+
+-----
+
+github.com/adafruit/Ethernet2
+github.com/njh/EtherSia

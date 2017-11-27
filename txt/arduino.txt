@@ -51,3 +51,9 @@ teensy3.2(120+): MK20DX256VLH7 (20+)  Kinetis K20 72MHz M4 288K+64K SRAM, 64-LQF
 teensy3.5(250+): MK64FX512VMD12(100+) bga
 teensy3.6(300+): MK66FX1M0VMD18(100+) bga
 
+
+
+
+
+C:\Program Files (x86)\Arduino\libraries  默认库
+C:\Users\gao\Documents\Arduino\libraries  安装库
