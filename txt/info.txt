@@ -13,6 +13,9 @@
 主控板以microbit为原型设计，图形化编程&代码软件。（周期长，难度较大）
 
 
+用issi的8bit内存 + stm32 做一个 spi接口的 用于arduino，  这比4片microchip spi的那个方案要好
+
+
 Scratch配合美国政府提出的STEAM教育理念
 
 邵子扬 余波  搞microbit 培训
