@@ -1,0 +1,20 @@
+MIT 和 Google 主导开发的针对 8-12 岁儿童的图形化编程语言
+
+github.com/raspberrypi/scratch  不知道怎么用。。。
+
+s4a.cat   scratch for arduino
+
+github.com/LLK
+
+llk.github.io/scratch-vm
+github.com/LLK/scratch-flash  项目编辑器
+scratchx.org
+
+apt-get install scratch
+安装了 squeak-vm
+
+
+debian 下载的源码：
+apt-get source scratch  但是这样下载下来的代码 不太对劲，只有几个源文件
+Project目录  是 scratch项目，特殊data格式
+local 目录 多语言支持

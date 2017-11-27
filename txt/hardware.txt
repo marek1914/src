@@ -2,10 +2,10 @@ stm32f100w
 删除所有无关内容，聚焦
 
 
-Pb 铅（拉丁Plumbum 英文lead）原子数82，有毒，重金属 熔点327度
+Pb 铅(Latin:Plumbum en:lead)原子数82 重金属 熔点327
 Sn 锡 熔点231
-Sn63Pb37 被称为共晶焊锡，熔点183
-无铅焊锡  锡银铜 Sn-Ag-Cu系列：Sn-3.5Ag-0.75Cu
+Sn63Pb37 共晶焊锡 熔点183
+无铅焊锡:锡银铜Sn-Ag-Cu
 
 那种双面胶，在拆 nec pad的时候，还有 waveshare lcd时，粘玻璃
 
@@ -137,20 +137,16 @@ LCR表， DCR是直流电阻，Z是阻抗，电感就是2PifL，那R是啥？
 上拉电阻从外部看，引脚处电流很小，电阻压差很小，所以引脚处仍然为高电平。
 
 
-1N4007，正向电压1V，但是电压比较低的时候，从0.4V 到0.5，0.7
 
-理想二极管：正向压降0，反向电流0，功耗0
-理想电容电感零功耗，只是储存释放能量
 
-F (farad)  F=Q/V 1F电容若电压以1V/s速度变化，产生1A电流
-mF μF nF pF
-2个大金属片中间隔一层纸，才100pF
+μ/n/pF (farad)  
+F=Q/V 1F电容若电压以1V/s速度变化，产生1A电流
 1pF 相当于 6.24146 x 10^6，即 624万个电子产生1V电势差
 1pF 用1uA电流充电1uS，电压达1V
 
 电子电量：−1.602×10−19 coulomb(1C 包含6.24146 x 10^18 电子)，移动速率10^-4m/s数量级
 
-铜：copper Cu(from Latin: cuprum)
+铜：copper Cu(Latin: cuprum)
 29质子+35中子，相对质量64，电子排列 2-8-18-1
 自由电子密度:(单位体积导体自由电子数量) 8.5×10^19/mm^3
 20摄氏度，电阻率0.0175欧姆平方毫米/米(电阻=电阻率x长度/截面积，直径0.2mmx1m=0.55欧)
@@ -184,6 +180,7 @@ Inductive reactance 感抗
 An ideal resistor has zero reactance
 ideal inductors and capacitors have zero resistance 
 
+1N4007 正向电压1V
 IP101GA: 10/100 phy
 BAT54C:  肖特基双二极管，IR一分为2到CPU和MCU
 MAX3420 / FT121  SPI slave 转USB Device
@@ -284,6 +281,8 @@ FSR 400 压力传感器
  
 运放典型应用:传感器+运放+ADC
 
+理想二极管正向压降0，反向电流0，功耗0
+理想电容电感零功耗，只是储存释放能量
 
 ------
 二极管：
