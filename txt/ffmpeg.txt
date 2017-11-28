@@ -263,7 +263,7 @@ ffplay /dev/video0  //default:yuyv422,640x480,147456kb/s (640x480x16x30=147456k)
 ffmpeg -i /dev/video0 -c:v h264 -f h264 udp://ip
 ffmpeg -f alsa -i hw:1 -f v4l2 -i /dev/video0 out.mpg
 
-ffplay udp://192.168.6.20:1000 //用udp从192.168.6.30推流到192.168.6.20
+ffplay udp://192.168.6.20:1000 
 ffplay 播放ts小片，提示 non-existing SPS 0 referenced in buffering period
 
 wav splite头可得pcm
@@ -364,9 +364,6 @@ setpts=N/(25*TB),split[1][2],alphamerge[3];[main][3]overlay=main_w-overlay_w-480
 添加logo
 ffplay /dev/video0 -vf 'movie=1.png[1];[in][1]overlay=main_w-overlay_w-100:0[out]'
 main_w-overlay_w-100:0:1或者main_w-overlay_w-100:0:0 是否透明
-
-合并
-ffmpeg -i /dev/video0 -c:v h264 -vf "movie=ts.mpg[logo];[in][logo]overlay=main_w-overlay_w-100:0[out]" -f mpegts udp://ip:8080
 
 ffmpeg -i xx.ts -map p:304 -c:v h264 -x264-params slices=5 x1.ts
 
@@ -782,22 +779,17 @@ ff_tcp_protocol
 ff_udp_protocol
 ff_http_protocol
 ff_https_protocol
-ff_ffrtmphttp_protocol
 ff_ftp_protocol
 ff_tls_protocol
-ff_concat_protocol
 ff_libsmbclient_protocol
 ff_srtp_protocol
-ff_mmsh_protocol
 ff_crypto_protocol
-ff_subfile_protocol
 ff_file_protocol (local file)
 ff_pipe_protocol（管道输出作为数据来源）
 ff_hls_protocol（协议方式处理的hls）
-ff_icecast_protocol
 ff_cache_protocol
 
-AVInputFormat ff_rtp_demuxer    rtp 当成muxer而不是protocol
+AVInputFormat ff_rtp_demuxer   rtp 当成muxer而不是protocol
 
 回退发现vitamio获取currentpositiion 是pts最大值(26h30m43s) + 真正时间，如果是小-大，应该是pts最大值-真正时间。
 原来，是检测到小-大，就认为pts一个循环，则pts最大值+真正时间。修改完成了hls 时移问题，最终getcurrentposition 还是不能用，直播获取当前时间本来没有意义。
@@ -1409,7 +1401,7 @@ armeabi/libopenh264jni.so
 armeabi/libplayerjni.so
 armeabi/libweibosdkcore.so
 
-yy使用基于udp的私有协议，rtmp成熟且门槛低
+yy用udp私有协议
 
 七牛：
 MediaCodec 从 android api 18 开始加入了 google 的 CTS
@@ -1891,11 +1883,10 @@ avformatcontext: 包括自己的avclass(这里的递归逻辑比较邪门)  s->p
 AVClass:
 .item_name  = av_default_item_name, 默认av_log打印类的类名， 当然这里可以自定义了，又明白一点
 
-聂志军
-compute_pkt_fields2() 里面有 st->cur_dts > pkt->dts
+compute_pkt_fields2() 有 st->cur_dts > pkt->dts
 Application provided invalid, non monotonically increasing dts to muxer in stream
 收取udp ts流，输入设为nopts，输出的AVPacket 的pts从0开始，到最大值33bit会折回。而cur_dts持续增加，在边界处，错误条件被触发。
-这是bug吧！
+bug?
 
 xuss:
 播放RTMP直播偶发只有音频，视频无法解码或需时较长问题：

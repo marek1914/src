@@ -741,5 +741,4 @@ media_w1158439516_DVR_1.ts
 
 hls点播ts段10s，直播2.5s左右
 
-用vlc模拟推送udp格式ts流
 ===end hls ===

@@ -17,6 +17,9 @@ rfc5389: stun也可以用tcp 不过xuss理解，tcp是负责服务器认证的�
 
 1 TCP和UDP属不同域，可用同个端口
 2 session由多个transaction组成，transaction不可分割，中间出错要重，session则不必
+3 组播用于udp
+4 HTTPU：基于UDP的http协议
+5 RTP/RTCP 基于UDP
 
 iputils 包
 
@@ -115,16 +118,14 @@ UDP的包长度可以通过IP包长度-IP头算出，还要字段表示，因为
 
 UDP分片后，收到的数据不一定按照原来的顺序（xuss）
 
-UDP对比TCP，就好像一个是本地媒体文件，一个是ts流，udp有大小，是一个一个的消息，tcp是个流，不关闭就一直有。
-
 TCP标志位：
 SYN: Synchronize sequence numbers, to indicate where the sequence numbering will start
 FIN: No more data from sender
 
 分片：
 1 有时看到几百字节的分为2次tcp，实际是http头发送一次，主体部分发送一次，并非按照MTU大小分
-2 向apache请求一个超过MTU大小的文件，出现的多个TCP的PDU，不是IP层的分片，因为IP头的分片标志位和offset都是0，而是应用层根据MTU主动分多个TCP包。
-  好处是IP层分片，如果出错会整个重传，在IP曾，TCP，UDP是一视同仁的。
+2 向apache请求一个超过MTU大小的文件，出现的多个TCP的PDU，不是IP层的分片，因为IP头的分片标志位和offset都是0，
+  而是应用层根据MTU主动分多个TCP包。好处是IP层分片，如果出错会整个重传，在IP层，TCP，UDP一视同仁
 
 MSS 表示TCP负载
 MSS = MTU-20(IP头)-20(TCP头)  不考虑头扩展部分，如果有扩展
@@ -139,8 +140,6 @@ FIN/ACK  FIN/ACK  ACK
 
 0-1023特定服务端口,动态端口1024-65535
 
-组播用于udp
-HTTPU：基于UDP的http协议
 
 优酷pc点播：
 http推送flv：
@@ -236,13 +235,10 @@ rtp over rtsp 在rtsp的回应包中返回数据流
 rtp头的Mark标志，表示帧边界，每个帧结束时的rtp包会出现。
 
 RTSP 基于tcp，很多内容与http重叠，所以rfc中直接引用，如 [HX.Y]代表Http协议的section号
-RTP/RTCP 基于UDP
 
-RTP基于UDP
 RTSP基于TCP 或UDP
 RTSP的session
 HTTP is stateless, RTSP has state
-
 
 Payload type: DynamicRTP-Type-96
 1个帧若能装入1个rtp包，则连同nal类型一起装入
@@ -821,7 +817,6 @@ Attributes(36字节数据)
  Changed-address 172.15.1.16:37026    
 
 wireshark靠stun特征识别STUN包，比如我把请求包由28字节改为29字节，它就只能识别为普通UDP包了
-可以查看源码确认。
 
 兼容 RFCs: 3489, 5389, 5789, 5780  那我如何决定使用哪个呢？
 
@@ -872,7 +867,7 @@ uPnP
 SSDP uses unicast and multicast adress (239.255.255.250). 
 SSDP is HTTP like protocol and work with NOTIFY and M-SEARCH methods. 
 SSDP can be used over IPv4 and IPv6. 
-SSDP uses UDP transport protocol on port 1900 
+SSDP uses UDP on port 1900 
 
 过滤
 udp.dstport == 1900
@@ -988,10 +983,12 @@ Point-to-Point Protocol
 Point-to-Point Protocol over Ethernet (PPPoE) 
  Point-to-Point Protocol over ATM (PPPoA)
 
-对称型NAT(Symmetric   NAT)是无法实现P2P技术。
-对称/非对称的区别主要在于：网关设备在实现NAT时，对于内网某主机的若干个UDP连接请求，网关设备对应地在外网上所建立的UDP端口数量。对称NAT是一个请求对应一个端口，非对称NAT是多个请求对应一个端口(象锥形，所以叫Cone   NAT)。 
+对称型NAT(Symmetric   NAT)无法实现P2P
+对称/非对称的区别主要在于：
+网关设备实现NAT时，对于内网某主机的若干个UDP连接请求，网关设备对应地在外网上所建立的UDP端口数量。
+对称NAT是一个请求对应一个端口，非对称NAT是多个请求对应一个端口(象锥形，所以叫Cone NAT) 
 
-目前流行的P2P技术只能在非对称NAT上实行，在对称NAT(Symmetric   NAT)上几乎不可能(猜中其他UDP端口的可能性不大)实现。
+P2P只能在非对称NAT上实行，对称NAT(Symmetric NAT)上几乎不可能(猜中其他UDP端口的可能性不大)
 
 external/libppp: import user space PPP implementation from FreeBSD 7.4-RELEASE.
 
