@@ -574,8 +574,6 @@ convert命令将11.jpg转化为11.raw： convert -depth 8 11.jpg rgb:11.raw
 LOCAL_MODULE_TAGS := optional  控制是否编译
 LOCAL_PROGUARD_ENABLED := disabled
 
-3 性能测试 nbench、benchmark、smartphone bench
-
 编译android的时候  LOCAL_ARM_MODE 是没有定义的 所以
 arm_objects_mode = arm
 normal_objects_mode = thumb

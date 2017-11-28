@@ -46,8 +46,7 @@ rfc1191  Table 7-1:  Common MTUs in the Internet
 7981   WLAN (802.11)
 
 2016-03-11
-与xuss讨论基于UDP的RTP大于MTU时会不会自动分包问题，结论：
-会自动分包，但与tcp不同的是，udp不会分包,(TCP会分包)，UDP大包，是在IP层分包，见：
+基于UDP的RTP大于MTU时会自动分包，但与tcp不同的是，udp不会分包,(TCP会分包)，UDP大包，是在IP层分包，见：
 package/udp-65507.pcapng.gz
 实验想用tcp看到ip分片，但是tcp不会发出大于mtu的包，他自己会切分成多个tcp，所以死活看不到ip分片
 
@@ -170,20 +169,6 @@ errno == 90
 
 浏览器上传参考GoodReader
 
-RFC3984  - RTP Payload Format for H.264 Video
-
-Real-time Transport Protocol (RTP) 
-RTSP (Real Time Streaming Protocol)
-
-The transmission of streaming data itself is not a task of the RTSP protocol. Most RTSP servers use the
- Real-time Transport Protocol (RTP) for media stream delivery, however some vendors implement proprietary 
-transport protocols. The RTSP server from RealNetworks, for example, also features RealNetworks' proprietary 
-RDT stream transport.
-
-The Real-Time Transport Control Protocol (RTCP) is a sister protocol of the Real-time Transport Protocol (RTP).
-
-
-UDP 的双字节校验和，是对数据还是包头+数据？ 什么算法？ 可查看kernel源码
 
 connect 系统调用针对tcp？ udp不用connect？
 
@@ -218,6 +203,12 @@ TCP和UDP属不同域，可使用同一个端口
 如果Wireshark没发现three-way handshake，它就简单报告tcp头window size区域的值,并显示"[window size scaling factor -1 (unknown)]"
 
 一个tcp连接可以顺序传送多个http请求，三次握手，顺序发送接收，FIN结束
+
+
+RFC3984  - RTP Payload Format for H.264 Video
+
+RTP: Real-time Transport Protocol
+RTSP:Real Time Streaming Protocol
 
 RTP基于UDP
 RTSP基于TCP 或UDP
@@ -908,16 +899,14 @@ NTS: ssdp:alive   （目标状态）
 === end http ==
 
 
-=== rtp ===
-rfc2326 rtsp
-rfc2327  SDP:Session Description Protocol 会话描述协议
-rfc3550  RTP
-rfc1889  RTP
-rfc3551  RTP Profile for Audio and Video Conferences with Minimal Control
-rfc3984  RTP Payload Format for H.264 Video 描述rtp包的多媒体类型
-RTP Control Protocol -- RTCP  与rtp在同一 rfc中说明，也是基于udp的
+RTP/RTCP 都基于udp，在同一文档中描述
+rfc2326:  RTSP
+rfc2327:  SDP(Session Description Protocol)
+rfc3550:  RTP
+rfc1889:  RTP
+rfc3551:  RTP Profile for Audio and Video Conferences with Minimal Control
+rfc3984:  RTP Payload Format for H.264 Video 描述rtp包的多媒体类型
 
-rtp over rtsp
 
 关键：
 Payload type: DynamicRTP-Type-96
@@ -964,13 +953,9 @@ requests.（所以可以推流）
 
 rtsp有很多内容与http重叠，所以rfc中直接引用，如 [HX.Y]代表Http协议的section号
 
----
-孙瑞钊：
-河北华数vod，音视频流不用RTP，而是在RTSP中的回应包中返回，首次见到。
-华数取名:TSOverIP, 在rtsp中以类似rtp over rtsp方式在rtsp控制通道中插入ts数据，每7个TS包前加入4B interleave head
-固定以$符开头，这与rtp over rtsp的描述相似，但没用使用RTP，pts什么的也不在rtp头中，音视频没有拆分为ES，而是直接TS
 
-思考：这样做，与使用RTP有何区别呢？
+rtp over rtsp 在rtsp的回应包中返回数据流
+
 === end rtp ===
 
 

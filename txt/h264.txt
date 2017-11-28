@@ -372,15 +372,25 @@ HRD hypothetical ([ˌhaɪpəˈθetɪkl] ) reference decoder
 
 http://yumichan.net
 
-Network Abstraction Layer (NAL) and Video Coding Layer (VCL) are the two main concepts in H.264. A H.264 file consists of a number of NAL units (NALU) and each NALU can be classified as VCL or non-VCL. Video data is processed by the codec and packed into NAL units.
+Network Abstraction Layer (NAL) and Video Coding Layer (VCL) are the two main concepts in H.264. 
+A H.264 file consists of a number of NAL units (NALU) and each NALU can be classified as VCL or non-VCL. 
+Video data is processed by the codec and packed into NAL units.
 
 NALU in Packet-Transport Protocol V.S. Byte-Stream Format
 
-There are two ways to pack a NAL unit for different systems, Packet-Transport System and Byte-Stream Format. For Packet-Transport systems like RTP, the transport system protocol frames the coded data into different pieces. Hence, the system can easily identify the boundaries of NAL units and we don’t need to add extra start code, which is a waste of resources. This method is usually used in streaming.
+There are two ways to pack a NAL unit for different systems, Packet-Transport System and Byte-Stream Format. 
+For Packet-Transport systems like RTP, the transport system protocol frames the coded data into different pieces. 
+Hence, the system can easily identify the boundaries of NAL units and we don’t need to add extra start code, which is a waste of resources. T
+his method is usually used in streaming.
 
-However, in other systems, there is no such protocol to separate NAL units. For example, you want to store a H.264 file and decode it on another computer. The decoder has no idea on how to search the boundaries of the NAL units. So, a three-byte or four-byte start code, 0x000001 or 0x00000001, is added at the beginning of each NAL unit. They are called Byte-Stream Format. Hence, the decoder can now identify the boundaries easily. 
+However, in other systems, there is no such protocol to separate NAL units. 
+For example, you want to store a H.264 file and decode it on another computer. 
+The decoder has no idea on how to search the boundaries of the NAL units. 
+So, a three-byte or four-byte start code, 0x000001 or 0x00000001, is added at the beginning of each NAL unit. 
+They are called Byte-Stream Format. Hence, the decoder can now identify the boundaries easily. 
 
-In this series of articles, I will use byte-stream format as an example to introduce H.264. Here is a sample of a H.264 byte-stream. You can see several start codes 0x00000001 here, which means there are several NAL units in this image.
+In this series of articles, I will use byte-stream format as an example to introduce H.264. 
+Here is a sample of a H.264 byte-stream. You can see several start codes 0x00000001 here, which means there are several NAL units in this image.
 
 
 -----
