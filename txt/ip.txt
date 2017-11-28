@@ -1,3 +1,23 @@
+rfc2326: RTSP
+rfc2327: SDP(Session Description Protocol)
+rfc3550: RTP
+rfc3551: RTP Profile for Audio and Video Conferences with Minimal Control
+rfc3984: RTP Payload Format for H.264 Video 描述rtp包的多媒体类型
+
+rfc4632: Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan
+rfc1519: Classless Inter-Domain Routing (CIDR): Address Assignment and Aggregation Strategy
+
+rfc1191: Path MTU Discovery  
+
+rfc2616: HTTP1.1 
+
+rfc5389: Session Traveral Utilities for NAT
+rfc3489: Simple Traversal of UDP Through NAT (被5389替代)
+rfc5389: stun也可以用tcp 不过xuss理解，tcp是负责服务器认证的，nat穿透的环节还是要UDP。只用TCP就不能穿透吗？
+
+1 TCP和UDP属不同域，可用同个端口
+2 session由多个transaction组成，transaction不可分割，中间出错要重，session则不必
+
 iputils 包
 
 子网掩码用于路由
@@ -7,10 +27,6 @@ IPv4 network mask consists of 32 bits, a sequence of ones (1) followed by a bloc
 arp
 route
 
-rfc4632 : Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan
-rfc1519 : Classless Inter-Domain Routing (CIDR): Address Assignment and Aggregation Strategy
-
-rfc1191 : Path MTU Discovery  
 Classful Addressing: 分类网络
 1993年，分类网络被CIDR替代(RFC 1518/1519)
 
@@ -194,7 +210,6 @@ ffmpeg请求apache播放why.mp4出现服务器发送多个(如20个)TCP PDU包�
 MAC-Table 交换机 局域网出现mac地址重复，包同时到达2个设备，还是后来者居上？
 应该是后者，路由映射表一个端口可以对应多个mac，但一个mac只能对应1个端口
 
-TCP和UDP属不同域，可使用同一个端口
 
 包的长度的字段分短长度和长长度：
 第一bit为0，表示短包，表示0-127字节，为1标识长长度，例如标识0-32768字节。
@@ -210,13 +225,49 @@ RFC3984  - RTP Payload Format for H.264 Video
 RTP: Real-time Transport Protocol
 RTSP:Real Time Streaming Protocol
 
+RTSP differs fundamentally from HTTP in that data delivery
+takes place out-of-band in a different protocol(指rtp). HTTP is an
+asymmetric protocol where the client issues requests and the server
+responds. In RTSP, both the media client and media server can issue
+requests.（所以可以推流）
+
+rtp over rtsp 在rtsp的回应包中返回数据流
+
+rtp头的Mark标志，表示帧边界，每个帧结束时的rtp包会出现。
+
+RTSP 基于tcp，很多内容与http重叠，所以rfc中直接引用，如 [HX.Y]代表Http协议的section号
+RTP/RTCP 基于UDP
+
 RTP基于UDP
 RTSP基于TCP 或UDP
 RTSP的session
+HTTP is stateless, RTSP has state
 
-理解session和transaction概念：
-transaction不可分割，中间一步出错要重来
-session由多个transaction组成，某个transaction失败不必整个session重来。
+
+Payload type: DynamicRTP-Type-96
+1个帧若能装入1个rtp包，则连同nal类型一起装入
+若不能则靠2个字节（rfc3984 ）包含nal类型字节和首个包（S标志），中间包和尾包（E标志）连接
+此时rtp中看不到nal类型字节
+
+1 OPTIONS rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
+2 Reply: RTSP/1.0 200 OK
+	//支持的命令集
+    Public: DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE, OPTIONS, ANNOUNCE, RECORD, GET_PARAMETER
+3 DESCRIBE rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
+4 SETUP rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
+5 PLAY  rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
+
+没有seek命令，ffplay发PAUSE+PLAY(Range: npt=100-\r\n)  指定跳转时间
+
+发DESCRIBE命令时，返回SDP，描述视频长度，以及视频流，音频流信息
+还包括H264的profile，level，pps，sps等
+
+Play里 scale=1 正常，=2 倍速快进 =0.5 慢放
+
+npt: Normal Play Time
+npt=100- //表示100s位置到结束
+npt=now- //代表直播
+
 
 推送服务原理：长连接+心跳机制(MQTT) 
 维护一个长连接（否则不能达到实时效果），普通socket连接对服务器消耗大，故用MQTT轻量级低消耗协议维护长连接
@@ -245,11 +296,6 @@ mp4文件不是流，但可流化
 iphone
 <video src="xx.m3u8" controls width="100%" height="100%">
 
---
-https://www.kali.org  kali linux 用于测试网络安全性
-
-设想:
-见图，一个交换机连接4电脑，分属2个网段，不同网段ping能通吗？
 
 ping - send ICMP ECHO_REQUEST to network hosts
 
@@ -270,19 +316,9 @@ eth0      Link encap:Ethernet
 lo        Link encap:Local Loopback
 ppp0      Link encap:Point-to-Point Protocol (vpn)
 
-TP-Link 5端口交换机真是省成本，rg45只有1/2/3/6 4针有金属丝
-
 ifplugd 检测网口插拔
 
-
-ASN.   
-
-rfc5849  OAuth  用于不同网站之间认证
-
-RTMP: Real Time Messaging Protocol, a multimedia streaming and remote procedure call protocol primarily used in Adobe Flash
-      Routing Table Maintenance Protocol, part of the AppleTalk network stack
-
-HTTP is stateless, RTSP has state
+RTMP: Real Time Messaging Protocol
 
 IPV6 不需要NAT
 抓包：网管内置ap，在外面成功抓包：翟
@@ -387,7 +423,6 @@ Carrier Routing System
 
 
 === http ===
-HTTP1.1 rfc 2616
 
 framework/volley http封装，适合小数据频繁操作
 
@@ -411,7 +446,7 @@ PC也可以直接html5 视频，progressive streaming
 android支持：
 RTSP (RTP, SDP)
 HTTP/HTTPS progressive streaming
-HTTP/HTTPS live streaming draft protocol
+HTTP/HTTPS live streaming draft protocol (HLS)
 
 wowza不支持progressive streaming
 dlna默认只支持progressive streaming
@@ -750,10 +785,6 @@ xbmc到bubbleupnp
 
 
 —stun—
-rfc5389 Session Traveral Utilities for NAT
-rfc3489 Simple Traversal of UDP Through NAT (被5389替代)
-
-rfc5389规定，stun也可以用tcp协议。不过xuss理解，tcp是负责服务器认证的，nat穿透的环节还是要UDP。只用TCP就不能穿透吗？
 
 1 编译
 需 libboost-dev libssl-dev(openssl/md5.h)
@@ -899,64 +930,8 @@ NTS: ssdp:alive   （目标状态）
 === end http ==
 
 
-RTP/RTCP 都基于udp，在同一文档中描述
-rfc2326:  RTSP
-rfc2327:  SDP(Session Description Protocol)
-rfc3550:  RTP
-rfc1889:  RTP
-rfc3551:  RTP Profile for Audio and Video Conferences with Minimal Control
-rfc3984:  RTP Payload Format for H.264 Video 描述rtp包的多媒体类型
 
 
-关键：
-Payload type: DynamicRTP-Type-96
-
-基本逻辑：
-1个帧若能装入1个rtp包，则连同nal类型一起装入
-若不能则靠2个字节（rfc3984 ）包含nal类型字节和首个包（S标志），中间包和尾包（E标志）连接
-此时rtp中看不到nal类型字节
-
-rtp头的Mark标志，标示帧边界，每个帧结束时的rtp包会出现。
-
-通过hub，rtsp 通过udp请求就失败：
-ffplay: UDP timeout, retrying with TCP
-
-直接连到工位可以
-
-rtsp 基于tcp
-
-1 OPTIONS rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
-2 Reply: RTSP/1.0 200 OK
-	//支持的命令集
-    Public: DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE, OPTIONS, ANNOUNCE, RECORD, GET_PARAMETER
-3 DESCRIBE rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
-4 SETUP rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
-5 PLAY  rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
-
-没有seek命令，ffplay发PAUSE+PLAY(Range: npt=100-\r\n)  指定跳转时间
-
-发DESCRIBE命令时，返回SDP，描述视频长度，以及视频流，音频流信息
-还包括H264的profile，level，pps，sps等
-
-Play里面的scale字段=1 正常速度，=2 ：2倍速快进 =0.5：慢放
-
-npt: Normal Play Time
-
-npt=100- //表示100s位置到结束
-npt=now- //代表直播
-
-However, RTSP differs fundamentally from HTTP in that data delivery
-takes place out-of-band in a different protocol(指rtp). HTTP is an
-asymmetric protocol where the client issues requests and the server
-responds. In RTSP, both the media client and media server can issue
-requests.（所以可以推流）
-
-rtsp有很多内容与http重叠，所以rfc中直接引用，如 [HX.Y]代表Http协议的section号
-
-
-rtp over rtsp 在rtsp的回应包中返回数据流
-
-=== end rtp ===
 
 
 === vpn ===
@@ -1036,6 +1011,8 @@ GRE包
 
 
 === wireshark ===
+组播流端口选择10000，wireshark显示ndmp 什么意思？
+
 你的电脑接网线, 然后通过wifi共享电脑的网络, iPhone连接电脑共享出来的无线网, 就可以在电脑上抓包了
 分析百度网盘下载
 
@@ -1110,7 +1087,6 @@ SEQ/ACK analysis
 
 && || 优先级相同，这一点与C语言不同
 
-wowza的rtp/rtsp，因没用默认端口
 
 微信聊天
 continuation or non-http traffic （显示为http是因为80端口，碰巧，wireshark tcp下显示什么协议就是靠端口号区分）

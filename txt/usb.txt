@@ -56,7 +56,6 @@ class 8 为mass storage设备  0/ff 用户自定义设备
 
 
 --usb uart--
-FT232，CP2102
 UART是LSB
 
 1 绿色USB转232线340芯片，需232转ttl

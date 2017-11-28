@@ -180,76 +180,8 @@ Inductive reactance 感抗
 An ideal resistor has zero reactance
 ideal inductors and capacitors have zero resistance 
 
-1N4007 正向电压1V
-IP101GA: 10/100 phy
-BAT54C:  肖特基双二极管，IR一分为2到CPU和MCU
-MAX3420 / FT121  SPI slave 转USB Device
-2N2222: 低功耗放大或开关 NPN
-2N2907: 与2N2222互补的PNP
-TPS61090: 2A Switch, 96% Efficient Boost Converter
-B1182: 功率三极管  PNP silicon transistor
-SMD4P322: 53.2x2.5 4脚晶体 
-sy8113b: dc-dc
-AO4803A: USB电源MOS管关闭, Dual P-Channel Enhancement Mode Field Effect Transistor
-pj-322: 4段音频母头
-
-锂电池充电管理：
-Microchip MCP73xxx:
-MCP73871:  thermal
-MCP73871-3CCI/ML  4.35V 没有卖的
-MCP73871-2CCI/ML  4.20V RMB:4+
-CE3150AM: yj 电池充电
-CN3068   4.35V
-HB6293   4.35
-CN3062E  4.35
-PMI8998: qualcomm 太高端
-
-3.7V
-li-ion 锂离子充电电压 4.2V
-4线：ID,Thermal，保证充电安全，不影响放电
-高密度锂电池充满电 4.35V
-充电策略:
-2.1V以下，45mA充电
-2.1V-3V，涓流充电 200~500mA
-3V-4.35V 恒流充电，最大充电电流0.7A
-4.35V    恒压充电，截止电流150~200mA
-
------------
-LDO(low-dropout 低压差) voltage regulator
-
-LG33: MPU6500小板用
-662K: 串口小板用
-RT9193:  300mA 最小压差 220mV 立锜 RechTEK  源地小板用
-asm1117: 800mA 最小压差 1V
-
-------------------------
-MP45DT02: st 全向麦克风
-MP45DT02-M: 金属外壳
-
-DC-DC: monolithicpower.com
-MP2359: 30V
-MP2565: 50V
 
 flyback:
-
-
-VL53L0X: ST  Time-of-Flight (ToF)  激光测距  RMB:22+
-RPR-0521: 红外 接近传感器 RMB 15+    qiyi ffc 排线 0.5mm 间距
-
-OTS-16-1.27-03: 烧录座  品牌 Enplas
-STP120 :120欧阻抗电缆
-
-MOSFET:  wikipedia.org /MOSFET
-CJQ4435: seeed Studio 模块
-
-BMX055: 9轴传感器  qiyi VR
-   github.com/BoschSensortec/BMM050_driver
-LIS302DL: 3轴加速度 accelerometer ，F407-Disco
-LSM6DSL: ST 6轴臂环小板
-
-
-
-FSR 400 压力传感器  
 
 经验：
 1 asm1117 ，输入输出都要加电容，5V输入有抖动时，输入加电容，1117输出稳定，但加负载后输出开始抖动，输出也加电容后，OK
@@ -284,18 +216,8 @@ FSR 400 压力传感器
 理想二极管正向压降0，反向电流0，功耗0
 理想电容电感零功耗，只是储存释放能量
 
-------
-二极管：
-
-A7W-3d 3pin: 快速开关二极管bav99封装  
-Dual Series Switching Diode
-
-肖特基
-B380-13-F 80V, 3A Diodes Inc.
-B390 90V, 3A Diodes Inc.
 
 qiyi 风扇  fan
-
 电源5V   棕色为pwm 25KHz， 黄色回馈信号， 30Hz  100Hz  不等
 
 5mm高 2x4 2.54间距排母
@@ -303,8 +225,6 @@ qiyi 风扇  fan
 ----
 ECG/EKG shield produced by Olimex
 用 运算放大器，采集心脏，大脑 电波
-运算放大器，也需要找机会
-
 
 -----
 I2S(Inter—IC Sound):

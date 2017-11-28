@@ -1,8 +1,4 @@
-W5500 RBM:10
-
-F401+W5500+i2s音频芯片
-
-nanopi 卖59， Cortex-A7 + DDR 能这么便宜?
+期望 1000片
 
 SRAM 分同步和异步
 
@@ -14,51 +10,26 @@ ISSI IS62WVS5128   5128前面的S 代表serial 即spi 淘宝没有买的
 cypress CY15B104Q 4MBit F-RAM(铁电随机存储器) 不是 sram
 IPS3204JSQ 4MBit 淘宝没有卖
 
-
-F103 能软解 g723/9 或mp3吗？
-看一片网文，F103 也能解mp3，那更能解 G723了
-
-
-40pin 的 IO 肯定不够！
+48pin 的需要借助 373锁存器
 F103RC(256+48) 降成本可被选
 
-总硬件成本 30元 (以后进一步降低到 25 元)
-也许还有更好的组合，但目前这是最好的了
+总硬件成本 30元
 F401RC(256+64 RMB:9.0)/F401RB(128+64) 
 W5500(RMB:10) + IS62WV5128BLL-55HLI (RMB:6+) + cs4344 + SGM8904
 
 256kByte 应该也够用， 只是用来缓冲ip包，能缓冲10s，
-192kbps 的 mp3 流 能缓冲10s   g723/9 码率更低，更够用
-
-最后如果可能，是否 F401RE 96k内存 也够呢？ 96可能还真不够， 和300k比差3倍呢！
-
 
 如果用G711 编码， 单 F103C 也不够，因为f103C 只有20k ram， 实在太小了
 8k采样x1字节 = 8k字节/s   64kbs
  
-用G723/G729  64K内存也就够了
+用G723/G729  64K内存也够
 
-opus也是个选择,  第一阶段就用 g723/g729
-这么说，我根本无须外扩 sram，就F401rc的 64k就够了
-
-
-可能还有更便宜合适的， 可是F401RC 已经9块了， 如果没有5块的，已经没有必要再寻找
-不要再想更便宜方案了， F401R不比F103R贵
-
-
-
-那么我选择 G723 还是G729呢？   我不知道到了实际环境中， 具有缓冲5s数据能力，够不够
+G723 还是G729呢？   我不知道到了实际环境中， 具有缓冲5s数据能力，够不够
 用UDP推流
 
 用了G723/9 后 只有 <8kbps   每秒 1K 字节，内存足够了，  需要比较强的运算能力，而这正式F401的强项
 
-好，就这个方案，sram 也不要了！  大不了再改一版 加上SRAM，40块钱的事儿！
-
-
-不行，还是要有缓存，网络环境复杂，没有足够的缓冲绝对不行，大不了到时候不焊接！
-
-
-
+还是要有缓存，网络环境复杂，没有足够的缓冲绝对不行，大不了到时候不焊接！
 
 256Kx8 有啥区别
 IS62WV2568ALL/BLL
@@ -126,15 +97,17 @@ github.com/njh/EtherSia
 
 ----软件----
 freertos  g723/g729  
-不跑rtos，用姚军的方案，因为功能真的很简单
 
-g723/g729 还是太复杂了，就用G711 ulaw， 先把东西做出来，已经很累了，我的能力也就这样，
+g723/g729 还是复杂，就G711 ，先把东西做出来，已经很累了，我的能力也就这样，
 
 20171127 最终决定加 512k内存 大不了不贴 ，用G711 编码，这样前端也简单
 就算16k采样 16k字节/s  也足够缓冲的了
 
+必要时可以考虑 373锁存器
+
 这个方案 已经够简洁，  在运算能力，内存能力 上也具有一定的可扩展性
 
+用 RTP 推流
 
 --- 晶振配置 ---
 1 使用内部晶体 16MHz 主频工作在 84MHz(直接输入
@@ -148,3 +121,63 @@ g723/g729 还是太复杂了，就用G711 ulaw， 先把东西做出来，已经
 
 
 3  PA0-15  用作 地址线  PB0-7 数据   此时用的是  I2S2 half-duplex master     主时钟2输出，  SPI3（片选信号不能用， 可以一直片选状态   uart6 异步) 
+
+
+
+------
+如果只是 g711 + rtp 那么 F0系列的也是可以的
+
+g723.1 vs g729:
+
+
+-------rtp-----
+ffmpeg  doubango
+
+ffmpeg:
+g723_1.c
+g723_1dec.c
+g723_1enc.c
+g723_1.h
+g729data.h
+g729dec.c
+g729.h
+g729_parser.c
+g729postfilter.c
+g729postfilter.h
+
+ffmpeg:
+rtp.c  默认支持了 g711 g723 g729  
+其他的格式支持靠独立文件 如 rtp_enh264.c
+
+doubango 只支持g729  没有g723
+
+ffmpeg encoders:
+ A..... g723_1               G.723.1
+ A..... pcm_alaw             PCM A-law / G.711 A-law
+ A..... pcm_mulaw            PCM mu-law / G.711 mu-law
+
+decoders:
+ A..... g723_1               G.723.1
+ A....D g729                 G.729
+
+g723.1 跟 g723 是完全两码事
+
+常用的2个：
+g723.1  和 g729a
+
+g723.1:
+6.3 kbit/s (using 24 byte frames) using a MPC-MLQ algorithm (MOS 3.9)
+5.3 kbit/s (using 20 byte frames) using an ACELP algorithm (MOS 3.62)
+
+g729a:
+Sampling frequency 8 kHz/16-bit (80 samples for 10 ms frames)
+Fixed bit rate (8 kbit/s 10 ms frames)  比723.1 的 6.3 5.3 大些
+
+理想条件；
+g711u  64kbit/s       MOS: 4.45
+g729a  8kbit/s        MOS: 4.04
+g723.1 6.3kbit/s版本  MOS: 4.08 
+
+-----------
+Mean Opinion Score   MOS 主观质量评分   711 最高的
+

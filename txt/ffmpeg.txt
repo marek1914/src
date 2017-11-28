@@ -546,14 +546,7 @@ int64_t dts;
  */
 int64_t start_time;
 
-
 ##pts_drift=-1383549524.89 update=1383556510.83 6985.93
-##pts_drift=-1383549524.89 update=1383556510.94 6986.05
-##pts_drift=-1383454752.86 update=1383556510.97 101758.11
-
-
-##pts_drift=-1383550709.84 update=1383557014.13 6304.29
-##pts_drift=-1383550153.14 update=1383557014.20 6861.05
 
 时钟更新流程：周期调用
 update_video_pts -> set_clock -> set_clock_at
