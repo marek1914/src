@@ -441,24 +441,21 @@ plot(z)
 octave:dec2hex(lin2mu(0x067b))
 octave:ans = C4
 
-===g729===
-ITU-T
 
 G.723.1 (ffmpeg能 encoder):
-30 ms frames
-total algorithmic delay is 37.5 ms
+30 ms frames total algorithmic delay is 37.5 ms
 
-Its official name is Dual rate speech coder for multimedia communications transmitting at 5.3 and 6.3 kbit/s.
-Note that this is a completely different codec from G.723
+Dual rate speech coder for multimedia communications transmitting at 5.3 and 6.3 kbit/s.
+This is a completely different codec from G.723
 
-There are two bit rates at which G.723.1 can operate:
+G.723.1 有2个码率:
 6.3 kbit/s (using 24 byte frames) using a MPC-MLQ algorithm (MOS 3.9)
 5.3 kbit/s (using 20 byte frames) using an ACELP algorithm (MOS 3.62)
 
 
 G729
 frame 10ms(80个采样数据)，点到点时延25ms，8KHz 16bit采样，压缩后速率8Kbps
-压缩率: 16bit*8k/8K = 16:1
+压缩比: 16:1
 
 
 ffmpeg -i input.mp3 -c:a g723_1 -ar 8000 -ac 1 -b:a 6.3K output.wav (为啥是.wav)
