@@ -1,6 +1,6 @@
 rfc2326: RTSP
 rfc2327: SDP(Session Description Protocol)
-rfc3550: RTP
+rfc3550: RTP(Real-time Transport Protoco)
 rfc3551: RTP Profile for Audio and Video Conferences with Minimal Control
 rfc3984: RTP Payload Format for H.264 Video 描述rtp包的多媒体类型
 
@@ -221,8 +221,6 @@ MAC-Table 交换机 局域网出现mac地址重复，包同时到达2个设备�
 
 RFC3984  - RTP Payload Format for H.264 Video
 
-RTP: Real-time Transport Protocol
-RTSP:Real Time Streaming Protocol
 
 RTSP differs fundamentally from HTTP in that data delivery
 takes place out-of-band in a different protocol(指rtp). HTTP is an
@@ -234,9 +232,8 @@ rtp over rtsp 在rtsp的回应包中返回数据流
 
 rtp头的Mark标志，表示帧边界，每个帧结束时的rtp包会出现。
 
-RTSP 基于tcp，很多内容与http重叠，所以rfc中直接引用，如 [HX.Y]代表Http协议的section号
+RTSP 基于tcp or udp，很多内容与http重叠，所以rfc中直接引用，如 [HX.Y]代表Http协议的section号
 
-RTSP基于TCP 或UDP
 RTSP的session
 HTTP is stateless, RTSP has state
 
@@ -245,13 +242,13 @@ Payload type: DynamicRTP-Type-96
 若不能则靠2个字节（rfc3984 ）包含nal类型字节和首个包（S标志），中间包和尾包（E标志）连接
 此时rtp中看不到nal类型字节
 
-1 OPTIONS rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
-2 Reply: RTSP/1.0 200 OK
+OPTIONS rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
+Reply: RTSP/1.0 200 OK
 	//支持的命令集
     Public: DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE, OPTIONS, ANNOUNCE, RECORD, GET_PARAMETER
-3 DESCRIBE rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
-4 SETUP rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
-5 PLAY  rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
+DESCRIBE rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
+SETUP rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
+PLAY  rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
 
 没有seek命令，ffplay发PAUSE+PLAY(Range: npt=100-\r\n)  指定跳转时间
 
@@ -1123,3 +1120,6 @@ echo "deb http://apt.opensips.org trusty 2.1-releases" >>/etc/apt/sources.list
 创建用户：
 opensipsctl  add 222222 222222
 === end opensips ===
+
+
+

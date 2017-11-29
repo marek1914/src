@@ -195,3 +195,45 @@ MOS: Mean Opinion Score 主观质量评分
 http://blog.csdn.net/leixiaohua1020/article/details/50535230
 最小 rtp 实现
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+trac.ffmpeg.org/wiki/StreamingGuide
+
+ffmpeg -re -i ~/av.mp3 -vn -ar 8000 -f mulaw -f rtp rtp://10.3.57.235:1234
+
+rtp push:
+rtp://@ip:port
+udp push
+udp://ip:port
+

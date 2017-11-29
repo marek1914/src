@@ -3,6 +3,16 @@
 802.15.3 High Rate WPAN
 802.15.4 Low Rate WPAN(zigbee)
 
+信驰达
+ivt蓝牙 200人月出货2kk
+
+== microchip ==
+收购了 issc 的蓝牙业务，既有芯片 isxxx 也有模块 bm77  bm78 等
+BM78 模块 应该用的是 IS1678SM 芯片
+
+
+
+
 6LoWPAN 基于IPv6的低速无线个域网标准，IPv6 over IEEE 802.15.4
 
 Special Interest Group (SIG) (802.15.1不再维护)
