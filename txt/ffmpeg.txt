@@ -1,3 +1,11 @@
+AudioChannelManipulation
+https://trac.ffmpeg.org/wiki/AudioChannelManipulation
+
+https://trac.ffmpeg.org/wiki/Encode/AAC
+
+https://trac.ffmpeg.org/wiki/StreamingGuide
+
+
 Vitamin: av_log 对接 av_log_set_callback()
 
 avcodec_encode_video(.., uint8_t *buf,..., const AVFrame *pict);
@@ -15,7 +23,6 @@ EasyICE 分析hls
 
 -f 文件扩展名无效
 
-https://trac.ffmpeg.org/wiki/AudioChannelManipulation
 ffplay 只播放一个声道
 
 作者 http://bellard.org/
@@ -73,7 +80,6 @@ libx264(vlc):
 源码make install，主要是/usr/local/lib/libx264.so
 
 aac:自带和libfaac (FAAC : Freeware Advanced Audio Coder)
-https://trac.ffmpeg.org/wiki/Encode/AAC
 
 码率：
 旧: -b/-ab  新: -b:v / -b:a 

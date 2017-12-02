@@ -238,6 +238,7 @@ RTSP的session
 HTTP is stateless, RTSP has state
 
 Payload type: DynamicRTP-Type-96
+
 1个帧若能装入1个rtp包，则连同nal类型一起装入
 若不能则靠2个字节（rfc3984 ）包含nal类型字节和首个包（S标志），中间包和尾包（E标志）连接
 此时rtp中看不到nal类型字节
