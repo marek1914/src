@@ -1,5 +1,5 @@
 rfc2326: RTSP
-rfc2327: SDP(Session Description Protocol)
+rfc2327: SDP(Session Description Protocol) (SPS/PPS以BASE64形式存储)
 rfc3550: RTP(Real-time Transport Protoco)
 rfc3551: RTP Profile for Audio and Video Conferences with Minimal Control
 rfc3984: RTP Payload Format for H.264 Video 描述rtp包的多媒体类型

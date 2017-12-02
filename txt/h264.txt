@@ -604,7 +604,6 @@ PTS 至少700sm传输一次，PCR间隔一般35ms(<100ms)
 VBR 动态码率
 VFR 动态帧率
 
-SDP(RFC2327)中的SPS和PPS包含初始化264解码器所需参数(profile/level/宽高/deblock滤波器等)以BASE64形式存储。
 
 Nalu 67为sps头 68为pps头
 
