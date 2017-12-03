@@ -238,3 +238,35 @@ P:
 
 ./ffplay -protocol_whitelist "rtp,file,udp" play.sdp  // ok!!!
 
+
+
+ffmpeg 默认支持 opus解码，但是编码需要 libopus的支持
+
+
+那么解码用libopus里面的代码还是用 ffmpeg里面的呢？
+用ffmpeg里面的 结构更清晰些
+
+
+
+
+-----
+F4上实现  opus 解码！！！！
+
+
+
+
+
+
+
+[file @ 0x7fece4005760] Setting default whitelist 'file,crypto'/0
+
+2个解码器:
+ff_opus_decoder   默认用这个
+ff_libopus_decoder  -acodec libopus 参数强制用这个
+
+
+
+
+20171203  没搞明白，先停一停，，，，  浮点，定点，  ffmpeg的解码，  libopus的解码，，，，，，
+
+目标：F4 上，利用它的 dsp，高效的解码，各码率

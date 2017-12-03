@@ -1,4 +1,38 @@
+AVFrame
+.data[8]，8路解码数据，如YUV用3路，7.1声道用8路
+.linesize[8]，每路大小, audio 2路好像加一起写在 linesize[0]里
+
+AVFrame 强转为void* 进入相应解码函数，进入后又强转为 AVFrame
+
+
+libavformat -> AVPacket -> libavcodec  -> AVFrame
+
+struct AVCodec {
+	int (*encode2)(AVCodecContext *, AVPacket *, AVFrame *, int *got_packet_ptr);
+	int (*decode) (AVCodecContext *, void *outdata, int *outdata_size, AVPacket *);
+};
+
+
+extended_data
+
+
+
 AudioChannelManipulation
+
+audio_thread
+decoder_decode_frame
+avcodec_decode_audio4
+libopus_decode 具体音频解码器的解码函数
+
+ffplay:
+强制解码器，不认 -c:a
+-codec:v or a  codec_name
+-acodec codec_name
+-vcodec codec_name
+
+
+
+
 https://trac.ffmpeg.org/wiki/AudioChannelManipulation
 
 https://trac.ffmpeg.org/wiki/Encode/AAC
@@ -16,8 +50,6 @@ graph2dot
 
 https://trac.ffmpeg.org/wiki //用trac 维护wiki和trace
 
-libavformat -> AVPacket
-libavcodec  -> AVFrame
 
 EasyICE 分析hls
 
@@ -25,7 +57,7 @@ EasyICE 分析hls
 
 ffplay 只播放一个声道
 
-作者 http://bellard.org/
+作者 bellard.org
 
 ffmpeg -i input.mp4 output.avi //最简
 ffplay -h filter=codecview  查看某个filter的帮助
@@ -200,8 +232,6 @@ ffplay -f lavfi "amovie=why.mp4" //只有声音
 //2视频合并，可能需要同步，所以需要一致化pts
 ffplay /dev/video0 -vf 'movie=why.mp4,scale=480x270,setpts=PTS-STARTPTS[1];[in]setpts=PTS-STARTPTS[in1],[in1][1]overlay'
 
-ffplay无声音，函数SDL_OpenAudio返回错误。sdl默认用oss而u11.10不支持。sdl没用/dev/snd 
-
 原来在跟目录有 version.h : #define FFMPEG_VERSION "2.0"
 
 ffserver	  HTTP串流server，支持时移
@@ -269,7 +299,7 @@ ffplay 播放ts小片，提示 non-existing SPS 0 referenced in buffering period
 
 wav splite头可得pcm
 ffmpeg -i f.wav -f s16le -acodec pcm_s16le f.pcm  //ff不认.pcm
-若f.wav 已是s16le：
+若f.wav 已是pcm_s16le：
 ffmpeg -i f.wav -f s16le -c:a copy f.pcm //去头
 ffmpeg -i f.wav -f s16le (-c:a copy) -ar 8000 -ac 1 f.pcm //变为8k采样，单通道
 加括号里的内容，就直接拷贝，重采样和单通道参数无效
@@ -327,7 +357,7 @@ ffmpeg -i x.mp4 -c:v h264 -c:a copy output.mp4
 ffmpeg -i xx.ts -codec copy xx.mp4
 ffmpeg -i xx.ts -c copy xx.mp4
 
--c:v == -vcodec == -codec:v
+-c:v(不能用在ffplay) == -vcodec == -codec:v
 -ss position (input/output)  即可用于输入又可用于输出
 
 "When used as an input option (before -i)"
@@ -639,16 +669,12 @@ struct AVBuffer {
 00 00 01 a3 65 88 80 80 17 e3 85 1c  //第一个视频帧 000001a3 是这个帧的大小
 
 解一帧数据：
-avcodec_decode_audio4
 avcodec_decode_video2  返回AVPacket里面数据的大小（在AVPacket结构体里也有这个字段），<0错误
 
 h264_decode_frame (why.mp4 AVPacket.data 有00 00 01 a3 4byte)
-这里AVFrame强转为void* 进入解码函数后，又void*强转AVFrame
 
 utils.c中还可能从ff_thread_decode_frame进入h264_decode_frame，一回事，只是加入了线程
 
-AVFrame.data[8]，解码数据，一般用3路即YUV
-AVFrame.linesize[8]，YUV每路的大小
 
 注意264文档中的NumBytesInNALunit
 
@@ -1741,12 +1767,6 @@ ffplay test1.flv -vf "rotate=PI/2"
 
 --------
 
-typedef struct AVCodec { //主要是 init和encode2
-	int (*init)(AVCodecContext *);
-	int (*encode2)(AVCodecContext *avctx, AVPacket *avpkt, const AVFrame *frame, int *got_packet_ptr);
-	void (*flush)(AVCodecContext *);
-	...
-} AVCodec;
 
 各种时间都以AVStream->time_base为单位
 
@@ -2047,9 +2067,9 @@ git clone https://chromium.googlesource.com/libyuv/libyuv
 原工程是gyp难编译
 
 yuv格式复杂，ffmpeg/openmax/fourcc.org/yuv.php 除常见还有很多种
-yuv分2组：
-packed formats: yuv在一起存储 （ffmpeg的 yuyv422）
-planar formats: 每个分量存储在单独的数组中
+yuv分：
+packed : yuv在一起存储 （ffmpeg的 yuyv422）
+planar : 各分量单独存储
 
 Chroma-interleaved:
 
@@ -2075,7 +2095,7 @@ YV12: 8 bit Y plane followed by 8 bit 2x2 subsampled V and U planes.(与I420比�
 
 Planar \ Semi-Planar \ Interleaved
 
-yuv420p  p代表planar(平面的，平坦的)
+yuv420p  p: planar(平面的，平坦的)
 
 
 ffmpeg:

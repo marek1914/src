@@ -1,3 +1,4 @@
+技术来源于 Skype 的 SILK 及 Xiph.Org 的 CELT
 vorbis 
 
 android 音效是.ogg 文件
@@ -7,8 +8,7 @@ oggz
 
 RFC3533 : The Ogg Encapsulation Format
 
-"Ogg" is derived from "ogging", jargon(行话，黑话) from the computer game Netrek:
-  Ogging: This is the art of killing a carrier, or potential carrier, by a suicide run
+ogg 源自 "ogging", jargon(黑话) from the game Netrek
 
 xiph.Org:
 The Xiph.Org Foundation is a non-profit corporation dedicated to protecting the foundations of Internet multimedia from control by private interests. Our purpose is to support and develop free, open protocols and software to serve the public, developer and business markets.
@@ -45,3 +45,8 @@ Linear Prediction
 
 ffmpeg 
 --enable-libopus
+
+
+
+
+nb_samples = 960  48kHz采样，说明每帧 20ms
