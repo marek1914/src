@@ -174,62 +174,12 @@ webm
 
 flv文件做直播
 flv有2类：flv 和 f4v 类似mp4，是 iso14496-12 的一个实现
-可以用 video format analizer 打开
+可用 video format analizer 打开
 
 onMetaData
 videodatarate : 8字节double类型
 
-ffmpeg 将rtmp协议解析完成，输出flv文件
-
-vorbis 
-
-android 的音效都是.ogg 文件
-apt-get install oggz-tools
-
-oggz
-
-RFC3533 : The Ogg Encapsulation Format
-
-"Ogg" is derived from "ogging", jargon(行话，黑话) from the computer game Netrek:
-  Ogging: This is the art of killing a carrier, or potential carrier, by a suicide run
-
-xiph.Org:
-The Xiph.Org Foundation is a non-profit corporation dedicated to protecting the foundations of Internet multimedia from control by private interests. Our purpose is to support and develop free, open protocols and software to serve the public, developer and business markets.
-
-Vorbis audio compression
-
-Vorbis is a lossy audio compression, commonly used in conjunction with the Ogg container format and it is therefore often referred to as Ogg Vorbis. 
-
-.opus
-
-Developed by IETF codec working group
-Contained by Ogg, Matroska, WebM, MPEG-TS
-
-Standard RFC 6716
-
-Sample rates:
-NB (narrowband)			4 kHz 	8 kHz
-MB (medium-band)		6 kHz 	12 kHz
-WB (wideband)			8 kHz 	16 kHz
-SWB (super-wideband)	12 kHz 	24 kHz
-FB (fullband)			20 kHz 	48 kHz (其实可以采到24k，但超过20k的部分不去编码)
-
-Bitrates from 6 kb/s to 510 kb/s
-Sampling rates from 8 kHz (narrowband) to 48 kHz (fullband)
-Frame sizes from 2.5 ms to 60 ms
-Support for both constant bitrate (CBR) and variable bitrate (VBR)
-Audio bandwidth from narrowband to fullband
-Support for speech and music
-Support for mono and stereo
-Support for up to 255 channels (multistream frames)
-Dynamically adjustable bitrate, audio bandwidth, and frame size
-Good loss robustness and packet loss concealment (PLC)
-Floating point and fixed-point implementation
-
-Linear Prediction
-
-分析得出：
-一个ogg包里面会包含多个opus包
+ffmpeg 将rtmp协议解析完，输出flv文件
 
 === mp4 ===
 重要4工具：

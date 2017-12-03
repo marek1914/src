@@ -1,3 +1,11 @@
+AudioChannelManipulation
+https://trac.ffmpeg.org/wiki/AudioChannelManipulation
+
+https://trac.ffmpeg.org/wiki/Encode/AAC
+
+https://trac.ffmpeg.org/wiki/StreamingGuide
+
+
 Vitamin: av_log 对接 av_log_set_callback()
 
 avcodec_encode_video(.., uint8_t *buf,..., const AVFrame *pict);
@@ -15,7 +23,6 @@ EasyICE 分析hls
 
 -f 文件扩展名无效
 
-https://trac.ffmpeg.org/wiki/AudioChannelManipulation
 ffplay 只播放一个声道
 
 作者 http://bellard.org/
@@ -57,9 +64,7 @@ $(foreach D,$(FFLIBS),$(eval $(call DOSUBDIR,lib$(D))))包含 sub-Makefile（包
 --disable-optimizations  disable compiler optimizations  (gdb)
 configure（搜optimizations）无-O3，否则有，在_type=gcc，_cflags_noopt=没有定义，其他编译器_cflags_noopt=O1
 
---enable-libstagefright-h264  enable H.264 decoding via libstagefright [no]
 --enable-libx264 (libx264-dev) --enable-gpl
---enable-libopus
 
 --enable-pic (config.mak多处产生PIC字样)
 
@@ -67,10 +72,7 @@ configure（搜optimizations）无-O3，否则有，在_type=gcc，_cflags_noopt
 --disable-dwt     disable DWT code
 
 --disable-programs
---disable-ffmpeg
 --disable-ffplay
---disable-ffprobe
---disable-ffserver
 --disable-programs //ffplay ffmpeg etc
 --enable-libv4l2   enable libv4l2/v4l-utils [no]
 
@@ -78,7 +80,6 @@ libx264(vlc):
 源码make install，主要是/usr/local/lib/libx264.so
 
 aac:自带和libfaac (FAAC : Freeware Advanced Audio Coder)
-https://trac.ffmpeg.org/wiki/Encode/AAC
 
 码率：
 旧: -b/-ab  新: -b:v / -b:a 
@@ -99,7 +100,7 @@ libavcodec/libx264.c
 Libavfilter : graph-based frame editing library
 lavfi : Libavfilter input virtual device, reads data from the open output pads of a libavfilter filtergraph. 
 
-ffplay -f lavfi -i 'movie=/dev/video0:v4l2'  //-i 可省略
+ffplay -f lavfi -i 'movie=/dev/video0:v4l2'  //-i 可省
 ffplay -f lavfi 'movie=/dev/video0,edgedetect=low=0.1:high=0.4'  //edgedetect  
 ffplay -f lavfi 'movie=why.mp4,ocv=filter_name=smooth:gaussian|49'  //高斯模糊
 ffplay -f lavfi 'movie=why.mp4,scale=960x540,split[1][out1];[1]smartblur=luma_radius=5' //2路视频可切换
@@ -1945,9 +1946,6 @@ h264_extradata_to_annexb
 
 AAC:
 https://trac.ffmpeg.org/wiki/Encode/AAC
----
-ffmpeg + libopus 调试：
-1 :不优化：
 
 -----
 聂志军：

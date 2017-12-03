@@ -1,5 +1,5 @@
 rfc2326: RTSP
-rfc2327: SDP(Session Description Protocol)
+rfc2327: SDP(Session Description Protocol) (SPS/PPS以BASE64形式存储)
 rfc3550: RTP(Real-time Transport Protoco)
 rfc3551: RTP Profile for Audio and Video Conferences with Minimal Control
 rfc3984: RTP Payload Format for H.264 Video 描述rtp包的多媒体类型
@@ -238,6 +238,7 @@ RTSP的session
 HTTP is stateless, RTSP has state
 
 Payload type: DynamicRTP-Type-96
+
 1个帧若能装入1个rtp包，则连同nal类型一起装入
 若不能则靠2个字节（rfc3984 ）包含nal类型字节和首个包（S标志），中间包和尾包（E标志）连接
 此时rtp中看不到nal类型字节
