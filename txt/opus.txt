@@ -1,14 +1,18 @@
+RFC6716: Definition of the Opus
+RFC7587: RTP Payload Format for Opus
+RFC7845: Ogg Encapsulation for Opus
+RFC3533: The Ogg Encapsulation Format
+
+Encapsulation of Opus in ISO Base Media File Format: mp4 encapsulation
+Opus in WebM: Matroska encapsulation
+
+
 技术来源于 Skype 的 SILK 及 Xiph.Org 的 CELT
 vorbis 
 
-android 音效是.ogg 文件
-apt-get install oggz-tools
-
-oggz
-
-RFC3533 : The Ogg Encapsulation Format
-
-ogg 源自 "ogging", jargon(黑话) from the game Netrek
+install:
+oggz-tools
+libogg-dev
 
 xiph.Org:
 The Xiph.Org Foundation is a non-profit corporation dedicated to protecting the foundations of Internet multimedia from control by private interests. Our purpose is to support and develop free, open protocols and software to serve the public, developer and business markets.
@@ -17,7 +21,6 @@ Vorbis audio compression
 Vorbis is a lossy audio compression, commonly used in conjunction with the Ogg container format and it is therefore often referred to as Ogg Vorbis. 
 
 
-RFC6716:
 
 Sample rates:
 NB (narrowband)			4 - 8kHz
@@ -50,3 +53,26 @@ ffmpeg
 
 
 nb_samples = 960  48kHz采样，说明每帧 20ms
+
+
+2个解码器:
+ff_opus_decoder   默认用这个
+ff_libopus_decoder  -acodec libopus 参数强制用这个
+
+
+
+
+
+libopus  参考实现
+opusfile 
+opus-tool 包含 opusdec/opusenc/opusinfo
+
+
+
+----
+opus-tool 中 decoder 调用了
+opus_multistream_decoder_ctl
+opus_decoder_ctl
+
+
+src/opusdec.c:   st = opus_multistream_decoder_create   用的这个   multistream
