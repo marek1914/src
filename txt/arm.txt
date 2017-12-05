@@ -1,6 +1,5 @@
 ARMv8 AArch64
 
-projectNe10
 
 Thumb-2: 可达传统ARM峰值性能，并节省30%代码空间
 ThumbEE: Thumb Execution Environment，用于字节码语言的执行如java
@@ -8,16 +7,12 @@ ARM GIC: Generic Interrupt Controller
 
 Thumb状态：执行Thumb指令的处理器状态。BX、BLX 等指令完成时，切换到ARM状态
 
-bit.LITTLE 用于在 Cortex-A15 和 Cortex-A7 之间切换
-某8核处理器4核A15+4核A7
+bit.LITTLE 4核A15 + 4核A7
 
-身材魁梧高大的男士是big，身材娇小的女士是LITTLE
-Bit先生负责具有挑战性的重任
-Little小姐负责小任务
 
 vfpv3 vfpv3-d16 vfpv4 vfpv4-d16
 
-FLOPS是Floating-point Operations Per Second
+FLOPS: Floating-point Operations Per Second
 
 arm的cache（数据/指令）使用前必需先 flush
 

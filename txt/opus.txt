@@ -56,12 +56,17 @@ nb_samples = 960  48kHz采样，说明每帧 20ms
 
 
 2个解码器:
-ff_opus_decoder   默认用这个
+ff_opus_decoder   默认用这个(opus_decode_packet)
 ff_libopus_decoder  -acodec libopus 参数强制用这个
 
+ffmpeg 转码：
+avcodec_decode_audio4
+opus_decode_packet
+opus_decode_subpacket
+opus_decode_frame
+ff_celt_decode_frame
 
-
-
+一个packet里面可能有多个 frame
 
 libopus  参考实现
 opusfile 
@@ -76,3 +81,24 @@ opus_decoder_ctl
 
 
 src/opusdec.c:   st = opus_multistream_decoder_create   用的这个   multistream
+
+
+
+multistream  什么概念
+
+
+nlsf
+Normalized Line Spectral Frequencies
+
+
+Q15 格式
+
+
+
+NE10 library
+projectNe10
+
+
+
+
+opusdec 例程中  fp 代表 float point
