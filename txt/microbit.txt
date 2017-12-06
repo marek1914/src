@@ -6,3 +6,10 @@
 
 pci 1.27
 pcie 1.0
+
+
+
+HIROSE HRS SCSI连接器1.27 80P 90度弯型母端 FX2-80S-1.27DSL  
+https://item.taobao.com/item.htm?spm=a230r.1.14.121.9688036ZbBCac&id=549438452682&ns=1&abbucket=17#detail
+
+

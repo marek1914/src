@@ -1,3 +1,7 @@
+音频的通道或视频颜色分量
+packed : 各通道一起存储
+planar : 各通道单独存储 yuv420p p代表planar
+
 AVFrame
 .data[8]，8路解码数据，如YUV用3路，7.1声道用8路
 .linesize[8]，每路大小, audio 2路好像加一起写在 linesize[0]里
@@ -15,6 +19,22 @@ struct AVCodec {
 
 extended_data
 
+
+Audio sample formats:
+AVSampleFormat {
+    AV_SAMPLE_FMT_NONE = -1, 
+    AV_SAMPLE_FMT_U8,          ///< unsigned 8 bits
+    AV_SAMPLE_FMT_S16,         ///< signed 16 bits
+    AV_SAMPLE_FMT_S32,         ///< signed 32 bits
+    AV_SAMPLE_FMT_FLT,         ///< float
+    AV_SAMPLE_FMT_DBL,         ///< double
+
+    AV_SAMPLE_FMT_U8P,         ///< unsigned 8 bits, planar
+    AV_SAMPLE_FMT_S16P,        ///< signed 16 bits, planar
+    AV_SAMPLE_FMT_S32P,        ///< signed 32 bits, planar
+    AV_SAMPLE_FMT_FLTP,        ///< float, planar
+    AV_SAMPLE_FMT_DBLP,        ///< double, planar
+};
 
 
 AudioChannelManipulation
@@ -2067,9 +2087,6 @@ git clone https://chromium.googlesource.com/libyuv/libyuv
 原工程是gyp难编译
 
 yuv格式复杂，ffmpeg/openmax/fourcc.org/yuv.php 除常见还有很多种
-yuv分：
-packed : yuv在一起存储 （ffmpeg的 yuyv422）
-planar : 各分量单独存储
 
 Chroma-interleaved:
 
@@ -2095,7 +2112,7 @@ YV12: 8 bit Y plane followed by 8 bit 2x2 subsampled V and U planes.(与I420比�
 
 Planar \ Semi-Planar \ Interleaved
 
-yuv420p  p: planar(平面的，平坦的)
+yuv420p
 
 
 ffmpeg:

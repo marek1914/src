@@ -102,3 +102,7 @@ projectNe10
 
 
 opusdec 例程中  fp 代表 float point
+
+
+浮点解析出来，是-1 到 1 之间的一个float，再转换为 -32768 到 32767之间的 16bit 有符号数字
+

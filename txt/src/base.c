@@ -968,4 +968,18 @@ libncurses
 http://clang.llvm.org/docs/ClangFormat.html
 
 ANSI escape codes (escape sequences)
+
+round to nearest integer:
+lrint
+lrintf
+lrintl
+
+llrint
+llrintf
+llrintl
+
+有 fmin fmax  但没有 min max 函数
+
+long double  16byte
+
 // vim: tw=80
