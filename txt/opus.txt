@@ -98,8 +98,10 @@ Q15 格式
 NE10 library
 projectNe10
 
+opus_decoder.c
 
-
+opus_decode()
+opus_decode_float()
 
 opusdec 例程中  fp 代表 float point
 
