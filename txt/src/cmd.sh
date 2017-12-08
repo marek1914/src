@@ -71,7 +71,8 @@ xxd -r -p a.txt # 3337->0x37 遇到非(0-9a-f)跳到下一行
 
 #get file size
 stat -f "%z" foo.bin
-file # /usr/share/misc/magic.mgc
+
+file # libmagic和魔数数据库 /usr/share/misc/magic.mgc
 
 #version
 /proc/version 

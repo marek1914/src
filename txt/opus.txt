@@ -133,10 +133,7 @@ header header_len body body_len   那长度部分是怎么解析出来的
 
 
 
-Magic number   魔数   OggS
-说到 魔数， 不得不提 file 命令，根据魔数 判断文件类型
-依靠 libmagic, 和一个魔数 数据库 判断文件类型
-/usr/share/misc/magic.mgc  
+Magic number 魔数  OggS
 
 
 https://www.xiph.org/ogg/doc/rfc3533.txt
