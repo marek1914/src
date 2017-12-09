@@ -115,3 +115,20 @@ Machine Learning
 Deep Learning
 
 卷积神经网络（Convolutional Neural Networks，CNN）
+
+
+
+
+
+
+-------
+free WebPACK version of Xilinx Vivado
+Xilinx SDK software development environment
+
+
+Vivado
+
+
+pynq:
+Programmable logic circuits are presented as hardware libraries called overlays
+
