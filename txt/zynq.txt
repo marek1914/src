@@ -1,3 +1,10 @@
+zynq 020 400pin  做一个 arduino大小的， 估计要6层板
+并没有将所有引脚引出，所以6层板应该是够用的
+
+500元一块，每块挣200元， 100块 2万
+
+
+
 ZYNQ:
 XC7Z010/20 账户 gxxjxx:200w(six 0)
 跳线：JP1 决定SD卡还是SPI启动
@@ -102,6 +109,10 @@ S25FL128SAGMFI
 
 trenz zynqberry， 有很多型号，较贵
 
+trenz 用 z-7007s 做的 arduino 大小的 板子 卖900多
+
+trenz-electronic.de
+
 myir Z-Tune 800+
 
 
@@ -131,4 +142,10 @@ Vivado
 
 pynq:
 Programmable logic circuits are presented as hardware libraries called overlays
+
+
+
+
+
+
 
