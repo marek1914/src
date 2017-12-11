@@ -1,4 +1,9 @@
 https://wiki.gnuradio.org/index.php/Guided_Tutorial_GRC
+https://gnuradio.org/releases/gnuradio/  源码包下载  4M 左右
+
+https://archive.org/download/sdr-with-hackrf-6b/sdr-with-hackrf-6b.mp4
+
+http://greatscottgadgets.com/sdr/  课程，，，
 
 SDR: Software-Defined Radio
 gnuradio.org
@@ -74,3 +79,15 @@ gps-sdr-sim -e xx.14n -l 39.9816983,116.308
 Graphical signal processing development: The GNU Radio Companion (GRC)
 gnuradio-companion
 
+grc 的信号源 和 示波器，fft 等， 类型分为 int float complex等， 可以选择  complex 一个信号源  显示2个波形，何意？
+
+
+throttle  节流阀
+decibel 分贝
+
+
+
+PyBOMBS  类似 python的 pip
+
+
+gnuradio-3.7.9.3.tar.gz  源码压缩包，仅仅4M大小
