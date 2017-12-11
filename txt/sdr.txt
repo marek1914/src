@@ -1,4 +1,8 @@
+https://wiki.gnuradio.org/index.php/Guided_Tutorial_GRC
+
 SDR: Software-Defined Radio
+gnuradio.org
+
 Nuand bladeRF x40 USB 3.0 (300M-3.8G)
 
 http://www.freebuf.com/articles/wireless/35354.html
@@ -7,13 +11,11 @@ http://wiki.spench.net/wiki/RTL2832U
 
 sudo apt-get install gqrx-sdr
 
-gnuradio.org
-
-https://myriadrf.org/
+https://myriadrf.org
 
 https://github.com/gnuradio/pybombs
 
-apt-get install gnuradio (或者从源码安装)
+apt-get install gnuradio
 gr-iqbal  用于iq平衡
 gr-osmosdr 
 
@@ -41,12 +43,10 @@ bladeRF-cli -l /usr/share/Nuand/bladeRF/hostedx40.rbf
 bladeRF> load fpga <path/to/fpga/file> 
 
 
-
-20170707
-bladeRF-cli 需要 sudo，但是 /dev/udev/rule.d 里面已经加了，只是0660 而不是0666
+bladeRF-cli 需 sudo，但 /dev/udev/rule.d 里面已经加了，只是0660 而不是0666
 改为0666，还是无法打开
 strace发现，并非是设备节点无法打开，而是
-/usr/share/Nuand/bladeRF/hostedx40.rbf(fpga固件) 只有root可读，修改后，可以正常启动了，那之前的660还是666 有作用吗？（这里一直没有搞明白）
+/usr/share/Nuand/bladeRF/hostedx40.rbf(fpga固件) 只有root可读，修改后，可正常启动，那之前的660还是666 有作用吗？
 插入bladerf后多出 /dev/char/ ../bus/usb/001/009  当然，usb地址，每次会有变化
 
 20170710 安装成功
@@ -70,4 +70,7 @@ gps-sdr-sim -e xx.14n -l 39.9816983,116.308
 八高 40.2123611,116.224999
 6公里 12000 步
 
+
+Graphical signal processing development: The GNU Radio Companion (GRC)
+gnuradio-companion
 
