@@ -72,7 +72,7 @@ libopus  参考实现
 opusfile 
 opus-tool 包含 opusdec/opusenc/opusinfo
 
-
+用到了 Ne10项目
 
 ----
 opus-tool 中 decoder 调用了
@@ -95,8 +95,6 @@ Q15 格式
 
 
 
-NE10 library
-projectNe10
 
 opus_decoder.c
 
