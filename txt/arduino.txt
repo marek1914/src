@@ -1,24 +1,19 @@
 Arduino / Genuino
 avr-gcc
+
 ICSP烧写器
-ATmega328P 8k flash+768 ram
-32k(ide显示32256) isp flash 10000次
-1k eeprom 100000次
-2k SRAM
-Uno 8-bit 16MHz
 
 MEGA2560 8-bit AVR 16MHz
-Due  ARM M3 84MHz
+8k flash+768 ram
 
-apt-get install arduino arduino-core
-UNO: ATmega328P(main)+atmega16u2（cpu usb转uart）
+UNO: 
+atmega328p: 32k flash + 1k eeprom +  2k sram  + 16MHz
+atmega16u2: 16k flash + 512 eeprom + 512 sram + 16MHz
+
+attiny841: 8k flash + 512 eeprom + 512 sram + 16MHz
+
 
 Arduino Bootloader
-
-呼吸灯：0-255-0-255 到0后再到1亮度是突变的，视觉均匀不等于pwm均匀
-
-IED 设置工程目录到其他位置： File->preference
-运行 ./arduino 启动程序
 
 /install.sh 
 Installed Arduino IDE icons on menu and desktop
@@ -42,7 +37,6 @@ Arduino Yun: Atheros AR9331 + AVR microcontroller
 ----
 带 ~符号的 3/5/6/9 带pwm功能， 3是pwm0
 
-
 I2C:
 wire 库  TwoWire.cpp :TWI/I2C library
 
@@ -51,14 +45,8 @@ teensy3.2(120+): MK20DX256VLH7 (20+)  Kinetis K20 72MHz M4 288K+64K SRAM, 64-LQF
 teensy3.5(250+): MK64FX512VMD12(100+) bga
 teensy3.6(300+): MK66FX1M0VMD18(100+) bga
 
-
-
-
-
 C:\Program Files (x86)\Arduino\libraries  默认库
 C:\Users\gao\Documents\Arduino\libraries  安装库
-
-
 
 蔡琪
 NOVA UNO
