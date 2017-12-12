@@ -3,6 +3,7 @@
 https://p5r.uk/blog/2009/filters-with-gnu-octave.html
 
 
+低通滤波器用乘法累加器实现
 
 
 Mathematica MATLAB Maple 并称三大数学软件

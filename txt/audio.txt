@@ -1,3 +1,5 @@
+PCM  Pulse-code modulation
+
 ===webrtc===
 modules/audio_processing:
 AEC:acoustic echo cancellation
@@ -61,17 +63,15 @@ int a =(char(*)[9])1234 - (char(*)[9])0;   //值为1234/9  2指针相减得到�
 
 
 ===mp3===
-libmad  // MPEG Audio Decoder
-libmp3lame // LAME Ain't an Mp3 Encoder
-libshine  fixed-point MP3 encoder
+libmad     MP3 decoder
+libmp3lame MP3 Encoder
+libshine   fixed-point MP3 encoder
 
-低通滤波器用乘法累加器实现
 
 1000次高通滤波
 
-Lsp_Qnt  Comp_LPC 比较耗时
-
-L_add L_sub 去掉溢出检测 44s 不去50s，使用inline速度加快明显，代码量会增加
+Lsp_Qnt  Comp_LPC 较耗时
+L_add L_sub 去掉溢出检测 44s 不去50s，使用inline速度加快明显
 
 mp3 高音部分，溢出多
 
@@ -81,9 +81,9 @@ ffmpeg -i x.mp3  -c copy x.ts 把mp3转换为ts，用流分析工具看：
 每个PES中包含7个Audio Frame(MPEG1 Layer III Joint)
 每帧时长：0.026122
 
-huffman.h中的位定义方式  编译器竟不支持
+huffman.h
 
-浮点转定点问题
+浮点转定点
 mad.h
 /*
  * Fixed-point format: 0xABBBBBBB
@@ -110,16 +110,13 @@ mad.h
 
 注意这里的定点表示方式
 
-位区域定义GreenHill的支持有些特殊
-int=4个字节系统上
-mad_fixed_t 就是unsigned int 类型
+mad_fixed_t 是unsigned int
 
 ----------
 liblame
 frontend/lame --nores xx.wav xx.mp3
 //320kbps
 lame -b 320 why.wav  why.mp3
-
 
 Lame3.99 压制完美频谱的320KCBR: -b 320 --lowpass -1 (disable lowpass filter,老版本默认disable)
 压制信息：Encoding settings : -m j -V 4 -q 3
@@ -141,7 +138,7 @@ Buffer[0] = 0x0f690000 0x0eeb0000 0x0f460000 0x0fb30000 0x0f140000
 Buffer[1] = 0x08370000 0x080c0000 0x077f0000 0x08600000 0x08650000
 
 lame.c:
-lame_encode_buffer_int()  // 定点型运算
+lame_encode_buffer_int()  // 定点运算
 lame_encode_mp3_frame()
 
 lame --lowpass 8000 why.wav  why1.mp3
@@ -153,6 +150,7 @@ lame --lowpass 8000 why.wav  why1.mp3
 
 psymodel.c   心理声学
 
+心理声学(psychoacoustics)
 =========
 
 立体声原理：
@@ -167,10 +165,7 @@ vocal 人声
 
 1 打开mp3 2 分离立体声 3 其中一个invert 4 变为mono   人声变为虚无缥缈效果
 
-心理声学(psychoacoustics)
 -------
-
-
 .wav 文件
 头信息包括：采样频率，采样深度，通道数
 
@@ -195,7 +190,6 @@ mixer.c pcm.c 生成libtinyalsa.so
 
 驻极体 :永久带电体
 
-PCM  Pulse-code modulation
 
 mic接法：
 http://www.epanorama.net/links/pc_sound.html
@@ -218,11 +212,6 @@ arecord -Dhw:0,0  -d 10 -c 2 -t wav -r 44100 -f "Signed 16 bit Little Endian" xx
 耳机插孔有 开关型 无开关型
 
 mic三线：Vbias/信号输入/地 
-
-AC97
-
-
-
 
 我那次电子琴直接输入电脑，用的是line in 还是mic呢？
 
@@ -510,6 +499,9 @@ freqz(b,a,1000,8000)// 横坐标变为Hz
 见 octave/g729-high-pass.png  横坐标是rad/sample(这个单位？？) 放大取0.035
 0.035*8k采样 = 280*pi rad/s   与采样频率还有关系？ 
 除以2*pi = 140Hz
+
+http://www.electronics-tutorials.ws/filter/second-order-filters.html
+这里有解释，-6dB -3dB 
 
 Complexity weight  复杂度权重
 
