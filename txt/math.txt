@@ -1,3 +1,10 @@
+滤波器设计 实例 !!!
+
+https://p5r.uk/blog/2009/filters-with-gnu-octave.html
+
+
+
+
 Mathematica MATLAB Maple 并称三大数学软件
 
 中文版 Mathematica 11.1,亲测可用
@@ -17,9 +24,21 @@ MathWorks公司为工程师和科学家提供数学计算软件
 MATLAB
 Simulink
 
+MATLAB fdatool :Filter Design and Analysis Tool (octave无)
 
+octave:
+ssh 连接时可字符方式显示粗糙图形
+包:
 octave-signal 信号处理函数
 octave-info  帮助信息
+
+精度:
+>>format long
+>> a = pi
+a =  3.14159265358979
+>> format short
+>> a = pi
+>>a =  3.1416
 
 二阶极零点:
 zp2sos: Convert zero-pole-gain filter parameters to second-order sections form
@@ -192,10 +211,6 @@ H(x)是滤波器
 
 <数字图像处理> P279
 
-matlab  Filter Design and Analysis Tool - MATLAB fdatool
-
-fdatool  这个工具octave没有
-明确注明 missing
 
 
 Introduction to Digital Filters: With Audio Applications  书   google  在线

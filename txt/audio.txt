@@ -484,46 +484,32 @@ core_SOURCES = core.c
 core_LDADD = 
 
 Pre_Process() 
-2nd order high pass filter with cut off frequency at 140 Hz
-Designed with SPPACK efi command -40 dB att, 0.25 ri  
-高通滤波，截止频率140Hz，转换前后的pcm，用ffplay播，窗口最下面显示略有不同
-
-截断频率140Hz 2 order pole/zero 滤波器:
+截断频率140Hz 2阶高通 IIR 滤波器 《数字信号处理》 p231
+(Designed with SPPACK efi command -40 dB att, 0.25 ri)
 
 H(z) = (0.46363718-0.927247058.*z.^-1+0.46363718*z.^-2)/(1-1.9059465.*z.^-1+0.9114024*z.^-2);
 
-// 怎么就是140Hz呢？  140Hz 带入不得0.707呀！
-
 octave:> [z,p,k] = sos2zp([0.46363718 -0.92724705 0.46363718, 1 -1.9059465 0.9114024])
 z =
-
    0.99997 + 0.00767i
    0.99997 - 0.00767i
-
 p =
-
    0.95297 + 0.05696i
    0.95297 - 0.05696i
-
 k =  0.46364 (k貌似永远等于b0)
 
 得：
-分子: 0.46364*(z-(0.99997 + 0.00767i))*(z-(0.99997 - 0.00767i))
-分母: (z-(0.95297 + 0.05696i))*(z-(0.95297 - 0.05696i))
-
+H(z) = {0.46364*(z-(0.99997+0.00767i))*(z-(0.99997-0.00767i))} / {(z-(0.95297+0.05696i))*(z-(0.95297-0.05696i))}
 
 zplane(z,p)  //显示 zero pole点
 
-
-octave:1> b=[0.46363718 -0.92724705 0.46363718]
+octave:1> b=[0.46363718 -0.927247058 0.46363718]
 octave:2> a=[1 -1.9059465 0.9114024]
-octave:3> freqz(b,a)  //数字滤波器频率响应函数
+octave:3> freqz(b,a) 
 freqz(b,a,1000,8000)// 横坐标变为Hz
-见 octave/g729-high-pass.png  横坐标是rad/sample 放大取0.035
-0.035*8k采样 = 280*pi rad/s    
+见 octave/g729-high-pass.png  横坐标是rad/sample(这个单位？？) 放大取0.035
+0.035*8k采样 = 280*pi rad/s   与采样频率还有关系？ 
 除以2*pi = 140Hz
-
-这是IIR 《数字信号处理》 p231
 
 Complexity weight  复杂度权重
 
@@ -539,11 +525,7 @@ Word16 a140[3] = {4096, 7807, -3733};      /* Q12 */
 Q12 代表4096
 Q13 代表8192
 
-最后一个问题,如何确定140Hz (文友用matlab fdatool 确定)
-
----实验：
-经过140Hz高通滤波后的数据，再滤波，数据还会变化吗？
-
+----------------------
 G729AnexA using unpakced 
 0x007f ->0 bit 
 0x0081->1 bit
@@ -558,5 +540,4 @@ packed 到 upakceted
 
 怎么直接packet输出？
 转换完的unpacket格式，大小虽没变，但zip压缩到300k，原文件就压不下去还是3.3M左右
-
 
