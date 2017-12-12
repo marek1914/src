@@ -473,37 +473,26 @@ Stream #0:0: Audio: aac (LC) ([255][0][0][0] / 0x00FF), 44100 Hz, stereo, fltp, 
 
 WAV文件头：
 14H~15H	 格式种类（1表示线性PCM）
-16H~17H	 通道数，单声道为1，双声道为2
-可见wav是个container，通常保存非压缩pcm，也可保存aac，g723等
+16H~17H	 通道数，单声道1，双声道2
+wav是container，保存非压缩pcm，也可保存aac，g723等
 
-libg729 (googlecode,doubango)
-
----
+libg729 (doubango)
 编译可执行程序：
 Makefile.am 添加：
 bin_PROGRAMS = core
 core_SOURCES = core.c
 core_LDADD = 
 
-Pre_Process() 高通滤波，截止频率140Hz，转换前后的pcm，用ffplay播， 窗口最下面似乎有些不同
+Pre_Process() 
+2nd order high pass filter with cut off frequency at 140 Hz
+Designed with SPPACK efi command -40 dB att, 0.25 ri  
+高通滤波，截止频率140Hz，转换前后的pcm，用ffplay播，窗口最下面显示略有不同
 
- * 2nd order high pass filter with cut off frequency at 140 Hz.           *
- * Designed with SPPACK efi command -40 dB att, 0.25 ri.  
+截断频率140Hz 2 order pole/zero 滤波器:
 
-G729 preprocessing  section uses a second order pole/zero filter with a cut-off frequency of 140 Hz :
 H(z) = (0.46363718-0.927247058.*z.^-1+0.46363718*z.^-2)/(1-1.9059465.*z.^-1+0.9114024*z.^-2);
+
 // 怎么就是140Hz呢？  140Hz 带入不得0.707呀！
-
-
-分子
-0.999970548 +-  0.007674828j  （分子侥幸跟z-b0  一致，因为b0 和b2 相等）
-分母
-1.04561196 +- 0.062496545j
-
-分子=0.46363718*(1/z-(0.999970548+0.007674828j))*(1/z-(0.999970548-0.007674828j))
-分母=0.9114024*(1/z-(1.04561196 +0.062496545j))*(1/z-(1.04561196 -0.062496545j))
-
-//这里不对， zero/pole 点是 (z-a0) 而不是(1/z -a0)
 
 octave:> [z,p,k] = sos2zp([0.46363718 -0.92724705 0.46363718, 1 -1.9059465 0.9114024])
 z =
@@ -518,20 +507,19 @@ p =
 
 k =  0.46364 (k貌似永远等于b0)
 
-得出：
-分子= 0.46364*(z-(0.99997 + 0.00767i))*(z-(0.99997 - 0.00767i))
-分母=(z-(0.95297 + 0.05696i))*(z-(0.95297 - 0.05696i))
+得：
+分子: 0.46364*(z-(0.99997 + 0.00767i))*(z-(0.99997 - 0.00767i))
+分母: (z-(0.95297 + 0.05696i))*(z-(0.95297 - 0.05696i))
 
 
-zplane(z,p)  //显示 zero pole点！！ 牛！
+zplane(z,p)  //显示 zero pole点
 
 
 octave:1> b=[0.46363718 -0.92724705 0.46363718]
 octave:2> a=[1 -1.9059465 0.9114024]
 octave:3> freqz(b,a)  //数字滤波器频率响应函数
 freqz(b,a,1000,8000)// 横坐标变为Hz
-见 octave/g729-high-pass.png  
-横坐标是rad/sample 放大取0.035
+见 octave/g729-high-pass.png  横坐标是rad/sample 放大取0.035
 0.035*8k采样 = 280*pi rad/s    
 除以2*pi = 140Hz
 
@@ -539,13 +527,12 @@ freqz(b,a,1000,8000)// 横坐标变为Hz
 
 Complexity weight  复杂度权重
 
-
 y[i] = b[0]*x[i]/2 + b[1]*x[i-1]/2 + b[2]*x[i-2]/2  + a[1]*y[i-1]   + a[2]*y[i-2]; 
 
 b[3] = {0.92727435E+00, -0.18544941E+01, 0.92727435E+00};
 a[3] = {0.10000000E+01, 0.19059465E+01, -0.91140240E+00};
 
-//浮点转定点(什么原理)
+//浮点转定点
 Word16 b140[3] = {1899, -3798, 1899};      /* 1/2 in Q12 */
 Word16 a140[3] = {4096, 7807, -3733};      /* Q12 */
 
