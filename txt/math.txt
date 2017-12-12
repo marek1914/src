@@ -1,3 +1,50 @@
+滤波器设计 实例 !!!
+
+https://p5r.uk/blog/2009/filters-with-gnu-octave.html
+
+
+低通滤波器用乘法累加器实现
+2 order(two-pole)
+
+Mathematica MATLAB Maple 并称三大数学软件
+
+中文版 Mathematica 11.1,亲测可用
+Mathematica 11.1注册机下载
+链接: https://pan.baidu.com/s/1jI5jtXk 密码: y393
+Mathematica 11.1下载地址
+链接: https://pan.baidu.com/s/1dFAdrTf 密码: f38h
+
+
+
+www.wolframalpha.com
+
+wolfram
+scilab
+
+MathWorks公司为工程师和科学家提供数学计算软件
+MATLAB
+Simulink
+
+MATLAB fdatool :Filter Design and Analysis Tool (octave无)
+
+octave:
+ssh 连接时可字符方式显示粗糙图形
+包:
+octave-signal 信号处理函数
+octave-info  帮助信息
+
+精度:
+>>format long
+>> a = pi
+a =  3.14159265358979
+>> format short
+>> a = pi
+>>a =  3.1416
+
+二阶极零点:
+zp2sos: Convert zero-pole-gain filter parameters to second-order sections form
+sos2zp: Convert filter second-order section parameters to zero-pole-gain form 
+
 方差：取平均，依次相减的平方再取平均。xuss：为啥要平方，是为了增大偏离值大的值的权重
 
 比如：
@@ -18,9 +65,6 @@ plot(x^2, x = -1 .. 1)  输入x^2 后，按右键，切换到正常输入
 solve(x^3 = 27);  能够解出3个跟：
 3，-1.5-1.5*3^1/2 i
 
-Mathematica、MATLAB、Maple并称为三大数学软件。
-wolfram
-scilab
 
 
 numerical analysis software
@@ -120,8 +164,7 @@ dct  dct2 在freemat上没有成功
 x=round(rand(4)*100)
 y=dct2(x);
 
-y=x.^2   注意x后面要有.
-Matlab将变量当做矩阵处理，无点是对矩阵进行运算，加点是对矩阵中每元素进行运算
+y=x.^2   // x后要有.  无点是对矩阵进行运算，加点是对矩阵中每元素进行运算
 
 y=sin(x).*cos(x)  sinx乘以cosx 中间要加.
 
@@ -169,17 +212,10 @@ H(x)是滤波器
 
 <数字图像处理> P279
 
-matlab  Filter Design and Analysis Tool - MATLAB fdatool
 
-fdatool  这个工具octave没有
-明确注明 missing
-
-octave : zp2sos 函数
-sos2zp （直接google这个关键词 会得到很多）
 
 Introduction to Digital Filters: With Audio Applications  书   google  在线
 
-----
 --freemat
 imshow 是matlab 函数  freemat 没有
 Freemat has image/imagesc that can be used to display images (instead of imshow).
@@ -228,8 +264,6 @@ The Large Time/Frequency Analysis Toolbox (LTFAT) is a Matlab/Octave toolbox for
 
 Octave可用gnuplot产生图，V3.8起用OpenGL替代了gnuplot
 
-dct2等需要安装 octave-signal
-octave-info  帮助信息(apt-get install)
 
 A= imread('img.jpg')
 [m,n]=size(A)
@@ -269,13 +303,8 @@ contourf(peaks)
 
 gnuplot
 
-(Octave-band decomposition) 八带分解（与octave软件无关）
-
-octave-signal 为啥没有 dwt2()，有dwt()
-
 ----------
 octave解方程组:
-
 
 --
 http://georgehart.com/  卵形曲线  有意思
@@ -319,8 +348,6 @@ exp :以自然常数e为底的指数函数, 例如：EXP{F(X)}是e的F(X)次方
 
 Gaussian function(简称Gaussian):
 f(x)=a*e^(-(x-b)^2/2c^2)
-
-octave:
 
 x=linspace(-10,10,1000);
 y=e.^(-(x-1).^2/2);
@@ -424,7 +451,7 @@ gcc ff-test.c -o ff-test -lfftw3 -lm
 in[i][0] = i;
 in[i][1] = 0.0;
 
-fftw_plan_dft_1d() 对应 octave的 fft(a)函数
+fftw_plan_dft_1d() 对应 octave fft(a)函数
 
 https://www.staff.ncl.ac.uk/oliver.hinton/eee305/
 ncl 大学资源
@@ -436,19 +463,15 @@ ffmpeg中 showcqt fft怎么确定频率的
 
 几个问题：
 1 傅立叶级数的相位只有0 和 -pi吗？即所有
-
 周期函数的频谱图都能用负幅值表示-pi相位？
-2 FFT中，输入值一般是实数，输出是复数，那输入是复数，有什么含义？
-一维结果再FFT，输入就是复数了
 
-FFT用于计算DFT(discrete Fourier transform) 和IDFT，所以术语 FFT 和 DFT 可以交替使用，说的是一回事
+2 FFT中，输入值一般是实数，输出是复数，一维结果再FFT，输入就是复数了
 
+FFT用于计算DFT(discrete Fourier transform) 和IDFT，所以FFT和DFT 说的是一回事
 DTFT: Discrete-time Fourier transform
-
-对于一般的周期信号可以用一系列（有限个或者无穷多了）正弦波的叠加来表示。这些正弦波的频率都是某一个特定频率的倍数如5hz、2*5hz、3*5hz……（其中的5hz叫基频）。这是傅立叶级数的思想。所以说周期信号的频率是离散的。 
-而且，对于周期信号有一个特点，信号的周期越长，信号的基频越小。 
-非周期信号可以看作周期无穷大的周期信号，那么它的基频就是无穷小，这样它的频率组成就编程了连续的了。求这个连续频率的谱线的过程就是傅立叶变换。包括这样几种： 
 DTFT（时间离散，频率连续） 
 DFT（时间和频率都离散，可在计算机中处理） 
 FFT（DFT的优化算法，计算量减少）
+
+
 

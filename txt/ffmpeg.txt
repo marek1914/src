@@ -44,12 +44,11 @@ decoder_decode_frame
 avcodec_decode_audio4
 libopus_decode 具体音频解码器的解码函数
 
-ffplay:
-强制解码器，不认 -c:a
--codec:v or a  codec_name
--acodec codec_name
--vcodec codec_name
-
+ffplay 指定解码器不认 -c:a
+-codec:v codec_name
+-codec:a
+-acodec
+-vcodec
 
 
 

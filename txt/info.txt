@@ -229,7 +229,6 @@ https://docs.particle.io/datasheets/photon-datasheet
 wikihow.com/Measure-Inductance  测量电感
 wikihow.com/Test-a-Capacitor    测量电容
 
-http://www.wolframalpha.com
 alphawolf 中关村智能硬件孵化器
 
 account:

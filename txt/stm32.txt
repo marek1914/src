@@ -346,6 +346,9 @@ PWM: 脉冲宽度调制
 
 ----
 DSP
+
+cortex-m4 有dsp 却没有neon
+
 gcc的库 3M+ little
 mdk的库 13M+  little and big
 
@@ -364,7 +367,7 @@ stm32F732RE (with HW crypto-Tiny AES)
 
 ----别懒惰---
 F4 
-1 HAL 编译为.lib (greenHill就是最好的方法，每次想到这个问题都要内训纠结，没意义，有限精力放在重要事情上)
+1 HAL 编译为.lib 
 2 gcc版本，方便调试
 
 f4 dsp 积累寻找商机

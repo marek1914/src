@@ -1,14 +1,11 @@
 ARMv8 AArch64
 
 
-Thumb-2: 可达传统ARM峰值性能，并节省30%代码空间
+Thumb-2: 可节省30%代码空间
 ThumbEE: Thumb Execution Environment，用于字节码语言的执行如java
 ARM GIC: Generic Interrupt Controller
 
-Thumb状态：执行Thumb指令的处理器状态。BX、BLX 等指令完成时，切换到ARM状态
-
 bit.LITTLE 4核A15 + 4核A7
-
 
 vfpv3 vfpv3-d16 vfpv4 vfpv4-d16
 
@@ -21,7 +18,7 @@ General Purpose Input/Output (PL060)
 UART (PL011)
 
 VFP 也支持 SIMD
-VFPv1 已废弃
+VFPv1 废弃
 VFPv2 ARMv5/ARMv6
 VFPv3 ARMv7-A/R 中 ARM/Thumb/ThumbEE指令集的可选扩展
       16个双精度(VFPv3-D32)或32个单精度(VFPv3-D16)寄存器
@@ -105,4 +102,21 @@ eabi 和 oabi 的区别
 1 调用规则 包括参数传递以及如何获得返回值
 2 应用程序如何去做系统调用
 3 结构体中的填充和对其 （ padding packing ）
+
+
+
+
+
+-----------------------
+NE10 library
+projectNe10
+
+provides the fastest open source implementations of key operations for Arm v7/v8-A
+focusing on math, signal processing, image processing, and physics functions.
+
+dsp部分只包含 fft fir iir 3个
+math 包含了 向量加，矩阵加， 向量乘法等
+image 图像缩放和旋转
+physics 碰撞检测
+
 

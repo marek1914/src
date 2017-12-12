@@ -754,3 +754,10 @@ HOST_CXX := $(HOST_TOOLCHAIN_PREFIX)/g++
 endif
 
 endif
+
+
+
+
+--- qcom
+wifi打开崩溃，打开wifi时加载 system/lib/modules/qca_cld3 下wlan 驱动.ko,
+vendor/qcom/opensource/wlan/qcacld-3.0/core/dp/htt/htt.c:705 崩溃，是类似assert的自杀行为

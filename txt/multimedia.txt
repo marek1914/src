@@ -65,13 +65,7 @@ MKV:
 Matroska
 MKV只是Matroska媒体系列的其中一种文件。Matroska封装格式可把多种不同编码的视频及16条以上音频和语言不同的字幕封装到一个Matroska Media档内。
 
-3GP是容器，Third Generation Partnership Project（3GPP）定义，用于3G手机。
-是MPEG-4 Part 14的简化版，减少空间和带宽需求。
-编码可用MPEG-4 Part 2、H.263或MPEG-4 Part 10 (AVC/H.264)等，声音支持AMR-NB、AMR-WB、AMR-WB+、AAC-LC或HE-AAC。
-有2种标准：
-3GPP（针对GSM手机.3gp）
-3GPP2（针对CDMA手机.3g2）
-2种分辨率：176×144 / 320×240
+3GP容器是MPEG-4 Part 14的简化版，减少带宽需求，可用H.264 + AAC
 
 Matroska能容纳多种类型的音视频编码及字幕流，并且它能把非常高密的RealMedia及QuickTime文件也容纳在内，同时将它们的音频和视频重新组织起来
 MKV播放器屏幕截图

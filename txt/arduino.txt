@@ -57,3 +57,10 @@ teensy3.6(300+): MK66FX1M0VMD18(100+) bga
 
 C:\Program Files (x86)\Arduino\libraries  默认库
 C:\Users\gao\Documents\Arduino\libraries  安装库
+
+
+
+蔡琪
+NOVA UNO
+Nduino  CH340+ATMega328P
+

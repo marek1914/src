@@ -72,7 +72,7 @@ libopus  参考实现
 opusfile 
 opus-tool 包含 opusdec/opusenc/opusinfo
 
-
+用到了 Ne10项目
 
 ----
 opus-tool 中 decoder 调用了
@@ -93,23 +93,31 @@ Normalized Line Spectral Frequencies
 
 Q15 格式
 
+opus_decoder.c
 
-
-NE10 library
-projectNe10
-
-
-
+opus_decode()
+opus_decode_float()
 
 opusdec 例程中  fp 代表 float point
 
 
 浮点解析出来，是-1 到 1 之间的一个float，再转换为 -32768 到 32767之间的 16bit 有符号数字
 
-
-
-
 https://xiph.org/ogg/doc/oggstream.html
 
-
 page 和 packet
+
+ogg_packet  里面的数据，就是最终需要解码的数据
+
+第一次解出的数据：
+
+0xfc, 0x7f, 0xc7, 0xff, 0x2d, 0x50, 0x8, 0x47, 0xeb, 0x51, 0x2e, 0xdf, 0x3f, 0x6d, 0x4d, 0xbd, 0x35, 0x75, 0x72, 0x50
+
+
+每个 page 都以 Oggs 开头
+header header_len body body_len   那长度部分是怎么解析出来的
+
+Magic number 魔数  OggS
+
+https://www.xiph.org/ogg/doc/rfc3533.txt
+
