@@ -10,10 +10,14 @@ UNO:
 atmega328p: 32k flash + 1k eeprom +  2k sram  + 16MHz
 atmega16u2: 16k flash + 512 eeprom + 512 sram + 16MHz
 
+Genuino Micro:
+atmega32u4: 32k flash + 1k eeprom + 2.5k sram + usb + 16MHz
+
 attiny841: 8k flash + 512 eeprom + 512 sram + 16MHz
 
 
 Arduino Bootloader
+arduino.cc/en/Hacking/ParallelProgrammer
 
 /install.sh 
 Installed Arduino IDE icons on menu and desktop

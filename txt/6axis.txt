@@ -55,3 +55,11 @@ AK8968   2011年
 AK09918C 2017年
 
 
+
+计步器原理：
+www.analog.com/cn/analog-dialogue/articles/pedometer-design-3-axis-digital-acceler.html
+
+adxl335 3个轴模拟输出
+adxl345 i2c 接口，可做计步器
+
+

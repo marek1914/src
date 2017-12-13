@@ -2,14 +2,9 @@ gtk 开发：
 -I/usr/include/glib-2.0/
 -I/usr/include/gtk-2.0/
 
-
-
-
 gh 进入 select 模式
 
-
 一年之内不要再增加新功能，不要再折腾环境 20171102-20181103
-stm32f300w!!
 
 20171109 不要希望统一到 vi ctag cscope clang_complete，没有一个工具能完成所有工作，或者能但是要花费巨大精力
 得不偿失，所以要接受多种工具并存，有的场景，source insight 反而是最好用的
@@ -52,6 +47,7 @@ vim.base Huge version
 vim.tiny Small version
 
 vim-nox // support python
+vim-nox-py2 // ubuntu16.04 -nox 是python3
 
 gcc -fpreprocessed -dD -E foo.c 删除注释
 
@@ -70,7 +66,7 @@ ultisnips (配合vim-snippets) 默认：
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-需要vim支持python（安装vim-nox），否则：
+需要vim支持python（vim-nox），否则：
 UltiSnips requires py >= 2.7 or py3
 
 ----- vim-snippets -----
@@ -207,38 +203,35 @@ set background=dark/light
 
 —- python complete —-
 Pydiction
-默认Tab 和 Shift+Tab 代替了C-P和C-N
-由于Tab与snippet冲突，改为 C-P,和S-Tab （也不合理）
-pythoncomplete.vim(vim自带，足够用)
-Jedi
+默认Tab 和 Shift+Tab 代替了C-P和C-N 由于Tab与snippet冲突，改为 C-P,和S-Tab
+利用 iskeyword 在c-n中识别 . 和( ,  (增加 32(空格)不行  set isk+=\ ,)
+dict的帮助里说，一行多词时，可以用 no-keyword 分隔，首选空格，说明空格是非关键词，那将空格变成关键词，逻辑应该对
+iskeyword 增加了. 后， 比如 dw命令，删除一个word， 遇到. 就不会终止了
 
-pythoncomplete 和jedi同样问题：
+pythoncomplete.vim(vim自带, not support python3) / Jedi
+ubuntu16.04 上需安装 vim-nox-py2 (vi 链接到此)
+修改：
+usr/share/vim/vim74/autoload/pythoncomplete.vim
+if !has('python') 为 if !has('python3')
+检测过了，但运行后很多语法不兼容
+适当的时候再 jedi，1年内不折腾vi了
+
+
+问题：
 c = range(1,5)
-c.reverse() # c. C-x C-o 不提示（程序不运行无法判断c的类型？）
+c.reverse() # c. C-x C-o 不提示（无法判断c的类型？）
+
+折衷办法：
+c = range(1,50)
+c = list()
+
 sqlite3 函数返回变量. 不提示
 import sys
 sys. 提示
 c = list()
 c. 提示
 
-折衷办法：
-c = range(1,50)
-c = list()
-c. 提示后再删除c=list 行
-
-
-K: .c触发man/ .py触发pydoc
-
-
-Pydiction 利用 iskeyword 在c-n中识别 . 和( , 
-可增加 32(空格)不行  set isk+=\ ,   已经把空格加入了，但还是不行
-也无法增加 中文逗号
-
-iskeyword 增加了. 后， 比如 dw命令，删除一个word， 遇到. 就不会终止了
-
-dict的帮助里说，一行多词时，可以用 no-keyword 分隔，首选空格，说明空格是非关键词，那将空格变成关键词，逻辑应该对呀
-
-
+K: .c触发man .py触发pydoc
 
 :h complete
 
