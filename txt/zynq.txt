@@ -1,9 +1,6 @@
 zynq 020 400pin  做一个 arduino大小的， 估计要6层板
 并没有将所有引脚引出，所以6层板应该是够用的
 
-500元一块，每块挣200元， 100块 2万
-
-
 
 ZYNQ:
 XC7Z010/20 账户 gxxjxx:200w(six 0)
@@ -96,16 +93,18 @@ See http://www.wiki.xilinx.com/Prepare+boot+image (the FSBL and u-boot are inclu
 ip:     xylon's display ip and evaluation license
 
 ------
-Zynq-7000S 单核A9  
-Z-7007S/7012S/7014S 766MHz
-Zynq-7000 双核A9
-Z-7010/7015/7020       866MHz
-Z-7030/7035/7045/7100  1GHz
+Zynq-7000S 单核A9
+Zynq-7000  双核A9 7010/7015/7020
 
 
 pynq-Z1  512M DDR3 + 16M Quad-SPI Flash 
+XC7Z020-1CLG400C
+
 IS43TR16256A-125KBL
 S25FL128SAGMFI
+
+pynq 硬件库叫 overlays
+
 
 trenz zynqberry， 有很多型号，较贵
 
@@ -115,9 +114,7 @@ trenz-electronic.de
 
 myir Z-Tune 800+
 
-
 Zynq + PYNQ + Python：在PYNQ-Z1上搭建二值神经网络（BNN）
-
 
 
 ------机器学习
@@ -127,25 +124,9 @@ Deep Learning
 
 卷积神经网络（Convolutional Neural Networks，CNN）
 
-
-
-
-
-
 -------
 free WebPACK version of Xilinx Vivado
 Xilinx SDK software development environment
 
-
 Vivado
-
-
-pynq:
-Programmable logic circuits are presented as hardware libraries called overlays
-
-
-
-
-
-
 
