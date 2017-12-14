@@ -1,3 +1,7 @@
+github.com/arduino
+这个仓库是arduino全套源码，包括BootLoader，wire，集成环境等
+hardware/arduino/avr 目录下是bootloader 和 固件
+
 Arduino / Genuino
 avr-gcc
 

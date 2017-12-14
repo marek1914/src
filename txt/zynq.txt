@@ -94,7 +94,7 @@ ip:     xylon's display ip and evaluation license
 
 ------
 Zynq-7000S 单核A9
-Zynq-7000  双核A9 7010/7015/7020
+Zynq-7000  双核A9 7010/7015/7020 Artix-7 family programmable logic
 
 
 pynq-Z1  512M DDR3 + 16M Quad-SPI Flash 

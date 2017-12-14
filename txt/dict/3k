@@ -152,9 +152,7 @@ hour
 huge
 idea
 iron
-item
 jail
-join
 joke
 jury
 keep
@@ -210,10 +208,7 @@ neck
 need
 none
 nose
-note
 odds
-once
-onto
 oven
 pace
 pack
@@ -280,7 +275,7 @@ same
 sand
 seat
 seed
-seek 寻找
+seek
 seem
 sell
 send
@@ -302,10 +297,8 @@ skin
 slip
 snap
 snow
-soft
 soil
 soon
-sort
 soul
 soup
 spin
@@ -329,8 +322,6 @@ tell 告知
 tend
 tent
 term
-them
-they
 thin
 thus
 tire
@@ -342,7 +333,6 @@ trip
 tube
 turn
 twin
-ugly
 unit
 upon
 urge
@@ -2828,3 +2818,4 @@ integrate
 circuit
 rectangle
 damping 阻尼衰减
+heartbeat 心跳

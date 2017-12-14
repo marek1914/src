@@ -7,6 +7,10 @@ class     exec      in        raise
 continue  finally   is        return
 def       for       lambda    try
 
+1 不支持 ++ 运算符
+2 for循环只有 for in 这一种形式
+
+
 
 包:
 python-pip
@@ -162,3 +166,29 @@ __subclasshook__
 __reduce_ex__
 
 C-x x-o 识别不出类型的时候，就显示这些，这些是？
+
+
+
+
+
+open len iter 等都是 内建 build-in 函数
+
+f=open()  返回file对象，这个对象没有迭代器，iter(f) 返回的还是file对象，但是这个文件对象有 next 方法，
+而其他的对象比如 str，iter会返回迭代器对象，迭代器里面有 next方法
+
+python2 是 next(), python3 是 __next__()
+
+
+
+---json---
+python标准库就支持 json
+import json
+
+json的一个 object 对应 python的 dict
+
+
+
+bit.ly 例子
+{"_heartbeat_":1331923261}
+
+
