@@ -1,3 +1,5 @@
+ -vsync   赵毅辉
+
 音频的通道或视频颜色分量
 packed : 各通道一起存储
 planar : 各通道单独存储 yuv420p p代表planar
