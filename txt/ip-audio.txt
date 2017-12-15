@@ -245,40 +245,9 @@ F4上实现  opus 解码！！！！
 nanopi.io
 github.com/friendlyarm
 
+NanoPi NEO
+Allwinner H3 4核 cortex-A7 1.2GHz  256MB   u-boot + ubuntucore
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+BakeBit ...
 

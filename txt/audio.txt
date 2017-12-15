@@ -209,8 +209,6 @@ arecord -Dhw:0,0  -d 10 -c 2 -t wav -r 44100 -f "Signed 16 bit Little Endian" xx
 浅绿 line out 耳机音箱
 粉红 mic
 
-耳机插孔有 开关型 无开关型
-
 mic三线：Vbias/信号输入/地 
 
 我那次电子琴直接输入电脑，用的是line in 还是mic呢？
