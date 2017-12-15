@@ -251,3 +251,7 @@ Allwinner H3 4核 cortex-A7 1.2GHz  256MB   u-boot + ubuntucore
 
 BakeBit ...
 
+
+老姜 操作 音频节点
+File descriptor in bad state  问题
+https://www.raspberrypi.org/forums/viewtopic.php?t=15614
