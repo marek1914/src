@@ -16,16 +16,17 @@ Microchip MCP73xxx:
 MCP73871:  thermal
 MCP73871-3CCI/ML  4.35V 没有卖的
 MCP73871-2CCI/ML  4.20V RMB:4+
-CE3150AM: yj 电池充电
+CE3150AM: yj 
 CN3068   4.35V
 HB6293   4.35
 CN3062E  4.35
-PMI8998: qualcomm 太高端
+PMI8998: qualcomm 高端
 
 3.7V
 li-ion 锂离子充电电压 4.2V
-4线：ID,Thermal，保证充电安全，不影响放电
-高密度锂电池充满电 4.35V
+4线：ID,Thermal，保证充电安全
+高密度锂电池充满 4.35V
+
 充电策略:
 2.1V以下，45mA充电
 2.1V-3V，涓流充电 200~500mA
@@ -47,6 +48,10 @@ MP45DT02-M: 金属外壳
 DC-DC: monolithicpower.com
 MP2359: 30V
 MP2565: 50V
+
+
+TI:
+TPS56xxx   那天arduino 那个人 给我说的那款  能升压 能降压   bulk boost 
 
 
 VL53L0X: ST  Time-of-Flight (ToF)  激光测距  RMB:22+

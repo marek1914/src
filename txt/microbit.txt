@@ -1,7 +1,21 @@
-40x2 1.27间距
+兴永恒  阿里巴巴
 
-pci 1.27
-pcie 1.0
+bit 是 5cm
+插槽   5.5cm
+
+Adafruit NeoPixel Ring WS2812 5050 
+WS2812  环形做个时钟
+
+NeoPixel  环形LED条
+https://github.com/adafruit/Adafruit_NeoPixel
+https://www.tweaking4all.com/hardware/arduino/arduino-ws2812-led/
+https://www.adafruit.com/category/168
+
+问题： 
+1 ws2812 这个芯片 是5V 供电！？
+2 选的电池 是锂聚合物  而ce35 那个芯片资料显示 是锂离子电池 的 
+
+40x2 1.27间距
 
 HIROSE HRS SCSI连接器1.27 80P 90度弯型母端 FX2-80S-1.27DSL  
 https://item.taobao.com/item.htm?spm=a230r.1.14.121.9688036ZbBCac&id=549438452682&ns=1&abbucket=17#detail
@@ -18,3 +32,16 @@ DFRobot 扩展板:
 2 LED灯，接通电源地后，控制端 给 高电平 亮 红色
 3 扩展板 每个接口串了 100欧电阻
 4 圆圈 是 10k 滑动变阻器
+
+
+
+
+
+microbit 背面引脚都是悬空的，真正有用的其实就 18-19 个
+
+
+http://microbit.org/guide/hardware/pins/
+
+
+
+

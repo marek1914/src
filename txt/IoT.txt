@@ -1,7 +1,4 @@
-VNA  矢量网络分析仪
----------
 DA14580
-
 
 线序(如函数参数序列)
 BBG 4pin 2.0mm：
@@ -52,8 +49,6 @@ gl852g
 usb切换器USB3740B
 
 R025 采样电阻/精密电阻 （2快工程机板，电池内部有）
-
-
 
 MAX6225 低噪声高精度 +2.5V/+4.096V/+5V电压基准
 Low 1.0ppm/°C Temperature Coefficient
@@ -241,11 +236,6 @@ SM04B-SRSS-TB
 5-3.3 V 小板  红色5V 白色3.3V输出
 
 
-NeoPixel  环形LED条
-https://github.com/adafruit/Adafruit_NeoPixel
-
-https://www.tweaking4all.com/hardware/arduino/arduino-ws2812-led/
-https://www.adafruit.com/category/168
 
 ---
 物联网通讯协议：

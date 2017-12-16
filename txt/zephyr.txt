@@ -7,7 +7,6 @@ https://github.com/tidyjiang8/zephyr-inside/blob/master/SUMMARY.md
 
 CMSIS-DAP (Debug Access Port)
 
-Adafruit NeoPixel Ring  WS2812 5050 RGB LED
 
 pip install pyelftools (ubuntu 14)
 apt-get install python3-pyelftools(debian 8)
