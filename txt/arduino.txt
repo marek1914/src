@@ -42,6 +42,15 @@ typedef uint8_t byte;
 
 Arduino Yun: Atheros AR9331 + AVR microcontroller
 
+原理图看，支持POE，可是插上POE 交换机 没反应
+原理图也看不出来 哪个器件在哪里
+
+Yun使用的是基于OpenWRT的轻量级Linux，而且内部Flash只有16MB，这意味着有很大一部分Linux程序包无法被支持。
+Yun有64MB的DDR2内存和16MB的FLASH存储。该存储空间用于安装Linino系统，该安装镜像可以被更改。
+
+这里有 poe的说明
+https://www.arduino.cc/en/Main/ArduinoBoardYun?from=Products.ArduinoYUN
+
 ----
 带 ~符号的 3/5/6/9 带pwm功能， 3是pwm0
 
