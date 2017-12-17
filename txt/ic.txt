@@ -8,7 +8,7 @@ TPS61090: 2A Switch, 96% Efficient Boost Converter
 B1182: 功率三极管  PNP silicon transistor
 SMD4P322: 53.2x2.5 4脚晶体 
 sy8113b: dc-dc
-AO4803A: USB电源MOS管关闭, Dual P-Channel Enhancement Mode Field Effect Transistor
+AO4803A: USB电源MOS管关闭, Dual P-Channel Enhancement FET
 pj-322: 4段音频母头
 
 锂电池充电管理：
