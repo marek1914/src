@@ -258,21 +258,10 @@ BakeBit ...
 File descriptor in bad state  问题
 https://www.raspberrypi.org/forums/viewtopic.php?t=15614
 
-
-
-
-
 48V  POE
 https://forum.arduino.cc/index.php?topic=338956.0
 
-
-买的 poe 路由器，标明 12+ 36-  可是直接用万用表量，只有1.3V +  并不是 48V  怎么回事？
-不能用集成变压器了
-
-
-
-
-
+汉仁的集成RG45 不支持 POE，电路不同
 
 
 
