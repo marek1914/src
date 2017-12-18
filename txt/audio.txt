@@ -177,10 +177,8 @@ vocal 人声
 hj给我的耳机，用在ipod 3上，插到低出现人声消除的效果，奇怪，不是巧合，说明跟软件起到了相同作用，
 与普通耳机相比，根部2段分开而已
 
-pc:  aplay Lemon.wav 可以播放
-android 不用标准版alsa-lib/alsa-utils，而是TinyAlsa
 
-alsa-utils：aplay/amixer/arecord
+android 不用 alsa-lib/alsa-utils 而是TinyAlsa
 
 mixer.c pcm.c 生成libtinyalsa.so
 基于此库生成3过exe：tinyplay/tinycap/tinymix/tinypcminfo
@@ -273,7 +271,7 @@ ALSA lib pcm.c:2239:(snd_pcm_open_noupdate) Unknown PCM /dev/snd/pcmC1D0c
 
 ffplay -f lavfi 'amovie=hw:1,0,showcqt=fps=30:count=5'
 
-(公司pc)ubuntu -> system Setting -> sound:
+ubuntu -> system Setting -> sound:
 输出设备2个：
 Headphones (当前面板插入插头)  后面板插入耳机没显示
 Analog Output (这个一直存在，不知代表啥)
@@ -283,6 +281,9 @@ USB 2.0 Camera(插着usb摄像头的情况下)
 Front Microphone (当前面板插入插头) 仅靠插头插入与否检测，就像CA卡
 Rear  Microphone (当后面板插入插头) 可以同时支持2个micphone ？
 Line In (当后面板line in插入)
+
+aplay x.wav #pc ok
+alsa-utils：aplay/amixer/arecord
 
 aplay -l
 **** List of PLAYBACK Hardware Devices ****
@@ -321,6 +322,22 @@ arecord -Dhw:1,0 -r 16000 -d 10 -v  -f S16_LE -c 1 1.wav
 录制电子琴，开始噪音严重，琴音量调低
 
 内录用的alsa工具 arecored
+
+
+--- NanoPi ---
+aplay -l
+**** List of PLAYBACK Hardware Devices ****
+card 0: Codec [H3 Audio Codec], device 0: CDC PCM Codec-0 []
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+
+arecord -l
+**** List of CAPTURE Hardware Devices ****
+card 0: Codec [H3 Audio Codec], device 0: CDC PCM Codec-0 []
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+
+
 
 问题：
 usb摄像头的micphone，原始音频采样频率是多少？ 8k？ 11.052k？

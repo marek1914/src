@@ -1,3 +1,9 @@
+nrf51 做一套 mesh 实验平台
+
+买的电池卡扣 怎么找不到了呢？
+
+先用 microbit 实验
+
 nrf51822-qfax  每个型号都单独原理图, 对比后原理图完全一致，分开真是有病 
 
 http://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF51822

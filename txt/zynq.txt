@@ -27,10 +27,10 @@ http://releases.ubuntu.com/
 3个版本：米尔的12.04 桌面版， xilinx官方12.10 ubuntu-core版， ubuntu官方12.04版
 脱离米尔，从官网下载开始整理，驱动方面，只要网口通了就行
 
-webserver方案：goahead/appweb
+goahead
 cgi
-http://embedthis.com/goahead/ 公司维护
-https://github.com/embedthis 维护 goahead/appweb
+embedthis.com/goahead
+github.com/embedthis # goahead源码
 
 goahead -v /web ip：9000  #ip是服务器ip，端口前要有空格
 
