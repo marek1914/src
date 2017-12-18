@@ -213,8 +213,6 @@ mic三线：Vbias/信号输入/地
 
 u10.04 oss驱动: /dev/audio dsp adsp，u11.10后没有了，统一用alsa
 
-alsa声卡节点 /dev/snd/controlC0 
-插入usb摄像头后增加：controlC1 和 pcmC1D0c
 
 libasound
 
@@ -222,10 +220,13 @@ libasound
 ALSA PCM devices to OSS devices mapping (指的是microphone？)
 /dev/snd/pcmC0D0 -> /dev/dsp0 (/dev/dsp)
 
-/proc/asound/cards 显示音频设备（android也适用）
+/proc/asound/cards 显示音频设备
+
+alsa声卡节点 /dev/snd/controlC0 
+插入usb摄像头后增加：controlC1 和 pcmC1D0c
 
 /dev/snd (插入usb camera)
-116,  6 controlC0
+116,  6 controlC0 (控制节点)
 116,  8 controlC1
 116,  5 hwC0D2
 116,  4 pcmC0D0c (c: capture)
@@ -234,6 +235,12 @@ ALSA PCM devices to OSS devices mapping (指的是microphone？)
 116,  7 pcmC1D0c
 116,  1 seq
 116, 33 timer
+
+dev/snd:  (主设备号 14 是oss 设备)
+audio     14,  12 1969-12-31 16:00 adsp                     
+audio     14,   4 1969-12-31 16:00 audio                    
+audio     14,   3 1969-12-31 16:00 dsp                      
+audio     14,   0 1969-12-31 16:00 mixer                    
 
 /proc/asound/devices (与上对应)
   1:        : sequencer
@@ -246,18 +253,6 @@ ALSA PCM devices to OSS devices mapping (指的是microphone？)
   8: [ 1]   : control
  33:        : timer
 
-mstar android:
-dev/snd:  (主设备号 14和116)
-audio     14,  12 1969-12-31 16:00 adsp                     
-audio     14,   4 1969-12-31 16:00 audio                    
-audio    116,   0 1969-12-31 16:00 controlC0                
-audio     14,   3 1969-12-31 16:00 dsp                      
-audio     14,   0 1969-12-31 16:00 mixer                    
-audio    116,  24 1969-12-31 16:00 pcmC0D0c                 
-audio    116,  16 1969-12-31 16:00 pcmC0D0p                 
-audio    116,  25 1969-12-31 16:00 pcmC0D1c                 
-audio    116,  17 1969-12-31 16:00 pcmC0D1p                 
-audio    116,  33 1969-12-31 16:00 timer 
 
 avformat_open_input
 

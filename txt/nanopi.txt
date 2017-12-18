@@ -35,3 +35,22 @@ sudo goahead -v --home /etc/goahead /var/www/goahead/
 
 可以开始写网页了
 
+
+
+
+strace aplay x.wav : 
+
+1 寻找 .asoundrc 文件, 没有这个文件(用于配置声卡)
+2 open /dev/snd/controlC0
+  ioctl SNDRV_CTL_IOCTL_PVERSION
+        SNDRV_CTL_IOCTL_PCM_PREFER_SUBDEVICE
+3 open /dev/snd/pcmC0D0p
+  close /dev/snd/controlC0
+  ioctl SNDRV_PCM_IOCTL_INFO
+        SNDRV_PCM_IOCTL_PVERSION
+        SNDRV_PCM_IOCTL_TTSTAMP
+        SNDRV_PCM_IOCTL_SYNC_PTR
+4 播放
+  读 .wav 文件，然后
+  ioctl SNDRV_PCM_IOCTL_WRITEI_FRAMES
+        SNDRV_PCM_IOCTL_SYNC_PTR
