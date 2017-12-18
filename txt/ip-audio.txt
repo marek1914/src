@@ -263,6 +263,10 @@ https://forum.arduino.cc/index.php?topic=338956.0
 
 汉仁的集成RG45 不支持 POE，电路不同
 
+支持POE的
+HR891153C
+HR931147C
+HR891156C
 
 
 
