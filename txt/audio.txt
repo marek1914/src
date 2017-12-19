@@ -277,8 +277,11 @@ Front Microphone (当前面板插入插头) 仅靠插头插入与否检测，就
 Rear  Microphone (当后面板插入插头) 可以同时支持2个micphone ？
 Line In (当后面板line in插入)
 
-aplay x.wav #pc ok
+aplay x.wav
 alsa-utils：aplay/amixer/arecord
+
+amixer
+
 
 aplay -l
 **** List of PLAYBACK Hardware Devices ****
@@ -319,18 +322,6 @@ arecord -Dhw:1,0 -r 16000 -d 10 -v  -f S16_LE -c 1 1.wav
 内录用的alsa工具 arecored
 
 
---- NanoPi ---
-aplay -l
-**** List of PLAYBACK Hardware Devices ****
-card 0: Codec [H3 Audio Codec], device 0: CDC PCM Codec-0 []
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
-
-arecord -l
-**** List of CAPTURE Hardware Devices ****
-card 0: Codec [H3 Audio Codec], device 0: CDC PCM Codec-0 []
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
 
 
 

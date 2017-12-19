@@ -32,7 +32,7 @@ make BOARD=arduino_101_mcuboot      - Build for arduino_101_mcuboot
 make BOARD=arduino_101_sss          - Build for arduino_101_sss (Sensor Subsystem ，ARC)
 
 
-Intel Curie 内部通过UART0 连接 Nordic nRF51822
+Curie 通过UART0 连接 nRF51822
 
 
 代码包含了130M的 stm32cube ：stm32f1xx stm32f3xx stm32f4xx stm32l4xx

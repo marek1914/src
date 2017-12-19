@@ -54,3 +54,38 @@ strace aplay x.wav :
   读 .wav 文件，然后
   ioctl SNDRV_PCM_IOCTL_WRITEI_FRAMES
         SNDRV_PCM_IOCTL_SYNC_PTR
+
+
+
+
+sunxi-tools 包里
+bin2fex
+
+
+
+i2s 音频怎么出来    alsa
+
+--- NanoPi ---
+aplay -l
+**** List of PLAYBACK Hardware Devices ****
+card 0: Codec [H3 Audio Codec], device 0: CDC PCM Codec-0 []
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+
+arecord -l
+**** List of CAPTURE Hardware Devices ****
+card 0: Codec [H3 Audio Codec], device 0: CDC PCM Codec-0 []
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+
+
+amixer -c 0 set DAC 2dB+   能加音量
+
+alias volu='sudo amixer set PCM -- $[$(amixer get DAC|grep -o [0-9]*%|sed 's/%//')+5]%'
+
+
+armhf 7:2.8.11-0ubuntu0.16.04.1   搞明白这串数的含义
+
+开始是 ffmpeg2.3  update后 跟 ubuntu server一样 到了2.8.11
+
+ffplay -nodisp // OK 

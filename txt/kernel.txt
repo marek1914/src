@@ -2,7 +2,6 @@ kernel.org
 
 device tree:
 
-
 built-in.o
 
 include 系统

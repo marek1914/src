@@ -1,3 +1,4 @@
+ffplay -nodisp  无需SDL
  -vsync   赵毅辉
 
 音频的通道或视频颜色分量
@@ -160,7 +161,7 @@ ffplay -f lavfi 'movie=why.mp4,scale=960x540,split[1][out1];[1]smartblur=luma_ra
 ffplay -f lavfi 'movie=x.mp4,rotate=t/10' //视频旋转  t/n是filter变量，n帧数t时间(s)
 ffplay -f lavfi 'amovie=x.mp3,showcqt' //显示cqt频谱
 ffplay -f lavfi 'amovie=/dev/dsp1:oss,showcqt' // mic cqt频谱(oss驱动)
-ffplay -f lavfi "amovie=\'hw:0\':alsa,showcqt" //alsa 声卡 冒号要转义 或：
+ffplay -f lavfi "amovie=\'hw:0\':alsa,showcqt" //声卡 冒号要转义 或：
 ffplay -f lavfi "amovie=hw\':\'0:alsa,showcqt" //关键是hw和0之间的冒号要转义
 ffplay -f lavfi "amovie=\'hw:1\':alsa,showcqt" //usb mic
 ffplay -f lavfi 'aevalsrc=sin(440*2*PI*t)/8,asplit[a][out1];[a]showcqt[out0]' //显示并发声 /8降低发声幅度 out0可不写
@@ -259,7 +260,7 @@ ffserver	  HTTP串流server，支持时移
 libavcodec	  编解码库
 libavutil	  工具函数库
 libpostproc	  前期处理库
-libavdevice   设备如alsa\v4l2\fbdev(framebuffer)\sdl\grab(攫取，意思是抓屏吧)
+libavdevice   设备 alsa\v4l2\fbdev(framebuffer)\sdl\grab(攫取，抓屏)
 libswscale	  Color conversion and scaling
 libswresample Audio resampling, sample format conversion and mixing
 
@@ -634,7 +635,7 @@ vitamio 继续深化ffmpeg，作出8秒视频的应用。开源/商业2条线
 
 cheese webcam booth软件(软件中心搜cheese)
 
-ubuntu11.10配置sdl时--disable-oss(因无oss驱动，用alsa)
+ubuntu11.10配置sdl时--disable-oss(无oss用alsa)
 
 加-ggdb编译参数：
 --enable-debug=gdb 设置 -g1 -g2 或 -g3 即-glevel
