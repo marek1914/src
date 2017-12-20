@@ -10,10 +10,13 @@ def       for       lambda    try
 1 不支持 ++ 运算符
 2 for循环只有 for in 这一种形式
 
-
+/usr/lib/python2.7/dist-packages
 
 包:
 python-pip
+
+Twisted 异步网络框架
+
 
 os.path.abspath('.')   //获取当前的绝对路径
 os.path.expanduser('~')
@@ -116,10 +119,6 @@ plt.show()
 class test:
   def f():
     print "Hello"
-
-if __name__ ==‘__main__’:
-  test.f()
-  
   
 ###  hanoi
 m=0

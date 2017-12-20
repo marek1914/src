@@ -855,10 +855,7 @@ struct StunTransactionId
 
 
 ==== ssdp ====
-http://wiki.wireshark.org/SSDP
-
-SSDP: 发现 Plug & Play devices
-
+mdns 
 
 SSDP uses unicast and multicast adress
 UDP HTTP， NOTIFY / M-SEARCH 方法
@@ -869,15 +866,9 @@ IPv6 : FF0X::C，X根据scope的不同取不同值
 过滤
 udp.dstport == 1900
 http
-./dist-packages/twisted
-
-
-mdns 广播地址：224.0.0.251
-
 
 网关周期性发出广播：
-源   192.168.0.1:1407 
-目的 239.255.255.250:1900
+src:192.168.0.1:1407  dst:239.255.255.250:1900
 
 NOTIFY * HTTP/1.1
 HOST: 239.255.255.250:1900
@@ -894,8 +885,7 @@ USN: uuid:28802880-2880-1880-a880-c83a353cdb60::upnp:rootdevice
 设备接入网络用NOTIFY方法发ssdp:alive消息，控制点根据自身策略，处理监听到的消息
 
 ssdp:alive消息在HTTP协议头CACHE-CONTROL里指定超时值，设备须在超时前重发ssdp:alive
-若控制点在指定的超时值内没有再次收到ssdp:alive消息，控制点将认为设备已失效
-设备计划从网络上卸载时，要用NOTIFY方法发送ssdp:byebye消息
+否则控制点认为设备失效。设备卸载，用NOTIFY方法发送ssdp:byebye消息
 
 
 M-SEARCH * HTTP/1.1
@@ -905,9 +895,8 @@ Man: "ssdp:discover"
 ST: ge:fridge
 MX: 3
 
-ST  Service type
-Services are identified by a unique pairing of a service type URI and a Unique 
-Service Name (USN) URI.
+ST: Service type
+Services 靠 Unique Service Name (USN) 和 URI 标识
 
 Location:
 Server: 这个是http协议内容

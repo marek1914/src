@@ -240,7 +240,7 @@ snippet akw
 *args, **kwargs${1:,}${0}
 endsnippet
 
-snippet #! "Shebang header for python scripts" b
+snippet #!
 #!/usr/bin/env python
 $0
 endsnippet
@@ -249,12 +249,12 @@ snippet cutf8
 # -*- coding: utf-8 -*-
 endsnippet
 
-snippet ifmain "ifmain" b
-if __name__ == `!p snip.rv = get_quoting_style(snip)`__main__`!p snip.rv = get_quoting_style(snip)`:
+snippet ifmain
+if __name__ == "__main__":
 	${1:${VISUAL:main()}}
 endsnippet
 
-snippet with "with" b
+snippet with
 with ${1:expr}`!p snip.rv = " as " if t[2] else ""`${2:var}:
 	${3:${VISUAL:pass}}
 ${0}
@@ -264,10 +264,6 @@ snippet for "for loop" b
 for ${1:item} in ${2:iterable}:
 	${3:${VISUAL:pass}}
 endsnippet
-
-##########
-# COMMON #
-##########
 
 # The smart def and smart class snippets use a global option called
 # "g:ultisnips_python_style" which, if set to "doxygen" will use doxygen
