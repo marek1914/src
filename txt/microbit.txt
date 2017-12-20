@@ -12,9 +12,29 @@ https://www.tweaking4all.com/hardware/arduino/arduino-ws2812-led/
 https://www.adafruit.com/category/168
 
 问题： 
-1 ws2812 这个芯片 是5V 供电！？
-2 选的电池 是锂聚合物  而ce35 那个芯片资料显示 是锂离子电池 的 
-3 直流电机如何控制，PWM ? 
+1 选的电池 是锂聚合物  而ce35 那个芯片资料显示 是锂离子电池 的 
+2 直流电机如何控制，PWM ?  现在就差 直流电机如何控制了
+3 选一款 蜂鸣器  不要最大个的那种
+
+ws2812b:
+上电就亮
+1.5V 量小红点，其他颜色不亮
+2.2V 时 绿色开始亮
+2.6V 时 蓝色开始亮
+3.3V 时 白色偏红，10mA+
+5V 时 更亮 更白 20mA
+
+资料:
+Red: 2.0-2.2V
+Green: 3.0-3.4
+Blue: 3.0-3.4
+conclusion: 3.3V-3.7V 可以直接工作 10mA+
+
+arduino NeoPixelTest 这个例程  是控制4个LED
+需要修改 
+strip.SetPixelColor(0, red); // 0 控制单个led，1 代表第一个led
+
+
 
 40x2 1.27间距
 
