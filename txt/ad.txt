@@ -1,3 +1,5 @@
+
+
 画焊盘阵列的时候，1 不停变换参考点; 2 粘贴阵列：放好2个，剪切第二个的时候，用第一个作为参考点，粘贴的时候也用第一个作为捕获点
 
 tsop 先画好 芯片体边框，在画好引脚边框，2边再多出0.35mm
@@ -97,6 +99,9 @@ Mechanical Layer(无电气属性):
 7(放置描述信息如 加工说明，版本号，社记者) 
 13(AD默认描绘器件物理外形), 
 15(AD默认元件占位尺寸)
+
+
+导入的封装  大焊盘下有 Top Paste 层，是啥？
 
 Mask Layers:  Top Paste/Bottom Paste/Top Solder/Bottom Solder
 Other Layers: Drill Guide/ Keep-Out Layer /Drill Drawing/Multi-Layer

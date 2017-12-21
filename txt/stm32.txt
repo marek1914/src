@@ -17,7 +17,7 @@ F429/439
 QFN48(F401 48pin的只有QFN) 7x7mm:(F4系列 QFP最少64pin)
 84MHz:
 F401CBu6  128+64
-F401CCu6  256+64
+F401CCu6  256+64  10+
 F401CDu6  384+96
 F401CEu6  512+96
 100MHz:
@@ -328,6 +328,21 @@ Driver/CMSIS/Documentation  不错的文档
 STM32F4-Disc MEMS Microphone 录制PDM格式音频，用PDM Filter 转换为PCM
 PDM的录音频率有PLLI2S提供，我尝试着将PLLI2S的时钟调整为48KHz需要的频率86000000，
 PDM_Filter 的低通设置为20000Hz，高通设置为20Hz，采样率设置为48000Hz
+
+
+
+---
+clk 上升沿 L声道，下降沿 R声道
+
+走的应该是 I2S 接口
+
+
+PWM 是 PDM 的一种特殊情况
+
+ok，看看F407VG 怎么采集到声音的：
+
+Middlewares/ST/STM32_Audio/Addons/PDM/PDMFilter_CM4
+
 
 ----
 DSP
