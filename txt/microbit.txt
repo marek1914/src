@@ -30,6 +30,16 @@ Green: 3.0-3.4
 Blue: 3.0-3.4
 conclusion: 3.3V-3.7V 可以直接工作 10mA+
 
+---2 H bridge---
+小喵用到的芯片
+PCA9685  NXP 16通道 12bit pwm LED 控制器， 难道4个 RGB LED 是靠这个控制的？
+HT16K33  好像也是驱动 LED的，  难道利用它的 pwm 驱动 电机？ 那H桥呢？
+
+舵机 和 电机 复用了这两个芯片的 PWM 吗？
+
+github.com/KittenBot/pxt-robotbit
+javascript 程序控制
+
 arduino NeoPixelTest 这个例程  是控制4个LED
 需要修改 
 strip.SetPixelColor(0, red); // 0 控制单个led，1 代表第一个led
