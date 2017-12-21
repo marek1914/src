@@ -1,4 +1,11 @@
-2018 10w 100w  切实可行的目标
+2018-100w
+microbit slot 3w
+zynq          5w
+yanwenyou     1.5w
+ip-speaker    2w
+ip-micphone   3w
+
+BLE Mesh      5w
 
 
 https://github.com/merbanan  大牛

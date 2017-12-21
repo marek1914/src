@@ -324,16 +324,10 @@ ADC测试
 cube:
 Driver/CMSIS/Documentation  不错的文档
 
-STM32F4-Disc MEMS Microphone 录制PDM格式音频，用PDM Filter 转换为PCM数据。
+
+STM32F4-Disc MEMS Microphone 录制PDM格式音频，用PDM Filter 转换为PCM
 PDM的录音频率有PLLI2S提供，我尝试着将PLLI2S的时钟调整为48KHz需要的频率86000000，
 PDM_Filter 的低通设置为20000Hz，高通设置为20Hz，采样率设置为48000Hz
-
-PDM麦克风
-
-PDM: 脉冲密度调制
-PCM: 脉冲编码调制
-PWM: 脉冲宽度调制
-
 
 ----
 DSP

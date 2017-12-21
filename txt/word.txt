@@ -40,6 +40,10 @@ FTDI: Future Technology Devices International
 PCM: Pulse-code modulation
 LPCM: Linear pulse-code modulation
 
+PDM: 脉冲密度调制
+PCM: 脉冲编码调制
+PWM: 脉冲宽度调制
+
 SAR: successive approximation register 逐次逼近寄存器型 ADC
 
 ANSI: American National Standards Institute
