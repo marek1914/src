@@ -63,6 +63,9 @@ size(mm):
 
 QFN 封装，引脚都要比芯片大一点点，全压在下面可能造成虚焊
 
+
+SOP 焊盘比引脚长出多少合适呢？ 0.35mm?  引脚宽出多少合适？   要定下来！
+
 SOT23
 
 MSOP Mini Small Outline Package， 

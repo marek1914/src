@@ -13,6 +13,12 @@ https://github.com/merbanan  大牛
 weihong.com.cn  运动控制卡
 柏楚电子
 
+LifeSmart 云起智能
+
+“Hi Siri，关闭客厅灯带”
+能否不用拿起手机，靠拾音器
+
+
 我们可开发的教育编程产品：
 1.高仿microbit板，开发成本及周期短，可以很快变现 
 2.集成度更高、体积更小巧的microbit二次开发主控板及配套扩展板（可接arduino传感器）。

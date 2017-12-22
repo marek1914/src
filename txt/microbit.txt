@@ -40,15 +40,18 @@ Blue: 3.0-3.4
 conclusion: 3.3V-3.7V 可以直接工作 10mA+
 
 --- 小喵 ---
-源码看：
-PCA9685  NXP 16通道 12bit pwm LED 控制器  9.8x6.6mm  比较小 还可以,  就用这个吧
-HT16K33  RAM Mapping 16*8 LED Controller (实际并没有这个芯片，估计也是ws2812)
+PCA9685  NXP 16通道 12bit pwm LED 控制器 9.8x6.6mm  4.8+ 现设计用这个有些资源浪费，以后再优化
 
-源码看到了
-github:microsoft/pxt-neopixel#v0.3.10"  字样，说明就是 ws2812,
-直接引用了 neopixel ，从main.ts 中可以看到，用的是 p16
+HT16K33: 16*8 LED Controller (并没有用)
 
-PCA9685控制 电机，舵机，步进电机, 这里的LED0 字样可能指的是 9685 数据手册中的引脚名字，因为这个芯片本意是控制 LED的
+源码:
+github:microsoft/pxt-neopixel#v0.3.10" ( ws2812)
+直接引用 neopixel ，从main.ts 中可以看到用 p16
+
+源码里的 LED0 指 PCA9685 引脚 
+
+NXP LED Controllers:
+PCA9533 8pin  好像4个通道不能单独控制, 只有2个pwm 最高到160Hz, 且不便宜
 
 背面 PCA9685 + 2片DRV8833 2 H-bridge
 
