@@ -1,9 +1,9 @@
 2018-100w
-microbit slot 3w
-zynq          5w
+microbit  蔡  5w
+zynq          10w
 yanwenyou     1.5w
 ip-speaker    2w
-ip-micphone   3w
+ip-micphone   5w
 
 BLE Mesh      5w
 
