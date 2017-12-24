@@ -1,5 +1,3 @@
-POE路由器买 TL-SF1005MP 
-
 SRAM 分同步和异步
 
 STM429开发板 ISSI IS42S16400 是同步型
@@ -243,15 +241,12 @@ BakeBit ...
 File descriptor in bad state  问题
 https://www.raspberrypi.org/forums/viewtopic.php?t=15614
 
-48V  POE
 https://forum.arduino.cc/index.php?topic=338956.0
 
-汉仁的集成RG45 不支持 POE，电路不同
 
-支持POE的 10+ 咋这么贵！
 HR891153C
 HR931147C
-HR891156C  OK
+HR891156C  OK 7+
 
 HR891156C  TCT RCT 内部连一起了，怎么处理
 
@@ -282,15 +277,32 @@ rg45 外壳到底接不接地，手里的板子，有的接，有的没接
 
 
 折衷方案：
-1 rg45 卡扣在下，利用底座凹下去的几毫米，
-  缺点：卡扣在下面，不好插拔，micphone 离顶部开孔太远，是否会影响效果
-2 利用底座的1mm凹陷，rg45 全部缩回到板子内部，这样板子空间又变小了，可以用 F401CCu6
+1 rg45 卡扣在下，利用底座凹下去的几毫米
+  缺点：micphone 离顶部开孔太远，是否会影响效果
+2 利用底座的1mm凹陷，rg45 全部缩回到板子内部，可以用 F401CCu6
 3 用f401ccu6 可以把芯片放到rg45插座下面，如果有干扰，可以用10M网络
 
-先不要想了。。。。
-
-第一阶段先不考虑模具问题
-
+4 POE 供电板子单独做在一个板子上
 
 nanopi pcb 1mm
+
+-----
+开始 非 tplink poe 是强制供电的，直接量到48V
+
+
+IEEE802.3af/at 
+
+PD接口控制器
+linear(凌特):
+LTC4257  1.7+
+
+TI:
+TPS2377-1  PD only  功率 13W
+TPS2375-1  PD only
+TPS23770   PD and DC-DC
+
+PoE Powered Devices (PD)
+Power Sourcing Equipment (PSE)
+
+----
 
