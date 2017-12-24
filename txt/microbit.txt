@@ -1,3 +1,8 @@
+Microbit:  N51822-QFAA  256k+16k 配 16MHz 晶体
+nxp:
+MKL26Z128VFM4 :Kinetis KL26: 48MHz M0 128K+16K QFN32  RMB 30+
+
+
 http://microbit.org/guide/hardware/pins/
 兴永恒  阿里巴巴
 
@@ -109,4 +114,8 @@ micro:bit的makecode官方网站访问总是太慢，那么上课怎么办？我
 顺便推荐一下，小喵科技出的扩展板很有特色，名字叫Robotbit。
 购买指南：
 【英国原装Microbit中小学人工智能课程创客开发板入门Python 热销】点击链接，http://m.tb.cn/h.BgNiph，再选择浏览器打开。
+
+
+
+
 

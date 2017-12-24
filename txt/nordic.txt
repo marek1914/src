@@ -1,17 +1,12 @@
-nrf51 做一套 mesh 实验平台
-
-百度手环 nRF51822D
-
-买的电池卡扣 怎么找不到了呢？
-
-先用 microbit 实验
-
-nrf51822-qfax  每个型号都单独原理图, 对比后原理图完全一致，分开真是有病 
+nrf51822-qfax M0 外部晶体16M 原理图完全一致 
+n51822-qfaa 256+16 (microbit)
+n51822-qfac 256+32
 
 http://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF51822
 
-
 轨迹跟踪板： nRF52832
+nRF52: M4 64MHz 512k+64k
+nRF52832-MDK
 
 nRFgo Studio，SEGGER J-Link, 2012-OB V7.00版实测可用
 MCU有程序并锁定时，mdk无法下载调试，用nRFgo擦除flash
@@ -21,41 +16,15 @@ RAM for Algorithm，size由 0x1000(4k) 改为 0x2000(8k)
 
 ST-Link
 
-nRF52832-MDK
-
-nRF51: M0 16MHz  256/128k + 32/16k  16MHz 是外部晶体， 主频多高手册竟然没说
-n51822-qfaa 256+16
-n51822-qfac 256+32
-
-nRF52: M4 64MHz 512k+64k
-
-nRF24
-
 UICR
-
 -----
-qiyi 开发板 52832_xxAA
-nRF5_SDK_14.0.0_3bcc1f7/examples/peripheral/blinky_freertos/pca10040/blank/arm5_no_packs  这个例子可以工作，灯闪烁了
+nRF5_SDK_14.0.0_3bcc1f7/examples/peripheral/blinky_freertos/pca10040/blank/arm5_no_packs  例子可工作，灯闪了
 
-freeRTOS在 
+freeRTOS 
 nRF5_SDK_14.0.0_3bcc1f7/external/freertos/source
 
-驱动在：
+驱动：
 nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf
-
-
-sdk 组织的还是比较乱的，没有stm32 的cube好
-
-
-Micro:bit:  N51822-QFAA(rmb: 6.5)  256k+16k
-
-nrf51 配了16MHz 晶体
- 电源插头 S2B-PH-SM4-TB(LF)(SN) -  Wire-To-Board Connector, Right Angle
-官网放出的sch和pcb，不是发售的，而是另一版本
-
-nxp单片机
-MKL26Z128VFM4 :Kinetis KL26: 48MHz M0 128K+16K QFN32  RMB 30+
-
-
+sdk 组织比较乱
 
 https://www.techwillsaveus.com/shop/mover-kit/

@@ -90,3 +90,9 @@ B390 90V, 3A Diodes Inc.
 bahar.asia
 
 带耳朵的  高度只有15 和 20 安装RG45 勉强
+
+
+
+JST:
+
+电源插头 S2B-PH-SM4-TB(LF)(SN) -  Wire-To-Board Connector
