@@ -294,9 +294,6 @@ FSMC :Flexible Static Memory Controller
 
 cooperation/collaboration 合作
 
-PoE:Power Over Ethernet
-
-
 DC/DC Converter:
 boost converter 升压
 buck converter 降压
