@@ -274,8 +274,10 @@ ff_index_search_timestamp() 此函数利用2分法，查找seek与物理位置�
 在 mov_read_seek() 加上xx_ANY 标志，某mp4流 12s，0s和9s处2个I帧，在0-9s之间seek时，会重新播放，加此标志后可以seek，只是seek到0-9s花屏
 
 ffmpeg转mp4，mdat在前moov在后，猜测ffplay http播放不行，因为要找到文件头（moov）需要下载到最后，实际并非如此
-
 每个box前面有4字节box长度，检测到mdat长度后，会跳过去直接读后面的moov
+
+https://ffmpeg.org/ffmpeg-formats.html#mov_002c-mp4_002c-ismv
+-movflags faststart   好像可以移动moov到文件开头
 
 关系：
 14496-12(iso base file format) <---> Apple Quicktime File Format(.mov)
