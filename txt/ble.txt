@@ -10,9 +10,6 @@ ivt蓝牙 200人月出货2kk
 收购了 issc 的蓝牙业务，既有芯片 isxxx 也有模块 bm77  bm78 等
 BM78 模块 应该用的是 IS1678SM 芯片
 
-
-
-
 6LoWPAN 基于IPv6的低速无线个域网标准，IPv6 over IEEE 802.15.4
 
 Special Interest Group (SIG) (802.15.1不再维护)
@@ -21,7 +18,6 @@ www.bluetooth.com
 BR 2.0/EDR 2.1
 LE 4.0/4.1/4.2 仅用3个广播通道
 广播时射频开启时间由传统22.5ms 减小到 0.6-1.2ms
-
 
 Mesh在 SmartMesh 工作组中,独立于核心规格版本外
 
