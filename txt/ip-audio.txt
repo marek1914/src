@@ -1,3 +1,14 @@
+Vrms: 正弦信号有效电压值，=1/2根号2*峰值电压≈0.707峰值电压
+
+rms: Root mean square  均方根
+
+
+SGM8904:
+2Vrms Output into 2.5kΩ Load with 3.3V Supply Voltage
+3Vrms Output into 2.5kΩ Load with 5V Supply Voltage
+
+0-pi sinx 平方的积分为 ip/2, 推算出等效电压 根号1/2
+
 SRAM 分同步和异步
 
 STM429开发板 ISSI IS42S16400 是同步型
@@ -261,6 +272,13 @@ w5500 参考 TCT 10R上拉，22nF 下拉，RCT 10nF 下拉，可是这个POE 插
 
 -----
 PAM8403 3W D类音频功率放大器
+
+Class-D amplifier:
+靠电子开关(PWM) 而不是线性设备放大
+
+http://www.analog.com/en/analog-dialogue/articles/class-d-audio-amplifiers.html
+
+TPA3122
 
 ---
 rg45 外壳到底接不接地，手里的板子，有的接，有的没接

@@ -130,3 +130,19 @@ Xilinx SDK software development environment
 
 Vivado
 
+
+
+
+
+
+
+
+
+
+
+
+
+---------------
+https://github.com/Xilinx/PYNQ/blob/v2.0/boards/Pynq-Z1/base/notebooks/audio/audio_playback.ipynb
+看看这个怎么玩
+
