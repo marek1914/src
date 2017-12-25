@@ -257,14 +257,11 @@ https://forum.arduino.cc/index.php?topic=338956.0
 
 HR891153C
 HR931147C
-HR891156C  OK 7+
-
-HR891156C  TCT RCT 内部连一起了，怎么处理
+HR891156C  OK 7+ (TCT/RCT连一起了，怎么处理)
+w5500 参考 TCT 10R上拉，22nF 下拉，RCT 10nF 下拉，可这个POE 插座 TCT RCT
+是连在一起的
 
 TCT和RCT是变压器发送端和接收端的中心抽头，接3.3V拉高
-
-w5500 参考 TCT 10R上拉，22nF 下拉，RCT 10nF 下拉，可是这个POE 插座 TCT RCT
-是连在一起的，会有问题吗？
 
 ------
 用 ST 的数字麦克风，跟普通的驻极体 麦克风 有啥区别呢？
@@ -303,24 +300,6 @@ rg45 外壳到底接不接地，手里的板子，有的接，有的没接
 4 POE 供电板子单独做在一个板子上
 
 nanopi pcb 1mm
-
------
-开始 非 tplink poe 是强制供电的，直接量到48V
-
-
-IEEE802.3af/at 
-
-PD接口控制器
-linear(凌特):
-LTC4257  1.7+
-
-TI:
-TPS2377-1  PD only  功率 13W
-TPS2375-1  PD only
-TPS23770   PD and DC-DC
-
-PoE Powered Devices (PD)
-Power Sourcing Equipment (PSE)
 
 ----
 
