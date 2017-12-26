@@ -42,13 +42,17 @@ A：10.0.0.0～10.255.255.255     (2^24)
 B：172.16.0.0～172.31.255.255   (2^20)
 C：192.168.0.0～192.168.255.255 (2^16)
 
-192.169.0.1美国
-
 A: 0-2G 
 B: 2-3G 
-C: 3-3.5G 
-D: 3.5-3.75G 
-E: 3.75-4G
+C: 3-3.5G     (c0)
+D: 3.5-3.75G  (e0) 224.0.0.0- 
+E: 3.75-4G    (f0) 240.0.0.0-
+
+multicast address(rfc5771): leading address bit:1110 在 D 类地址内
+240.0.0.0 - 239.255.255.255 这是D类地址的开头和结尾，但只取了其中的一部分
+
+
+192.169.0.1美国
 
 MTU取路径中最小值
 
@@ -145,7 +149,6 @@ FIN/ACK  FIN/ACK  ACK
 http推送flv：
 Content-Type:video/x-flv
 
-android 有mdnsresponder 并在system/bin/netd 引用
 
 
 tcpdump.org
@@ -855,7 +858,10 @@ struct StunTransactionId
 
 
 ==== ssdp ====
+MiniUPnP 项目中的 minissdpd
+
 mdns 
+android 有mdnsresponder 并在system/bin/netd 引用
 
 SSDP uses unicast and multicast adress
 UDP HTTP， NOTIFY / M-SEARCH 方法

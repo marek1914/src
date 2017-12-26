@@ -6,6 +6,8 @@ ops owe own pan pet pie pot raw rid row rub
 sad sit ski sue tap
 tax 税 tip toe
 
+datagram
+telegram 电报
 
 GNU Miscfiles
 rc: release candidate/run command

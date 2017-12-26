@@ -1,3 +1,6 @@
+rms: Root mean square  均方根 所有值平方求和，求均值，再开方
+Vrms: 正弦信号有效电压值，=1/2根号2*峰值电压≈0.707峰值电压
+
 滤波器设计 实例 
 
 https://p5r.uk/blog/2009/filters-with-gnu-octave.html

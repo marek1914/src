@@ -2819,3 +2819,4 @@ circuit
 rectangle
 damping 阻尼衰减
 heartbeat 心跳
+reactor 反应器反应堆

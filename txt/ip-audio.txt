@@ -1,7 +1,5 @@
-Vrms: 正弦信号有效电压值，=1/2根号2*峰值电压≈0.707峰值电压
-
-rms: Root mean square  均方根
-
+ST:
+Audio ICs -> Audio Amplifiers -> Class-D Audio Power Amplifiers
 
 SGM8904:
 2Vrms Output into 2.5kΩ Load with 3.3V Supply Voltage
