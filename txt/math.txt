@@ -1,4 +1,4 @@
-滤波器设计 实例 !!!
+滤波器设计 实例 
 
 https://p5r.uk/blog/2009/filters-with-gnu-octave.html
 
