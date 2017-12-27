@@ -350,10 +350,6 @@ A20 kernel/uboot编译器是linaro
 
 查看ubuntu版本：从“系统监控”对话框看。
 
-2 添加系统API或者修改@hide的API后，需要执行make update-api，然后再make
-  修改公共api后，需要make update-api
-
-
 带有防盗链字符串的URL
 http://ip:80/123.ts?Contentid=3000614275&channel-id=cmcc&stbId=005901F&version=1.0&owchid=cmcc&owsi
 d=11405947683687797008&owflow==3&ptoken=18862058073&AuthInfo=Yn%2fxyFIE5bLvQmV6%2fJUq1dRiL

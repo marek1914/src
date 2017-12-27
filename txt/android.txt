@@ -761,3 +761,19 @@ endif
 --- qcom
 wifi打开崩溃，打开wifi时加载 system/lib/modules/qca_cld3 下wlan 驱动.ko,
 vendor/qcom/opensource/wlan/qcacld-3.0/core/dp/htt/htt.c:705 崩溃，是类似assert的自杀行为
+
+
+mmm  prebuilt 一个 带so的apk:
+
+target Prebuilt: launcher (out/.../launcher_intermediates/package.apk)
+Archive:  out/target/product/msm8998/obj/APPS/launcher_intermediates/package.apk
+  inflating: out/target/product/msm8998/obj/APPS/launcher_intermediates/uncompressedlibs/lib/armeabi-v7a/libBDVoiceRecognitionClient_MFE_V1_s2.so  
+deleting: lib/armeabi-v7a/libBDVoiceRecognitionClient_MFE_V1_s2.so
+  adding: lib/armeabi-v7a/libaudioplugingvrunity.so (stored 0%)
+[100% 4/4] Copy: out/target/product/msm8998/system/priv-app/launcher/oat/arm64/launcher.odex
+
+但并没有 把 so 展开到app目录
+
+
+LOCAL_PREBUILT_JNI_LIBS := @   自动提取 没有成功
+不加 @ ，手动提取 可以
