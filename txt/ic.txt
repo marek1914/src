@@ -82,9 +82,12 @@ A7W-3d 3pin: 快速开关二极管bav99封装
 Dual Series Switching Diode
 
 肖特基
-Diodes
+diodes.com 产品: 二极管肖特基(<0.5A> 和整流器肖特基(>0.5A)
+
+整流器组
 B380-13-F 80V, 3A
 B390      90V, 3A
+PDS5100   100V,5A
 
 
 
