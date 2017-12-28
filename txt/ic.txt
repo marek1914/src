@@ -1,3 +1,5 @@
+onsemi.cn  芯片查询网站
+
 1N4007 正向电压1V
 IP101GA: 10/100 phy
 BAT54C:  肖特基双二极管，IR一分为2到CPU和MCU
@@ -80,8 +82,10 @@ A7W-3d 3pin: 快速开关二极管bav99封装
 Dual Series Switching Diode
 
 肖特基
-B380-13-F 80V, 3A Diodes Inc.
-B390 90V, 3A Diodes Inc.
+Diodes
+B380-13-F 80V, 3A
+B390      90V, 3A
+
 
 
 
@@ -96,3 +100,7 @@ bahar.asia
 JST:
 
 电源插头 S2B-PH-SM4-TB(LF)(SN) -  Wire-To-Board Connector
+
+
+
+CSTCE8M00G52-RO   6引脚 8M晶体  内部集成电容 封装小

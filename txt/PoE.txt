@@ -22,3 +22,18 @@ PSE 只需要支持一种
 
 某系统待机电流 2-3mA，仅为PoE规范内规定的最小消耗电流10mA，会让网线另一端的PSE供电设备错误判断此设备已离线，切断供电。
 可以用 led灯，电阻等 提高电流到10mA
+
+SI4302B
+
+330 Ohm 的 电感  4个，干啥用，用来通直流 隔交流？
+外部桥旁边的8个电容何用？
+
+外部的二极管桥与内部的是 并行关系，用于>7W 场景
+
+Pin5 PLOSS  power loss， 可以判定，目前此引脚无用
+Pin7 HSO  hotswap switch output
+
+Pin8 RCL Class Resistor  (Table 7)
+
+PDS5100  5A  100V
+
