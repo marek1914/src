@@ -4,4 +4,4 @@
 {"date":"171226","wd":1,"wake":"7:30","sleep":"00:30","sport":0,"star":[0,0,0]}
 {"date":"171227","wd":1,"wake":"8:30","sleep":"23:30","sport":0,"star":[1,1,0]}
 {"date":"171228","wd":1,"wake":"6:30","sleep":"00:30","sport":0,"star":[2,1,1]}
-{"date":"171229","wd":1,"wake":"8:50","sleep":"xx:xx","sport":0,"star":[1,x,x]}
+{"date":"171229","wd":1,"wake":"8:50","sleep":"xx:xx","sport":0,"star":[1,1,0]}
