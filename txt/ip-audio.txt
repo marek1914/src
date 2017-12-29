@@ -5,6 +5,10 @@ SGM8904:
 2Vrms Output into 2.5kΩ Load with 3.3V Supply Voltage
 3Vrms Output into 2.5kΩ Load with 5V Supply Voltage
 
+那这个算功放芯片吗？ 算几瓦呢？ 
+那个nanopi用的
+PAM8403 3W D类音频功率放大器
+
 0-pi sinx 平方的积分为 ip/2, 推算出等效电压 根号1/2
 
 SRAM 分同步和异步
