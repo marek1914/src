@@ -1,4 +1,14 @@
-onsemi.cn  芯片查询网站
+onsemi.cn   半导体公司
+http://www.szlcsc.com/
+
+电容:
+102k:
+10*10^2=1000pF = 1nF
+K: 10%
+M: 20%
+
+X7R : 温度稳定型陶瓷电容
+
 
 1N4007 正向电压1V
 IP101GA: 10/100 phy
