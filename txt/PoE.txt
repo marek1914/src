@@ -1,0 +1,55 @@
+IEEE802.3af/at 
+
+48V电信标准电压
+
+arduino Yun 原理图看，支持POE
+
+PD接口控制器
+linear(凌特):
+LTC4257  1.7+
+
+TI:
+TPS2377-1  PD only  功率 13W
+TPS2375-1  PD only
+TPS23770   PD and DC-DC
+
+PoE Powered Devices (PD)
+Power Sourcing Equipment (PSE)
+
+PD 要同时支持 Mid-Span(空闲的2对线) 和 End-Span(12,36, 工程布线多采用2对4芯，只能这种)
+PSE 只需要支持一种
+
+
+某系统待机电流 2-3mA，仅为PoE规范内规定的最小消耗电流10mA，会让网线另一端的PSE供电设备错误判断此设备已离线，切断供电。
+可以用 led灯，电阻等 提高电流到10mA
+
+SI4302B
+数据手册：
+12抽头 接 CT2
+36抽头 接 CT1
+45 接 SP1
+78 接 SP2
+其实内部是 二极管 桥，接线不分正负
+
+class 3 需要外部二极管桥
+class 1/2 不需要
+
+L2/L3/L3/L5 铁氧体磁珠 BLM21PG331SN1 阻抗 330 Ohm 最大直流电流 1.5A  0805封装
+
+外部桥旁边的8个电容何用？
+
+外部的二极管桥与内部的是 并行关系，用于>7W 场景
+
+C1,C3,C4  100V
+C2        100V
+
+
+
+Pin5 PLOSS  power loss， 可以判定，目前此引脚无用
+Pin7 HSO  hotswap switch output
+
+Pin8 RCL Class Resistor  (Table 7)
+
+PDS5100  5A  100V
+
+

@@ -1,5 +1,8 @@
 STM32F300W
 
+
+BOOT0 直接接地吗？
+
 http://www.codeforge.com/s/0/Mp3-decoding-on-STM32f103--C
 
 Cortex-M3 包含 F1 F2 L3 ,3个系列
@@ -405,6 +408,8 @@ F401 支持 USART1/USART2/USB-DFU/I2C1,2,3/SPI1,2.3
 
 USART2 必须是 PD5/6，而64pin的F401没有，所以只能用UART1(PA9/10 CN10左侧 倒数3/9pin)
 BOOT0=1 BOOT1=0
+
+
 
 AN3154: CAN protocol used in the STM32 bootloader 
 AN3155: USART protocol used in the STM32 bootloader

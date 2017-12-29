@@ -1,3 +1,17 @@
+onsemi.cn   半导体公司
+http://www.szlcsc.com/
+
+电容:
+102k:
+10*10^2=1000pF = 1nF
+K: 10%
+M: 20%
+
+X7R : 温度稳定型陶瓷电容
+NPO 属于 I类陶瓷， X7R属于 II类陶瓷
+
+
+
 1N4007 正向电压1V
 IP101GA: 10/100 phy
 BAT54C:  肖特基双二极管，IR一分为2到CPU和MCU
@@ -80,8 +94,13 @@ A7W-3d 3pin: 快速开关二极管bav99封装
 Dual Series Switching Diode
 
 肖特基
-B380-13-F 80V, 3A Diodes Inc.
-B390 90V, 3A Diodes Inc.
+diodes.com 产品: 二极管肖特基(<0.5A> 和整流器肖特基(>0.5A)
+
+整流器组
+B380-13-F 80V, 3A
+B390      90V, 3A
+PDS5100   100V,5A
+
 
 
 
@@ -96,3 +115,7 @@ bahar.asia
 JST:
 
 电源插头 S2B-PH-SM4-TB(LF)(SN) -  Wire-To-Board Connector
+
+
+
+CSTCE8M00G52-RO   6引脚 8M晶体  内部集成电容 封装小

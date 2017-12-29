@@ -15,7 +15,7 @@ def       for       lambda    try
 包:
 python-pip
 
-Twisted 异步网络框架
+twisted: event-driven networking engine (异步)
 
 
 os.path.abspath('.')   //获取当前的绝对路径

@@ -6,6 +6,8 @@ ops owe own pan pet pie pot raw rid row rub
 sad sit ski sue tap
 tax 税 tip toe
 
+datagram
+telegram 电报
 
 GNU Miscfiles
 rc: release candidate/run command
@@ -293,9 +295,6 @@ IAP: In App Programmability
 FSMC :Flexible Static Memory Controller
 
 cooperation/collaboration 合作
-
-PoE:Power Over Ethernet
-
 
 DC/DC Converter:
 boost converter 升压

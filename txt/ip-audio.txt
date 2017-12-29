@@ -1,3 +1,16 @@
+ST:
+Audio ICs -> Audio Amplifiers -> Class-D Audio Power Amplifiers
+
+SGM8904:
+2Vrms Output into 2.5kΩ Load with 3.3V Supply Voltage
+3Vrms Output into 2.5kΩ Load with 5V Supply Voltage
+
+那这个算功放芯片吗？ 算几瓦呢？ 
+那个nanopi用的
+PAM8403 3W D类音频功率放大器
+
+0-pi sinx 平方的积分为 ip/2, 推算出等效电压 根号1/2
+
 SRAM 分同步和异步
 
 STM429开发板 ISSI IS42S16400 是同步型
@@ -246,14 +259,11 @@ https://forum.arduino.cc/index.php?topic=338956.0
 
 HR891153C
 HR931147C
-HR891156C  OK 7+
-
-HR891156C  TCT RCT 内部连一起了，怎么处理
+HR891156C  OK 7+ (TCT/RCT连一起了，怎么处理)
+w5500 参考 TCT 10R上拉，22nF 下拉，RCT 10nF 下拉，可这个POE 插座 TCT RCT
+是连在一起的
 
 TCT和RCT是变压器发送端和接收端的中心抽头，接3.3V拉高
-
-w5500 参考 TCT 10R上拉，22nF 下拉，RCT 10nF 下拉，可是这个POE 插座 TCT RCT
-是连在一起的，会有问题吗？
 
 ------
 用 ST 的数字麦克风，跟普通的驻极体 麦克风 有啥区别呢？
@@ -261,6 +271,13 @@ w5500 参考 TCT 10R上拉，22nF 下拉，RCT 10nF 下拉，可是这个POE 插
 
 -----
 PAM8403 3W D类音频功率放大器
+
+Class-D amplifier:
+靠电子开关(PWM) 而不是线性设备放大
+
+http://www.analog.com/en/analog-dialogue/articles/class-d-audio-amplifiers.html
+
+TPA3122
 
 ---
 rg45 外壳到底接不接地，手里的板子，有的接，有的没接
@@ -286,23 +303,18 @@ rg45 外壳到底接不接地，手里的板子，有的接，有的没接
 
 nanopi pcb 1mm
 
------
-开始 非 tplink poe 是强制供电的，直接量到48V
-
-
-IEEE802.3af/at 
-
-PD接口控制器
-linear(凌特):
-LTC4257  1.7+
-
-TI:
-TPS2377-1  PD only  功率 13W
-TPS2375-1  PD only
-TPS23770   PD and DC-DC
-
-PoE Powered Devices (PD)
-Power Sourcing Equipment (PSE)
-
 ----
 
+
+
+
+----
+拾音器  就是个普通 柱状 mic 加一个  TI N5532  是个运算放大器
+
+
+
+
+
+-----
+功放部分，有音频再开启，平时关闭状态， 继电器控制
+应该是 主控板 PoE，整个功放板 从220 入口处 就 继电器控制
