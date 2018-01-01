@@ -2,14 +2,33 @@ onsemi.cn   半导体公司
 http://www.szlcsc.com/
 
 电容:
-102k:
-10*10^2=1000pF = 1nF
 K: 10%
 M: 20%
 
 X7R : 温度稳定型陶瓷电容
 NPO 属于 I类陶瓷， X7R属于 II类陶瓷
 
+电感:
+103: 10x10^3 nh = 10uh
+但是也有用 330 表示 33uH 的
+M:20%
+K:10%
+J:5%
+F:1%
+
+功率电感
+MSS1278-333ML  12mm x 7.8mm 33uH
+ 
+
+晶体:
+SMD4P322:  3.2x2.5 4脚晶体 
+CSTCE8M00G52-RO  8M 陶瓷谐振器 集成电容  那ppm如何 25M的能用于网络芯片吗?
+2012 32.768 无源 2012 fc-12m 2.05x1.2mm  已买
+25MHz 的
+晶体的尺寸数字是mm
+nano pi 用的是 3225 4pin 24MHz
+microbit 用的是 2520 4pin
+4pin 也有无源的
 
 
 1N4007 正向电压1V
@@ -20,7 +39,6 @@ MAX3420 / FT121  SPI slave 转USB Device
 2N2907: 与2N2222互补的PNP
 TPS61090: 2A Switch, 96% Efficient Boost Converter
 B1182: 功率三极管  PNP silicon transistor
-SMD4P322: 53.2x2.5 4脚晶体 
 sy8113b: dc-dc
 AO4803A: USB电源MOS管关闭, Dual P-Channel Enhancement FET
 pj-322: 4段音频母头
@@ -118,4 +136,4 @@ JST:
 
 
 
-CSTCE8M00G52-RO   6引脚 8M晶体  内部集成电容 封装小
+

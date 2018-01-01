@@ -2,6 +2,7 @@ Microbit:  N51822-QFAA  256k+16k 配 16MHz 晶体
 nxp:
 MKL26Z128VFM4 :Kinetis KL26: 48MHz M0 128K+16K QFN32  RMB 30+
 
+原理图 只找到1个晶体，而板子上有2个 2520 晶体
 
 http://microbit.org/guide/hardware/pins/
 兴永恒  阿里巴巴

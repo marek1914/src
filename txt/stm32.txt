@@ -1,7 +1,30 @@
 STM32F300W
 
+BOOT0 接地:
+1 我做的switch板子 直接接地
+2 st nuclea f401 开发板 10k/100k 接地
+3 F407 开发板 10k接地
+4 yj也说要10k接地
 
-BOOT0 直接接地吗？
+NRST:
+1 F401 nucleu 开发板 直接0.1uF电容，没有上拉电阻
+
+F401 比 F103 引脚复杂：
+VCAP_1 引脚：
+
+Regulator ON 内部产生1.2V电压,输出到 Vcap_1 引脚
+
+1.2V 可能是给 adc 做参考电压的 
+
+F401.pdf 6.1.6 明确要求电源要有滤波电容，不要为了pcb尺寸而省略
+
+
+Regulator OFF 模式，需要在Vcap_1/Vcap_2 引脚提供1.2V输入电压
+
+
+VCAP_2 在qfp100 封装上才有
+
+F401 的内部时钟 不能出来usb的48M，，，
 
 http://www.codeforge.com/s/0/Mp3-decoding-on-STM32f103--C
 
