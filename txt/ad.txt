@@ -24,13 +24,32 @@ R0805/R0603/R0402
 默认0.254宽 1.5高，可改成0.15宽，0.8高
 批量选择，弹出另一个对话框再设置新参数
 
+6mil 0.1524
+8mil 0.2032
+10mil 0.254
+
 ------------
+家里电脑的ad10 ，移动器件后，丝线不跟着消失！重新检查设计规则，才会消失，奇怪
+
+Silkscreen Over Component Pads (Clearance=0.254mm)
+意思是丝印在焊盘上，或者没在，但是距离小于0.254mm (这个距离指的到焊盘还是阻焊层？)
+rule -> Manufacturing -> Silkscreen Over Component Pads Clearence
+
+Minimum Solder Mask Sliver
+所有焊盘都有这个不过
 
 焊盘内径，外经
 表贴 两边超出多少合适，要有个定数
 
 .intlib 更新， Tools -> Update From Libraries
 最好指定单个的修改的元件， 全选的话， 删除掉的一些多余的信息又会冒出来
+
+我自己的misc中的C0805 跟系统的misc库中的 C0805 混淆了，如果系统库也加载的话，我选择的是我的，实际用的确是系统的C0805，
+先把系统的active 勾掉
+
+
+
+20180102 Tools -> Update From PCB Libraries..  AD10 失败
 
 画焊盘阵列的时候，1 不停变换参考点; 2 粘贴阵列：放好2个，剪切第二个的时候，用第一个作为参考点，粘贴的时候也用第一个作为捕获点
 
@@ -59,11 +78,7 @@ eagl 转换到 AD
 github.com/Altium-Designer-addons/scripts-libraries
 export-protelpcb.ulp
 
-
-.intlib (integrated library) 包含 .pcblib .schlib 2个文件
-.libpkg 工程文件 编译输出 .intlib
-
-只保存.intlib 也可，但每次都要解压再编辑，不如同时保存着 .libpkg，修改编译再拷贝 .intlib
+.libpkg 编译出 .intlib (integrated library)
 
 使用导入的stm32 元件原理图，在ad10上有问题，放置后 移动 “wait a moment..." 此时ad09 没有问题
 新建一个元件，拷贝元件内容（不是拷贝元件文件名称，而是图形元素）到新的，就ok了
@@ -72,7 +87,7 @@ export-protelpcb.ulp
 
 常规参数：
 板厚1.6mm
-最小线宽6mil(0.15mm)，最小孔径0.3mm(12mil)
+最小线宽6mil(0.1524mm)，最小孔径0.3mm(12mil)
 
 photon: 最小线宽 6mil，最小间距 6mil 最小孔径 12mil
 
