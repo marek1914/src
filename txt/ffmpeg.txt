@@ -1,6 +1,9 @@
 ffplay -nodisp  无需SDL
  -vsync   赵毅辉
 
+ffmpeg -re -f lavfi -i aevalsrc="sin(400*2*PI*t)" -ar 8000 -f mulaw -f rtp rtp://127.0.0.1:1234
+
+
 音频的通道或视频颜色分量
 packed : 各通道一起存储
 planar : 各通道单独存储 yuv420p p代表planar
@@ -53,12 +56,8 @@ ffplay 指定解码器不认 -c:a
 -acodec
 -vcodec
 
-
-
 https://trac.ffmpeg.org/wiki/AudioChannelManipulation
-
 https://trac.ffmpeg.org/wiki/Encode/AAC
-
 https://trac.ffmpeg.org/wiki/StreamingGuide
 
 

@@ -1,5 +1,5 @@
 rfc2326: RTSP
-rfc2327: SDP(Session Description Protocol) (SPS/PPS以BASE64形式存储)
+rfc2327: SDP(Session Description Protocol) (BASE64 SPS/PPS)
 rfc3550: RTP(Real-time Transport Protoco)
 rfc3551: RTP Profile for Audio and Video Conferences with Minimal Control
 rfc3984: RTP Payload Format for H.264 Video 描述rtp包的多媒体类型
@@ -79,6 +79,9 @@ package/udp-65507.pcapng.gz
 RFC 6184
 RTP Payload Format for H.264 Video
 5.8.  Fragmentation Units (FUs)
+
+RFC3984  - RTP Payload Format for H.264 Video
+
 
 This payload type allows fragmenting a NAL unit into several RTP
 packets.  Doing so on the application layer instead of relying on
@@ -222,7 +225,6 @@ MAC-Table 交换机 局域网出现mac地址重复，包同时到达2个设备�
 一个tcp连接可以顺序传送多个http请求，三次握手，顺序发送接收，FIN结束
 
 
-RFC3984  - RTP Payload Format for H.264 Video
 
 
 RTSP differs fundamentally from HTTP in that data delivery
@@ -256,7 +258,8 @@ PLAY  rtsp://192.168.7.32:1935/vod/mp4:why.mp4 RTSP/1.0
 
 没有seek命令，ffplay发PAUSE+PLAY(Range: npt=100-\r\n)  指定跳转时间
 
-发DESCRIBE命令时，返回SDP，描述视频长度，以及视频流，音频流信息
+DESCRIBE命令，返回SDP，描述音视频信息
+
 还包括H264的profile，level，pps，sps等
 
 Play里 scale=1 正常，=2 倍速快进 =0.5 慢放
@@ -440,10 +443,7 @@ http progressive stream
 
 PC也可以直接html5 视频，progressive streaming
 
-android支持：
-RTSP (RTP, SDP)
-HTTP/HTTPS progressive streaming
-HTTP/HTTPS live streaming draft protocol (HLS)
+RTSP / HTTP progressive streaming / HTTP live streaming draft protocol (HLS)
 
 wowza不支持progressive streaming
 dlna默认只支持progressive streaming

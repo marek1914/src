@@ -95,11 +95,7 @@ g723/g729 还是复杂，就G711 ，先把东西做出来，已经很累了，�
 20171127 最终决定加 512k内存 大不了不贴 ，用G711 编码，这样前端也简单
 就算16k采样 16k字节/s  也足够缓冲的了
 
-必要时可以考虑 373锁存器
-
-这个方案 已经够简洁，  在运算能力，内存能力 上也具有一定的可扩展性
-
-用 RTP 推流
+必要时可考虑 373锁存器
 
 --- 硬件 ---
 1 使用内部晶体 16MHz 主频工作在 84MHz(直接输入
@@ -119,9 +115,13 @@ g723/g729 还是复杂，就G711 ，先把东西做出来，已经很累了，�
 g723.1 vs g729:
 
 -------rtp-----
-或者 rtp 都不用，直接 udp 推流
+直接 udp 的话 需要推 ts 流 
 
-正因为 udp 不需要回应，所以才可以在  终端不接收的情况下，向它推送数据
+最小 rtp 实现
+http://blog.csdn.net/leixiaohua1020/article/details/50535230
+
+udp 不需要回应，才可以在终端不接收的情况下，向它推数据
+udp 推流和rtp 推流有啥区别
 
 ffmpeg:
 g723_1.c
@@ -171,17 +171,6 @@ g723.1 6.3kbit/s版本  MOS: 4.08
 -----------
 MOS: Mean Opinion Score 主观质量评分 
 
-
-HanRun HR911105A
-
-
-udp 推流和rtp 推流有啥区别
-
-
-最小 rtp 实现
-http://blog.csdn.net/leixiaohua1020/article/details/50535230
-
-
 ffmpeg -re -i ~/av.mp3 -vn -ar 8000 -f mulaw -f rtp rtp://10.3.57.235:1234
 
 这样默认还是 立体声  -ac 1 变为单声道， 就可以 ffplay rtp:// 播放了
@@ -209,10 +198,6 @@ ffmpeg 测试， rtp推流，可以直接播放，  udp推流，必须是ts流�
 
 G726 32kbps  所以，完全可以不要  512k内存
 
-
-最后一步，还有F405RG 呢  1024+192
-
-
 飞思卡尔M4，官方提供语音压缩算法
 
 
@@ -231,8 +216,6 @@ http://blog.csdn.net/u014516174/article/details/70338655
 ./ffplay -protocol_whitelist "rtp,file,udp" play.sdp  // ok!
 
 -----
-F4上实现  opus 解码！！！！
-
 
 [file @ 0x7fece4005760] Setting default whitelist 'file,crypto'/0
 
@@ -278,18 +261,9 @@ http://www.analog.com/en/analog-dialogue/articles/class-d-audio-amplifiers.html
 TPA3122
 
 ---
-rg45 外壳到底接不接地，手里的板子，有的接，有的没接
 
----
-外壳装配问题，尺寸都卡边
-
-1 PCB 可以做1.0mm的
-2 rg45 的方向
-3 做2层板子叠在一起
+1 PCB 做1.0mm
 4 恰好高出一点点的外壳（没有）那家这么小的就是20mm
-5 rg45 插头缩回去，或者突出太多，都不好
-综合：pcb 做1.0的 背面只贴 micphone 放电阻
-
 
 折衷方案：
 1 rg45 卡扣在下，利用底座凹下去的几毫米
@@ -297,27 +271,14 @@ rg45 外壳到底接不接地，手里的板子，有的接，有的没接
 2 利用底座的1mm凹陷，rg45 全部缩回到板子内部，可以用 F401CCu6
 3 用f401ccu6 可以把芯片放到rg45插座下面，如果有干扰，可以用10M网络
 
-4 POE 供电板子单独做在一个板子上
 
 nanopi pcb 1mm
 
 ----
 
-
-
-
-----
 拾音器  就是个普通 柱状 mic 加一个  TI N5532  是个运算放大器
-
-
-
-
 
 -----
 功放部分，有音频再开启，平时关闭状态， 继电器控制
 应该是 主控板 PoE，整个功放板 从220 入口处 就 继电器控制
-
-
-
-
 
