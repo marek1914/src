@@ -294,3 +294,9 @@ LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90'
 di = directory
 fi = file
 
+
+######
+#关于 ‘ 和 “ 的进一步理解
+ls '-l' , ls '-''l' # 加不加没区别
+ffmpeg -'i foo.ogg' # 引号里内容全部理解为参数，’i foo.ogg‘ 参数不识别
+ffmpeg -f lavfi -i aevalsrc=sin'('2*PI*t')' # 见bash.txt ( 是控制字符，=不是

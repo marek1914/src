@@ -8,6 +8,8 @@ Bash Reference Manual                                                 *bash*
 !man bash
 0 (true) or 1 (false)
 
+control operator: newline or || &&  &  ; ;; ;&  ;;&  |  |&  ( and )
+
                                                             *BuiltinCommands*
 (41) !help 显示
 

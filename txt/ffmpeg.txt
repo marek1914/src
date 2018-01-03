@@ -1,7 +1,6 @@
 ffplay -nodisp  无需SDL
  -vsync   赵毅辉
 
-ffmpeg -re -f lavfi -i aevalsrc="sin(400*2*PI*t)" -ar 8000 -f mulaw -f rtp rtp://127.0.0.1:1234
 
 
 音频的通道或视频颜色分量
@@ -163,25 +162,26 @@ ffplay -f lavfi 'amovie=/dev/dsp1:oss,showcqt' // mic cqt频谱(oss驱动)
 ffplay -f lavfi "amovie=\'hw:0\':alsa,showcqt" //声卡 冒号要转义 或：
 ffplay -f lavfi "amovie=hw\':\'0:alsa,showcqt" //关键是hw和0之间的冒号要转义
 ffplay -f lavfi "amovie=\'hw:1\':alsa,showcqt" //usb mic
-ffplay -f lavfi 'aevalsrc=sin(440*2*PI*t)/8,asplit[a][out1];[a]showcqt[out0]' //显示并发声 /8降低发声幅度 out0可不写
-ffplay -f lavfi 'aevalsrc=sin(440*2*PI*t)+sin(440*4*PI*t), showcqt' //叠加谐波
 ffplay -f lavfi 'sine=f=17*1000,asplit[a][out0];[a]showspectrum[out1]' //17KHz 听不见
 ffplay -f lavfi 'sine=f=440,asplit=4[1][2][3][out0];[1]showcqt[out1];[2]showspectrum[out2];[3]showwaves[out3]' //v切换3视频
 ffplay -f lavfi -graph_file  1.txt // 1.txt:movie=why.mp4[1];movie=1.png,[1]overlay
+
 ffplay -f lavfi 'aevalsrc=0.1*sin(2*PI*(360-2.5/2)*t) | 0.1*sin(2*PI*(360+2.5/2)*t),asplit[a][out1];[a]showcqt[out0]' //立体声
+ffplay -f lavfi 'aevalsrc=sin(440*2*PI*t)/8,asplit[a][out1];[a]showcqt[out0]' //显示并发声 /8降低发声幅度 out0可不写
+ffplay -f lavfi 'aevalsrc=sin(440*2*PI*t)+sin(440*4*PI*t), showcqt' //叠加谐波
 
 ffmpeg -i why.ts  -vf 'split[1][2];[2]histogram,[1]overlay'  why1.ts //ok
 ffmpeg -i why.ts  -filter 'split[1][2];[2]histogram,[1]overlay'  why1.ts  //fail! "Cannot connect video filter to audio input"
 ffmpeg -i why.ts  -filter:v 'split[1][2];[2]histogram,[1]overlay'  why1.ts //ok!
 
 
-//默认输出采样率44100，-ar 8000可改变，不能放在-i前，提示Option sample_rate not found，filter上来的数据采样率是固定的
-ffmpeg -re -t 10 -f lavfi -i 'aevalsrc=sin(17000*2*PI*t)+sin(18000*2*PI*t)' (-ar 8000) 17-18.wav
+//默认输入格式: pcm_f64le, 44.1 kHz, mono 
+//默认输出采样率44100，-ar 8000 改变
+ffmpeg -re -f lavfi -i 'aevalsrc=sin(17000*2*PI*t)+sin(18000*2*PI*t)' 17-18.wav
+ffmpeg -re -f lavfi -i  aevalsrc='sin(400*2*PI*t)' -ar 8000 -f mulaw -f rtp rtp://127.0.0.1:1234
 
 //播放发现频谱很多，不单80和400，因相加超出范围，出现很多0x7FFF,即“方波”，各分量衰减0.4正常
 ffmpeg -re -t 10 -f lavfi -i 'aevalsrc=sin(80*2*PI*t)+sin(400*2*PI*t)' -ar 8000 80-400.wav
-
-
 
 
 -----------
@@ -283,9 +283,11 @@ ffplay可省略 -i，ffmpeg不可
 -formats 
 -f fmt (input/output) force format, -formats 显示的格式都可以指定
 -an no audio
--s size Set frame size (WxH or W*H or abbreviation如pal/ntsc/cif)
+-s/-video_size
+size Set frame size (WxH or W*H or abbreviation如pal/ntsc/cif)
 video_size_abbrs数组定义各种abbr如  qcif:176x144, cif:352x288, qqvga: 160x120, vga:640x480
-打印：Option -s is deprecated, use -video_size.（没有-s简洁^_^）
+
+-t duration (input/output)  普通的时间限定，可以在输入区，也可以在输出区 
 
 -ac 音频通道数
 -ar 采样率（可以重新采样，如把44.1k降低到8k）
@@ -387,7 +389,7 @@ ffmpeg -i xx.ts -c copy xx.mp4
 
 ffmpeg -ss 30 -t 30 //视频截取
 ffmpeg -i xx.ts -c:v copy -f rawvideo xx.es //提取es
-ffmpeg -i udp://ip:port -c:v h264 -c:a aac -ar 48000 -ac 2 -strict -2 -f mpegts udp://ip:port
+ffmpeg -i udp://ip:port -c:v h264 -c:a aac -ac 2 -strict -2 -f mpegts udp://ip:port
 ffmpeg -i xx.m4a out.wav //alac格式.m4a转wav
 ffmpeg -i 1.jpg -pix_fmt bgra 1.bmp //32bit bmp
 ffmpeg -i x.mp4 x.ts //默认v:mpeg2 main + a:mpeg2，码率低不清晰

@@ -1,32 +1,19 @@
 2018-100w
-microbit  蔡  5w
+microbit      5w
 zynq          10w
 yanwenyou     1.5w
 ip-speaker    2w
-ip-micphone   5w
-
+ip-micphone   10w
 BLE Mesh      5w
 
-
 https://github.com/merbanan  大牛
-
-weihong.com.cn  运动控制卡
-柏楚电子
 
 LifeSmart 云起智能
 
 “Hi Siri，关闭客厅灯带”
 能否不用拿起手机，靠拾音器
 
-
-我们可开发的教育编程产品：
-1.高仿microbit板，开发成本及周期短，可以很快变现 
-2.集成度更高、体积更小巧的microbit二次开发主控板及配套扩展板（可接arduino传感器）。
-3.国内仿MoverKit产品，功能一致，造型结构上少许改动。（产品形态成熟）
-4.可穿戴式教育编程产品。该产品结合MoverKit的产品形态，手表式，具备程小奔的大部分功能（包括部分AI功能），
-
 主控板以microbit为原型设计，图形化编程&代码软件。（周期长，难度较大）
-
 
 用issi的8bit内存 + stm32 做一个 spi接口的 用于arduino，  这比4片microchip spi的那个方案要好
 
@@ -84,8 +71,6 @@ zh.cppreference.com/w/cpp/container/vector
 网站风格不错
 http://embeddedlightning.com/ugui/
 
-月经题。。
-
 leetcode
 
 KitSprout 很多奇思妙想
@@ -93,8 +78,6 @@ http://kitsprout.logdown.com  是我想干的事情
 github.com/KitSprout
 
 i2ctools.com    usb 2 i2c 工具
-
-道与术
 
 suxiang198的博客
 
@@ -108,10 +91,7 @@ micro OTG 1
 mini OTG 1
 
 取名：
-??  elelab  悠然科技 优雅科技 都有了
-
-旷视 Face++
-茁壮 iPanel
+ elelab  悠然科技 优雅科技 都有了
 
 0 板子沉金 2.54 纯铜排针
 1 STM32F103 做双串口 
@@ -124,8 +104,6 @@ mini OTG 1
 
 轩微科技 专做stm32编程器
 长江智动 cjmcu
-小阿门的小店  仿制Pocket NC
-
 
 altera.com.cn/support.html
 
