@@ -39,8 +39,9 @@ Mask:
     Solder Mask Expansion(4mil)
     Paste Mask Expansion(0mil)
 
+
 Minimum Solder Mask Sliver
-所有焊盘都有这个不过
+所有焊盘都有这个不过, 这个可以关闭不检查
 
 ------------
 家里电脑的ad10 ，移动器件后，丝线不跟着消失！重新检查设计规则，才会消失，重新安装一下吧
@@ -150,3 +151,5 @@ Other Layers: Drill Guide/ Keep-Out Layer /Drill Drawing/Multi-Layer
 schlib 无法通过 "find similar objects" 批量编辑引脚(AD破解版的bug?)
 可以用SCHLIB List 选 Edit，选中响应列，引脚长度输入20回车，引脚属性输入Passive回车
 
+
+我操你妈，既然过孔和焊盘不能离太近，为啥能放上去！！！
