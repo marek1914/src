@@ -30,7 +30,11 @@ R0805/R0603/R0402
 10mil 0.254
 
 Rule:
-Manufacturing -> Silkscreen Over Component Pads Clearence (0.254)
+Manufacturing:
+    Silkscreen Over Component Pads Clearence (0.254)
+Mask:
+    Solder Mask Expansion(4mil)
+    Paste Mask Expansion(0mil)
 
 Minimum Solder Mask Sliver
 所有焊盘都有这个不过
@@ -111,9 +115,6 @@ SOIC8 :Small Outline Integrated Circuit Package  即SOP8
 pitch: 50mil(1.27mm)
 
 
-C 电阻 R 电容 X 尽量小
-
-
 ST官网导入的库：
 -L 代表 little，
 -M 
@@ -122,24 +123,26 @@ ST官网导入的库：
 将一个线组成的区域填充，选中所有线，Tool -> Convert -> Create region
 
 
-焊盘外面的紫色框： Tools -> Layer -> Top Solder 阻焊层
-
-
 DRC 规则 
 
 Signal Layers:  Top, Bottom
 Mechanical Layer(无电气属性):  
-1, 
-7(放置描述信息如 加工说明，版本号，社记者) 
-13(AD默认描绘器件物理外形), 
-15(AD默认元件占位尺寸)
+1, 7(放置描述信息如 加工说明，版本号) 
+13 (描绘器件物理外形), 
+15 (元件占位尺寸)
+
+qfn中间大焊盘下做9格 Top Paste ，仿制锡膏太多，聚在一起形成一坨
+取消默认paste：焊盘属性 Paste Mask Expansion->Specity expansion value 填一个负值
 
 
-导入的封装  大焊盘下有 Top Paste 层，是啥？
+焊盘属性中:
+Solder Mask Expansions:
+1 Expansion value from rules  默认4mil
+2 Specify expansion value
 
-Mask Layers:  Top Paste/Bottom Paste/Top Solder/Bottom Solder
+Mask Layers:  Top/Bottom Paste(钢网层), Top/Bottom Solder
+Silkscreen Layers: Top/Bottom Overlay
 Other Layers: Drill Guide/ Keep-Out Layer /Drill Drawing/Multi-Layer
-Silkscreen Layers: Top Overlay/Bottom Overlay
 
 schlib 无法通过 "find similar objects" 批量编辑引脚(AD破解版的bug?)
 可以用SCHLIB List 选 Edit，选中响应列，引脚长度输入20回车，引脚属性输入Passive回车

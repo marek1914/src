@@ -1,8 +1,8 @@
-nrf51822-qfax M0 外部晶体16M 原理图完全一致 
+nrf51822-qfax M0 晶体16M 原理图完全一致 
 n51822-qfaa 256+16 (microbit)
 n51822-qfac 256+32
 
-邓工给的板子:
+邓工板子:
 PCA10056(v0.9.2 2017.25)  N52840  接口芯片 ATSAM3U2C (atmel cortex-m3 96MHz 128+32k)
 
 nRF51 Dongle: nRF51422, 包含 Jlink-OB(atmel 接口芯片)
