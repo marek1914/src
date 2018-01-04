@@ -312,6 +312,7 @@ sudo pip install pyserial
 
 Minicom:
 Meta-z :esc-z
+
 nodejs:
 /usr/local/bin/node
 /usr/local/bin/npm

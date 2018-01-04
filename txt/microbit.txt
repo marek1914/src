@@ -92,35 +92,38 @@ DFRobot 扩展板:
 4 圆圈 是 10k 滑动变阻器
 
 
-
-
-
-
 -----蔡    需要合作伙伴 ----
 
 小喵科技推出makecode离线版本
-2017-12-22 09:20阅读：164
-micro:bit的makecode官方网站访问总是太慢，那么上课怎么办？我整理了下，大致有如下几种解决方案：
-1）用国内服务器。如西安的向金老师就提供了一个，地址是：http://www.makeredu.net/index.html；
-2）自建服务器。自建服务器并不难，我提供了一个教程：http://blog.sina.cn/dpool/blog/s/blog_6611ddcf0102x35f.html?vt=4；
-3）使用缓存版。这是很天才的想法哦，谷歌浏览器有缓存功能。这是浙江的一位老师想出来的办法。
+micro:bit的makecode官方网站访问总是太慢，
+1）用国内服务器。西安向金老师提供一个：http://www.makeredu.net/index.html
+2）自建服务器：http://blog.sina.cn/dpool/blog/s/blog_6611ddcf0102x35f.html?vt=4；
 4）用python，放弃makecode。我是认真的，对于中学生，真的可以直接用python了。
-除了这些方法外，其现在又多了一种，因为小喵科技推出了一个离线版本的makecode。
+
+小喵科技推出离线版的makecode
 据小喵科技的官方介绍，这个离线版Makecode有如下几个好处：
-第一：不受网络限制；（随时随地玩起来）
 第二：可以直接下载hex到microbit上面，不用每次弹出下载窗口并选择microbit；
-第三：内置串口调试工具，总是靠在5x5面板上调试代码是不是很不爽呐，现在有串口打印了。（这个我很喜欢啊）
-下载地址：http://cdn.kittenbot.cn/makecode.zip 。
-经过试用，发现真的没有植入广告什么的，很好用。
-顺便推荐一下，小喵科技出的扩展板很有特色，名字叫Robotbit。
-购买指南：
-【英国原装Microbit中小学人工智能课程创客开发板入门Python 热销】点击链接，http://m.tb.cn/h.BgNiph，再选择浏览器打开。
+第三：内置串口调试工具，总是靠在5x5面板上调试代码是不是很不爽呐，现在有串口打印了。
+
+下载地址：http://cdn.kittenbot.cn/makecode.zip 经过试用，很好用。
 
 
 Microsoft MakeCode
-有源码的！！！
+
 https://github.com/Microsoft/pxt
 
 PXT - Programming eXperience Toolkit
 
+lancaster-university/microbit-targets   编译需要这个
+
+github lancaster-university
+
+pxtarget.json:        "yottaTarget": "bbc-microbit-classic-gcc"
+
+好像是没有安装上 gcc编译器
+
+lancaster-university/microbit-targets :
+yotta Target Description using GCC to compile for Nordic nRF51822 16KB device.
+
+https://lancaster-university.github.io/microbit-docs/offline-toolchains/
 

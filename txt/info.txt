@@ -6,6 +6,8 @@ ip-speaker    2w
 ip-micphone   10w
 BLE Mesh      5w
 
+
+
 https://github.com/merbanan  大牛
 
 LifeSmart 云起智能
