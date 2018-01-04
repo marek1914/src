@@ -96,9 +96,9 @@ DFRobot 扩展板:
 
 小喵科技推出makecode离线版本
 micro:bit的makecode官方网站访问总是太慢，
-1）用国内服务器。西安向金老师提供一个：http://www.makeredu.net/index.html
-2）自建服务器：http://blog.sina.cn/dpool/blog/s/blog_6611ddcf0102x35f.html?vt=4；
-4）用python，放弃makecode。我是认真的，对于中学生，真的可以直接用python了。
+1）用国内服务器：http://www.makeredu.net/index.html
+2）http://blog.sina.cn/dpool/blog/s/blog_6611ddcf0102x35f.html?vt=4 自建，实验成功
+4）用python，放弃makecode。
 
 小喵科技推出离线版的makecode
 据小喵科技的官方介绍，这个离线版Makecode有如下几个好处：
