@@ -32,6 +32,11 @@ R0805/R0603/R0402
 8mil 0.2032
 10mil 0.254
 
+丝印尺寸:
+树莓派:
+arduino:
+
+
 Rule:
 Manufacturing:
     Silkscreen Over Component Pads Clearence (0.254)

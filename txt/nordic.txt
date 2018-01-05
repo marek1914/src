@@ -46,3 +46,18 @@ https://www.techwillsaveus.com/shop/mover-kit/
 https://devzone.nordicsemi.com/blogs/672/accessing-the-ble-mesh-via-the-spark-cloud/
 
 
+
+
+
+
+
+
+-----
+nRF24L01
+
+yao: STM32L051K8U6  红色标志为VCC，同面另一边为GND，中间CLK，对面中间DIO
+
+arduino 库中有 8 个相关库
+
+用于组建 无线传感器
+
