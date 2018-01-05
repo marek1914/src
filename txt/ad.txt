@@ -153,3 +153,6 @@ schlib 无法通过 "find similar objects" 批量编辑引脚(AD破解版的bug?
 
 
 我操你妈，既然过孔和焊盘不能离太近，为啥能放上去！！！
+
+更改换层快捷键：打开.PcbDoc , DXP -> Customize -> PCB Shortcuts -> Next layer 设置为 Z
+
