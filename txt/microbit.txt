@@ -96,8 +96,7 @@ DFRobot 扩展板:
 
 小喵科技推出makecode离线版本
 micro:bit的makecode官方网站访问总是太慢，
-1）用国内服务器：http://www.makeredu.net/index.html
-2）http://blog.sina.cn/dpool/blog/s/blog_6611ddcf0102x35f.html?vt=4 自建，实验成功
+1）用国内服务器：http://www.makeredu.net/index.html  西安向金老师
 4）用python，放弃makecode。
 
 小喵科技推出离线版的makecode
@@ -127,3 +126,29 @@ yotta Target Description using GCC to compile for Nordic nRF51822 16KB device.
 
 https://lancaster-university.github.io/microbit-docs/offline-toolchains/
 
+按照这个
+）http://blog.sina.cn/dpool/blog/s/blog_6611ddcf0102x35f.html?vt=4  debian系统 自建成功
+
+在当前目录生成 node_modules 目录
+
+pxt 程序：
+#!/usr/bin/env node
+require('./cli.js')
+
+必须在 node_modules 所在目录 执行  pxt 命令
+
+
+
+
+
+----
+yotta 是python开发 pip 发布，编译c语言的管理工具
+
+pip install yotta    与 mbed 有关
+
+yotta 还与  arm-none-eabi-gcc 有关
+
+https://github.com/ARMmbed/target-frdm-k64f-gcc
+
+
+$>yotta target frdm-k64f-gcc

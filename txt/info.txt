@@ -1,10 +1,10 @@
 2018-100w
-microbit      5w
-zynq          10w
-yanwenyou     1.5w
-ip-speaker    2w
-ip-micphone   10w
-BLE Mesh      5w
+microbit      10
+zynq          10
+yanwy         1.5
+ip-speaker    2
+ip-micphone   10
+BLE Mesh      10
 
 
 
