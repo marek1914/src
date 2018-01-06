@@ -36,6 +36,16 @@ R0805/R0603/R0402
 树莓派:
 arduino:
 
+阻容焊盘之间能达到0.5间距，就可以焊接
+
+距离指的是到线中间的距离还是边的距离,应该是边距，如果是中心，那线很宽的时候，还是会很近
+
+
+器件边距问题汇总：
+
+
+switcher 的pcb 把solder mask 层超出4mil 改成了0mil（yj)
+design rule 是保存到pcb文档的
 
 Rule:
 Manufacturing:
@@ -161,3 +171,17 @@ schlib 无法通过 "find similar objects" 批量编辑引脚(AD破解版的bug?
 
 更改换层快捷键：打开.PcbDoc , DXP -> Customize -> PCB Shortcuts -> Next layer 设置为 Z
 
+
+家里电脑， 飞线中间有=，连上也不消失， 是因为执行过 DRC，执行 Tools->Reset Error Markers 即可
+
+
+
+via的
+force complete tenting on top  控制过孔上是否有solder mask 层
+
+
+鼠标放上网络高亮
+PCB状态 DXP->preferences->pcb eiditor->display -> highlighting options -> highlight in full
+
+家里ad10 网络不能高亮
+是因为DirectX的支持有问题(也在上面那个路径)，需要在虚拟机中打开3D加速

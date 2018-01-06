@@ -1,6 +1,8 @@
 onsemi.cn   半导体公司
 http://www.szlcsc.com/
 
+
+
 电容:
 K: 10%
 M: 20%
@@ -23,11 +25,12 @@ MSS1278-333ML  12mm x 7.8mm 33uH
 晶体:
 SMD4P322:  3.2x2.5 4脚晶体 
 CSTCE8M00G52-RO  8M 陶瓷谐振器 集成电容  那ppm如何 25M的能用于网络芯片吗?
-2012 32.768 无源 2012 fc-12m 2.05x1.2mm  已买
+32.768 无源 2012(就是0805) fc-12m 2.05x1.2mm  已买
 25MHz 的
+
 晶体的尺寸数字是mm
 nano pi 用的是 3225 4pin 24MHz
-microbit 用的是 2520 4pin
+microbit 用的是 2520 4pin 16MHz
 4pin 也有无源的
 
 
