@@ -8,7 +8,7 @@ ip-speaker    2
 ip-micphone   10
 BLE Mesh      10
 
-
+每周都要投一次板子，
 
 https://github.com/merbanan  大牛
 

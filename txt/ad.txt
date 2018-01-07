@@ -128,9 +128,7 @@ TP 测试点。 做个封装出来
 shift+e 捕捉焊盘焦点
 1:1 打印： 打印预览/page setup/ scaled print:scale = 1/x=1 y=1 
 
-
-QFN 封装引脚都要比芯片大一点，没有全压在下面的
-
+QFN 封装引脚都要比芯片大一点
 
 SOP 焊盘比引脚长出多少合适呢？ 0.35mm?  引脚宽出多少合适？   要定下来！
 
@@ -211,4 +209,19 @@ PCB状态 DXP->preferences->pcb eiditor->display -> highlighting options -> high
 
 
 
+ctrl+h 再选择线，可以选中整个网络线
 
+
+Routing Conflict Resolution:
+
+
+
+
+
+线间距和 线到孔或者焊盘的间距 可以单独设置2个值吗？
+
+
+
+有时候找不到 R1 C1 等丝印的本体在哪里,  移动的时候 会亮起来！
+JC 命令时候，要把图放到很大，才能明显跳转到器件位置
+或者按照左上角的提示，shift+ 某个按键  也可以高亮它
