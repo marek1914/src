@@ -37,12 +37,26 @@ R0805/R0603/R0402
 arduino:
 
 阻容焊盘之间能达到0.5间距，就可以焊接
+达到0.5的概念是，电阻焊盘外面的丝印距离焊盘10mil 0.254mm，2个电阻的丝印重叠，焊盘间距 0.508mm
+
+过孔内径0.3 是常规尺寸，谁家都能做，外经姚军做0.6，即铜圈0.15mm，6mil欠一点
+rule->routing->via
+
+走线到焊盘设置8mil，那么丝印层，solder层都不算，层15 非机械层，就更不算了
+
+
+推挤:
+按TP，PCB Editor->Interactive Routing->Routing Conflict Resolution
+5个全选了，下面还有个 当前模式，选择push
 
 距离指的是到线中间的距离还是边的距离,应该是边距，如果是中心，那线很宽的时候，还是会很近
 
 
 器件边距问题汇总：
 
+如何保证2个器件距离不小于0.5mm？ 除了规则限定，可以数格子，调节成1mil网格，4个大格子，20mil，就是0.5mm
+
+画板子的时候，gnd用连线吗？还是等着最后铺铜
 
 switcher 的pcb 把solder mask 层超出4mil 改成了0mil（yj)
 design rule 是保存到pcb文档的
@@ -107,7 +121,7 @@ export-protelpcb.ulp
 板厚1.6mm
 最小线宽6mil(0.1524mm)，最小孔径0.3mm(12mil)
 
-photon: 最小线宽 6mil，最小间距 6mil 最小孔径 12mil
+photon: 最小线宽 6mil，最小间距 6mil 最小孔径 12mil (0.3mm = 11.811mil)
 
 TP 测试点。 做个封装出来
 
@@ -185,3 +199,16 @@ PCB状态 DXP->preferences->pcb eiditor->display -> highlighting options -> high
 
 家里ad10 网络不能高亮
 是因为DirectX的支持有问题(也在上面那个路径)，需要在虚拟机中打开3D加速
+
+
+
+规则里面每组有3个值 min max preferred
+
+
+---走线模式---
+同面 线序正好交叉 4线
+
+
+
+
+

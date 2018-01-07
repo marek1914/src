@@ -305,6 +305,7 @@ deb http://httpredir.debian.org/debian/ jessie main contrib non-free
 ——
 Mac
 
+鼠标滚轮反向：Mouse设置 Scroll direction: Natural
 OmniGraffle  绘图软件
 Ch341 whc公司官网下载Mac版驱动
 
