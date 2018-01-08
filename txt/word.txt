@@ -252,6 +252,8 @@ ASK: Amplitude-shift keying
 FSK: Frequency-shift keying
 ISM: Industrial Scientific Medical  工业，科学，医学频段 <1W
 
+decibel 分贝
+
 balun: Balance-unbalance 巴伦变换器
 fundamental interaction/fundamental forces: 强力，弱力，电磁力，重力
 microwaves :300MHz(1m)-300GHz(1mm)

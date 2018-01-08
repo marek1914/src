@@ -1,14 +1,10 @@
 Microbit:  N51822-QFAA  256k+16k 配 16MHz 晶体
-nxp:
-MKL26Z128VFM4 :Kinetis KL26: 48MHz M0 128K+16K QFN32  RMB 30+
+nxp: MKL26Z128VFM4 :Kinetis KL26: 48MHz M0 128K+16K QFN32  RMB 30+
 
 原理图 只找到1个晶体，而板子上有2个 2520 晶体
 
 http://microbit.org/guide/hardware/pins/
 兴永恒  阿里巴巴
-
-bit 是 5cm
-插槽   5.5cm
 
 Adafruit NeoPixel Ring WS2812 5050 
 WS2812  环形做个时钟
@@ -28,8 +24,7 @@ http://www.iot-programmer.com/index.php/books/27-micro-bit-iot-in-c/chapters-mic
 
 问题： 
 1 选的电池 是锂聚合物  而ce35 那个芯片资料显示 是锂离子电池 的 
-2 直流电机如何控制，PWM ?  现在就差 直流电机如何控制了
-3 选一款 蜂鸣器  不要最大个的那种
+
 
 ws2812b:
 上电就亮
@@ -46,10 +41,6 @@ Blue: 3.0-3.4
 conclusion: 3.3V-3.7V 可以直接工作 10mA+
 
 --- 小喵 ---
-PCA9685  NXP 16通道 12bit pwm LED 控制器 9.8x6.6mm  4.8+ 现设计用这个有些资源浪费，以后再优化
-
-HT16K33: 16*8 LED Controller (并没有用)
-
 源码:
 github:microsoft/pxt-neopixel#v0.3.10" ( ws2812)
 直接引用 neopixel ，从main.ts 中可以看到用 p16
@@ -58,10 +49,13 @@ github:microsoft/pxt-neopixel#v0.3.10" ( ws2812)
 
 NXP LED Controllers:
 PCA9533 8pin  好像4个通道不能单独控制, 只有2个pwm 最高到160Hz, 且不便宜
+SGMicro 的 LED Driver 是white led 恒流源，跟pca9533 不是一个类型
 
-背面 PCA9685 + 2片DRV8833 2 H-bridge
+PCA9685  NXP 16通道 12bit pwm LED 控制器 4.8+ 
 
-SGMicro 的 LED Driver 跟nxp这个不是一个类型，它的是white led 恒流源
+DRV8833:
+nFault 引脚暂不处理
+nSleep 可以直接20k拉高，改进 是否可以用pca9685 的pwm 给出纯高，纯低
 
 
 github.com/KittenBot/pxt-robotbit
@@ -72,39 +66,24 @@ arduino NeoPixelTest 这个例程  是控制4个LED
 strip.SetPixelColor(0, red); // 0 控制单个led，1 代表第一个led
 
 
-
-40x2 1.27间距
-
 HIROSE HRS SCSI连接器1.27 80P 90度弯型母端 FX2-80S-1.27DSL  
 https://item.taobao.com/item.htm?spm=a230r.1.14.121.9688036ZbBCac&id=549438452682&ns=1&abbucket=17#detail
 
-DFRobot 扩展板:
-1 电阻器调节音量
-2 6个3线接口，一个电源开关
-
-整体来说比较蠢
-
-红黑是 电源， 上面的信号引脚 连在一个电阻上
-
-1 黄色按键， led旁边的电阻就是限流的，下面2个电阻呢？  按理说，按键2条线就够了。。。   按下，信号脚输出高电平
+1 黄色按键， led旁边的电阻就是限流的，下面2个电阻呢？  按理说，按键2条线就够了 按下，信号脚输出高电平
 2 LED灯，接通电源地后，控制端 给 高电平 亮 红色
 3 扩展板 每个接口串了 100欧电阻
 4 圆圈 是 10k 滑动变阻器
 
-
 -----蔡    需要合作伙伴 ----
 
-小喵科技推出makecode离线版本
-micro:bit的makecode官方网站访问总是太慢，
-1）用国内服务器：http://www.makeredu.net/index.html  西安向金老师
-4）用python，放弃makecode。
+用国内服务器：http://www.makeredu.net/index.html
 
 小喵科技推出离线版的makecode
 据小喵科技的官方介绍，这个离线版Makecode有如下几个好处：
 第二：可以直接下载hex到microbit上面，不用每次弹出下载窗口并选择microbit；
 第三：内置串口调试工具，总是靠在5x5面板上调试代码是不是很不爽呐，现在有串口打印了。
 
-下载地址：http://cdn.kittenbot.cn/makecode.zip 经过试用，很好用。
+下载地址：http://cdn.kittenbot.cn/makecode.zip 
 
 
 Microsoft MakeCode
@@ -137,10 +116,6 @@ require('./cli.js')
 
 必须在 node_modules 所在目录 执行  pxt 命令
 
-
-
-
-
 ----
 yotta 是python开发 pip 发布，编译c语言的管理工具
 
@@ -149,6 +124,5 @@ pip install yotta    与 mbed 有关
 yotta 还与  arm-none-eabi-gcc 有关
 
 https://github.com/ARMmbed/target-frdm-k64f-gcc
-
 
 $>yotta target frdm-k64f-gcc
