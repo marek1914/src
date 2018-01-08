@@ -126,3 +126,11 @@ yotta 还与  arm-none-eabi-gcc 有关
 https://github.com/ARMmbed/target-frdm-k64f-gcc
 
 $>yotta target frdm-k64f-gcc
+
+
+
+
+----- 乐高尺寸：
+直径 4.8mm
+间距 8mm
+边距 3.2mm
