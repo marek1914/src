@@ -14,9 +14,8 @@ https://github.com/adafruit/Adafruit_NeoPixel
 https://www.tweaking4all.com/hardware/arduino/arduino-ws2812-led/
 https://www.adafruit.com/category/168
 
-led控制 有1-9 9列，只有 1,2,3,7,8,9 6列引脚 引出到金手指
-能控制 pwm 的有6个引脚：0,1,2   3,4,10 （led col 1,2,3）后三个控制了led 列，再控制电机 有冲突
-并且控制2个电机需要4个，所以用0,1,2 也不够用
+led控制 有1-9 9列，只有 1/2/3/7/8/9 ,6列引脚 引出到金手指
+能控制 pwm 的有6个引脚：0,1,2   3,4,10 （led col 1,2,3）后三个控制了led 列，控制2个电机需要4个，不够
 
 http://microbit-micropython.readthedocs.io/en/latest/pin.html
 http://www.iot-programmer.com/index.php/books/27-micro-bit-iot-in-c/chapters-micro-bit-iot-in-c/48-micro-bit-iot-in-c-pulse-width-modulation-servos-and-more?showall=1
@@ -41,9 +40,13 @@ Blue: 3.0-3.4
 conclusion: 3.3V-3.7V 可以直接工作 10mA+
 
 --- 小喵 ---
+github.com/KittenBot/pxt-robotbit  (现在知道为啥叫 pxt 了)
+javascript 程序控制
+
 源码:
 github:microsoft/pxt-neopixel#v0.3.10" ( ws2812)
-直接引用 neopixel ，从main.ts 中可以看到用 p16
+(github.com/Microsoft/pxt-neopixel)
+直接引用 neopixel ，从main.ts 中看到用 p16
 
 源码里的 LED0 指 PCA9685 引脚 
 
@@ -57,9 +60,6 @@ DRV8833:
 nFault 引脚暂不处理
 nSleep 可以直接20k拉高，改进 是否可以用pca9685 的pwm 给出纯高，纯低
 
-
-github.com/KittenBot/pxt-robotbit
-javascript 程序控制
 
 arduino NeoPixelTest 这个例程  是控制4个LED
 需要修改 

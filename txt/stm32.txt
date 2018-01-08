@@ -195,6 +195,8 @@ https://www.keil.com/pack/doc/mw/USB/html/dev_cdc_tutorial.html
 基于 usb CDC 设备类驱动
 CDC: Communication Device Class
 
+yj F407-Disco   CDC驱动识别了，但不能用显示叹号，cube配置usb device时，max config 和 max interface 由1改为2
+
 串口： CDC(ACM) Abstract Control Model 
 
 cubeF1 中的cdc驱动，注释实现了 CDC1.2 / PSTN1.2 (Public Switched Telephone Network)
