@@ -141,3 +141,15 @@ https://github.com/Xilinx/PYNQ/blob/v2.0/boards/Pynq-Z1/base/notebooks/audio/aud
 这个已经非常不值，坚持弄，是因为还有利用价值
 
 
+
+
+------
+ywy给的2个 SDK  大小相差悬殊，一个能装，一个不能装
+Xilinx_Vivado_SDK_2017.3.1
+Xilinx_Vivado_SDK_2017.3   --- 这个能装
+2年前给我的
+Xilinx_Vivado_SDK_2015.4_1118_2
+
+基于java的，多平台共用，类似cube
+执行 xsetup， ubuntu安装在 /opt/Xilinx 目录
+
