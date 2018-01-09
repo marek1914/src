@@ -128,9 +128,15 @@ https://github.com/ARMmbed/target-frdm-k64f-gcc
 $>yotta target frdm-k64f-gcc
 
 
+蔡发的 小喵离线版 makecode 貌似是小喵自己做的
+有ffmpeg.dll node.dll libEGL.dll 等
+发的micropython 是 盛思 做的
+
+这些公司技术水平都是一般，靠着毅力，完全可以超越
 
 
 ----- 乐高尺寸：
 直径 4.8mm
 间距 8mm
 边距 3.2mm
+
