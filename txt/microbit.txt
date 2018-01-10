@@ -20,10 +20,8 @@ led控制 有1-9 9列，只有 1/2/3/7/8/9 ,6列引脚 引出到金手指
 http://microbit-micropython.readthedocs.io/en/latest/pin.html
 http://www.iot-programmer.com/index.php/books/27-micro-bit-iot-in-c/chapters-micro-bit-iot-in-c/48-micro-bit-iot-in-c-pulse-width-modulation-servos-and-more?showall=1
 
-
 问题： 
 1 选的电池 是锂聚合物  而ce35 那个芯片资料显示 是锂离子电池 的 
-
 
 ws2812b:
 上电就亮
@@ -140,15 +138,8 @@ $>yotta target frdm-k64f-gcc
 间距 8mm
 边距 3.2mm
 
-
-
 -----
 监测电池电压，2个1M电阻分压， 输入到哪个引脚呢？
-
-
-
-
-
 
 ------
 0109  在金手指处给电源，最低给到1.8V，还能工作，驱动led的程序运行正常，亮度很低，再低就不行了
