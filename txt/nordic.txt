@@ -1,4 +1,6 @@
-nrf51822-qfax M0 晶体16M 原理图完全一致 
+2018 只做nrf51
+
+nrf51822-qfax M0 晶体16M 
 n51822-qfaa 256+16 (microbit)
 n51822-qfac 256+32
 
@@ -7,15 +9,11 @@ PCA10056(v0.9.2 2017.25)  N52840  接口芯片 ATSAM3U2C (atmel cortex-m3 96MHz 
 
 nRF51 Dongle: nRF51422, 包含 Jlink-OB(atmel 接口芯片)
 
-SoftDevices: Nordic protocol stacks
-S110/S120/S130  S210/S310
 
 芯片到天线之间的电路，叫 Matching network
 
-http://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF51822
 
-轨迹跟踪板： nRF52832
-nRF52: M4 64MHz 512k+64k
+轨迹跟踪板： nRF52832, M4 64MHz 512k+64k
 nRF52832-MDK
 
 nRFgo Studio，SEGGER J-Link, 2012-OB V7.00版实测可用
@@ -40,38 +38,115 @@ sdk 组织比较乱
 https://www.techwillsaveus.com/shop/mover-kit/
 
 
-
-
 ---mesh---
 https://devzone.nordicsemi.com/blogs/672/accessing-the-ble-mesh-via-the-spark-cloud/
 
 
-
-
-
-
-
-
------
-nRF24L Series
+--- nRF24L Series ---
 nRF24L01+
 nRF24LE1 = 24L01 + 8051
 nRF24LU  = 24LE1 + USB
-
 
 yao: STM32L051K8U6  红色标志为VCC，同面另一边为GND，中间CLK，对面中间DIO
 
 arduino 库中有 8 个相关库
 
-用于组建 无线传感器
-
-
-
-
-
-
-
-
-
 ANT is a proven, ultra low power, flexible and easy-to-use network protocol for 2.4GHz ISM band communication
+
+nrf51822 支持 Nordic Gazell 2.4 GHz protocol stack，兼容 nRF24L 系列
+
+无线充电：
+按钮模块 不需要，一个纽扣电池 工作1年,   led 模块 耗电量大，需要充电
+---------------------
+
+
+
+SoftDevices: Nordic protocol stacks 不开源
+S110/S120/S130 (nrf51822 只支持这3个) 
+S210
+S310
+
+-----S110 S120 S130 ---
+S110 SoftDevice
+The S110 SoftDevice is a Bluetooth® low energy (previously called Bluetooth Smart) peripheral/broadcaster protocol stack solution. 
+It integrates a Bluetooth Smart controller and host, and provides a full and flexible API for building Bluetooth low energy System-on-Chip (SoC) solutions.
+
+Key Features
+
+Bluetooth 4.2 compliant low energy single-mode protocol stack
+Link layer
+L2CAP, ATT, and SM protocols
+GATT, GAP, and L2CAP
+Concurrent Peripheral and Broadcaster roles
+GATT Client and Server
+Full SMP support including MITM and OOB pairing
+Complementary nRF51 SDK including Bluetooth profiles and example applications
+Master Boot Record for over-the-air device firmware update
+Memory isolation between application and protocol stack for robustness and security
+Thread-safe supervisor-call based API
+Asynchronous, event-driven behavior
+No RTOS dependency
+Any RTOS can be used
+No link-time dependencies
+Standard ARM® Cortex™-M0 project configuration for application development
+Support for concurrent and non-concurrent multiprotocol operation
+Concurrent multiprotocol timeslot API
+Alternate protocol stack running in application space
+
+
+S120 SoftDevice
+The S120 SoftDevice is a Bluetooth® low energy (previously called Bluetooth Smart) central protocol stack solution supporting up to eight simultaneous Central role connections. It integrates a Bluetooth controller and host, 
+and provides a full and flexible API for building Bluetooth low energy System-on-Chip (SoC) solutions.
+
+Key Features
+
+Bluetooth 4.2 compliant low energy single-mode protocol stack
+Link layer
+L2CAP, ATT, and SM protocols
+GATT, GAP, and L2CAP APIs
+Central and Observer roles - up to 8 simultaneous connections
+GATT Client and Server
+SM including MITM and OOB pairing
+Complementary nRF51 SDK including Bluetooth profiles and example applications
+Memory isolation between application and protocol stack for robustness and security
+Thread-safe supervisor-call based API
+Asynchronous, event-driven behavior
+No RTOS dependency
+Any RTOS can be used
+No link-time dependencies
+Standard ARM® Cortex™-M0 project configuration for application development
+Support for non-concurrent multiprotocol operation
+Alternate protocol stack running in application space
+ 
+
+S130 SoftDevice
+S130 SoftDevice is a Bluetooth® low energy (previously known as Bluetooth Smart) concurrent multi-link protocol stack solution supporting 
+simultaneous Central/Peripheral/Broadcaster/Observer role connections. It integrates a Bluetooth Smart controller and host, 
+and provides a full and flexible API for building Bluetooth low energy System on Chip (SoC) solutions.
+
+Key Features
+
+Bluetooth 4.2 compliant low energy single-mode protocol stack
+Central/Peripheral/Broadcaster/Observer roles with concurrent operation
+Link layer
+L2CAP, ATT, and SM protocols
+GATT, GAP, and L2CAP APIs
+GATT Client and Server
+SM including MITM and OOB pairing
+Complementary nRF51 SDK including Bluetooth profiles and example applications
+Memory isolation between application and protocol stack for robustness and security
+Thread-safe supervisor-call based API
+Asynchronous, event-driven behavior
+No RTOS dependency
+Any RTOS can be used
+No link-time dependencies
+Standard ARM® Cortex™-M0 project configuration for application development
+Support for concurrent multiprotocol Bluetooth low energy/2.4GHz operation
+Alternate protocol stack running in application space
+
+
+下载：
+S110-SD-v8 (前面还有v1 - v7)
+S120-SD-v2
+S130-SD-v2
 
