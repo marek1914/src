@@ -169,3 +169,9 @@ mbed Serial 驱动：mbed 官网下载
 
 PCA10028 的 串口例子，在microbit上没有通，   mdk编译出来是 51422 的代码，改成51822_AA 也不行
 
+
+
+
+microbit 可以用MDk debug， 调试器选择 CMSIS-DAP
+
+microbit 串口可以了    RX_PIN TX_PIN 在 board.h里面配置没有生效？

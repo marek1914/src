@@ -16,7 +16,7 @@
 {"date":"180107","wd":0,"wake":"9:00","sleep":"23:50","sport":0,"star":[1,1,2]}
 {"date":"180108","wd":1,"wake":"7:40","sleep":"00:20","sport":0,"star":[1,2,2]}
 {"date":"180109","wd":1,"wake":"7:30","sleep":"23:40","sport":1,"star":[0,1,1]}
-{"date":"180110","wd":1,"wake":"8:00","sleep":"xx:xx","sport":0,"star":[x,x,x]}
+{"date":"180110","wd":1,"wake":"8:00","sleep":"01:30","sport":0,"star":[1,1,2]}
 
 
 
