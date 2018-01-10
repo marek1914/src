@@ -89,6 +89,7 @@ nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf
 
 
 nRF51 DK -- PCA10028
+nRF52 DK -- PCA10040
 N52840(邓工)--PCA10056  接口芯片 ATSAM3U2C (atmel cortex-m3 96MHz 128+32k)
 
 介绍：nRF51 DK 支持 BLE, ANT and 2.4GHz， 说明2.4G跟ANT 也不是一回事
@@ -121,10 +122,50 @@ nrf_esb_add_xxxx  函数没有了
 SDK/components/proprietary_rf/ 下有 esb  gzll 2个目录
 
 Gazell is a protocol for setting up a robust wireless link between a single Host and up to eight Devices in a star network topology
+. It is designed to minimize power consumption in power-sensitive wireless desktop products and is also suitable for a range of other wireless applications.
 
 
 
 nrf_esb_init---初始化ESB
 nrf_esb_enable---使能ESB
 nrf_esb_add_packet_to_tx_fifo---将数据送入发送队列
+
+
+
+重要参考资料，详细说明esb gzll的用法
+http://infocenter.nordicsemi.com/index.jsp?topic=%2Fcom.nordic.infocenter.sdk51.v9.0.0%2Fgzll_02_user_guide.html
+
+2.4G 例子：
+examples\proprietary_rf
+
+
+
+24L01 不能跑 ANT，  用2.4G  就是因为 终端传感器简单
+
+The ESB protocol was embedded in hardware in the legacy nRF24L Series
+
+Primary Receiver (PRX)
+Primary Transmitter (PTX)
+
+1个PRX 可以与 8个 PTX 通讯
+
+nrf51 与nrf24 通讯的话，需要 #define NRF_ESB_LEGACY  来兼容
+因为 nRF24L ESB examples do not use "payload in ACK"
+
+nrf51一侧，就靠 nrf_esb.c 驱动
+
+
+-----
+先用 esb_ptx  esb_prx 2个工程，在microbit上 跑通了：
+
+
+先 用2个microbit 通讯，再用microbit + 24L01
+
+
+
+mbed Serial 驱动：mbed 官网下载
+
+
+
+PCA10028 的 串口例子，在microbit上没有通，   mdk编译出来是 51422 的代码，改成51822_AA 也不行
 
