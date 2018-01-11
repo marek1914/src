@@ -1,4 +1,8 @@
-2018 只做nrf51
+2018: nrf51/2
+
+nRF51 DK -- PCA10028
+nRF52 DK -- PCA10040
+N52840   -- PCA10056  (jlink-OB ATSAM3U2C - atmel cortex-m3)
 
 nrf51822-qfax M0 晶体16M 
 n51822-qfaa 256+16 (microbit)
@@ -43,6 +47,7 @@ yao: STM32L051K8U6  红色标志为VCC，同面另一边为GND，中间CLK，对
 arduino 库中有 8 个相关库
 
 ANT is a proven, ultra low power, flexible and easy-to-use network protocol for 2.4GHz ISM band communication
+归 Dynastream  公司所有
 
 nrf51822 支持 Nordic Gazell 2.4 GHz protocol stack，兼容 nRF24L 系列
 
@@ -69,6 +74,8 @@ S110-SD-v8 (前面还有v1 - v7)
 S120-SD-v2
 S130-SD-v2
 
+SD能单独下载，在SDK components/softdevice 也有副本
+
 nRF5-SDK-for-Mesh : SDK for ble mesh for nRF51 and nRF52 Series
 
 SDK 也是nRF51/52 一体的，分为 v12 和 v14， 在 nrf51822 产品页上提供的是 v12
@@ -88,11 +95,7 @@ freeRTOS  :nRF5_SDK_14.0.0_3bcc1f7/external/freertos/source
 nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf
 
 
-nRF51 DK -- PCA10028
-nRF52 DK -- PCA10040
-N52840(邓工)--PCA10056  接口芯片 ATSAM3U2C (atmel cortex-m3 96MHz 128+32k)
 
-介绍：nRF51 DK 支持 BLE, ANT and 2.4GHz， 说明2.4G跟ANT 也不是一回事
 
 -----------
 目标:
@@ -114,22 +117,12 @@ sdk文档：
 https://devzone.nordicsemi.com/documentation/nrf51/4.4.2/html/group__nrf__dev__radio__rx__example__main.html#gaf15ec0aba4e9ea403b83477f43dcab7b
 
 
-nrf_gzll_add_packet_to_tx_fifo   (Gazell)
-而
-nrf_esb_add_xxxx  函数没有了
-
-
-SDK/components/proprietary_rf/ 下有 esb  gzll 2个目录
-
-Gazell is a protocol for setting up a robust wireless link between a single Host and up to eight Devices in a star network topology
-. It is designed to minimize power consumption in power-sensitive wireless desktop products and is also suitable for a range of other wireless applications.
-
+esb  gzll  都是星型 1对8 网络 (yj板子 9块子板，1主8从)
 
 
 nrf_esb_init---初始化ESB
 nrf_esb_enable---使能ESB
 nrf_esb_add_packet_to_tx_fifo---将数据送入发送队列
-
 
 
 重要参考资料，详细说明esb gzll的用法
@@ -138,9 +131,6 @@ http://infocenter.nordicsemi.com/index.jsp?topic=%2Fcom.nordic.infocenter.sdk51.
 2.4G 例子：
 examples\proprietary_rf
 
-
-
-24L01 不能跑 ANT，  用2.4G  就是因为 终端传感器简单
 
 The ESB protocol was embedded in hardware in the legacy nRF24L Series
 
@@ -175,3 +165,23 @@ PCA10028 的 串口例子，在microbit上没有通，   mdk编译出来是 5142
 microbit 可以用MDk debug， 调试器选择 CMSIS-DAP
 
 microbit 串口可以了    RX_PIN TX_PIN 在 board.h里面配置没有生效？
+
+
+
+
+-----
+NRF_LOG_DEBUG  
+
+
+
+
+----
+串口打印：
+libraries/uart/retarget.c 完成 fputc 重定向，调 app_uart_filo.c 的 app_uart_put 函数
+
+单步执行，不打印，全速运行起来以后才打印, 说明不是“单线程” 直接打印的，而是中断方式？
+
+区别？
+app_uart.c
+app_uart_fifo.c
+

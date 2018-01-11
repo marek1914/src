@@ -688,3 +688,10 @@ media_w1158439516_DVR_1.ts
 hls点播ts段10s，直播2.5s左右
 
 ===end hls ===
+
+
+
+
+
+--
+geuu  OMX 解码 RTP 264， 没有解码成功，  RTP收到 pps，sps，I，要合并在一起送解码器
