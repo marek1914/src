@@ -96,7 +96,6 @@ OTS-16-1.27-03: 烧录座  品牌 Enplas
 STP120 :120欧阻抗电缆
 
 
-MOSFET:  wikipedia.org /MOSFET
 CJQ4435: seeed Studio 模块
 
 BMX055: 9轴传感器  qiyi VR
@@ -123,6 +122,12 @@ B390      90V, 3A
 PDS5100   100V,5A
 
 
+JFET 分2种: N沟 P沟，用于小信号处理
+MOSFET 分4种: N沟增强 N沟耗尽 P沟增强 P沟耗尽，用于线性电源
+
+
+
+DMP2305U P-CHANNEL ENHANCEMENT MOSFET
 
 
 

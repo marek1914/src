@@ -1,4 +1,4 @@
-Microbit:  N51822-QFAA  256k+16k 配 16MHz 晶体
+Microbit:  N51822-QFAA  256k+16k 16MHz 晶体
 nxp: MKL26Z128VFM4 :Kinetis KL26: 48MHz M0 128K+16K QFN32  RMB 30+
 
 原理图 只找到1个晶体，而板子上有2个 2520 晶体
@@ -20,10 +20,8 @@ led控制 有1-9 9列，只有 1/2/3/7/8/9 ,6列引脚 引出到金手指
 http://microbit-micropython.readthedocs.io/en/latest/pin.html
 http://www.iot-programmer.com/index.php/books/27-micro-bit-iot-in-c/chapters-micro-bit-iot-in-c/48-micro-bit-iot-in-c-pulse-width-modulation-servos-and-more?showall=1
 
-
 问题： 
 1 选的电池 是锂聚合物  而ce35 那个芯片资料显示 是锂离子电池 的 
-
 
 ws2812b:
 上电就亮
@@ -128,9 +126,31 @@ https://github.com/ARMmbed/target-frdm-k64f-gcc
 $>yotta target frdm-k64f-gcc
 
 
+蔡发的 小喵离线版 makecode 貌似是小喵自己做的
+有ffmpeg.dll node.dll libEGL.dll 等
+发的micropython 是 盛思 做的
+
+这些公司技术水平都是一般
 
 
 ----- 乐高尺寸：
 直径 4.8mm
 间距 8mm
 边距 3.2mm
+
+-----
+监测电池电压，2个1M电阻分压， 输入到哪个引脚呢？
+
+------
+0109  在金手指处给电源，最低给到1.8V，还能工作，驱动led的程序运行正常，亮度很低，再低就不行了
+最高输入多少？ 金手指标的是3V，
+
+插入USB，led全灭，金手指处量得3.2V， 2Pin输入出量的3.2V，led部分亮起，2处都变为3.14V
+2PIN的 + 极到金手指正极 128欧电阻，反过来断路，说明有个二极管
+
+那还不能直接锂电池供电？  4.2V？  再降压到3.3V？
+
+nrf51822 工作电压：1.8-3.6V
+USB外壳未接地
+
+

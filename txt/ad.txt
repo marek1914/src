@@ -1,3 +1,6 @@
+http://www.altium.com/documentation/18.0/display/ADES/PCB_Cmd-BreakTrack((BreakTrack))_AD
+
+
 更新pcb封装的时候，必须把pcb已有的原件封装删除？
 在腹铜上 打via，有时直接就是腹痛的网络号，有时却是空的，好像打到一个层上就有，同时2层，就空，好像。。。
 
@@ -221,4 +224,23 @@ Routing Conflict Resolution:
 有时候找不到 R1 C1 等丝印的本体在哪里,  移动的时候 会亮起来！
 JC 命令时候，要把图放到很大，才能明显跳转到器件位置
 或者按照左上角的提示，shift+ 某个按键  也可以高亮它
+
+
+
+
+---
+异形板边框，用autoCAD 导入 .DXF .DWG 格式（pcb页面 file->import ad09 可以，ad10 没有选项)
+
+
+ Edit » Move » Break Track
+
+
+移动选择的多个对象，用工具栏的 十字符号，或者选中后，键盘移动
+直接移动的 缩放能力，会有特殊用途
+
+
+---
+做microb 板子圈圈的时候，用笨方法，标注位置，删除线再划，也能完成
+用直线标定了位置后，灵活运用画 弧线和圆 指定圆形位置，勉强完成
+当然最完美的还是用autocad，导入了
 
