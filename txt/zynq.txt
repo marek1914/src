@@ -153,3 +153,9 @@ Xilinx_Vivado_SDK_2015.4_1118_2
 基于java的，多平台共用，类似cube
 执行 xsetup， ubuntu安装在 /opt/Xilinx 目录
 
+
+
+---yw 平台 0112 start
+1 28V供电，加到17V 指示灯开始量
+MAX3491  RS485
+
