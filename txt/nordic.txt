@@ -185,3 +185,48 @@ libraries/uart/retarget.c 完成 fputc 重定向，调 app_uart_filo.c 的 app_u
 app_uart.c
 app_uart_fifo.c
 
+
+
+
+115     .num_pipes          = 8,  (这个8  指的是最多能连8个设备的 8 吗                                                    \
+116     .rf_channel         = 2,  (2个channel 是啥含义
+
+
+
+Radio (NRF_RADIO)
+Timer: NRF_TIMER2
+PPI channels 10, 11, 12, and 13    PPI: Programmable peripheral interconnect
+Software interrupt 0
+
+
+NRF_RADIO_BASE   0x40001000UL
+
+
+2.4G Radio 手册 17章
+
+
+BALEN in PCNF1 配置基地址大小
+
+
+The on-air addresses: 2-4 byte base address + 1 byte prefix address
+
+地址 不能是 0x55 或者 0xaa
+
+8个 pipe
+
+基地址 2-4 字节  prefix地址 1字节
+pipe 0  基地址0+prefix0
+pipe 1  基地址1+prefix1
+
+
+Note: The byte ordering in ESB and the nRF51 radio peripheral are not the same, this is because the address bytes are rearranged in ESB to match the nRF24L radios.
+
+什么调制方式？
+
+packet ID  2bit      51822 和 24l01+   包结构描述咋不一样呢？
+
+
+nRF24L   是支持ESB
+nRF24AP2 是支持 ANT
+
+
