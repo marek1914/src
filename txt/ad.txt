@@ -141,6 +141,7 @@ QFN 封装引脚都要比芯片大一点
 
 SOP 焊盘比引脚长出多少合适呢？ 0.35mm?  引脚宽出多少合适？   要定下来！
 
+Small-outline transistor
 SOT23
 
 MSOP Mini Small Outline Package， 

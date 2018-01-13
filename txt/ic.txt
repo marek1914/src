@@ -73,7 +73,7 @@ LDO(low-dropout 低压差) voltage regulator
 
 LG33: MPU6500小板用
 662K: 串口小板用
-RT9193:  300mA 最小压差 220mV 立锜 RechTEK  源地小板用
+RT9193:  300mA 最小压差 220mV 源地小板用
 asm1117: 800mA 最小压差 1V
 
 ------------------------
