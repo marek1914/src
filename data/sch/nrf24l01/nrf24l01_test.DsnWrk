@@ -1,6 +1,0 @@
-[ProjectGroup]
-Version=1.0
-[Project1]
-ProjectPath=nrf24l01_cell\nrf24l01_cell.PrjPCB
-[Project2]
-ProjectPath=nrf24l01_mboard\nrf24l01_mboard.PrjPCB

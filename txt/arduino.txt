@@ -34,8 +34,6 @@ Atmega16u2固件：
 keyboard :Arduino-keyboard-0.3.hex
 usb转串口:Arduino-usbserial-uno.hex
 
-classic SPI library for Arduino
-
 -----
 typedef bool boolean;
 typedef uint8_t byte;
@@ -66,4 +64,14 @@ C:\Users\gao\Documents\Arduino\libraries  安装库
 蔡琪
 NOVA UNO
 Nduino  CH340+ATMega328P
+
+
+
+
+
+---SPI---
+设置clk频率
+setClockDivider()  系统16M，2分是8M，4分是4M， 这个函数已被废弃，用SPI.beginTransaction() 
+
+_SPI.setClockDivider(SPI_CLOCK_DIV4);   //设置时钟为 4MHz
 
