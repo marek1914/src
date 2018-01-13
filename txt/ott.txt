@@ -471,9 +471,6 @@ sector16-63：48 sector 24k boot0 实际只有18k+ 后12 sector 补ff
 
 需将img文件放到虚拟机目录，共享目录不行。在sun7i img的139264字节处是uboot， 到743152 结束，后补ff.
 
-A20支持NAND、SPI、SD和USB启动
-上电检测Boot Select Pin(BSP)管脚，若低则USB启动，否则依次尝试从MMC0，NAND，MMC2，SPI，USB启动。
-
 MMC0启动，从SD卡8kB始读24KB到SRAM 0x0地址，校验，首先是跳转指令:ea 00 00 bc 对应文件：
 lichee/tools/pack/chips/sun7i/bin/boot0_sdcard_sun7i.bin
 

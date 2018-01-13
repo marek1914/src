@@ -49,7 +49,6 @@ PWM: 脉冲宽度调制
 SAR: successive approximation register 逐次逼近寄存器型 ADC
 
 ANSI: American National Standards Institute
-SPI: Serial Peripheral Interface
 NVIC: Nested Vectored Interrupt Controller
 PPB: persistent protection bit
 LWP: light weight process

@@ -15,11 +15,10 @@ SRAM 分同步和异步
 
 STM429开发板 ISSI IS42S16400 是同步型
 
-SPI SRAM 最完美，但没合适芯片:
+SPI SRAM 没合适芯片:
 Microchip 23LC1024 128K byte 容量小 10+，有arduino shield 用4片组成512k
 ISSI IS62WVS5128   5128前面的S 代表serial 即spi 淘宝没有买的
-cypress CY15B104Q 4MBit F-RAM(铁电随机存储器) 不是 sram
-IPS3204JSQ 4MBit 淘宝没有卖
+cypress CY15B104Q 4MBit F-RAM(铁电RAM) 不是sram
 
 48pin 的需要借助 373锁存器
 F103RC(256+48) 降成本可被选
@@ -71,10 +70,6 @@ PT8211/TM8211
 pwm DAC 好像只能实现到8bit
 
 从垃圾堆里 拆出了  CE2752  和  CS4354  还都是 SOP 大封装，，，， 可以实验了
-
------ SPI ----
-NSS 是片选
-
 
 ---- I2S ----
 为啥会有 时钟误差呢？  cube -> configuration 选项卡 点击 I2S 会看到各种频率下的误差
