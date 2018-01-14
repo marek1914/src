@@ -192,3 +192,15 @@ spl 目录的 u-boot-spl 不能用
 
 ok的 默认配置走的是 include/configs/xilinx_zynqmp.h
 fail的 配置有的是   include/configs/zynq-common.h
+
+
+-----------------
+0115  
+
+编译方法：
+https://www.cnblogs.com/sepeng/p/7891562.html
+
+phone xxx 错误，修改方法
+http://blog.csdn.net/x356982611/article/details/78183639
+arm/layers/core/meta/lib/oe/terminal.py  修改这个文件
+
