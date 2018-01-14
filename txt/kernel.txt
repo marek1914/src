@@ -70,7 +70,7 @@ ARCH=arm 不靠 xx_defconfig 设置死，因为 _defconfig分布在各arch目录
 mstar脚本，可从.config检测CONFIG_ARM=y 判断是arm，虽工作，但逻辑并不严密
 
 
-$(CONFIG_CROSS_COMPILE:"%"=%)  //去引号
+
 变量展开模式匹配，但实验没有成功：
 aa="helloworld" //1
 b=${aa:"%"=%}  //我没法模拟一个带“”的字符串，行1赋给aa，已经没有双引号了，转义也不行

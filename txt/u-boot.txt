@@ -1,4 +1,4 @@
-编译u-boot就不需要指定ARCH=ARM，因为配置文件统一在一起
+u-boot无需指定 ARCH=ARM，因为配置文件统一在一起
 
 bootargs 传给内核的参数
 常见环境变量：
@@ -300,18 +300,15 @@ e3slp u-boot跳转内核入口后串口1无启动信息，串口0有
 	tftp vmlinux.bin
 	nor write kernel
    uldr.bin最大64K，怎么留了1M空间呢？ 可能128M Flash 是1M的扇区吧。
-   cpu内部最高地址位置有64k SRAM空间。插跳线启动系统打印CC，这应该是内部ROM中的程序。
-   用y-modem下载uldr.bin到内部64k ram区域，通过特殊处理正好64k
-   下载完成后，uldr自动运行,uldr中对ddr进行初始化,(不论ddr是256M还是512M,都可以用同一个uldr.bin,所以512M开始可能被
-   初始化成256M),再通过y-modem下载u-boot到外部DDR中,自动运行.然后就是上面的过程了.
+   用y-modem下载uldr.bin到内部64k ram区域，
 
 bootdelay 设为0无法进入提示符，需CONFIG_ZERO_BOOTDELAY_CHECK
 
 #define CONFIG_IDENT_STRING	 "foobar"
 
-sun7i 编译：
+sun7i：
 
-make sun7i_config 仅配置；make sun7i 配置并编译（不好，没有改变文件也会重编译，因为重新配置了）
+make sun7i_config 仅配置；make sun7i 配置并编译（没有改变文件也会重编译，因为重新配置了）
 
 make 还是有几个文件重编译，都是包含#include <version.h> 的
 比如有的cpu的start.S要引用U_BOOT_VERSION_STRING（干什么？）
@@ -407,18 +404,14 @@ spi flash 操作：
 %_config: %_defconfig
         @:
 
-2012.04版本
-%_config::      unconfig
-        @$(MKCONFIG) -A $(@:_config=)
-这里是源码的笔误，没用到双冒号的含义
-
 linaro gcc4.7 编译s805 uboot fail：
 In function `__aeabi_ldiv0':
 (.text+0x6): undefined reference to `raise'
 
 arm uboot要求 -mabi=apcs-gnu ，-gnueabi的不行
 
-Uboot是非GNU/Linux程序（bare-metal）
+Uboot是非GNU/Linux程序 (bare-metal)
+
 arm-linux-gnueabi是GNU/Linux工具链，是编译Linux的，编Uboot会出现：
 当出现被0除的情况时，会调用__aeabi_ldiv0（即eabi版本的__div0），
 当GNU/Linux中，会触发系统的SIGFPE，进而调用到对应的raise(3)函数。
@@ -439,3 +432,7 @@ int raise (int signum)
 
 
 common/cli_readline.c  命令行编辑
+
+----
+配置编译器 (由 XC7Z045 引出)
+

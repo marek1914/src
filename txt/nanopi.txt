@@ -14,30 +14,8 @@ ubuntu 14.04 不能apt-get 没有源
 ====
 SSDP
 
-goahead 4.0
-编译：
-src/mbedtls/mbedtls.c:4417:1: error: r7 cannot be used in asm here
 
-V3.6.5 也是这个错误
-
-https://tls.mbed.org/kb/development/arm-thumb-error-r7-cannot-be-used-in-asm-here
-如果 -O3 需要 加 -fomit-frame-pointer 选项
-
-CFLAGS=-fomit-frame-pointer make   编译成功，这个make 不是靠 configure配置出来的
-
-sudo goahead -v --home /var/www/goahead
-
-配置文件在 /etc/goahead  网页在 /var/www/goahead
-在goahead执行文件目录中找到self.key和self.crt文件拷贝到/etc/goahead下
-
-sudo goahead -v --home /etc/goahead /var/www/goahead/
-然后用 板子ip 可以访问到 网页
-
-可以开始写网页了
-
-
-
-
+--------------------------------------------------------
 strace aplay x.wav : 
 
 1 寻找 .asoundrc 文件, 没有这个文件(用于配置声卡)

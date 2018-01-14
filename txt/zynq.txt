@@ -1,3 +1,5 @@
+Vivado
+
 zynq 020 400pin  做一个 arduino大小的， 估计要6层板
 并没有将所有引脚引出，所以6层板应该是够用的
 
@@ -26,13 +28,6 @@ http://releases.ubuntu.com/
 
 3个版本：米尔的12.04 桌面版， xilinx官方12.10 ubuntu-core版， ubuntu官方12.04版
 脱离米尔，从官网下载开始整理，驱动方面，只要网口通了就行
-
-goahead
-cgi
-embedthis.com/goahead
-github.com/embedthis # goahead源码
-
-goahead -v /web ip：9000  #ip是服务器ip，端口前要有空格
 
 -----
 我的开机打印（用米尔 boot.bin）
@@ -105,7 +100,6 @@ S25FL128SAGMFI
 
 pynq 硬件库叫 overlays
 
-
 trenz zynqberry， 有很多型号，较贵
 
 trenz 用 z-7007s 做的 arduino 大小的 板子 卖900多
@@ -114,34 +108,14 @@ trenz-electronic.de
 
 myir Z-Tune 800+
 
-Zynq + PYNQ + Python：在PYNQ-Z1上搭建二值神经网络（BNN）
-
-
-------机器学习
-cs299 网易公开课 coursera
-Machine Learning
-Deep Learning
-
-卷积神经网络（Convolutional Neural Networks，CNN）
-
 -------
 free WebPACK version of Xilinx Vivado
 Xilinx SDK software development environment
 
-Vivado
 
 ---------------
 https://github.com/Xilinx/PYNQ/blob/v2.0/boards/Pynq-Z1/base/notebooks/audio/audio_playback.ipynb
 看看这个怎么玩
-
-
-
-
----- ywy ---
-这个已经非常不值，坚持弄，是因为还有利用价值
-
-
-
 
 ------
 ywy给的2个 SDK  大小相差悬殊，一个能装，一个不能装
@@ -159,3 +133,62 @@ Xilinx_Vivado_SDK_2015.4_1118_2
 1 28V供电，加到17V 指示灯开始量
 MAX3491  RS485
 
+
+-----
+http://www.wiki.xilinx.com/2017.3+U-boot+Release+Notes
+
+u-boot:
+https://github.com/Xilinx/u-boot-xlnx
+
+wiki.xilinx.com/Build+U-Boot
+
+wiki.xilinx.com/Getting+Started
+
+http://www.wiki.xilinx.com/Technical+Articles#TRD  重要文档
+
+PetaLinux tools
+
+XC7Z045
+
+The Xilinx tools provide the following cross toolchains:
+Zynq-7000 (CodeSourcery - soft float)  arm-xilinx-linux-gnueabi-
+Zynq-7000 (Linaro - hard float)        arm-linux-gnueabihf-
+
+
+ywy 编译 boot(不是u-boot) 用的是 arm-none-eabi-gcc 
+
+/opt/Xilinx/SDK/2017.3/gnu/aarch32/lin/    目录有2套编译器
+
+arm-none-eabi-
+arm-linux-gnueabi-
+
+用 -### 参数看， 应该是一套代码，2套参数编译出来的
+明显区别：
+前者 Thread model: single
+后者 Thread model: posix
+其他参数也有很多区别
+
+
+XC7Z045 的官方开发板 Zynq ZC706  PCI卡
+u-boot 配置 zynq_zc706_config
+那么编译u-boot 用哪个编译器？
+
+
+
+
+
+petalinux kernel  登录 root:root
+
+
+u-boot-xlnx-xilinx-v2017.3/board/xilinx/zynq/zynq-zc706
+
+
+
+
+spl 目录的 u-boot-spl 不能用
+
+
+
+
+ok的 默认配置走的是 include/configs/xilinx_zynqmp.h
+fail的 配置有的是   include/configs/zynq-common.h

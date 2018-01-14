@@ -381,18 +381,19 @@ autossh -M 20000 -fNR 20001:localhost:22 sshr@182.92.176.232  //前后2个端口
 
 ==能用就行，无须多虑==
 virtual Box
+0) 下载地址http://download.virtualbox.org/virtualbox
 1) Extension Pack 要与Virtualbox版本一致
    USB设备:adduser gao vboxusers(注销生效)，重启，Devices->USB Devices看到U盘
-3) File->Preference->General->Default Machine Folder 可选择非home/user
-4) 设置共享文件夹自动mount，fs类型vboxsf，默认不支持symbolic link
+2) File->Preference->General->Default Machine Folder 可选择非home/user
+3) 设置共享文件夹自动mount，fs类型vboxsf，默认不支持symbolic link
 	ln: creating symbolic link `xx': Read-only file system,（拷贝带链接目录时）执行：
 	VBoxManage setextradata VM_NAME VBoxInternal2/SharedFoldersEnableSymlinksCreate/SHARE_NAME 1
 	VM_NAME是虚拟机名，SHARE_NAME是共享文件夹名，重启
-6) virtualbox 4.3.10升级到4.3.34，xp无法启动，addition也升级4.3.34即可
-7) Guest Additions (与通常说的 增强插件是一回事吗？)
-8) win7虚拟机共享文件夹后，可以向ubuntu写但无法读，提示位置不可用，映射网络驱动器 \\VBOXSVR\Downloads可以
-9) 有时需右击选择 “清除保存的状态” 如Unsupported version 14 of data unit 'vga'
-10) 开启DirectX winxp安全模式下，安装增强包里面的Direct3D驱动
+4) virtualbox 4.3.10升级到4.3.34，xp无法启动，addition也升级4.3.34即可
+5) Guest_Additions.iso(需光驱) 用于剪切板共享文件夹directX 
+   Extension_Pack.vbox-extpack 用于USB等
+6) win7虚拟机共享文件夹后，可以向ubuntu写但无法读，提示位置不可用，映射网络驱动器 \\VBOXSVR\Downloads可以
+7) 有时需右击选择 “清除保存的状态” 如Unsupported version 14 of data unit 'vga'
 
 ---raid---
 dmraid: fake raid (主板 廉价控制器) 3T盘识别746G bug 

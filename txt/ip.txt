@@ -428,7 +428,6 @@ framework/volley http封装，适合小数据频繁操作
 
 http头字段后的空格，wireshark有，用curl测试，不加或多加都行。
 
-Common Gateway Interface(CGI)  服务器上的cgi程序可用任何语言：C，perl，shell，php，python
 
 2xx : 成功,这类代码表明服务器成功地接受了客户端请求。
 200 : OK 请求成功
