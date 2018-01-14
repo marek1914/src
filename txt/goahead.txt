@@ -1,0 +1,28 @@
+github.com/embedthis
+
+goahead -v /web ip：9000  #ip是服务器ip，端口前要有空格
+
+goahead 4.0/3.6
+编译错误：
+src/mbedtls/mbedtls.c:4417:1: error: r7 cannot be used in asm here
+
+https://tls.mbed.org/kb/development/arm-thumb-error-r7-cannot-be-used-in-asm-here
+-O3 要配合  -fomit-frame-pointer
+
+CFLAGS=-fomit-frame-pointer make   成功，这个make 不是靠 configure配置出来的
+
+sudo goahead -v --home /var/www/goahead
+
+配置文件 /etc/goahead  网页 /var/www/goahead
+
+在goahead执行文件目录 self.key和self.crt 拷贝到/etc/goahead
+
+sudo goahead -v --home /etc/goahead /var/www/goahead/
+
+
+cgi
+
+
+goAction:
+
+websDefineAction
