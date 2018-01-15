@@ -100,6 +100,10 @@ S25FL128SAGMFI
 
 pynq 硬件库叫 overlays
 
+USB 用了 TUSB1210 芯片  是480M 收发器
+zynq 自己不带USB？
+米尔用的 USB3320C
+
 trenz zynqberry， 有很多型号，较贵
 
 trenz 用 z-7007s 做的 arduino 大小的 板子 卖900多
