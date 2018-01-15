@@ -204,3 +204,15 @@ phone xxx 错误，修改方法
 http://blog.csdn.net/x356982611/article/details/78183639
 arm/layers/core/meta/lib/oe/terminal.py  修改这个文件
 
+
+
+
+
+
+
+-----
+pynq 是 ISSI 单片 16bit DDR3
+ywy 7045 板子 2片 MT41K256M16HA-125IT  2片16bit，拼成32bit
+
+我自己的照抄 pynq 用ISSI
+
