@@ -204,3 +204,54 @@ phone xxx 错误，修改方法
 http://blog.csdn.net/x356982611/article/details/78183639
 arm/layers/core/meta/lib/oe/terminal.py  修改这个文件
 
+
+
+petalinux  编译器路径 tools/linux-i386
+
+
+----
+uart1 改 uart0 通过修改 dts 成功了，但不去找 image.ub文件，最终要靠 petalinux tool 包 生成
+
+XSCT (Xilinx Software Command-Line Tool
+
+
+IMPORTANT: PetaLinux tools require your host system "/bin/sh" is bash. If you are using Ubuntu
+distribution and your "/bin/sh" is dash, you can consult your system administrator to change your
+default with sudo dpkg-reconfigure dash command.
+
+IMPORTANT: PetaLinux v2017.3 works only with Vivado 2017.3.
+
+下载的 xilinx-zc706-v2017.3-final.bsp 是tar.gz 格式
+
+
+疑问：
+kernel源码在 petalinux-v2017.3-open_components 5G大小的那个组件里面，而昨晚仅下载了
+petalinux-v2017.3-final-installer.run，  那 image.ub 怎么编译出来的呢？
+直接搜kernel 文件搜不到，应该在那些 压缩文件里面
+
+
+----
+在家里电脑成功了，在公司服务器上： unable to open devshell
+解决：sudo apt-get install  screen
+
+
+
+
+---
+好的板子 显示 eth0，
+不好的 ifconfig -a 显示了 can0， 这是can总线
+
+---
+u-boot 被临时解压在：
+petalinux_7045/build/tmp/work/plnx_arm-xilinx-linux-gnueabi/u-boot-xlnx
+
+貌似是从 github的xilinx 上现下载的
+
+
+
+
+u-boot 的 menuconfig 好像不是所有选项都能配置
+比如
+CONFIG_PHY_MARVEL
+CONFIG_PHY_ATHEROS
+在 include/configs 里面的 .h 文件中写死，不能 menuconfig 配置
