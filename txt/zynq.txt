@@ -96,6 +96,7 @@ pynq-Z1  512M DDR3(IS43TR16256A-125KBL  256*16bit) + 16M Quad-SPI Flash (米尔�
 125K 代表速度 1600k
 96 ball  16x6
 
+ddr 的数据线 是可以乱序的，为了布线方便，这个几年前就确认过，pynq就是乱序的
 
 XC7Z020-1CLG400C
 
@@ -229,5 +230,7 @@ ISSI 官网只有8bit 和 16bit 的，没有32bit的 DDR3
 -----
 petalinux-config --get-hw-description
 petalinux-package --boot --format BIN --fsbl images/linux/zynq_fsbl.elf --fpga Beamcontrol_SYS_TOP.bit --u-boot
+
+
 
 

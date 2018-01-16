@@ -444,9 +444,7 @@ u-boot mm
 3 运行
 	完成上面工作，板子可以启动到linux控制台
 	1) 修改ip地址
-	目前远离光口的网口能用，靠近光口的网口能link，但ping不同，原因尚不明
-	编辑/etc/rc.sh
-	ifconfig eth0 192.168.0.143 up
+	编辑/etc/rc.sh ifconfig 
 
 	2) telnet连接
 	pc端执行:
@@ -479,4 +477,9 @@ Libero不能导出4.0能导出3.4工程
 3.4只能用Pro4
 导出的3.4工程合并到4.0工程中，使用Pro5可调试
 导出的3.4工程直接Pro4 可调试
+
+
+-----zynq
+
+eth0 不通， 好的显示 RUNNING  不好的没有显示
 
