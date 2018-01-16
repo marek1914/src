@@ -92,13 +92,21 @@ Zynq-7000S 单核A9
 Zynq-7000  双核A9 7010/7015/7020 Artix-7 family programmable logic
 
 
-pynq-Z1  512M DDR3 + 16M Quad-SPI Flash 
+pynq-Z1  512M DDR3(IS43TR16256A-125KBL  256*16bit) + 16M Quad-SPI Flash (米尔用的 MT41K256M16HA-125 2片，共1G，ywy也用的这个) 
+125K 代表速度 1600k
+96 ball  16x6
+
+
 XC7Z020-1CLG400C
 
 IS43TR16256A-125KBL
 S25FL128SAGMFI
 
 pynq 硬件库叫 overlays
+
+USB 用了 TUSB1210 芯片  是480M 收发器
+zynq 自己不带USB？
+米尔用的 USB3320C
 
 trenz zynqberry， 有很多型号，较贵
 
@@ -188,11 +196,8 @@ u-boot-xlnx-xilinx-v2017.3/board/xilinx/zynq/zynq-zc706
 spl 目录的 u-boot-spl 不能用
 
 
-
-
 ok的 默认配置走的是 include/configs/xilinx_zynqmp.h
 fail的 配置有的是   include/configs/zynq-common.h
-
 
 -----------------
 0115  
@@ -204,6 +209,7 @@ phone xxx 错误，修改方法
 http://blog.csdn.net/x356982611/article/details/78183639
 arm/layers/core/meta/lib/oe/terminal.py  修改这个文件
 
+<<<<<<< HEAD
 
 
 petalinux  编译器路径 tools/linux-i386
@@ -255,3 +261,27 @@ u-boot 的 menuconfig 好像不是所有选项都能配置
 CONFIG_PHY_MARVEL
 CONFIG_PHY_ATHEROS
 在 include/configs 里面的 .h 文件中写死，不能 menuconfig 配置
+=======
+-----
+pynq 是 ISSI 单片 16bit DDR3
+ywy 7045 板子 2片 MT41K256M16HA-125IT  2片16bit，拼成32bit
+
+我自己的照抄 pynq 用ISSI
+
+
+
+
+ISSI 官网只有8bit 和 16bit 的，没有32bit的 DDR3
+
+
+
+
+
+
+
+-----
+petalinux-config --get-hw-description
+petalinux-package --boot --format BIN --fsbl images/linux/zynq_fsbl.elf --fpga Beamcontrol_SYS_TOP.bit --u-boot
+
+
+>>>>>>> e54c22fcf51d2c62bfa9176e1016b9b6518fb2c8
