@@ -135,6 +135,11 @@ netmask 255.255.255.0
 gateway 192.168.200.100 
 dns-nameservers 202.106.0.20 （/etc/resolv.conf 自动添加:nameserver 202.106.0.20）
 
+/etc/resolv.conf  dns服务器配置
+有时此文件为空，用 dhclient eth0 刷新
+
+
+
 软件配置
 1 apache
 /var/www/index.html

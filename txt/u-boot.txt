@@ -111,9 +111,11 @@ bootargs console=ttyS0,115200n8 root=/dev/ram rw mem=32M
 CFG_LOAD_ADDR(old) or CONFIG_SYS_LOAD_ADDR(new)
 最后一次内存操作的地址，如tftp（这种思路）
 
-2008/10/16 6d0f6bcf337c5261c08fabe12982178c2c489d76 rename CFG_ macros to CONFIG_SYS
+2008/10/16 6d0f6bcf337c5261c08fabe12982178c2c489d76 
+rename CFG_ macros to CONFIG_SYS
+
 2014/06/30 dd84058d24ff54d6b32818ffe44aeb4bba2cfae6 
-添加configs目录，类似kernel xx_defconfig 文件
+添加configs目录，类似kernel xx_defconfig 文件 (20180115 这里的配置项不能配置全部参数  zynq zc706)
 
 bootcmd可用读写nand/Nor Flash的命令拷贝zImage/uImage到内存，或直接在Nor Flash里执行（data区怎么处理呢？原来分析过itron的boot在nor执行的情况，有一段拷贝data的代码，那是人为写的，那kernel呢？）
 
