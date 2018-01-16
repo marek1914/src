@@ -86,8 +86,6 @@ ppmgr: POST_PROCESS_MANAGER
 
 驱动在drivers/amlogic和hardware/amlogic两处
 
-疑问： 同时支持多个phy芯片，怎么选择呢？
-
 编译问题：
 1 bt656_601_in.c :reinit_camera_dec() CONFIG_ARCH_MESON8未定义，warnings being treated as errors
 
@@ -287,7 +285,6 @@ protect off 0xfc280000 0xfc77ffff
 erase 0xfc280000 0xfc77ffff
 cp.b 0x1000000 0xfc280000 0x4fffff
 
-phy: marvell 88e1111  10M/100M/1000M
 
 读上来的id为 0x01410cc2
 
@@ -323,8 +320,6 @@ mdio@24520 reg = <0x24520 0x20> :
 疑问：只能用mdio@24520 访问mdio，用mdio@26520 访问不到，为啥呢
 
 
-gianfar
-
 kuboot-1.01-0302.tar.gz  执行 build_8548.sh 编译   这个波特率是9600
 
 uboot 配置
@@ -336,6 +331,9 @@ make bnc8548_config
 使用 kernel 2.6.27
 
 发现linux-2.6.27.7-bnc8548-pcie-host 用的是博通phy 而不是MARVELL ！
+
+
+phy: marvell 88e1111
 
 自己编译的内核loady后，校验解压正常，跳转到kernel就没打印了，开始以为loady下载位置与解压后冲突，加大无用，后找到邮件中的config文件与我用的比较：
 多：
@@ -444,9 +442,7 @@ u-boot mm
 3 运行
 	完成上面工作，板子可以启动到linux控制台
 	1) 修改ip地址
-	目前远离光口的网口能用，靠近光口的网口能link，但ping不同，原因尚不明
-	编辑/etc/rc.sh
-	ifconfig eth0 192.168.0.143 up
+	编辑/etc/rc.sh ifconfig 
 
 	2) telnet连接
 	pc端执行:
@@ -479,4 +475,9 @@ Libero不能导出4.0能导出3.4工程
 3.4只能用Pro4
 导出的3.4工程合并到4.0工程中，使用Pro5可调试
 导出的3.4工程直接Pro4 可调试
+
+
+-----zynq
+
+eth0 不通， 好的显示 RUNNING  不好的没有显示
 

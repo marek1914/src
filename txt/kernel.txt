@@ -771,10 +771,7 @@ fs/proc/meminfo.c
 一般情况下 __pfn_to_bus 就是  __virt_to_bus
 #define PHYS_OFFSET UL(0x00000000)
 
-CONFIG_PAGE_OFFSET  更改2g/2g  3g/1g 后.config文件中的东西
-
-那么PHYS_OFFSET  物理偏移又是什么呢？
-apollo定义的PHYS_OFFSET 为0
+CONFIG_PAGE_OFFSET  :2g/2g  3g/1g 
 
 MAX_NUMNODES 都是1 NUMA 在多处理器上才有用
 
@@ -1454,24 +1451,15 @@ Linux/drivers/tty/serial/amba-pl011.c
 // Driver for AMBA serial ports
 
 
-1 phy驱动: drivers/net/phy
-配置项：
 
 ioremap
 ioremap_nocache
 
-drivers/net/gianfar_mii.c : Gianfar Ethernet Driver -- MIIM bus implementation Provides Bus interface for MIIM regs
 
-#define DEVICE_NAME "%s: Gianfar Ethernet Controller Version 1.2, "
-
-mdio_scan()
-mdiobus_register()
 
 mii_bus类型 bus->read 在哪里定义？
 
 platform_driver 结构体的 probe 什么时候调用
-
-需要搞定kernel调试技术
 
 cpu_relax() 
 
@@ -1588,3 +1576,23 @@ rockchip 芯片otg usb device 模拟网卡，NCM协议， 开始在freescal平�
 ----
 buildroot.org   黄色安全帽, 源于uclibc项目
 Buildroot is a simple, efficient and easy-to-use tool to generate embedded Linux systems through cross-compilation
+
+
+
+----PHY----
+phy驱动: drivers/net/phy
+
+mdio_scan()
+mdiobus_register()
+
+/sys/bus/mdio_bus/drivers/ 目录下有很多phy 如Marvell 88E1116R
+
+
+MDIO: Management Data Input/Output
+
+drivers/net/gianfar_mii.c : Gianfar Ethernet Driver -- MIIM bus implementation Provides Bus interface for MIIM regs
+
+#define DEVICE_NAME "%s: Gianfar Ethernet Controller Version 1.2, "
+
+MII: Media Independent Interface
+与MII的关系

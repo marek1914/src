@@ -304,6 +304,7 @@ ifconfig : configure a network interface
 ifconfig eth0 192.168.0.10 netmask 255.255.255.0 up
 ifconfig eth0 down/up 关闭/打开网络
 ifconfig eth0 hw ether AA:BB:CC:DD:EE:FF 临时更改MAC
+ifconfig eth0 -addr=172.16.9.79 -mask=255.255.255.0 -gw=172.16.9.1 -dns=202.106.0.20
 
 strace跟踪到：
 socket(PF_INET, SOCK_DGRAM, IPPROTO_IP) = 4
