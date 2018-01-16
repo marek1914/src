@@ -92,7 +92,11 @@ Zynq-7000S 单核A9
 Zynq-7000  双核A9 7010/7015/7020 Artix-7 family programmable logic
 
 
-pynq-Z1  512M DDR3(IS43TR16256A-125KBL  256*16bit) + 16M Quad-SPI Flash (米尔用的 MT41K256M16HA-125 2片，共1G，ywy也用的这个) 
+pynq-Z1  512M DDR3(IS43TR16256A-125KBL  256*16bit) + 16M Quad-SPI Flash 
+
+(米尔用的 MT41K256M16HA-125 2片，共1G，ywy也用的这个) 
+MT41K 和 IS43 引脚完全一样
+
 XC7Z020-1CLG400C
 
 IS43TR16256A-125KBL
