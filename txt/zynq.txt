@@ -209,9 +209,6 @@ phone xxx 错误，修改方法
 http://blog.csdn.net/x356982611/article/details/78183639
 arm/layers/core/meta/lib/oe/terminal.py  修改这个文件
 
-<<<<<<< HEAD
-
-
 petalinux  编译器路径 tools/linux-i386
 
 
@@ -254,8 +251,6 @@ petalinux_7045/build/tmp/work/plnx_arm-xilinx-linux-gnueabi/u-boot-xlnx
 貌似是从 github的xilinx 上现下载的
 
 
-
-
 u-boot 的 menuconfig 好像不是所有选项都能配置
 比如
 CONFIG_PHY_MARVEL
@@ -269,19 +264,9 @@ ywy 7045 板子 2片 MT41K256M16HA-125IT  2片16bit，拼成32bit
 我自己的照抄 pynq 用ISSI
 
 
-
-
 ISSI 官网只有8bit 和 16bit 的，没有32bit的 DDR3
-
-
-
-
-
-
 
 -----
 petalinux-config --get-hw-description
 petalinux-package --boot --format BIN --fsbl images/linux/zynq_fsbl.elf --fpga Beamcontrol_SYS_TOP.bit --u-boot
 
-
->>>>>>> e54c22fcf51d2c62bfa9176e1016b9b6518fb2c8
