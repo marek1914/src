@@ -196,11 +196,8 @@ u-boot-xlnx-xilinx-v2017.3/board/xilinx/zynq/zynq-zc706
 spl 目录的 u-boot-spl 不能用
 
 
-
-
 ok的 默认配置走的是 include/configs/xilinx_zynqmp.h
 fail的 配置有的是   include/configs/zynq-common.h
-
 
 -----------------
 0115  
@@ -212,12 +209,6 @@ phone xxx 错误，修改方法
 http://blog.csdn.net/x356982611/article/details/78183639
 arm/layers/core/meta/lib/oe/terminal.py  修改这个文件
 
-
-
-
-
-
-
 -----
 pynq 是 ISSI 单片 16bit DDR3
 ywy 7045 板子 2片 MT41K256M16HA-125IT  2片16bit，拼成32bit
@@ -228,3 +219,15 @@ ywy 7045 板子 2片 MT41K256M16HA-125IT  2片16bit，拼成32bit
 
 
 ISSI 官网只有8bit 和 16bit 的，没有32bit的 DDR3
+
+
+
+
+
+
+
+-----
+petalinux-config --get-hw-description
+petalinux-package --boot --format BIN --fsbl images/linux/zynq_fsbl.elf --fpga Beamcontrol_SYS_TOP.bit --u-boot
+
+
