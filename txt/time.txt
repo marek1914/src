@@ -22,7 +22,8 @@
 {"date":"180113","wd":0,"wake":"9:40","sleep":"00:00","sport":1,"star":[1,1,0]}
 {"date":"180114","wd":0,"wake":"9:00","sleep":"00:40","sport":0,"star":[1,2,3]}
 {"date":"180115","wd":1,"wake":"6:30","sleep":"00:30","sport":0,"star":[1,0,1]}
-{"date":"180116","wd":1,"wake":"8:30","sleep":"xx:xx","sport":0,"star":[1,0,1]}
+{"date":"180116","wd":1,"wake":"8:30","sleep":"00:30","sport":0,"star":[1,0,1]}
+{"date":"180117","wd":1,"wake":"7:30","sleep":"xxxx ","sport":0,"star":[x,x,x]}
 
 
 

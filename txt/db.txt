@@ -1,0 +1,53 @@
+只因跟邓工讨论了一下 dBm，明白了好多。。。 所以要讨论
+
+场量 20倍log
+功率量 10倍 log  (dBm)
+
+
+dBm 功率测量单位 代表 dBmW  是功率与 1mW 的比值 
+(原来做dvb，信号强度 mV 用 dBm 表示是不对的)
+
+wikipedia:
+在电话系统中，参考电阻 600 ohm
+在无线电系统，参考电阻 50 ohm
+
+电压 0.775Vrms 加在 600 ohm上，产生 1mW 功耗，标定为 0 dBm
+50 ohm 系统 是 0.2236Vrms  0dBm  1mW
+
+计算: 10^(dBm值/10)
+-3 dBm  0.5mW
+
+左边等差，右边等比，比值1.2589
+
+10开10次方约 = 1.2589
+
+-∞  dBm  0W
+-127dBm  0.178fW( 10^-15 ) Typical received signal power from a GPS satellite 
+-100dBm  0.1  pW           Minimal received signal power of wireless network (802.11 variants, 也包含802.15？)
+ -80dBm  10   pW
+ -30dBm  1.0  uW
+ -20dBm  10   uW
+ -18dBm  15.8 uW
+ -12dBm  63   uW
+ -10dBm  100  uW
+ -7 dBm  0.1995 mW
+ -6 dBm  0.2512 mW
+ -5 dBm  0.3162 mW
+ -4 dBm  0.3981 mW
+ -3 dBm  0.5012 mW
+ -2 dBm  0.6309 mW
+ -1 dBm  0.7943 mW
+  0 dBm  1.0 mW
+  1 dBm  1.2589 mW
+  2 dBm  1.5849 mW
+  3 dBm  1.9953 mW
+  4 dBm  2.5119 mW
+  5 dBm  3.1623 mW
+  6 dBm  3.9811 mW
+  7 dBm  5.0119 mW
+  8 dBm  6.3096 mW
+  9 dBm  7.9433 mW
+ 10 dBm  10  mW
+ 20 dBm  100 mW
+ 30 dBm  1000mW = 1W
+ 40 dBm  10W
