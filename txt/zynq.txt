@@ -105,6 +105,13 @@ S25FL128SAGMFI
 
 pynq 硬件库叫 overlays
 
+
+电源芯片 TPS65400RGZ 淘宝很贵
+ywy 用的tps65261
+
+mier用的啥？
+
+
 USB 用了 TUSB1210 芯片  是480M 收发器
 zynq 自己不带USB？
 米尔用的 USB3320C
@@ -270,4 +277,5 @@ ISSI 官网只有8bit 和 16bit 的，没有32bit的 DDR3
 -----
 petalinux-config --get-hw-description
 petalinux-package --boot --format BIN --fsbl images/linux/zynq_fsbl.elf --fpga Beamcontrol_SYS_TOP.bit --u-boot
+
 
