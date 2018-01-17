@@ -165,8 +165,8 @@ SF为11|12 时，就设置优化bit
 接收灵敏度
 http://www.cnblogs.com/diyingyun/p/3722936.html
 
-www.semtech.com
-www.lora-alliance.org
+semtech.com
+lora-alliance.org
 
 microchip RN2483
 
