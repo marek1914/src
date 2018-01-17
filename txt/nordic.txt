@@ -241,3 +241,38 @@ bool radioNumber = 1; //收和发 分别设置0和1
 
 板载天线，通讯距离有限，书房和主卧室无法联通，书房与沙发处，能连但丢包, 可以降低
 餐桌和书房可以，丢包率很低，可以适当提高功率，降低速度
+
+
+RF24.h 一半内容是文档
+
+
+gettingstart 中，radioNumber 要一个1 一个0 通讯，文档中确没有说 
+
+
+openWritingPipe
+openReadingPipe  实现差异巨大
+
+uint8_t pipe0_reading_address[5]; /**< Last address set on pipe 0 for reading.
+
+
+
+
+
+2.4 - 2.4835 GHz
+WiFi 信道，Tenda 路由器  13个信道，默认6
+2.412-2.472 共60MHz 
+2412MHz
+2417MHz
+2422MHz
+2427
+2432
+2437
+2442
+2447
+...
+2472
+5MHz 间隔
+
+
+
+

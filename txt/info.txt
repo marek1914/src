@@ -1,7 +1,6 @@
 0113 周六下午加班，解决 OTA 升级问题
 
 
-2018-100w
 taobao        30
 microbit      10
 无线传感器    10
@@ -11,9 +10,7 @@ ip-speaker    2
 ip-micphone   10
 BLE Mesh      10
 
-每周都要投一次板子，
-
-https://github.com/merbanan  大牛
+https://github.com/merbanan
 
 LifeSmart 云起智能
 
