@@ -1,8 +1,17 @@
 Vivado
 
-zynq 020 400pin  做一个 arduino大小的， 估计要6层板
-并没有将所有引脚引出，所以6层板应该是够用的
+http://xilinx.eetrend.com  
 
+Processing System(PS) 即 ARM Cortex-A9 MPCore,  Programmable Logic(PL)即 FPGA
+
+FSBL: First Stage Boot Loader
+
+FPGA上软核，Altera: Nios II, Xilinx: Picoblaze/Micoblaze
+
+PS 与 PL 通过 AXI_HP、AXI_GP、AXI_ACP 3种接口通讯
+
+
+zynq 020 400pin  做一个 arduino大小的， 6层板  并没有将所有引脚引出
 
 ZYNQ:
 XC7Z010/20 账户 gxxjxx:200w(six 0)

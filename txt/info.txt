@@ -1,12 +1,9 @@
-0113 周六下午加班，解决 OTA 升级问题
-
-
 taobao        30
 microbit      10
 无线传感器    10
-zynq          10
-yanwy         1.5
-ip-speaker    2
+zynq          20
+yanwy         5
+ip-speaker    5
 ip-micphone   10
 BLE Mesh      10
 

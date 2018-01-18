@@ -1,6 +1,7 @@
 onsemi.cn   半导体公司
 http://www.szlcsc.com/
 
+非常规阻值电阻  如 12.4k
 
 
 电容:

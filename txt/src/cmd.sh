@@ -219,7 +219,6 @@ ln -s /usr/bin/ccache /usr/local/bin/gcc
 
 ln -sf /foo/bar/ ~/foo/foobar # 目标目录已存在，出现嵌套，好像不是backup，并未指定参数，可先删除
 
-busybox devmem 读写 /dev/mem(1-4byte)
 
 id #显示real和effective的用户和组IDs，如：
 uid=1000(user1) gid=1000(user1) groups=1000(user1),27(sudo),1001(wireshark)

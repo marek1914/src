@@ -250,6 +250,8 @@ wuyt: maniacbug 这个人的库，24组网
 https://maniacbug.wordpress.com/2012/03/30/rf24network/
 http://maniacbug.github.io/RF24Network/index.html
 
+好资料
+https://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo
 
 
 接收灵敏度：
@@ -266,3 +268,7 @@ Load impedance = 15Ω+j88Ω   怎么理解?  不是 50 ohm 呀
 
 lora 芯片灵敏度能达到 -148dBm (2aW  10^-18)
 发射功率 20dBm 再加 14dBm 的PA，总功率达到 34 dBm, 即2.
+
+
+
+
