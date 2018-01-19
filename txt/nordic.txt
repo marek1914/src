@@ -282,15 +282,15 @@ stk_master_send_h2d    host to device
 m_slot_idx 初始化为 0
 
 ----------------------------
-addr_boardcast = 0xFFFFFF01
+addr_boardcast = 0xFFFFFF01   // 难道是用这个广播地址 通讯的？
 
-SLAVE:                         // m_host_addr = h2d->hot_addr;
+SLAVE:                        // m_host_addr = h2d->hot_addr;
 param.host_addr = 0xFFFFFFFF; // rad_set_tx_mode(addr_boardcast, (t_u8*)&m_d2h, sizeof(m_d2h));  rad_set_tx_mode(m_host_addr, (t_u8*)&m_d2h, sizeof(m_d2h));
 param.dev_addr  = 0x00AA0001; // rad_set_rx_mode(m_d2h.dev_addr);
 
 MASTER:
-param.host_addr = 0xAABB0001;  // set_rx_mode    rad_set_rx_mode(addr_boardcast);
-param.dev_addr = 0xFFFFFFFF;   // rad_set_tx_mode(m_device[m_slot_idx].addr, (t_u8*)&m_h2d, sizeof(m_h2d));   依赖 dev_addr  8个外围都写成了 FF?
+param.host_addr = 0xAABB0001;  // rad_set_rx_mode(addr_boardcast);
+param.dev_addr = 0xFFFFFFFF;   // rad_set_tx_mode(m_device[m_slot_idx].addr);   依赖 dev_addr  8个外围都写成了 FF?
 
 
 

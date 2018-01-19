@@ -58,7 +58,7 @@ bit3 == 0 :data, 1 means instruction
 kenel/sysctl.c生成/proc/sys/kernel项
 
 linux/drivers/video/skeletonfb.c
-file_operation: read/write/ioctl/mmap，在fbmem.c中实现，检测fb_ops->fb_mmap(vpmfb.c中)是否定义
+file_operation 在fbmem.c中实现
 
 Kernel hacking  打开会增加很多打印
 

@@ -291,8 +291,10 @@ petalinux-config --get-hw-description
 petalinux-package --boot --format BIN --fsbl images/linux/zynq_fsbl.elf --fpga Beamcontrol_SYS_TOP.bit --u-boot
 
 
-
+petalinux-create -t apps --template c --name fpgaload --enable
+生成路径 project-spec/meta-user/recipes-apps
 
 ---
 加载 基地址 0x43c00000
+
 
