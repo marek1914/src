@@ -6,6 +6,9 @@ yanwy         5
 ip-speaker    5
 ip-micphone   10
 BLE Mesh      10
+i.MX 		  1 
+
+2018 就这些东西，一样都不能再增加了
 
 https://github.com/merbanan
 

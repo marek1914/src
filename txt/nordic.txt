@@ -245,7 +245,7 @@ openReadingPipe  实现差异巨大
 uint8_t pipe0_reading_address[5]; /**< Last address set on pipe 0 for reading.
 
 
-wuyt: maniacbug 这个人的库，24组网
+maniacbug 24组网  跟 TMRh20 好像是1个人
 组网的话  1扇出5,1个用于级联
 https://maniacbug.wordpress.com/2012/03/30/rf24network/
 http://maniacbug.github.io/RF24Network/index.html
@@ -269,6 +269,28 @@ Load impedance = 15Ω+j88Ω   怎么理解?  不是 50 ohm 呀
 lora 芯片灵敏度能达到 -148dBm (2aW  10^-18)
 发射功率 20dBm 再加 14dBm 的PA，总功率达到 34 dBm, 即2.
 
+
+
+
+--- yj 2401+ ---
+#define SLOT_NUM	8  // 外面8个外设
+addr_boardcast = 0xFFFFFF01
+
+
+stk_master_send_h2d    host to device
+
+m_slot_idx 初始化为 0
+
+----------------------------
+addr_boardcast = 0xFFFFFF01
+
+SLAVE:                         // m_host_addr = h2d->hot_addr;
+param.host_addr = 0xFFFFFFFF; // rad_set_tx_mode(addr_boardcast, (t_u8*)&m_d2h, sizeof(m_d2h));  rad_set_tx_mode(m_host_addr, (t_u8*)&m_d2h, sizeof(m_d2h));
+param.dev_addr  = 0x00AA0001; // rad_set_rx_mode(m_d2h.dev_addr);
+
+MASTER:
+param.host_addr = 0xAABB0001;  // set_rx_mode    rad_set_rx_mode(addr_boardcast);
+param.dev_addr = 0xFFFFFFFF;   // rad_set_tx_mode(m_device[m_slot_idx].addr, (t_u8*)&m_h2d, sizeof(m_h2d));   依赖 dev_addr  8个外围都写成了 FF?
 
 
 
