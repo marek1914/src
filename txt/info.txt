@@ -1,6 +1,5 @@
 done is better than perfect 
 
-
 taobao        30
 microbit      10
 无线传感器    10
@@ -11,19 +10,13 @@ ip-micphone   10
 BLE Mesh      10
 i.MX 		  1 
 
-2018 就这些东西，一样都不能再增加了
-
 https://github.com/merbanan
 
 LifeSmart 云起智能
 
-“Hi Siri，关闭客厅灯带”
-能否不用拿起手机，靠拾音器
-
 主控板以microbit为原型设计，图形化编程&代码软件。（周期长，难度较大）
 
 用issi的8bit内存 + stm32 做一个 spi接口的 用于arduino，  这比4片microchip spi的那个方案要好
-
 
 Scratch配合美国政府提出的STEAM教育理念
 
@@ -33,7 +26,6 @@ Scratch配合美国政府提出的STEAM教育理念
 实际上，除了简单问题复杂化的个别情况，简单的代码不可能解决复杂问题，所以要习惯复杂代码
 
 生物电 电极片
-
 
 microbit 黄色灯既是电源， 串口通讯的时候也闪烁，简简单单一个灯，值得借鉴
 

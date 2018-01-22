@@ -305,7 +305,11 @@ petalinux-create -t apps --template c --name fpgaload --enable
 
 
 
-kernel 源码目录  peta_test/build/tmp/work-shared/plnx_arm/kernel-source/
+kernel 源码目录
+build/tmp/work-shared/plnx_arm/kernel-source/
+
+编译路径
+build/tmp/work/plnx_arm-xilinx-linux-gnueabi/linux-xlnx/4.9-xilinx-v2017.3+gitAUTOINC+f1b1e077d6-r0/linux-plnx_arm-standard-build/kernel/fork.o
 
 
 

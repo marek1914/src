@@ -28,7 +28,7 @@
 {"date":"180119","wd":1,"wake":"8:00","sleep":"00:30","sport":0,"star":[0,2,0]}
 {"date":"180120","wd":0,"wake":"8:30","sleep":"23:30","sport":1,"star":[0,0,0]}
 {"date":"180121","wd":0,"wake":"8:00","sleep":"00:00","sport":0,"star":[1,2,1]}
-{"date":"180122","wd":1,"wake":"7:30","sleep":"xx:xx","sport":0,"star":[1,x,x]}
+{"date":"180122","wd":1,"wake":"7:30","sleep":"xx:xx","sport":0,"star":[1,0,1]}
 
 
 
