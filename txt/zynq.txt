@@ -297,7 +297,7 @@ petalinux-create -t apps --template c --name fpgaload --enable
 
 
 编译完，说在 build/tmp/work/cortexa9hf-neon-xilinx-linux-gnueabi/fpgaload/1.0-r0$ 但并没有找到
-执行 petalinux-build -c fpgaload -x do_install
+petalinux-build -c fpgaload -x do_install
 /peta_test/build/tmp/work/cortexa9hf-neon-xilinx-linux-gnueabi/fpgaload/1.0-r0 在这里
 ---
 加载 基地址 0x43c00000
@@ -361,3 +361,16 @@ devm_gpiod_get_optional
 
 
 看 document/gpio 的说明
+
+
+
+
+------------c操你妈
+peta的编译系统真的是太烂太烂了
+
+把 goahead源码拷贝到
+
+build/tmp/work/cortexa9hf-neon-xilinx-linux-gnueabi/goahead/1.0-r0
+竟然就编译通过了！你麻痹呀
+
+当然，前提是线 -c 建立了 goahead 工程
