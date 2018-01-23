@@ -68,3 +68,14 @@ git log|grep 'commit [a-z0-9]*'|wc -l
 
 repo forall -c "git log --after 2017-11-29"  能查出 那个仓库11-29 以后做过修改，但是不知道那个是那个仓库呀
 repo forall -c "git log --after 2017-11-29 ; pwd " 操，勉强能用
+
+git log --reverse
+
+
+repo forall  -c git checkout -f  `git rev-list --max-parents=0 HEAD`
+提示
+fatal: Not a git repository (or any parent up to mount point /media/vr-bsp/vr-bsp-home)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+
+这样能成功
+repo forall  -c 'git checkout -f  `git rev-list --max-parents=0 HEAD`'
