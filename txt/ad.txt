@@ -1,5 +1,6 @@
 http://www.altium.com/documentation/18.0/display/ADES/PCB_Cmd-BreakTrack((BreakTrack))_AD
 
+做库时选中所有引脚要勾选 Select Matching
 
 更新pcb封装的时候，必须把pcb已有的原件封装删除？
 在腹铜上 打via，有时直接就是腹痛的网络号，有时却是空的，好像打到一个层上就有，同时2层，就空，好像。。。
