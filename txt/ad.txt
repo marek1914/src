@@ -1,5 +1,6 @@
 http://www.altium.com/documentation/18.0/display/ADES/PCB_Cmd-BreakTrack((BreakTrack))_AD
 
+做库时选中所有引脚要勾选 Select Matching
 
 更新pcb封装的时候，必须把pcb已有的原件封装删除？
 在腹铜上 打via，有时直接就是腹痛的网络号，有时却是空的，好像打到一个层上就有，同时2层，就空，好像。。。
@@ -12,6 +13,13 @@ http://www.altium.com/documentation/18.0/display/ADES/PCB_Cmd-BreakTrack((BreakT
 2 switcher 每边 0.35，手焊已经感觉空隙比较大
 3 宽度可以等宽，或超出 0.1mm
 4 要不要包围丝印？宽度怎么制定
+
+
+手焊  电容还是要大些，否则很难焊接好看，因为侧面太高，机器焊接就没有问题了
+电容电阻不放外边框，不是个好主意， 手焊不好区分，  机器焊接会显得好看些，没有那么多的白线
+
+
+电容电阻总是焊不好，还需要加强
 
 size(mm):
 0201: 0.6x0.3  xxx

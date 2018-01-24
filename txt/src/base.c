@@ -983,4 +983,7 @@ llrintl
 
 long double  16byte
 
+cp tar  --dereference 参数，拷贝软链接为实际文件
+
+
 // vim: tw=80
