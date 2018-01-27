@@ -30,10 +30,10 @@
 {"date":"180121","wd":0,"wake":"8:00","sleep":"00:00","sport":0,"star":[1,2,1]}
 {"date":"180122","wd":1,"wake":"7:30","sleep":"22:30","sport":0,"star":[1,0,1]}
 {"date":"180123","wd":1,"wake":"7:30","sleep":"00:30","sport":0,"star":[0,0,1]}
-{"date":"180124","wd":1,"wake":"7:30","sleep":"xx:xx","sport":0,"star":[0,0,0]}
-
-
-
+{"date":"180124","wd":1,"wake":"7:30","sleep":"00:10","sport":0,"star":[0,0,0]}
+{"date":"180125","wd":1,"wake":"8:00","sleep":"00:00","sport":0,"star":[0,0,0]}
+{"date":"180126","wd":1,"wake":"8:00","sleep":"22:00","sport":0,"star":[0,0,0]}
+{"date":"180127","wd":1,"wake":"9:30","sleep":"xx:xx","sport":0,"star":[0,x,x]}
 
 =====
 0109
