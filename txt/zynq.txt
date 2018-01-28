@@ -222,7 +222,7 @@ fail的 配置有的是   include/configs/zynq-common.h
 -----------------
 0115  
 
-编译方法：
+编译方法：!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 https://www.cnblogs.com/sepeng/p/7891562.html
 
 phone xxx 错误，修改方法
@@ -295,10 +295,16 @@ petalinux-create -t apps --template c --name fpgaload --enable
 生成路径 project-spec/meta-user/recipes-apps
 
 
+petalinux-create -t apps --template c --name fpgaload --enable
+petalinux-create -t apps --template c --name fpgaload-init --enable
+petalinux-create -t apps --template c --name flashwrite --enable
 
-编译完，说在 build/tmp/work/cortexa9hf-neon-xilinx-linux-gnueabi/fpgaload/1.0-r0$ 但并没有找到
-petalinux-build -c fpgaload -x do_install
-/peta_test/build/tmp/work/cortexa9hf-neon-xilinx-linux-gnueabi/fpgaload/1.0-r0 在这里
+
+
+编译完，说在 
+build/tmp/work/cortexa9hf-neon-xilinx-linux-gnueabi/fpgaload/1.0-r0$ 但并没有找到
+petalinux-build -c fpgaload -x do_install  (必须加这个才会出现)
+build/tmp/work/cortexa9hf-neon-xilinx-linux-gnueabi/fpgaload/1.0-r0 在这里
 ---
 加载 基地址 0x43c00000
 
@@ -362,15 +368,14 @@ devm_gpiod_get_optional
 
 看 document/gpio 的说明
 
-
-
-
-------------c操你妈
+---------------------------------------
 peta的编译系统真的是太烂太烂了
 
 把 goahead源码拷贝到
 
 build/tmp/work/cortexa9hf-neon-xilinx-linux-gnueabi/goahead/1.0-r0
 竟然就编译通过了！你麻痹呀
+编译过程还是很诡异
+
 
 当然，前提是线 -c 建立了 goahead 工程
