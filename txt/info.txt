@@ -1,8 +1,6 @@
-http://www.digilent.com.cn/studyinfo/54.html
-重要学习资料
+Done is better than perfect 
 
-done is better than perfect 
-
+200w:
 taobao        30
 microbit      10
 无线传感器    10
@@ -11,7 +9,11 @@ yanwy         5
 ip-speaker    5
 ip-micphone   10
 BLE Mesh      10
-i.MX 		  1 
+i.MX 		  20
+pcmcia        40
+stm8          5
+other         35
+
 
 https://github.com/merbanan
 
@@ -21,18 +23,14 @@ LifeSmart 云起智能
 
 用issi的8bit内存 + stm32 做一个 spi接口的 用于arduino，  这比4片microchip spi的那个方案要好
 
-Scratch配合美国政府提出的STEAM教育理念
-
-邵子扬 余波  搞microbit 培训
+STEAM教育理念
 
 公司你不希望小作坊，希望正规和大体量，但看到代码，内心总是摒弃复杂，希望能简单，
-实际上，除了简单问题复杂化的个别情况，简单的代码不可能解决复杂问题，所以要习惯复杂代码
+实际上，除了简单问题复杂化的个别情况，简单的代码不可能解决复杂问题，要习惯复杂代码
 
-生物电 电极片
+microbit 黄色灯既是电源， 串口通讯的时候也闪烁，简单，值得借鉴
 
-microbit 黄色灯既是电源， 串口通讯的时候也闪烁，简简单单一个灯，值得借鉴
-
-干了我想干的事情
+http://www.digilent.com.cn/studyinfo/54.html
 http://wiki.friendlyarm.com/wiki/index.php/BakeBit_-_Sound_Sensor/zh
 http://wiki.friendlyarm.com/wiki/index.php/NanoPi_NEO/zh
 
@@ -46,16 +44,6 @@ embest-tech.cn  英蓓特 E络盟  提供树莓派定制服务
 下载处有很多资源
 
 arduino 硬件文件 也是 eagle，  百度可以转为 ad
-
-TODO:
-
-1 温度传感器，室内室外 同步显示
-	1.1 室外
-
-有时感觉自己做的事情很“单薄”，不是大事业，
-那反过来，写程序做项目，又觉得应该简单，”单薄“，反感android，binder，c++ 等一切冗长的东西，
-实事上，做复杂的事情，就需要厚重的方案，原来不是一直感慨中国建筑看着没有美国大片里面 一坨的建筑威武吗？
-
 
 1 别把时间浪费在无谓的事上
 2 BBB and Pi，不要在其他平台上浪费时间
@@ -128,8 +116,6 @@ elelab.cn  2017.6-2020.6
 
 Full Stack:掌握多种技能，能独立完成产品
 
-瑞森新谱 王shao敦
-
 “我本不是生来适于研究学问的人，因为我用功的时间稍长就感到疲倦，我不能一连半小时集中精力于一个问题上。
 但我连续研究几个不同问题，即使是不间断，也能够轻松地一个一个地寻思下去，这一个问题可以消除另一个问题
 所带来的疲劳，用不着休息一下脑筋。于是，我在治学中充分利用我所发现的这一特点，对一些问题交替进行研究。
@@ -147,9 +133,8 @@ Full Stack:掌握多种技能，能独立完成产品
 硬件制造商
 Dynastream Innovations Inc.
 
-MCU排行：
-Renesas/NXP+Freescale/Microchip+Atmel
-ST/Infineon/TI/Cypress(MCU+analog+FPGA)/Silicon
+NXP+Freescale
+Microchip+Atmel
 
 mr-wu.cn 吴传斌博客
 papilio.cc //arduino fpga
@@ -157,7 +142,6 @@ papilio.cc //arduino fpga
 usbgeek.com
 
 runoob.com/aboutus  菜鸟教程
-Copyright 2013-2017 菜鸟教程  runoob.com All Rights Reserved. 备案号：闽ICP备15012807号-1 
 
 getchip.com  // C.H.I.P  Allwinner CPU
 
@@ -175,7 +159,6 @@ jmcglone.com/about //github page jekyll
 
 ibm.com/developerworks
 electroschematics.com  优质电路图
-infragram.org          红外摄像
 
 youtube:
 en.savefrom.net //download
@@ -224,7 +207,6 @@ https://docs.particle.io/datasheets/photon-datasheet
 wikihow.com/Measure-Inductance  测量电感
 wikihow.com/Test-a-Capacitor    测量电容
 
-alphawolf 中关村智能硬件孵化器
 
 account:
 adi: 1349@qq.com *2017J*Hun*
@@ -241,6 +223,3 @@ autodesk: qq:89****62*G
 
 q盾：形：159648
 
-
-《Make》
-12 p98 不用电池的遥控器

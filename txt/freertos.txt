@@ -1,1 +1,6 @@
 freertos  Tickless (无滴答模式)
+
+kernel:
+list.c/queue.c/tasks.c
+
+stm32 测试例子工程，整理好，必要时要用上

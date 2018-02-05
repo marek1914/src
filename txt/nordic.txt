@@ -67,7 +67,6 @@ S110/120/130 只是BLE
 S210 是 ANT
 S310 是 ANT + BLE
 
-
 那 2.4G 怎么用，不会是从0开始控制寄存器吧？
 
 下载：
@@ -84,9 +83,7 @@ nRF5-SDK-v12: works with S132 v3 and S130 v2( 这个前面有下载, 好乱)
 
 nRF51 IoT SDK : for applications using IPv6 over Bluetooth low energy
 
-
 nRF51 DK:  是官方 nrf51 开发板
-
 
 nRF5_SDK_14.0.0_3bcc1f7/examples/peripheral/blinky_freertos/pca10040/blank/arm5_no_packs  例子可工作，灯闪了
 
@@ -94,9 +91,6 @@ freeRTOS  :nRF5_SDK_14.0.0_3bcc1f7/external/freertos/source
 
 驱动：
 nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf
-
-
-
 
 -----------
 目标:

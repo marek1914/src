@@ -1,7 +1,9 @@
 STM32F300W
 
+CSS: 外部晶振停震后，会自动切换到内部RC
+
+
 BOOT0 接地:
-1 我做的switch板子 直接接地
 2 st nuclea f401 开发板 10k/100k 接地
 3 F407 开发板 10k接地
 
@@ -105,7 +107,7 @@ F40x:
 
 
 
-keil 默认小端 (芯片应该能设置大端)
+keil 默认小端 
 
 printf 重定向 fputc
 
