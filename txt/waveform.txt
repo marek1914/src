@@ -1,0 +1,17 @@
+waveforms 2015
+安装依赖Adept 2: Communicate with Digilent system boards
+
+https://reference.digilentinc.com/reference/instrumentation/analog-discovery-2/reference-manual
+
+dwfcmd
+
+dwf ??
+
+/usr/lib/libdwf.so
+
+sample:
+/usr/share/digilent/waveforms/samples
+
+编译C++ 源码
+
+g++ xx.cpp -ldwf
