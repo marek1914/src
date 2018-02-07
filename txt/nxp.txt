@@ -5,9 +5,12 @@ i.MX6: Cortex-A9, Cortex-A9+Cortex-M4, Cortex-A7
 i.MX7: Cortex-A7 + Cortex-M4(800MHz + 200MHz)  没有卖的
 
 
-i.MX 6ULL  成本最低系列
-i.MX 6UL 很接地气
+i.MX 6ULL  成本最低
+i.MX 6UL
+i.MX SX
+i.MX SLL
+i.MX SL
+i.MX S
 
-工业处理器，比较贵
 
 Kinetis:
