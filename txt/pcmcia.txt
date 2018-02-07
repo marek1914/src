@@ -1,4 +1,4 @@
-CF卡转接
+CF卡转接 CompactFlash
 A0-A11  D0-D15， 锁存器?
 
 64pin:data 和 addr 只采集不转发，只转发几个控制信号, 但是网口写功能时，无法屏蔽左侧信号
@@ -11,4 +11,14 @@ pcmcia 转 网口
 analog discovery python:
 脚本只支持 js？
 
+
+
+按着右下角2个按键上电，进入开机模式，选第7项，  SRAM BACKUP 是写sd card， SRAM RESTORE 是读
+最终目的是 无法 BACKUP
+
+
+注意，pcmcia的封装， 1 35 2 36 3 37 4 38
+
+pcmcia:
+http://ww38.pcmcia.org/pccard.htm
 
