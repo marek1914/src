@@ -32,6 +32,12 @@ http://www.szlcsc.com/
 K: 10%
 M: 20%
 
+POE 参考电路 12uF 100V 实际上没有12uF，只有10uF 22uF
+
+10uF 100V   6*11mm
+22uF 100V   8*12mm
+
+
 X7R : 温度稳定型陶瓷电容
 NPO 属于 I类陶瓷， X7R属于 II类陶瓷
 
