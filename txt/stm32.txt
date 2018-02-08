@@ -1,5 +1,7 @@
 STM32F200W
 
+MSP : MCU Support Package
+
 CSS: 外部晶振停震后，会自动切换到内部RC
 
 

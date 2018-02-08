@@ -1,15 +1,13 @@
 Vivado
-
 http://xilinx.eetrend.com  
 
 Processing System(PS) 即 ARM Cortex-A9 MPCore,  Programmable Logic(PL)即 FPGA
 
 FSBL: First Stage Boot Loader
 
-FPGA上软核，Altera: Nios II, Xilinx: Picoblaze/Micoblaze
+FPGA软核，Altera: Nios II, Xilinx: Picoblaze/Micoblaze
 
-PS 与 PL 通过 AXI_HP、AXI_GP、AXI_ACP 3种接口通讯
-
+PS 与 PL 通过 AXI_HP、AXI_GP、AXI_ACP 接口通讯
 
 zynq 020 400pin  做一个 arduino大小的， 6层板  并没有将所有引脚引出
 
@@ -222,7 +220,7 @@ fail的 配置有的是   include/configs/zynq-common.h
 -----------------
 0115  
 
-编译方法：!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+编译方法：!!!!!!!!!!!!!
 https://www.cnblogs.com/sepeng/p/7891562.html
 
 phone xxx 错误，修改方法
@@ -379,3 +377,17 @@ build/tmp/work/cortexa9hf-neon-xilinx-linux-gnueabi/goahead/1.0-r0
 
 
 当然，前提是线 -c 建立了 goahead 工程
+
+
+tools/common/petalinux/bin:
+petalinux-boot  
+petalinux-build  
+petalinux-config  
+petalinux-create  
+petalinux-package  
+petalinux-util
+
+不是脚本而是 bin elf
+
+
+bitbake  自动化编译工具
