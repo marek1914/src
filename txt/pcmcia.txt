@@ -25,3 +25,8 @@ http://ww38.pcmcia.org/pccard.htm
 
 
 原装正品FANUC发那科系统CF卡槽 A66L-2050-0025A#B CNC 卡座插口  这个都有卖的
+
+
+CF:
+cd1 cd2 引脚短
+VCC GND 引脚长
