@@ -2,6 +2,8 @@ Beaglebone Black/Green
 
 有全套的硬件资料包括 PCB, 以guo为依托
 
+altium 版没有 最新版本
+
 AM3358BZCZ100 1GHz Cortex-A8
 
 beagleboard.org
