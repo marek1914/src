@@ -1457,7 +1457,6 @@ ioremap_nocache
 
 
 
-mii_bus类型 bus->read 在哪里定义？
 
 platform_driver 结构体的 probe 什么时候调用
 
@@ -1566,39 +1565,13 @@ ScanDisk  C10 microSDHC  I(这个I标示UHS I？)
 MMC:Multimedia Card
 SD基于MMC发展而来，保留MMC的7针外，在两边加了2针作为数据线，长宽和MMC一样，兼容MMC。
 
-
-
 gu:
 rockchip 芯片otg usb device 模拟网卡，NCM协议， 开始在freescal平台调试ok，移植到rockchip，枚举基本ok，mac地址获取不到，数据丢失几个字节
 原因：网络数据要求对齐，而otg驱动数据没有对齐（不明白）
 
-
 ----
 buildroot.org   黄色安全帽, 源于uclibc项目
 Buildroot is a simple, efficient and easy-to-use tool to generate embedded Linux systems through cross-compilation
-
-
-
-----PHY----
-phy驱动: drivers/net/phy
-
-mdio_scan()
-mdiobus_register()
-
-/sys/bus/mdio_bus/drivers/ 目录下有很多phy 如Marvell 88E1116R
-
-
-MDIO: Management Data Input/Output
-
-drivers/net/gianfar_mii.c : Gianfar Ethernet Driver -- MIIM bus implementation Provides Bus interface for MIIM regs
-
-#define DEVICE_NAME "%s: Gianfar Ethernet Controller Version 1.2, "
-
-MII: Media Independent Interface
-与MII的关系
-
-
-
 
 ----- devmem ---
 busybox devmem 读写 /dev/mem(1-4byte)

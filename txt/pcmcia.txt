@@ -30,3 +30,9 @@ http://ww38.pcmcia.org/pccard.htm
 CF:
 cd1 cd2 引脚短
 VCC GND 引脚长
+
+pcmcia to cf 的对应关系
+http://www.synchrotech.com/support/faq-compact_flash_memory_cards.html
+
+http://pinouts.ru/Slots/PcCard_pinout.shtml
+

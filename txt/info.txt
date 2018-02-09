@@ -1,6 +1,6 @@
 Done is better than perfect 
 
-200w:
+200:
 taobao        30
 microbit      10
 无线传感器    10
@@ -210,4 +210,4 @@ invensense.com: stm32f300w:89..2*G
 autodesk: qq:89****62*G
 nxp: 1349**@qq  0362200w
 q盾：形：159648
-
+twitter: *50w@gmail.com: gaojie200w:89**62

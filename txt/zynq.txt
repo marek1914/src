@@ -319,11 +319,6 @@ build/tmp/work/plnx_arm-xilinx-linux-gnueabi/linux-xlnx/4.9-xilinx-v2017.3+gitAU
 
 有没有命令 能读 phy 的寄存器
 
-u-boot 可用
-mii info 
-
-
-mii-tool 被废弃，用 ethtool 代替 
 
 component 里面带了 ethtool-4.6.tar.gz
 
@@ -352,8 +347,6 @@ Offset          Values
 
 奇怪，phy id区域的值不对
 
-phy 的32个寄存器  是802.11 规定的，标准定义
-include/uapi/linux/mii.h : 定义 0x00 - 0x1c   寄存器 0x02 0x03 是
 
 kernel  libphy
 
@@ -391,3 +384,18 @@ petalinux-util
 
 
 bitbake  自动化编译工具
+
+yocto 帮助定制linux系统 
+
+
+
+
+
+
+
+
+
+
+
+----------------
+AXI EMACLITE Linux driver     关键词  emaclite  应该是 ethernet MAC 模块的名称
