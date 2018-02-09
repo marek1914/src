@@ -357,11 +357,6 @@ cube:
 Driver/CMSIS/Documentation  不错的文档
 
 
-STM32F4-Disc MEMS Microphone 录制PDM格式音频，用PDM Filter 转换为PCM
-PDM的录音频率有PLLI2S提供，我尝试着将PLLI2S的时钟调整为48KHz需要的频率86000000，
-PDM_Filter 的低通设置为20000Hz，高通设置为20Hz，采样率设置为48000Hz
-
-
 
 ---
 clk 上升沿 L声道，下降沿 R声道
@@ -509,3 +504,28 @@ F103RC 没有
 
 --USB---
 F401RC  必须用外部晶振，内部 cubemx 配置不过去usb设备
+
+
+
+
+
+-- HAL ---
+HAL_RCCEx_GetPeriphCLKConfig   包括 I2S SDIO SAI 等多个周边模块的 时钟配置
+
+startup_stm32f401xc.s 调用 system_stm32f4xx.c 里面的 SystemInit 函数
+
+USE_FULL_ASSERT  在配置文件中，定以后，HAL里面有很多 asset 打印
+
+
+I2S Tx 还是 Rx 在 I2S的配置项里选择
+
+
+HSE 第一级除的参数叫 PLL_M
+
+HSE/PLL_M = 1MHz  以这个为基础再产生 I2S 的clock
+
+HAL 出现 VCO   压控振荡器 关键词
+
+I2S 时钟准确度问题:
+2倍采样频率再 X 16bit 数据， pll 只能整除
+ 

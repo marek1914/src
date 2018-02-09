@@ -289,3 +289,8 @@ poe板子接入单片机，电压还是不稳，测电流，最大24mA
 
 
 参考电路 L1 33uH 5.2A MSS1278-333ML  
+
+
+====================================
+STM32F4-Disc MEMS Microphone 录制PDM格式音频，用PDM Filter 转换为PCM
+PDM_Filter 的低通设置为20000Hz，高通设置为20Hz，采样率设置为48000Hz
