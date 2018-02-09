@@ -1,0 +1,41 @@
+MDIO: Management Data Input/Output 也称 SMI: Serial Management Interface/MIIM: Media Independent Interface Management
+MII:  Media Independent Interface
+
+MII 接口连接 MAC和PHY
+
+MAC设备控制 MDIO 叫做 SME: Station Management Entity
+
+MII 有2个信号接口：
+收发网络数据帧的数据接口，和PHY管理接口 MDIO，用于读写控制和状态寄存器，监控链接状态
+
+MDIO 2个信号线：MDC:clock  MDIO:data
+
+一个 MAC master 最多可控制 32个 PHY slaves (5个地址线)
+MDC 可达到 2.5M  MDIO 需要1.5k-10k 上拉电阻
+
+时序上，与i2c 完全不同，
+
+
+驱动: drivers/net/phy
+
+mdio_scan()
+mdiobus_register()
+
+/sys/bus/mdio_bus/drivers/ 目录下有很多phy 如Marvell 88E1116R
+
+
+drivers/net/gianfar_mii.c : Gianfar Ethernet Driver -- MIIM bus implementation Provides Bus interface for MIIM regs
+
+#define DEVICE_NAME "%s: Gianfar Ethernet Controller Version 1.2, "
+
+
+u-boot 可用
+mii info 
+
+mii-tool 被废弃，用 ethtool 代替 
+
+phy 的32个寄存器  是802.11 规定的，标准定义
+include/uapi/linux/mii.h : 定义 0x00 - 0x1c   寄存器 0x02 0x03 是
+
+
+mii_bus类型 bus->read 在哪里定义？
