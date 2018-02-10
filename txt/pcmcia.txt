@@ -52,3 +52,8 @@ High: Common Memory, Low: Register(Attribute 属性) Memory.
 
 
 CF卡 addr 11 + data 16  VCC/GND 4   控制信号19条 
+
+
+
+换一个思路：
+检测到有文件，就删除，单片机去删除，前提是实现FAT文件系统
