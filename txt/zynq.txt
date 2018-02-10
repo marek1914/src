@@ -311,6 +311,8 @@ build/tmp/work/cortexa9hf-neon-xilinx-linux-gnueabi/fpgaload/1.0-r0 在这里
 
 kernel 源码目录
 build/tmp/work-shared/plnx_arm/kernel-source/
+生成文件在:
+build/tmp/work/plnx_arm-xilinx-linux-gnueabi/linux-xlnx/4.9-xilinx-v2017.3+gitAUTOINC+f1b1e077d6-r0/linux-plnx_arm-standard-build/drivers/net/phy/at803x.o
 
 编译路径
 build/tmp/work/plnx_arm-xilinx-linux-gnueabi/linux-xlnx/4.9-xilinx-v2017.3+gitAUTOINC+f1b1e077d6-r0/linux-plnx_arm-standard-build/kernel/fork.o
@@ -399,3 +401,17 @@ yocto 帮助定制linux系统
 
 ----------------
 AXI EMACLITE Linux driver     关键词  emaclite  应该是 ethernet MAC 模块的名称
+
+
+
+
+
+
+---------修改kernel的方法， 非常麻烦：
+1 在修改的目录 git commit
+2 git format-patch -1 生成 ***.patch
+3 创建目录 project-spec/meta-user/recipes-kernel/linux/linux-xlnx
+3 拷贝patch文件到这个目录
+4 在这个目录创建 linux-xlnx_%.bbappend 文件：
+  SRC_URI_append = " file://0001-modify-phy-addr.patch"
+  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:" 

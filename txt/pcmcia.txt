@@ -36,3 +36,19 @@ http://www.synchrotech.com/support/faq-compact_flash_memory_cards.html
 
 http://pinouts.ru/Slots/PcCard_pinout.shtml
 
+
+a0-a10 都有信号，说明不是 true ide 模式， 
+2k地址空间
+
+没操作CF卡时， a1，a2 有周期信号
+
+Memory Mode 和 I/O Mode 区别：
+
+-REG:
+High: Common Memory, Low: Register(Attribute 属性) Memory.
+测得大概1.5MHz
+
+逻辑分析仪需要 Rate: 设置为50MHz 或 100MHz  如果没有这个选项按最右边一个绿色箭头
+
+
+CF卡 addr 11 + data 16  VCC/GND 4   控制信号19条 
