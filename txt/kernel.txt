@@ -1,5 +1,11 @@
 kernel.org
 
+常识:
+开机启动脚本  在 /etc/init.d
+u-boot 引导kernel的参数  setenv("bootargs", "androidboot.mode=charger")  区分各种模式
+
+
+
 device tree:
 
 built-in.o

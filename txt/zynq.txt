@@ -415,3 +415,16 @@ AXI EMACLITE Linux driver     关键词  emaclite  应该是 ethernet MAC 模块
 4 在这个目录创建 linux-xlnx_%.bbappend 文件：
   SRC_URI_append = " file://0001-modify-phy-addr.patch"
   FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:" 
+
+
+
+----
+ethernet 部分：
+drivers/net/ethernet/xilinx/xilinx_emaclite.o
+drivers/net/ethernet/xilinx/xilinx_axienet_mdio.o
+drivers/net/ethernet/xilinx/xilinx_emac.o
+drivers/net/ethernet/xilinx/xilinx_axienet_main.o
+drivers/net/ethernet/xilinx/xilinx_emacps.o
+
+
+

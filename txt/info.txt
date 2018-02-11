@@ -10,7 +10,8 @@ ip-speaker    5
 ip-micphone   10
 BLE Mesh      10
 i.MX 		  20
-pcmcia        40
+cf            3
+pcmcia+rg45   10
 stm8          5
 other         35
 

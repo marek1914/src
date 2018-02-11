@@ -4,6 +4,11 @@ A0-A11  D0-D15， 锁存器?
 64pin:data 和 addr 只采集不转发，只转发几个控制信号, 但是网口写功能时，无法屏蔽左侧信号
 所以还是要 100pin的
 
+------------
+mcu选型
+F103VC  72MHz
+F411VC  100MHz
+F405VG  168MHz
 
 pcmcia 转 网口
 
@@ -48,12 +53,123 @@ Memory Mode 和 I/O Mode 区别：
 High: Common Memory, Low: Register(Attribute 属性) Memory.
 测得大概1.5MHz
 
-逻辑分析仪需要 Rate: 设置为50MHz 或 100MHz  如果没有这个选项按最右边一个绿色箭头
-
+逻辑分析仪需要 Rate: 设置为 100MHz
 
 CF卡 addr 11 + data 16  VCC/GND 4   控制信号19条 
 
-
-
 换一个思路：
 检测到有文件，就删除，单片机去删除，前提是实现FAT文件系统
+
+
+
+----
+测试 analog discovery  可以用2台，一个发，一个检测
+
+
+
+----DigitalIn----
+
+Control:
+FDwfDigitalInReset
+FDwfDigitalInConfigure
+FDwfDigitalInStatus
+FDwfDigitalInStatusSamplesLeft
+FDwfDigitalInStatusSamplesValid
+FDwfDigitalInStatusIndexWrite
+FDwfDigitalInStatusAutoTriggered
+FDwfDigitalInStatusData
+FDwfDigitalInStatusRecord
+
+Configuration:
+FDwfDigitalInInternalClockInfo
+FDwfDigitalInClockSourceInfo
+FDwfDigitalInClockSourceSet
+FDwfDigitalInClockSourceGet
+FDwfDigitalInDividerInfo
+FDwfDigitalInDividerSet
+FDwfDigitalInDividerGet
+FDwfDigitalInBitsInfo
+FDwfDigitalInSampleFormatSet
+FDwfDigitalInSampleFormatGet
+FDwfDigitalInBufferSizeInfo
+FDwfDigitalInBufferSizeSet
+FDwfDigitalInBufferSizeGet
+FDwfDigitalInSampleModeInfo
+FDwfDigitalInSampleModeSet
+FDwfDigitalInSampleModeGet
+FDwfDigitalInAcquisitionModeInfo
+FDwfDigitalInAcquisitionModeSet
+FDwfDigitalInAcquisitionModeGet
+
+
+Trigger:
+FDwfDigitalInTriggerSourceInfo
+FDwfDigitalInTriggerSourceSet
+FDwfDigitalInTriggerSourceGet
+FDwfDigitalInTriggerPositionInfo
+FDwfDigitalInTriggerPositionSet
+FDwfDigitalInTriggerPositionGet
+FDwfDigitalInTriggerAutoTimeoutInfo
+FDwfDigitalInTriggerAutoTimeoutSet
+FDwfDigitalInTriggerAutoTimeoutGet
+
+
+Trigger Detector:
+FDwfDigitalInTriggerInfo
+FDwfDigitalInTriggerSet
+FDwfDigitalInTriggerGet
+
+
+感觉  xx_Info 和 xx_Get 功能一样呢？
+
+有单独的 In 和 Out，为啥还有 DigitalIO？
+
+
+The states are defined in dwf.h DwfState type.
+- Ready: Initial state. After FDwfDigitalInConfigure or any FDwfDigitalIn*Set function call goes to this state. With
+FDwfDigitalInConfigure, reconfigure goes to Configure state.
+- Configure: The digital in auto trigger is reset.
+- Prefill: Prefills the buffer with samples need before trigger.
+- Armed: It waits for trigger.
+- Running: For single acquisition mode remains in this state to acquire samples after trigger set by
+FDwfDigitalInTriggerPositionSet. Scan screen and shift modes remain until configure or any set function of this
+instrument.
+- Done: Final state.
+
+
+
+pin 1 接高电平，循环开始的 检测状态的到  DwfStateArmed  = 1
+
+只循环了51次 开始状态都是3(Triggered and Running) 最后一次是2 (Done)
+每次读出的数据 在2000个上下，并非一次读出一组数据
+
+
+Armed: It waits for trigger
+
+需要靠
+FDwfDigitalInTriggerSet(hdwf, 0, 0x0040, 0, 0);  设置触发条件， 低电平 高电平 上升沿 下降沿   每个参数16bit
+
+读取 100000 个数据， 
+FDwfDigitalInDividerSet(hdwf, 1000); // 100MHz/100 = 100KHz 程序执行 1s
+FDwfDigitalInDividerSet(hdwf, 10000); // 100MHz/1000 = 10KHz 程序执行 10s
+
+FDwfDigitalInTriggerSourceSet 参数 trigsrcDetectorDigitalIn 设置digital 输入为触发源
+
+
+ 
+// acquisition modes:
+acqmodeSingle     = 0;
+acqmodeScanShift  = 1;
+acqmodeScanScreen = 2;
+acqmodeRecord     = 3;
+acqmodeOvers      = 4;
+acqmodeSingle1    = 5;
+
+
+
+FDwfDigitalInInternalClockInfo(hdwf, &hzSys);
+这个函数 返回 100000000  即 100MHz
+
+FDwfDigitalInBufferSizeInfo(hdwf, &cSamples);
+返回 4096
+
