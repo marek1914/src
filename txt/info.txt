@@ -1,6 +1,8 @@
 Done is better than perfect 
 
 200:
+zynq i.MX stm32 nordic st
+
 taobao        30
 microbit      10
 无线传感器    10
@@ -20,12 +22,6 @@ https://github.com/merbanan
 
 LifeSmart 云起智能
 
-主控板以microbit为原型设计，图形化编程&代码软件。（周期长，难度较大）
-
-用issi的8bit内存 + stm32 做一个 spi接口的 用于arduino，  这比4片microchip spi的那个方案要好
-
-STEAM教育理念
-
 microbit 黄色灯既是电源，串口通讯的时候也闪烁
 
 http://www.digilent.com.cn/studyinfo/54.html
@@ -41,9 +37,9 @@ https://github.com/spark/photon
 embest-tech.cn  英蓓特 E络盟  提供树莓派定制服务
 下载处有很多资源
 
-arduino 硬件文件 也是 eagle，  百度可以转为 ad
+arduino 硬件文件是 eagle，百度可以转为 ad
 
-mouser.com  全球芯片分销商
+mouser.com 芯片分销商
 
 micrphone array：
 https://www.nt.tuwien.ac.at/staff-pages/gerhard-doblinger-noise-reduction-microphone-array/
@@ -54,8 +50,6 @@ zh.cppreference.com/w/cpp/container/vector
 网站风格不错
 http://embeddedlightning.com/ugui/
 
-leetcode
-
 KitSprout 很多奇思妙想
 http://kitsprout.logdown.com  是我想干的事情
 github.com/KitSprout
@@ -63,15 +57,6 @@ github.com/KitSprout
 i2ctools.com    usb 2 i2c 工具
 
 suxiang198的博客
-
-usb线:
-A-A 公对公 1
-A-A 公对母 1
-A-B 2
-A-micro 4
-A-mini 4
-micro OTG 1
-mini OTG 1
 
 取名：
  elelab  悠然科技 优雅科技 都有了
@@ -81,9 +66,7 @@ mini OTG 1
 2 F32 VI控制的小风扇小灯
 3 做usb转串口，模拟开关，一个minicom监测多串口,模拟iic，spi
   i2c 支持 i2c-tools
-
-4 做一个钢网，常见封装都做进入，比如一排电容电阻，都要做成固定间距
-6 at88sc0104烧录器, usb dangol 给纯软件公司(选一个u盘壳)
+6 at88sc0104烧录器, usb dangol 给纯软件公司
 
 轩微科技 专做stm32编程器
 长江智动 cjmcu

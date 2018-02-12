@@ -1,3 +1,14 @@
+DDR走线已经非常成熟的技术，真要想做，不会事难点
+
+AVNET 公司
+http://zedboard.org/support/documentation/1519
+原理图下载，是背面连接插槽的 原图图和PCB，一般公司不会提供PCB的
+MicroZED
+PICOZED
+UltraZED
+ZEDBoard
+MiniZed   
+
 Vivado
 http://xilinx.eetrend.com  
 

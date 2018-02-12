@@ -5,6 +5,9 @@ kernel.org
 u-boot 引导kernel的参数  setenv("bootargs", "androidboot.mode=charger")  区分各种模式
 
 
+qcom 烦人的打印：
+echo 0 > /proc/sys/kernel/printk 关闭
+
 
 device tree:
 
