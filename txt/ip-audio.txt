@@ -294,3 +294,25 @@ poe板子接入单片机，电压还是不稳，测电流，最大24mA
 ====================================
 STM32F4-Disc MEMS Microphone 录制PDM格式音频，用PDM Filter 转换为PCM
 PDM_Filter 的低通设置为20000Hz，高通设置为20Hz，采样率设置为48000Hz
+
+
+
+
+----
+25MHz 时钟输出 出来了，就是不知道精度怎样，按理说，f401 用晶体输如，再输出，精度应该一样的
+
+选择 MCO 主时钟输出 增加
+HAL_RCC_MCOConfig(RCC_MCO1, RCC_MCO1SOURCE_HSI, RCC_MCODIV_1);
+
+/*Configure GPIO pin : PA8 */
+GPIO_InitStruct.Pin = GPIO_PIN_8;
+GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+GPIO_InitStruct.Pull = GPIO_NOPULL;
+GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+GPIO_InitStruct.Alternate = GPIO_AF0_MCO;
+HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+需要配置PA8 才能输出时钟？？
+
+
+
