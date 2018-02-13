@@ -1,5 +1,12 @@
 http://www.altium.com/documentation/18.0/display/ADES/PCB_Cmd-BreakTrack((BreakTrack))_AD
 
+ad16 破解的不错
+
+导入 allegro:
+可以导入 Allegro PCB designs in both binary (*.brd) and ASCII (*.alg) 
+DXP-> Extensions and Updates ->installed -> configs...  Importers\Exporters 选择allegro
+
+
 做库时选中所有引脚要勾选 Select Matching
 
 更新pcb封装的时候，必须把pcb已有的原件封装删除？
