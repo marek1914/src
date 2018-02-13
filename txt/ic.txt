@@ -20,6 +20,8 @@
 8-8:  3.24K 1% 0603
 8-9:  4.7K  1% 0603
 8-10: 10R   1% 0603
+8-11: 18R      0603
+8-12: 20k      0603
 
 黑盒子
 
@@ -94,7 +96,7 @@ Microchip MCP73xxx:
 MCP73871:  thermal
 MCP73871-3CCI/ML  4.35V 没有卖的
 MCP73871-2CCI/ML  4.20V RMB:4+
-CE3150AM: yj 
+CE3150AM: yj  Chip power 南京芯力微电子 
 CN3068   4.35V
 HB6293   4.35
 CN3062E  4.35
