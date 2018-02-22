@@ -344,3 +344,10 @@ jlink st-link 现象一样
 
 
 
+
+流程：
+waveRecordProcess
+HAL_DMA_IRQHandler (系统自己实现的)
+I2S_DMARxHalfCplt
+HAL_I2S_RxHalfCplt
+
