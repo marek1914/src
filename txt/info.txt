@@ -3,7 +3,6 @@ Done is better than perfect
 200:
 zynq i.MX stm32 nordic st
 
-taobao        30
 microbit      10
 无线传感器    10
 zynq          20
@@ -12,11 +11,6 @@ ip-speaker    5
 ip-micphone   10
 BLE Mesh      10
 i.MX 		  20
-cf            3
-pcmcia+rg45   10
-stm8          5
-other         35
-
 
 https://github.com/merbanan
 
@@ -89,21 +83,6 @@ PlantUML https://github.com/scrooloose/vim-slumlord
 
 lllab.tech 2017.6-2019.6
 elelab.cn  2017.6-2020.6
-
-
-“我本不是生来适于研究学问的人，因为我用功的时间稍长就感到疲倦，我不能一连半小时集中精力于一个问题上。
-但我连续研究几个不同问题，即使是不间断，也能够轻松地一个一个地寻思下去，这一个问题可以消除另一个问题
-所带来的疲劳，用不着休息一下脑筋。于是，我在治学中充分利用我所发现的这一特点，对一些问题交替进行研究。
-这样，即使我整天用功也不觉得疲倦了” 卢梭
-
-"请告诉我，现在该走哪条路？"
-“那得看你想去什么地方” 猫说
-“去哪都可以” 爱丽丝回答
-“那你可以随便选条路”
-“只要能去到一个地方就行" 爱丽丝解释说
-“奥，只要你走得足够远，肯定能到某个地方”
-
-高度自律：为了高度自由
 
 硬件制造商
 Dynastream Innovations Inc.

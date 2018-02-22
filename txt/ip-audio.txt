@@ -316,3 +316,31 @@ HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 
 
+I2S 有2个模式: 阻塞模式 和 非阻塞模式(使用 中断 和 dma)
+阻塞模式 HAL_I2S_Transmit
+非阻塞模式中断 HAL_I2S_Transmit_IT
+非阻塞模式dma  HAL_I2S_Transmit_DMA 例子程序用的是 dma HAL_I2S_Receive_DMA
+
+
+DMA_HandleTypeDef
+
+
+#define I2S2_DMAx_CHANNEL   DMA_CHANNEL_0
+
+一共16个dma 通道， i2s 指定为 通道0
+
+中断 和 dma中断 中断和dma 不用混淆
+
+
+-----------------
+我操你妈个逼，墨菲定律 任何事情都没有表面看起来那么简单
+
+f401这个工程死活不能调试，main.c 无法断点，audio.c 却能。。。
+除了audio.c 其他问价都没有
+jlink st-link 现象一样
+
+操你妈的，靠打印吧，谁能想到 jlink 突然不能用了，操他妈的
+也怪我，之前磨磨叽叽的，一定不能磨蹭，拖延万劫不复
+
+
+

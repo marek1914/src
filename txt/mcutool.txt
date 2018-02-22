@@ -104,7 +104,7 @@ dll 4.80 :能下载，nordic无法识别可手动选择M4，debug正常，如不
 dll 5.12 :无法下载
 dll 6.16 :能下载但IED会异常退出
 
-写不进flash，j-link stm32 unlock 工具解锁, 怎么解锁来着？   坏的那个如何恢复？
+写不进flash，j-link stm32 unlock 工具解锁, 怎么解锁来着？
 
 http://gnuarmeclipse.github.io/debug/jlink/install/#gnulinux
 
@@ -121,7 +121,6 @@ http://openocd.org/doc/html/GDB-and-OpenOCD.html
 
 SWD, Serial Wire Debug
 SWO, Serial Wire Output
-
 
 J-Link ARM-OB STM32 compiled Aug 22 2012
 

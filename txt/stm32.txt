@@ -1,5 +1,13 @@
 STM32F200W
 
+关于新建工程与调试
+1 以后新建工程的时候 不要直接用cube 生成的，有弊端，用自己整理好的，拷贝cube生成的代码
+2 使用虚拟机时，工程要拷到本地，否则无法调适(cao 七天假期也结束了 也想起来了)
+
+AMBA: Advanced Microcontroller Bus Architecture
+APB: Advanced Peripheral Bus
+AHB: Advanced High performance Bus
+
 F1:24/36/48/72MHz
 F4:84/100/168/180MHz
 
@@ -86,8 +94,6 @@ F103RD 384+64
 F103RE 512+64
 F103RF 768+96
 
-
-
 Memory mapping
 8 Block x 512M : 
 
@@ -136,7 +142,7 @@ F429用的LCD:
 M0/M0+/M3/M4/M7
 F030F4P6   M0 16K+4K Value-line  2块
 
--------------------------------------
+----------
 NUCLEO-F401RE:
 OFF:
 SB 4/6/8/10/11/18/20/24/29/30/32/36/39/44/46/47/48/49/52/55/59/61/62/63
@@ -151,8 +157,6 @@ PA0 可以是TIM2_CH1/TIM5_CH1
 PA5 只能是TIM2_CH1，即选中TIM5_CH1时，TIM2_CH1 只能在PA5
 
 外部晶体没有焊接，使用的内部晶振
-
--------------------------------------
 
 
 F407G-Disc1:
@@ -425,8 +429,6 @@ touchkey, linear and rotary touch sensors  怎么用
 STM32F411CEU6  15+
 
 ----
-APB: Advanced Peripheral Bus
-AHB: Advanced High performance Bus
 
 CEC functions  又没有HDMI
 
@@ -540,6 +542,8 @@ N: {256,  429,   213,   429,   426,   271,   258,   344  };
 R: {5,    4,     4,     4,     4,     6,     3,     1    };
 
 
+f401 板子 i2s 配置为16k采样，clk测得 1MHz  32k 测得 2MHz
+
 
   */
 #define I2S_AUDIOFREQ_192K               (192000U)
@@ -564,3 +568,127 @@ I2S2_CK PB10
 
 hal_xx_i2s.c
 hal_xx_i2s_ex.c 有啥区别
+
+
+
+
+----关于中断处理:
+startup_stm32f407xx.s 里
+
+__Vectors：
+从; External Interrupts 这个注释后面开始数:
+DMA1_Stream0_IRQHandler 是第11个 跟下面的对应
+
+
+//什么意思?
+DMA1_Stream0_IRQn 11
+DMA1_Stream1_IRQn 12
+DMA1_Stream2_IRQn 13
+DMA1_Stream3_IRQn 14
+DMA1_Stream4_IRQn 15
+DMA1_Stream5_IRQn 16
+DMA1_Stream6_IRQn 17
+DMA1_Stream7_IRQn 47 
+
+DMA2_Stream0_IRQn
+DMA2_Stream1_IRQn
+DMA2_Stream2_IRQn
+DMA2_Stream3_IRQn
+DMA2_Stream4_IRQn
+DMA2_Stream5_IRQn
+DMA2_Stream6_IRQn
+DMA2_Stream7_IRQn  
+
+
+__IO  这个是啥含义
+
+HAL_Delay():
+__weak void HAL_Delay(__IO uint32_t Delay)
+{
+  uint32_t tickstart = HAL_GetTick();
+  uint32_t wait = Delay;
+  
+  /* Add a period to guarantee minimum wait */
+  if (wait < HAL_MAX_DELAY)
+  {
+     wait++;
+  }
+  
+  while((HAL_GetTick() - tickstart) < wait)
+  {
+  }
+} 
+
+__weak uint32_t HAL_GetTick(void)
+{ //单位 毫秒 ms
+  return uwTick;
+}
+
+//incream tick  仅仅是 变量+1
+__weak void HAL_IncTick(void)
+{
+  uwTick++;
+}
+
+
+SysTick timer:
+This timer is dedicated to real-time operating systems, but could also be used as a standard downcounter. It features:
+A 24-bit downcounter
+Autoreload capability
+Maskable system interrupt generation when the counter reaches 0
+Programmable clock source.
+
+
+
+那么 24bit 的定时器，得定出 1us 时间 16MHz主频，16000个clk 是1mS
+
+systick 的机制还没有搞明白
+
+
+stm32f4xx_hal_cortex.c:
+这个函数默认啥也没干,默认的systick 中断处理里面调用了
+/* This function handles SYSTICK interrupt request. */
+void HAL_SYSTICK_IRQHandler(void)
+{
+  HAL_SYSTICK_Callback();
+}
+
+__weak void HAL_SYSTICK_Callback(void)
+{
+  /* NOTE : This function Should not be modified, when the callback is needed,
+     the HAL_SYSTICK_Callback could be implemented in the user file
+   */
+}
+
+Systick Time Base 是 1ms
+
+设置方法
+/* Configure the Systick interrupt time */
+/* /1000 就是 1ms */
+HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+
+/* SYSTICK_CLKSOURCE_HCLK_DIV8
+   SYSTICK_CLKSOURCE_HCLK
+要么是 HCLK 要么是 HCLK/8
+*/
+HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+ 
+/* SysTick_IRQn interrupt configuration */
+HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+
+/* 或者另一种设置 */
+HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/8000);
+HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK_DIV8);
+有什么不同呢
+HCLK 84M/8 = 10.5MHz  10500 1ms
+
+AHB clock: HCLK
+
+stm32f4xx_hal_cortex.c:
+Setup SysTick Timer for time base.
+
+
+HAL_SYSTICK_Config 调用 SysTick_Config(这是CMSIS函数)
+
+
+
