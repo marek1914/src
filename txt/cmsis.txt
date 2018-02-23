@@ -1,0 +1,10 @@
+
+CMSIS-RTOS
+
+CMSIS-RTOS in ARM::CMSIS Pack  cmsis_os.h
+
+
+那cmsis_os 的标准与 freertos的标准是怎么对接的？
+
+应该是 上层应用以 cmsis_os为接口标准，而这个接口的具体实现是靠 freertos
+

@@ -63,10 +63,6 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 
-[GeneratedDocument1]
-DocumentPath=Project Outputs for ip-mic\Design Rule Check - ip-mic.html
-DItemRevisionGUID=
-
 [PCBConfiguration1]
 ReleaseItemId=
 CurrentRevision=

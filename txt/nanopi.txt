@@ -1,3 +1,9 @@
+账户:
+root:fa
+pi:pi
+
+我第一次用的时候使用 串口登陆的
+
 ifconfig 
 只看到  inet6 addr 没有 ip v4 地址，应该跟公司网络有关
 
@@ -67,3 +73,10 @@ armhf 7:2.8.11-0ubuntu0.16.04.1   搞明白这串数的含义
 开始是 ffmpeg2.3  update后 跟 ubuntu server一样 到了2.8.11
 
 ffplay -nodisp // OK 
+
+
+
+----
+nanopi 默认不支持 usb转串口 没有 usbserial 驱动,奇怪，头一次见到这种情况
+
+

@@ -2,7 +2,7 @@ github.com/embedthis
 
 goahead -v /web ip：9000  #ip是服务器ip，端口前要有空格
 
-goahead 4.0/3.6
+goahead 4.0
 编译错误：
 src/mbedtls/mbedtls.c:4417:1: error: r7 cannot be used in asm here
 
@@ -26,3 +26,29 @@ cgi
 goAction:
 
 websDefineAction
+
+
+
+4.0  就1个Makefile
+
+
+goahead: 0: Cannot get host address for host xilinx-zc706-2017_3: errno 0 
+
+https://superyang2009.wordpress.com/2014/08/03/goahead-0-cannot-get-host-address-for-host%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95-2/
+
+
+make CC=arm-none-linux-gnueabi-gcc ARCH=arm
+在linux-arm-default/bin中可以找到goahead
+
+DNSGetHostByName  这个函数根本没有定义, 操你妈，什么鬼东西！！！
+没有调用上面的函数
+调用了 
+gethostbyname 这个函数
+这个又调用了上面哪个，我操你妈比，什么鬼 shit
+
+这个编译环境 就是一坨屎
+
+gethostbyname 这是个系统函数
+
+需要在 /etc/hosts 中指定  机器名对应的ip地址
+

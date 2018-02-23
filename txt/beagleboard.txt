@@ -1,0 +1,38 @@
+Beaglebone Black/Green
+
+有全套的硬件资料包括 PCB, 以guo为依托
+
+altium 版没有 最新版本
+
+AM3358BZCZ100 1GHz Cortex-A8
+
+beagleboard.org
+https://elinux.org/Beagleboard:BeagleBoneBlack
+
+https://github.com/CircuitCo/BeagleBone-Black
+
+http://192.168.7.2:3000
+AM3359
+
+Debian (lxde桌面)
+Ubuntu
+Cloud9 IDE on Node.js BoneScript library
+
+
+wifi：
+iwlist scan # 扫描wifi
+
+/etc/wpa_supplicant/wpa_supplicant.conf
+network={
+  ssid="WIFINAME"
+  psk="password"
+}
+或：
+/etc/network/interface
+auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+wpa-ssid xxx
+wpa－psk xxx
+
+

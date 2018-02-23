@@ -8,6 +8,8 @@ nrf51822-qfax M0 晶体16M
 n51822-qfaa 256+16 (microbit)
 n51822-qfac 256+32
 
+Gazell 
+ESB
 
 nRF51 Dongle: nRF51422, 包含 Jlink-OB(atmel 接口芯片)
 
@@ -46,10 +48,9 @@ yao: STM32L051K8U6  红色标志为VCC，同面另一边为GND，中间CLK，对
 
 arduino 库中有 8 个相关库
 
-ANT is a proven, ultra low power, flexible and easy-to-use network protocol for 2.4GHz ISM band communication
+ANT is a flexible and easy-to-use network protocol for 2.4GHz 
 归 Dynastream  公司所有
 
-nrf51822 支持 Nordic Gazell 2.4 GHz protocol stack，兼容 nRF24L 系列
 
 无线充电：
 按钮模块 不需要，一个纽扣电池 工作1年,   led 模块 耗电量大，需要充电
@@ -65,7 +66,6 @@ S310
 S110/120/130 只是BLE
 S210 是 ANT
 S310 是 ANT + BLE
-
 
 那 2.4G 怎么用，不会是从0开始控制寄存器吧？
 
@@ -83,9 +83,7 @@ nRF5-SDK-v12: works with S132 v3 and S130 v2( 这个前面有下载, 好乱)
 
 nRF51 IoT SDK : for applications using IPv6 over Bluetooth low energy
 
-
 nRF51 DK:  是官方 nrf51 开发板
-
 
 nRF5_SDK_14.0.0_3bcc1f7/examples/peripheral/blinky_freertos/pca10040/blank/arm5_no_packs  例子可工作，灯闪了
 
@@ -93,9 +91,6 @@ freeRTOS  :nRF5_SDK_14.0.0_3bcc1f7/external/freertos/source
 
 驱动：
 nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf
-
-
-
 
 -----------
 目标:
@@ -144,36 +139,22 @@ nrf51 与nrf24 通讯的话，需要 #define NRF_ESB_LEGACY  来兼容
 
 nrf51一侧，就靠 nrf_esb.c 驱动
 
-
 -----
 先用 esb_ptx  esb_prx 2个工程，在microbit上 跑通了：
 
 
 先 用2个microbit 通讯，再用microbit + 24L01
 
-
-
 mbed Serial 驱动：mbed 官网下载
 
-
-
 PCA10028 的 串口例子，在microbit上没有通，   mdk编译出来是 51422 的代码，改成51822_AA 也不行
-
-
-
 
 microbit 可以用MDk debug， 调试器选择 CMSIS-DAP
 
 microbit 串口可以了    RX_PIN TX_PIN 在 board.h里面配置没有生效？
 
-
-
-
 -----
 NRF_LOG_DEBUG  
-
-
-
 
 ----
 串口打印：
@@ -221,7 +202,11 @@ pipe 1  基地址1+prefix1
 
 Note: The byte ordering in ESB and the nRF51 radio peripheral are not the same, this is because the address bytes are rearranged in ESB to match the nRF24L radios.
 
-什么调制方式？
+GFSK 调制, 126 RF channels 2400-2525MHz
+
+250Kbps/1Mbps时 需要 1MHz 带宽
+2Mbps时         需要 2MHz 带宽
+
 
 packet ID  2bit      51822 和 24l01+   包结构描述咋不一样呢？
 
@@ -241,3 +226,66 @@ bool radioNumber = 1; //收和发 分别设置0和1
 
 板载天线，通讯距离有限，书房和主卧室无法联通，书房与沙发处，能连但丢包, 可以降低
 餐桌和书房可以，丢包率很低，可以适当提高功率，降低速度
+
+
+RF24.h 一半内容是文档
+
+
+gettingstart 中，radioNumber 要一个1 一个0 通讯，文档中确没有说 
+
+
+openWritingPipe
+openReadingPipe  实现差异巨大
+
+uint8_t pipe0_reading_address[5]; /**< Last address set on pipe 0 for reading.
+
+
+maniacbug 24组网  跟 TMRh20 好像是1个人
+组网的话  1扇出5,1个用于级联
+https://maniacbug.wordpress.com/2012/03/30/rf24network/
+http://maniacbug.github.io/RF24Network/index.html
+
+好资料
+https://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo
+
+
+接收灵敏度：
+-82dBm(6.3pW) at 2Mbps
+-85dBm(3.16pW) at 1Mbps
+-94dBm(0.4pW) at 250kbps
+
+发射功率最大 0dBm 即 1mW, 换算出 电压幅值 0.2236V, 电流 4.47mA
+看手册 0dBm 1mW  需要 11.3 mA
+     -18dBm 15.8uW 需要 7.0mA  中间差了4.3mA，基本是天线消耗掉的电流，哇塞，明白了很多 
+
+Load impedance = 15Ω+j88Ω   怎么理解?  不是 50 ohm 呀
+
+
+lora 芯片灵敏度能达到 -148dBm (2aW  10^-18)
+发射功率 20dBm 再加 14dBm 的PA，总功率达到 34 dBm, 即2.
+
+
+
+
+--- yj 2401+ ---
+#define SLOT_NUM	8  // 外面8个外设
+addr_boardcast = 0xFFFFFF01
+
+
+stk_master_send_h2d    host to device
+
+m_slot_idx 初始化为 0
+
+----------------------------
+addr_boardcast = 0xFFFFFF01   // 难道是用这个广播地址 通讯的？
+
+SLAVE:                        // m_host_addr = h2d->hot_addr;
+param.host_addr = 0xFFFFFFFF; // rad_set_tx_mode(addr_boardcast, (t_u8*)&m_d2h, sizeof(m_d2h));  rad_set_tx_mode(m_host_addr, (t_u8*)&m_d2h, sizeof(m_d2h));
+param.dev_addr  = 0x00AA0001; // rad_set_rx_mode(m_d2h.dev_addr);
+
+MASTER:
+param.host_addr = 0xAABB0001;  // rad_set_rx_mode(addr_boardcast);
+param.dev_addr = 0xFFFFFFFF;   // rad_set_tx_mode(m_device[m_slot_idx].addr);   依赖 dev_addr  8个外围都写成了 FF?
+
+
+

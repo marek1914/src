@@ -1,8 +1,26 @@
+DDR走线已经非常成熟的技术，真要想做，不会事难点
+
+AVNET 公司
+http://zedboard.org/support/documentation/1519
+原理图下载，是背面连接插槽的 原图图和PCB，一般公司不会提供PCB的
+MicroZED
+PICOZED
+UltraZED
+ZEDBoard
+MiniZed   
+
 Vivado
+http://xilinx.eetrend.com  
 
-zynq 020 400pin  做一个 arduino大小的， 估计要6层板
-并没有将所有引脚引出，所以6层板应该是够用的
+Processing System(PS) 即 ARM Cortex-A9 MPCore,  Programmable Logic(PL)即 FPGA
 
+FSBL: First Stage Boot Loader
+
+FPGA软核，Altera: Nios II, Xilinx: Picoblaze/Micoblaze
+
+PS 与 PL 通过 AXI_HP、AXI_GP、AXI_ACP 接口通讯
+
+zynq 020 400pin  做一个 arduino大小的， 6层板  并没有将所有引脚引出
 
 ZYNQ:
 XC7Z010/20 账户 gxxjxx:200w(six 0)
@@ -92,10 +110,14 @@ Zynq-7000S 单核A9
 Zynq-7000  双核A9 7010/7015/7020 Artix-7 family programmable logic
 
 
-pynq-Z1  512M DDR3(IS43TR16256A-125KBL  256*16bit) + 16M Quad-SPI Flash (米尔用的 MT41K256M16HA-125 2片，共1G，ywy也用的这个) 
+pynq-Z1  512M DDR3(IS43TR16256A-125KBL  256*16bit) + 16M Quad-SPI Flash 
+
+(米尔用的 MT41K256M16HA-125 2片，共1G，ywy也用的这个) 
+MT41K 和 IS43 引脚完全一样
 125K 代表速度 1600k
 96 ball  16x6
 
+ddr 的数据线 是可以乱序的，为了布线方便，这个几年前就确认过，pynq就是乱序的
 
 XC7Z020-1CLG400C
 
@@ -103,6 +125,13 @@ IS43TR16256A-125KBL
 S25FL128SAGMFI
 
 pynq 硬件库叫 overlays
+
+
+电源芯片 TPS65400RGZ 淘宝很贵
+ywy 用的tps65261
+
+mier用的啥？
+
 
 USB 用了 TUSB1210 芯片  是480M 收发器
 zynq 自己不带USB？
@@ -202,7 +231,7 @@ fail的 配置有的是   include/configs/zynq-common.h
 -----------------
 0115  
 
-编译方法：
+编译方法：!!!!!!!!!!!!!
 https://www.cnblogs.com/sepeng/p/7891562.html
 
 phone xxx 错误，修改方法
@@ -268,5 +297,153 @@ ISSI 官网只有8bit 和 16bit 的，没有32bit的 DDR3
 
 -----
 petalinux-config --get-hw-description
-petalinux-package --boot --format BIN --fsbl images/linux/zynq_fsbl.elf --fpga Beamcontrol_SYS_TOP.bit --u-boot
+petalinux-package --boot --format BIN --fsbl images/linux/zynq_fsbl.elf --fpga Beamcontrol_SYS_TOP.bit --u-boot --force
+
+
+petalinux-create -t apps --template c --name fpgaload --enable
+生成路径 project-spec/meta-user/recipes-apps
+
+
+petalinux-create -t apps --template c --name fpgaload --enable
+petalinux-create -t apps --template c --name fpgaload-init --enable
+petalinux-create -t apps --template c --name flashwrite --enable
+
+
+
+编译完，说在 
+build/tmp/work/cortexa9hf-neon-xilinx-linux-gnueabi/fpgaload/1.0-r0$ 但并没有找到
+petalinux-build -c fpgaload -x do_install  (必须加这个才会出现)
+build/tmp/work/cortexa9hf-neon-xilinx-linux-gnueabi/fpgaload/1.0-r0 在这里
+---
+加载 基地址 0x43c00000
+
+
+
+
+kernel 源码目录
+build/tmp/work-shared/plnx_arm/kernel-source/
+生成文件在:
+build/tmp/work/plnx_arm-xilinx-linux-gnueabi/linux-xlnx/4.9-xilinx-v2017.3+gitAUTOINC+f1b1e077d6-r0/linux-plnx_arm-standard-build/drivers/net/phy/at803x.o
+
+编译路径
+build/tmp/work/plnx_arm-xilinx-linux-gnueabi/linux-xlnx/4.9-xilinx-v2017.3+gitAUTOINC+f1b1e077d6-r0/linux-plnx_arm-standard-build/kernel/fork.o
+
+
+
+有没有命令 能读 phy 的寄存器
+
+
+component 里面带了 ethtool-4.6.tar.gz
+
+直接执行 petalinux-build -c ethtool
+
+./build/tmp/work/cortexa9hf-neon-xilinx-linux-gnueabi/ethtool/4.6-r0/build/ethtool  可执行程序
+
+
+自己板子：
+root@peta_test:/run/media/mmcblk0p1# ./ethtool -d eth0
+Offset          Values
+------          ------
+0x0000:         1c 00 00 00 40 a1 0e 01 06 00 00 00 00 00 00 00 
+0x0010:         00 40 04 3f 00 30 04 3f 00 00 00 00 09 f3 ff 07 
+0x0020:         00 00 00 00 00 00 00 00 00 30 04 3f 00 30 04 3f 
+0x0030:         00 00 00 00 10 0f 18 00 00 00 00 00 00 00 00 00
+
+Miry:
+root@peta_test:/run/media/mmcblk0p1# ./ethtool -d eth0
+Offset          Values
+------          ------
+0x0000:         1c 00 00 00 43 a1 0e 01 06 00 00 00 00 00 00 00 
+0x0010:         38 30 04 3f 60 20 04 3f 00 00 00 00 09 f3 ff 07 
+0x0020:         0c 00 00 00 0c 00 00 00 60 20 04 3f 60 20 04 3f 
+0x0030:         00 00 00 00 10 0f 18 00 00 00 00 00 00 00 00 00 
+
+奇怪，phy id区域的值不对
+
+
+kernel  libphy
+
+上电 先加载 2片 fpga 再加载cali值
+
+include/linux/gpio/consumer.h:void gpiod_set_value(struct gpio_desc *desc, int value);
+
+devm_gpiod_get_optional
+
+
+看 document/gpio 的说明
+
+---------------------------------------
+peta的编译系统真的是太烂太烂了
+
+把 goahead源码拷贝到
+
+build/tmp/work/cortexa9hf-neon-xilinx-linux-gnueabi/goahead/1.0-r0
+竟然就编译通过了！你麻痹呀
+编译过程还是很诡异
+
+
+当然，前提是线 -c 建立了 goahead 工程
+
+
+tools/common/petalinux/bin:
+petalinux-boot  
+petalinux-build  
+petalinux-config  
+petalinux-create  
+petalinux-package  
+petalinux-util
+
+不是脚本而是 bin elf
+
+
+bitbake  自动化编译工具
+
+yocto 帮助定制linux系统 
+
+
+
+
+
+
+
+
+
+
+
+----------------
+AXI EMACLITE Linux driver     关键词  emaclite  应该是 ethernet MAC 模块的名称
+
+
+
+
+
+
+---------修改kernel的方法， 非常麻烦：
+1 在修改的目录 git commit
+2 git format-patch -1 生成 ***.patch
+3 创建目录 project-spec/meta-user/recipes-kernel/linux/linux-xlnx
+3 拷贝patch文件到这个目录
+4 在这个目录创建 linux-xlnx_%.bbappend 文件：
+  SRC_URI_append = " file://0001-modify-phy-addr.patch"
+  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:" 
+
+
+
+----
+ethernet 部分：
+drivers/net/ethernet/xilinx/xilinx_emaclite.o
+drivers/net/ethernet/xilinx/xilinx_axienet_mdio.o
+drivers/net/ethernet/xilinx/xilinx_emac.o
+drivers/net/ethernet/xilinx/xilinx_axienet_main.o
+drivers/net/ethernet/xilinx/xilinx_emacps.o
+
+
+
+
+---
+http://www.wiki.xilinx.com/Zynq+PL+Ethernet
+
+
+
+电压转换芯片  TXB0102DCUT
 

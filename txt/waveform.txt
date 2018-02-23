@@ -1,0 +1,23 @@
+waveforms 2015
+安装依赖Adept 2: Communicate with Digilent system boards
+
+https://reference.digilentinc.com/reference/instrumentation/analog-discovery-2/reference-manual
+
+dwfcmd
+
+dwf ??
+
+/usr/lib/libdwf.so
+
+sample:
+/usr/share/digilent/waveforms/samples
+
+编译C++ 源码
+
+g++ xx.cpp -ldwf
+
+
+示波器 1+ 1- 2+ 2- 不用gnd吗？
+资料说是 差分信号输入，怎么理解
+实际测试 接1+和gnd 可以测出信号，注意time选项卡 Rate 选择 100MHz
+

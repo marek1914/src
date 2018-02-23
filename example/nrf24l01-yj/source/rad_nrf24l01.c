@@ -229,7 +229,8 @@ void rad_set_rx_mode(t_u32 addr)
 	{
 		hal_radio_enable(0);
 		nrf24_w_reg(RF_WRITE_REG + RF_CH,  m_freq_set);
-		nrf24_write_buf(RF_WRITE_REG + RX_ADDR_P0, (t_u8*)&addr, ADRR_WIDTH); 	// RX_Addr0 same as TX_Adr for Auto.Ack
+		// RX_Addr0 same as TX_Adr for Auto.Ack
+		nrf24_write_buf(RF_WRITE_REG + RX_ADDR_P0, (t_u8*)&addr, ADRR_WIDTH); 	
 		nrf24_w_reg(RF_WRITE_REG + CONFIG,	CNF_RX); 
 
 		hal_radio_enable(1);

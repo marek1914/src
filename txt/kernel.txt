@@ -1,5 +1,14 @@
 kernel.org
 
+常识:
+开机启动脚本  在 /etc/init.d
+u-boot 引导kernel的参数  setenv("bootargs", "androidboot.mode=charger")  区分各种模式
+
+
+qcom 烦人的打印：
+echo 0 > /proc/sys/kernel/printk 关闭
+
+
 device tree:
 
 built-in.o
@@ -58,7 +67,7 @@ bit3 == 0 :data, 1 means instruction
 kenel/sysctl.c生成/proc/sys/kernel项
 
 linux/drivers/video/skeletonfb.c
-file_operation: read/write/ioctl/mmap，在fbmem.c中实现，检测fb_ops->fb_mmap(vpmfb.c中)是否定义
+file_operation 在fbmem.c中实现
 
 Kernel hacking  打开会增加很多打印
 
@@ -718,7 +727,7 @@ get_user_pages函数的用法（这个是linux标准的）
 发现get_user_pages()接口真是个好东东，它能获取用户区进程使用内存的某个页(struct page)，有什么用呢？
 get_user_pages的作用是得到用户的页面。
 
-cp  /dev/mem /data/mem.bin 读到256M以上时内核崩溃，说明读到寄存器了，这个方法拿到了bitmap数据
+cp /dev/mem mem.bin 读到256M以上时内核崩溃，说明读到寄存器了，这个方法拿到了bitmap数据
 去0x8bf000偏移位置，找到了page结构体，32字节一组
 
 可是 free_all_bootmem_core 没有处理reserved区域啊？最后在winhex里面看的时候，winhex区域怎么也是初始化了的呢？
@@ -1457,7 +1466,6 @@ ioremap_nocache
 
 
 
-mii_bus类型 bus->read 在哪里定义？
 
 platform_driver 结构体的 probe 什么时候调用
 
@@ -1566,33 +1574,16 @@ ScanDisk  C10 microSDHC  I(这个I标示UHS I？)
 MMC:Multimedia Card
 SD基于MMC发展而来，保留MMC的7针外，在两边加了2针作为数据线，长宽和MMC一样，兼容MMC。
 
-
-
 gu:
 rockchip 芯片otg usb device 模拟网卡，NCM协议， 开始在freescal平台调试ok，移植到rockchip，枚举基本ok，mac地址获取不到，数据丢失几个字节
 原因：网络数据要求对齐，而otg驱动数据没有对齐（不明白）
-
 
 ----
 buildroot.org   黄色安全帽, 源于uclibc项目
 Buildroot is a simple, efficient and easy-to-use tool to generate embedded Linux systems through cross-compilation
 
+----- devmem ---
+busybox devmem 读写 /dev/mem(1-4byte)
+第一次在 ppc项目中遇到，20180118 zynq 又一次用到
 
-
-----PHY----
-phy驱动: drivers/net/phy
-
-mdio_scan()
-mdiobus_register()
-
-/sys/bus/mdio_bus/drivers/ 目录下有很多phy 如Marvell 88E1116R
-
-
-MDIO: Management Data Input/Output
-
-drivers/net/gianfar_mii.c : Gianfar Ethernet Driver -- MIIM bus implementation Provides Bus interface for MIIM regs
-
-#define DEVICE_NAME "%s: Gianfar Ethernet Controller Version 1.2, "
-
-MII: Media Independent Interface
-与MII的关系
+devmem 0x43000000 16   #zynq 操作错误地址，会导致司机

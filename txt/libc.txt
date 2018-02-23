@@ -1,0 +1,3 @@
+mmap 需要包含 sys/mman.h   memory management declarations
+
+fgetc 从文件中取出一个字节，  可以避免一次性取出所有文件内容，分配内存

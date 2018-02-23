@@ -226,7 +226,6 @@ vendor/broadcom/refsw/nexus/platforms/97439/build/platform_modules.inc
 
 boot命令
 macprog 50-e5-50-70-ac-32
-ifconfig eth0 -addr=172.16.9.79 -mask=255.255.255.0 -gw=172.16.9.1 -dns=202.106.0.20
 
 update bolt
 flash 172.16.9.78:bolt_signed_108_800_sv_shmoo.bin flash0.bolt

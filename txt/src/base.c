@@ -598,6 +598,7 @@ p    =0x7ffdd9489758  //argument vector arra
 //get file size 
 //这是比较正统的方法，android也这样用
 fd = open("foo", O_RDONLY);
+// 没有 seek 函数 只有 fseek lseek l 代表 long
 len = lseek(fd, 0, SEEK_END);
 
 // 也可 stat, fstat, lstat
@@ -981,5 +982,8 @@ llrintl
 有 fmin fmax  但没有 min max 函数
 
 long double  16byte
+
+cp tar  --dereference 参数，拷贝软链接为实际文件
+
 
 // vim: tw=80

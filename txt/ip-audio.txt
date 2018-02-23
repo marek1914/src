@@ -83,7 +83,7 @@ github.com/njh/EtherSia
 
 
 ----软件----
-freertos  g723/g729  
+g723/g729  
 
 g723/g729 还是复杂，就G711 ，先把东西做出来，已经很累了，我的能力也就这样，
 
@@ -259,20 +259,103 @@ nanopi pcb 1mm
 应该是 主控板 PoE，整个功放板 从220 入口处 就 继电器控制
 
 
-
-----
-1 pcb 做1mm厚
+1 pcb 做1mm
 2 2.0间距排针 板间距6.3mm，太小，2.54间距排针 板间距11mm，太大，现在所选器件最高的是470uF电容，7.7mm，
   底板以上总空间也就是 rg45头的高度13mm,如果用2.54的，板间距11+1mm子板厚度，上面还有1mm，不够放器件的高度
-  可以上下都用长排针，灵活调整板间距，或者用比现在大一号的 模具外壳，用单层板子，或者以后选择小一点的电容电感（需要日后调试）
-3 买的3402B 引脚质量一般般，可能不好焊接呀
+  可以上下都用长排针，灵活调整板间距，或者用比现在大一号的 模具外壳，用单层板子，或者以后选择小一点的电容电感
+
+
+0204:
+Si3402B 温度高,猜测是开始配置为5V，把micphone烧掉电阻变小，DC-DC功率过大，
+卸掉micphone后，3.3V时有时无，可能是负载功率过小, 输入端 6V-48V 来回跳动, 接一个led，3.3V稳定
+后来输入端 48V跳动，输出端啥也没有了！接led也不行了，妈的！
+shit! 死活不行了！ 芯片坏了？  芯片吹坏了？
+接到另外2个输入端口（3-4引脚），又出现了输出跳动的情况，没有接负载，接线是引出的，所以没连单片机
+示波器观察，在2V-3.3V 之间变化，形似三角波，加一个 led，输出正常
+后来又接回到1-2引脚的输入，也正常了，你妈壁!
+
+单独测试单片机板子，37mA
+
+poe板子接入单片机，电压还是不稳，测电流，最大24mA
+而测试用 LED 接入后，达到73mA（破黄二极管，竟然70mA+）， 并且led接入后不是立即亮，而是延迟1-2s，应该是在检测
+
+47.5V 10mA，对应3.3V 100mA+   考虑到转换效率不是100%
+接着LED测量输入端电流，真的是10mA，输出3.3V 73mA，转换效率只有 50%?!
+资料有说明，低于10mA 就会失去连接
+
+最后，并联4个200R 电阻，50R，产生66mA电流，再加上MCU板子，输出了稳定的3.3V
+
+可以考虑输出5V，再用ldo降压到3V 
+
+
+参考电路 L1 33uH 5.2A MSS1278-333ML  
+
+
+====================================
+STM32F4-Disc MEMS Microphone 录制PDM格式音频，用PDM Filter 转换为PCM
+PDM_Filter 的低通设置为20000Hz，高通设置为20Hz，采样率设置为48000Hz
 
 
 
 
+----
+25MHz 时钟输出 出来了，就是不知道精度怎样，按理说，f401 用晶体输如，再输出，精度应该一样的
+
+选择 MCO 主时钟输出 增加
+HAL_RCC_MCOConfig(RCC_MCO1, RCC_MCO1SOURCE_HSI, RCC_MCODIV_1);
+
+/*Configure GPIO pin : PA8 */
+GPIO_InitStruct.Pin = GPIO_PIN_8;
+GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+GPIO_InitStruct.Pull = GPIO_NOPULL;
+GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+GPIO_InitStruct.Alternate = GPIO_AF0_MCO;
+HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+需要配置PA8 才能输出时钟？？
+
+
+
+I2S 有2个模式: 阻塞模式 和 非阻塞模式(使用 中断 和 dma)
+阻塞模式 HAL_I2S_Transmit
+非阻塞模式中断 HAL_I2S_Transmit_IT
+非阻塞模式dma  HAL_I2S_Transmit_DMA 例子程序用的是 dma HAL_I2S_Receive_DMA
+
+
+DMA_HandleTypeDef
+
+
+#define I2S2_DMAx_CHANNEL   DMA_CHANNEL_0
+
+一共16个dma 通道， i2s 指定为 通道0
+
+中断 和 dma中断 中断和dma 不用混淆
+
+
+-----------------
+我操你妈个逼，墨菲定律 任何事情都没有表面看起来那么简单
+
+f401这个工程死活不能调试，main.c 无法断点，audio.c 却能。。。
+除了audio.c 其他问价都没有
+jlink st-link 现象一样
+
+操你妈的，靠打印吧，谁能想到 jlink 突然不能用了，操他妈的
+也怪我，之前磨磨叽叽的，一定不能磨蹭，拖延万劫不复
 
 
 
 
-!!!!!!!!!!!!!
-INT RST   Pin!!!!
+正常流程：
+waveRecordProcess
+HAL_DMA_IRQHandler (系统自己实现的)
+I2S_DMARxHalfCplt
+HAL_I2S_RxHalfCplt
+
+我的：
+调用 waverecordprocess之前 hal_delay 还能调用
+调用之后，就无法调用，无法返回了，奇怪
+
+.s 中修改 stack大小 也许有影响，因为有大的局部数组，但是也没多大
+
+
+
