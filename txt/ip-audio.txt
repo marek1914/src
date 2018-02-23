@@ -345,9 +345,17 @@ jlink st-link 现象一样
 
 
 
-流程：
+正常流程：
 waveRecordProcess
 HAL_DMA_IRQHandler (系统自己实现的)
 I2S_DMARxHalfCplt
 HAL_I2S_RxHalfCplt
+
+我的：
+调用 waverecordprocess之前 hal_delay 还能调用
+调用之后，就无法调用，无法返回了，奇怪
+
+.s 中修改 stack大小 也许有影响，因为有大的局部数组，但是也没多大
+
+
 
