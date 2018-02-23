@@ -409,7 +409,7 @@ sudo mdadm --create --verbose /dev/md0 --level=0 --raid-devices=4 /dev/sdb /dev/
 
 20180112 变为md127 --scan 只有sdb
 mdadm --stop /dev/md127
-荣上面命令重建 OK，怎么总是出错呢？
+用上面命令重建
 
 新服务器 ssh连接总是断开， 100053 错误，最后是因为 网卡mac地址变为 88:88:88:88:87:88  不知什么原因
 ifconfig eth0 down
