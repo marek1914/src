@@ -1,26 +1,29 @@
 github.com/embedthis
 
-goahead -v /web ip：9000  #ip是服务器ip，端口前要有空格
-
 goahead 4.0
 编译错误：
 src/mbedtls/mbedtls.c:4417:1: error: r7 cannot be used in asm here
-
 https://tls.mbed.org/kb/development/arm-thumb-error-r7-cannot-be-used-in-asm-here
 -O3 要配合  -fomit-frame-pointer
 
 CFLAGS=-fomit-frame-pointer make   成功，这个make 不是靠 configure配置出来的
 
-sudo goahead -v --home /var/www/goahead
+goahead [options] [documents] [[IPaddress][:port] ...]
 
-配置文件 /etc/goahead  网页 /var/www/goahead
+将 self.key和self.crt(源码目录搜索到的都一样) 拷贝到/etc/goahead
+sudo goahead -v --home /etc/goahead /var/www/goahead/ 127.0.0.1: 8080
 
-在goahead执行文件目录 self.key和self.crt 拷贝到/etc/goahead
+-v 即 --verbose 显示信息
+--home 切换到那个目录去运行
+/var/www/goahead 是 [documents]
+端口号不写 默认 80
+ip地址不写 默认* 即本机地址
+8080前面必须有空格，否则就算能运行也访问不到，奇怪！(20180223)
 
-sudo goahead -v --home /etc/goahead /var/www/goahead/
+CGI: Common Gateway Interface
+修改 /etc/goahead/route.txt:
+route uri=/cgi-bin dir=/var/www/goahead handler=cgi  # dir=要指定路径否则提示 Cannot find CGI program
 
-
-cgi
 
 
 goAction:
@@ -28,9 +31,7 @@ goAction:
 websDefineAction
 
 
-
 4.0  就1个Makefile
-
 
 goahead: 0: Cannot get host address for host xilinx-zc706-2017_3: errno 0 
 
@@ -40,15 +41,11 @@ https://superyang2009.wordpress.com/2014/08/03/goahead-0-cannot-get-host-address
 make CC=arm-none-linux-gnueabi-gcc ARCH=arm
 在linux-arm-default/bin中可以找到goahead
 
-DNSGetHostByName  这个函数根本没有定义, 操你妈，什么鬼东西！！！
+DNSGetHostByName  这个函数根本没有定义, 
 没有调用上面的函数
 调用了 
 gethostbyname 这个函数
-这个又调用了上面哪个，我操你妈比，什么鬼 shit
+这个又调用了上面哪个，
 
-这个编译环境 就是一坨屎
-
-gethostbyname 这是个系统函数
-
-需要在 /etc/hosts 中指定  机器名对应的ip地址
+gethostbyname 是系统函数，要在 /etc/hosts 中指定机器名对应的ip地址
 

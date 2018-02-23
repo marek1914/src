@@ -372,8 +372,7 @@ devm_gpiod_get_optional
 
 看 document/gpio 的说明
 
----------------------------------------
-peta的编译系统真的是太烂太烂了
+peta的编译系统真的是太烂
 
 把 goahead源码拷贝到
 
@@ -381,9 +380,7 @@ build/tmp/work/cortexa9hf-neon-xilinx-linux-gnueabi/goahead/1.0-r0
 竟然就编译通过了！你麻痹呀
 编译过程还是很诡异
 
-
 当然，前提是线 -c 建立了 goahead 工程
-
 
 tools/common/petalinux/bin:
 petalinux-boot  

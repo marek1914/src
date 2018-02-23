@@ -2,7 +2,7 @@ STM32F200W
 
 关于新建工程与调试
 1 以后新建工程的时候 不要直接用cube 生成的，有弊端，用自己整理好的，拷贝cube生成的代码
-2 使用虚拟机时，工程要拷到本地，否则无法调适(cao 七天假期也结束了 也想起来了)
+2 用Mac虚拟机时，工程要拷到本地，否则无法调试(cao 七天假期也结束了 也想起来了)
 
 AMBA: Advanced Microcontroller Bus Architecture
 APB: Advanced Peripheral Bus
@@ -691,4 +691,7 @@ Setup SysTick Timer for time base.
 HAL_SYSTICK_Config 调用 SysTick_Config(这是CMSIS函数)
 
 
+
+------------
+停到 B . 就是中断服务函数没有定义
 
