@@ -358,4 +358,8 @@ HAL_I2S_RxHalfCplt
 .s 中修改 stack大小 也许有影响，因为有大的局部数组，但是也没多大
 
 
+-----
+在中断中 加 printf 打印 好像有问题， fputc 是阻塞方式实现的情况下
 
+
+现在中断进了，但是执行pdm到pcm转换时，进入 HardFault_Handler 中断
