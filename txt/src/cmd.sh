@@ -299,3 +299,9 @@ fi = file
 ls '-l' , ls '-''l' # 加不加没区别
 ffmpeg -'i foo.ogg' # 引号里内容全部理解为参数，’i foo.ogg‘ 参数不识别
 ffmpeg -f lavfi -i aevalsrc=sin'('2*PI*t')' # 见bash.txt ( 是控制字符，=不是
+
+
+---
+查看文件编码方式:
+file 可以查看编码方式
+iconv 可以转换编码方式

@@ -82,6 +82,7 @@ microbit 用的是 2520 4pin 16MHz
 1N4007 正向电压1V
 IP101GA: 10/100 phy
 BAT54C:  肖特基双二极管，IR一分为2到CPU和MCU
+BAS85:  充电电路用的 肖特基，铁红色圆玻璃管
 MAX3420 / FT121  SPI slave 转USB Device
 2N2222: 低功耗放大或开关 NPN
 2N2907: 与2N2222互补的PNP

@@ -29,7 +29,6 @@ ssl: Secure Socket Layer
 tsl: Transport Layer Security
 ssh:  Secure Shell
 
-CGI: Common Gateway Interface 可用任何语言：C，shell，python
 
 MEMS: Micro-Electro-Mechanical System  微电子机械系统
 ESR: Equivalent Series Resistance 等效串联电阻
