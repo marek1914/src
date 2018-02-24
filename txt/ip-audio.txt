@@ -359,3 +359,4 @@ HAL_I2S_RxHalfCplt
 
 
 
+stty -F /dev/ttyUSB0 921600  (115200的8倍)

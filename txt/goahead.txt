@@ -49,3 +49,13 @@ gethostbyname 这个函数
 
 gethostbyname 是系统函数，要在 /etc/hosts 中指定机器名对应的ip地址
 
+
+
+cgi
+Content-type: text/html\n\n  后面必须是2个\n  也就是说这行下面要有空行
+
+date.sh:
+#!/bin/sh    //必须有这行，否则不执行
+echo Content-type: text/html
+echo         //打印空行
+echo "<p>`date`</p>"
