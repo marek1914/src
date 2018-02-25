@@ -1,5 +1,12 @@
 STM32F200W
 
+MSP : MCU Support Package
+cube 生成的 stm32fxx_hal_msp.c 如果配置了uart usb spi等
+会在这里配置处理 xx_Init() 之外的GPIO 模块CLK 等， 层次不是很清晰呢
+这些函数 如 HAL_SPI_MspInit 是 __weak__ 函数
+HAL_SPI_Init() 会调用这个函数，需要用户实现
+
+
 关于新建工程与调试
 1 以后新建工程的时候 不要直接用cube 生成的，有弊端，用自己整理好的，拷贝cube生成的代码
 2 用Mac虚拟机时，工程要拷到本地，否则无法调试(cao 七天假期也结束了 也想起来了)
@@ -12,7 +19,6 @@ F1:24/36/48/72MHz
 F4:84/100/168/180MHz
 
 
-MSP : MCU Support Package
 
 CSS: 外部晶振停震后，会自动切换到内部RC
 
@@ -483,7 +489,7 @@ const arm_cfft_instance_f32 arm_cfft_sR_f32_len1024
 
 
 =====i2s====
-3 SPI (2 with I2S capability)
+3 SPI (2 with I2S capability，即i2s2 i2s3 也是 spi2 spi3)
 
 
 
@@ -694,4 +700,33 @@ HAL_SYSTICK_Config 调用 SysTick_Config(这是CMSIS函数)
 
 ------------
 停到 B . 就是中断服务函数没有定义
+.s 中外围中断都是一个 B ，想知道具体哪个中断没有处理，需要修改 .s 把处理函数离散开来
+
+
+
+
+-------
+spi 驱动首调 (20180225)
+1 datesheet  block diagram: spi1 挂载在 apb2(工作频率最高84MHz) 但spi1 波特率最高42Bmps 
+2 跟uart一样，有 polling dma it 3种模式
+
+
+TX/RX:
+HAL_SPI_TransmitReceive()
+HAL_SPI_TransmitReceive_IT()
+HAL_SPI_TransmitReceive_DMA()
+
+RX:
+HAL_SPI_Receive()
+HAL_SPI_Receive_IT()
+HAL_SPI_Receive_DMA()
+
+TX:
+HAL_SPI_Transmit()
+HAL_SPI_Transmit_IT()
+HAL_SPI_Transmit_DMA()
+
+说起来，我还没用过 SPI 总线呢， 全双工，能同时首发数据呀， 那寄存器地址怎么发送呢？
+
+测试 HAL_SPI_Transmit 函数，21MHz clk 出来了
 

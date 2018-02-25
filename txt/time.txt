@@ -67,6 +67,8 @@ hi真的很没劲，很没意思
 {"date":"180221","wd":1,"wake":"8:00","sleep":"23:00","sport":0,"star":[0,0,0]}
 {"date":"180222","wd":1,"wake":"7:30","sleep":"23:00","sport":0,"star":[0,0,1]}
 {"date":"180223","wd":1,"wake":"7:30","sleep":"01:30","sport":0,"star":[0,0,1]}
-{"date":"180224","wd":0,"wake":"7:00","sleep":"xx:xx","sport":0,"star":[1,x,x]}
+{"date":"180224","wd":0,"wake":"7:00","sleep":"01:30","sport":0,"star":[0,1,1]}
+{"date":"180225","wd":0,"wake":"9:00","sleep":"10:00","sport":1,"star":[1,3,3]}
+
 
 

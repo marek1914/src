@@ -169,11 +169,12 @@ ITU-T: gaojie@cyclecentury.com:*2xxpy-
 baidu:3uixx:5***5005xxx
 openstm32.org gaojie:200w200w
 st.com 13xx@q.com:89..2*G
-invensense.com: stm32f300w:89..2*G
+invensense.com: stm32f300w:8...2*G
 autodesk: qq:89****62*G
 nxp: 1349**@qq  0362200w
 q盾：形：159648
-twitter: *50w@gmail.com: gaojie200w:89**62
+twitter: *50w@gmail.com: gaojie200w:8***2
 
 房产毕业燃气等行李箱20180222
 *8xxxx2gH : 慧支付
+
