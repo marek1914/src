@@ -2,28 +2,27 @@ ARM/8051 4类工具:
 ARM: Keil MDK-ARM/C51 (Lite/Essential/Plus/Professional) 米尔网站下载
 IAR: IAR Workbench EW8051/EWARM 
 GCC: Makefile + GCC ARM Embedded/sdcc
-other: 厂商基于 eclipse+gcc+gdb 定制，支持win/linux/mac
+other: eclipse+gcc+gdb win/linux/mac
 	   TI: CCS
-	   ST: SW4STM32(.project描述源文件)
-	   Silicon: Silicon IDE(keil c51编译器，非gcc)
+	   ST: SW4STM32(.project)
+	   Silicon: Silicon IDE(keil c51, not gcc)
        Atollic TrueSTUDIO(no-free)
+
+用Keil和GCC，后者用于公司调试
 
 --Keil--
 uVision Project Manager
 
-C51分：
+C51:
 PK51: professional developer's kit
 CA51: compiler kit
 A51 : assembler kit
 
+.uvoptx 选项无须提交仓库
 
-.uvoptx
-.uvprojx
-
-MDK4.74 (.uvproj obsolete)
-MDK5.24 (.uvprojx)分 Core(uVision5 & Compiler5) 和 Packs(.pack zip压缩文件)
-ARM目录(2.7G) UV4目录40M (mdk5 目录也叫UV4)
-Packs下载到 ARM/PACK
+MDK4.74 (.uvproj)
+MDK5.24 (.uvprojx) Core(uVision5 & Compiler5) + Packs(.pack zip format to ARM/PACK dir)
+mdk5 不支持winxp，安装后目录也叫UV4
 
 Error:Device not found nRF52832_xxAA 需要下载一些基础包才能工作
 提示需要 nRF_DeviceFamilyPack
@@ -34,8 +33,6 @@ Flash Download -> Programming Algorithm 是空的，需要Add
 .FLM文件,flash描述文件
 
 ARM:CMSIS 工程可以自带
-
-MDK5.20开始不支持 Winxp
 
 mdk5 Pack Installer:
 Packs/Examples:
