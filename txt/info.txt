@@ -1,5 +1,7 @@
 Done is better than perfect 
 
+
+
 200:
 zynq i.MX stm32 nordic st
 
@@ -49,11 +51,6 @@ http://kitsprout.logdown.com  是我想干的事情
 github.com/KitSprout
 
 i2ctools.com    usb 2 i2c 工具
-
-suxiang198的博客
-
-取名：
- elelab  悠然科技 优雅科技 都有了
 
 0 板子沉金 2.54 纯铜排针
 1 STM32F103 做双串口 
@@ -176,5 +173,7 @@ q盾：形：159648
 twitter: *50w@gmail.com: gaojie200w:8***2
 
 房产毕业燃气等行李箱20180222
-*8xxxx2gH : 慧支付
+*8xxxx2gH : 慧支
+-*2yxxx*- : 珍支
+
 

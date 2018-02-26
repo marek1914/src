@@ -53,18 +53,15 @@ Memory Mode 和 I/O Mode 区别：
 High: Common Memory, Low: Register(Attribute 属性) Memory.
 测得大概1.5MHz
 
-逻辑分析仪需要 Rate: 设置为 100MHz
+逻辑分析仪需要 Rate: 设置为 20MHz 以上
 
 CF卡 addr 11 + data 16  VCC/GND 4   控制信号19条 
 
 换一个思路：
 检测到有文件，就删除，单片机去删除，前提是实现FAT文件系统
 
-
-
 ----
 测试 analog discovery  可以用2台，一个发，一个检测
-
 
 
 ----DigitalIn----
@@ -119,10 +116,11 @@ FDwfDigitalInTriggerInfo
 FDwfDigitalInTriggerSet
 FDwfDigitalInTriggerGet
 
+In:逻辑分析仪
+Out: 产生时序
+IO: 模拟按键，控制LED等
 
 感觉  xx_Info 和 xx_Get 功能一样呢？
-
-有单独的 In 和 Out，为啥还有 DigitalIO？
 
 
 The states are defined in dwf.h DwfState type.
