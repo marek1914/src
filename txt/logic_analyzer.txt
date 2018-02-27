@@ -1,0 +1,110 @@
+analog discovery
+digital discovery
+DSLogic
+Seleae
+
+现在看 DSLogic 性价比优于 digital discovery
+
+
+stream 形式，就是数据通过 usb 实时传输  buffer形式 是机器带有ram，
+
+stream 形式 16通道 16M采样， 256Mbps 
+
+dslogic 16通道 20M采样 320Mbps 也就是usb2.0的极限了
+
+
+
+digital discovery 采样频率200MHz，加配件可达到800MHz 采样，内部集成2Gbit DDR3，应该录制波形时间更长
+24个通道，价格比analog低，功能没有analog全面，但单从逻辑分析上看，更专业
+
+而 analog discovery 只有100MHz， 
+录制存储空间：
+设备管理中，若只用logic，最高可以配置为16x16k，即每个通道16k存储深度
+
+
+那 analog discovery 起码支持 stream形式吧
+
+
+我觉得 analog discovery 不应该不如 saleae 呀！
+
+
+waveforms 2015
+
+打开一个软件，连接2个discovery，同时只能选择一个，要想采集超过16通道，要同时在2台机器上打开2个软件
+当然如果自己写程序就可以拼接数据了
+
+安装依赖Adept 2: Communicate with Digilent system boards
+
+https://reference.digilentinc.com/reference/instrumentation/analog-discovery-2/reference-manual
+
+dwfcmd
+
+dwf ??
+
+/usr/lib/libdwf.so
+
+sample:
+/usr/share/digilent/waveforms/samples
+
+编译C++ 源码
+
+g++ xx.cpp -ldwf
+
+
+示波器 1+ 1- 2+ 2- 不用gnd吗？
+资料说是 差分信号输入，怎么理解
+实际测试 接1+和gnd 可以测出信号，注意time选项卡 Rate 选择 100MHz
+
+
+
+protocol 选项里，只有uart 有保存到文件，spi can i2c 都没有
+
+实事证明，analog discovery2 的逻辑分析仪并不好用，录制功能莫名其妙，所以卖一个，留2个没意义
+录制就是莫名其妙，并非不会用
+
+时机成熟时置换 digital discovery
+
+
+
+
+------------
+See the following post on how to "double" the buffer size by disabling the logic analyzer noise detection:
+把噪声检测关闭，可以得到更多些的 buffer
+
+The sample rate is adjusted by time base setting. Rate = Samples / TimeRange, where the number of samples is in default configuration 4k.
+The configuration can be changed in WaveForms main window Device/Manager after checking "Show advanced features".
+For sample rates under 100Msps half of the buffer is used for noise detection, 
+which means more than one transition between two sampling points. 
+This can be disabled in Analyzer/Options/General.
+
+WaveForms version has a bug in Logic Analyzer, where the time base is extended for post trigger acquisitions. 
+For instance having trigger position 100ms time base 1ms/div, the actual time base will be 20ms/div (200ms span)
+
+the 16k sample buffer is a device limitation.
+The device performs acquisition up to 100Msps of up to 16k samples
+
+""In streaming or recording mode, to capture more samples than the device buffer, the data is streamed through USB. The bandwidth of USB limits the achievable sample rate."
+这也太扯淡了吧， 就算usb限制，也不能限制到 1M 采样频率吧！！！
+
+
+waveform 自带的帮助文档显示 Record 模式 就是usb stream形式，但是这种模式 只支持1M 采样频率，这么低有毛用呀
+
+我现在需要写程序测试一下，录制形式到底能支持到多高，比如 16通道 16M 能不能做到 usb 实时传输
+
+
+硬件上用的是 FT232 USB转串口，这速度能有多高呀，硬件限制了！
+所以 即使是 示波器部分，也只能采集很短的时间，只是不停的 repead 中间的时间是不连续的
+这种设计有问题
+
+参考文档显示：
+USB 接口：
+1 给FPGA编程: 设备没有非易失配置存储器. 上电下载 .bit 文件, 通过 Digilent USB-JTAG 接口. Adept run-time is used for low level protocols.
+2 通过 Digilent synchronous parallel bus 和 USB 接口交换数据. 速度可达到 20MB/sec( 20M Byte/s 也不低呀！ ). 依赖usb接口类型和PC平台
+
+通过 lsusb 看到 用的 FT232H 接口芯片，这并不是简单的 USB转UART，资料显示最高可达 40MByte/s 传输速度  所以硬件不是瓶颈
+
+
+------
+新思路，录制数据的时候 不分析，就是保存，存下来之后再慢慢分析
+
+
