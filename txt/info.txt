@@ -1,6 +1,6 @@
 Done is better than perfect 
 
-
+2018实现200w就把工作间挪到次卧
 
 200:
 zynq i.MX stm32 nordic st
