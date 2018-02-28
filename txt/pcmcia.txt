@@ -1,34 +1,28 @@
-CF卡转接 CompactFlash
-A0-A11  D0-D15， 锁存器?
+CF: CompactFlash
 
-64pin:data 和 addr 只采集不转发，只转发几个控制信号, 但是网口写功能时，无法屏蔽左侧信号
-所以还是要 100pin的
+用64pin(大概50个io)，可考虑48pin(大概36个io)
+就用64pin，稍微富裕些，用的时候省得捉襟见肘
 
 用不了那么多引脚，虽然A0-A10 其实高位地址是固定的，需要重新考虑64引脚甚至48引脚
-操作cf卡，用模拟开关
 
-------------
-mcu选型
-F103VC  72MHz
-F411VC  100MHz
-F405VG  168MHz
+检测信号采样得能达到 16M
 
-pcmcia 转 网口
+测试一下 f1 和 f4 的 io口性能再说
+mcu选型 
+F103R    72MHz
+F410/1R  100MHz
+F405R    168MHz(F4 168MHz 的没有48pin的，最少64pin)
 
----
-analog discovery python:
-脚本只支持 js？
+F410CB   100MHz  48pin
 
-按着右下角2个按键上电，进入开机模式，选第7项，  SRAM BACKUP 是写sd card， SRAM RESTORE 是读
-最终目的是 无法 BACKUP
-
+按右下角2个按键上电，进入开机模式，选第7项
 
 注意，pcmcia的封装， 1 35 2 36 3 37 4 38
 
 pcmcia:
 http://ww38.pcmcia.org/pccard.htm
 
-原装正品FANUC发那科系统CF卡槽 A66L-2050-0025A#B CNC 卡座插口  这个都有卖的
+原装正品FANUC发那科系统CF卡槽 A66L-2050-0025A#B CNC 卡座插口 这个有卖
 
 CF:
 cd1 cd2 引脚短
@@ -39,19 +33,9 @@ http://www.synchrotech.com/support/faq-compact_flash_memory_cards.html
 
 http://pinouts.ru/Slots/PcCard_pinout.shtml
 
-
-a0-a10 都有信号，说明不是 true ide 模式， 
-2k地址空间
-
 没操作CF卡时， a1，a2 有周期信号
-
-Memory Mode 和 I/O Mode 区别：
 
 -REG:
 High: Common Memory, Low: Register(Attribute 属性) Memory.
 测得大概1.5MHz
-
-逻辑分析仪需要 Rate: 设置为 20MHz 以上
-
-CF卡 addr 11 + data 16  VCC/GND 4   控制信号19条 
 
