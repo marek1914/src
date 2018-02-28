@@ -39,3 +39,15 @@ http://pinouts.ru/Slots/PcCard_pinout.shtml
 High: Common Memory, Low: Register(Attribute 属性) Memory.
 测得大概1.5MHz
 
+用 SN74LVC244A 会不会因为延迟 导致数据错位？   3.3V  最大 6ns 典型 3.9ns
+http://www.ti.com/logic-circuit/buffer-driver-transceiver/non-inverting-buffer-driver/products.html 总有一款适合
+
+SN74LVC244A  8bit 5.9ns  不是最好的选择
+SN74ALB16244  Tpd Max:  2ns  很贵 10+
+SN74AVC16244  Tpd Max:  3.3ns 4.5+   (备选)
+
+SN74LVT244B  8bit 3.5ns  1元 (备选)
+
+1片 16bit 不够   data 8个 ， 地址 3个 cs1 cs2 iowr iord 共 7 条 + reset  好像刚刚好。。。。
+
+确定一下工作电压 3.3 还是5

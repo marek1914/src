@@ -1,14 +1,9 @@
 200:
 zynq i.MX stm32 nordic st
 
-microbit      10
-无线传感器    10
-zynq          20
-yanwy         5
-ip-speaker    5
-ip-micphone   10
-BLE Mesh      10
-i.MX 		  20
+ip-mic  3+ 100*1000 = 13w
+pcmcia-cf 3 + 2(后续) = 5w
+
 
 20180228: 今年要是实现了200w目标，就改造工作间到次卧，改造阳台
 阳台跟客厅打通，换掉电视柜，封闭阳台，阳台装饰
