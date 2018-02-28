@@ -1,11 +1,17 @@
 CF: CompactFlash
 
-64pin:data 和 addr 只采集不转发，只转发几个控制信号
+用64pin(大概50个io)，可考虑48pin(大概36个io)
+就用64pin，稍微富裕些，用的时候省得捉襟见肘
 
-mcu选型
-F103VC  72MHz
-F411VC  100MHz
-F405VG  168MHz
+检测信号采样得能达到 16M
+
+测试一下 f1 和 f4 的 io口性能再说
+mcu选型 
+F103R    72MHz
+F410/1R  100MHz
+F405R    168MHz(F4 168MHz 的没有48pin的，最少64pin)
+
+F410CB   100MHz  48pin
 
 pcmcia 转 网口
 

@@ -66,7 +66,7 @@ F410
 F427/437
 F429/439
 
-QFN48(F401 48pin的只有QFN) 7x7mm:(F4系列 QFP最少64pin)
+QFN48(F401 48pin的只有QFN 7x7mm  QFP最少64pin 10x10)
 84MHz:
 F401CBu6  128+64
 F401CCu6  256+64  10+   中间的大焊盘 是GND，手册没有明确说明 万用表量 跟地联通的 VDDA VSSA 必须连接
