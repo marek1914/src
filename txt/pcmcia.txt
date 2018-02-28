@@ -9,9 +9,9 @@ CF: CompactFlash
 mcu选型 
 F103R    72MHz
 F410/1R  100MHz
-F405R    168MHz(F4 168MHz 的没有48pin的，最少64pin)
+F405R    168MHz(F4 168MHz 的没有48pin的，最少64pin) 有卖 25元，已经买过了
 
-F410CB   100MHz  48pin
+F410CB   100MHz  48pin 没有卖的
 
 pcmcia 转 网口
 
