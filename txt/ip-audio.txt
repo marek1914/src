@@ -67,7 +67,6 @@ https://www.amobbs.com/thread-4288855-1-1.html?_dsign=dac01d7b
 
 PT8211/TM8211
 
-pwm DAC 好像只能实现到8bit
 
 从垃圾堆里 拆出了  CE2752  和  CS4354  还都是 SOP 大封装，，，， 可以实验了
 

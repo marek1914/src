@@ -1,18 +1,15 @@
 analog discovery
 digital discovery
 DSLogic
-Seleae
+Seleae Logic16
 
-现在看 DSLogic 性价比优于 digital discovery
-
+DSLogic 性价比优于 digital discovery
 
 stream 形式，就是数据通过 usb 实时传输  buffer形式 是机器带有ram，
 
 stream 形式 16通道 16M采样， 256Mbps 
 
 dslogic 16通道 20M采样 320Mbps 也就是usb2.0的极限了
-
-
 
 digital discovery 采样频率200MHz，加配件可达到800MHz 采样，内部集成2Gbit DDR3，应该录制波形时间更长
 24个通道，价格比analog低，功能没有analog全面，但单从逻辑分析上看，更专业
@@ -28,9 +25,7 @@ digital discovery 采样频率200MHz，加配件可达到800MHz 采样，内部�
 我觉得 analog discovery 不应该不如 saleae 呀！
 
 
-waveforms 2015
-
-打开一个软件，连接2个discovery，同时只能选择一个，要想采集超过16通道，要同时在2台机器上打开2个软件
+连接2个discovery，同时只能选择一个，要想采集超过16通道，要同时在2台机器上打开2个软件
 当然如果自己写程序就可以拼接数据了
 
 安装依赖Adept 2: Communicate with Digilent system boards
@@ -107,4 +102,115 @@ USB 接口：
 ------
 新思路，录制数据的时候 不分析，就是保存，存下来之后再慢慢分析
 
+
+
+
+
+
+----DigitalIn----
+
+Control:
+FDwfDigitalInReset
+FDwfDigitalInConfigure
+FDwfDigitalInStatus
+FDwfDigitalInStatusSamplesLeft
+FDwfDigitalInStatusSamplesValid
+FDwfDigitalInStatusIndexWrite
+FDwfDigitalInStatusAutoTriggered
+FDwfDigitalInStatusData
+FDwfDigitalInStatusRecord
+
+Configuration:
+FDwfDigitalInInternalClockInfo
+FDwfDigitalInClockSourceInfo
+FDwfDigitalInClockSourceSet
+FDwfDigitalInClockSourceGet
+FDwfDigitalInDividerInfo
+FDwfDigitalInDividerSet
+FDwfDigitalInDividerGet
+FDwfDigitalInBitsInfo
+FDwfDigitalInSampleFormatSet
+FDwfDigitalInSampleFormatGet
+FDwfDigitalInBufferSizeInfo
+FDwfDigitalInBufferSizeSet
+FDwfDigitalInBufferSizeGet
+FDwfDigitalInSampleModeInfo
+FDwfDigitalInSampleModeSet
+FDwfDigitalInSampleModeGet
+FDwfDigitalInAcquisitionModeInfo
+FDwfDigitalInAcquisitionModeSet
+FDwfDigitalInAcquisitionModeGet
+
+
+Trigger:
+FDwfDigitalInTriggerSourceInfo
+FDwfDigitalInTriggerSourceSet
+FDwfDigitalInTriggerSourceGet
+FDwfDigitalInTriggerPositionInfo
+FDwfDigitalInTriggerPositionSet
+FDwfDigitalInTriggerPositionGet
+FDwfDigitalInTriggerAutoTimeoutInfo
+FDwfDigitalInTriggerAutoTimeoutSet
+FDwfDigitalInTriggerAutoTimeoutGet
+
+
+Trigger Detector:
+FDwfDigitalInTriggerInfo
+FDwfDigitalInTriggerSet
+FDwfDigitalInTriggerGet
+
+In:逻辑分析仪
+Out: 产生时序
+IO: 模拟按键，控制LED等
+
+感觉  xx_Info 和 xx_Get 功能一样呢？
+
+
+The states are defined in dwf.h DwfState type.
+- Ready: Initial state. After FDwfDigitalInConfigure or any FDwfDigitalIn*Set function call goes to this state. With
+FDwfDigitalInConfigure, reconfigure goes to Configure state.
+- Configure: The digital in auto trigger is reset.
+- Prefill: Prefills the buffer with samples need before trigger.
+- Armed: It waits for trigger.
+- Running: For single acquisition mode remains in this state to acquire samples after trigger set by
+FDwfDigitalInTriggerPositionSet. Scan screen and shift modes remain until configure or any set function of this
+instrument.
+- Done: Final state.
+
+
+
+pin 1 接高电平，循环开始的 检测状态的到  DwfStateArmed  = 1
+
+只循环了51次 开始状态都是3(Triggered and Running) 最后一次是2 (Done)
+每次读出的数据 在2000个上下，并非一次读出一组数据
+
+
+Armed: It waits for trigger
+
+需要靠
+FDwfDigitalInTriggerSet(hdwf, 0, 0x0040, 0, 0);  设置触发条件， 低电平 高电平 上升沿 下降沿   每个参数16bit
+
+读取 100000 个数据， 
+FDwfDigitalInDividerSet(hdwf, 1000); // 100MHz/100 = 100KHz 程序执行 1s
+FDwfDigitalInDividerSet(hdwf, 10000); // 100MHz/1000 = 10KHz 程序执行 10s
+
+FDwfDigitalInTriggerSourceSet 参数 trigsrcDetectorDigitalIn 设置digital 输入为触发源
+
+
+ 
+// acquisition modes:
+acqmodeSingle     = 0;
+acqmodeScanShift  = 1;
+acqmodeScanScreen = 2;
+acqmodeRecord     = 3;
+acqmodeOvers      = 4;
+acqmodeSingle1    = 5;
+
+
+
+FDwfDigitalInInternalClockInfo(hdwf, &hzSys);
+这个函数 返回 100000000  即 100MHz
+
+FDwfDigitalInBufferSizeInfo(hdwf, &cSamples);
+返回 4096
 

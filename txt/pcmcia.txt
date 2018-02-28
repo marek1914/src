@@ -3,6 +3,8 @@ CF: CompactFlash
 用64pin(大概50个io)，可考虑48pin(大概36个io)
 就用64pin，稍微富裕些，用的时候省得捉襟见肘
 
+用不了那么多引脚，虽然A0-A10 其实高位地址是固定的，需要重新考虑64引脚甚至48引脚
+
 检测信号采样得能达到 16M
 
 测试一下 f1 和 f4 的 io口性能再说
@@ -13,16 +15,14 @@ F405R    168MHz(F4 168MHz 的没有48pin的，最少64pin) 有卖 25元，已经
 
 F410CB   100MHz  48pin 没有卖的
 
-pcmcia 转 网口
-
-按着右下角2个按键上电，进入开机模式，选第7项，  
+按右下角2个按键上电，进入开机模式，选第7项
 
 注意，pcmcia的封装， 1 35 2 36 3 37 4 38
 
 pcmcia:
 http://ww38.pcmcia.org/pccard.htm
 
-原装正品FANUC发那科系统CF卡槽 A66L-2050-0025A#B CNC 卡座插口  这个都有卖的
+原装正品FANUC发那科系统CF卡槽 A66L-2050-0025A#B CNC 卡座插口 这个有卖
 
 CF:
 cd1 cd2 引脚短
@@ -39,116 +39,15 @@ http://pinouts.ru/Slots/PcCard_pinout.shtml
 High: Common Memory, Low: Register(Attribute 属性) Memory.
 测得大概1.5MHz
 
-逻辑分析仪需要 Rate: 设置为 20MHz 以上
+用 SN74LVC244A 会不会因为延迟 导致数据错位？   3.3V  最大 6ns 典型 3.9ns
+http://www.ti.com/logic-circuit/buffer-driver-transceiver/non-inverting-buffer-driver/products.html 总有一款适合
 
-CF卡 addr 11 + data 16  VCC/GND 4   控制信号19条 
+SN74LVC244A  8bit 5.9ns  不是最好的选择
+SN74ALB16244  Tpd Max:  2ns  很贵 10+
+SN74AVC16244  Tpd Max:  3.3ns 4.5+   (备选)
 
-测试 analog discovery  可以用2台，一个发，一个检测
+SN74LVT244B  8bit 3.5ns  1元 (备选)
 
-----DigitalIn----
+1片 16bit 不够   data 8个 ， 地址 3个 cs1 cs2 iowr iord 共 7 条 + reset  好像刚刚好。。。。
 
-Control:
-FDwfDigitalInReset
-FDwfDigitalInConfigure
-FDwfDigitalInStatus
-FDwfDigitalInStatusSamplesLeft
-FDwfDigitalInStatusSamplesValid
-FDwfDigitalInStatusIndexWrite
-FDwfDigitalInStatusAutoTriggered
-FDwfDigitalInStatusData
-FDwfDigitalInStatusRecord
-
-Configuration:
-FDwfDigitalInInternalClockInfo
-FDwfDigitalInClockSourceInfo
-FDwfDigitalInClockSourceSet
-FDwfDigitalInClockSourceGet
-FDwfDigitalInDividerInfo
-FDwfDigitalInDividerSet
-FDwfDigitalInDividerGet
-FDwfDigitalInBitsInfo
-FDwfDigitalInSampleFormatSet
-FDwfDigitalInSampleFormatGet
-FDwfDigitalInBufferSizeInfo
-FDwfDigitalInBufferSizeSet
-FDwfDigitalInBufferSizeGet
-FDwfDigitalInSampleModeInfo
-FDwfDigitalInSampleModeSet
-FDwfDigitalInSampleModeGet
-FDwfDigitalInAcquisitionModeInfo
-FDwfDigitalInAcquisitionModeSet
-FDwfDigitalInAcquisitionModeGet
-
-
-Trigger:
-FDwfDigitalInTriggerSourceInfo
-FDwfDigitalInTriggerSourceSet
-FDwfDigitalInTriggerSourceGet
-FDwfDigitalInTriggerPositionInfo
-FDwfDigitalInTriggerPositionSet
-FDwfDigitalInTriggerPositionGet
-FDwfDigitalInTriggerAutoTimeoutInfo
-FDwfDigitalInTriggerAutoTimeoutSet
-FDwfDigitalInTriggerAutoTimeoutGet
-
-
-Trigger Detector:
-FDwfDigitalInTriggerInfo
-FDwfDigitalInTriggerSet
-FDwfDigitalInTriggerGet
-
-In:逻辑分析仪
-Out: 产生时序
-IO: 模拟按键，控制LED等
-
-感觉  xx_Info 和 xx_Get 功能一样呢？
-
-
-The states are defined in dwf.h DwfState type.
-- Ready: Initial state. After FDwfDigitalInConfigure or any FDwfDigitalIn*Set function call goes to this state. With
-FDwfDigitalInConfigure, reconfigure goes to Configure state.
-- Configure: The digital in auto trigger is reset.
-- Prefill: Prefills the buffer with samples need before trigger.
-- Armed: It waits for trigger.
-- Running: For single acquisition mode remains in this state to acquire samples after trigger set by
-FDwfDigitalInTriggerPositionSet. Scan screen and shift modes remain until configure or any set function of this
-instrument.
-- Done: Final state.
-
-
-
-pin 1 接高电平，循环开始的 检测状态的到  DwfStateArmed  = 1
-
-只循环了51次 开始状态都是3(Triggered and Running) 最后一次是2 (Done)
-每次读出的数据 在2000个上下，并非一次读出一组数据
-
-
-Armed: It waits for trigger
-
-需要靠
-FDwfDigitalInTriggerSet(hdwf, 0, 0x0040, 0, 0);  设置触发条件， 低电平 高电平 上升沿 下降沿   每个参数16bit
-
-读取 100000 个数据， 
-FDwfDigitalInDividerSet(hdwf, 1000); // 100MHz/100 = 100KHz 程序执行 1s
-FDwfDigitalInDividerSet(hdwf, 10000); // 100MHz/1000 = 10KHz 程序执行 10s
-
-FDwfDigitalInTriggerSourceSet 参数 trigsrcDetectorDigitalIn 设置digital 输入为触发源
-
-
- 
-// acquisition modes:
-acqmodeSingle     = 0;
-acqmodeScanShift  = 1;
-acqmodeScanScreen = 2;
-acqmodeRecord     = 3;
-acqmodeOvers      = 4;
-acqmodeSingle1    = 5;
-
-
-
-FDwfDigitalInInternalClockInfo(hdwf, &hzSys);
-这个函数 返回 100000000  即 100MHz
-
-FDwfDigitalInBufferSizeInfo(hdwf, &cSamples);
-返回 4096
-
+确定一下工作电压 3.3 还是5
