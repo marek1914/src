@@ -1,8 +1,7 @@
-CF卡转接 CompactFlash
+CF: CompactFlash
 
 64pin:data 和 addr 只采集不转发，只转发几个控制信号
 
-------------
 mcu选型
 F103VC  72MHz
 F411VC  100MHz
@@ -38,12 +37,7 @@ High: Common Memory, Low: Register(Attribute 属性) Memory.
 
 CF卡 addr 11 + data 16  VCC/GND 4   控制信号19条 
 
-换一个思路：
-检测到有文件，就删除，单片机去删除，前提是实现FAT文件系统
-
-----
 测试 analog discovery  可以用2台，一个发，一个检测
-
 
 ----DigitalIn----
 
