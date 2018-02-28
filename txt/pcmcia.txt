@@ -3,6 +3,7 @@ CF: CompactFlash
 用64pin(大概50个io)，可考虑48pin(大概36个io)
 就用64pin，稍微富裕些，用的时候省得捉襟见肘
 
+
 用不了那么多引脚，虽然A0-A10 其实高位地址是固定的，需要重新考虑64引脚甚至48引脚
 
 检测信号采样得能达到 16M
@@ -24,6 +25,8 @@ http://ww38.pcmcia.org/pccard.htm
 
 原装正品FANUC发那科系统CF卡槽 A66L-2050-0025A#B CNC 卡座插口 这个有卖
 
+数据备份过程大概5s，采集数据8s即可
+
 CF:
 cd1 cd2 引脚短
 VCC GND 引脚长
@@ -33,11 +36,46 @@ http://www.synchrotech.com/support/faq-compact_flash_memory_cards.html
 
 http://pinouts.ru/Slots/PcCard_pinout.shtml
 
+
+a0-a10 都有信号，说明不是 true ide 模式， 
+2k地址空间
+
+没操作CF卡时， a1，a2 有周期信号, 
+
+WAIT 是 是输出信号（相对于ca卡来说）没有抓到信号，一直是高电平
+
+重要实验结果：
+开始就把wait信号强制接地，提示 Memory card mount error
+当开始读取数据的时候，再接地，发现读取速度明显变慢
+说明我可以通过控制wait信号 调节速度！
+
+
+
+Memory Mode 和 I/O Mode 区别： 还没有明白真正的本质区别在哪里
+引脚定义上，仅 24 37 45 46  四个引脚不同
+
+Pin43 -INPACK  测得有信号，而 Memory Mode 不用这个信号，这更加证明是 I/O 模式
+Pin34 -IORD  Memory模式不用，I/O 用 
+Pin35 -IOWR  Memory模式不用，I/O 用
+
+IORD IOWR 都测到了信号，
+
+向卡里写数据时，IORD信号比较稀疏
+
 没操作CF卡时， a1，a2 有周期信号
 
 -REG:
-High: Common Memory, Low: Register(Attribute 属性) Memory.
-测得大概1.5MHz
+Memory Mode: High- Common Memory, Low- Register(Attribute 属性) Memory.
+I/O Mode : Low during I/O Cycles when the I/O address is on the Bus(也就是说 没啥用)
+
+发现 IORD / IOWD 为低的时候， REG 都为低（对了）
+
+
+CF卡 addr 11 + data 16  VCC/GND 4   控制信号19条 
+
+换一个思路：
+检测到有文件，就删除，单片机去删除，前提是实现FAT文件系统
+
 
 用 SN74LVC244A 会不会因为延迟 导致数据错位？   3.3V  最大 6ns 典型 3.9ns
 http://www.ti.com/logic-circuit/buffer-driver-transceiver/non-inverting-buffer-driver/products.html 总有一款适合
