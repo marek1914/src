@@ -1,8 +1,6 @@
 CF卡转接 CompactFlash
-A0-A11  D0-D15， 锁存器?
 
-64pin:data 和 addr 只采集不转发，只转发几个控制信号, 但是网口写功能时，无法屏蔽左侧信号
-所以还是要 100pin的
+64pin:data 和 addr 只采集不转发，只转发几个控制信号
 
 ------------
 mcu选型
@@ -12,25 +10,14 @@ F405VG  168MHz
 
 pcmcia 转 网口
 
----
-analog discovery python:
-脚本只支持 js？
-
-
-
-按着右下角2个按键上电，进入开机模式，选第7项，  SRAM BACKUP 是写sd card， SRAM RESTORE 是读
-最终目的是 无法 BACKUP
-
+按着右下角2个按键上电，进入开机模式，选第7项，  
 
 注意，pcmcia的封装， 1 35 2 36 3 37 4 38
 
 pcmcia:
 http://ww38.pcmcia.org/pccard.htm
 
-
-
 原装正品FANUC发那科系统CF卡槽 A66L-2050-0025A#B CNC 卡座插口  这个都有卖的
-
 
 CF:
 cd1 cd2 引脚短
@@ -41,13 +28,7 @@ http://www.synchrotech.com/support/faq-compact_flash_memory_cards.html
 
 http://pinouts.ru/Slots/PcCard_pinout.shtml
 
-
-a0-a10 都有信号，说明不是 true ide 模式， 
-2k地址空间
-
 没操作CF卡时， a1，a2 有周期信号
-
-Memory Mode 和 I/O Mode 区别：
 
 -REG:
 High: Common Memory, Low: Register(Attribute 属性) Memory.
