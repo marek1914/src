@@ -191,3 +191,14 @@ JST:
 
 
 
+----
+74HC 74LC 74LVC
+都是 CMOS 
+HC: High-speed  12ns
+LVC:Low voltage 1.65–3.3 V ,5 V tolerant, TPD < 5.5 ns at 3.3 V, TPD < 9 ns at 2.5 V.
+
+Tpd: Propagation delay 传输延迟
+
+SN74LVC244A: Maximum tpd of 5.9 ns at 3.3 V   // 传输延迟跟能通过多高频率数据 还是2个概念
+
+ti.com 找 logic-circuit/buffer-driver-transceiver/non-inverting-buffer-driver/products.html

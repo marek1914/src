@@ -4,6 +4,8 @@ STM32F200W
 比如这次用 w5500 芯片，就可以直接使用了 秒成！
 https://github.com/rogerclarkmelbourne  有做好的了已经
 
+//20180228
+这次移植 w5500 驱动花费了大量时间，这不值得，应该有一个 arduino平台，以便于能直接使用高品质的库
 
 MSP : MCU Support Package
 cube 生成的 stm32fxx_hal_msp.c 如果配置了uart usb spi等
@@ -66,7 +68,7 @@ F410
 F427/437
 F429/439
 
-QFN48(F401 48pin的只有QFN) 7x7mm:(F4系列 QFP最少64pin)
+QFN48(F401 48pin的只有QFN 7x7mm  QFP最少64pin 10x10)
 84MHz:
 F401CBu6  128+64
 F401CCu6  256+64  10+   中间的大焊盘 是GND，手册没有明确说明 万用表量 跟地联通的 VDDA VSSA 必须连接
