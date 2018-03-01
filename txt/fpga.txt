@@ -444,3 +444,59 @@ http://www.wiki.xilinx.com/Zynq+PL+Ethernet
 
 电压转换芯片  TXB0102DCUT
 
+
+-------------------------------------
+Intel Altera
+
+Quartus Prime:
+Pro(专业版)
+Standard(标准版)
+Lite(精简版)  免费，支持低端系列
+
+Stratix: fastest,most powerful FPGA
+Arria: Balance of cost,power and performance
+Cyclone: Low cost plus performance
+MAX: Non-volatile single-chip dual-configuration (CPLD)
+
+也就能用到后2种:
+
+Altera CPLD:
+MAX 10
+MAX V
+MAX II
+
+MAX 3000A 系列
+EPM3032 属于这个系列
+----------
+Cyclone III/IV/V/10
+EP1C3T100 属于Cyclone(2002-2003 比较老不建议使用)
+cyclone和cyclone II 新设计都不建议使用了
+
+Cyclone III:
+EP3C5  EP3C10
+可以 III 没有 II 那么便宜的，那III开始就没有10元 上下的低成本芯片了吗？
+III 好像最少 144Pin
+
+pcmcia rg45  选个64pin的足够了
+
+用cpld, 实际上不考虑成本的
+
+就用 MAX II:
+EPM240T100C5
+
+
+
+-----
+Saleae16 逻辑分析仪
+
+CY7C68013A (High-Speed USB Peripheral Controller)
+Cyclone EP1C3T100C8N   100Pin
+100MHz 晶体 很大
+4个 6pin  LC5  这个不像是芯片型号, 应该是 ESD 防静电
+2片SOP8:
+STC 15F104E (80C51 MCU !?)
+ST 25P10VP (1 Mbit Flash)
+
+16个通道从 fpga出来后，先串联 2k电阻(202) 再下拉 100k电阻(104),   串联 2k 不大吗？
+
+

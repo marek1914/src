@@ -737,3 +737,10 @@ HAL_SPI_Transmit_DMA()
 
 测试 HAL_SPI_Transmit 函数，21MHz clk 出来了
 
+
+
+
+------------
+flash 锁，防止读功能，
+张翼确认第二台机器被复制了主芯片，那就说明还能读出来
+

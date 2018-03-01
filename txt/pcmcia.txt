@@ -90,32 +90,18 @@ SN74LVT244B  8bit 3.5ns  1元 (备选)
 
 1片 16bit 不够   data 8个 ， 地址 3个 cs1 cs2 iowr iord 共 7 条 + reset  好像刚刚好。。。。
 
-
-
-
-
 -------------------
 F401-nuclear  84MHz
-设置 GPIO_SPEED_FREQ_LOW   全速设置IO   while 1 {1,0}    3.38MHz
-设置为 GPIO_SPEED_FREQ_VERY_HIGH  还是3.38MHz  
-使用 HAL_GPIO_TogglePin  高些 3.52MHz
+设置 GPIO_SPEED_FREQ_LOW   全速设置IO  3.38MHz
+设置 GPIO_SPEED_FREQ_VERY_HIGH  还是3.38MHz  
+这个参数好像没起作用
+编译器选时间优化 optimize for time  3.85MHz
 
-我操！，这么低！！   当时 sililab 单片机多高来这？忘记了  应该也不会太高，因为 主频才25MHz
-要买找到IO快的 MCU，或者STM32的其他型号， 要么用 fpga
-
-编译器选择时间优化之后 optimize for time   到了 3.85MHz 跟程序有关系
-
-直接操作 BSRR 寄存器
+直接操作 BSRR 寄存器, 9.4MHz
 while (1) {
 	*((unsigned int*)0x40020018) = 0x01000000;
 	*((unsigned int*)0x40020018) = 0x00000100;	
 }
+展开若干遍 21MHz
 
-达到了 9.4MHz  good！！！
-
-置高低 重复若干遍， 达到 21MHz  说明瓶颈不在 IO 操作上，而是指令执行速度
-
-但是波形不是很好 上冲下冲都很严重，这个应该能解决
-
-看来非要用 168MHz的了！
-
+波形不好 上下冲严重，这是因为没有负载，阻抗不匹配
