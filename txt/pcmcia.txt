@@ -1,5 +1,24 @@
 CF: CompactFlash
 
+---rg45---
+有几张网卡 是 RTL8139CL  是 PCI/CardBus(即pcmcia？) 总线
+那么这个显然是不工作的，否则就没有这个需求了
+
+能工作的卡 丝印 :PCMCIA 10M Eth 天津 HuiTong
+芯片 FuJITSU(富士通) MB86967
+
+另2个芯片:
+AM29F016D: Spansion 2M x 8Bit = 16Mbit Flash
+fdt 71016: ram 用于Buffer memory
+
+妈的这是一个 LAN controller, 而不单单是个 PHY
+Manchester 曼彻斯特编解码 基于802.3 and 10Base-T   这是一个10M网络
+
+0301 21:42 这个没戏
+1 stm32 彻底没戏，根本不用想了
+2 fpga 相当于要要把这个芯片给实现了，这太难了！
+
+
 测得工作电压 3.3V
 
 用64pin(大概50个io)，可考虑48pin(大概36个io)
@@ -104,4 +123,32 @@ while (1) {
 }
 展开若干遍 21MHz
 
-波形不好 上下冲严重，这是因为没有负载，阻抗不匹配
+波形上下冲严重，是因为没有负载，阻抗不匹配
+
+
+F407测试
+设置为168MHz，但是PCLK1 最大还是42MHz ， PCLK2 最大还是84MHz
+直接 		
+HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, 1);
+HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, 0);
+6.7MHz
+
+直接寄存器操作
+单步能看到 高低变化，可是全速运行示波器就看不到
+
+GPIO_InitStruct.Pull = GPIO_PULLUP; 也不行
+
+GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+或者 GPIO_SPEED_FREQ_HIGH 才能出来 
+
+GPIO_SPEED_FREQ_LOW; 不行，这时候看到区别了，因为主频高了，超过了gpio操作的上限？
+
+波形很差，33.49MHz
+看汇编，每个循环3条指令
+STR r0,[r4,#0x18]
+STR r5,[r4,#0x18]
+B
+理论上应该达到 50MHz+
+
+还行吧，勉强可以一试！！
+
