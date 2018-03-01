@@ -85,6 +85,12 @@ IORD IOWR 都测到了信号，
 
 没操作CF卡时， a1，a2 有周期信号
 
+
+a10 应该是没有用，有reg rd wr 信号的时候，a10 都一直是低，而没有这些信号的时候
+确有 A10 信号
+a3 确实有为1的时候，多数时候为低
+
+
 -REG:
 Memory Mode: High- Common Memory, Low- Register(Attribute 属性) Memory.
 I/O Mode : Low during I/O Cycles when the I/O address is on the Bus(也就是说 没啥用)
