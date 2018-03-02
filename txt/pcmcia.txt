@@ -5,7 +5,16 @@ CF: CompactFlash
 那么这个显然是不工作的，否则就没有这个需求了
 
 能工作的卡 丝印 :PCMCIA 10M Eth 天津 HuiTong
-芯片 FuJITSU(富士通) MB86967
+芯片 FuJITSU(富士通) MB86967 (淘宝有卖的 25-35元)
+
+怡然智控  淘宝 说自己独家研发出FANUC 数控以太网卡  1800元
+原装的 一般卖 1800 元
+
+FANUC系统只认FANUC自家的卡
+
+原装型号: 10Base-T
+A02B-0281-K710
+A15B-0001-C106
 
 另2个芯片:
 AM29F016D: Spansion 2M x 8Bit = 16Mbit Flash
@@ -14,9 +23,9 @@ fdt 71016: ram 用于Buffer memory
 妈的这是一个 LAN controller, 而不单单是个 PHY
 Manchester 曼彻斯特编解码 基于802.3 and 10Base-T   这是一个10M网络
 
-0301 21:42 这个没戏
+0301 21:42
 1 stm32 彻底没戏，根本不用想了
-2 fpga 相当于要要把这个芯片给实现了，这太难了！
+2 再找一款 10/100M 以太网控制器芯片，用fpga做一个适配器
 
 
 测得工作电压 3.3V

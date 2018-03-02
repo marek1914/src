@@ -236,5 +236,4 @@ WorkerThread 函数应该是入口
 
 windows 版本安装目录/Analyzers 目录下 有各协议得 .dll 文件
 
-
-
+我操，牛逼呀  I2cAnalyzerSettings.cpp 是控制那个设置菜单的

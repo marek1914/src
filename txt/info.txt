@@ -85,7 +85,7 @@ elelab.cn  2017.6-2020.6
 Dynastream Innovations Inc.
 
 NXP+Freescale
-Microchip+Atmel
+Microchip+Atmel + smsc
 
 mr-wu.cn 吴传斌博客
 papilio.cc //arduino fpga
