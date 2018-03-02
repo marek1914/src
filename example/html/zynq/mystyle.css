@@ -1,0 +1,17 @@
+div#navsecond {
+    float: left;
+    margin: 0 0 0 6px;
+    padding: 0;
+    border: 0;
+    width: 180px;
+    background: transparent;
+}
+
+div#maincontent {
+    float: left;
+    margin: 0;
+    padding: 30px 0 0 0;
+    border: 0;
+    width: 850px;
+    background: transparent;
+}
