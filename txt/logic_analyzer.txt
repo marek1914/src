@@ -214,3 +214,27 @@ FDwfDigitalInInternalClockInfo(hdwf, &hzSys);
 FDwfDigitalInBufferSizeInfo(hdwf, &cSamples);
 返回 4096
 
+
+
+
+
+
+
+
+--------------
+Saleae 插件开发
+https://support.saleae.com/hc/en-us/articles/115005987726-Protocol-Analyzer-SDK
+https://github.com/saleae/SampleAnalyzer   串口分析的例子
+https://github.com/saleae/AnalyzerSDK  3个平台所需的 库bin文件, 这些文件也是直接在安装路径下的，但是头文件需要这个库
+
+提供了现有 所有协议分析的源码，哇塞，，， 确实完善，这部分比analog discovery强太多
+说来也赶巧了，如果没有这个，pcmcia-rg45 一点戏都没有
+那怎么编译呢？ 协议源码里并没有 main 函数
+
+
+WorkerThread 函数应该是入口
+
+windows 版本安装目录/Analyzers 目录下 有各协议得 .dll 文件
+
+
+
