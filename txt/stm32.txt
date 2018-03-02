@@ -25,6 +25,8 @@ AHB: Advanced High performance Bus
 F1:24/36/48/72MHz
 F4:84/100/168/180MHz
 
+168MHz 的只有 F405/F407/F415/F417  最少64Pin
+
 
 
 CSS: 外部晶振停震后，会自动切换到内部RC

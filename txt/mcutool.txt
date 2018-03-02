@@ -175,4 +175,10 @@ arm-none-eabi/include/c++/6.3.1   bare-metal 也支持 c++ ，内存分配怎么
 
 
 ----
-mdk4 添加了新文件后，../../MDK-ARM/startup_stm32f401xc.lst 变化了
+mdk4 添加了新文件后, xx.uvproj 增加 <FileName>xxx.c</FileName>
+
+
+mdk4 转bin文件 用 ARMCC\bin\fromelf.exe
+fromelf.exe xx.axf --bin --output xx.bin
+可以在 user卡- Run User programs After Build 中设定这个命令
+

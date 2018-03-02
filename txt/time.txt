@@ -72,7 +72,8 @@ Done is better than perfect
 {"date":"180225","wd":0,"wake":"9:00","sleep":"00:30","sport":0,"star":[1,0,1]}
 {"date":"180226","wd":1,"wake":"7:00","sleep":"00:30","sport":0,"star":[0,1,1]}
 {"date":"180227","wd":1,"wake":"7:00","sleep":"00:20","sport":0,"star":[0,1,1]}
-{"date":"180228","wd":1,"wake":"7:40","sleep":"22:30","sport":0,"star":[x,x,x]}
+{"date":"180228","wd":1,"wake":"7:40","sleep":"00:30","sport":0,"star":[0,1,1]}
+{"date":"180301","wd":1,"wake":"7:00","sleep":"23:00","sport":0,"star":[0,0,1]}
 
 
 
