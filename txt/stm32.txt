@@ -760,6 +760,8 @@ EXTI4_IRQHandler
 EXTI9_5_IRQHandler   5-9 线一个入口
 EXTI15_10_IRQHandler 10-15 线一个入口
 
+GPIO_MODE_IT_RISING    中断模式
+GPIO_MODE_EVT_RISING   事件模式   啥区别？
 
 ---
 STM32 各版本库的区别

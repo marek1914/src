@@ -413,3 +413,22 @@ ifconfig eth0 up
 解决
 
 
+------
+联通宽带封闭了 80 和 443(https) 端口
+映射除这2个之外的端口即可，从路由器Wan IP 或baidu what is my ip 都能得到外网ip
+2018305 测试成功
+
+---
+群晖设置：
+find.synology.com
+目录
+home 当前登录的哪个账户，就是哪个账户的home
+homes 所有账户的home目录，其中一个 跟home目录内容相同
+music
+photo
+video
+
+
+git server:
+ssh 登录 在自己建的git目录：git init --bare
+
