@@ -1,5 +1,17 @@
 STM32F200W
 
+
+NVIC: Nested Vectored Interrupt Controller 具体什么含义？
+
+芯片型号归类：
+1 .bxl文件
+F401RB/C : STM32F4xxR2
+F401RD/E : STM32F4x1R1
+但是经过仔细对比，B/C/D/E 引脚完全相同，不知道为何要分开2个文件，按理说不能不同，仅容量不同而已
+2 F401R 与 F405R 引脚不兼容，F401R 没有PB11， F405R 有PB11，电源引脚少一个，具体定义也不同
+
+
+
 在stm32上维护一套 arduino的标准平台，这样就可以直接使用 丰富的arduino资源了
 比如这次用 w5500 芯片，就可以直接使用了 秒成！
 https://github.com/rogerclarkmelbourne  有做好的了已经
@@ -26,7 +38,7 @@ F1:24/36/48/72MHz
 F4:84/100/168/180MHz
 
 168MHz 的只有 F405/F407/F415/F417  最少64Pin
-
+F405R 只有 RG 没有别的
 
 
 CSS: 外部晶振停震后，会自动切换到内部RC
@@ -97,9 +109,6 @@ F401RC 256+64  9+
 F401RD 384+96 
 F401RE 512+96 (NUCLEO) 17+
 
-.bxl文件 F401RB/C  F401RD/E 是不同的文件，原理图不同 ， C和D 不能pin对pin兼容？好在 B 和C 可以
-F401RB/C : STM32F4xxR2
-F401RD/E : STM32F4x1R1
 
 F103 72MHz  F103C 系列 最高20k ram
 F103R 系列 QFP64:
@@ -702,17 +711,11 @@ AHB clock: HCLK
 stm32f4xx_hal_cortex.c:
 Setup SysTick Timer for time base.
 
-
 HAL_SYSTICK_Config 调用 SysTick_Config(这是CMSIS函数)
-
-
 
 ------------
 停到 B . 就是中断服务函数没有定义
 .s 中外围中断都是一个 B ，想知道具体哪个中断没有处理，需要修改 .s 把处理函数离散开来
-
-
-
 
 -------
 spi 驱动首调 (20180225)
@@ -740,9 +743,27 @@ HAL_SPI_Transmit_DMA()
 测试 HAL_SPI_Transmit 函数，21MHz clk 出来了
 
 
-
-
 ------------
 flash 锁，防止读功能，
 张翼确认第二台机器被复制了主芯片，那就说明还能读出来
+
+
+-------------
+GPIO 中断
+
+GPIO中断入口 例如F407VG:
+EXTI0_IRQHandler   PA0~PG0
+EXTI1_IRQHandler   PA1~PG1
+EXTI2_IRQHandler   ...
+EXTI3_IRQHandler
+EXTI4_IRQHandler
+EXTI9_5_IRQHandler   5-9 线一个入口
+EXTI15_10_IRQHandler 10-15 线一个入口
+
+
+---
+STM32 各版本库的区别
+Snippets(一些例子集合，直接操作寄存器，针对对汇编了解的工程师) 仅支持 F0 L0 系列
+Standard Peripheral Library: 接近于寄存器操作 确定是不维护了吗？
+Cube: HAL API/LL API (Low-Layer)  效率不及std lib
 

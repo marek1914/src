@@ -1,15 +1,13 @@
 CF: CompactFlash
 
 ---rg45---
-有几张网卡 是 RTL8139CL  是 PCI/CardBus(即pcmcia？) 总线
-那么这个显然是不工作的，否则就没有这个需求了
+RTL8139CL  是 PCI/CardBus(即pcmcia？) 总线
 
 能工作的卡 丝印 :PCMCIA 10M Eth 天津 HuiTong
 芯片 FuJITSU(富士通) MB86967 (淘宝有卖的 25-35元)
 
 怡然智控  淘宝 说自己独家研发出FANUC 数控以太网卡  1800元
 原装的 一般卖 1800 元
-
 FANUC系统只认FANUC自家的卡
 
 原装型号: 10Base-T
@@ -20,31 +18,24 @@ A15B-0001-C106
 AM29F016D: Spansion 2M x 8Bit = 16Mbit Flash
 fdt 71016: ram 用于Buffer memory
 
-妈的这是一个 LAN controller, 而不单单是个 PHY
-Manchester 曼彻斯特编解码 基于802.3 and 10Base-T   这是一个10M网络
+是10M LAN controller, 而不是 PHY Manchester 曼彻斯特编解码 基于802.3 and 10Base-T 
 
 0301 21:42
 1 stm32 彻底没戏，根本不用想了
 2 再找一款 10/100M 以太网控制器芯片，用fpga做一个适配器
 
-
 测得工作电压 3.3V
 
-用64pin(大概50个io)，可考虑48pin(大概36个io)
+64pin(大概50个io)，48pin(大概36个io)
 就用64pin，稍微富裕些，用的时候省得捉襟见肘
 
+A0-A10 高位地址是固定的
 
-用不了那么多引脚，虽然A0-A10 其实高位地址是固定的，需要重新考虑64引脚甚至48引脚
-
-检测信号采样得能达到 16M
-
-测试一下 f1 和 f4 的 io口性能再说
 mcu选型 
 F103R    72MHz
-F410/1R  100MHz
-F405R    168MHz(F4 168MHz 的没有48pin的，最少64pin) 有卖 25元，已经买过了
+F405R    168MHz(F4 168MHz 的没有48pin的，最少64pin) 
 
-F410CB   100MHz  48pin 没有卖的
+F410CB   100MHz  48pin 没有卖
 
 按右下角2个按键上电，进入开机模式，选第7项
 
@@ -55,8 +46,6 @@ http://ww38.pcmcia.org/pccard.htm
 
 原装正品FANUC发那科系统CF卡槽 A66L-2050-0025A#B CNC 卡座插口 这个有卖
 
-数据备份过程大概5s，采集数据8s即可
-
 CF:
 cd1 cd2 引脚短
 VCC GND 引脚长
@@ -65,7 +54,6 @@ pcmcia to cf 的对应关系
 http://www.synchrotech.com/support/faq-compact_flash_memory_cards.html
 
 http://pinouts.ru/Slots/PcCard_pinout.shtml
-
 
 a0-a10 都有信号，说明不是 true ide 模式， 
 2k地址空间
@@ -79,16 +67,11 @@ WAIT 是 是输出信号（相对于ca卡来说）没有抓到信号，一直是
 当开始读取数据的时候，再接地，发现读取速度明显变慢
 说明我可以通过控制wait信号 调节速度！
 
+Memory Mode 和 I/O Mode 区别：  引脚定义上，仅 24 37 45 46  四个引脚不同
 
-
-Memory Mode 和 I/O Mode 区别： 还没有明白真正的本质区别在哪里
-引脚定义上，仅 24 37 45 46  四个引脚不同
-
-Pin43 -INPACK  测得有信号，而 Memory Mode 不用这个信号，这更加证明是 I/O 模式
+Pin43 -INPACK  测得有信号， Memory Mode 不用这个信号，证明是 I/O 模式
 Pin34 -IORD  Memory模式不用，I/O 用 
 Pin35 -IOWR  Memory模式不用，I/O 用
-
-IORD IOWR 都测到了信号，
 
 向卡里写数据时，IORD信号比较稀疏
 
@@ -99,13 +82,19 @@ a10 应该是没有用，有reg rd wr 信号的时候，a10 都一直是低，�
 确有 A10 信号
 a3 确实有为1的时候，多数时候为低
 
+CD1/CD2 同时为低，表示卡插入
+
+A4-A7 全为高
+A3 多数时候为0， 个别情况为1
+A8 A9 只有01 / 11 两种情况
+A10 不用
+即之用5条地址线就能标识
+
 
 -REG:
-Memory Mode: High- Common Memory, Low- Register(Attribute 属性) Memory.
-I/O Mode : Low during I/O Cycles when the I/O address is on the Bus(也就是说 没啥用)
+I/O Mode : Low during I/O Cycles when the I/O address is on the Bus
 
 发现 IORD / IOWD 为低的时候， REG 都为低（对了）
-
 
 CF卡 addr 11 + data 16  VCC/GND 4   控制信号19条 
 
@@ -115,14 +104,11 @@ CF卡 addr 11 + data 16  VCC/GND 4   控制信号19条
 
 用 SN74LVC244A 会不会因为延迟 导致数据错位？   3.3V  最大 6ns 典型 3.9ns
 http://www.ti.com/logic-circuit/buffer-driver-transceiver/non-inverting-buffer-driver/products.html 总有一款适合
+缓冲器分为 non-inverting 和 inverting 类型
 
-SN74LVC244A  8bit 5.9ns  不是最好的选择
-SN74ALB16244  Tpd Max:  2ns  很贵 10+
-SN74AVC16244  Tpd Max:  3.3ns 4.5+   (备选)
+SN74LVT244B 8bit 3.5ns 用于 地址 3个 cs1 cs2 iowr iord 共 7 条 + reset  好像刚刚好。。。。
+SN74LVT245B 8bit 用于双向data
 
-SN74LVT244B  8bit 3.5ns  1元 (备选)
-
-1片 16bit 不够   data 8个 ， 地址 3个 cs1 cs2 iowr iord 共 7 条 + reset  好像刚刚好。。。。
 
 -------------------
 F401-nuclear  84MHz
@@ -164,10 +150,8 @@ B
 
 波形不好 上下冲严重，这是因为没有负载，阻抗不匹配
 
-
 ====================================================
 软件：
 进入 IOWR中断后 读取 地址线，如果是特定值，则不给转发 iowr 信号，阻止写入数据
 如果速度太快，用wait信号辅助
-我操，这么简单？
 

@@ -1,18 +1,8 @@
-
-
-
-
 200:
 zynq i.MX stm32 nordic st
 
 ip-mic  3+ 100*1000 = 13w
 pcmcia-cf 3 + 2(后续) = 5w
-
-
-20180228: 今年要是实现了200w目标，就改造工作间到次卧，改造阳台
-阳台跟客厅打通，换掉电视柜，封闭阳台，阳台装饰
-次卧做单人床上铺，衣柜挪到主卧，西面墙做整面的柜子
-足够柜子装货，近几年规模做到这样也就行了
 
 https://github.com/merbanan
 
@@ -154,27 +144,4 @@ https://docs.particle.io/datasheets/photon-datasheet
 
 wikihow.com/Measure-Inductance  测量电感
 wikihow.com/Test-a-Capacitor    测量电容
-
-
-account:
-adi: 1349@qq.com *2017J*Hun*
-机智：13@qq  jizhi88 论坛：club.gizwits.com
-sgmicro 圣邦: 13**@qq.com : sgmicro
-TI：13**67@qq.com : -2y50wpy-
-silicon: 134*@qq.com : 银行卡后5位*elelab
-ITU-T: gaojie@cyclecentury.com:*2xxpy-
-baidu:3uixx:5***5005xxx
-openstm32.org gaojie:200w200w
-st.com 13xx@q.com:89..2*G
-invensense.com: stm32f300w:8...2*G
-autodesk: qq:89****62*G
-nxp: 1349**@qq  0362200w
-q盾：形：159648
-twitter: *50w@gmail.com: gaojie200w:8***2
-
-张玲 北七家建材对面冠华苑 2号楼?单元11层
-房产毕业燃气等行李箱20180222
-*8xxxx2gH : 慧支
--*2yxxx*- : 珍支
-
 
