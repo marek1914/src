@@ -1,0 +1,53 @@
+#include <sys/socket.h>
+
+getsockname - get socket name
+
+这样调用：       
+caddr.sin_family = AF_INET;
+caddr.sin_port = htons(9090); 
+caddr.sin_addr.s_addr = 0;
+
+bind(sfd,(struct sockaddr*)&caddr,sizeof(caddr));
+
+strace后发现：
+
+if (!capable(CAP_NET_RAW))
+    return -EPERM;
+root拥有所有的capability,
+
+linux socket buffer默认8k
+/proc/sys/net/core
+/proc/sys/net/ipv4/tcp_wmem  4096(4k) 16384(16k)  4194304(4M)
+/proc/sys/net/ipv4/tcp_rmem  4096(4k) 87380(80+ k)    6291456(6M)
+/proc/sys/net/ipv6
+
+setsockopt 设定socket属性包括buffer大小
+
+shutdown(socketfd) - shut down part of a full-duplex connection
+close(socketfd) 关闭socket连接
+
+bind : bind a name to a socket，就是给新建socket赋地址(如IP+端口)，叫做： “assigning a name to a socket”.
+listen : listen for connections on a socket
+int listen(int sockfd, int backlog);
+sockfd 只能是 SOCK_STREAM 或 SOCK_SEQPACKET类型
+
+accept :accept a connection on a socket(服务端，用于SOCK_STREAM)，参数addr保存客户端的，它创建一个新的socket
+
+
+ssize_t send(int sockfd, const void *buf, size_t len, int flags); 如果 flags 赋0 ，等价于 write() 函数
+
+
+
+
+---
+w5500 驱动部分：
+
+不用dns，EthernetClient::connect() 使用网址连接的，不用即可
+
+dhcp 能获得 dns， 所以dhcp中也去掉 获取 dns的部分，整个dns部分删除掉
+
+
+分别建立 TCP socket
+EthernetServer.c:	socket(sock, TCP, _port, 0);
+EthernetClient.c:	socket(sock, TCP, _srcport, 0);
+

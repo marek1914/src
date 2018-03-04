@@ -204,7 +204,7 @@ AWG:美国线规标准
 Insulation-displacement connector 将绝缘层割开的座子
 Contact 金属触点
 Shrouded Header 座子
-Housing/socket 壳
+Housing 壳
 
 board-to-board
 wire-to-board

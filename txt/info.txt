@@ -6,8 +6,6 @@ pcmcia-cf 3 + 2(后续) = 5w
 
 https://github.com/merbanan
 
-LifeSmart 云起智能
-
 microbit 黄色灯既是电源，串口通讯的时候也闪烁
 
 http://www.digilent.com.cn/studyinfo/54.html
@@ -22,8 +20,6 @@ https://github.com/spark/photon
 
 embest-tech.cn  英蓓特 E络盟  提供树莓派定制服务
 下载处有很多资源
-
-arduino 硬件文件是 eagle，百度可以转为 ad
 
 mouser.com 芯片分销商
 

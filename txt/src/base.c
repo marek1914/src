@@ -743,8 +743,6 @@ unistd.h  unix standard head 包含unix标准调用如read write getpid close
 standard input output header  stdio.h 
 standard library header  stdlib.h 
 
-#include <sys/socket.h>
-
 sys/types.h
 
 int 4字节 long 机器长度
@@ -763,11 +761,6 @@ linaro编译器中 fcntl.h 简单说只定义了 fcntl open create，并有注�
 
 x86:
 /usr/include/sys/有：
-socket.h
-types.h
-stat.h
-ioctl.h
-仅定义ioctl函数，bionic在unistd.h中也声明ioctl函数不标准
 
 /usr/include/：
 stdio.h
@@ -893,46 +886,12 @@ struct Token {
   unsigned n    : 31;     /* Number of characters in this token */
 };
 
-#include <sys/socket.h>
 
 struct sockaddr_un {
 /* WARNING: DO NOT EDIT, AUTO-GENERATED CODE - SEE TOP FOR INSTRUCTIONS */
  sa_family_t sun_family;
  char sun_path[UNIX_PATH_MAX];
 };
-
-getsockname - get socket name
-
-这样调用：       
-caddr.sin_family = AF_INET;
-caddr.sin_port = htons(9090); 
-caddr.sin_addr.s_addr = 0;
-
-bind(sfd,(struct sockaddr*)&caddr,sizeof(caddr));
-
-strace后发现：
-
-if (!capable(CAP_NET_RAW))
-    return -EPERM;
-root拥有所有的capability,
-
-linux socket buffer默认8k
-/proc/sys/net/core
-/proc/sys/net/ipv4/tcp_wmem  4096(4k) 16384(16k)  4194304(4M)
-/proc/sys/net/ipv4/tcp_rmem  4096(4k) 87380(80+ k)    6291456(6M)
-/proc/sys/net/ipv6
-
-setsockopt 设定socket属性包括buffer大小
-
-shutdown(socketfd) - shut down part of a full-duplex connection
-close(socketfd) 关闭socket连接
-
-bind : bind a name to a socket，就是给新建socket赋地址(如IP+端口)，叫做： “assigning a name to a socket”.
-listen : listen for connections on a socket
-int listen(int sockfd, int backlog);
-sockfd 只能是 SOCK_STREAM 或 SOCK_SEQPACKET类型
-
-accept :accept a connection on a socket(服务端，用于SOCK_STREAM)，参数addr保存客户端的，它创建一个新的socket
 
 do_gettimeofday
 

@@ -223,8 +223,6 @@ system/core/libcutils/ properties.c
 多个property_get 函数 情况不同 arm使用的是 HAVE_LIBC_SYSTEM_PROPERTIES
 
 ==========
-socket 类型把AF_xx 都改成了PF_xx
-
 广播：
 ACTION_BOOT_COMPLETED = "android.intent.action.BOOT_COMPLETED"
 需要RECEIVE_BOOT_COMPLETED权限
@@ -236,10 +234,6 @@ core/java/android/setdisplayattr/SetDisplayAttrService.java
 
 3 dvb没在data区创建文件权限。data分区权限771，dev apk为user权限。将data
 区改为777即可。但这样是否破坏android权限系统？ 可以查查平板电脑的权限如何。
-
-udp socket创建失败，因为没有权限
-在AndroidManifest.xml中，加上这一句话，取得权限。
-<uses-permission android:name="android.permission.INTERNET" />
 
 developer -  tools 下面有很多有用的工具。内存分析，cpu时间片使用等。
 
@@ -310,8 +304,6 @@ dev_mount sdcard /mnt/sdcard auto /block/sda /block/sda/sda1
 暂时放这里：
 ubuntu格式化u盘，不写卷标，就会分配一个UUID，挂载点：
 /media/gaojie/xxxx-xxxx-xxxxxxxx (或显示卷标)
-
-vold root权限运行，通过socket与其他的进程通讯
 
 android的mount原理
 

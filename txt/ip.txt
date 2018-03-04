@@ -827,7 +827,6 @@ SIP通过STUN得到NAT的外网IP和SIP的信令监 听端口的外网port，替
 因此你必须间隔一端时间发送一个数据包出去以keep alive。
 
 
-
 ./stunclient --mode full stun.stunprotocol.org
 Binding test: success
 Local address: 192.168.1.104:57889
@@ -836,14 +835,6 @@ Behavior test: success
 Nat behavior: Endpoint Independent Mapping
 Filtering test: success
 Nat filtering: Address and Port Dependent Filtering
-
-
-
-
-strace跟踪client：
-socket(PF_INET, SOCK_DGRAM, IPPROTO_IP)    也是PF，跟bionic里面一样？什么情况
-
-
 
 enum StunMessageType
 {
@@ -1106,6 +1097,4 @@ echo "deb http://apt.opensips.org trusty 2.1-releases" >>/etc/apt/sources.list
 创建用户：
 opensipsctl  add 222222 222222
 === end opensips ===
-
-
 
