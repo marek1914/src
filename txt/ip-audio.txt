@@ -336,8 +336,10 @@ Sn_RXBUF_SIZE 寄存器设置 接收缓存大小， 可以设置为  0 1 2 4 8 1
 为啥设计了一个 xx_offset 函数
 
 执行 getRXReceivedSize 过一会 卡在里面的 while循环中
-读2遍寄存器 干啥？
+读2遍寄存器 干啥？ 为啥要读2次？？？
 
+官方 重要资料:
+http://wizwiki.net/wiki/doku.php?id=products:w5500:refschematic
 
 ----
 模具

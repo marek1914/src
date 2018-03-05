@@ -1,47 +1,39 @@
 CF: CompactFlash
 
 ---rg45---
-RTL8139CL  是 PCI/CardBus(即pcmcia？) 总线
+RTL8139CL: CardBus-RG45
 
-能工作的卡 丝印 :PCMCIA 10M Eth 天津 HuiTong
-芯片 FuJITSU(富士通) MB86967 (淘宝有卖的 25-35元)
-
-怡然智控  淘宝 说自己独家研发出FANUC 数控以太网卡  1800元
-原装的 一般卖 1800 元
-FANUC系统只认FANUC自家的卡
-
-原装型号: 10Base-T
+原装型号: 
 A02B-0281-K710
 A15B-0001-C106
 
-另2个芯片:
+能工作的卡丝印 :PCMCIA 10M Eth 天津 HuiTong
+
+FuJITSU MB86967: 10M Lan controller (淘宝30+)
 AM29F016D: Spansion 2M x 8Bit = 16Mbit Flash
-fdt 71016: ram 用于Buffer memory
+fdt 71016: 128kB RAM (用于Buf memory)
 
-是10M LAN controller, 而不是 PHY Manchester 曼彻斯特编解码 基于802.3 and 10Base-T 
+方案:
+1 (cpld)EPM240T100C5 + F405RG(192k ram) + ENC28J60 
+  cpld 只负责把pcmcia转换为 spi, 协议分析和适配全由stm32处理
+  
+2 利用Wait信号，F405RG + ENC28J60 (但 wait 不会无限等，有超时时间，此时间内还是处理不完也不行)
+  
 
-0301 21:42
-1 stm32 彻底没戏，根本不用想了
-2 再找一款 10/100M 以太网控制器芯片，用fpga做一个适配器
-
-测得工作电压 3.3V
-
+----------------------------------------
 64pin(大概50个io)，48pin(大概36个io)
 就用64pin，稍微富裕些，用的时候省得捉襟见肘
 
 A0-A10 高位地址是固定的
 
 mcu选型 
-F103R    72MHz
-F405R    168MHz(F4 168MHz 的没有48pin的，最少64pin) 
-
-F410CB   100MHz  48pin 没有卖
+F103R  72MHz
+F405R  168MHz 
 
 按右下角2个按键上电，进入开机模式，选第7项
 
 注意，pcmcia的封装， 1 35 2 36 3 37 4 38
 
-pcmcia:
 http://ww38.pcmcia.org/pccard.htm
 
 原装正品FANUC发那科系统CF卡槽 A66L-2050-0025A#B CNC 卡座插口 这个有卖

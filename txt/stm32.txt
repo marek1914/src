@@ -9,7 +9,7 @@ F401RB/C : STM32F4xxR2
 F401RD/E : STM32F4x1R1
 但是经过仔细对比，B/C/D/E 引脚完全相同，不知道为何要分开2个文件，按理说不能不同，仅容量不同而已
 2 F401R 与 F405R 引脚不兼容，F401R 没有PB11， F405R 有PB11，电源引脚少一个，具体定义也不同
-
+3 F405R 只有 RG 一款 
 
 
 在stm32上维护一套 arduino的标准平台，这样就可以直接使用 丰富的arduino资源了
@@ -37,8 +37,7 @@ AHB: Advanced High performance Bus
 F1:24/36/48/72MHz
 F4:84/100/168/180MHz
 
-168MHz 的只有 F405/F407/F415/F417  最少64Pin
-F405R 只有 RG 没有别的
+168MHz 的只有 F405/F407/F415/F417  最少64Pin 没有48pin的
 
 
 CSS: 外部晶振停震后，会自动切换到内部RC
@@ -471,16 +470,11 @@ AN3156: USB DFU protocol used in the STM32 bootloader
 AN4221: I2C protocol used in the STM32 bootloader
 AN4286: SPI protocol used in the STM32 bootloader
 
-
 ---F407-disco
 dfu-util -d 0483:df11 -c 1 -i 0 -a 0 -s 0x08000000 -D elua_lua_stm32f407vg.bin
 
-
-
 ---
 读保护：ST-Link utility：option byte... 选项
-
-
 
 -----------------------
 IPD (Integrated Passive Device)  integrate high-quality passive elements (resistors, inductors, capacitors)
@@ -488,14 +482,10 @@ Baluns 器件, 针对不同芯片，有不同型号
 I./ext/lib/crypto/tinycrypt/include/tinycrypt
 
 
-
-
 ----Ethernet---
-1 w550
-2 f103 + ENC28J60(MAC+PHY) spi接口
+1 w5500
+2 f103 + ENC28J60(MAC+PHY) spi
 3 f407内部MAC + LAN8720(PHY) 
-
-
 
 
 ------dsp-----
@@ -508,9 +498,6 @@ const arm_cfft_instance_f32 arm_cfft_sR_f32_len1024
 
 =====i2s====
 3 SPI (2 with I2S capability，即i2s2 i2s3 也是 spi2 spi3)
-
-
-
 
 
 ==== cubemx ====

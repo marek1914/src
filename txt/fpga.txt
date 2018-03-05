@@ -434,17 +434,11 @@ drivers/net/ethernet/xilinx/xilinx_emac.o
 drivers/net/ethernet/xilinx/xilinx_axienet_main.o
 drivers/net/ethernet/xilinx/xilinx_emacps.o
 
-
-
-
 ---
 http://www.wiki.xilinx.com/Zynq+PL+Ethernet
 
 
-
 电压转换芯片  TXB0102DCUT
-
-
 -------------------------------------
 Intel Altera
 
@@ -482,7 +476,7 @@ pcmcia rg45  选个64pin的足够了
 用cpld, 实际上不考虑成本的
 
 就用 MAX II:
-EPM240T100C5
+EPM240T100C5   8元+
 
 
 
@@ -500,3 +494,14 @@ ST 25P10VP (1 Mbit Flash)
 16个通道从 fpga出来后，先串联 2k电阻(202) 再下拉 100k电阻(104),   串联 2k 不大吗？
 
 
+
+
+
+--------
+Lattice
+apple 用了它的芯片做了 逻辑转换
+
+PDM 8个micphone 参考设计  好！
+http://www.latticesemi.com/en/Products/DesignSoftwareAndIP/IntellectualProperty/ReferenceDesigns/ReferenceDesign04/81Microphone
+
+有人说 lattice 的芯片 低端的价格有优势， 可是淘宝上卖的都很贵
