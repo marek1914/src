@@ -505,3 +505,7 @@ PDM 8个micphone 参考设计  好！
 http://www.latticesemi.com/en/Products/DesignSoftwareAndIP/IntellectualProperty/ReferenceDesigns/ReferenceDesign04/81Microphone
 
 有人说 lattice 的芯片 低端的价格有优势， 可是淘宝上卖的都很贵
+
+1688上搜lattice 能搜到不少
+https://detail.1688.com/offer/541776643726.html?spm=a261b.2187593.1998088710.30.1VlJAY
+ice40 芯片
