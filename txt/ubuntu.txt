@@ -435,3 +435,18 @@ video
 git server:
 ssh 登录 在自己建的git目录：git init --bare
 
+#### 群晖 能读取到 Tenda 路由器的 厂牌 型号
+"找到 UPnP 路由器"
+控制面板-外部访问 可以在外部设置路由器(注意保存生效)
+哇塞！说明 路由器页面上的所有配置，都可以通过网络接口完成！
+并且我这个是10年前的老旧路由器，就已经支持了！
+synology 幸好没有卖掉
+
+
+DDNS: Dynamic Domain Name Server
+synology 官方
+花生壳
+3322.org
+
+这与 quickconnect 又有什么区别呢？
+
