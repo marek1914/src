@@ -230,3 +230,9 @@ Tpd: Propagation delay 传输延迟
 SN74LVC244A: Maximum tpd of 5.9 ns at 3.3 V   // 传输延迟跟能通过多高频率数据 还是2个概念
 
 ti.com 找 logic-circuit/buffer-driver-transceiver/non-inverting-buffer-driver/products.html
+
+
+
+DAC:
+8ch 8bit
+AD7228  1688价格 7.5+

@@ -20,6 +20,13 @@ fdt 71016: 128kB RAM (用于Buf memory)
 2 利用Wait信号，F405RG + ENC28J60 (但 wait 不会无限等，有超时时间，此时间内还是处理不完也不行)
   
 
+STM32F103zet6 支持pc card 接口，但这是主控，我判断不行
+
+
+max II 的例子，有spi 有 cf  这不就全了！
+https://www.altera.com.cn/support/support-resources/operation-and-testing/exm-max.html
+
+
 ----------------------------------------
 64pin(大概50个io)，48pin(大概36个io)
 就用64pin，稍微富裕些，用的时候省得捉襟见肘
@@ -182,3 +189,5 @@ stm32 捕捉到的iowr 中断次数是 0x1A7780 每次测试上下会差几个�
 文件总大小是 0x1A0000, 16bit传输，难道每次传输都要写2次?
 
 
+
+----------

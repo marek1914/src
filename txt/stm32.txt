@@ -761,3 +761,10 @@ Cube: HAL API/LL API (Low-Layer)  效率不及std lib
 
 -----ADC
 F103 的 ADC1 ADC2  IN0-8 引脚是重复的  why ？
+
+
+
+---
+FMC
+FSMC   flex (static) memory control
+
