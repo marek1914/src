@@ -431,9 +431,17 @@ music
 photo
 video
 
+/var/services 这个目录下都是链接
+如:
+photo -> /volume1/photo
+
+
+
 
 git server:
 ssh 登录 在自己建的git目录：git init --bare
+git clone ssh://xx@lllab.tech/~/git/src   成功
+1.5M 左右的速度，可能家里上行速度不行
 
 #### 群晖 能读取到 Tenda 路由器的 厂牌 型号
 "找到 UPnP 路由器"
@@ -449,4 +457,5 @@ synology 官方
 3322.org
 
 这与 quickconnect 又有什么区别呢？
+
 
