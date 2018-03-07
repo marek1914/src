@@ -16,7 +16,9 @@ fdt 71016: 128kB RAM (用于Buf memory)
 方案:
 1 (cpld)EPM240T100C5 + F405RG(192k ram) + ENC28J60 
   cpld 只负责把pcmcia转换为 spi, 协议分析和适配全由stm32处理
-  
+
+F410C qfn48 100MHz 也可以考虑，就看资源利用情况了
+ 
 2 利用Wait信号，F405RG + ENC28J60 (但 wait 不会无限等，有超时时间，此时间内还是处理不完也不行)
   
 
@@ -26,6 +28,8 @@ STM32F103zet6 支持pc card 接口，但这是主控，我判断不行
 max II 的例子，有spi 有 cf  这不就全了！
 https://www.altera.com.cn/support/support-resources/operation-and-testing/exm-max.html
 
+spi 转 cf 接口 很好实现看来 
+http://www.harbaum.org/till/spi2cf/spi2cf.html
 
 ----------------------------------------
 64pin(大概50个io)，48pin(大概36个io)
