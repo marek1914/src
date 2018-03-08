@@ -439,6 +439,8 @@ http://www.wiki.xilinx.com/Zynq+PL+Ethernet
 
 
 电压转换芯片  TXB0102DCUT
+
+
 -------------------------------------
 Intel Altera
 
@@ -452,15 +454,17 @@ Arria: Balance of cost,power and performance
 Cyclone: Low cost plus performance
 MAX: Non-volatile single-chip dual-configuration (CPLD)
 
-也就能用到后2种:
-
-Altera CPLD:
+CPLD:
 MAX 10
 MAX V
-MAX II
 
-MAX 3000A 系列
-EPM3032 属于这个系列
+MAX II:
+最少100Pin
+EPM240T100C5   8元+
+
+MAX3000A:
+EPM3032 
+max3000 比较老的系列，有 44pin的
 ----------
 Cyclone III/IV/V/10
 EP1C3T100 属于Cyclone(2002-2003 比较老不建议使用)
@@ -470,15 +474,6 @@ Cyclone III:
 EP3C5  EP3C10
 可以 III 没有 II 那么便宜的，那III开始就没有10元 上下的低成本芯片了吗？
 III 好像最少 144Pin
-
-pcmcia rg45  选个64pin的足够了
-
-用cpld, 实际上不考虑成本的
-
-就用 MAX II:
-EPM240T100C5   8元+
-
-
 
 -----
 Saleae16 逻辑分析仪
