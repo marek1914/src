@@ -1,9 +1,6 @@
+200w
 Getting Things Done
 Done is better than perfect 
-
-1 两分钟原则：任何事情如果花的时间少于两分钟，则马上去做
-2 将要做的事情从大脑中移除出来写成list，并且每周都要清空一次
-
 
 {"date":"171223","wd":0,"wake":"9:30","sleep":"23:40","sport":0,"star":[1,1,0]}
 {"date":"171224","wd":0,"wake":"9:30","sleep":"23:30","sport":1,"star":[1,1,0]}
@@ -73,7 +70,11 @@ Done is better than perfect
 {"date":"180226","wd":1,"wake":"7:00","sleep":"00:30","sport":0,"star":[0,1,1]}
 {"date":"180227","wd":1,"wake":"7:00","sleep":"00:20","sport":0,"star":[0,1,1]}
 {"date":"180228","wd":1,"wake":"7:40","sleep":"00:30","sport":0,"star":[0,1,1]}
-{"date":"180301","wd":1,"wake":"7:00","sleep":"23:00","sport":0,"star":[0,0,1]}
-
-
-
+{"date":"180301","wd":1,"wake":"7:00","sleep":"00:30","sport":0,"star":[0,0,1]}
+{"date":"180302","wd":1,"wake":"7:30","sleep":"00:20","sport":0,"star":[0,0,1]}
+{"date":"180303","wd":0,"wake":"7:30","sleep":"00:20","sport":0,"star":[0,1,1]}
+{"date":"180304","wd":0,"wake":"7:30","sleep":"00:30","sport":0,"star":[0,1,1]}
+{"date":"180305","wd":1,"wake":"7:30","sleep":"00:20","sport":0,"star":[0,0,1]}
+{"date":"180306","wd":1,"wake":"7:30","sleep":"00:20","sport":0,"star":[0,0,1]}
+{"date":"180307","wd":1,"wake":"7:00","sleep":"00:20","sport":0,"star":[2,0,1]}
+{"date":"180308","wd":1,"wake":"6:00","sleep":"23:00","sport":0,"star":[0,0,1]}

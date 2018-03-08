@@ -1,5 +1,9 @@
 BuildID
 
+编译 .so 的命令
+gcc *.c -fPIC -shared -o xx.so
+
+
 clang: c/c++轻量编译器，目标之一是超越gcc
 llvm: Low Level Virtual Machine
 
@@ -317,13 +321,6 @@ android toolchain基于bionic
 
 gcc的参数多数是 -m -f开头 -fomit-frame-pointer 相当于-f是参数，omit-frame-pointer是参数值
 
-编译动态库的时候
-include $(BUILD_SHARED_LIBRARY)
-/*BUILD_SHARED_LIBRARY:= $(BUILD_SYSTEM)/shared_library.mk 调用 transform-o-to-shared-lib */
-而------
-define transform-o-to-shared-lib
-endef
-封装一层完全是为了 加一些信息和hide的处理  就像函数封装
 ----
 
 Look under a directory for makefiles that don't have parent
